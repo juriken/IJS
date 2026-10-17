@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import re
 import time
 import urllib.parse
@@ -46,7 +47,7 @@ TARGET_GROUPS = {
     ],
 }
 
-# 2 pages per group = ~40 items per group (~800 products total)
+# 2 pages per group for balanced daily runs
 PAGES_PER_ARTIST = 2
 
 
@@ -74,7 +75,7 @@ def parse_rendered_html(html, category, artist):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  # Look for product links across the fully rendered DOM
+  # Scan for all product links on the fully rendered page
   product_links = soup.find_all(
       "a", href=re.compile(r"/product/([A-Za-z0-9_-]+)")
   )
@@ -87,8 +88,15 @@ def parse_rendered_html(html, category, artist):
 
     prod_key = match.group(1)
 
-    # Ignore generic header/footer links
-    if prod_key.lower() in ["cart", "login", "help", "contact", "about"]:
+    # Filter out navigation / utility buttons
+    if prod_key.lower() in [
+        "cart",
+        "login",
+        "help",
+        "contact",
+        "about",
+        "tokuten",
+    ]:
       continue
 
     if prod_key not in items_dict:
@@ -106,12 +114,12 @@ def parse_rendered_html(html, category, artist):
 
     entry = items_dict[prod_key]
 
-    # Extract Title
+    # Title extraction
     title_text = clean_text(a.get_text())
     if title_text and len(title_text) > len(entry["title"]):
       entry["title"] = title_text
 
-    # Extract Cover Image
+    # Image extraction
     img_el = a.find("img")
     if img_el:
       src = (
@@ -130,26 +138,24 @@ def parse_rendered_html(html, category, artist):
       if not entry["title"] and img_el.get("alt"):
         entry["title"] = clean_text(img_el.get("alt"))
 
-    # Extract Price & Date from parent container
+    # Parent element extraction for price & date
     parent = a.find_parent(["div", "li", "tr", "td"])
     if parent:
-      parent_text = clean_text(parent.get_text())
+      p_text = clean_text(parent.get_text())
 
-      # Search for price (e.g. 1300yen / 1,300 JPY)
+      # Match prices (e.g. 1300yen, 1,300 JPY, 1400円)
       if not entry["price"]:
-        p_match = re.search(
-            r"(\d[\d,]*\s*(?:yen|JPY|円))", parent_text, re.IGNORECASE
-        )
+        p_match = re.search(r"(\d[\d,]*\s*(?:yen|JPY|円))", p_text, re.IGNORECASE)
         if p_match:
           entry["price"] = p_match.group(1)
 
-      # Search for release date (e.g. 2024/08/14 or 2024-08-14)
+      # Match release dates (e.g. 2024/08/14, 2024-08-14)
       if not entry["release_date"]:
-        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", parent_text)
+        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", p_text)
         if d_match:
           entry["release_date"] = d_match.group(1)
 
-      # Fallback image inside container
+      # Fallback image search inside parent
       if not entry["image"]:
         p_img = parent.find("img")
         if p_img:
@@ -166,8 +172,8 @@ def parse_rendered_html(html, category, artist):
               p_src = "https://www.cdjapan.co.jp" + p_src
             entry["image"] = p_src
 
-  # Apply fallback values
-  cleaned_list = []
+  # Fallback formatting
+  cleaned = []
   for prod_key, data in items_dict.items():
     if not data["title"]:
       data["title"] = f"{artist} Official Release ({prod_key})"
@@ -178,9 +184,57 @@ def parse_rendered_html(html, category, artist):
     if not data["image"]:
       data["image"] = f"https://www.cdjapan.co.jp/pictures/s/{prod_key}.jpg"
 
-    cleaned_list.append(data)
+    cleaned.append(data)
 
-  return cleaned_list
+  return cleaned
+
+
+def scrape_artist_with_retries(page, category, artist, page_num):
+  q = urllib.parse.quote_plus(artist)
+  url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&page={page_num}"
+
+  for attempt in range(1, 3):
+    try:
+      page.goto(url, wait_until="domcontentloaded", timeout=35000)
+
+      # Wait for product links to render inside the DOM
+      try:
+        page.wait_for_selector("a[href*='/product/']", timeout=6000)
+      except Exception:
+        pass
+
+      # Scroll down smoothly to trigger lazy-loaded images & cards
+      page.evaluate("window.scrollBy(0, 800)")
+      time.sleep(1.0)
+      page.evaluate("window.scrollBy(0, 800)")
+      time.sleep(1.0)
+
+      rendered_html = page.content()
+      html_size = len(rendered_html)
+
+      # Detect rate-limit drops (110 bytes response)
+      if html_size < 2000:
+        print(
+            f"    [Page {page_num}] Received {html_size} bytes (rate-limited)."
+            " Backing off 8 seconds..."
+        )
+        time.sleep(8.0)
+        continue
+
+      items = parse_rendered_html(rendered_html, category, artist)
+      print(
+          f"    [Page {page_num}] Rendered: {html_size:,} bytes | Extracted:"
+          f" {len(items)} releases"
+      )
+      return items
+
+    except Exception as e:
+      print(
+          f"    [Page {page_num}] Attempt {attempt} error for {artist}: {e}"
+      )
+      time.sleep(4.0)
+
+  return []
 
 
 def main():
@@ -189,19 +243,29 @@ def main():
   print(f"Current catalog size: {initial_count} items")
 
   with sync_playwright() as p:
-    # Launch real headless Chromium browser
     browser = p.chromium.launch(
         headless=True,
-        args=["--no-sandbox", "--disable-setuid-sandbox"],
+        args=[
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-blink-features=AutomationControlled",
+        ],
     )
     context = browser.new_context(
         user_agent=(
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
             " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         ),
-        viewport={"width": 1280, "height": 900},
+        viewport={"width": 1366, "height": 768},
     )
     page = context.new_page()
+
+    # Pre-warm connection
+    try:
+      page.goto("https://www.cdjapan.co.jp/", timeout=20000)
+      time.sleep(2.0)
+    except Exception:
+      pass
 
     for cat, artists in TARGET_GROUPS.items():
       print(f"\n==========================================")
@@ -210,45 +274,30 @@ def main():
 
       for artist in artists:
         print(f" -> Fetching releases for: {artist}")
-        artist_found = 0
+        artist_new = 0
 
-        for page_num in range(1, PAGES_PER_ARTIST + 1):
-          q = urllib.parse.quote_plus(artist)
-          url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&page={page_num}"
-
-          try:
-            # Navigate and let JavaScript execute
-            page.goto(url, wait_until="domcontentloaded", timeout=30000)
-
-            # Wait up to 3 seconds for client-side JavaScript to finish populating cards
-            time.sleep(2.5)
-
-            rendered_html = page.content()
-            items = parse_rendered_html(rendered_html, cat, artist)
-            print(
-                f"    [Page {page_num}] Rendered HTML:"
-                f" {len(rendered_html):,} bytes | Extracted: {len(items)}"
-                " releases"
-            )
-
-            if not items:
-              break
-
-            for it in items:
-              pid = it["id"]
-              if pid not in catalog:
-                artist_found += 1
-              catalog[pid] = it
-
-          except Exception as e:
-            print(f"    [Page {page_num}] Browser error for {artist}: {e}")
+        for p_idx in range(1, PAGES_PER_ARTIST + 1):
+          items = scrape_artist_with_retries(page, cat, artist, p_idx)
+          if not items:
             break
 
-        print(f"    Total new items added for {artist}: {artist_found}")
+          for it in items:
+            pid = it["id"]
+            if pid not in catalog:
+              artist_new += 1
+            catalog[pid] = it
+
+          # Polite delay between search pages
+          time.sleep(random.uniform(3.0, 4.5))
+
+        print(f"    Total new items added for {artist}: {artist_new}")
+
+        # Franchise breathing pause to prevent rate-limiting across long runs
+        time.sleep(random.uniform(2.5, 4.0))
 
     browser.close()
 
-  # Save catalog
+  # Save catalog to disk
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 

@@ -365,7 +365,7 @@
   "NEODAI-331155": {
     "id": "NEODAI-331155",
     "title": "Proxy Item CD Album AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined AKB48 4800yen US$ 30.37 December 16, 2026 Pre-order Limited Edition",
-    "artist": "SKE48",
+    "artist": "NMB48",
     "category": "AKB48 Group",
     "price": "4800yen",
     "release_date": "Available",
@@ -376,7 +376,7 @@
   "UPCH-80635": {
     "id": "UPCH-80635",
     "title": "CD Maxi Nagorizakura [Regular Edition] AKB48 1091yen US$ 6.90 February 25, 2026 In Stock at Supplier",
-    "artist": "AKB48",
+    "artist": "NMB48",
     "category": "AKB48 Group",
     "price": "1091yen",
     "release_date": "Available",
@@ -387,7 +387,7 @@
   "UPCH-89636": {
     "id": "UPCH-89636",
     "title": "CD Maxi Sukish [Type B] [Limited Edition] [CD + Blu-ray] AKB48 1273yen (30%OFF) US$ 8.06 August 19, 2026 In stock Limited Edition",
-    "artist": "AKB48",
+    "artist": "NMB48",
     "category": "AKB48 Group",
     "price": "1273yen",
     "release_date": "Available",
@@ -1031,6 +1031,94 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/16/26/SRXL-544.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-544",
+    "updated_at": "2026-10-17"
+  },
+  "SVWC-70640": {
+    "id": "SVWC-70640",
+    "title": "CD Album Kessoku Band [Regular Edition] Kessoku Band 3000yen US$ 18.98 December 27, 2023 In stock",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "3000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/05/47/SVWC-70640.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSVWC-70640",
+    "updated_at": "2026-10-17"
+  },
+  "NEODAI-83114": {
+    "id": "NEODAI-83114",
+    "title": "Proxy Item CD Album Dakara Boku wa Ongaku wo Yameta [Regular Edition] Yorushika 3080yen US$ 19.49 April 10, 2019 To Be Confirmed:1-2 weeks",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "3080yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/00/34/NEODAI-83114.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83114",
+    "updated_at": "2026-10-17"
+  },
+  "NEOGDS-998139": {
+    "id": "NEOGDS-998139",
+    "title": "Collectible S.H.Figuarts Gavan Infinity (Super Space Sheriff Gavan Infinity) Bandai 6375yen (15%OFF) US$ 40.34 August 2026 In stock",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "6375yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/10/37/NEOGDS-998139.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-998139",
+    "updated_at": "2026-10-17"
+  },
+  "NEOBK-3237605": {
+    "id": "NEOBK-3237605",
+    "title": "Hitona 1 (Jump Comics) Yagi Tomohiro BOOK Hitona 1 (Jump Comics) Yagi Tomohiro 520yen US$ 3.29 early September 2026 In Stock at Supplier",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "520yen",
+    "release_date": "Available",
+    "image": "https://www.cdjapan.co.jp/pictures/s/NEOBK-3237605.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3237605",
+    "updated_at": "2026-10-17"
+  },
+  "NEODAI-326746": {
+    "id": "NEODAI-326746",
+    "title": "Proxy Item BOOK The Dangers in My Heart 14 [w/ Art Book \"Dai Juni Chugakko Sotsugyo Album,\" Special Edition] [w/ Acrylic Keychain & 24P Memorial Illustration Reprint Booklet, Animate Set Premium] Sakurai Norio 6160yen US$ 38.98 November 06, 2026 Pre-order",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "6160yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/16/27/NEODAI-326746.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326746",
+    "updated_at": "2026-10-17"
+  },
+  "NEOBK-3159512": {
+    "id": "NEOBK-3159512",
+    "title": "BOOK YORUSHIKA Epistolary Novel: Nininsho (Second Person) n-buna / YORUSHIKA 7700yen US$ 48.72 late February 2026 In stock",
+    "artist": "ANGERME",
+    "category": "Hello! Project",
+    "price": "7700yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/16/19/NEOBK-3159512.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3159512",
+    "updated_at": "2026-10-17"
+  },
+  "VPCG-83586": {
+    "id": "VPCG-83586",
+    "title": "CD Album \"Jaadugar: A Witch in Mongolia (Anime)\" Original Soundtrack Animation Soundtrack (Music by Koshiro Hino) 3500yen US$ 22.15 September 30, 2026 In stock",
+    "artist": "ANGERME",
+    "category": "Hello! Project",
+    "price": "3500yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/10/47/VPCG-83586.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVPCG-83586",
+    "updated_at": "2026-10-17"
+  },
+  "TFCC-81211": {
+    "id": "TFCC-81211",
+    "title": "CD Album Sekai ga Kawaru Toki [w/ Blu-ray, Limited Edition] Haku. 5000yen US$ 31.64 September 09, 2026 In Stock at Supplier Limited Edition",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "5000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/16/31/TFCC-81211.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTFCC-81211",
     "updated_at": "2026-10-17"
   }
 }

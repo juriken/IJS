@@ -11,44 +11,35 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-TARGET_GROUPS = {
-    "Hello! Project": [
-        "Morning Musume",
-        "ANGERME",
-        "Juice=Juice",
-        "Tsubaki Factory",
-        "BEYOOOOONDS",
-        "OCHA NORMA",
-        "Rosy Chronicle",
-    ],
-    "AKB48 Group": [
-        "AKB48",
-        "SKE48",
-        "NMB48",
-        "HKT48",
-        "NGT48",
-        "STU48",
-    ],
-    "Sakamichi Series": [
-        "Nogizaka46",
-        "Sakurazaka46",
-        "Hinatazaka46",
-    ],
-    "=LOVE / Sister Groups": [
-        "=LOVE",
-        "≠ME",
-        "≒JOY",
-    ],
-    "Momoiro Clover Z": [
-        "Momoiro Clover Z",
-    ],
-    "Babymetal": [
-        "BABYMETAL",
-    ],
-}
-
-# 2 pages per artist x 20 items per page = ~40 items per group (Catalog will grow to ~500-800 items)
-PAGES_PER_ARTIST = 2
+# Key franchise queries tailored for deep release discovery
+TARGET_QUERIES = [
+    # Hello! Project core & flagship groups
+    ("Hello! Project", "Morning Musume"),
+    ("Hello! Project", "ANGERME"),
+    ("Hello! Project", "Juice=Juice"),
+    ("Hello! Project", "Tsubaki Factory"),
+    ("Hello! Project", "BEYOOOOONDS"),
+    ("Hello! Project", "OCHA NORMA"),
+    ("Hello! Project", "Rosy Chronicle"),
+    ("Hello! Project", "Hello! Project"),
+    # Sakamichi Series (46)
+    ("Sakamichi Series", "Nogizaka46"),
+    ("Sakamichi Series", "Sakurazaka46"),
+    ("Sakamichi Series", "Hinatazaka46"),
+    # AKB48 Franchise
+    ("AKB48 Group", "AKB48"),
+    ("AKB48 Group", "SKE48"),
+    ("AKB48 Group", "NMB48"),
+    ("AKB48 Group", "HKT48"),
+    ("AKB48 Group", "NGT48"),
+    ("AKB48 Group", "STU48"),
+    # Sashihara-produced & Stardust / Amuse
+    ("=LOVE / Sister Groups", "=LOVE"),
+    ("=LOVE / Sister Groups", "≠ME"),
+    ("=LOVE / Sister Groups", "≒JOY"),
+    ("Momoiro Clover Z", "Momoiro Clover Z"),
+    ("Babymetal", "BABYMETAL"),
+]
 
 
 def load_catalog():
@@ -71,11 +62,11 @@ def clean_text(text):
   return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
-def parse_rendered_html(html, category, artist):
+def parse_rendered_html(html, category, query_term):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  # Find all product anchor tags
+  # Find all product anchor links across standard result items and tables
   product_links = soup.find_all(
       "a", href=re.compile(r"/product/([A-Za-z0-9_-]+)")
   )
@@ -88,7 +79,7 @@ def parse_rendered_html(html, category, artist):
 
     prod_key = match.group(1)
 
-    # Exclude non-product system anchors
+    # Exclude system and utility links
     if prod_key.lower() in [
         "cart",
         "login",
@@ -97,6 +88,7 @@ def parse_rendered_html(html, category, artist):
         "about",
         "tokuten",
         "ranking",
+        "app",
     ]:
       continue
 
@@ -104,7 +96,7 @@ def parse_rendered_html(html, category, artist):
       items_dict[prod_key] = {
           "id": prod_key,
           "title": "",
-          "artist": artist,
+          "artist": query_term,
           "category": category,
           "price": "",
           "release_date": "",
@@ -139,16 +131,18 @@ def parse_rendered_html(html, category, artist):
       if not entry["title"] and img_el.get("alt"):
         entry["title"] = clean_text(img_el.get("alt"))
 
-    # Parent container extraction for price and date
+    # Parent container for price, date, and fallback cover photo
     parent = a.find_parent(["div", "li", "tr", "td"])
     if parent:
       p_text = clean_text(parent.get_text())
 
+      # Match prices (e.g. 1300yen, 1,300 JPY, 1400円)
       if not entry["price"]:
         p_match = re.search(r"(\d[\d,]*\s*(?:yen|JPY|円))", p_text, re.IGNORECASE)
         if p_match:
           entry["price"] = p_match.group(1)
 
+      # Match release dates (e.g. 2024/08/14, 2024-08-14)
       if not entry["release_date"]:
         d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", p_text)
         if d_match:
@@ -173,7 +167,7 @@ def parse_rendered_html(html, category, artist):
   cleaned = []
   for prod_key, data in items_dict.items():
     if not data["title"]:
-      data["title"] = f"{artist} Official Release ({prod_key})"
+      data["title"] = f"{query_term} Official Release ({prod_key})"
     if not data["price"]:
       data["price"] = "Check CDJapan"
     if not data["release_date"]:
@@ -186,45 +180,49 @@ def parse_rendered_html(html, category, artist):
   return cleaned
 
 
-def scrape_artist_page(page, category, artist, page_num):
-  q = urllib.parse.quote_plus(artist)
-  url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&page={page_num}"
+def scrape_query(page, category, query_term):
+  q = urllib.parse.quote_plus(query_term)
+  # Full catalog query targeting available items sorted newest first
+  url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&opt.include_eoa=0"
 
   for attempt in range(1, 3):
     try:
-      # Navigate and wait until all network requests (AJAX/Fetch) settle
-      page.goto(url, wait_until="networkidle", timeout=30000)
+      page.goto(url, wait_until="domcontentloaded", timeout=35000)
 
-      # Smooth scroll to ensure bottom rows and lazy images finish loading
-      page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
-      time.sleep(0.8)
-      page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-      time.sleep(0.8)
+      # Wait for product links to render
+      try:
+        page.wait_for_selector("a[href*='/product/']", timeout=7000)
+      except Exception:
+        pass
+
+      # Gradual scrolling triggers all lazy-loaded elements and images
+      page.evaluate("window.scrollBy(0, 1000)")
+      time.sleep(1.0)
+      page.evaluate("window.scrollBy(0, 1500)")
+      time.sleep(1.0)
 
       rendered_html = page.content()
       html_size = len(rendered_html)
 
-      # Handle temporary rate limits
-      if html_size < 2000:
+      # Check for 110-byte rate limiting
+      if html_size < 3000:
         print(
-            f"    [Page {page_num}] Response {html_size} bytes. Backing off 8"
-            " seconds..."
+            f"    [Rate-Limit Notice] Received {html_size} bytes. Cooling down"
+            " 10 seconds..."
         )
-        time.sleep(8.0)
+        time.sleep(10.0)
         continue
 
-      items = parse_rendered_html(rendered_html, category, artist)
+      items = parse_rendered_html(rendered_html, category, query_term)
       print(
-          f"    [Page {page_num}] Rendered: {html_size:,} bytes | Extracted:"
-          f" {len(items)} releases"
+          f"    Rendered: {html_size:,} bytes | Extracted: {len(items)}"
+          " candidate releases"
       )
       return items
 
     except Exception as e:
-      print(
-          f"    [Page {page_num}] Attempt {attempt} notice for {artist}: {e}"
-      )
-      time.sleep(3.0)
+      print(f"    Notice on attempt {attempt} for {query_term}: {e}")
+      time.sleep(5.0)
 
   return []
 
@@ -252,41 +250,45 @@ def main():
     )
     page = context.new_page()
 
-    for cat, artists in TARGET_GROUPS.items():
-      print(f"\n==========================================")
-      print(f"Scanning Franchise: {cat}")
-      print(f"==========================================")
+    # Warm up session with CDJapan homepage
+    try:
+      page.goto("https://www.cdjapan.co.jp/", timeout=25000)
+      time.sleep(2.0)
+    except Exception:
+      pass
 
-      for artist in artists:
-        print(f" -> Fetching releases for: {artist}")
-        artist_new = 0
+    total_added_this_run = 0
 
-        for p_idx in range(1, PAGES_PER_ARTIST + 1):
-          items = scrape_artist_page(page, cat, artist, p_idx)
-          if not items:
-            break
+    for idx, (cat, term) in enumerate(TARGET_QUERIES, start=1):
+      print(f"\n[{idx}/{len(TARGET_QUERIES)}] Querying: {term} ({cat})")
+      items = scrape_query(page, cat, term)
+      new_for_term = 0
 
-          for it in items:
-            pid = it["id"]
-            if pid not in catalog:
-              artist_new += 1
-            catalog[pid] = it
+      for it in items:
+        pid = it["id"]
+        if pid not in catalog:
+          new_for_term += 1
+          total_added_this_run += 1
+        catalog[pid] = it
 
-          time.sleep(random.uniform(2.5, 3.5))
+      print(
+          f"    Results for {term}: {len(items)} found ({new_for_term} new to"
+          " catalog)"
+      )
 
-        print(f"    Total new items added for {artist}: {artist_new}")
-        time.sleep(random.uniform(2.0, 3.0))
+      # Dynamic cooling delay to stay below CDJapan's firewall threshold
+      cooling = random.uniform(3.5, 5.5)
+      time.sleep(cooling)
 
     browser.close()
 
+  # Write back catalog
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 
   final_count = len(catalog)
   print(f"\n==========================================")
-  print(
-      f"Run complete! Added {final_count - initial_count} brand-new products."
-  )
+  print(f"Run complete! Added {total_added_this_run} brand-new products.")
   print(f"Total active catalog size: {final_count} items.")
   print(f"==========================================")
 

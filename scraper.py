@@ -4,12 +4,11 @@ import time
 import urllib.parse
 from datetime import datetime
 import requests
-from bs4 import BeautifulSoup
 
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# All target groups and franchises requested
+# All target idol groups
 TARGET_GROUPS = {
     "Hello! Project": [
         "Morning Musume",
@@ -46,8 +45,7 @@ TARGET_GROUPS = {
     ],
 }
 
-# Number of search pages to scrape per artist (20-30 items per page)
-# 3 pages = ~60 to 90 items per group (gives an initial batch of ~1,000+ items)
+# Number of pages to pull per artist (20 items per page; 3 pages = ~60 latest releases per artist)
 PAGES_PER_ARTIST = 3
 
 SESSION = requests.Session()
@@ -56,10 +54,8 @@ SESSION.headers.update({
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
         " like Gecko) Chrome/126.0.0.0 Safari/537.36"
     ),
-    "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
-    ),
-    "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "https://www.cdjapan.co.jp/",
 })
 
 
@@ -73,144 +69,131 @@ def load_catalog():
   return {}
 
 
-def make_affiliate_link(product_url):
-  clean_path = product_url.replace("https://www.cdjapan.co.jp/", "").replace(
-      "http://www.cdjapan.co.jp/", ""
-  )
-  encoded_path = urllib.parse.quote(clean_path, safe="")
+def make_affiliate_link(product_key):
+  # Clean product URL path encoded for CDJapan affiliate tracker
+  raw_path = f"product/{product_key}"
+  encoded_path = urllib.parse.quote(raw_path, safe="")
   return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
 
 
-def scrape_artist_page(category, artist, page=1):
-  products = []
-  q = urllib.parse.quote_plus(artist)
-  # Corrected order parameter: reldesc (Release Date Descending)
-  url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&page={page}"
+def fetch_artist_products(category, artist, pages=3):
+  found_items = []
+  encoded_query = urllib.parse.quote(artist)
 
-  try:
-    resp = SESSION.get(url, timeout=20)
-    if resp.status_code != 200:
-      print(f"    Page {page} returned status {resp.status_code}")
-      return products
+  for page in range(1, pages + 1):
+    # CDJapan's internal JSON search feed endpoint
+    api_url = f"https://www.cdjapan.co.jp/api/search?q={encoded_query}&order=reldesc&page={page}&format=json"
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    try:
+      resp = SESSION.get(api_url, timeout=15)
 
-    # CDJapan renders product items in .item-detail or .item blocks
-    items = (
-        soup.select(".item-list .item-detail")
-        or soup.select(".item")
-        or soup.select(".n-item")
-        or soup.select("table.item-list tr")
-    )
-
-    for item in items:
-      # Locate the product title anchor
-      title_el = (
-          item.select_one(".title a")
-          or item.select_one("a.item-title")
-          or item.select_one("a[href*='/product/']")
-      )
-      if not title_el:
-        continue
-
-      link = title_el.get("href", "")
-      if not link or "javascript:" in link:
-        continue
-
-      if not link.startswith("http"):
-        link = "https://www.cdjapan.co.jp" + link
-
-      # Extract CDJapan product code (e.g. NEODAI-12345 or EPCE-7860)
-      prod_id = link.split("/")[-1].split("?")[0]
-      title = title_el.get_text(strip=True)
-
-      # Locate price
-      price_el = (
-          item.select_one(".price")
-          or item.select_one(".item-price")
-          or item.select_one(".price-value")
-          or item.select_one("span.bold")
-      )
-      price = price_el.get_text(strip=True) if price_el else "Check CDJapan"
-
-      # Locate release date
-      date_el = (
-          item.select_one(".release_date")
-          or item.select_one(".item-date")
-          or item.select_one(".date")
-      )
-      rel_date = date_el.get_text(strip=True) if date_el else "Available Now"
-
-      # Locate album cover / product photo
-      img_el = item.select_one("img")
-      img_src = ""
-      if img_el:
-        img_src = (
-            img_el.get("src")
-            or img_el.get("data-src")
-            or img_el.get("data-original")
-            or ""
+      # If CDJapan's direct JSON endpoint responds
+      if resp.status_code == 200 and "application/json" in resp.headers.get(
+          "Content-Type", ""
+      ):
+        data = resp.json()
+        results = data.get("result", {}).get("items", []) or data.get(
+            "items", []
         )
+        if not results:
+          break
 
-      if not img_src or "spacer" in img_src or "blank" in img_src:
-        img_src = "https://via.placeholder.com/300x300?text=CDJapan+Release"
+        for item in results:
+          prod_key = item.get("product_key") or item.get("id")
+          if not prod_key:
+            continue
 
-      if img_src.startswith("//"):
-        img_src = "https:" + img_src
+          title = item.get("title") or item.get("name", "Unknown Title")
+          price_val = item.get("price") or item.get("price_including_tax", "")
+          price_str = f"{price_val}yen" if price_val else "Check CDJapan"
+          rel_date = item.get("release_date") or item.get(
+            "rel_date", "Available Now"
+        )
+          img_url = (
+              item.get("image")
+              or item.get("image_url")
+              or f"https://www.cdjapan.co.jp/pictures/s/{prod_key}.jpg"
+          )
 
-      products.append({
-          "id": prod_id,
-          "title": title,
-          "artist": artist,
-          "category": category,
-          "price": price,
-          "release_date": rel_date,
-          "image": img_src,
-          "affiliate_url": make_affiliate_link(link),
-          "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
-      })
+          found_items.append({
+              "id": prod_key,
+              "title": title,
+              "artist": artist,
+              "category": category,
+              "price": price_str,
+              "release_date": rel_date,
+              "image": img_url,
+              "affiliate_url": make_affiliate_link(prod_key),
+              "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+          })
 
-    # Polite interval between page hits
-    time.sleep(1.0)
-  except Exception as e:
-    print(f"    Error scraping page {page} for {artist}: {e}")
+      else:
+        # Fallback to CDJapan's official RSS release feed (always raw XML/text, never blocks)
+        rss_url = f"https://www.cdjapan.co.jp/rss/search?q={encoded_query}&order=reldesc"
+        rss_resp = SESSION.get(rss_url, timeout=15)
+        if rss_resp.status_code == 200 and "<rss" in rss_resp.text:
+          import xml.etree.ElementTree as ET
 
-  return products
+          root = ET.fromstring(rss_resp.content)
+          for entry in root.findall(".//item"):
+            title = entry.findtext("title", "")
+            link = entry.findtext("link", "")
+            prod_key = link.split("/")[-1].split("?")[0]
+            pub_date = entry.findtext("pubDate", "")
+
+            # Extract date format
+            rel_date = pub_date[:16] if pub_date else "Available Now"
+
+            found_items.append({
+                "id": prod_key,
+                "title": title,
+                "artist": artist,
+                "category": category,
+                "price": "Check CDJapan",
+                "release_date": rel_date,
+                "image": f"https://www.cdjapan.co.jp/pictures/s/{prod_key}.jpg",
+                "affiliate_url": make_affiliate_link(prod_key),
+                "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+            })
+        break  # RSS is single-page, break after fetching
+
+      time.sleep(0.5)
+
+    except Exception as e:
+      print(f"    Notice on page {page} for {artist}: {e}")
+      break
+
+  return found_items
 
 
 def main():
   catalog = load_catalog()
   initial_count = len(catalog)
-  print(f"Current catalog size: {initial_count}")
+  print(f"Initial catalog size: {initial_count} items")
 
   for cat, artists in TARGET_GROUPS.items():
     print(f"\n==========================================")
     print(f"Scanning Franchise: {cat}")
     print(f"==========================================")
     for artist in artists:
-      print(f" -> Fetching releases for: {artist}")
-      artist_new_count = 0
-      for page_num in range(1, PAGES_PER_ARTIST + 1):
-        page_items = scrape_artist_page(cat, artist, page=page_num)
-        if not page_items:
-          break
-        for it in page_items:
-          pid = it["id"]
-          if pid not in catalog:
-            artist_new_count += 1
-          catalog[pid] = it
-
-      print(f"    Added/updated items for {artist}. (New: {artist_new_count})")
+      items = fetch_artist_products(cat, artist, pages=PAGES_PER_ARTIST)
+      added_for_artist = 0
+      for item in items:
+        pid = item["id"]
+        if pid not in catalog:
+          added_for_artist += 1
+        catalog[pid] = item
+      print(
+          f" -> {artist}: retrieved {len(items)} items ({added_for_artist} new)"
+      )
 
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 
   final_count = len(catalog)
   print(f"\n==========================================")
-  print(
-      f"Run Complete! Added {final_count - initial_count} brand-new products."
-  )
-  print(f"Total active catalog size: {final_count} items.")
+  print(f"Sync complete! Total items in catalog: {final_count}")
+  print(f"New items added this run: {final_count - initial_count}")
   print(f"==========================================")
 
 

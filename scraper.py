@@ -47,7 +47,7 @@ TARGET_GROUPS = {
     ],
 }
 
-# 2 pages per group for balanced daily runs
+# 2 pages per artist x 20 items per page = ~40 items per group (Catalog will grow to ~500-800 items)
 PAGES_PER_ARTIST = 2
 
 
@@ -75,7 +75,7 @@ def parse_rendered_html(html, category, artist):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  # Scan for all product links on the fully rendered page
+  # Find all product anchor tags
   product_links = soup.find_all(
       "a", href=re.compile(r"/product/([A-Za-z0-9_-]+)")
   )
@@ -88,7 +88,7 @@ def parse_rendered_html(html, category, artist):
 
     prod_key = match.group(1)
 
-    # Filter out navigation / utility buttons
+    # Exclude non-product system anchors
     if prod_key.lower() in [
         "cart",
         "login",
@@ -96,6 +96,7 @@ def parse_rendered_html(html, category, artist):
         "contact",
         "about",
         "tokuten",
+        "ranking",
     ]:
       continue
 
@@ -138,24 +139,21 @@ def parse_rendered_html(html, category, artist):
       if not entry["title"] and img_el.get("alt"):
         entry["title"] = clean_text(img_el.get("alt"))
 
-    # Parent element extraction for price & date
+    # Parent container extraction for price and date
     parent = a.find_parent(["div", "li", "tr", "td"])
     if parent:
       p_text = clean_text(parent.get_text())
 
-      # Match prices (e.g. 1300yen, 1,300 JPY, 1400円)
       if not entry["price"]:
         p_match = re.search(r"(\d[\d,]*\s*(?:yen|JPY|円))", p_text, re.IGNORECASE)
         if p_match:
           entry["price"] = p_match.group(1)
 
-      # Match release dates (e.g. 2024/08/14, 2024-08-14)
       if not entry["release_date"]:
         d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", p_text)
         if d_match:
           entry["release_date"] = d_match.group(1)
 
-      # Fallback image search inside parent
       if not entry["image"]:
         p_img = parent.find("img")
         if p_img:
@@ -172,7 +170,6 @@ def parse_rendered_html(html, category, artist):
               p_src = "https://www.cdjapan.co.jp" + p_src
             entry["image"] = p_src
 
-  # Fallback formatting
   cleaned = []
   for prod_key, data in items_dict.items():
     if not data["title"]:
@@ -189,34 +186,29 @@ def parse_rendered_html(html, category, artist):
   return cleaned
 
 
-def scrape_artist_with_retries(page, category, artist, page_num):
+def scrape_artist_page(page, category, artist, page_num):
   q = urllib.parse.quote_plus(artist)
   url = f"https://www.cdjapan.co.jp/searchuni?q={q}&order=reldesc&page={page_num}"
 
   for attempt in range(1, 3):
     try:
-      page.goto(url, wait_until="domcontentloaded", timeout=35000)
+      # Navigate and wait until all network requests (AJAX/Fetch) settle
+      page.goto(url, wait_until="networkidle", timeout=30000)
 
-      # Wait for product links to render inside the DOM
-      try:
-        page.wait_for_selector("a[href*='/product/']", timeout=6000)
-      except Exception:
-        pass
-
-      # Scroll down smoothly to trigger lazy-loaded images & cards
-      page.evaluate("window.scrollBy(0, 800)")
-      time.sleep(1.0)
-      page.evaluate("window.scrollBy(0, 800)")
-      time.sleep(1.0)
+      # Smooth scroll to ensure bottom rows and lazy images finish loading
+      page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
+      time.sleep(0.8)
+      page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+      time.sleep(0.8)
 
       rendered_html = page.content()
       html_size = len(rendered_html)
 
-      # Detect rate-limit drops (110 bytes response)
+      # Handle temporary rate limits
       if html_size < 2000:
         print(
-            f"    [Page {page_num}] Received {html_size} bytes (rate-limited)."
-            " Backing off 8 seconds..."
+            f"    [Page {page_num}] Response {html_size} bytes. Backing off 8"
+            " seconds..."
         )
         time.sleep(8.0)
         continue
@@ -230,9 +222,9 @@ def scrape_artist_with_retries(page, category, artist, page_num):
 
     except Exception as e:
       print(
-          f"    [Page {page_num}] Attempt {attempt} error for {artist}: {e}"
+          f"    [Page {page_num}] Attempt {attempt} notice for {artist}: {e}"
       )
-      time.sleep(4.0)
+      time.sleep(3.0)
 
   return []
 
@@ -256,16 +248,9 @@ def main():
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
             " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         ),
-        viewport={"width": 1366, "height": 768},
+        viewport={"width": 1440, "height": 900},
     )
     page = context.new_page()
-
-    # Pre-warm connection
-    try:
-      page.goto("https://www.cdjapan.co.jp/", timeout=20000)
-      time.sleep(2.0)
-    except Exception:
-      pass
 
     for cat, artists in TARGET_GROUPS.items():
       print(f"\n==========================================")
@@ -277,7 +262,7 @@ def main():
         artist_new = 0
 
         for p_idx in range(1, PAGES_PER_ARTIST + 1):
-          items = scrape_artist_with_retries(page, cat, artist, p_idx)
+          items = scrape_artist_page(page, cat, artist, p_idx)
           if not items:
             break
 
@@ -287,17 +272,13 @@ def main():
               artist_new += 1
             catalog[pid] = it
 
-          # Polite delay between search pages
-          time.sleep(random.uniform(3.0, 4.5))
+          time.sleep(random.uniform(2.5, 3.5))
 
         print(f"    Total new items added for {artist}: {artist_new}")
-
-        # Franchise breathing pause to prevent rate-limiting across long runs
-        time.sleep(random.uniform(2.5, 4.0))
+        time.sleep(random.uniform(2.0, 3.0))
 
     browser.close()
 
-  # Save catalog to disk
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 

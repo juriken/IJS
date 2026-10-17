@@ -343,7 +343,7 @@
   "UPCH-89635": {
     "id": "UPCH-89635",
     "title": "CD Maxi Sukish [Type A] [Limited Edition] [CD + Blu-ray] AKB48 1818yen US$ 11.50 August 19, 2026 In stock Limited Edition",
-    "artist": "NGT48",
+    "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1818yen",
     "release_date": "Available",
@@ -365,7 +365,7 @@
   "NEODAI-331155": {
     "id": "NEODAI-331155",
     "title": "Proxy Item CD Album AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined AKB48 4800yen US$ 30.37 December 16, 2026 Pre-order Limited Edition",
-    "artist": "NGT48",
+    "artist": "NMB48",
     "category": "AKB48 Group",
     "price": "4800yen",
     "release_date": "Available",
@@ -420,7 +420,7 @@
   "NEOBK-3226503": {
     "id": "NEOBK-3226503",
     "title": "BOOK Yona of the Dawn 48 [w/ Acrylic Stand, Special Edition] (Hana to Yume Comics) Kusanagi Mizuho 2500yen US$ 15.82 mid October 2026 In Stock at Supplier Limited Edition",
-    "artist": "NGT48",
+    "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2500yen",
     "release_date": "Available",
@@ -866,6 +866,94 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/00/11/NEODAI-285243.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-285243",
+    "updated_at": "2026-10-17"
+  },
+  "NEOODY-99": {
+    "id": "NEOODY-99",
+    "title": "BOOK Rosy Chronicle Photobook \"Rosy Chronicle 1\" [w/ DVD] Rosy Chronicle 3182yen US$ 20.14 February 22, 2025 In stock",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "3182yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/10/35/NEOODY-99.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-99",
+    "updated_at": "2026-10-17"
+  },
+  "EPCE-8121": {
+    "id": "EPCE-8121",
+    "title": "CD Maxi Datte Daikyo Jan / Najiraretatte Nakenai Aisaretatte Nakenai [w/ Blu-ray, Limited Edition / Type SP] Rosy Chronicle 3500yen US$ 22.15 November 04, 2026 Pre-order Limited Edition",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "3500yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/08/10/EPCE-8121.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8121",
+    "updated_at": "2026-10-17"
+  },
+  "EPCE-8123": {
+    "id": "EPCE-8123",
+    "title": "CD Maxi Datte Daikyo Jan / Najiraretatte Nakenai Aisaretatte Nakenai [Regular Edition / Type A] Rosy Chronicle 1182yen US$ 7.48 November 04, 2026 Pre-order Bonus",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "1182yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/08/12/EPCE-8123.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8123",
+    "updated_at": "2026-10-17"
+  },
+  "EPCE-8117": {
+    "id": "EPCE-8117",
+    "title": "CD Maxi Datte Daikyo Jan / Najiraretatte Nakenai Aisaretatte Nakenai [w/ Blu-ray, Limited Edition / Type A] Rosy Chronicle 1900yen US$ 12.02 November 04, 2026 Pre-order Limited Edition",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "1900yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/08/14/EPCE-8117.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8117",
+    "updated_at": "2026-10-17"
+  },
+  "NEOIMP-22139": {
+    "id": "NEOIMP-22139",
+    "title": "CD Album first studio album \"rosie\" (Retail Exclusive) [Imported] Rose (BLACKPINK) 4468yen US$ 28.27 December 14, 2024 Backorder: 2-4 weeks",
+    "artist": "Rosy Chronicle",
+    "category": "Hello! Project",
+    "price": "4468yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/14/18/NEOIMP-22139.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOIMP-22139",
+    "updated_at": "2026-10-17"
+  },
+  "KIZM-90858": {
+    "id": "KIZM-90858",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Limited Edition] [CD + Blu-ray] STU48 1727yen US$ 10.93 October 07, 2026 In stock Limited Edition Bonus",
+    "artist": "STU48",
+    "category": "AKB48 Group",
+    "price": "1727yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/12/18/KIZM-90858.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90858",
+    "updated_at": "2026-10-17"
+  },
+  "KIZM-90856": {
+    "id": "KIZM-90856",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type A] [Limited Edition] [CD + Blu-ray] STU48 1727yen US$ 10.93 October 07, 2026 In stock Limited Edition Bonus",
+    "artist": "STU48",
+    "category": "AKB48 Group",
+    "price": "1727yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/12/16/KIZM-90856.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90856",
+    "updated_at": "2026-10-17"
+  },
+  "KIZM-858": {
+    "id": "KIZM-858",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Regular Edition] [CD + Blu-ray] STU48 1727yen US$ 10.93 October 07, 2026 In stock Bonus",
+    "artist": "STU48",
+    "category": "AKB48 Group",
+    "price": "1727yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/02/43/KIZM-858.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-858",
     "updated_at": "2026-10-17"
   }
 }

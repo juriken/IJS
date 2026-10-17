@@ -133,7 +133,7 @@ def main():
     print(f"\nScanning Category: {category}")
     for artist in artists:
       print(f" -> Fetching releases for {artist}...")
-      items = scrape_artist_releases(category, artist, max_pages=2)
+      items = scrape_artist_releases(category, artist, max_pages=10)
       for item in items:
         pid = item["id"]
         if pid not in catalog:

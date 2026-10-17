@@ -134,7 +134,7 @@
   "EPCE-8113": {
     "id": "EPCE-8113",
     "title": "CD Album Lonely...But Not Alone / Yes ka No ka Watashi ka [w/ Blu-ray, Limited Edition / Type SP] Morning Musume. '26 3500yen US$ 22.15 September 30, 2026 In stock Limited Edition Bonus",
-    "artist": "Morning Musume",
+    "artist": "Hello! Project",
     "category": "Hello! Project",
     "price": "3500yen",
     "release_date": "Available",
@@ -365,7 +365,7 @@
   "NEODAI-331155": {
     "id": "NEODAI-331155",
     "title": "Proxy Item CD Album AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined AKB48 4800yen US$ 30.37 December 16, 2026 Pre-order Limited Edition",
-    "artist": "NMB48",
+    "artist": "SKE48",
     "category": "AKB48 Group",
     "price": "4800yen",
     "release_date": "Available",
@@ -376,7 +376,7 @@
   "UPCH-80635": {
     "id": "UPCH-80635",
     "title": "CD Maxi Nagorizakura [Regular Edition] AKB48 1091yen US$ 6.90 February 25, 2026 In Stock at Supplier",
-    "artist": "NMB48",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1091yen",
     "release_date": "Available",
@@ -387,7 +387,7 @@
   "UPCH-89636": {
     "id": "UPCH-89636",
     "title": "CD Maxi Sukish [Type B] [Limited Edition] [CD + Blu-ray] AKB48 1273yen (30%OFF) US$ 8.06 August 19, 2026 In stock Limited Edition",
-    "artist": "NMB48",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1273yen",
     "release_date": "Available",
@@ -486,7 +486,7 @@
   "SRCL-13790": {
     "id": "SRCL-13790",
     "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-A] Nogizaka46 1818yen US$ 11.50 July 22, 2026 In Stock at Supplier",
-    "artist": "Sakurazaka46",
+    "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1818yen",
     "release_date": "Available",
@@ -497,7 +497,7 @@
   "SRCL-13796": {
     "id": "SRCL-13796",
     "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-D] Nogizaka46 1818yen US$ 11.50 July 22, 2026 In stock Bonus",
-    "artist": "Sakurazaka46",
+    "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1818yen",
     "release_date": "Available",
@@ -954,6 +954,83 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/43/KIZM-858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-858",
+    "updated_at": "2026-10-17"
+  },
+  "DAKUFXW-1041": {
+    "id": "DAKUFXW-1041",
+    "title": "Blu-ray Hello! Project \"Solo Fes! 2026\" Hello! Project 8000yen US$ 50.62 September 16, 2026 In stock",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
+    "price": "8000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/10/15/DAKUFXW-1041.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1041",
+    "updated_at": "2026-10-17"
+  },
+  "COXA-1407": {
+    "id": "COXA-1407",
+    "title": "Blu-ray Project Sekai COLORFUL LIVE 5th - Frontier - [Limited Edition] Game Music 11000yen US$ 69.61 July 22, 2026 In Stock at Supplier Limited Edition Bonus",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
+    "price": "11000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/02/05/COXA-1407.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FCOXA-1407",
+    "updated_at": "2026-10-17"
+  },
+  "BRMM-11002": {
+    "id": "BRMM-11002",
+    "title": "CD Album Project Sekai Colorful Stage! feat. Hatsune Miku Theme Song & Anniversary Song Album Game Music 3000yen US$ 18.98 December 10, 2025 In Stock at Supplier",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
+    "price": "3000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/12/47/BRMM-11002.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FBRMM-11002",
+    "updated_at": "2026-10-17"
+  },
+  "NEOGDS-1067000": {
+    "id": "NEOGDS-1067000",
+    "title": "Collectible G.S.Collection Gyaru Tomie x Hello Kitty [August 2027 Release] Goodsmile Company 17091yen US$ 108.15 August 2027 Pre-order",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
+    "price": "17091yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/05/11/NEOGDS-1067000.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-1067000",
+    "updated_at": "2026-10-17"
+  },
+  "SRCL-13792": {
+    "id": "SRCL-13792",
+    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-B] Nogizaka46 1818yen US$ 11.50 July 22, 2026 In Stock at Supplier",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1818yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/11/21/SRCL-13792.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13792",
+    "updated_at": "2026-10-17"
+  },
+  "SRCL-13794": {
+    "id": "SRCL-13794",
+    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-C] Nogizaka46 1818yen US$ 11.50 July 22, 2026 In stock Bonus",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1818yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/11/23/SRCL-13794.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13794",
+    "updated_at": "2026-10-17"
+  },
+  "SRXL-544": {
+    "id": "SRXL-544",
+    "title": "Blu-ray Mizuki Yamashita Graduation Concert Day2 [Regular Edition] Nogizaka46 8800yen US$ 55.69 October 02, 2024 In Stock at Supplier",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "8800yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/16/26/SRXL-544.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-544",
     "updated_at": "2026-10-17"
   }
 }

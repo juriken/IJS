@@ -1,1 +1,112 @@
-{}
+{
+  "EPCE-7860": {
+    "id": "EPCE-7860",
+    "title": "Nandaka Sentimental na Toki no Uta / Saijoukyuu Dreamer [Regular Edition A]",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
+    "price": "1300yen",
+    "release_date": "2024/08/14",
+    "image": "https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7860",
+    "updated_at": "2026-10-17"
+  },
+  "HKCN-50798": {
+    "id": "HKCN-50798",
+    "title": "Bimyo na Telepathy / Chotto Jirettai [Regular Edition A]",
+    "artist": "ANGERME",
+    "category": "Hello! Project",
+    "price": "1300yen",
+    "release_date": "2024/11/13",
+    "image": "https://www.cdjapan.co.jp/pictures/s/00/38/HKCN-50798.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50798",
+    "updated_at": "2026-10-17"
+  },
+  "HKCN-50785": {
+    "id": "HKCN-50785",
+    "title": "Tokyo Blank Diary / Ashita no Watashi ni Sasagu Uta",
+    "artist": "Juice=Juice",
+    "category": "Hello! Project",
+    "price": "1300yen",
+    "release_date": "2024/05/15",
+    "image": "https://www.cdjapan.co.jp/pictures/s/15/25/HKCN-50785.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50785",
+    "updated_at": "2026-10-17"
+  },
+  "SRCL-12980": {
+    "id": "SRCL-12980",
+    "title": "Chance wa Byoudou [Type-A w/ Blu-ray]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1900yen",
+    "release_date": "2024/04/10",
+    "image": "https://www.cdjapan.co.jp/pictures/s/13/28/SRCL-12980.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12980",
+    "updated_at": "2026-10-17"
+  },
+  "SRCL-13030": {
+    "id": "SRCL-13030",
+    "title": "I want tomorrow to come [Type-A w/ Blu-ray]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1900yen",
+    "release_date": "2024/10/23",
+    "image": "https://www.cdjapan.co.jp/pictures/s/01/22/SRCL-13030.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13030",
+    "updated_at": "2026-10-17"
+  },
+  "SRCL-12880": {
+    "id": "SRCL-12880",
+    "title": "Kimi wa Honeydew [Type-A w/ Blu-ray]",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
+    "price": "1900yen",
+    "release_date": "2024/05/08",
+    "image": "https://www.cdjapan.co.jp/pictures/s/08/16/SRCL-12880.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12880",
+    "updated_at": "2026-10-17"
+  },
+  "UPCH-80614": {
+    "id": "UPCH-80614",
+    "title": "Koi Tsunjatta [Regular Edition]",
+    "artist": "AKB48",
+    "category": "AKB48 Group",
+    "price": "1100yen",
+    "release_date": "2024/07/17",
+    "image": "https://www.cdjapan.co.jp/pictures/s/03/34/UPCH-80614.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80614",
+    "updated_at": "2026-10-17"
+  },
+  "VVCL-2536": {
+    "id": "VVCL-2536",
+    "title": "Zettai Idol Yamenaide [Type-A w/ DVD]",
+    "artist": "=LOVE",
+    "category": "=LOVE / Sister Groups",
+    "price": "1650yen",
+    "release_date": "2024/07/31",
+    "image": "https://www.cdjapan.co.jp/pictures/s/09/20/VVCL-2536.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2536",
+    "updated_at": "2026-10-17"
+  },
+  "TFCC-86981": {
+    "id": "TFCC-86981",
+    "title": "THE OTHER ONE [Standard Edition]",
+    "artist": "BABYMETAL",
+    "category": "Babymetal",
+    "price": "3300yen",
+    "release_date": "2023/03/24",
+    "image": "https://www.cdjapan.co.jp/pictures/s/14/05/TFCC-86981.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTFCC-86981",
+    "updated_at": "2026-10-17"
+  },
+  "KICS-4140": {
+    "id": "KICS-4140",
+    "title": "Idola [Regular Edition]",
+    "artist": "Momoiro Clover Z",
+    "category": "Momoiro Clover Z",
+    "price": "3300yen",
+    "release_date": "2024/05/08",
+    "image": "https://www.cdjapan.co.jp/pictures/s/02/36/KICS-4140.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKICS-4140",
+    "updated_at": "2026-10-17"
+  }
+}

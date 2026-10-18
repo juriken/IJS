@@ -13,6 +13,7 @@ DATA_FILE = "products.json"
 
 # Target idol roster (Strictly English terms)
 TARGET_GROUPS = [
+    # Hello! Project
     ("Hello! Project", "Morning Musume"),
     ("Hello! Project", "ANGERME"),
     ("Hello! Project", "Juice=Juice"),
@@ -21,22 +22,25 @@ TARGET_GROUPS = [
     ("Hello! Project", "OCHA NORMA"),
     ("Hello! Project", "Rosy Chronicle"),
     ("Hello! Project", "Hello! Project"),
+    # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46"),
     ("Sakamichi Series", "Sakurazaka46"),
     ("Sakamichi Series", "Hinatazaka46"),
+    # AKB48 Group
     ("AKB48 Group", "AKB48"),
     ("AKB48 Group", "SKE48"),
     ("AKB48 Group", "NMB48"),
     ("AKB48 Group", "HKT48"),
     ("AKB48 Group", "NGT48"),
     ("AKB48 Group", "STU48"),
+    # =LOVE & Sister Groups (Clean English search terms without math symbols)
     ("=LOVE / Sister Groups", "=LOVE"),
-    ("=LOVE / Sister Groups", "≠ME"),
-    ("=LOVE / Sister Groups", "≒JOY"),
+    ("=LOVE / Sister Groups", "Not Equal ME"),
+    ("=LOVE / Sister Groups", "Nearly Equal Joy"),
+    # Momoclo & Babymetal
     ("Momoiro Clover Z", "Momoiro Clover Z"),
     ("Babymetal", "BABYMETAL"),
 ]
-
 # Number of pages to paginate through using the on-screen Next button
 PAGES_PER_ARTIST = 3
 

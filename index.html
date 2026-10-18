@@ -44,6 +44,7 @@
         <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
       </div>
       
+      <!-- Search -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <input 
           id="search-input" 
@@ -54,16 +55,43 @@
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
       </div>
 
+      <!-- Controls: Multi-Currency Dropdown, Dark Mode, and X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
-          <i class="fa-solid fa-coins text-yellow-300"></i>
-          <span id="currency-label">USD ($)</span>
-        </button>
+        <!-- Multi-Currency Selector -->
+        <div class="relative flex items-center bg-pink-700 dark:bg-pink-900 rounded-full px-2.5 py-1 border border-pink-400/30 shadow-sm text-xs font-bold">
+          <i class="fa-solid fa-coins text-yellow-300 mr-1.5 text-xs"></i>
+          <select 
+            id="currency-select" 
+            onchange="onCurrencyChange(this.value)" 
+            class="bg-transparent text-white font-bold focus:outline-none cursor-pointer pr-1 py-0.5"
+            aria-label="Select Currency"
+          >
+            <!-- Popular currencies placed at top -->
+            <optgroup label="Popular">
+              <option value="JPY" class="text-slate-900 bg-white" selected>JPY (¥)</option>
+              <option value="USD" class="text-slate-900 bg-white">USD ($)</option>
+              <option value="EUR" class="text-slate-900 bg-white">EUR (€)</option>
+              <option value="GBP" class="text-slate-900 bg-white">GBP (£)</option>
+              <option value="CAD" class="text-slate-900 bg-white">CAD ($)</option>
+              <option value="AUD" class="text-slate-900 bg-white">AUD ($)</option>
+              <option value="TWD" class="text-slate-900 bg-white">TWD (NT$)</option>
+              <option value="HKD" class="text-slate-900 bg-white">HKD (HK$)</option>
+              <option value="KRW" class="text-slate-900 bg-white">KRW (₩)</option>
+              <option value="SGD" class="text-slate-900 bg-white">SGD ($)</option>
+            </optgroup>
+            <!-- All other world currencies dynamically injected or available alphabetically -->
+            <optgroup id="all-currencies-group" label="All Currencies">
+              <!-- Dynamically populated from API -->
+            </optgroup>
+          </select>
+        </div>
 
+        <!-- Dark Mode Toggle -->
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
           <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
         </button>
 
+        <!-- X Link -->
         <a 
           href="https://x.com/IdolJapanStore" 
           target="_blank" 
@@ -102,6 +130,17 @@
     </nav>
   </header>
 
+  <!-- Trust Notice -->
+  <aside class="bg-amber-50 dark:bg-slate-800/90 border-b border-amber-200 dark:border-slate-700 text-amber-900 dark:text-amber-200 text-xs py-2.5 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center justify-center sm:justify-start gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-sm"></i>
+        <span><strong>Verified Directory Notice:</strong> IdolJapan.store is an independent discography catalog. We do <u>not</u> process payments, sell goods, or run a proxy service. All links redirect directly to official merchant <strong>CDJapan (Tokyo)</strong>.</span>
+      </div>
+      <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-pink-600 whitespace-nowrap">Learn How It Works →</a>
+    </div>
+  </aside>
+
   <!-- Banner -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 dark:from-pink-700 dark:via-rose-700 dark:to-pink-800 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
@@ -138,7 +177,7 @@
 
         <div class="flex items-center gap-1.5">
           <label for="per-page-select" class="text-slate-500 dark:text-slate-400 font-semibold">Per page:</label>
-          <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500">
+          <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-bold focus:outline-none">
             <option value="30">30</option>
             <option value="50" selected>50</option>
             <option value="100">100</option>
@@ -194,10 +233,18 @@
     let activeFilter = 'All';
     let searchQuery = '';
     let currentSort = 'newest';
-    let showUSD = true;
+    
+    // Multi-Currency Engine: Default is JPY
+    let currentCurrency = 'JPY';
+    let exchangeRates = { JPY: 1.0, USD: 0.0067 }; // Base JPY rates
+
     let currentPage = 1;
     let itemsPerPage = 50;
-    let jpyToUsdRate = 0.0067;
+
+    const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
+    const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
+    const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
+    const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f1f5f9'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e2e8f0'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f1f5f9'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%2394a3b8' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
 
@@ -230,6 +277,79 @@
       updateThemeIcon();
     }
 
+    // Initialize 160+ world currency rates from JPY base
+    async function initExchangeRates() {
+      // 1. Restore saved user currency preference or default to JPY
+      const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
+      if (savedCurrency) {
+        currentCurrency = savedCurrency;
+      } else {
+        currentCurrency = 'JPY'; // Strict Default: JPY
+      }
+
+      const selectEl = document.getElementById('currency-select');
+      if (selectEl) selectEl.value = currentCurrency;
+
+      // 2. Check 24-hour cached rates
+      const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
+      const cachedTime = localStorage.getItem(RATES_TIME_KEY);
+      const now = Date.now();
+
+      if (cachedRates && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
+        try {
+          exchangeRates = JSON.parse(cachedRates);
+          populateCurrencyOptions(exchangeRates);
+          return;
+        } catch (e) {}
+      }
+
+      // 3. Fetch all world currencies from JPY base
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/JPY');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.rates) {
+            exchangeRates = data.rates;
+            localStorage.setItem(RATES_STORAGE_KEY, JSON.stringify(exchangeRates));
+            localStorage.setItem(RATES_TIME_KEY, now.toString());
+            populateCurrencyOptions(exchangeRates);
+            render();
+          }
+        }
+      } catch (err) {
+        console.warn('Currency API unreachable, using base rates:', err);
+      }
+    }
+
+    // Populate all 160+ currency codes into the select dropdown
+    function populateCurrencyOptions(rates) {
+      const optGroup = document.getElementById('all-currencies-group');
+      if (!optGroup) return;
+
+      const popular = ['JPY', 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
+      const allCodes = Object.keys(rates).sort();
+
+      optGroup.innerHTML = '';
+      allCodes.forEach(code => {
+        if (!popular.includes(code)) {
+          const opt = document.createElement('option');
+          opt.value = code;
+          opt.innerText = code;
+          opt.className = 'text-slate-900 bg-white';
+          optGroup.appendChild(opt);
+        }
+      });
+
+      const selectEl = document.getElementById('currency-select');
+      if (selectEl) selectEl.value = currentCurrency;
+    }
+
+    function onCurrencyChange(selectedCode) {
+      currentCurrency = selectedCode;
+      localStorage.setItem(CURRENCY_STORAGE_KEY, selectedCode);
+      render();
+    }
+
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
@@ -251,7 +371,6 @@
       }
 
       if (data && typeof data === 'object') {
-        // Tag original insertion index so we have a true fallback chronological order
         allProducts = Object.values(data)
           .filter(item => item && item.id)
           .map((item, idx) => ({ ...item, _catalogIndex: idx }));
@@ -261,13 +380,6 @@
         if (statsEl) statsEl.innerText = "Syncing catalog...";
       }
 
-      render();
-    }
-
-    function toggleCurrency() {
-      showUSD = !showUSD;
-      const label = document.getElementById('currency-label');
-      if (label) label.innerText = showUSD ? 'USD ($)' : 'JPY (¥)';
       render();
     }
 
@@ -322,17 +434,39 @@
       return parseInt(clean, 10) || 0;
     }
 
+    // Dynamic Multi-Currency Price Formatter
     function formatDisplayPrice(priceStr) {
-      const num = parseNumericPrice(priceStr);
-      if (num === 0) return 'Check CDJapan';
-      if (showUSD) {
-        const usdVal = (num * jpyToUsdRate).toFixed(2);
-        return `$${usdVal} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${num.toLocaleString()})</span>`;
+      const jpyAmount = parseNumericPrice(priceStr);
+      if (jpyAmount === 0) return 'Check CDJapan';
+
+      // 1. Default JPY view
+      if (currentCurrency === 'JPY') {
+        return `¥${jpyAmount.toLocaleString()}`;
       }
-      return `¥${num.toLocaleString()}`;
+
+      // 2. Converted International Currency View
+      const rate = exchangeRates[currentCurrency] || 1;
+      const convertedVal = jpyAmount * rate;
+
+      // Smart decimals (currencies like KRW, VND, IDR don't use cents)
+      const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
+      const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
+
+      let formattedConverted = '';
+      try {
+        formattedConverted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: currentCurrency,
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits
+        }).format(convertedVal);
+      } catch (e) {
+        formattedConverted = `${currentCurrency} ${convertedVal.toFixed(fractionDigits)}`;
+      }
+
+      return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Precise multi-format date converter
     function parseDateEpoch(dateStr) {
       if (!dateStr) return 0;
       const clean = String(dateStr).trim();
@@ -347,9 +481,7 @@
       }
 
       const nativeParsed = Date.parse(clean);
-      if (!isNaN(nativeParsed) && nativeParsed > 0) {
-        return nativeParsed;
-      }
+      if (!isNaN(nativeParsed) && nativeParsed > 0) return nativeParsed;
 
       const yearMatch = clean.match(/\b(19\d\d|20\d\d)\b/);
       if (yearMatch) {
@@ -360,14 +492,10 @@
       return 0;
     }
 
-    // Secondary chronological score based on CDJapan product key numbering
     function extractProductSequence(prodKey) {
       if (!prodKey) return 0;
       const match = String(prodKey).match(/\d+/g);
-      if (match) {
-        return parseInt(match.join(''), 10) || 0;
-      }
-      return 0;
+      return match ? (parseInt(match.join(''), 10) || 0) : 0;
     }
 
     function isPreOrder(dateStr) {
@@ -443,50 +571,35 @@
         return matchesCat && matchesSearch;
       });
 
-      // Strict Chronological Dual-Order Comparator
       filtered.sort((a, b) => {
         const epochA = parseDateEpoch(a.release_date);
         const epochB = parseDateEpoch(b.release_date);
 
         if (currentSort === 'newest') {
-          // 1. Both have valid release dates
           if (epochA > 0 && epochB > 0) {
             if (epochB !== epochA) return epochB - epochA;
             return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
-          // Real dates come first
           if (epochA > 0 && epochB === 0) return -1;
           if (epochB > 0 && epochA === 0) return 1;
 
-          // 2. Both lack explicit dates: sort by CDJapan product code sequence (newer ID first)
           const seqA = extractProductSequence(a.id);
           const seqB = extractProductSequence(b.id);
-          if (seqA > 0 && seqB > 0 && seqA !== seqB) {
-            return seqB - seqA;
-          }
-
-          // 3. Fallback: newest insertion index in database
+          if (seqA > 0 && seqB > 0 && seqA !== seqB) return seqB - seqA;
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          // 1. Both have valid release dates (earliest date first)
           if (epochA > 0 && epochB > 0) {
             if (epochA !== epochB) return epochA - epochB;
             return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
-          // Items with real dates come before items with zero date info
           if (epochA > 0 && epochB === 0) return -1;
           if (epochB > 0 && epochA === 0) return 1;
 
-          // 2. Both lack explicit dates: sort by CDJapan product code sequence (older ID first)
           const seqA = extractProductSequence(a.id);
           const seqB = extractProductSequence(b.id);
-          if (seqA > 0 && seqB > 0 && seqA !== seqB) {
-            return seqA - seqB;
-          }
-
-          // 3. Fallback: oldest insertion index in database
+          if (seqA > 0 && seqB > 0 && seqA !== seqB) return seqA - seqB;
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         
@@ -588,6 +701,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();
+      initExchangeRates();
       loadCatalog();
     });
   </script>

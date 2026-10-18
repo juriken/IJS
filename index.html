@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IdolJapan.store — Japanese Female Idol Merch & Music Catalog</title>
-  <meta name="description" content="Discover and order official releases from Hello! Project, AKB48 Group, Sakamichi Series, =LOVE, Momoclo, and Babymetal via CDJapan.">
+  <meta name="description" content="Discover official singles, albums, photobooks, and concert Blu-rays from Hello! Project, AKB48 Group, Sakamichi 46, =LOVE, Momoclo, and Babymetal via CDJapan.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -31,59 +31,80 @@
         <input 
           id="search-input" 
           type="text" 
-          placeholder="Search Morning Musume, Nogizaka46, CD, Photobook..." 
+          placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
           class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-300 text-sm shadow-inner"
         />
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
       </div>
 
-      <div class="text-xs text-pink-100 hidden sm:block">
-        Official CDJapan Partner Catalog
+      <!-- Controls: Currency Toggle -->
+      <div class="flex items-center gap-3">
+        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 hover:bg-pink-800 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-coins text-yellow-300"></i>
+          <span id="currency-label">USD ($)</span>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- Franchise Navigation Filter -->
   <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[60px] z-40 overflow-x-auto">
-    <div class="max-w-7xl mx-auto px-4 py-2 flex space-x-2 whitespace-nowrap" id="filter-bar">
-      <button onclick="setFilter('All')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white" data-cat="All">All Groups</button>
-      <button onclick="setFilter('Hello! Project')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Hello! Project">Hello! Project</button>
-      <button onclick="setFilter('AKB48 Group')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="AKB48 Group">AKB48 Groups</button>
-      <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Sakamichi Series">Sakamichi (46)</button>
-      <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-      <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Momoiro Clover Z">Momoclo</button>
-      <button onclick="setFilter('Babymetal')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Babymetal">Babymetal</button>
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
+      <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1" id="filter-bar">
+        <button onclick="setFilter('All')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white" data-cat="All">All Items</button>
+        <button onclick="setFilter('Hello! Project')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Hello! Project">Hello! Project</button>
+        <button onclick="setFilter('AKB48 Group')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="AKB48 Group">AKB48 Groups</button>
+        <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Sakamichi Series">Sakamichi (46)</button>
+        <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
+        <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Momoiro Clover Z">Momoclo</button>
+        <button onclick="setFilter('Babymetal')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Babymetal">Babymetal</button>
+      </div>
+
+      <!-- Sorting Dropdown -->
+      <div class="flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
+        <label for="sort-select" class="text-slate-500 hidden sm:inline">Sort:</label>
+        <select id="sort-select" onchange="changeSort(this.value)" class="bg-slate-100 border border-slate-200 text-slate-700 py-1.5 px-3 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-300">
+          <option value="newest">Newest Releases</option>
+          <option value="oldest">Oldest Releases</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero Notice -->
+  <!-- Banner Section -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
-    <div class="bg-gradient-to-r from-pink-500 to-rose-500 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
-        <h1 class="text-xl md:text-2xl font-black">Daily Japanese Idol Releases</h1>
-        <p class="text-sm text-pink-100 mt-1">Browse official singles, albums, photobooks, and concert Blu-rays shipped straight from Japan.</p>
+        <h1 class="text-xl md:text-2xl font-black flex items-center gap-2">
+          <span>Official Japanese Idol Catalog</span>
+          <span class="bg-yellow-400 text-slate-900 text-[11px] font-extrabold px-2 py-0.5 rounded-full">CDJapan Direct</span>
+        </h1>
+        <p class="text-sm text-pink-100 mt-1">Pre-order new singles, concert Blu-rays, and photobooks shipped straight from Tokyo with CDJapan bonus photos.</p>
       </div>
-      <div id="stats" class="text-xs bg-black/20 px-4 py-2 rounded-lg font-mono">Loading catalog...</div>
+      <div id="stats" class="text-xs bg-black/25 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-pink-100 border border-white/10">Loading catalog...</div>
     </div>
   </section>
 
   <!-- Product Grid -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
     <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      <!-- Items dynamically populated here -->
+      <!-- Items dynamically populated -->
     </div>
     
     <div id="empty-state" class="hidden text-center py-20 text-slate-400">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold">No products found matching your search.</p>
+      <p class="text-base font-semibold">No idol merchandise found matching your search.</p>
+      <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-pink-600 text-white text-xs font-bold rounded-full">Reset Filters</button>
     </div>
   </main>
 
   <!-- Footer -->
   <footer class="bg-white border-t border-slate-200 mt-auto py-8 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 space-y-2">
-      <p>IdolJapan.store is an independent fan catalog and affiliate curator.</p>
-      <p>All CD, DVD, and merchandise orders are fulfilled directly by <a href="https://www.cdjapan.co.jp" class="underline hover:text-pink-600" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong>A033398</strong>.</p>
+      <p class="font-medium text-slate-700">IdolJapan.store is an independent merchandise catalog curated for international fans.</p>
+      <p>All CD, DVD, Blu-ray, and photobook orders are securely fulfilled by <a href="https://www.cdjapan.co.jp" class="underline hover:text-pink-600 font-semibold" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong>A033398</strong>.</p>
     </div>
   </footer>
 
@@ -91,10 +112,13 @@
     let allProducts = [];
     let activeFilter = 'All';
     let searchQuery = '';
+    let currentSort = 'newest';
+    let showUSD = true;
+    const JPY_TO_USD_RATE = 0.0067; // Estimated live rate (~150 JPY per 1 USD)
 
     async function loadCatalog() {
       try {
-        const res = await fetch('./products.json');
+        const res = await fetch('./products.json?v=' + Date.now());
         const data = await res.json();
         allProducts = Object.values(data);
         document.getElementById('stats').innerText = `${allProducts.length} Items Live`;
@@ -102,6 +126,17 @@
       } catch (e) {
         document.getElementById('stats').innerText = "Syncing catalog...";
       }
+    }
+
+    function toggleCurrency() {
+      showUSD = !showUSD;
+      document.getElementById('currency-label').innerText = showUSD ? 'USD ($)' : 'JPY (¥)';
+      render();
+    }
+
+    function changeSort(sortVal) {
+      currentSort = sortVal;
+      render();
     }
 
     function setFilter(cat) {
@@ -121,17 +156,47 @@
       render();
     });
 
+    function parseNumericPrice(priceStr) {
+      if (!priceStr) return 0;
+      const clean = priceStr.replace(/[^0-9]/g, '');
+      return parseInt(clean, 10) || 0;
+    }
+
+    function formatDisplayPrice(priceStr) {
+      const num = parseNumericPrice(priceStr);
+      if (num === 0) return 'Check CDJapan';
+      if (showUSD) {
+        const usdVal = (num * JPY_TO_USD_RATE).toFixed(2);
+        return `$${usdVal} <span class="text-[10px] text-slate-400 font-normal">(¥${num.toLocaleString()})</span>`;
+      }
+      return `¥${num.toLocaleString()}`;
+    }
+
     function render() {
       const grid = document.getElementById('product-grid');
       const empty = document.getElementById('empty-state');
       grid.innerHTML = '';
 
-      const filtered = allProducts.filter(item => {
+      let filtered = allProducts.filter(item => {
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
         const matchesSearch = !searchQuery || 
-          item.title.toLowerCase().includes(searchQuery) || 
-          item.artist.toLowerCase().includes(searchQuery);
+          (item.title && item.title.toLowerCase().includes(searchQuery)) || 
+          (item.artist && item.artist.toLowerCase().includes(searchQuery));
         return matchesCat && matchesSearch;
+      });
+
+      // Sorting Logic
+      filtered.sort((a, b) => {
+        if (currentSort === 'newest') {
+          return (b.release_date || '').localeCompare(a.release_date || '');
+        } else if (currentSort === 'oldest') {
+          return (a.release_date || '').localeCompare(b.release_date || '');
+        } else if (currentSort === 'price-asc') {
+          return parseNumericPrice(a.price) - parseNumericPrice(b.price);
+        } else if (currentSort === 'price-desc') {
+          return parseNumericPrice(b.price) - parseNumericPrice(a.price);
+        }
+        return 0;
       });
 
       if (filtered.length === 0) {
@@ -143,19 +208,42 @@
       filtered.forEach(p => {
         const card = document.createElement('div');
         card.className = "bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group";
+        
+        const fallbackImg = `https://www.cdjapan.co.jp/pictures/s/${p.id}.jpg`;
+        const displayImg = p.image || fallbackImg;
+
         card.innerHTML = `
           <div class="aspect-square bg-slate-100 relative overflow-hidden">
-            <img src="${p.image}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">${p.artist}</span>
+            <img 
+              src="${displayImg}" 
+              alt="${p.title}" 
+              loading="lazy" 
+              onerror="this.onerror=null;this.src='https://via.placeholder.com/300x300?text=Japanese+Idol+CD';"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
+              ${p.artist}
+            </span>
           </div>
           <div class="p-3 flex-1 flex flex-col justify-between">
             <div>
-              <h2 class="text-xs font-bold text-slate-800 line-clamp-2 title="${p.title}">${p.title}</h2>
-              <p class="text-[11px] text-slate-500 mt-1">${p.release_date}</p>
+              <h2 class="text-xs font-bold text-slate-800 line-clamp-2" title="${p.title}">
+                ${p.title}
+              </h2>
+              <p class="text-[11px] text-slate-500 mt-1 flex items-center gap-1">
+                <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
+              </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-black text-pink-600">${p.price}</span>
-              <a href="${p.affiliate_url}" target="_blank" rel="nofollow noopener" class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-md transition flex items-center gap-1 shadow-sm">
+              <span class="text-xs font-black text-pink-600">
+                ${formatDisplayPrice(p.price)}
+              </span>
+              <a 
+                href="${p.affiliate_url}" 
+                target="_blank" 
+                rel="nofollow noopener" 
+                class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-md transition flex items-center gap-1 shadow-sm"
+              >
                 Buy <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
               </a>
             </div>

@@ -211,9 +211,7 @@
   </section>
 
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      <!-- Cards dynamically generated -->
-    </div>
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-slate-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
@@ -221,9 +219,7 @@
       <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold rounded-full transition">Reset Filters</button>
     </div>
 
-    <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation">
-      <!-- Pagination links dynamically generated -->
-    </nav>
+    <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
 
   <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto py-10 transition-colors duration-200">
@@ -443,17 +439,34 @@
       return `¥${num.toLocaleString()}`;
     }
 
-    // Precise date parser converting strings into millisecond epochs
+    // Universal Date-to-Epoch Converter
     function parseDateEpoch(dateStr) {
       if (!dateStr) return 0;
-      const match = String(dateStr).match(/(\d{4})[/-](\d{1,2})(?:[/-](\d{1,2}))?/);
-      if (!match) return 0;
+      const clean = String(dateStr).trim();
 
-      const year = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10) - 1;
-      const day = match[3] ? parseInt(match[3], 10) : 1;
+      // 1. Numeric matches: YYYY/MM/DD, YYYY-MM-DD
+      const numMatch = clean.match(/(\d{4})[./-](\d{1,2})(?:[./-](\d{1,2}))?/);
+      if (numMatch) {
+        const y = parseInt(numMatch[1], 10);
+        const m = parseInt(numMatch[2], 10) - 1;
+        const d = numMatch[3] ? parseInt(numMatch[3], 10) : 1;
+        const t = new Date(y, m, d).getTime();
+        if (!isNaN(t)) return t;
+      }
 
-      return new Date(year, month, day).getTime() || 0;
+      // 2. Text month names: "October 23, 2024", "23 Oct 2024"
+      const nativeParsed = Date.parse(clean);
+      if (!isNaN(nativeParsed)) {
+        return nativeParsed;
+      }
+
+      // 3. Isolated year match
+      const yearOnly = clean.match(/\b(19\d\d|20\d\d)\b/);
+      if (yearOnly) {
+        return new Date(parseInt(yearOnly[1], 10), 0, 1).getTime();
+      }
+
+      return 0;
     }
 
     function isPreOrder(dateStr) {
@@ -519,177 +532,4 @@
         navHtml += `<span class="px-2 text-slate-400">...</span>`;
       }
 
-      for (let p = startP; p <= endP; p++) {
-        if (p === currentPage) {
-          navHtml += `
-            <button class="px-3.5 py-1.5 rounded-lg bg-pink-600 text-white font-bold shadow-sm cursor-default">
-              ${p}
-            </button>
-          `;
-        } else {
-          navHtml += `
-            <button 
-              onclick="goToPage(${p})" 
-              class="px-3.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-slate-700 hover:text-pink-600 dark:hover:text-pink-400 transition"
-            >
-              ${p}
-            </button>
-          `;
-        }
-      }
-
-      if (endP < totalPages) {
-        navHtml += `<span class="px-2 text-slate-400">...</span>`;
-      }
-
-      const nextDisabled = currentPage === totalPages;
-      navHtml += `
-        <button 
-          onclick="goToPage(${currentPage + 1})" 
-          ${nextDisabled ? 'disabled' : ''} 
-          class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-700 transition"
-        >
-          Next ›
-        </button>
-        <button 
-          onclick="goToPage(${totalPages})" 
-          ${nextDisabled ? 'disabled' : ''} 
-          class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-700 transition"
-          title="Last Page"
-        >
-          Last »
-        </button>
-      `;
-
-      navEl.innerHTML = navHtml;
-    }
-
-    function render() {
-      const grid = document.getElementById('product-grid');
-      const empty = document.getElementById('empty-state');
-      if (!grid) return;
-
-      grid.innerHTML = '';
-
-      let filtered = allProducts.filter(item => {
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
-        const matchesSearch = !searchQuery || 
-          (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
-          (item.artist && String(item.artist).toLowerCase().includes(searchQuery));
-        return matchesCat && matchesSearch;
-      });
-
-      // Fixed Chronological Epoch and Numeric Price Sorting
-      filtered.sort((a, b) => {
-        if (currentSort === 'newest') {
-          const epochA = parseDateEpoch(a.release_date);
-          const epochB = parseDateEpoch(b.release_date);
-          if (epochA > 0 && epochB > 0) return epochB - epochA;
-          if (epochA === 0) return 1;
-          if (epochB === 0) return -1;
-          return 0;
-        } else if (currentSort === 'oldest') {
-          const epochA = parseDateEpoch(a.release_date);
-          const epochB = parseDateEpoch(b.release_date);
-          if (epochA > 0 && epochB > 0) return epochA - epochB;
-          if (epochA === 0) return 1;
-          if (epochB === 0) return -1;
-          return 0;
-        } else if (currentSort === 'price-asc') {
-          return parseNumericPrice(a.price) - parseNumericPrice(b.price);
-        } else if (currentSort === 'price-desc') {
-          return parseNumericPrice(b.price) - parseNumericPrice(a.price);
-        }
-        return 0;
-      });
-
-      const totalItems = filtered.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-
-      if (currentPage > totalPages) {
-        currentPage = 1;
-      }
-
-      if (totalItems === 0) {
-        if (empty) empty.classList.remove('hidden');
-        renderPaginationControls(0, 0, 0, 0);
-        return;
-      }
-      if (empty) empty.classList.add('hidden');
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const paginatedItems = filtered.slice(startIndex, endIndex);
-
-      paginatedItems.forEach(p => {
-        const card = document.createElement('div');
-        card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
-        
-        const displayImg = p.image || PLACEHOLDER_IMG;
-        const upcoming = isPreOrder(p.release_date);
-        const safeTitle = escapeHtml(p.title);
-        const safeArtist = escapeHtml(p.artist);
-
-        card.innerHTML = `
-          <div class="aspect-square bg-slate-100 dark:bg-slate-700 relative overflow-hidden">
-            <img 
-              src="${displayImg}" 
-              alt="${safeTitle}" 
-              loading="lazy" 
-              referrerpolicy="no-referrer"
-              onerror="onImgLoadError(this)"
-              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-            />
-            
-            <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
-              ${safeArtist}
-            </span>
-
-            ${upcoming ? `
-              <span class="absolute top-2 right-2 bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-pink-300/40">
-                <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
-              </span>
-            ` : ''}
-          </div>
-          <div class="p-3 flex-1 flex flex-col justify-between">
-            <div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-100 line-clamp-2" title="${safeTitle}">
-                ${safeTitle}
-              </h2>
-              <p class="text-[11px] ${upcoming ? 'text-pink-600 dark:text-pink-400 font-semibold' : 'text-slate-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
-                <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
-              <div>
-                <span class="text-xs font-black text-pink-600 dark:text-pink-400">
-                  ${formatDisplayPrice(p.price)}
-                </span>
-                <span class="block text-[9px] text-slate-400 dark:text-slate-500">Official CDJapan Price</span>
-              </div>
-              <a 
-                href="${p.affiliate_url}" 
-                target="_blank" 
-                rel="nofollow noopener" 
-                title="View and order securely on CDJapan"
-                class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap"
-              >
-                ${upcoming ? 'Pre-Order on CDJapan' : 'View on CDJapan'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-              </a>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-
-      renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateThemeIcon();
-      initExchangeRate();
-      loadCatalog();
-    });
-  </script>
-</body>
-</html>
+      for

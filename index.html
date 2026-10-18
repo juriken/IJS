@@ -44,7 +44,6 @@
         <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
       </div>
       
-      <!-- Search -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <input 
           id="search-input" 
@@ -55,9 +54,8 @@
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
       </div>
 
-      <!-- Controls: Multi-Currency Dropdown, Dark Mode, and X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Multi-Currency Selector -->
+        <!-- Currency Selector -->
         <div class="relative flex items-center bg-pink-700 dark:bg-pink-900 rounded-full px-2.5 py-1 border border-pink-400/30 shadow-sm text-xs font-bold">
           <i class="fa-solid fa-coins text-yellow-300 mr-1.5 text-xs"></i>
           <select 
@@ -66,7 +64,6 @@
             class="bg-transparent text-white font-bold focus:outline-none cursor-pointer pr-1 py-0.5"
             aria-label="Select Currency"
           >
-            <!-- Popular currencies placed at top -->
             <optgroup label="Popular">
               <option value="JPY" class="text-slate-900 bg-white" selected>JPY (¥)</option>
               <option value="USD" class="text-slate-900 bg-white">USD ($)</option>
@@ -79,19 +76,14 @@
               <option value="KRW" class="text-slate-900 bg-white">KRW (₩)</option>
               <option value="SGD" class="text-slate-900 bg-white">SGD ($)</option>
             </optgroup>
-            <!-- All other world currencies dynamically injected or available alphabetically -->
-            <optgroup id="all-currencies-group" label="All Currencies">
-              <!-- Dynamically populated from API -->
-            </optgroup>
+            <optgroup id="all-currencies-group" label="All Currencies"></optgroup>
           </select>
         </div>
 
-        <!-- Dark Mode Toggle -->
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
           <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
         </button>
 
-        <!-- X Link -->
         <a 
           href="https://x.com/IdolJapanStore" 
           target="_blank" 
@@ -233,10 +225,8 @@
     let activeFilter = 'All';
     let searchQuery = '';
     let currentSort = 'newest';
-    
-    // Multi-Currency Engine: Default is JPY
     let currentCurrency = 'JPY';
-    let exchangeRates = { JPY: 1.0, USD: 0.0067 }; // Base JPY rates
+    let exchangeRates = { JPY: 1.0, USD: 0.0067 };
 
     let currentPage = 1;
     let itemsPerPage = 50;
@@ -277,20 +267,13 @@
       updateThemeIcon();
     }
 
-    // Initialize 160+ world currency rates from JPY base
     async function initExchangeRates() {
-      // 1. Restore saved user currency preference or default to JPY
       const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
-      if (savedCurrency) {
-        currentCurrency = savedCurrency;
-      } else {
-        currentCurrency = 'JPY'; // Strict Default: JPY
-      }
+      currentCurrency = savedCurrency || 'JPY';
 
       const selectEl = document.getElementById('currency-select');
       if (selectEl) selectEl.value = currentCurrency;
 
-      // 2. Check 24-hour cached rates
       const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
       const cachedTime = localStorage.getItem(RATES_TIME_KEY);
       const now = Date.now();
@@ -303,7 +286,6 @@
         } catch (e) {}
       }
 
-      // 3. Fetch all world currencies from JPY base
       try {
         const res = await fetch('https://open.er-api.com/v6/latest/JPY');
         if (res.ok) {
@@ -317,11 +299,10 @@
           }
         }
       } catch (err) {
-        console.warn('Currency API unreachable, using base rates:', err);
+        console.warn('Currency API unreachable, keeping base rates:', err);
       }
     }
 
-    // Populate all 160+ currency codes into the select dropdown
     function populateCurrencyOptions(rates) {
       const optGroup = document.getElementById('all-currencies-group');
       if (!optGroup) return;
@@ -434,21 +415,16 @@
       return parseInt(clean, 10) || 0;
     }
 
-    // Dynamic Multi-Currency Price Formatter
     function formatDisplayPrice(priceStr) {
       const jpyAmount = parseNumericPrice(priceStr);
       if (jpyAmount === 0) return 'Check CDJapan';
 
-      // 1. Default JPY view
       if (currentCurrency === 'JPY') {
         return `¥${jpyAmount.toLocaleString()}`;
       }
 
-      // 2. Converted International Currency View
       const rate = exchangeRates[currentCurrency] || 1;
       const convertedVal = jpyAmount * rate;
-
-      // Smart decimals (currencies like KRW, VND, IDR don't use cents)
       const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
       const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
 
@@ -467,43 +443,73 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    function parseDateEpoch(dateStr) {
-      if (!dateStr) return 0;
+    // Normalized Integer Date Converter: Generates YYYYMMDD integers (e.g. 20241023)
+    function getNormalizedDateScore(dateStr, titleStr) {
+      if (!dateStr) dateStr = '';
       const clean = String(dateStr).trim();
 
-      const numMatch = clean.match(/(\d{4})[./-](\d{1,2})(?:[./-](\d{1,2}))?/);
-      if (numMatch) {
-        const y = parseInt(numMatch[1], 10);
-        const m = parseInt(numMatch[2], 10) - 1;
-        const d = numMatch[3] ? parseInt(numMatch[3], 10) : 1;
-        const t = new Date(y, m, d).getTime();
-        if (!isNaN(t) && t > 0) return t;
+      // 1. Check exact calendar date: YYYY/MM/DD or YYYY-MM-DD
+      const exactMatch = clean.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
+      if (exactMatch) {
+        const y = parseInt(exactMatch[1], 10);
+        const m = parseInt(exactMatch[2], 10);
+        const d = parseInt(exactMatch[3], 10);
+        return (y * 10000) + (m * 100) + d;
       }
 
-      const nativeParsed = Date.parse(clean);
-      if (!isNaN(nativeParsed) && nativeParsed > 0) return nativeParsed;
-
-      const yearMatch = clean.match(/\b(19\d\d|20\d\d)\b/);
-      if (yearMatch) {
-        const t = new Date(parseInt(yearMatch[1], 10), 0, 1).getTime();
-        if (!isNaN(t) && t > 0) return t;
+      // 2. Check Year/Month: YYYY/MM
+      const ymMatch = clean.match(/(\d{4})[./-](\d{1,2})/);
+      if (ymMatch) {
+        const y = parseInt(ymMatch[1], 10);
+        const m = parseInt(ymMatch[2], 10);
+        return (y * 10000) + (m * 100) + 1;
       }
 
-      return 0;
+      // 3. Check English month format: "October 23, 2024"
+      const nativeMs = Date.parse(clean);
+      if (!isNaN(nativeMs) && nativeMs > 0) {
+        const dt = new Date(nativeMs);
+        return (dt.getFullYear() * 10000) + ((dt.getMonth() + 1) * 100) + dt.getDate();
+      }
+
+      // 4. Check Year in date string
+      const yearInDate = clean.match(/\b(19\d\d|20\d\d)\b/);
+      if (yearInDate) {
+        return parseInt(yearInDate[1], 10) * 10000 + 101;
+      }
+
+      // 5. Fallback: Search for release year inside product title (e.g. "Concert Tour 2023", "2018 Live")
+      if (titleStr) {
+        const yearInTitle = String(titleStr).match(/\b(19\d\d|20\d\d)\b/);
+        if (yearInTitle) {
+          return parseInt(yearInTitle[1], 10) * 10000 + 101;
+        }
+      }
+
+      return 0; // Truly undated ("Available Now" with zero year metadata)
     }
 
-    function extractProductSequence(prodKey) {
-      if (!prodKey) return 0;
-      const match = String(prodKey).match(/\d+/g);
-      return match ? (parseInt(match.join(''), 10) || 0) : 0;
+    // Record Label Catalog Key Splitter (Prevents cross-label numeric collisions)
+    function getCatalogKey(prodKey) {
+      if (!prodKey) return { prefix: '', num: 0 };
+      const parts = String(prodKey).split('-');
+      if (parts.length >= 2) {
+        const prefix = parts[0].toUpperCase();
+        const num = parseInt(parts[1].replace(/\D/g, ''), 10) || 0;
+        return { prefix, num };
+      }
+      const numOnly = parseInt(String(prodKey).replace(/\D/g, ''), 10) || 0;
+      return { prefix: 'GENERIC', num: numOnly };
     }
 
-    function isPreOrder(dateStr) {
-      const epoch = parseDateEpoch(dateStr);
-      if (epoch === 0) return false;
+    function isPreOrder(dateStr, titleStr) {
+      const score = getNormalizedDateScore(dateStr, titleStr);
+      if (score === 0) return false;
+
       const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return epoch > today.getTime();
+      const todayScore = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
+
+      return score > todayScore;
     }
 
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
@@ -571,35 +577,50 @@
         return matchesCat && matchesSearch;
       });
 
+      // Pure 4-Tier Directional Chronological Engine
       filtered.sort((a, b) => {
-        const epochA = parseDateEpoch(a.release_date);
-        const epochB = parseDateEpoch(b.release_date);
+        const scoreA = getNormalizedDateScore(a.release_date, a.title);
+        const scoreB = getNormalizedDateScore(b.release_date, b.title);
 
         if (currentSort === 'newest') {
-          if (epochA > 0 && epochB > 0) {
-            if (epochB !== epochA) return epochB - epochA;
-            return (b._catalogIndex || 0) - (a._catalogIndex || 0);
+          // Tier 1: Real calendar dates (newest YYYYMMDD first)
+          if (scoreA > 0 && scoreB > 0) {
+            if (scoreB !== scoreA) return scoreB - scoreA;
+          } else if (scoreA > 0 && scoreB === 0) {
+            return -1; // Valid dates come before undated items
+          } else if (scoreB > 0 && scoreA === 0) {
+            return 1;
           }
-          if (epochA > 0 && epochB === 0) return -1;
-          if (epochB > 0 && epochA === 0) return 1;
 
-          const seqA = extractProductSequence(a.id);
-          const seqB = extractProductSequence(b.id);
-          if (seqA > 0 && seqB > 0 && seqA !== seqB) return seqB - seqA;
+          // Tier 2: Same Record Label Code comparison
+          const catA = getCatalogKey(a.id);
+          const catB = getCatalogKey(b.id);
+          if (catA.prefix && catB.prefix && catA.prefix === catB.prefix && catA.num !== catB.num) {
+            return catB.num - catA.num; // Higher catalog sequence is newer
+          }
+
+          // Tier 3: Deterministic fallback by newest insertion index
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          if (epochA > 0 && epochB > 0) {
-            if (epochA !== epochB) return epochA - epochB;
-            return (a._catalogIndex || 0) - (b._catalogIndex || 0);
+          // Tier 1: Real calendar dates (earliest YYYYMMDD first)
+          if (scoreA > 0 && scoreB > 0) {
+            if (scoreA !== scoreB) return scoreA - scoreB;
+          } else if (scoreA > 0 && scoreB === 0) {
+            return -1; // Valid dates always come before undated items
+          } else if (scoreB > 0 && scoreA === 0) {
+            return 1;
           }
-          if (epochA > 0 && epochB === 0) return -1;
-          if (epochB > 0 && epochA === 0) return 1;
 
-          const seqA = extractProductSequence(a.id);
-          const seqB = extractProductSequence(b.id);
-          if (seqA > 0 && seqB > 0 && seqA !== seqB) return seqA - seqB;
+          // Tier 2: Same Record Label Code comparison
+          const catA = getCatalogKey(a.id);
+          const catB = getCatalogKey(b.id);
+          if (catA.prefix && catB.prefix && catA.prefix === catB.prefix && catA.num !== catB.num) {
+            return catA.num - catB.num; // Lower catalog sequence is older
+          }
+
+          // Tier 3: Deterministic fallback by oldest insertion index
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         
@@ -640,7 +661,7 @@
         card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
         
         const displayImg = p.image || PLACEHOLDER_IMG;
-        const upcoming = isPreOrder(p.release_date);
+        const upcoming = isPreOrder(p.release_date, p.title);
         const safeTitle = escapeHtml(p.title);
         const safeArtist = escapeHtml(p.artist);
 

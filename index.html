@@ -5,45 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary SEO Meta Tags -->
-  <title>IdolJapan.store — Japanese Female Idol Merch & Music Catalog</title>
-  <meta name="title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
-  <meta name="description" content="Discover official singles, albums, photobooks, and concert Blu-rays from Hello! Project, AKB48 Group, Sakamichi 46, =LOVE, Momoclo, and Babymetal via CDJapan.">
-  <meta name="keywords" content="Japanese idols, Hello Project, Morning Musume, AKB48, Nogizaka46, Sakurazaka46, Hinatazaka46, =LOVE, Babymetal, Momoiro Clover Z, CDJapan, J-Pop CDs, Idol Photobooks">
+  <title>IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory</title>
+  <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory">
+  <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. We catalog releases from Hello! Project, AKB48 Group, Sakamichi 46, and more, safely fulfilled direct from Tokyo by CDJapan.">
+  <meta name="keywords" content="Japanese idols, Hello Project, Morning Musume, AKB48, Nogizaka46, Sakurazaka46, Hinatazaka46, =LOVE, Babymetal, Momoiro Clover Z, CDJapan affiliate, J-Pop CDs">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#db2777">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idoljapan.store/">
-  <meta property="og:title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
-  <meta property="og:description" content="Discover and pre-order official singles, albums, photobooks, and concert Blu-rays shipped straight from Tokyo via CDJapan.">
+  <meta property="og:title" content="IdolJapan.store — Japanese Idol Discography & Release Guide">
+  <meta property="og:description" content="Independent Japanese female idol discography index. All purchases securely fulfilled directly by official retailer CDJapan (Tokyo).">
   <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://idoljapan.store/">
-  <meta name="twitter:title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
-  <meta name="twitter:description" content="Discover and pre-order official releases from Hello! Project, AKB48, Sakamichi Series, and more.">
+  <meta name="twitter:title" content="IdolJapan.store — Japanese Idol Catalog">
+  <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
   <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
-  <!-- Structured Data: JSON-LD for Search Engines -->
+  <!-- Schema.org JSON-LD: Explicitly Defines Site as a Catalog/Directory, NOT a Store -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "IdolJapan.store",
-    "url": "https://idoljapan.store/",
-    "description": "Comprehensive catalog of Japanese female idol CDs, Blu-rays, and photobooks fulfilled by CDJapan.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://idoljapan.store/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://idoljapan.store/#website",
+        "url": "https://idoljapan.store/",
+        "name": "IdolJapan.store",
+        "description": "Independent Japanese idol discography catalog and curated affiliate directory.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "IdolJapan.store",
+          "url": "https://idoljapan.store/",
+          "foundingDate": "2019"
+        }
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://idoljapan.store/#webpage",
+        "url": "https://idoljapan.store/",
+        "name": "Japanese Idol Release Directory",
+        "isPartOf": { "@id": "https://idoljapan.store/#website" },
+        "about": "Official Japanese idol releases fulfilled by authorized retailer CDJapan (Neowing Corporation)."
+      }
+    ]
   }
   </script>
 
-  <!-- Tailwind CSS with Dark Mode Class Strategy -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -51,7 +65,6 @@
     }
   </script>
 
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
@@ -63,7 +76,7 @@
     }
   </style>
 
-  <!-- Early Dark Mode Detection (Prevents Screen Flash) -->
+  <!-- Theme Init -->
   <script>
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -78,11 +91,11 @@
   <header class="bg-pink-600 dark:bg-pink-800 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-star text-yellow-300 text-2xl"></i>
+        <i class="fa-solid fa-compact-disc text-yellow-300 text-2xl"></i>
         <a href="/" class="text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
       </div>
       
-      <!-- Search Input -->
+      <!-- Search -->
       <div class="flex-1 max-w-md relative">
         <input 
           id="search-input" 
@@ -93,21 +106,30 @@
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
       </div>
 
-      <!-- Controls: Currency & Dark Mode Toggles -->
+      <!-- Controls -->
       <div class="flex items-center gap-2">
-        <!-- Currency Toggle -->
         <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-coins text-yellow-300"></i>
           <span id="currency-label">USD ($)</span>
         </button>
 
-        <!-- Dark Mode Toggle -->
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
           <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Clear Trust & Verification Banner (Destroys Proxy/Scam Accusations) -->
+  <aside class="bg-amber-50 dark:bg-slate-800/90 border-b border-amber-200 dark:border-slate-700 text-amber-900 dark:text-amber-200 text-xs py-2 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-sm"></i>
+        <span><strong>Verified Directory Notice:</strong> IdolJapan.store is an independent discography index. We do <u>not</u> process payments, sell products, or operate a proxy service. All links redirect directly to official merchant <strong>CDJapan (Neowing Corp, Tokyo)</strong>.</span>
+      </div>
+      <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-pink-600 whitespace-nowrap">Learn How It Works →</a>
+    </div>
+  </aside>
 
   <!-- Franchise Navigation Filter -->
   <nav class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-[60px] z-40 overflow-x-auto transition-colors duration-200">
@@ -122,7 +144,7 @@
         <button onclick="setFilter('Babymetal')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Babymetal">Babymetal</button>
       </div>
 
-      <!-- Sorting Dropdown -->
+      <!-- Sorting -->
       <div class="flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
         <label for="sort-select" class="text-slate-500 dark:text-slate-400 hidden sm:inline">Sort:</label>
         <select id="sort-select" onchange="changeSort(this.value)" class="bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-1.5 px-3 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500">
@@ -135,15 +157,17 @@
     </div>
   </nav>
 
-  <!-- Banner Section -->
+  <!-- Banner -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 dark:from-pink-700 dark:via-rose-700 dark:to-pink-800 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
         <h1 class="text-xl md:text-2xl font-black flex items-center gap-2">
           <span>Official Japanese Idol Catalog</span>
-          <span class="bg-yellow-400 text-slate-900 text-[11px] font-extrabold px-2 py-0.5 rounded-full">CDJapan Direct</span>
+          <span class="bg-white/20 backdrop-blur-md text-white border border-white/30 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> CDJapan Authorized Affiliate
+          </span>
         </h1>
-        <p class="text-sm text-pink-100 mt-1">Pre-order new singles, concert Blu-rays, and photobooks shipped straight from Tokyo with CDJapan bonus photos.</p>
+        <p class="text-sm text-pink-100 mt-1">Explore official singles, albums, photobooks, and concert Blu-rays shipped straight from Tokyo by authorized retailer CDJapan.</p>
       </div>
       <div id="stats" class="text-xs bg-black/25 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-pink-100 border border-white/10">Loading catalog...</div>
     </div>
@@ -162,18 +186,36 @@
     </div>
   </main>
 
-  <!-- Enlarged Footer Disclaimer & Branding -->
+  <!-- Transparency Footer -->
   <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto py-10 transition-colors duration-200">
-    <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
+    <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
       
-      <!-- Primary Disclosure (Enlarged font size) -->
-      <p class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-200 leading-relaxed">
-        <strong>IdolJapan.store</strong> is an independent merchandise catalog curated for international fans. All CD, DVD, Blu-ray, and photobook orders are securely fulfilled by <a href="https://www.cdjapan.co.jp" class="underline hover:text-pink-600 dark:hover:text-pink-400 font-bold" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong class="text-pink-600 dark:text-pink-400">A033398</strong>.
-      </p>
+      <!-- Prominent Affiliate Disclosure -->
+      <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 text-sm leading-relaxed text-left sm:text-center">
+        <p class="font-semibold text-slate-900 dark:text-white mb-1 flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-circle-info text-pink-600"></i> Official Affiliate & Operating Disclosure
+        </p>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <strong>IdolJapan.store</strong> is an independent discography catalog curated for international Japanese idol fans. 
+          We are <strong>not</strong> an online shop, marketplace, proxy service, or distributor. We do not collect payments, hold inventory, or process shipping.
+          All purchases, customer service inquiries, international shipping, and returns are handled exclusively and directly by 
+          <a href="https://www.cdjapan.co.jp" class="underline font-bold text-pink-600 hover:text-pink-700 dark:hover:text-pink-400" target="_blank" rel="noopener">CDJapan</a> 
+          (operated by Neowing Corporation, Tokyo, Japan). As an official CDJapan partner, we may earn an affiliate commission on qualifying purchases made through our referral links (Affiliate ID: <strong>A033398</strong>) at no extra cost to you.
+        </p>
+      </div>
 
-      <!-- Copyright & Year Range -->
-      <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-        <p>© 2019 – 2026 IdolJapan.store. All rights reserved.</p>
+      <!-- Trust & Legal Links -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
+        <a href="./about.html" class="hover:text-pink-600 transition">About Us & Verification</a>
+        <a href="./affiliate-disclosure.html" class="hover:text-pink-600 transition">Affiliate Disclosure</a>
+        <a href="./privacy.html" class="hover:text-pink-600 transition">Privacy Policy</a>
+        <a href="./terms.html" class="hover:text-pink-600 transition">Terms of Service</a>
+        <a href="https://www.cdjapan.co.jp/guide" target="_blank" rel="noopener" class="hover:text-pink-600 transition">CDJapan Shipping & Help Guide ↗</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 text-xs text-slate-400 dark:text-slate-500">
+        <p>© 2019 – 2026 IdolJapan.store. Japanese Idol Media Catalog. All product images and trademarks belong to their respective copyright holders and CDJapan.</p>
       </div>
 
     </div>
@@ -186,13 +228,11 @@
     let currentSort = 'newest';
     let showUSD = true;
     
-    // Default fallback exchange rate
     let jpyToUsdRate = 0.0067;
     const RATE_CACHE_KEY = 'idoljapan_jpy_usd_rate';
     const RATE_TIME_KEY = 'idoljapan_jpy_usd_time';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Theme Management (Light / Dark)
     function updateThemeIcon() {
       const isDark = document.documentElement.classList.contains('dark');
       const icon = document.getElementById('theme-icon');
@@ -212,7 +252,6 @@
       updateThemeIcon();
     }
 
-    // Fetch and cache live JPY to USD exchange rate every 24 hours
     async function initExchangeRate() {
       const cachedRate = localStorage.getItem(RATE_CACHE_KEY);
       const cachedTime = localStorage.getItem(RATE_TIME_KEY);
@@ -324,7 +363,6 @@
         return matchesCat && matchesSearch;
       });
 
-      // Sorting Logic
       filtered.sort((a, b) => {
         if (currentSort === 'newest') {
           return (b.release_date || '').localeCompare(a.release_date || '');
@@ -362,12 +400,10 @@
               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
             
-            <!-- Artist Badge -->
-            <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
+            <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
               ${p.artist}
             </span>
 
-            <!-- Pre-Order Badge -->
             ${upcoming ? `
               <span class="absolute top-2 right-2 bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-pink-300/40">
                 <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
@@ -384,16 +420,20 @@
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
-              <span class="text-xs font-black text-pink-600 dark:text-pink-400">
-                ${formatDisplayPrice(p.price)}
-              </span>
+              <div>
+                <span class="text-xs font-black text-pink-600 dark:text-pink-400">
+                  ${formatDisplayPrice(p.price)}
+                </span>
+                <span class="block text-[9px] text-slate-400 dark:text-slate-500">Official CDJapan Price</span>
+              </div>
               <a 
                 href="${p.affiliate_url}" 
                 target="_blank" 
                 rel="nofollow noopener" 
-                class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-md transition flex items-center gap-1 shadow-sm"
+                title="View and order securely on CDJapan"
+                class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap"
               >
-                ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                ${upcoming ? 'Pre-Order on CDJapan' : 'View on CDJapan'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
               </a>
             </div>
           </div>
@@ -402,7 +442,6 @@
       });
     }
 
-    // Initialize Theme, Exchange Rate, and Catalog
     updateThemeIcon();
     initExchangeRate();
     loadCatalog();

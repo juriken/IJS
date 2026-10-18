@@ -118,14 +118,6 @@
     </div>
   </section>
 
-  <!-- Visible Diagnostic Alert (Shows error details directly on screen if fetch fails) -->
-  <div id="diagnostic-alert" class="max-w-7xl mx-auto px-4 mt-4 hidden">
-    <div class="bg-red-500 text-white p-4 rounded-xl text-xs font-mono space-y-1">
-      <p class="font-bold">⚠️ Catalog Diagnostics Alert:</p>
-      <p id="diagnostic-msg"></p>
-    </div>
-  </div>
-
   <!-- Page Controls -->
   <section class="max-w-7xl mx-auto px-4 mt-6" id="pagination-top-anchor">
     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs">
@@ -238,39 +230,32 @@
       updateThemeIcon();
     }
 
-    // Resilient Catalog Loader: Reads text first, strips trailing formatting bugs, then parses
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
-      const diagEl = document.getElementById('diagnostic-alert');
-      const diagMsg = document.getElementById('diagnostic-msg');
-      let rawText = '';
+      let data = null;
 
       try {
-        const res = await fetch('products.json?cb=' + Date.now());
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' loading products.json');
-        rawText = await res.text();
-        
-        let parsed = null;
-        try {
-          parsed = JSON.parse(rawText);
-        } catch (parseErr) {
-          // Attempt recovery from trailing commas or missing closing brace
-          let cleaned = rawText.trim();
-          if (cleaned.endsWith(',}')) cleaned = cleaned.slice(0, -2) + '}';
-          if (cleaned.endsWith(',')) cleaned = cleaned.slice(0, -1) + '}';
-          parsed = JSON.parse(cleaned);
-        }
+        const res = await fetch('/products.json?v=' + Date.now());
+        if (res.ok) data = await res.json();
+      } catch (e) {
+        console.warn('Root fetch failed, trying relative:', e);
+      }
 
-        allProducts = Object.values(parsed).filter(item => item && item.id);
-        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
-        if (diagEl) diagEl.classList.add('hidden');
-      } catch (err) {
-        console.error('Fatal load error:', err);
-        if (statsEl) statsEl.innerText = "Catalog Error";
-        if (diagEl && diagMsg) {
-          diagEl.classList.remove('hidden');
-          diagMsg.innerText = String(err.message || err);
+      if (!data) {
+        try {
+          const res = await fetch('products.json?v=' + Date.now());
+          if (res.ok) data = await res.json();
+        } catch (e2) {
+          console.error('All fetch attempts failed:', e2);
         }
+      }
+
+      if (data && typeof data === 'object') {
+        allProducts = Object.values(data).filter(item => item && item.id);
+        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
+      } else {
+        allProducts = [];
+        if (statsEl) statsEl.innerText = "Syncing catalog...";
       }
 
       render();
@@ -344,19 +329,31 @@
       return `¥${num.toLocaleString()}`;
     }
 
+    // Precise multi-format date converter with positive epoch validation
     function parseDateEpoch(dateStr) {
       if (!dateStr) return 0;
       const clean = String(dateStr).trim();
+
       const numMatch = clean.match(/(\d{4})[./-](\d{1,2})(?:[./-](\d{1,2}))?/);
       if (numMatch) {
         const y = parseInt(numMatch[1], 10);
         const m = parseInt(numMatch[2], 10) - 1;
         const d = numMatch[3] ? parseInt(numMatch[3], 10) : 1;
         const t = new Date(y, m, d).getTime();
-        if (!isNaN(t)) return t;
+        if (!isNaN(t) && t > 0) return t;
       }
+
       const nativeParsed = Date.parse(clean);
-      if (!isNaN(nativeParsed)) return nativeParsed;
+      if (!isNaN(nativeParsed) && nativeParsed > 0) {
+        return nativeParsed;
+      }
+
+      const yearMatch = clean.match(/\b(19\d\d|20\d\d)\b/);
+      if (yearMatch) {
+        const t = new Date(parseInt(yearMatch[1], 10), 0, 1).getTime();
+        if (!isNaN(t) && t > 0) return t;
+      }
+
       return 0;
     }
 
@@ -433,26 +430,48 @@
         return matchesCat && matchesSearch;
       });
 
+      // Strict Chronological Epoch & Price Sorting with Secondary Deterministic Tie-Breaker
       filtered.sort((a, b) => {
         if (currentSort === 'newest') {
           const epochA = parseDateEpoch(a.release_date);
           const epochB = parseDateEpoch(b.release_date);
-          if (epochA > 0 && epochB > 0) return epochB - epochA;
-          if (epochA === 0 && epochB > 0) return 1;
-          if (epochB === 0 && epochA > 0) return -1;
-          return 0;
-        } else if (currentSort === 'oldest') {
+
+          if (epochA > 0 && epochB > 0) {
+            if (epochB !== epochA) return epochB - epochA;
+            return String(a.title || '').localeCompare(String(b.title || ''));
+          }
+          if (epochA > 0 && epochB === 0) return -1;
+          if (epochB > 0 && epochA === 0) return 1;
+          return String(a.title || '').localeCompare(String(b.title || ''));
+        } 
+        
+        else if (currentSort === 'oldest') {
           const epochA = parseDateEpoch(a.release_date);
           const epochB = parseDateEpoch(b.release_date);
-          if (epochA > 0 && epochB > 0) return epochA - epochB;
-          if (epochA === 0 && epochB > 0) return 1;
-          if (epochB === 0 && epochA > 0) return -1;
-          return 0;
-        } else if (currentSort === 'price-asc') {
-          return parseNumericPrice(a.price) - parseNumericPrice(b.price);
-        } else if (currentSort === 'price-desc') {
-          return parseNumericPrice(b.price) - parseNumericPrice(a.price);
+
+          if (epochA > 0 && epochB > 0) {
+            if (epochA !== epochB) return epochA - epochB;
+            return String(a.title || '').localeCompare(String(b.title || ''));
+          }
+          if (epochA > 0 && epochB === 0) return -1;
+          if (epochB > 0 && epochA === 0) return 1;
+          return String(a.title || '').localeCompare(String(b.title || ''));
+        } 
+        
+        else if (currentSort === 'price-asc') {
+          const priceA = parseNumericPrice(a.price);
+          const priceB = parseNumericPrice(b.price);
+          if (priceA !== priceB) return priceA - priceB;
+          return String(a.title || '').localeCompare(String(b.title || ''));
+        } 
+        
+        else if (currentSort === 'price-desc') {
+          const priceA = parseNumericPrice(a.price);
+          const priceB = parseNumericPrice(b.price);
+          if (priceB !== priceA) return priceB - priceA;
+          return String(a.title || '').localeCompare(String(b.title || ''));
         }
+
         return 0;
       });
 

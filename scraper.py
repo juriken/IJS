@@ -15,7 +15,7 @@ DATA_FILE = "products.json"
 TARGET_GROUPS = [
     # Hello! Project
     ("Hello! Project", "Morning Musume"),
-    ("Hello! Project", "ANGERME"),
+    ("Hello! Project", "ANGERME", "Smileage"),  # Searches S/mileage & ANGERME releases
     ("Hello! Project", "Juice=Juice"),
     ("Hello! Project", "Tsubaki Factory"),
     ("Hello! Project", "BEYOOOOONDS"),
@@ -33,14 +33,15 @@ TARGET_GROUPS = [
     ("AKB48 Group", "HKT48"),
     ("AKB48 Group", "NGT48"),
     ("AKB48 Group", "STU48"),
-    # =LOVE & Sister Groups (Clean English search terms without math symbols)
+    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE"),
-    ("=LOVE / Sister Groups", "Not Equal ME"),
-    ("=LOVE / Sister Groups", "Nearly Equal Joy"),
+    ("=LOVE / Sister Groups", "≠ME", "Not Equal ME"),
+    ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy"),
     # Momoclo & Babymetal
     ("Momoiro Clover Z", "Momoiro Clover Z"),
     ("Babymetal", "BABYMETAL"),
 ]
+
 # Number of pages to paginate through using the on-screen Next button
 PAGES_PER_ARTIST = 3
 

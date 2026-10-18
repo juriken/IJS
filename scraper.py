@@ -11,30 +11,35 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# All target idol groups
+# Pure English search roster across all target franchises
 ALL_TARGETS = [
-    ("Hello! Project", "Morning Musume", "モーニング娘"),
-    ("Hello! Project", "ANGERME", "アンジュルム"),
-    ("Hello! Project", "Juice=Juice", "Juice=Juice"),
-    ("Hello! Project", "Tsubaki Factory", "つばきファクトリー"),
-    ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS"),
-    ("Hello! Project", "OCHA NORMA", "OCHA NORMA"),
-    ("Hello! Project", "Rosy Chronicle", "ロージークロニクル"),
-    ("Hello! Project", "Hello! Project", "ハロー!プロジェクト"),
-    ("Sakamichi Series", "Nogizaka46", "乃木坂46"),
-    ("Sakamichi Series", "Sakurazaka46", "櫻坂46"),
-    ("Sakamichi Series", "Hinatazaka46", "日向坂46"),
-    ("AKB48 Group", "AKB48", "AKB48"),
-    ("AKB48 Group", "SKE48", "SKE48"),
-    ("AKB48 Group", "NMB48", "NMB48"),
-    ("AKB48 Group", "HKT48", "HKT48"),
-    ("AKB48 Group", "NGT48", "NGT48"),
-    ("AKB48 Group", "STU48", "STU48"),
-    ("=LOVE / Sister Groups", "=LOVE", "=LOVE"),
-    ("=LOVE / Sister Groups", "≠ME", "≠ME"),
-    ("=LOVE / Sister Groups", "≒JOY", "≒JOY"),
-    ("Momoiro Clover Z", "Momoiro Clover Z", "ももいろクローバーZ"),
-    ("Babymetal", "BABYMETAL", "BABYMETAL"),
+    # Hello! Project
+    ("Hello! Project", "Morning Musume"),
+    ("Hello! Project", "ANGERME"),
+    ("Hello! Project", "Juice=Juice"),
+    ("Hello! Project", "Tsubaki Factory"),
+    ("Hello! Project", "BEYOOOOONDS"),
+    ("Hello! Project", "OCHA NORMA"),
+    ("Hello! Project", "Rosy Chronicle"),
+    ("Hello! Project", "Hello! Project"),
+    # Sakamichi Series
+    ("Sakamichi Series", "Nogizaka46"),
+    ("Sakamichi Series", "Sakurazaka46"),
+    ("Sakamichi Series", "Hinatazaka46"),
+    # AKB48 Group
+    ("AKB48 Group", "AKB48"),
+    ("AKB48 Group", "SKE48"),
+    ("AKB48 Group", "NMB48"),
+    ("AKB48 Group", "HKT48"),
+    ("AKB48 Group", "NGT48"),
+    ("AKB48 Group", "STU48"),
+    # =LOVE & Sister Groups
+    ("=LOVE / Sister Groups", "=LOVE"),
+    ("=LOVE / Sister Groups", "≠ME"),
+    ("=LOVE / Sister Groups", "≒JOY"),
+    # Other Key Units
+    ("Momoiro Clover Z", "Momoiro Clover Z"),
+    ("Babymetal", "BABYMETAL"),
 ]
 
 
@@ -168,8 +173,9 @@ def parse_page(html, category, display_name):
   return cleaned
 
 
-def scrape_query(page, category, display_name, search_term):
-  q = urllib.parse.quote_plus(search_term)
+def scrape_query(page, category, display_name):
+  # Strictly English search query encoding
+  q = urllib.parse.quote_plus(display_name)
   url = f"https://www.cdjapan.co.jp/searches?term.media_format=&q={q}&order=reldesc"
 
   for attempt in range(1, 3):
@@ -186,7 +192,7 @@ def scrape_query(page, category, display_name, search_term):
 
       rendered = page.content()
       if len(rendered) < 3000:
-        print(f"    Cooldown trigger ({len(rendered)} bytes). Pausing 15s...")
+        print(f"    Cooldown notice ({len(rendered)} bytes). Pausing 15s...")
         time.sleep(15.0)
         continue
 
@@ -195,7 +201,7 @@ def scrape_query(page, category, display_name, search_term):
       return items
 
     except Exception as e:
-      print(f"    Attempt {attempt} exception: {e}")
+      print(f"    Attempt {attempt} notice: {e}")
       time.sleep(5.0)
 
   return []
@@ -206,8 +212,7 @@ def main():
   initial_count = len(catalog)
   print(f"Current catalog size: {initial_count} items")
 
-  # Select a shuffled subset of 8 targets per run to prevent rate-limit blocks
-  # Over the course of the week, all groups get updated continuously
+  # Rotates across 8 targets per run to prevent rate-limit blocks
   selected_targets = random.sample(ALL_TARGETS, min(8, len(ALL_TARGETS)))
 
   with sync_playwright() as p:
@@ -231,9 +236,9 @@ def main():
       pass
 
     new_total = 0
-    for idx, (cat, name, term) in enumerate(selected_targets, 1):
-      print(f"\n[{idx}/{len(selected_targets)}] Syncing: {name} ({cat})")
-      items = scrape_query(page, cat, name, term)
+    for idx, (cat, name) in enumerate(selected_targets, 1):
+      print(f"\n[{idx}/{len(selected_targets)}] Syncing (English): {name} ({cat})")
+      items = scrape_query(page, cat, name)
       new_for_artist = 0
 
       for it in items:
@@ -244,7 +249,6 @@ def main():
         catalog[pid] = it
 
       print(f"    Added {new_for_artist} new items for {name}")
-      # Polite human delay
       time.sleep(random.uniform(4.0, 7.0))
 
     browser.close()

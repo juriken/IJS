@@ -11,7 +11,6 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Strict Target Roster: (Category, Canonical Artist Name, Search Query, Match Keywords)
 TARGET_GROUPS = [
     # Hello! Project
     (
@@ -34,12 +33,27 @@ TARGET_GROUPS = [
         ["Tsubaki Factory"],
     ),
     ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
-    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA"]),
+    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle"]),
     # Sakamichi Series
-    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46"]),
-    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46"]),
-    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46"]),
+    (
+        "Sakamichi Series",
+        "Nogizaka46",
+        "Nogizaka46",
+        ["Nogizaka46", "Nogizaka", "乃木坂"],
+    ),
+    (
+        "Sakamichi Series",
+        "Sakurazaka46",
+        "Sakurazaka46",
+        ["Sakurazaka46", "Sakurazaka", "櫻坂"],
+    ),
+    (
+        "Sakamichi Series",
+        "Hinatazaka46",
+        "Hinatazaka46",
+        ["Hinatazaka46", "Hinatazaka", "日向坂"],
+    ),
     # AKB48 Group
     ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
     ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
@@ -48,18 +62,23 @@ TARGET_GROUPS = [
     ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
     ("AKB48 Group", "STU48", "STU48", ["STU48"]),
     # =LOVE & Sister Groups
-    ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love"]),
+    (
+        "=LOVE / Sister Groups",
+        "=LOVE",
+        "Equal Love",
+        ["=LOVE", "Equal Love", "イコラブ"],
+    ),
     (
         "=LOVE / Sister Groups",
         "≠ME",
         "Not Equal ME",
-        ["≠ME", "Not Equal ME", "Noime"],
+        ["≠ME", "Not Equal ME", "Noime", "ノイミー"],
     ),
     (
         "=LOVE / Sister Groups",
         "≒JOY",
         "Nearly Equal Joy",
-        ["≒JOY", "Nearly Equal Joy", "Niajoy"],
+        ["≒JOY", "Nearly Equal Joy", "Niajoy", "ニアジョイ"],
     ),
     # Other Key Units
     (
@@ -94,18 +113,17 @@ def clean_text(text):
   return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
-def is_relevant_product(title, keywords):
+def is_relevant_product(card_text, keywords):
   if not keywords:
     return True
-  lower_title = title.lower()
-  return any(kw.lower() in lower_title for kw in keywords)
+  lower_text = card_text.lower()
+  return any(kw.lower() in lower_text for kw in keywords)
 
 
 def extract_verified_products(html, category, canonical_artist, keywords):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  # Isolate only the actual search results container
   search_container = (
       soup.select_one("#search_result")
       or soup.select_one(".search-result")
@@ -114,7 +132,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
       or soup
   )
 
-  # Match true CDJapan product cards
   cards = (
       search_container.select(".item-detail")
       or search_container.select(".item")
@@ -134,7 +151,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
     prod_key = match.group(1)
 
-    # Discard non-product and utility tokens
     if prod_key.lower() in [
         "cart",
         "login",
@@ -156,6 +172,14 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     )
     raw_title = clean_text(title_el.get_text()) if title_el else ""
 
+    # Artist extraction (Look for dedicated artist container)
+    artist_el = (
+        card.select_one(".artist")
+        or card.select_one(".item-artist")
+        or card.select_one(".cast")
+    )
+    raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
+
     # Image extraction
     img_el = card.select_one("img")
     img_url = ""
@@ -172,7 +196,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     if not raw_title:
       continue
 
-    # Format image link
     if (
         not img_url
         or "spacer" in img_url
@@ -185,7 +208,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     elif img_url.startswith("/"):
       img_url = "https://www.cdjapan.co.jp" + img_url
 
-    # Upgrade image resolution if possible
     img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
         "/pictures/m/", "/pictures/l/"
     )
@@ -232,9 +254,10 @@ def extract_verified_products(html, category, canonical_artist, keywords):
       if d_match:
         rel_date = d_match.group(1).replace("-", "/")
 
-    # Strict Relevance Filter:
-    # Drops unrelated anime or guest merchandise unless the idol unit is mentioned
-    if not is_relevant_product(raw_title, keywords):
+    # Multi-field verification check:
+    # Checks Title, Artist label, and entire card content to guarantee zero false rejections
+    searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card.get_text())}"
+    if not is_relevant_product(searchable_card_text, keywords):
       continue
 
     items_dict[prod_key] = {
@@ -266,7 +289,9 @@ def scrape_target(page, category, canonical_artist, query, keywords, max_pages):
 
     search_input = page.locator("input[name='q']").first
     search_input.click()
-    search_input.fill("")
+    # Thorough input clearing
+    search_input.press("Control+A")
+    search_input.press("Backspace")
     search_input.fill(query)
     time.sleep(0.5)
     search_input.press("Enter")

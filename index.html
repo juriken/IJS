@@ -251,7 +251,10 @@
       }
 
       if (data && typeof data === 'object') {
-        allProducts = Object.values(data).filter(item => item && item.id);
+        // Tag original insertion index so we have a true fallback chronological order
+        allProducts = Object.values(data)
+          .filter(item => item && item.id)
+          .map((item, idx) => ({ ...item, _catalogIndex: idx }));
         if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
       } else {
         allProducts = [];
@@ -329,7 +332,7 @@
       return `¥${num.toLocaleString()}`;
     }
 
-    // Precise multi-format date converter with positive epoch validation
+    // Precise multi-format date converter
     function parseDateEpoch(dateStr) {
       if (!dateStr) return 0;
       const clean = String(dateStr).trim();
@@ -354,6 +357,16 @@
         if (!isNaN(t) && t > 0) return t;
       }
 
+      return 0;
+    }
+
+    // Secondary chronological score based on CDJapan product key numbering
+    function extractProductSequence(prodKey) {
+      if (!prodKey) return 0;
+      const match = String(prodKey).match(/\d+/g);
+      if (match) {
+        return parseInt(match.join(''), 10) || 0;
+      }
       return 0;
     }
 
@@ -430,32 +443,51 @@
         return matchesCat && matchesSearch;
       });
 
-      // Strict Chronological Epoch & Price Sorting with Secondary Deterministic Tie-Breaker
+      // Strict Chronological Dual-Order Comparator
       filtered.sort((a, b) => {
-        if (currentSort === 'newest') {
-          const epochA = parseDateEpoch(a.release_date);
-          const epochB = parseDateEpoch(b.release_date);
+        const epochA = parseDateEpoch(a.release_date);
+        const epochB = parseDateEpoch(b.release_date);
 
+        if (currentSort === 'newest') {
+          // 1. Both have valid release dates
           if (epochA > 0 && epochB > 0) {
             if (epochB !== epochA) return epochB - epochA;
-            return String(a.title || '').localeCompare(String(b.title || ''));
+            return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
+          // Real dates come first
           if (epochA > 0 && epochB === 0) return -1;
           if (epochB > 0 && epochA === 0) return 1;
-          return String(a.title || '').localeCompare(String(b.title || ''));
+
+          // 2. Both lack explicit dates: sort by CDJapan product code sequence (newer ID first)
+          const seqA = extractProductSequence(a.id);
+          const seqB = extractProductSequence(b.id);
+          if (seqA > 0 && seqB > 0 && seqA !== seqB) {
+            return seqB - seqA;
+          }
+
+          // 3. Fallback: newest insertion index in database
+          return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          const epochA = parseDateEpoch(a.release_date);
-          const epochB = parseDateEpoch(b.release_date);
-
+          // 1. Both have valid release dates (earliest date first)
           if (epochA > 0 && epochB > 0) {
             if (epochA !== epochB) return epochA - epochB;
-            return String(a.title || '').localeCompare(String(b.title || ''));
+            return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
+          // Items with real dates come before items with zero date info
           if (epochA > 0 && epochB === 0) return -1;
           if (epochB > 0 && epochA === 0) return 1;
-          return String(a.title || '').localeCompare(String(b.title || ''));
+
+          // 2. Both lack explicit dates: sort by CDJapan product code sequence (older ID first)
+          const seqA = extractProductSequence(a.id);
+          const seqB = extractProductSequence(b.id);
+          if (seqA > 0 && seqB > 0 && seqA !== seqB) {
+            return seqA - seqB;
+          }
+
+          // 3. Fallback: oldest insertion index in database
+          return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         
         else if (currentSort === 'price-asc') {

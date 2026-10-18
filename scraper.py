@@ -266,10 +266,8 @@ def main():
   initial_count = len(catalog)
   print(f"Current catalog size: {initial_count} items")
 
-  # Priority targeting: Ensures Nogizaka46 is always harvested first, followed by a random selection
-  nogi_target = [t for t in TARGET_GROUPS if t[1] == "Nogizaka46"]
-  other_targets = [t for t in TARGET_GROUPS if t[1] != "Nogizaka46"]
-  batch = nogi_target + random.sample(other_targets, min(BATCH_SIZE - len(nogi_target), len(other_targets)))
+  # Select a shuffled batch of 7 targets per execution
+batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
   with sync_playwright() as p:
     browser = p.chromium.launch(

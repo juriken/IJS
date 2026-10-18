@@ -124,19 +124,11 @@ def extract_verified_products(html, category, canonical_artist, keywords):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  search_container = (
-      soup.select_one("#search_result")
-      or soup.select_one(".search-result")
-      or soup.select_one(".item-list")
-      or soup.select_one("div.contents-main")
-      or soup
-  )
-
   cards = (
-      search_container.select(".item-detail")
-      or search_container.select(".item")
-      or search_container.select(".n-item")
-      or search_container.find_all("div", class_=re.compile(r"item"))
+      soup.select(".item-detail")
+      or soup.select(".n-item")
+      or soup.select(".item")
+      or soup.select("div[class*='item-']")
   )
 
   for card in cards:
@@ -163,7 +155,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     ]:
       continue
 
-    # Title extraction
     title_el = (
         card.select_one(".title a")
         or card.select_one("a.item-title")
@@ -172,7 +163,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     )
     raw_title = clean_text(title_el.get_text()) if title_el else ""
 
-    # Artist extraction (Look for dedicated artist container)
     artist_el = (
         card.select_one(".artist")
         or card.select_one(".item-artist")
@@ -180,7 +170,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     )
     raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
 
-    # Image extraction
     img_el = card.select_one("img")
     img_url = ""
     if img_el:
@@ -212,7 +201,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         "/pictures/m/", "/pictures/l/"
     )
 
-    # Price extraction
     price_el = (
         card.select_one(".price")
         or card.select_one(".item-price")
@@ -231,14 +219,12 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         if num_only:
           price_str = f"{int(num_only):,}yen"
     else:
-      card_text = clean_text(card.get_text())
       p_match = re.search(
-          r"(\d[\d,]*)\s*(?:yen|JPY|円)", card_text, re.IGNORECASE
+          r"(\d[\d,]*)\s*(?:yen|JPY|円)", clean_text(card.get_text())
       )
       if p_match:
         price_str = f"{p_match.group(1)}yen"
 
-    # Release Date extraction
     date_el = (
         card.select_one(".release_date")
         or card.select_one(".item-date")
@@ -254,9 +240,9 @@ def extract_verified_products(html, category, canonical_artist, keywords):
       if d_match:
         rel_date = d_match.group(1).replace("-", "/")
 
-    # Multi-field verification check:
-    # Checks Title, Artist label, and entire card content to guarantee zero false rejections
-    searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card.get_text())}"
+    searchable_card_text = (
+        f"{raw_title} {raw_artist} {clean_text(card.get_text())}"
+    )
     if not is_relevant_product(searchable_card_text, keywords):
       continue
 
@@ -277,55 +263,46 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def scrape_target(page, category, canonical_artist, query, keywords, max_pages):
   results = []
-  print(f"\n-> Strict Crawl for: {canonical_artist} (Query: '{query}')")
+  print(f"\n-> Crawl for: {canonical_artist} (Query: '{query}')")
+  encoded_q = urllib.parse.quote_plus(query)
 
-  try:
-    page.goto(
-        "https://www.cdjapan.co.jp/",
-        wait_until="domcontentloaded",
-        timeout=30000,
-    )
-    time.sleep(1.5)
+  for attempt in range(1, 3):
+    try:
+      # Direct search URL with active media parameters avoids landing page differences
+      target_url = f"https://www.cdjapan.co.jp/searchuni?term.media_format=&q={encoded_q}&order=reldesc"
+      page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+      time.sleep(2.0)
 
-    search_input = page.locator("input[name='q']").first
-    search_input.click()
-    # Thorough input clearing
-    search_input.press("Control+A")
-    search_input.press("Backspace")
-    search_input.fill(query)
-    time.sleep(0.5)
-    search_input.press("Enter")
+      for p_num in range(1, max_pages + 1):
+        try:
+          page.wait_for_selector("a[href*='/product/']", timeout=6000)
+        except Exception:
+          pass
 
-    page.wait_for_load_state("domcontentloaded")
-    time.sleep(2.0)
+        page.evaluate("window.scrollBy(0, 1000)")
+        time.sleep(0.8)
 
-    for p_num in range(1, max_pages + 1):
-      try:
-        page.wait_for_selector("a[href*='/product/']", timeout=7000)
-      except Exception:
-        pass
+        html = page.content()
+        verified = extract_verified_products(
+            html, category, canonical_artist, keywords
+        )
+        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+        results.extend(verified)
 
-      page.evaluate("window.scrollBy(0, 1000)")
-      time.sleep(0.8)
+        if p_num < max_pages:
+          next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
+          if next_btn.count() > 0 and next_btn.first.is_visible():
+            next_btn.first.click()
+            page.wait_for_load_state("domcontentloaded")
+            time.sleep(random.uniform(2.5, 3.5))
+          else:
+            break
 
-      html = page.content()
-      verified = extract_verified_products(
-          html, category, canonical_artist, keywords
-      )
-      print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-      results.extend(verified)
+      return results
 
-      if p_num < max_pages:
-        next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
-        if next_btn.count() > 0 and next_btn.first.is_visible():
-          next_btn.first.click()
-          page.wait_for_load_state("domcontentloaded")
-          time.sleep(random.uniform(2.5, 4.0))
-        else:
-          break
-
-  except Exception as e:
-    print(f"   Notice for {canonical_artist}: {e}")
+    except Exception as e:
+      print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
+      time.sleep(3.0)
 
   return results
 
@@ -349,6 +326,13 @@ def main():
     )
     page = context.new_page()
 
+    # Establish initial session cookies
+    try:
+      page.goto("https://www.cdjapan.co.jp/", timeout=20000)
+      time.sleep(1.5)
+    except Exception:
+      pass
+
     new_total = 0
 
     for idx, (cat, artist, query, keywords) in enumerate(TARGET_GROUPS, 1):
@@ -369,7 +353,7 @@ def main():
           f"   => Verified items for {artist}: {len(items)} found"
           f" ({added_for_artist} new to database)"
       )
-      time.sleep(random.uniform(3.0, 5.0))
+      time.sleep(random.uniform(2.5, 4.0))
 
     browser.close()
 
@@ -378,7 +362,7 @@ def main():
 
   final_count = len(catalog)
   print(f"\n==========================================")
-  print(f"Re-scrape Complete! Added {new_total} clean verified products.")
+  print(f"Sync Complete! Added {new_total} brand-new verified products.")
   print(f"Total active catalog size: {final_count} items.")
   print(f"==========================================")
 

@@ -266,7 +266,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
   return list(items_dict.values())
 
 
-def execute_search_flow(
+def execute_clean_search(
     page, category, canonical_artist, query, keywords, max_pages
 ):
   results = []
@@ -274,35 +274,34 @@ def execute_search_flow(
 
   for attempt in range(1, 3):
     try:
-      # 1. Always scroll to absolute top to expose header search box
-      page.evaluate("window.scrollTo(0, 0)")
-      time.sleep(0.5)
+      # 1. Fresh start for each group prevents navigation cross-talk
+      page.goto(
+          "https://www.cdjapan.co.jp/",
+          wait_until="domcontentloaded",
+          timeout=20000,
+      )
+      time.sleep(1.0)
 
-      # 2. Locate the visible search input
-      search_input = page.locator("input[name='q']:visible").first
+      # 2. Locate search input and fill query
+      search_input = page.locator("input[name='q']").first
+      search_input.click()
+      search_input.fill("")
+      search_input.fill(query)
+      time.sleep(0.3)
 
-      # If header is not in DOM, navigate to clean search entry point
-      if search_input.count() == 0 or not search_input.is_visible():
-        encoded = urllib.parse.quote_plus(query)
-        page.goto(
-            f"https://www.cdjapan.co.jp/searchuni?q={encoded}&order=reldesc",
-            wait_until="domcontentloaded",
-            timeout=25000,
-        )
-      else:
-        search_input.click()
-        search_input.fill("")
-        search_input.fill(query)
-        time.sleep(0.3)
-        page.keyboard.press("Enter")
+      # 3. Synchronized navigation: Wait for the new results page to load completely
+      with page.expect_navigation(
+          wait_until="domcontentloaded", timeout=20000
+      ):
+        search_input.press("Enter")
 
-      page.wait_for_load_state("domcontentloaded")
-      time.sleep(2.0)
+      time.sleep(1.5)
+      print(f"   Landed on: {page.url}")
 
-      # 3. Harvest pages
+      # 4. Harvest results across pages
       for p_num in range(1, max_pages + 1):
         try:
-          page.wait_for_selector("a[href*='/product/']", timeout=7000)
+          page.wait_for_selector("a[href*='/product/']", timeout=6000)
         except Exception:
           pass
 
@@ -319,9 +318,11 @@ def execute_search_flow(
         if p_num < max_pages:
           next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
           if next_btn.count() > 0 and next_btn.first.is_visible():
-            next_btn.first.click()
-            page.wait_for_load_state("domcontentloaded")
-            time.sleep(random.uniform(2.5, 3.5))
+            with page.expect_navigation(
+                wait_until="domcontentloaded", timeout=15000
+            ):
+              next_btn.first.click()
+            time.sleep(random.uniform(2.0, 3.0))
           else:
             break
 
@@ -329,11 +330,7 @@ def execute_search_flow(
 
     except Exception as e:
       print(f"   Notice on attempt {attempt} for {canonical_artist}: {e}")
-      time.sleep(2.0)
-      try:
-        page.goto("https://www.cdjapan.co.jp/", timeout=20000)
-      except Exception:
-        pass
+      time.sleep(3.0)
 
   return results
 
@@ -357,22 +354,11 @@ def main():
     )
     page = context.new_page()
 
-    # Pre-warm connection
-    try:
-      page.goto(
-          "https://www.cdjapan.co.jp/",
-          wait_until="domcontentloaded",
-          timeout=25000,
-      )
-      time.sleep(2.0)
-    except Exception:
-      pass
-
     new_total = 0
 
     for idx, (cat, artist, query, keywords) in enumerate(TARGET_GROUPS, 1):
       print(f"\n[{idx}/{len(TARGET_GROUPS)}] Processing: {artist}")
-      items = execute_search_flow(
+      items = execute_clean_search(
           page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
       )
       added_for_artist = 0
@@ -388,7 +374,7 @@ def main():
           f"   => Verified items for {artist}: {len(items)} found"
           f" ({added_for_artist} new to database)"
       )
-      time.sleep(random.uniform(2.5, 4.0))
+      time.sleep(random.uniform(2.0, 3.5))
 
     browser.close()
 

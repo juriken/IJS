@@ -212,20 +212,16 @@ def execute_session_search(page, category, canonical_artist, query, keywords, ma
 
   for attempt in range(1, 3):
     try:
-      # Scroll to top to ensure header input is accessible
       page.evaluate("window.scrollTo(0, 0)")
       time.sleep(0.5)
 
-      # Target the search form and input inside the active session
       search_input = page.locator("input[name='q']").first
 
-      # If page is not in a searchable state, navigate back to the main search hub
       if not search_input.is_visible():
         page.goto("https://www.cdjapan.co.jp/searchuni?q=idol", wait_until="domcontentloaded", timeout=20000)
         time.sleep(1.0)
         search_input = page.locator("input[name='q']").first
 
-      # Fill and submit directly through the browser session
       search_input.click()
       search_input.fill("")
       search_input.fill(query)
@@ -236,7 +232,6 @@ def execute_session_search(page, category, canonical_artist, query, keywords, ma
 
       time.sleep(1.5)
 
-      # Harvest pages via the active session 'Next' button
       for p_num in range(1, max_pages + 1):
         page.evaluate("window.scrollBy(0, 800)")
         time.sleep(0.8)
@@ -271,8 +266,10 @@ def main():
   initial_count = len(catalog)
   print(f"Current catalog size: {initial_count} items")
 
-  # Select a shuffled batch of 7 targets per execution
-  batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
+  # Priority targeting: Ensures Nogizaka46 is always harvested first, followed by a random selection
+  nogi_target = [t for t in TARGET_GROUPS if t[1] == "Nogizaka46"]
+  other_targets = [t for t in TARGET_GROUPS if t[1] != "Nogizaka46"]
+  batch = nogi_target + random.sample(other_targets, min(BATCH_SIZE - len(nogi_target), len(other_targets)))
 
   with sync_playwright() as p:
     browser = p.chromium.launch(
@@ -288,7 +285,6 @@ def main():
     )
     page = context.new_page()
 
-    # Initial session establishment on the search interface
     try:
       page.goto(
           "https://www.cdjapan.co.jp/searchuni?q=Morning+Musume&order=reldesc",

@@ -11,39 +11,67 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Target idol roster (Strictly English terms)
+# Strict Target Roster: (Category, Canonical Artist Name, Search Query, Match Keywords)
 TARGET_GROUPS = [
     # Hello! Project
-    ("Hello! Project", "Morning Musume"),
-    ("Hello! Project", "ANGERME", "Smileage"),  # Searches S/mileage & ANGERME releases
-    ("Hello! Project", "Juice=Juice"),
-    ("Hello! Project", "Tsubaki Factory"),
-    ("Hello! Project", "BEYOOOOONDS"),
-    ("Hello! Project", "OCHA NORMA"),
-    ("Hello! Project", "Rosy Chronicle"),
-    ("Hello! Project", "Hello! Project"),
+    (
+        "Hello! Project",
+        "Morning Musume",
+        "Morning Musume",
+        ["Morning Musume", "Morning Musume."],
+    ),
+    (
+        "Hello! Project",
+        "ANGERME",
+        "ANGERME",
+        ["ANGERME", "Smileage", "S/mileage"],
+    ),
+    ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"]),
+    (
+        "Hello! Project",
+        "Tsubaki Factory",
+        "Tsubaki Factory",
+        ["Tsubaki Factory"],
+    ),
+    ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
+    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA"]),
+    ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle"]),
     # Sakamichi Series
-    ("Sakamichi Series", "Nogizaka46"),
-    ("Sakamichi Series", "Sakurazaka46"),
-    ("Sakamichi Series", "Hinatazaka46"),
+    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46"]),
+    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46"]),
+    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46"]),
     # AKB48 Group
-    ("AKB48 Group", "AKB48"),
-    ("AKB48 Group", "SKE48"),
-    ("AKB48 Group", "NMB48"),
-    ("AKB48 Group", "HKT48"),
-    ("AKB48 Group", "NGT48"),
-    ("AKB48 Group", "STU48"),
+    ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
+    ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
+    ("AKB48 Group", "NMB48", "NMB48", ["NMB48"]),
+    ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
+    ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
+    ("AKB48 Group", "STU48", "STU48", ["STU48"]),
     # =LOVE & Sister Groups
-    ("=LOVE / Sister Groups", "=LOVE"),
-    ("=LOVE / Sister Groups", "≠ME", "Not Equal ME"),
-    ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy"),
-    # Momoclo & Babymetal
-    ("Momoiro Clover Z", "Momoiro Clover Z"),
-    ("Babymetal", "BABYMETAL"),
+    ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love"]),
+    (
+        "=LOVE / Sister Groups",
+        "≠ME",
+        "Not Equal ME",
+        ["≠ME", "Not Equal ME", "Noime"],
+    ),
+    (
+        "=LOVE / Sister Groups",
+        "≒JOY",
+        "Nearly Equal Joy",
+        ["≒JOY", "Nearly Equal Joy", "Niajoy"],
+    ),
+    # Other Key Units
+    (
+        "Momoiro Clover Z",
+        "Momoiro Clover Z",
+        "Momoiro Clover Z",
+        ["Momoiro Clover", "Momoclo"],
+    ),
+    ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
-# Number of pages to paginate through using the on-screen Next button
-PAGES_PER_ARTIST = 3
+PAGES_PER_TARGET = 3
 
 
 def load_catalog():
@@ -66,24 +94,47 @@ def clean_text(text):
   return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
-def extract_products(html, category, artist_name):
+def is_relevant_product(title, keywords):
+  if not keywords:
+    return True
+  lower_title = title.lower()
+  return any(kw.lower() in lower_title for kw in keywords)
+
+
+def extract_verified_products(html, category, canonical_artist, keywords):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
-  # Find all anchors that link to individual product pages
-  product_links = soup.find_all(
-      "a", href=re.compile(r"/product/([A-Za-z0-9_-]+)")
+  # Isolate only the actual search results container
+  search_container = (
+      soup.select_one("#search_result")
+      or soup.select_one(".search-result")
+      or soup.select_one(".item-list")
+      or soup.select_one("div.contents-main")
+      or soup
   )
 
-  for a in product_links:
-    href = a.get("href", "")
+  # Match true CDJapan product cards
+  cards = (
+      search_container.select(".item-detail")
+      or search_container.select(".item")
+      or search_container.select(".n-item")
+      or search_container.find_all("div", class_=re.compile(r"item"))
+  )
+
+  for card in cards:
+    link_el = card.select_one("a[href*='/product/']")
+    if not link_el:
+      continue
+
+    href = link_el.get("href", "")
     match = re.search(r"/product/([A-Za-z0-9_-]+)", href)
     if not match:
       continue
 
     prod_key = match.group(1)
 
-    # Filter out navigation links
+    # Discard non-product and utility tokens
     if prod_key.lower() in [
         "cart",
         "login",
@@ -96,97 +147,116 @@ def extract_products(html, category, artist_name):
     ]:
       continue
 
-    if prod_key not in items_dict:
-      items_dict[prod_key] = {
-          "id": prod_key,
-          "title": "",
-          "artist": artist_name,
-          "category": category,
-          "price": "",
-          "release_date": "",
-          "image": "",
-          "affiliate_url": make_affiliate_link(prod_key),
-          "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
-      }
-
-    entry = items_dict[prod_key]
-
     # Title extraction
-    t_text = clean_text(a.get_text())
-    if t_text and len(t_text) > len(entry["title"]):
-      entry["title"] = t_text
+    title_el = (
+        card.select_one(".title a")
+        or card.select_one("a.item-title")
+        or card.select_one(".title")
+        or link_el
+    )
+    raw_title = clean_text(title_el.get_text()) if title_el else ""
 
     # Image extraction
-    img_el = a.find("img")
+    img_el = card.select_one("img")
+    img_url = ""
     if img_el:
-      src = (
+      img_url = (
           img_el.get("src")
           or img_el.get("data-src")
           or img_el.get("data-original")
           or ""
       )
-      if src and "spacer" not in src and "blank" not in src:
-        if src.startswith("//"):
-          src = "https:" + src
-        elif src.startswith("/"):
-          src = "https://www.cdjapan.co.jp" + src
-        entry["image"] = src
+      if not raw_title and img_el.get("alt"):
+        raw_title = clean_text(img_el.get("alt"))
 
-      if not entry["title"] and img_el.get("alt"):
-        entry["title"] = clean_text(img_el.get("alt"))
+    if not raw_title:
+      continue
 
-    # Parent card inspection for price and release date
-    parent = a.find_parent(["div", "li", "tr", "td"])
-    if parent:
-      p_text = clean_text(parent.get_text())
+    # Format image link
+    if (
+        not img_url
+        or "spacer" in img_url
+        or "blank" in img_url
+        or "no_image" in img_url
+    ):
+      img_url = f"https://www.cdjapan.co.jp/pictures/l/{prod_key}.jpg"
+    elif img_url.startswith("//"):
+      img_url = "https:" + img_url
+    elif img_url.startswith("/"):
+      img_url = "https://www.cdjapan.co.jp" + img_url
 
-      if not entry["price"]:
-        p_match = re.search(r"(\d[\d,]*\s*(?:yen|JPY|円))", p_text, re.IGNORECASE)
-        if p_match:
-          entry["price"] = p_match.group(1)
+    # Upgrade image resolution if possible
+    img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
+        "/pictures/m/", "/pictures/l/"
+    )
 
-      if not entry["release_date"]:
-        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", p_text)
-        if d_match:
-          entry["release_date"] = d_match.group(1)
+    # Price extraction
+    price_el = (
+        card.select_one(".price")
+        or card.select_one(".item-price")
+        or card.select_one(".price-value")
+        or card.select_one("span.bold")
+    )
+    price_str = "Check CDJapan"
+    if price_el:
+      p_match = re.search(
+          r"(\d[\d,]*\s*(?:yen|JPY|円)?)",
+          clean_text(price_el.get_text()),
+          re.IGNORECASE,
+      )
+      if p_match and p_match.group(1).strip():
+        num_only = re.sub(r"[^\d]", "", p_match.group(1))
+        if num_only:
+          price_str = f"{int(num_only):,}yen"
+    else:
+      card_text = clean_text(card.get_text())
+      p_match = re.search(
+          r"(\d[\d,]*)\s*(?:yen|JPY|円)", card_text, re.IGNORECASE
+      )
+      if p_match:
+        price_str = f"{p_match.group(1)}yen"
 
-      if not entry["image"]:
-        p_img = parent.find("img")
-        if p_img:
-          p_src = (
-              p_img.get("src")
-              or p_img.get("data-src")
-              or p_img.get("data-original")
-              or ""
-          )
-          if p_src and "spacer" not in p_src and "blank" not in p_src:
-            if p_src.startswith("//"):
-              p_src = "https:" + p_src
-            elif p_src.startswith("/"):
-              p_src = "https://www.cdjapan.co.jp" + p_src
-            entry["image"] = p_src
+    # Release Date extraction
+    date_el = (
+        card.select_one(".release_date")
+        or card.select_one(".item-date")
+        or card.select_one(".date")
+    )
+    rel_date = "Available Now"
+    if date_el:
+      d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
+      if d_match:
+        rel_date = d_match.group(1).replace("-", "/")
+    else:
+      d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", card.get_text())
+      if d_match:
+        rel_date = d_match.group(1).replace("-", "/")
 
-  cleaned = []
-  for prod_key, data in items_dict.items():
-    if not data["title"]:
-      data["title"] = f"{artist_name} Official Release ({prod_key})"
-    if not data["price"]:
-      data["price"] = "Check CDJapan"
-    if not data["release_date"]:
-      data["release_date"] = "Available"
-    if not data["image"]:
-      data["image"] = f"https://www.cdjapan.co.jp/pictures/s/{prod_key}.jpg"
-    cleaned.append(data)
+    # Strict Relevance Filter:
+    # Drops unrelated anime or guest merchandise unless the idol unit is mentioned
+    if not is_relevant_product(raw_title, keywords):
+      continue
 
-  return cleaned
+    items_dict[prod_key] = {
+        "id": prod_key,
+        "title": raw_title,
+        "artist": canonical_artist,
+        "category": category,
+        "price": price_str,
+        "release_date": rel_date,
+        "image": img_url,
+        "affiliate_url": make_affiliate_link(prod_key),
+        "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+    }
+
+  return list(items_dict.values())
 
 
-def search_via_ui(page, category, artist_name, max_pages=3):
-  found_items = []
-  print(f"\n-> Initiating Search-Bar Flow for: {artist_name}")
+def scrape_target(page, category, canonical_artist, query, keywords, max_pages):
+  results = []
+  print(f"\n-> Strict Crawl for: {canonical_artist} (Query: '{query}')")
 
   try:
-    # 1. Start from homepage to initialize valid session cookies & referer
     page.goto(
         "https://www.cdjapan.co.jp/",
         wait_until="domcontentloaded",
@@ -194,61 +264,51 @@ def search_via_ui(page, category, artist_name, max_pages=3):
     )
     time.sleep(1.5)
 
-    # 2. Locate the search input box
     search_input = page.locator("input[name='q']").first
     search_input.click()
     search_input.fill("")
-    # Type artist in English
-    search_input.fill(artist_name)
+    search_input.fill(query)
     time.sleep(0.5)
-
-    # 3. Submit search via Enter
     search_input.press("Enter")
+
     page.wait_for_load_state("domcontentloaded")
     time.sleep(2.0)
 
-    print(f"   Landed on results page: {page.url}")
-
-    # 4. Paginate using the on-screen 'Next' button
-    for current_p in range(1, max_pages + 1):
-      # Wait for product links to render
+    for p_num in range(1, max_pages + 1):
       try:
-        page.wait_for_selector("a[href*='/product/']", timeout=8000)
+        page.wait_for_selector("a[href*='/product/']", timeout=7000)
       except Exception:
         pass
 
       page.evaluate("window.scrollBy(0, 1000)")
-      time.sleep(1.0)
+      time.sleep(0.8)
 
       html = page.content()
-      page_items = extract_products(html, category, artist_name)
-      print(f"   [Page {current_p}] Extracted {len(page_items)} products")
-      found_items.extend(page_items)
+      verified = extract_verified_products(
+          html, category, canonical_artist, keywords
+      )
+      print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+      results.extend(verified)
 
-      if current_p < max_pages:
-        # Locate the Next page link/button
+      if p_num < max_pages:
         next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
         if next_btn.count() > 0 and next_btn.first.is_visible():
           next_btn.first.click()
           page.wait_for_load_state("domcontentloaded")
           time.sleep(random.uniform(2.5, 4.0))
         else:
-          print("   No further Next button available.")
           break
 
   except Exception as e:
-    print(f"   Notice during search for {artist_name}: {e}")
+    print(f"   Notice for {canonical_artist}: {e}")
 
-  return found_items
+  return results
 
 
 def main():
   catalog = load_catalog()
   initial_count = len(catalog)
-  print(f"Current catalog size: {initial_count} items")
-
-  # Process 6 targets per run to maintain human-paced requests
-  selected_targets = random.sample(TARGET_GROUPS, min(6, len(TARGET_GROUPS)))
+  print(f"Initial catalog size: {initial_count} items")
 
   with sync_playwright() as p:
     browser = p.chromium.launch(
@@ -265,36 +325,35 @@ def main():
     page = context.new_page()
 
     new_total = 0
-    for idx, target in enumerate(selected_targets, 1):
-      cat = target[0]
-      name = target[1]
-      search_term = target[2] if len(target) > 2 else name
 
-      print(f"\n[{idx}/{len(selected_targets)}] Target: {name} ({cat})")
-      items = search_via_ui(page, cat, search_term, max_pages=PAGES_PER_ARTIST)
-      new_for_artist = 0
+    for idx, (cat, artist, query, keywords) in enumerate(TARGET_GROUPS, 1):
+      print(f"\n[{idx}/{len(TARGET_GROUPS)}] Processing: {artist}")
+      items = scrape_target(
+          page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
+      )
+      added_for_artist = 0
 
       for it in items:
-        # Normalize artist label back to the canonical group name
-        it["artist"] = name
         pid = it["id"]
         if pid not in catalog:
-          new_for_artist += 1
+          added_for_artist += 1
           new_total += 1
         catalog[pid] = it
 
-      print(f"   Added {new_for_artist} brand-new items for {name}")
+      print(
+          f"   => Verified items for {artist}: {len(items)} found"
+          f" ({added_for_artist} new to database)"
+      )
       time.sleep(random.uniform(3.0, 5.0))
 
     browser.close()
 
-  # Write back catalog
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 
   final_count = len(catalog)
   print(f"\n==========================================")
-  print(f"Run complete! Added {new_total} brand-new products.")
+  print(f"Re-scrape Complete! Added {new_total} clean verified products.")
   print(f"Total active catalog size: {final_count} items.")
   print(f"==========================================")
 

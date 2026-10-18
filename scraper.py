@@ -41,7 +41,7 @@ TARGET_GROUPS = [
 ]
 
 PAGES_PER_TARGET = 3
-BATCH_SIZE = 7  # Harvests 7 target groups per run to stay 100% under CDJapan's session limiter
+BATCH_SIZE = 7
 
 
 def load_catalog():
@@ -206,31 +206,37 @@ def extract_verified_products(html, category, canonical_artist, keywords):
   return list(items_dict.values())
 
 
-def scrape_group(page, category, canonical_artist, query, keywords, max_pages):
+def execute_session_search(page, category, canonical_artist, query, keywords, max_pages):
   results = []
-  print(f"\n-> Syncing: {canonical_artist} (Query: '{query}')")
-  encoded = urllib.parse.quote_plus(query)
+  print(f"\n-> In-Session Search for: {canonical_artist} (Query: '{query}')")
 
   for attempt in range(1, 3):
     try:
-      # Direct search URL bypasses homepage reload latency
-      target_url = f"https://www.cdjapan.co.jp/searchuni?term.media_format=&q={encoded}&order=reldesc"
-      page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
-      time.sleep(2.0)
+      # Scroll to top to ensure header input is accessible
+      page.evaluate("window.scrollTo(0, 0)")
+      time.sleep(0.5)
 
-      # Check if results rendered
-      rendered_cards = page.locator(".item-detail, .item, .n-item")
-      if rendered_cards.count() == 0:
-        # Fallback to search bar input if direct query is cold-dropped
-        page.evaluate("window.scrollTo(0, 0)")
-        search_box = page.locator("input[name='q']").first
-        if search_box.is_visible():
-          search_box.click()
-          search_box.fill(query)
-          search_box.press("Enter")
-          page.wait_for_load_state("domcontentloaded")
-          time.sleep(2.0)
+      # Target the search form and input inside the active session
+      search_input = page.locator("input[name='q']").first
 
+      # If page is not in a searchable state, navigate back to the main search hub
+      if not search_input.is_visible():
+        page.goto("https://www.cdjapan.co.jp/searchuni?q=idol", wait_until="domcontentloaded", timeout=20000)
+        time.sleep(1.0)
+        search_input = page.locator("input[name='q']").first
+
+      # Fill and submit directly through the browser session
+      search_input.click()
+      search_input.fill("")
+      search_input.fill(query)
+      time.sleep(0.3)
+
+      with page.expect_navigation(wait_until="domcontentloaded", timeout=20000):
+        search_input.press("Enter")
+
+      time.sleep(1.5)
+
+      # Harvest pages via the active session 'Next' button
       for p_num in range(1, max_pages + 1):
         page.evaluate("window.scrollBy(0, 800)")
         time.sleep(0.8)
@@ -245,8 +251,8 @@ def scrape_group(page, category, canonical_artist, query, keywords, max_pages):
         if p_num < max_pages:
           next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
           if next_btn.count() > 0 and next_btn.first.is_visible():
-            next_btn.first.click()
-            page.wait_for_load_state("domcontentloaded")
+            with page.expect_navigation(wait_until="domcontentloaded", timeout=15000):
+              next_btn.first.click()
             time.sleep(random.uniform(2.5, 3.5))
           else:
             break
@@ -255,7 +261,7 @@ def scrape_group(page, category, canonical_artist, query, keywords, max_pages):
 
     except Exception as e:
       print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-      time.sleep(4.0)
+      time.sleep(3.0)
 
   return results
 
@@ -266,7 +272,6 @@ def main():
   print(f"Current catalog size: {initial_count} items")
 
   # Select a shuffled batch of 7 targets per execution
-  # Over multiple daily runs, the entire roster is synced continuously without triggering rate limits
   batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
   with sync_playwright() as p:
@@ -283,12 +288,12 @@ def main():
     )
     page = context.new_page()
 
-    # Warm up session once at the start
+    # Initial session establishment on the search interface
     try:
       page.goto(
-          "https://www.cdjapan.co.jp/",
+          "https://www.cdjapan.co.jp/searchuni?q=Morning+Musume&order=reldesc",
           wait_until="domcontentloaded",
-          timeout=20000,
+          timeout=25000,
       )
       time.sleep(2.0)
     except Exception:
@@ -297,8 +302,8 @@ def main():
     new_total = 0
 
     for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
-      print(f"\n[{idx}/{len(batch)}] Processing Target: {artist}")
-      items = scrape_group(
+      print(f"\n[{idx}/{len(batch)}] Target: {artist}")
+      items = execute_session_search(
           page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
       )
       added_for_artist = 0
@@ -314,8 +319,7 @@ def main():
           f"   => Verified items for {artist}: {len(items)} found"
           f" ({added_for_artist} new to database)"
       )
-      # 4 to 6 second polite pause between groups prevents firewall engagement
-      time.sleep(random.uniform(4.0, 6.0))
+      time.sleep(random.uniform(3.5, 5.5))
 
     browser.close()
 

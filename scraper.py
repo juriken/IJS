@@ -261,48 +261,72 @@ def extract_verified_products(html, category, canonical_artist, keywords):
   return list(items_dict.values())
 
 
-def scrape_target(page, category, canonical_artist, query, keywords, max_pages):
+def execute_search_bar_flow(
+    page, category, canonical_artist, query, keywords, max_pages
+):
   results = []
-  print(f"\n-> Crawl for: {canonical_artist} (Query: '{query}')")
-  encoded_q = urllib.parse.quote_plus(query)
+  print(f"\n-> Full Search-Bar Crawl for: {canonical_artist} (Query: '{query}')")
 
-  for attempt in range(1, 3):
+  try:
+    # 1. Ensure search bar is accessible on current page
+    search_input = page.locator("input[name='q']").first
+    if not search_input.is_visible():
+      print("   Re-initializing page to access header search bar...")
+      page.goto(
+          "https://www.cdjapan.co.jp/",
+          wait_until="domcontentloaded",
+          timeout=20000,
+      )
+      time.sleep(1.5)
+      search_input = page.locator("input[name='q']").first
+
+    # 2. Focus, clear, and submit the new query
+    search_input.click()
+    search_input.fill("")
+    search_input.fill(query)
+    time.sleep(0.4)
+    search_input.press("Enter")
+
+    page.wait_for_load_state("domcontentloaded")
+    time.sleep(2.0)
+
+    # 3. Harvest pages using active 'Next' button
+    for p_num in range(1, max_pages + 1):
+      try:
+        page.wait_for_selector("a[href*='/product/']", timeout=7000)
+      except Exception:
+        pass
+
+      page.evaluate("window.scrollBy(0, 1000)")
+      time.sleep(0.8)
+
+      html = page.content()
+      verified = extract_verified_products(
+          html, category, canonical_artist, keywords
+      )
+      print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+      results.extend(verified)
+
+      if p_num < max_pages:
+        next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
+        if next_btn.count() > 0 and next_btn.first.is_visible():
+          next_btn.first.click()
+          page.wait_for_load_state("domcontentloaded")
+          time.sleep(random.uniform(2.5, 4.0))
+        else:
+          break
+
+  except Exception as e:
+    print(f"   Notice for {canonical_artist}: {e}")
+    # Recovery navigation in case of unexpected state
     try:
-      # Direct search URL with active media parameters avoids landing page differences
-      target_url = f"https://www.cdjapan.co.jp/searchuni?term.media_format=&q={encoded_q}&order=reldesc"
-      page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
-      time.sleep(2.0)
-
-      for p_num in range(1, max_pages + 1):
-        try:
-          page.wait_for_selector("a[href*='/product/']", timeout=6000)
-        except Exception:
-          pass
-
-        page.evaluate("window.scrollBy(0, 1000)")
-        time.sleep(0.8)
-
-        html = page.content()
-        verified = extract_verified_products(
-            html, category, canonical_artist, keywords
-        )
-        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-        results.extend(verified)
-
-        if p_num < max_pages:
-          next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
-          if next_btn.count() > 0 and next_btn.first.is_visible():
-            next_btn.first.click()
-            page.wait_for_load_state("domcontentloaded")
-            time.sleep(random.uniform(2.5, 3.5))
-          else:
-            break
-
-      return results
-
-    except Exception as e:
-      print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-      time.sleep(3.0)
+      page.goto(
+          "https://www.cdjapan.co.jp/",
+          wait_until="domcontentloaded",
+          timeout=20000,
+      )
+    except Exception:
+      pass
 
   return results
 
@@ -326,10 +350,14 @@ def main():
     )
     page = context.new_page()
 
-    # Establish initial session cookies
+    # Initial session establishment
     try:
-      page.goto("https://www.cdjapan.co.jp/", timeout=20000)
-      time.sleep(1.5)
+      page.goto(
+          "https://www.cdjapan.co.jp/",
+          wait_until="domcontentloaded",
+          timeout=25000,
+      )
+      time.sleep(2.0)
     except Exception:
       pass
 
@@ -337,7 +365,7 @@ def main():
 
     for idx, (cat, artist, query, keywords) in enumerate(TARGET_GROUPS, 1):
       print(f"\n[{idx}/{len(TARGET_GROUPS)}] Processing: {artist}")
-      items = scrape_target(
+      items = execute_search_bar_flow(
           page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
       )
       added_for_artist = 0

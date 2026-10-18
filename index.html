@@ -331,6 +331,7 @@
       render();
     }
 
+    // Direct, absolute path fetch for maximum reliability
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
@@ -443,67 +444,52 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Normalized Integer Date Converter: Generates YYYYMMDD integers (e.g. 20241023)
-    function getNormalizedDateScore(dateStr, titleStr) {
-      if (!dateStr) dateStr = '';
-      const clean = String(dateStr).trim();
+    // Precise Integer Date Normalizer
+    function getNormalizedDateScore(item) {
+      if (!item) return 0;
+      const dateStr = String(item.release_date || '').trim();
 
-      // 1. Check exact calendar date: YYYY/MM/DD or YYYY-MM-DD
-      const exactMatch = clean.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
-      if (exactMatch) {
-        const y = parseInt(exactMatch[1], 10);
-        const m = parseInt(exactMatch[2], 10);
-        const d = parseInt(exactMatch[3], 10);
+      // 1. Full Numeric: YYYY/MM/DD or YYYY-MM-DD
+      const fullMatch = dateStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
+      if (fullMatch) {
+        const y = parseInt(fullMatch[1], 10);
+        const m = parseInt(fullMatch[2], 10);
+        const d = parseInt(fullMatch[3], 10);
         return (y * 10000) + (m * 100) + d;
       }
 
-      // 2. Check Year/Month: YYYY/MM
-      const ymMatch = clean.match(/(\d{4})[./-](\d{1,2})/);
+      // 2. Year/Month: YYYY/MM
+      const ymMatch = dateStr.match(/(\d{4})[./-](\d{1,2})/);
       if (ymMatch) {
         const y = parseInt(ymMatch[1], 10);
         const m = parseInt(ymMatch[2], 10);
         return (y * 10000) + (m * 100) + 1;
       }
 
-      // 3. Check English month format: "October 23, 2024"
-      const nativeMs = Date.parse(clean);
+      // 3. English Month Format: "October 23, 2024"
+      const nativeMs = Date.parse(dateStr);
       if (!isNaN(nativeMs) && nativeMs > 0) {
         const dt = new Date(nativeMs);
         return (dt.getFullYear() * 10000) + ((dt.getMonth() + 1) * 100) + dt.getDate();
       }
 
-      // 4. Check Year in date string
-      const yearInDate = clean.match(/\b(19\d\d|20\d\d)\b/);
+      // 4. Four digit year in release_date
+      const yearInDate = dateStr.match(/\b(19\d\d|20\d\d)\b/);
       if (yearInDate) {
         return parseInt(yearInDate[1], 10) * 10000 + 101;
       }
 
-      // 5. Fallback: Search for release year inside product title (e.g. "Concert Tour 2023", "2018 Live")
-      if (titleStr) {
-        const yearInTitle = String(titleStr).match(/\b(19\d\d|20\d\d)\b/);
-        if (yearInTitle) {
-          return parseInt(yearInTitle[1], 10) * 10000 + 101;
-        }
+      // 5. Four digit year in title
+      const yearInTitle = String(item.title || '').match(/\b(19\d\d|20\d\d)\b/);
+      if (yearInTitle) {
+        return parseInt(yearInTitle[1], 10) * 10000 + 101;
       }
 
-      return 0; // Truly undated ("Available Now" with zero year metadata)
+      return 0; // Truly undated
     }
 
-    // Record Label Catalog Key Splitter (Prevents cross-label numeric collisions)
-    function getCatalogKey(prodKey) {
-      if (!prodKey) return { prefix: '', num: 0 };
-      const parts = String(prodKey).split('-');
-      if (parts.length >= 2) {
-        const prefix = parts[0].toUpperCase();
-        const num = parseInt(parts[1].replace(/\D/g, ''), 10) || 0;
-        return { prefix, num };
-      }
-      const numOnly = parseInt(String(prodKey).replace(/\D/g, ''), 10) || 0;
-      return { prefix: 'GENERIC', num: numOnly };
-    }
-
-    function isPreOrder(dateStr, titleStr) {
-      const score = getNormalizedDateScore(dateStr, titleStr);
+    function isPreOrder(item) {
+      const score = getNormalizedDateScore(item);
       if (score === 0) return false;
 
       const today = new Date();
@@ -577,50 +563,36 @@
         return matchesCat && matchesSearch;
       });
 
-      // Pure 4-Tier Directional Chronological Engine
+      // Pure Deterministic Chronological Sorting
       filtered.sort((a, b) => {
-        const scoreA = getNormalizedDateScore(a.release_date, a.title);
-        const scoreB = getNormalizedDateScore(b.release_date, b.title);
+        const scoreA = getNormalizedDateScore(a);
+        const scoreB = getNormalizedDateScore(b);
 
         if (currentSort === 'newest') {
-          // Tier 1: Real calendar dates (newest YYYYMMDD first)
+          // If both have verified dates, highest date integer first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreB !== scoreA) return scoreB - scoreA;
-          } else if (scoreA > 0 && scoreB === 0) {
-            return -1; // Valid dates come before undated items
-          } else if (scoreB > 0 && scoreA === 0) {
-            return 1;
+            return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
+          // Items with real dates always precede items with no date
+          if (scoreA > 0 && scoreB === 0) return -1;
+          if (scoreB > 0 && scoreA === 0) return 1;
 
-          // Tier 2: Same Record Label Code comparison
-          const catA = getCatalogKey(a.id);
-          const catB = getCatalogKey(b.id);
-          if (catA.prefix && catB.prefix && catA.prefix === catB.prefix && catA.num !== catB.num) {
-            return catB.num - catA.num; // Higher catalog sequence is newer
-          }
-
-          // Tier 3: Deterministic fallback by newest insertion index
+          // Undated items: sort by latest addition to database
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          // Tier 1: Real calendar dates (earliest YYYYMMDD first)
+          // If both have verified dates, lowest date integer first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreA !== scoreB) return scoreA - scoreB;
-          } else if (scoreA > 0 && scoreB === 0) {
-            return -1; // Valid dates always come before undated items
-          } else if (scoreB > 0 && scoreA === 0) {
-            return 1;
+            return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
+          // Items with real dates always precede items with no date
+          if (scoreA > 0 && scoreB === 0) return -1;
+          if (scoreB > 0 && scoreA === 0) return 1;
 
-          // Tier 2: Same Record Label Code comparison
-          const catA = getCatalogKey(a.id);
-          const catB = getCatalogKey(b.id);
-          if (catA.prefix && catB.prefix && catA.prefix === catB.prefix && catA.num !== catB.num) {
-            return catA.num - catB.num; // Lower catalog sequence is older
-          }
-
-          // Tier 3: Deterministic fallback by oldest insertion index
+          // Undated items: sort by earliest addition to database
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         
@@ -661,7 +633,7 @@
         card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
         
         const displayImg = p.image || PLACEHOLDER_IMG;
-        const upcoming = isPreOrder(p.release_date, p.title);
+        const upcoming = isPreOrder(p);
         const safeTitle = escapeHtml(p.title);
         const safeArtist = escapeHtml(p.artist);
 

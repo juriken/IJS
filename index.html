@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
   <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
-  <!-- Schema.org JSON-LD with Official Social Entity Verification -->
+  <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,7 +70,8 @@
     }
   </script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Upgraded Font Awesome 6.5.2 (Includes full X/Twitter and compact disc icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
   <style>
     .line-clamp-2 {
@@ -81,7 +82,7 @@
     }
   </style>
 
-  <!-- Theme Init -->
+  <!-- Early Theme Detection (Prevents Screen Flash) -->
   <script>
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -92,69 +93,56 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Header -->
-  <header class="bg-pink-600 dark:bg-pink-800 text-white sticky top-0 z-50 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-compact-disc text-yellow-300 text-2xl"></i>
-        <a href="/" class="text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
+  <!-- Unified Sticky Header & Navigation Container (Eliminates Sticky Overlaps) -->
+  <div class="sticky top-0 z-50 shadow-md">
+    <!-- Main Header Bar -->
+    <header class="bg-pink-600 dark:bg-pink-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-compact-disc text-yellow-300 text-2xl"></i>
+          <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
+        </div>
+        
+        <!-- Search Input -->
+        <div class="flex-1 min-w-[200px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
+          <input 
+            id="search-input" 
+            type="text" 
+            placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
+            class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
+        </div>
+
+        <!-- Controls: Currency, Dark Mode, and X Link -->
+        <div class="flex items-center gap-2 order-2 sm:order-3">
+          <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-coins text-yellow-300"></i>
+            <span id="currency-label">USD ($)</span>
+          </button>
+
+          <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
+            <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
+          </button>
+
+          <a 
+            href="https://x.com/IdolJapanStore" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Follow IdolJapan.store on X" 
+            title="Official X Profile: @IdolJapanStore"
+            class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm text-pink-100 hover:text-white"
+          >
+            <i class="fa-brands fa-x-twitter text-sm"></i>
+          </a>
+        </div>
       </div>
-      
-      <!-- Search Input -->
-      <div class="flex-1 max-w-md relative">
-        <input 
-          id="search-input" 
-          type="text" 
-          placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
-          class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
-        />
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
-      </div>
+    </header>
 
-      <!-- Controls: Currency, Dark Mode, and X Profile -->
-      <div class="flex items-center gap-2">
-        <!-- Currency Toggle -->
-        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
-          <i class="fa-solid fa-coins text-yellow-300"></i>
-          <span id="currency-label">USD ($)</span>
-        </button>
-
-        <!-- Dark Mode Toggle -->
-        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
-          <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
-        </button>
-
-        <!-- Official X (Twitter) Link -->
-        <a 
-          href="https://x.com/IdolJapanStore" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          aria-label="Follow IdolJapan.store on X" 
-          title="Official X Profile: @IdolJapanStore"
-          class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm text-pink-100 hover:text-white"
-        >
-          <i class="fa-brands fa-x-twitter text-sm"></i>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Clear Trust & Verification Banner -->
-  <aside class="bg-amber-50 dark:bg-slate-800/90 border-b border-amber-200 dark:border-slate-700 text-amber-900 dark:text-amber-200 text-xs py-2 px-4 shadow-sm">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-sm"></i>
-        <span><strong>Verified Directory Notice:</strong> IdolJapan.store is an independent discography index. We do <u>not</u> process payments, sell products, or operate a proxy service. All links redirect directly to official merchant <strong>CDJapan (Neowing Corp, Tokyo)</strong>.</span>
-      </div>
-      <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-pink-600 whitespace-nowrap">Learn How It Works →</a>
-    </div>
-  </aside>
-
-  <!-- Franchise Navigation Filter -->
-  <nav class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-[60px] z-40 overflow-x-auto transition-colors duration-200">
-    <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
-      <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1" id="filter-bar">
-        <button onclick="setFilter('All')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white shadow-sm" data-cat="All">All Items</button>
-        <button onclick="setFilter('Hello! Project')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Hello! Project">Hello! Project</button>
-        <button onclick="setFilter('AKB48 Group')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="AKB48 Group">AKB48 Groups</button>
-        <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-
+    <!-- Franchise Navigation Bar -->
+    <nav class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm transition-colors duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+        <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full" id="filter-bar">
+          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white shadow-sm" data-cat="All">All Items</button>
+          <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Hello! Project">Hello! Project</button>
+          <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover

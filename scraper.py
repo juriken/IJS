@@ -265,12 +265,18 @@ def main():
     page = context.new_page()
 
     new_total = 0
-    for idx, (cat, name) in enumerate(selected_targets, 1):
+    for idx, target in enumerate(selected_targets, 1):
+      cat = target[0]
+      name = target[1]
+      search_term = target[2] if len(target) > 2 else name
+
       print(f"\n[{idx}/{len(selected_targets)}] Target: {name} ({cat})")
-      items = search_via_ui(page, cat, name, max_pages=PAGES_PER_ARTIST)
+      items = search_via_ui(page, cat, search_term, max_pages=PAGES_PER_ARTIST)
       new_for_artist = 0
 
       for it in items:
+        # Normalize artist label back to the canonical group name
+        it["artist"] = name
         pid = it["id"]
         if pid not in catalog:
           new_for_artist += 1

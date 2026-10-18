@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Primary SEO Meta Tags -->
+  <meta name="referrer" content="no-referrer">
+
   <title>IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory</title>
   <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory">
   <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. We catalog releases from Hello! Project, AKB48 Group, Sakamichi 46, and more, safely fulfilled direct from Tokyo by CDJapan.">
@@ -13,14 +14,12 @@
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#db2777">
 
-  <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idoljapan.store/">
   <meta property="og:title" content="IdolJapan.store — Japanese Idol Discography & Release Guide">
   <meta property="og:description" content="Independent Japanese female idol discography index. All purchases securely fulfilled directly by official retailer CDJapan (Tokyo).">
   <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
-  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@IdolJapanStore">
   <meta name="twitter:creator" content="@IdolJapanStore">
@@ -29,7 +28,6 @@
   <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
   <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
-  <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,7 +60,6 @@
   }
   </script>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -70,7 +67,6 @@
     }
   </script>
 
-  <!-- Font Awesome 6.5.2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
   <style>
@@ -82,7 +78,6 @@
     }
   </style>
 
-  <!-- Early Theme Detection -->
   <script>
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -93,7 +88,6 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Combined Header & Navigation Bar -->
   <header class="sticky top-0 z-50 bg-pink-600 dark:bg-pink-800 text-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
@@ -101,7 +95,6 @@
         <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-200">.store</span></a>
       </div>
       
-      <!-- Search Input -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <input 
           id="search-input" 
@@ -112,7 +105,6 @@
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
       </div>
 
-      <!-- Controls: Currency, Dark Mode, and X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
         <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-coins text-yellow-300"></i>
@@ -136,7 +128,6 @@
       </div>
     </div>
 
-    <!-- Category Filter Bar -->
     <nav class="bg-white dark:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
         <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full" id="filter-bar">
@@ -149,7 +140,6 @@
           <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Babymetal">Babymetal</button>
         </div>
 
-        <!-- Desktop Sorting -->
         <div class="hidden sm:flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
           <label for="sort-select" class="text-slate-500 dark:text-slate-400">Sort:</label>
           <select id="sort-select" onchange="changeSort(this.value)" class="bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500">
@@ -163,7 +153,6 @@
     </nav>
   </header>
 
-  <!-- Trust Notice -->
   <aside class="bg-amber-50 dark:bg-slate-800/90 border-b border-amber-200 dark:border-slate-700 text-amber-900 dark:text-amber-200 text-xs py-2.5 px-4">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
       <div class="flex items-center justify-center sm:justify-start gap-2">
@@ -174,7 +163,6 @@
     </div>
   </aside>
 
-  <!-- Hero Banner -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 dark:from-pink-700 dark:via-rose-700 dark:to-pink-800 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
@@ -190,16 +178,13 @@
     </div>
   </section>
 
-  <!-- Active Page Controls Bar -->
   <section class="max-w-7xl mx-auto px-4 mt-6" id="pagination-top-anchor">
     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs">
       
-      <!-- Range Feedback -->
       <div class="font-medium text-slate-600 dark:text-slate-300" id="page-range-info">
         Showing releases...
       </div>
 
-      <!-- Controls: Items Per Page & Mobile Sort -->
       <div class="flex items-center gap-3 ml-auto">
         <div class="sm:hidden flex items-center gap-1">
           <label for="sort-select-mobile" class="text-slate-500 dark:text-slate-400 font-semibold">Sort:</label>
@@ -225,7 +210,6 @@
     </div>
   </section>
 
-  <!-- Product Grid -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
     <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <!-- Cards dynamically generated -->
@@ -237,17 +221,14 @@
       <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold rounded-full transition">Reset Filters</button>
     </div>
 
-    <!-- Bottom Pagination -->
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation">
       <!-- Pagination links dynamically generated -->
     </nav>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto py-10 transition-colors duration-200">
     <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
       
-      <!-- Primary Affiliate Disclosure -->
       <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 text-sm leading-relaxed text-left sm:text-center">
         <p class="font-semibold text-slate-900 dark:text-white mb-1 flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-circle-info text-pink-600"></i> Official Affiliate & Operating Disclosure
@@ -261,7 +242,6 @@
         </p>
       </div>
 
-      <!-- Trust Links -->
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
         <a href="./about.html" class="hover:text-pink-600 transition">About Us & Verification</a>
         <a href="./affiliate-disclosure.html" class="hover:text-pink-600 transition">Affiliate Disclosure</a>
@@ -270,7 +250,6 @@
         <a href="https://www.cdjapan.co.jp/guide" target="_blank" rel="noopener" class="hover:text-pink-600 transition">CDJapan Shipping & Help Guide ↗</a>
       </div>
 
-      <!-- Social Link -->
       <div class="flex items-center justify-center gap-2 pt-2">
         <a 
           href="https://x.com/IdolJapanStore" 
@@ -283,7 +262,6 @@
         </a>
       </div>
 
-      <!-- Copyright -->
       <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 text-xs text-slate-400 dark:text-slate-500">
         <p>© 2019 – 2026 IdolJapan.store. Japanese Idol Media Catalog. All product images and trademarks belong to their respective copyright holders and CDJapan.</p>
       </div>
@@ -298,7 +276,6 @@
     let currentSort = 'newest';
     let showUSD = true;
     
-    // Pagination State
     let currentPage = 1;
     let itemsPerPage = 50;
 
@@ -307,7 +284,6 @@
     const RATE_TIME_KEY = 'idoljapan_jpy_usd_time';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Encoded safe SVG placeholder
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f1f5f9'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e2e8f0'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f1f5f9'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%2394a3b8' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
 
     function onImgLoadError(imgEl) {
@@ -375,7 +351,6 @@
 
     async function loadCatalog() {
       try {
-        // Robust relative fetch with cache busting
         const res = await fetch('products.json?v=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) throw new Error('Status: ' + res.status);
         const data = await res.json();
@@ -468,20 +443,27 @@
       return `¥${num.toLocaleString()}`;
     }
 
-    function isPreOrder(dateStr) {
-      if (!dateStr) return false;
-      const match = String(dateStr).match(/(\d{4})[/-](\d{1,2})[/-](\d{1,2})/);
-      if (!match) return false;
+    // Precise date parser converting strings into millisecond epochs
+    function parseDateEpoch(dateStr) {
+      if (!dateStr) return 0;
+      const match = String(dateStr).match(/(\d{4})[/-](\d{1,2})(?:[/-](\d{1,2}))?/);
+      if (!match) return 0;
 
       const year = parseInt(match[1], 10);
       const month = parseInt(match[2], 10) - 1;
-      const day = parseInt(match[3], 10);
+      const day = match[3] ? parseInt(match[3], 10) : 1;
 
-      const releaseDate = new Date(year, month, day);
+      return new Date(year, month, day).getTime() || 0;
+    }
+
+    function isPreOrder(dateStr) {
+      const epoch = parseDateEpoch(dateStr);
+      if (epoch === 0) return false;
+
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      return releaseDate > today;
+      return epoch > today.getTime();
     }
 
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
@@ -597,11 +579,22 @@
         return matchesCat && matchesSearch;
       });
 
+      // Fixed Chronological Epoch and Numeric Price Sorting
       filtered.sort((a, b) => {
         if (currentSort === 'newest') {
-          return String(b.release_date || '').localeCompare(String(a.release_date || ''));
+          const epochA = parseDateEpoch(a.release_date);
+          const epochB = parseDateEpoch(b.release_date);
+          if (epochA > 0 && epochB > 0) return epochB - epochA;
+          if (epochA === 0) return 1;
+          if (epochB === 0) return -1;
+          return 0;
         } else if (currentSort === 'oldest') {
-          return String(a.release_date || '').localeCompare(String(b.release_date || ''));
+          const epochA = parseDateEpoch(a.release_date);
+          const epochB = parseDateEpoch(b.release_date);
+          if (epochA > 0 && epochB > 0) return epochA - epochB;
+          if (epochA === 0) return 1;
+          if (epochB === 0) return -1;
+          return 0;
         } else if (currentSort === 'price-asc') {
           return parseNumericPrice(a.price) - parseNumericPrice(b.price);
         } else if (currentSort === 'price-desc') {
@@ -692,7 +685,6 @@
       renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
     }
 
-    // Launch Lifecycle
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();
       initExchangeRate();

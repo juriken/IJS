@@ -112,24 +112,24 @@
   "recent": {
     "id": "recent",
     "title": "See more",
-    "artist": "BABYMETAL",
-    "category": "Babymetal",
+    "artist": "Juice=Juice",
+    "category": "Hello! Project",
     "price": "Check CDJapan",
     "release_date": "Available",
     "image": "https://www.cdjapan.co.jp/pictures/s/recent.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2Frecent",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "oricon": {
     "id": "oricon",
     "title": "oricon",
-    "artist": "BABYMETAL",
-    "category": "Babymetal",
+    "artist": "Juice=Juice",
+    "category": "Hello! Project",
     "price": "Check CDJapan",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/assets/img/oricon-cdj-2.png",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2Foricon",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "EPCE-8113": {
     "id": "EPCE-8113",
@@ -250,7 +250,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/29/HKXN-50138.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50138",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "HKCN-50870": {
     "id": "HKCN-50870",
@@ -261,7 +261,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/16/15/HKCN-50870.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50870",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "HKCN-50868": {
     "id": "HKCN-50868",
@@ -272,7 +272,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/16/21/HKCN-50868.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50868",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "HKCN-50872": {
     "id": "HKCN-50872",
@@ -283,7 +283,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/16/17/HKCN-50872.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50872",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEOBK-3189396": {
     "id": "NEOBK-3189396",
@@ -305,7 +305,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/01/29/EPXE-5287.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5287",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "EPCE-8137": {
     "id": "EPCE-8137",
@@ -316,7 +316,7 @@
     "release_date": "Available",
     "image": "https://www.cdjapan.co.jp/pictures/s/EPCE-8137.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8137",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "HKCN-50885": {
     "id": "HKCN-50885",
@@ -349,7 +349,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/32/UPCH-89635.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89635",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "UPCH-89637": {
     "id": "UPCH-89637",
@@ -360,40 +360,40 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/34/UPCH-89637.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89637",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEODAI-331155": {
     "id": "NEODAI-331155",
     "title": "Proxy Item CD Album AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined AKB48 4800yen US$ 30.37 December 16, 2026 Pre-order Limited Edition",
-    "artist": "NMB48",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "4800yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/15/29/NEODAI-331155.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331155",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "UPCH-80635": {
     "id": "UPCH-80635",
     "title": "CD Maxi Nagorizakura [Regular Edition] AKB48 1091yen US$ 6.90 February 25, 2026 In Stock at Supplier",
-    "artist": "NMB48",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1091yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/01/09/UPCH-80635.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80635",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "UPCH-89636": {
     "id": "UPCH-89636",
     "title": "CD Maxi Sukish [Type B] [Limited Edition] [CD + Blu-ray] AKB48 1273yen (30%OFF) US$ 8.06 August 19, 2026 In stock Limited Edition",
-    "artist": "NMB48",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1273yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/33/UPCH-89636.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89636",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "AVCD-63886": {
     "id": "AVCD-63886",
@@ -426,7 +426,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/15/27/NEOBK-3226503.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3226503",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEOBK-3234105": {
     "id": "NEOBK-3234105",
@@ -695,13 +695,13 @@
   "UICY-16404": {
     "id": "UICY-16404",
     "title": "CD Album Jay [SHM-CD+DVD] Jay Chou 4000yen US$ 25.31 March 25, 2026 In Stock at Supplier",
-    "artist": "≠ME",
-    "category": "=LOVE / Sister Groups",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "4000yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/10/UICY-16404.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUICY-16404",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "VVCL-2962": {
     "id": "VVCL-2962",
@@ -712,7 +712,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/15/06/VVCL-2962.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2962",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEOBK-3224708": {
     "id": "NEOBK-3224708",
@@ -723,7 +723,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/15/24/NEOBK-3224708.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3224708",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "WPCL-13825": {
     "id": "WPCL-13825",
@@ -734,7 +734,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/08/31/WPCL-13825.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FWPCL-13825",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "WPCL-13790": {
     "id": "WPCL-13790",
@@ -745,7 +745,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/08/36/WPCL-13790.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FWPCL-13790",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "VVCL-2964": {
     "id": "VVCL-2964",
@@ -756,7 +756,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/15/08/VVCL-2964.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2964",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "KIXM-32": {
     "id": "KIXM-32",
@@ -932,7 +932,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/12/18/KIZM-90858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90858",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "KIZM-90856": {
     "id": "KIZM-90856",
@@ -943,7 +943,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/12/16/KIZM-90856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90856",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "KIZM-858": {
     "id": "KIZM-858",
@@ -954,7 +954,7 @@
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/02/43/KIZM-858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-858",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "DAKUFXW-1041": {
     "id": "DAKUFXW-1041",
@@ -1036,46 +1036,46 @@
   "SVWC-70640": {
     "id": "SVWC-70640",
     "title": "CD Album Kessoku Band [Regular Edition] Kessoku Band 3000yen US$ 18.98 December 27, 2023 In stock",
-    "artist": "Momoiro Clover Z",
-    "category": "Momoiro Clover Z",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
     "price": "3000yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/05/47/SVWC-70640.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSVWC-70640",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEODAI-83114": {
     "id": "NEODAI-83114",
     "title": "Proxy Item CD Album Dakara Boku wa Ongaku wo Yameta [Regular Edition] Yorushika 3080yen US$ 19.49 April 10, 2019 To Be Confirmed:1-2 weeks",
-    "artist": "Momoiro Clover Z",
-    "category": "Momoiro Clover Z",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
     "price": "3080yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/00/34/NEODAI-83114.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83114",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEOGDS-998139": {
     "id": "NEOGDS-998139",
     "title": "Collectible S.H.Figuarts Gavan Infinity (Super Space Sheriff Gavan Infinity) Bandai 6375yen (15%OFF) US$ 40.34 August 2026 In stock",
-    "artist": "Momoiro Clover Z",
-    "category": "Momoiro Clover Z",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
     "price": "6375yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/10/37/NEOGDS-998139.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-998139",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEOBK-3237605": {
     "id": "NEOBK-3237605",
     "title": "Hitona 1 (Jump Comics) Yagi Tomohiro BOOK Hitona 1 (Jump Comics) Yagi Tomohiro 520yen US$ 3.29 early September 2026 In Stock at Supplier",
-    "artist": "Rosy Chronicle",
+    "artist": "Hello! Project",
     "category": "Hello! Project",
     "price": "520yen",
     "release_date": "Available",
     "image": "https://www.cdjapan.co.jp/pictures/s/NEOBK-3237605.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3237605",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
   },
   "NEODAI-326746": {
     "id": "NEODAI-326746",
@@ -1113,12 +1113,78 @@
   "TFCC-81211": {
     "id": "TFCC-81211",
     "title": "CD Album Sekai ga Kawaru Toki [w/ Blu-ray, Limited Edition] Haku. 5000yen US$ 31.64 September 09, 2026 In Stock at Supplier Limited Edition",
-    "artist": "Momoiro Clover Z",
-    "category": "Momoiro Clover Z",
+    "artist": "Hello! Project",
+    "category": "Hello! Project",
     "price": "5000yen",
     "release_date": "Available",
     "image": "https://st.cdjapan.co.jp/pictures/s/16/31/TFCC-81211.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTFCC-81211",
-    "updated_at": "2026-10-17"
+    "updated_at": "2026-10-18"
+  },
+  "UICY-16408": {
+    "id": "UICY-16408",
+    "title": "CD Album Common Jasmine Orange [SHM-CD+DVD] Jay Chou 4000yen US$ 25.31 March 25, 2026 In stock",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "4000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/02/14/UICY-16408.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUICY-16408",
+    "updated_at": "2026-10-18"
+  },
+  "UICO-9081": {
+    "id": "UICO-9081",
+    "title": "CD Album Children of the Sun (Deluxe) [SHM-CD] [Limited Edition] [Cardboard Sleeve (7inch mini LP)] Jay Chou 6200yen US$ 39.23 August 05, 2026 In stock Limited Edition Bonus",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "6200yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/12/18/UICO-9081.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUICO-9081",
+    "updated_at": "2026-10-18"
+  },
+  "UICO-1338": {
+    "id": "UICO-1338",
+    "title": "CD Album Children of the Sun [SHM-CD] Jay Chou 3000yen US$ 18.98 August 05, 2026 In stock Bonus",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "3000yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/11/12/UICO-1338.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUICO-1338",
+    "updated_at": "2026-10-18"
+  },
+  "UPCH-20497": {
+    "id": "UPCH-20497",
+    "title": "CD Album Tadashii Itsuwari Kara no Kisho [Regular Edition] Zutto Mayonaka de Iinoni. 1852yen US$ 11.72 November 14, 2018 In Stock at Supplier",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1852yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/16/17/UPCH-20497.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20497",
+    "updated_at": "2026-10-18"
+  },
+  "UPJY-9202": {
+    "id": "UPJY-9202",
+    "title": "Vinyl (LP) First Love [Limited Vinyl Edition] Hikaru Utada 4630yen US$ 29.30 March 10, 2022 In Stock at Supplier Limited Edition",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "4630yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/12/09/UPJY-9202.jpg?v=3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPJY-9202",
+    "updated_at": "2026-10-18"
+  },
+  "SNCL-110": {
+    "id": "SNCL-110",
+    "title": "CD Album Ex-Otogibanashi ryo (supercell) 2273yen US$ 14.38 January 23, 2026 In stock",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "2273yen",
+    "release_date": "Available",
+    "image": "https://st.cdjapan.co.jp/pictures/s/14/03/SNCL-110.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSNCL-110",
+    "updated_at": "2026-10-18"
   }
 }

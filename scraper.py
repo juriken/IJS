@@ -11,9 +11,8 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Pure English search roster across all target franchises
-ALL_TARGETS = [
-    # Hello! Project
+# Target idol roster (Strictly English terms)
+TARGET_GROUPS = [
     ("Hello! Project", "Morning Musume"),
     ("Hello! Project", "ANGERME"),
     ("Hello! Project", "Juice=Juice"),
@@ -22,25 +21,24 @@ ALL_TARGETS = [
     ("Hello! Project", "OCHA NORMA"),
     ("Hello! Project", "Rosy Chronicle"),
     ("Hello! Project", "Hello! Project"),
-    # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46"),
     ("Sakamichi Series", "Sakurazaka46"),
     ("Sakamichi Series", "Hinatazaka46"),
-    # AKB48 Group
     ("AKB48 Group", "AKB48"),
     ("AKB48 Group", "SKE48"),
     ("AKB48 Group", "NMB48"),
     ("AKB48 Group", "HKT48"),
     ("AKB48 Group", "NGT48"),
     ("AKB48 Group", "STU48"),
-    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE"),
     ("=LOVE / Sister Groups", "≠ME"),
     ("=LOVE / Sister Groups", "≒JOY"),
-    # Other Key Units
     ("Momoiro Clover Z", "Momoiro Clover Z"),
     ("Babymetal", "BABYMETAL"),
 ]
+
+# Number of pages to paginate through using the on-screen Next button
+PAGES_PER_ARTIST = 3
 
 
 def load_catalog():
@@ -63,10 +61,11 @@ def clean_text(text):
   return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
-def parse_page(html, category, display_name):
+def extract_products(html, category, artist_name):
   soup = BeautifulSoup(html, "html.parser")
   items_dict = {}
 
+  # Find all anchors that link to individual product pages
   product_links = soup.find_all(
       "a", href=re.compile(r"/product/([A-Za-z0-9_-]+)")
   )
@@ -79,6 +78,7 @@ def parse_page(html, category, display_name):
 
     prod_key = match.group(1)
 
+    # Filter out navigation links
     if prod_key.lower() in [
         "cart",
         "login",
@@ -95,7 +95,7 @@ def parse_page(html, category, display_name):
       items_dict[prod_key] = {
           "id": prod_key,
           "title": "",
-          "artist": display_name,
+          "artist": artist_name,
           "category": category,
           "price": "",
           "release_date": "",
@@ -106,10 +106,12 @@ def parse_page(html, category, display_name):
 
     entry = items_dict[prod_key]
 
+    # Title extraction
     t_text = clean_text(a.get_text())
     if t_text and len(t_text) > len(entry["title"]):
       entry["title"] = t_text
 
+    # Image extraction
     img_el = a.find("img")
     if img_el:
       src = (
@@ -128,6 +130,7 @@ def parse_page(html, category, display_name):
       if not entry["title"] and img_el.get("alt"):
         entry["title"] = clean_text(img_el.get("alt"))
 
+    # Parent card inspection for price and release date
     parent = a.find_parent(["div", "li", "tr", "td"])
     if parent:
       p_text = clean_text(parent.get_text())
@@ -161,7 +164,7 @@ def parse_page(html, category, display_name):
   cleaned = []
   for prod_key, data in items_dict.items():
     if not data["title"]:
-      data["title"] = f"{display_name} Official Release ({prod_key})"
+      data["title"] = f"{artist_name} Official Release ({prod_key})"
     if not data["price"]:
       data["price"] = "Check CDJapan"
     if not data["release_date"]:
@@ -173,38 +176,65 @@ def parse_page(html, category, display_name):
   return cleaned
 
 
-def scrape_query(page, category, display_name):
-  # Strictly English search query encoding
-  q = urllib.parse.quote_plus(display_name)
-  url = f"https://www.cdjapan.co.jp/searches?term.media_format=&q={q}&order=reldesc"
+def search_via_ui(page, category, artist_name, max_pages=3):
+  found_items = []
+  print(f"\n-> Initiating Search-Bar Flow for: {artist_name}")
 
-  for attempt in range(1, 3):
-    try:
-      page.goto(url, wait_until="domcontentloaded", timeout=30000)
+  try:
+    # 1. Start from homepage to initialize valid session cookies & referer
+    page.goto(
+        "https://www.cdjapan.co.jp/",
+        wait_until="domcontentloaded",
+        timeout=30000,
+    )
+    time.sleep(1.5)
 
+    # 2. Locate the search input box
+    search_input = page.locator("input[name='q']").first
+    search_input.click()
+    search_input.fill("")
+    # Type artist in English
+    search_input.fill(artist_name)
+    time.sleep(0.5)
+
+    # 3. Submit search via Enter
+    search_input.press("Enter")
+    page.wait_for_load_state("domcontentloaded")
+    time.sleep(2.0)
+
+    print(f"   Landed on results page: {page.url}")
+
+    # 4. Paginate using the on-screen 'Next' button
+    for current_p in range(1, max_pages + 1):
+      # Wait for product links to render
       try:
-        page.wait_for_selector("a[href*='/product/']", timeout=6000)
+        page.wait_for_selector("a[href*='/product/']", timeout=8000)
       except Exception:
         pass
 
-      page.evaluate("window.scrollBy(0, 1200)")
-      time.sleep(1.2)
+      page.evaluate("window.scrollBy(0, 1000)")
+      time.sleep(1.0)
 
-      rendered = page.content()
-      if len(rendered) < 3000:
-        print(f"    Cooldown notice ({len(rendered)} bytes). Pausing 15s...")
-        time.sleep(15.0)
-        continue
+      html = page.content()
+      page_items = extract_products(html, category, artist_name)
+      print(f"   [Page {current_p}] Extracted {len(page_items)} products")
+      found_items.extend(page_items)
 
-      items = parse_page(rendered, category, display_name)
-      print(f"    Extracted {len(items)} items for {display_name}")
-      return items
+      if current_p < max_pages:
+        # Locate the Next page link/button
+        next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
+        if next_btn.count() > 0 and next_btn.first.is_visible():
+          next_btn.first.click()
+          page.wait_for_load_state("domcontentloaded")
+          time.sleep(random.uniform(2.5, 4.0))
+        else:
+          print("   No further Next button available.")
+          break
 
-    except Exception as e:
-      print(f"    Attempt {attempt} notice: {e}")
-      time.sleep(5.0)
+  except Exception as e:
+    print(f"   Notice during search for {artist_name}: {e}")
 
-  return []
+  return found_items
 
 
 def main():
@@ -212,8 +242,8 @@ def main():
   initial_count = len(catalog)
   print(f"Current catalog size: {initial_count} items")
 
-  # Rotates across 8 targets per run to prevent rate-limit blocks
-  selected_targets = random.sample(ALL_TARGETS, min(8, len(ALL_TARGETS)))
+  # Process 6 targets per run to maintain human-paced requests
+  selected_targets = random.sample(TARGET_GROUPS, min(6, len(TARGET_GROUPS)))
 
   with sync_playwright() as p:
     browser = p.chromium.launch(
@@ -229,16 +259,10 @@ def main():
     )
     page = context.new_page()
 
-    try:
-      page.goto("https://www.cdjapan.co.jp/", timeout=20000)
-      time.sleep(2.0)
-    except Exception:
-      pass
-
     new_total = 0
     for idx, (cat, name) in enumerate(selected_targets, 1):
-      print(f"\n[{idx}/{len(selected_targets)}] Syncing (English): {name} ({cat})")
-      items = scrape_query(page, cat, name)
+      print(f"\n[{idx}/{len(selected_targets)}] Target: {name} ({cat})")
+      items = search_via_ui(page, cat, name, max_pages=PAGES_PER_ARTIST)
       new_for_artist = 0
 
       for it in items:
@@ -248,17 +272,19 @@ def main():
           new_total += 1
         catalog[pid] = it
 
-      print(f"    Added {new_for_artist} new items for {name}")
-      time.sleep(random.uniform(4.0, 7.0))
+      print(f"   Added {new_for_artist} brand-new items for {name}")
+      time.sleep(random.uniform(3.0, 5.0))
 
     browser.close()
 
+  # Write back catalog
   with open(DATA_FILE, "w", encoding="utf-8") as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
 
+  final_count = len(catalog)
   print(f"\n==========================================")
   print(f"Run complete! Added {new_total} brand-new products.")
-  print(f"Total active catalog size: {len(catalog)} items.")
+  print(f"Total active catalog size: {final_count} items.")
   print(f"==========================================")
 
 

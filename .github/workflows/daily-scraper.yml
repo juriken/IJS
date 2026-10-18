@@ -36,4 +36,4 @@ jobs:
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
           git add products.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog" && git push)

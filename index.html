@@ -39,7 +39,7 @@
 
       <!-- Controls: Currency Toggle -->
       <div class="flex items-center gap-3">
-        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 hover:bg-pink-800 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5">
+        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 hover:bg-pink-800 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-coins text-yellow-300"></i>
           <span id="currency-label">USD ($)</span>
         </button>
@@ -114,7 +114,40 @@
     let searchQuery = '';
     let currentSort = 'newest';
     let showUSD = true;
-    const JPY_TO_USD_RATE = 0.0067; // Estimated live rate (~150 JPY per 1 USD)
+    
+    // Default fallback exchange rate (1 JPY ~ 0.0067 USD)
+    let jpyToUsdRate = 0.0067;
+    const RATE_CACHE_KEY = 'idoljapan_jpy_usd_rate';
+    const RATE_TIME_KEY = 'idoljapan_jpy_usd_time';
+    const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+
+    // Fetch and cache live JPY to USD exchange rate every 24 hours
+    async function initExchangeRate() {
+      const cachedRate = localStorage.getItem(RATE_CACHE_KEY);
+      const cachedTime = localStorage.getItem(RATE_TIME_KEY);
+      const now = Date.now();
+
+      if (cachedRate && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
+        jpyToUsdRate = parseFloat(cachedRate);
+        return;
+      }
+
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/JPY');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.rates && data.rates.USD) {
+            jpyToUsdRate = data.rates.USD;
+            localStorage.setItem(RATE_CACHE_KEY, jpyToUsdRate.toString());
+            localStorage.setItem(RATE_TIME_KEY, now.toString());
+            // Re-render prices once rate is updated
+            render();
+          }
+        }
+      } catch (err) {
+        console.warn('Currency API unreachable, using default rate:', err);
+      }
+    }
 
     async function loadCatalog() {
       try {
@@ -166,10 +199,29 @@
       const num = parseNumericPrice(priceStr);
       if (num === 0) return 'Check CDJapan';
       if (showUSD) {
-        const usdVal = (num * JPY_TO_USD_RATE).toFixed(2);
+        const usdVal = (num * jpyToUsdRate).toFixed(2);
         return `$${usdVal} <span class="text-[10px] text-slate-400 font-normal">(¥${num.toLocaleString()})</span>`;
       }
       return `¥${num.toLocaleString()}`;
+    }
+
+    // Check if release date is in the future
+    function isPreOrder(dateStr) {
+      if (!dateStr) return false;
+      
+      // Match YYYY/MM/DD or YYYY-MM-DD
+      const match = dateStr.match(/(\d{4})[/-](\d{1,2})[/-](\d{1,2})/);
+      if (!match) return false;
+
+      const year = parseInt(match[1], 10);
+      const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JS
+      const day = parseInt(match[3], 10);
+
+      const releaseDate = new Date(year, month, day);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Compare date part only
+
+      return releaseDate > today;
     }
 
     function render() {
@@ -207,10 +259,11 @@
 
       filtered.forEach(p => {
         const card = document.createElement('div');
-        card.className = "bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group";
+        card.className = "bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
         
         const fallbackImg = `https://www.cdjapan.co.jp/pictures/s/${p.id}.jpg`;
         const displayImg = p.image || fallbackImg;
+        const upcoming = isPreOrder(p.release_date);
 
         card.innerHTML = `
           <div class="aspect-square bg-slate-100 relative overflow-hidden">
@@ -221,16 +274,25 @@
               onerror="this.onerror=null;this.src='https://via.placeholder.com/300x300?text=Japanese+Idol+CD';"
               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
+            
+            <!-- Artist Badge -->
             <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
               ${p.artist}
             </span>
+
+            <!-- Bright Pink Pre-Order Badge -->
+            ${upcoming ? `
+              <span class="absolute top-2 right-2 bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-pink-300/40">
+                <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
+              </span>
+            ` : ''}
           </div>
           <div class="p-3 flex-1 flex flex-col justify-between">
             <div>
               <h2 class="text-xs font-bold text-slate-800 line-clamp-2" title="${p.title}">
                 ${p.title}
               </h2>
-              <p class="text-[11px] text-slate-500 mt-1 flex items-center gap-1">
+              <p class="text-[11px] ${upcoming ? 'text-pink-600 font-semibold' : 'text-slate-500'} mt-1 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
               </p>
             </div>
@@ -244,7 +306,7 @@
                 rel="nofollow noopener" 
                 class="bg-pink-600 hover:bg-pink-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-md transition flex items-center gap-1 shadow-sm"
               >
-                Buy <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
               </a>
             </div>
           </div>
@@ -253,6 +315,8 @@
       });
     }
 
+    // Initialize exchange rate and load catalog
+    initExchangeRate();
     loadCatalog();
   </script>
 </body>

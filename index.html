@@ -1,12 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
   <title>IdolJapan.store — Japanese Female Idol Merch & Music Catalog</title>
+  <meta name="title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
   <meta name="description" content="Discover official singles, albums, photobooks, and concert Blu-rays from Hello! Project, AKB48 Group, Sakamichi 46, =LOVE, Momoclo, and Babymetal via CDJapan.">
+  <meta name="keywords" content="Japanese idols, Hello Project, Morning Musume, AKB48, Nogizaka46, Sakurazaka46, Hinatazaka46, =LOVE, Babymetal, Momoiro Clover Z, CDJapan, J-Pop CDs, Idol Photobooks">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://idoljapan.store/">
+  <meta name="theme-color" content="#db2777">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idoljapan.store/">
+  <meta property="og:title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
+  <meta property="og:description" content="Discover and pre-order official singles, albums, photobooks, and concert Blu-rays shipped straight from Tokyo via CDJapan.">
+  <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://idoljapan.store/">
+  <meta name="twitter:title" content="IdolJapan.store — Japanese Female Idol Merch & Music Catalog">
+  <meta name="twitter:description" content="Discover and pre-order official releases from Hello! Project, AKB48, Sakamichi Series, and more.">
+  <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
+
+  <!-- Structured Data: JSON-LD for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "IdolJapan.store",
+    "url": "https://idoljapan.store/",
+    "description": "Comprehensive catalog of Japanese female idol CDs, Blu-rays, and photobooks fulfilled by CDJapan.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://idoljapan.store/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS with Dark Mode Class Strategy -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     .line-clamp-2 {
       display: -webkit-box;
@@ -15,11 +62,20 @@
       overflow: hidden;
     }
   </style>
+
+  <!-- Early Dark Mode Detection (Prevents Screen Flash) -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
   <!-- Header -->
-  <header class="bg-pink-600 text-white sticky top-0 z-50 shadow-md">
+  <header class="bg-pink-600 dark:bg-pink-800 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-star text-yellow-300 text-2xl"></i>
@@ -32,38 +88,44 @@
           id="search-input" 
           type="text" 
           placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
-          class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-300 text-sm shadow-inner"
+          class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 text-sm"></i>
       </div>
 
-      <!-- Controls: Currency Toggle -->
-      <div class="flex items-center gap-3">
-        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 hover:bg-pink-800 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
+      <!-- Controls: Currency & Dark Mode Toggles -->
+      <div class="flex items-center gap-2">
+        <!-- Currency Toggle -->
+        <button id="currency-toggle" onclick="toggleCurrency()" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-400/30 transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-coins text-yellow-300"></i>
           <span id="currency-label">USD ($)</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-pink-700 dark:bg-pink-900 hover:bg-pink-800 dark:hover:bg-pink-950 text-xs font-bold w-8 h-8 rounded-full border border-pink-400/30 transition flex items-center justify-center shadow-sm">
+          <i id="theme-icon" class="fa-solid fa-moon text-pink-100"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Franchise Navigation Filter -->
-  <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[60px] z-40 overflow-x-auto">
+  <nav class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-[60px] z-40 overflow-x-auto transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
       <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1" id="filter-bar">
-        <button onclick="setFilter('All')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white" data-cat="All">All Items</button>
-        <button onclick="setFilter('Hello! Project')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Hello! Project">Hello! Project</button>
-        <button onclick="setFilter('AKB48 Group')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="AKB48 Group">AKB48 Groups</button>
-        <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Sakamichi Series">Sakamichi (46)</button>
-        <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-        <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Momoiro Clover Z">Momoclo</button>
-        <button onclick="setFilter('Babymetal')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50" data-cat="Babymetal">Babymetal</button>
+        <button onclick="setFilter('All')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white shadow-sm" data-cat="All">All Items</button>
+        <button onclick="setFilter('Hello! Project')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Hello! Project">Hello! Project</button>
+        <button onclick="setFilter('AKB48 Group')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="AKB48 Group">AKB48 Groups</button>
+        <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Sakamichi Series">Sakamichi (46)</button>
+        <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
+        <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Momoiro Clover Z">Momoclo</button>
+        <button onclick="setFilter('Babymetal')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600" data-cat="Babymetal">Babymetal</button>
       </div>
 
       <!-- Sorting Dropdown -->
       <div class="flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
-        <label for="sort-select" class="text-slate-500 hidden sm:inline">Sort:</label>
-        <select id="sort-select" onchange="changeSort(this.value)" class="bg-slate-100 border border-slate-200 text-slate-700 py-1.5 px-3 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-300">
+        <label for="sort-select" class="text-slate-500 dark:text-slate-400 hidden sm:inline">Sort:</label>
+        <select id="sort-select" onchange="changeSort(this.value)" class="bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-1.5 px-3 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-500">
           <option value="newest">Newest Releases</option>
           <option value="oldest">Oldest Releases</option>
           <option value="price-asc">Price: Low to High</option>
@@ -75,7 +137,7 @@
 
   <!-- Banner Section -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
-    <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 dark:from-pink-700 dark:via-rose-700 dark:to-pink-800 text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
         <h1 class="text-xl md:text-2xl font-black flex items-center gap-2">
           <span>Official Japanese Idol Catalog</span>
@@ -93,18 +155,27 @@
       <!-- Items dynamically populated -->
     </div>
     
-    <div id="empty-state" class="hidden text-center py-20 text-slate-400">
+    <div id="empty-state" class="hidden text-center py-20 text-slate-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
       <p class="text-base font-semibold">No idol merchandise found matching your search.</p>
-      <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-pink-600 text-white text-xs font-bold rounded-full">Reset Filters</button>
+      <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold rounded-full transition">Reset Filters</button>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 mt-auto py-8 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 space-y-2">
-      <p class="font-medium text-slate-700">IdolJapan.store is an independent merchandise catalog curated for international fans.</p>
-      <p>All CD, DVD, Blu-ray, and photobook orders are securely fulfilled by <a href="https://www.cdjapan.co.jp" class="underline hover:text-pink-600 font-semibold" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong>A033398</strong>.</p>
+  <!-- Enlarged Footer Disclaimer & Branding -->
+  <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto py-10 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
+      
+      <!-- Primary Disclosure (Enlarged font size) -->
+      <p class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-200 leading-relaxed">
+        <strong>IdolJapan.store</strong> is an independent merchandise catalog curated for international fans. All CD, DVD, Blu-ray, and photobook orders are securely fulfilled by <a href="https://www.cdjapan.co.jp" class="underline hover:text-pink-600 dark:hover:text-pink-400 font-bold" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong class="text-pink-600 dark:text-pink-400">A033398</strong>.
+      </p>
+
+      <!-- Copyright & Year Range -->
+      <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+        <p>© 2019 – 2026 IdolJapan.store. All rights reserved.</p>
+      </div>
+
     </div>
   </footer>
 
@@ -115,11 +186,31 @@
     let currentSort = 'newest';
     let showUSD = true;
     
-    // Default fallback exchange rate (1 JPY ~ 0.0067 USD)
+    // Default fallback exchange rate
     let jpyToUsdRate = 0.0067;
     const RATE_CACHE_KEY = 'idoljapan_jpy_usd_rate';
     const RATE_TIME_KEY = 'idoljapan_jpy_usd_time';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+
+    // Theme Management (Light / Dark)
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-yellow-300' : 'fa-solid fa-moon text-pink-100';
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
 
     // Fetch and cache live JPY to USD exchange rate every 24 hours
     async function initExchangeRate() {
@@ -140,7 +231,6 @@
             jpyToUsdRate = data.rates.USD;
             localStorage.setItem(RATE_CACHE_KEY, jpyToUsdRate.toString());
             localStorage.setItem(RATE_TIME_KEY, now.toString());
-            // Re-render prices once rate is updated
             render();
           }
         }
@@ -176,9 +266,9 @@
       activeFilter = cat;
       document.querySelectorAll('.tab-btn').forEach(btn => {
         if (btn.dataset.cat === cat) {
-          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white";
+          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-pink-600 text-white shadow-sm";
         } else {
-          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-pink-50";
+          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-600";
         }
       });
       render();
@@ -200,26 +290,23 @@
       if (num === 0) return 'Check CDJapan';
       if (showUSD) {
         const usdVal = (num * jpyToUsdRate).toFixed(2);
-        return `$${usdVal} <span class="text-[10px] text-slate-400 font-normal">(¥${num.toLocaleString()})</span>`;
+        return `$${usdVal} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${num.toLocaleString()})</span>`;
       }
       return `¥${num.toLocaleString()}`;
     }
 
-    // Check if release date is in the future
     function isPreOrder(dateStr) {
       if (!dateStr) return false;
-      
-      // Match YYYY/MM/DD or YYYY-MM-DD
       const match = dateStr.match(/(\d{4})[/-](\d{1,2})[/-](\d{1,2})/);
       if (!match) return false;
 
       const year = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JS
+      const month = parseInt(match[2], 10) - 1;
       const day = parseInt(match[3], 10);
 
       const releaseDate = new Date(year, month, day);
       const today = new Date();
-      today.setHours(0, 0, 0, 0); // Compare date part only
+      today.setHours(0, 0, 0, 0);
 
       return releaseDate > today;
     }
@@ -259,14 +346,14 @@
 
       filtered.forEach(p => {
         const card = document.createElement('div');
-        card.className = "bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
+        card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
         
         const fallbackImg = `https://www.cdjapan.co.jp/pictures/s/${p.id}.jpg`;
         const displayImg = p.image || fallbackImg;
         const upcoming = isPreOrder(p.release_date);
 
         card.innerHTML = `
-          <div class="aspect-square bg-slate-100 relative overflow-hidden">
+          <div class="aspect-square bg-slate-100 dark:bg-slate-700 relative overflow-hidden">
             <img 
               src="${displayImg}" 
               alt="${p.title}" 
@@ -280,7 +367,7 @@
               ${p.artist}
             </span>
 
-            <!-- Bright Pink Pre-Order Badge -->
+            <!-- Pre-Order Badge -->
             ${upcoming ? `
               <span class="absolute top-2 right-2 bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-pink-300/40">
                 <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
@@ -289,15 +376,15 @@
           </div>
           <div class="p-3 flex-1 flex flex-col justify-between">
             <div>
-              <h2 class="text-xs font-bold text-slate-800 line-clamp-2" title="${p.title}">
+              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-100 line-clamp-2" title="${p.title}">
                 ${p.title}
               </h2>
-              <p class="text-[11px] ${upcoming ? 'text-pink-600 font-semibold' : 'text-slate-500'} mt-1 flex items-center gap-1">
+              <p class="text-[11px] ${upcoming ? 'text-pink-600 dark:text-pink-400 font-semibold' : 'text-slate-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
               </p>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-black text-pink-600">
+            <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+              <span class="text-xs font-black text-pink-600 dark:text-pink-400">
                 ${formatDisplayPrice(p.price)}
               </span>
               <a 
@@ -315,7 +402,8 @@
       });
     }
 
-    // Initialize exchange rate and load catalog
+    // Initialize Theme, Exchange Rate, and Catalog
+    updateThemeIcon();
     initExchangeRate();
     loadCatalog();
   </script>

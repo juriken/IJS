@@ -140,7 +140,7 @@
         <input 
           id="search-input" 
           type="text" 
-          placeholder="Search Morning Musume, Berryz Kobo, C-ute, Buono, CD..." 
+          placeholder="Search Morning Musume, Berryz Kobo, C-ute, Buono, Minimoni..." 
           class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-stone-400 dark:text-slate-400 text-sm"></i>
@@ -243,7 +243,7 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Desktop Arrows & Smooth Drag/Wheel) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Minimoni and All Legacy Units) -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-1.5 relative flex items-center">
         <!-- Desktop Left Scroll Arrow -->
@@ -425,7 +425,7 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Comprehensive Group & Artist Mapping
+    // Comprehensive Group & Artist Mapping (Minimoni properly mapped)
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
         'Morning Musume',
@@ -442,7 +442,7 @@
         'Kobushi Factory',
         'Melon Kinenbi',
         'W (Double You)',
-        'Mini Moni',
+        'Minimoni',
         'Tanpopo',
         'Petitmoni',
         'v-u-den',
@@ -776,7 +776,6 @@
       initHorizontalScrollable(container);
     }
 
-    // Smooth Desktop Chevron Button Scrolling
     function scrollElement(elementId, direction) {
       const el = document.getElementById(elementId);
       if (!el) return;
@@ -784,12 +783,10 @@
       el.scrollBy({ left: amount, behavior: 'smooth' });
     }
 
-    // Universal Desktop Scrollable Enhancer: Mouse Wheel & Drag-To-Scroll
     function initHorizontalScrollable(el) {
       if (!el || el._hasScrollAttached) return;
       el._hasScrollAttached = true;
 
-      // 1. Mouse Wheel Translation (Vertical DeltaY -> Horizontal Scroll)
       el.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0 && el.scrollWidth > el.clientWidth) {
           e.preventDefault();
@@ -797,14 +794,13 @@
         }
       }, { passive: false });
 
-      // 2. Mouse Click-and-Drag (Grab & Pan)
       let isDown = false;
       let startX = 0;
       let initialScroll = 0;
       let moved = false;
 
       el.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return; // Only primary mouse button
+        if (e.button !== 0) return;
         isDown = true;
         moved = false;
         startX = e.pageX - el.offsetLeft;
@@ -828,7 +824,6 @@
         }
       });
 
-      // Suppress accidental button click if the mouse was actively dragged
       el.addEventListener('click', (e) => {
         if (moved) {
           e.preventDefault();
@@ -880,41 +875,29 @@
       }
     }
 
-    // Media Format Detection Engine (Includes Classic Piccolo Town & Up-Front Works label codes)
     function getItemFormatCategory(item) {
       if (!item) return 'Other';
       const pid = String(item.id || '').toUpperCase();
       const title = String(item.title || '').toLowerCase();
 
-      // Books & Photobooks
       if (pid.startsWith('NEOBK-') || title.includes('photobook') || title.includes('magazine') || title.includes('book') || title.includes('写真集')) {
         return 'Book';
       }
-
-      // Collectibles & Merch
       if (pid.startsWith('NEODAI-') || pid.startsWith('NEOODY-') || pid.startsWith('NEOGDS-') || pid.includes('CL-') || pid.endsWith('-A') || title.includes('t-shirt') || title.includes('calendar') || title.includes('acrylic') || title.includes('goods') || title.includes('stand')) {
         return 'Collectable';
       }
-
-      // Blu-rays (SRXL, SRXW, EPXE, KIXM, TFXQ, UMXK, VVXL, HKXN, AVXD, VPXF, UFXW, TGXF)
       if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || pid.startsWith('UFXW') || pid.startsWith('TGXF') || title.includes('blu-ray') || title.includes('bd')) {
         return 'Blu-ray';
       }
-
-      // DVDs (SRBL, EPBE, KIBM, TFBQ, UMBK, VVBL, HKBN, AVBD, VPBF, PKBP, UFBW, TGBS)
       if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.startsWith('PKBP') || pid.startsWith('UFBW') || pid.startsWith('TGBS') || pid.includes('-D') || title.includes('dvd')) {
         return 'DVD';
       }
-
-      // CDs (SRCL, EPCE, HKCN, UPCH, KICS, KIZM, KIZC, AVCD, TFCC, VVCL, YRCS, UMCK, DFCL, PKCP)
       if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || pid.startsWith('PKCP') || title.includes('cd') || title.includes('single') || title.includes('album')) {
         return 'CD';
       }
-
       return 'Other';
     }
 
-    // Debounced Search Input
     let searchDebounceTimeout = null;
     const searchInput = document.getElementById('search-input');
     const searchClearBtn = document.getElementById('search-clear-btn');
@@ -1077,8 +1060,11 @@
         // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
-        // Sub-Artist Filter
-        const matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
+        // Sub-Artist Filter (Accounts for Minimoni vs Mini Moni alias compatibility)
+        let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
+        if (!matchesArtist && (activeArtist === 'Minimoni' || activeArtist === 'Mini Moni')) {
+          matchesArtist = (item.artist === 'Minimoni' || item.artist === 'Mini Moni');
+        }
         
         // Media Format Filter
         const itemFmt = getItemFormatCategory(item);

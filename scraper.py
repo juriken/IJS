@@ -21,7 +21,7 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 # Official Up-Front / Zetima / Piccolo Town label prefixes for Tanpopo
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
-# Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
+# Schema: (Category, Canonical Artist, Search Query, Keyword Filter List)
 TARGET_GROUPS = [
     # Hello! Project — Active Groups
     ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
@@ -292,15 +292,16 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
+        page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=250):
+        if close_btn.is_visible(timeout=300):
             close_btn.click(force=True)
             time.sleep(0.2)
     except Exception:
         pass
 
 
-def execute_search_in_session(page, category, canonical_artist, query, keywords, max_pages):
+def scrape_artist_session(page, category, canonical_artist, query, keywords, max_pages):
     results = []
     print(f"\n-> In-Session Search Query for: {canonical_artist} ('{query}')")
 
@@ -308,11 +309,10 @@ def execute_search_in_session(page, category, canonical_artist, query, keywords,
 
     for p_num in range(1, max_pages + 1):
         target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&page={p_num}"
-        success = False
+        extracted_on_page = []
 
         for attempt in range(1, 3):
             try:
-                # Direct navigation under the existing authenticated browser session with internal Referer
                 page.set_extra_http_headers({
                     "Referer": "https://www.cdjapan.co.jp/",
                     "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
@@ -321,30 +321,37 @@ def execute_search_in_session(page, category, canonical_artist, query, keywords,
                 page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
                 dismiss_popups(page)
 
-                # Wait for product grid container to ensure hydration
+                # Wait for any of CDJapan's product containers to attach
                 try:
-                    page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']", timeout=5000)
+                    page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']", timeout=6000)
                 except Exception:
                     pass
 
-                # Scroll to load any lazy elements
-                page.evaluate("window.scrollBy(0, 800)")
+                # Progressive scroll down to ensure dynamic product cards hydrate
+                page.evaluate("window.scrollBy(0, 700)")
                 time.sleep(0.5)
-                page.evaluate("window.scrollBy(0, 800)")
-                time.sleep(0.8)
+                page.evaluate("window.scrollBy(0, 900)")
+                time.sleep(1.0)
 
                 html = page.content()
-                verified = extract_verified_products(html, category, canonical_artist, keywords)
-                print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-                results.extend(verified)
-                success = True
+                extracted_on_page = extract_verified_products(html, category, canonical_artist, keywords)
+
+                # If 0 products were extracted on page 1, retry once with an extra wait
+                if len(extracted_on_page) == 0 and attempt == 1:
+                    print(f"   [Notice] 0 items parsed on attempt 1 for {canonical_artist}. Retrying in 2.5s...")
+                    time.sleep(2.5)
+                    continue
+
+                print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified products")
+                results.extend(extracted_on_page)
                 break
 
             except Exception as e:
                 print(f"   Attempt {attempt} notice on Page {p_num} for {canonical_artist}: {e}")
-                time.sleep(2.0)
+                time.sleep(2.5)
 
-        if not success or (p_num == 1 and len(results) == 0):
+        # If page 1 truly returned 0 verified items after retry, stop paginating this target
+        if p_num == 1 and len(extracted_on_page) == 0:
             break
 
         time.sleep(random.uniform(1.8, 3.0))
@@ -355,7 +362,7 @@ def execute_search_in_session(page, category, canonical_artist, query, keywords,
 def main():
     catalog = load_catalog()
     initial_count = len(catalog)
-    print(f"Starting Catalog Sync. Current active items: {initial_count}")
+    print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
     batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
@@ -376,25 +383,26 @@ def main():
             viewport={"width": 1440, "height": 900},
         )
 
-        # 1. Warm up CDJapan cookies and security tokens
+        # Seed valid browsing cookies from homepage
+        print("Initializing session on CDJapan...", flush=True)
         warmup_page = context.new_page()
         try:
             warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
             dismiss_popups(warmup_page)
             time.sleep(1.5)
         except Exception as e_warm:
-            print(f"Warmup notice: {e_warm}")
+            print(f"Warmup notice: {e_warm}", flush=True)
         finally:
             warmup_page.close()
 
         new_total = 0
 
-        # 2. Iterate through target batch using isolated tabs with session persistence
+        # Execute each target inside an isolated page tab
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
-            print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
+            print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}", flush=True)
             page = context.new_page()
             try:
-                items = execute_search_in_session(
+                items = scrape_artist_session(
                     page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
                 )
                 added_for_artist = 0
@@ -408,10 +416,11 @@ def main():
 
                 print(
                     f"   => {artist}: Found {len(items)} items"
-                    f" ({added_for_artist} new to database)"
+                    f" ({added_for_artist} new to database)",
+                    flush=True
                 )
             except Exception as e_artist:
-                print(f"   => Error scraping {artist}: {e_artist}")
+                print(f"   => Error scraping {artist}: {e_artist}", flush=True)
             finally:
                 page.close()
 
@@ -423,10 +432,10 @@ def main():
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
     final_count = len(catalog)
-    print(f"\n==========================================")
-    print(f"Sync Complete! Added {new_total} new releases.")
-    print(f"Total live catalog items: {final_count}")
-    print(f"==========================================")
+    print(f"\n==========================================", flush=True)
+    print(f"Sync Complete! Added {new_total} new releases.", flush=True)
+    print(f"Total live catalog items: {final_count}", flush=True)
+    print(f"==========================================", flush=True)
 
 
 if __name__ == "__main__":

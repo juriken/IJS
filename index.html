@@ -443,49 +443,37 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Precise Integer Date Score Generator (YYYYMMDD)
-    function getNormalizedDateScore(item) {
+    // Mathematical integer date calculator: YYYYMMDD
+    function getItemDateValue(item) {
       if (!item) return 0;
-      const dateStr = String(item.release_date || '').trim();
+      const dStr = String(item.release_date || '').trim();
 
-      // 1. Strict YYYY/MM/DD or YYYY-MM-DD
-      const fullMatch = dateStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
-      if (fullMatch) {
-        const y = parseInt(fullMatch[1], 10);
-        const m = parseInt(fullMatch[2], 10);
-        const d = parseInt(fullMatch[3], 10);
-        if (y >= 1990 && y <= 2030 && m >= 1 && m <= 12 && d >= 1 && d <= 31) {
-          return (y * 10000) + (m * 100) + d;
-        }
+      // Standard YYYY-MM-DD or YYYY/MM/DD
+      const m = dStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
+      if (m) {
+        const y = parseInt(m[1], 10);
+        const mon = parseInt(m[2], 10);
+        const day = parseInt(m[3], 10);
+        return (y * 10000) + (mon * 100) + day;
       }
 
-      // 2. YYYY/MM
-      const ymMatch = dateStr.match(/(\d{4})[./-](\d{1,2})/);
-      if (ymMatch) {
-        const y = parseInt(ymMatch[1], 10);
-        const m = parseInt(ymMatch[2], 10);
-        if (y >= 1990 && y <= 2030 && m >= 1 && m <= 12) {
-          return (y * 10000) + (m * 100) + 1;
-        }
-      }
-
-      // 3. Fallback: Year inside date or title
-      const yearMatch = (dateStr + ' ' + (item.title || '')).match(/\b(199\d|20[0-3]\d)\b/);
-      if (yearMatch) {
-        return parseInt(yearMatch[1], 10) * 10000 + 101;
+      // Year-only match
+      const yOnly = dStr.match(/\b(199\d|20[0-2]\d)\b/);
+      if (yOnly) {
+        return parseInt(yOnly[1], 10) * 10000 + 101;
       }
 
       return 0; // Undated items
     }
 
     function isPreOrder(item) {
-      const score = getNormalizedDateScore(item);
-      if (score === 0) return false;
+      const val = getItemDateValue(item);
+      if (val === 0) return false;
 
-      const today = new Date();
-      const todayScore = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
+      const now = new Date();
+      const todayVal = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
 
-      return score > todayScore;
+      return val > todayVal;
     }
 
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
@@ -555,32 +543,28 @@
 
       // Strict Mathematical Date & Price Sorting
       filtered.sort((a, b) => {
-        const scoreA = getNormalizedDateScore(a);
-        const scoreB = getNormalizedDateScore(b);
+        const dateA = getItemDateValue(a);
+        const dateB = getItemDateValue(b);
 
         if (currentSort === 'newest') {
-          // If both have verified dates, highest date score comes first
-          if (scoreA > 0 && scoreB > 0) {
-            if (scoreB !== scoreA) return scoreB - scoreA;
+          // If both have valid dates, highest YYYYMMDD first
+          if (dateA > 0 && dateB > 0) {
+            if (dateB !== dateA) return dateB - dateA;
             return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
-          // Real dates always precede undated items
-          if (scoreA > 0 && scoreB === 0) return -1;
-          if (scoreB > 0 && scoreA === 0) return 1;
-          // Undated items: sort by latest database addition
+          if (dateA > 0 && dateB === 0) return -1;
+          if (dateB > 0 && dateA === 0) return 1;
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          // If both have verified dates, lowest date score comes first
-          if (scoreA > 0 && scoreB > 0) {
-            if (scoreA !== scoreB) return scoreA - scoreB;
+          // If both have valid dates, lowest YYYYMMDD first
+          if (dateA > 0 && dateB > 0) {
+            if (dateA !== dateB) return dateA - dateB;
             return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
-          // Real dates always precede undated items
-          if (scoreA > 0 && scoreB === 0) return -1;
-          if (scoreB > 0 && scoreA === 0) return 1;
-          // Undated items: sort by earliest database addition
+          if (dateA > 0 && dateB === 0) return -1;
+          if (dateB > 0 && dateA === 0) return 1;
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         

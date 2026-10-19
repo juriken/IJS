@@ -42,7 +42,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", "Tanpopo", TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
-    ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
+    ("Hello! Project", "v-u-den", "Biyuden", ["Biyuden", "v-u-den", "V-u-den", "美勇伝"]),
 
     # Hello! Project — Soloists & OGs
     ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
@@ -104,9 +104,7 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    # Strict check for Tanpopo:
-    # 1. Reject any non-UpFront label (blocks Victor/VICL, Sony, King, etc.)
-    # 2. Must contain Tanpopo AND a known song/album signature
+    # Strict check for Tanpopo
     if canonical_artist == "Tanpopo":
         if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
             return False
@@ -314,7 +312,6 @@ def get_visible_search_input(page):
     except Exception:
         pass
 
-    # Clean fallback: Navigate directly to CDJapan home if DOM got stuck
     page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
     dismiss_popups(page)
     page.evaluate("window.scrollTo(0, 0)")
@@ -331,7 +328,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             search_input = get_visible_search_input(page)
 
             # Focus and clear the search input cleanly
-            search_input.click(timeout=3000)
+            search_input.click(timeout=4000)
             search_input.fill("")
             time.sleep(0.2)
 
@@ -339,7 +336,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             search_input.fill(query)
             time.sleep(0.3)
 
-            # Submit search via button or Enter
+            # Submit search via search button or Enter
             search_btn = page.locator("button[type='submit']:visible, .search-box button:visible, form[action*='search'] button:visible").first
             if search_btn.is_visible(timeout=1000):
                 with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
@@ -363,15 +360,14 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
                 results.extend(verified)
 
                 if p_num < max_pages:
-                    # Strict pagination selector: only matches actual pagination containers
                     next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
                     next_btn = page.locator(next_selector).first
 
                     try:
                         if next_btn.is_visible(timeout=2500):
                             with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                                # Trigger click directly via JS to prevent pointer event intercept timeouts
-                                page.evaluate(f"() => {{ const el = document.querySelector('{next_selector}'); if (el) el.click(); }}")
+                                # Pass selector as argument to avoid JavaScript syntax error with inner quotes
+                                page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
                             dismiss_popups(page)
                             time.sleep(random.uniform(1.8, 2.8))
                         else:
@@ -384,7 +380,6 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
         except Exception as e:
             print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-            # Reset page back to clean root state if search stalled
             try:
                 page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
                 dismiss_popups(page)

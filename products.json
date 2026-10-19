@@ -5561,11 +5561,11 @@
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "13,200yen",
-    "release_date": "2026/01/01",
+    "price_num": 13200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-285235.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-285235",
-    "updated_at": "2026-10-18",
-    "price_num": 13200
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2295415": {
     "id": "NEOBK-2295415",
@@ -5597,11 +5597,11 @@
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "6,589yen",
-    "release_date": "2026/01/01",
+    "price_num": 6589,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-285243.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-285243",
-    "updated_at": "2026-10-18",
-    "price_num": 6589
+    "updated_at": "2026-10-19"
   },
   "NEOBK-1993855": {
     "id": "NEOBK-1993855",
@@ -12809,11 +12809,11 @@
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "8,000yen",
-    "release_date": "2026/12/23",
+    "price_num": 8000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/BMWR-1009.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FBMWR-1009",
-    "updated_at": "2026-10-18",
-    "price_num": 8000
+    "updated_at": "2026-10-19"
   },
   "UICC-90016": {
     "id": "UICC-90016",
@@ -12821,11 +12821,11 @@
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "4,000yen",
-    "release_date": "2025/08/08",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/42/UICC-90016.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUICC-90016",
-    "updated_at": "2026-10-18",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "TFCC-86687": {
     "id": "TFCC-86687",
@@ -12893,11 +12893,11 @@
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "3,000yen",
-    "release_date": "2021/08/10",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/12/TFCC-86890.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTFCC-86890",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "TFXQ-78261": {
     "id": "TFXQ-78261",
@@ -13277,11 +13277,11 @@
     "artist": "Rosy Chronicle",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2025/02/22",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/35/NEOODY-99.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-99",
-    "updated_at": "2026-10-18",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "EPCE-8121": {
     "id": "EPCE-8121",
@@ -13289,11 +13289,11 @@
     "artist": "Rosy Chronicle",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2026/11/04",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/10/EPCE-8121.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8121",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "EPCE-8123": {
     "id": "EPCE-8123",
@@ -13301,11 +13301,11 @@
     "artist": "Rosy Chronicle",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2026/11/04",
+    "price_num": 1182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/12/EPCE-8123.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8123",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "EPCE-8117": {
     "id": "EPCE-8117",
@@ -13313,11 +13313,11 @@
     "artist": "Rosy Chronicle",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2026/11/04",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/14/EPCE-8117.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8117",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "SRCL-13790": {
     "id": "SRCL-13790",

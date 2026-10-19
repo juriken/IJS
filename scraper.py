@@ -21,10 +21,13 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 # Official Up-Front / Zetima / Piccolo Town label prefixes for Tanpopo
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
-# Schema: (Category, Canonical Artist, Search Query, Keyword Filter List)
+# Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
-    # Hello! Project — Active Groups
-    ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
+    # Hello! Project — Active Groups (Petitmoni merged into Morning Musume keywords)
+    ("Hello! Project", "Morning Musume", "Morning Musume", [
+        "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
+        "Chokotto Love", "Baby! Koi ni Knock Out"
+    ]),
     ("Hello! Project", "ANGERME", "ANGERME", ["ANGERME", "Smileage", "S/mileage"]),
     ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"]),
     ("Hello! Project", "Tsubaki Factory", "Tsubaki Factory", ["Tsubaki Factory"]),
@@ -41,8 +44,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー", "こぶし"]),
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", "Tanpopo", TANPOPO_AUTHENTIC_SIGNATURES),
-    ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
-    ("Hello! Project", "v-u-den", "Biyuden", ["Biyuden", "v-u-den", "V-u-den", "美勇伝"]),
+    ("Hello! Project", "v-u-den", "Biyuden", ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
 
     # Hello! Project — Soloists & OGs
     ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
@@ -112,6 +114,11 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
         if not has_name:
             return False
         return any(sig in lower_text or sig in pid_upper.lower() for sig in keywords)
+
+    # v-u-den Piccolo Town catalog number verification
+    if canonical_artist == "v-u-den":
+        if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
+            return True
 
     for kw in keywords:
         kw_clean = kw.strip().lower()
@@ -301,60 +308,102 @@ def dismiss_popups(page):
         pass
 
 
-def scrape_artist_session(page, category, canonical_artist, query, keywords, max_pages):
+def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
     results = []
-    print(f"\n-> In-Session Search Query for: {canonical_artist} ('{query}')")
+    print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')", flush=True)
 
-    encoded_q = urllib.parse.quote_plus(query)
-
-    for p_num in range(1, max_pages + 1):
-        target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&page={p_num}"
-        extracted_on_page = []
-
-        for attempt in range(1, 3):
-            try:
-                page.set_extra_http_headers({
-                    "Referer": "https://www.cdjapan.co.jp/",
-                    "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
-                })
-
-                page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+    for attempt in range(1, 3):
+        try:
+            # Check if we need to load or reset the homepage
+            if "cdjapan.co.jp" not in page.url:
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
                 dismiss_popups(page)
-
-                # Wait for any of CDJapan's product containers to attach
-                try:
-                    page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']", timeout=6000)
-                except Exception:
-                    pass
-
-                # Progressive scroll down to ensure dynamic product cards hydrate
-                page.evaluate("window.scrollBy(0, 700)")
-                time.sleep(0.5)
-                page.evaluate("window.scrollBy(0, 900)")
                 time.sleep(1.0)
 
+            # Prepare form via direct JS: fill query and delete any term.* filter inputs
+            form_ready = page.evaluate("""(q) => {
+                const input = document.querySelector('input[name="q"], input#search-input, input.search-input');
+                if (!input) return false;
+                const form = input.closest('form') || document.querySelector('form[action*="searchuni"]') || document.querySelector('form');
+                if (!form) return false;
+
+                // Eliminate any hidden input that restricts format
+                const badInputs = form.querySelectorAll('input[name^="term."]');
+                badInputs.forEach(el => el.remove());
+
+                input.value = q;
+                return true;
+            }""", query)
+
+            if not form_ready:
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
+                time.sleep(1.0)
+                page.evaluate("""(q) => {
+                    const input = document.querySelector('input[name="q"]');
+                    if (input) {
+                        const form = input.closest('form');
+                        if (form) {
+                            form.querySelectorAll('input[name^="term."]').forEach(el => el.remove());
+                            input.value = q;
+                        }
+                    }
+                }""", query)
+
+            # Trigger navigation cleanly without element locator interception
+            with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+                page.evaluate("""() => {
+                    const form = document.querySelector('form[action*="searchuni"]') || document.querySelector('input[name="q"]').closest('form');
+                    const btn = form ? form.querySelector('button[type="submit"], input[type="submit"], .btn-search') : null;
+                    if (btn) {
+                        btn.click();
+                    } else if (form) {
+                        form.submit();
+                    }
+                }""")
+
+            dismiss_popups(page)
+            time.sleep(1.5)
+            print(f"   [Navigated] {page.url}", flush=True)
+
+            # Paginate through results
+            for p_num in range(1, max_pages + 1):
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.5)
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.8)
+
                 html = page.content()
-                extracted_on_page = extract_verified_products(html, category, canonical_artist, keywords)
+                verified = extract_verified_products(html, category, canonical_artist, keywords)
+                print(f"   [Page {p_num}] Extracted {len(verified)} verified products", flush=True)
+                results.extend(verified)
 
-                # If 0 products were extracted on page 1, retry once with an extra wait
-                if len(extracted_on_page) == 0 and attempt == 1:
-                    print(f"   [Notice] 0 items parsed on attempt 1 for {canonical_artist}. Retrying in 2.5s...")
-                    time.sleep(2.5)
-                    continue
+                if p_num < max_pages:
+                    next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
+                    has_next = page.evaluate("(sel) => { return !!document.querySelector(sel); }", next_selector)
 
-                print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified products")
-                results.extend(extracted_on_page)
-                break
+                    if has_next:
+                        try:
+                            with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
+                                page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
+                            dismiss_popups(page)
+                            time.sleep(random.uniform(1.8, 2.5))
+                        except Exception as e_page:
+                            print(f"   Pagination note on page {p_num}: {e_page}", flush=True)
+                            break
+                    else:
+                        break
 
-            except Exception as e:
-                print(f"   Attempt {attempt} notice on Page {p_num} for {canonical_artist}: {e}")
-                time.sleep(2.5)
+            return results
 
-        # If page 1 truly returned 0 verified items after retry, stop paginating this target
-        if p_num == 1 and len(extracted_on_page) == 0:
-            break
-
-        time.sleep(random.uniform(1.8, 3.0))
+        except Exception as e:
+            print(f"   Attempt {attempt} notice for {canonical_artist}: {e}", flush=True)
+            try:
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
+                dismiss_popups(page)
+            except Exception:
+                pass
+            time.sleep(2.0)
 
     return results
 
@@ -382,27 +431,23 @@ def main():
             ),
             viewport={"width": 1440, "height": 900},
         )
+        page = context.new_page()
 
-        # Seed valid browsing cookies from homepage
+        # Seed initial session on CDJapan
         print("Initializing session on CDJapan...", flush=True)
-        warmup_page = context.new_page()
         try:
-            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-            dismiss_popups(warmup_page)
+            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(page)
             time.sleep(1.5)
         except Exception as e_warm:
             print(f"Warmup notice: {e_warm}", flush=True)
-        finally:
-            warmup_page.close()
 
         new_total = 0
 
-        # Execute each target inside an isolated page tab
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}", flush=True)
-            page = context.new_page()
             try:
-                items = scrape_artist_session(
+                items = execute_search_via_bar(
                     page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
                 )
                 added_for_artist = 0
@@ -421,8 +466,6 @@ def main():
                 )
             except Exception as e_artist:
                 print(f"   => Error scraping {artist}: {e_artist}", flush=True)
-            finally:
-                page.close()
 
             time.sleep(random.uniform(2.5, 4.0))
 

@@ -11,12 +11,13 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Strict keywords for Tanpopo to prevent generic dandelion/anime items
-TANPOPO_STRICT_KEYWORDS = [
-    "tanpopo", "iida kaori", "ishiguro aya", "yaguchi mari",
-    "kago ai", "ishikawa rika", "konno asami", "niigaki risa",
-    "hello! project", "morning musume", "last kiss", "motto",
-    "otome pasta", "koi wo shichaimashita", "tanpopo 1", "all of tanpopo"
+# Strict song and album signatures for authentic Tanpopo releases
+TANPOPO_AUTHENTIC_SIGNATURES = [
+    "last kiss", "motto", "seinaru kane", "otome pasta",
+    "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
+    "tanpopo 1", "all of tanpopo", "single v clips",
+    "epce-5019", "epce-5066", "epce-5093", "epce-5129", "epce-5176",
+    "epde-1014", "epde-1024", "epde-1037", "epde-1058", "epbe-5118"
 ]
 
 # Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
@@ -38,7 +39,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
     ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー", "こぶし"]),
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
-    ("Hello! Project", "Tanpopo", "Tanpopo Hello Project", TANPOPO_STRICT_KEYWORDS),
+    ("Hello! Project", "Tanpopo", "Tanpopo", TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
     ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
 
@@ -100,14 +101,13 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if not keywords:
         return True
     lower_text = card_text.lower()
+    pid_lower = str(prod_key).lower()
 
-    # Special filter for Tanpopo to reject non-Hello! Project items
+    # Strict check for Tanpopo: title must contain tanpopo AND match a song/album signature
     if canonical_artist == "Tanpopo":
-        pid = str(prod_key).upper()
-        if any(pid.startswith(pfx) for pfx in ["EPCE", "EPBE", "EPTE", "PKCP", "PKBP", "UFBW", "UFXW"]):
-            return True
-        # Must explicitly contain at least one member or H!P indicator
-        return any(kw in lower_text for kw in keywords if kw != "tanpopo")
+        if "tanpopo" not in lower_text and "タンポポ" not in card_text and "たんぽぽ" not in card_text:
+            return False
+        return any(sig in lower_text or sig in pid_lower for sig in keywords)
 
     for kw in keywords:
         kw_clean = kw.strip().lower()
@@ -288,42 +288,12 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
-        page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=500):
+        if close_btn.is_visible(timeout=400):
             close_btn.click()
-            time.sleep(0.3)
+            time.sleep(0.2)
     except Exception:
         pass
-
-
-def get_search_input(page):
-    """Resilient locator helper that finds the search input or reloads to desktop view."""
-    selector = "input[name='q'], input#search-input, input.search-input, input[type='search']"
-    input_el = page.locator(selector).first
-
-    try:
-        if input_el.is_visible(timeout=2500):
-            return input_el
-    except Exception:
-        pass
-
-    # If hidden by a collapsed mobile nav bar on narrower viewports, click the toggle
-    toggle_btn = page.locator(".search-btn, #nav-search, a:has(.fa-search), button:has(.fa-search)").first
-    try:
-        if toggle_btn.is_visible(timeout=1000):
-            toggle_btn.click()
-            time.sleep(0.5)
-            if input_el.is_visible(timeout=2000):
-                return input_el
-    except Exception:
-        pass
-
-    # Fallback: clean reload to CDJapan root to reset DOM structure
-    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-    dismiss_popups(page)
-    time.sleep(1.0)
-    return page.locator(selector).first
 
 
 def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
@@ -332,33 +302,41 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
     for attempt in range(1, 3):
         try:
-            search_input = get_search_input(page)
+            # 1. Reset viewport scroll to top so header search bar is directly accessible
+            page.evaluate("window.scrollTo(0, 0)")
+            time.sleep(0.5)
 
-            # Focus and clear search bar cleanly
-            search_input.click(timeout=4000)
-            page.keyboard.press("ControlOrMeta+A")
-            page.keyboard.press("Backspace")
+            search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
+            if not search_input.is_visible(timeout=2000):
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
+                page.evaluate("window.scrollTo(0, 0)")
+                time.sleep(1.0)
+                search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
+
+            # 2. Click, clear, and fill query cleanly
+            search_input.click(timeout=3000)
             search_input.fill("")
-            time.sleep(0.2)
-
-            # Atomic fill with target query
             search_input.fill(query)
             time.sleep(0.3)
 
-            # Dismiss auto-suggest popup before pressing Enter
-            page.keyboard.press("Escape")
-            time.sleep(0.2)
-
-            with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                search_input.press("Enter")
+            # 3. Submit search via search button or Enter key (WITHOUT pressing Escape)
+            search_btn = page.locator("button[type='submit'], .search-box button, form[action*='search'] button").first
+            if search_btn.is_visible(timeout=1000):
+                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+                    search_btn.click()
+            else:
+                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+                    search_input.press("Enter")
 
             dismiss_popups(page)
-            time.sleep(1.5)
+            time.sleep(1.2)
+            print(f"   [Navigated] {page.url}")
 
-            # Paginate through search results
+            # 4. Paginate through results using CDJapan's native Next link
             for p_num in range(1, max_pages + 1):
-                page.evaluate("window.scrollBy(0, 900)")
-                time.sleep(1.0)
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.8)
 
                 html = page.content()
                 verified = extract_verified_products(html, category, canonical_artist, keywords)
@@ -367,18 +345,18 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
                 if p_num < max_pages:
                     next_btn = page.locator("a[rel='next'], a.next, li.next a, .pager .next a, a:has-text('Next')").first
-                    if next_btn.count() > 0 and next_btn.is_visible():
+                    if next_btn.count() > 0 and next_btn.is_visible(timeout=2000):
                         with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
                             next_btn.click()
                         dismiss_popups(page)
-                        time.sleep(random.uniform(2.0, 3.2))
+                        time.sleep(random.uniform(1.8, 2.8))
                     else:
                         break
 
             return results
 
         except Exception as e:
-            print(f"   Attempt {attempt} warning for {canonical_artist}: {e}")
+            print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
             time.sleep(2.0)
 
     return results

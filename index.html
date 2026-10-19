@@ -55,7 +55,7 @@
       </div>
 
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Currency Selector -->
+        <!-- Multi-Currency Selector -->
         <div class="relative flex items-center bg-pink-700 dark:bg-pink-900 rounded-full px-2.5 py-1 border border-pink-400/30 shadow-sm text-xs font-bold">
           <i class="fa-solid fa-coins text-yellow-300 mr-1.5 text-xs"></i>
           <select 
@@ -443,11 +443,12 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Mathematical integer date calculator: YYYYMMDD
+    // Precise Integer Date Normalizer
     function getItemDateValue(item) {
       if (!item) return 0;
       const dStr = String(item.release_date || '').trim();
 
+      // Standard YYYY/MM/DD or YYYY-MM-DD
       const m = dStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
       if (m) {
         const y = parseInt(m[1], 10);
@@ -456,6 +457,7 @@
         return (y * 10000) + (mon * 100) + day;
       }
 
+      // Year/Month: YYYY/MM
       const ym = dStr.match(/(\d{4})[./-](\d{1,2})/);
       if (ym) {
         const y = parseInt(ym[1], 10);
@@ -463,6 +465,7 @@
         return (y * 10000) + (mon * 100) + 1;
       }
 
+      // Isolated Year
       const yOnly = dStr.match(/\b(199\d|20[0-2]\d)\b/);
       if (yOnly) {
         return parseInt(yOnly[1], 10) * 10000 + 101;
@@ -471,12 +474,14 @@
       return 0;
     }
 
+    // Reference date set to current year 2026
     function isPreOrder(item) {
       const val = getItemDateValue(item);
       if (val === 0) return false;
 
-      const now = new Date();
-      const todayVal = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
+      // October 18, 2026 => 20261018
+      const today = new Date();
+      const todayVal = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
 
       return val > todayVal;
     }
@@ -552,12 +557,26 @@
         const dateB = getItemDateValue(b);
 
         if (currentSort === 'newest') {
-          if (dateB !== dateA) return dateB - dateA;
+          // Both have valid dates: highest date integer first
+          if (dateA > 0 && dateB > 0) {
+            if (dateB !== dateA) return dateB - dateA;
+            return (b._catalogIndex || 0) - (a._catalogIndex || 0);
+          }
+          // Items with real dates precede undated items
+          if (dateA > 0 && dateB === 0) return -1;
+          if (dateB > 0 && dateA === 0) return 1;
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          if (dateA !== dateB) return dateA - dateB;
+          // Both have valid dates: lowest date integer first
+          if (dateA > 0 && dateB > 0) {
+            if (dateA !== dateB) return dateA - dateB;
+            return (a._catalogIndex || 0) - (b._catalogIndex || 0);
+          }
+          // Real dates precede undated items
+          if (dateA > 0 && dateB === 0) return -1;
+          if (dateB > 0 && dateA === 0) return 1;
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         

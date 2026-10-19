@@ -30,7 +30,6 @@ TARGET_GROUPS = [
     ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
     ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー", "こぶし"]),
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
-    ("Hello! Project", "W (Double You)", "Double You", ["Double You", "W (Double You)", "ダブルユー"]),
     ("Hello! Project", "Tanpopo", "Tanpopo", ["Tanpopo", "タンポポ"]),
     ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
     ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
@@ -55,7 +54,7 @@ TARGET_GROUPS = [
     ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
     ("AKB48 Group", "STU48", "STU48", ["STU48"]),
 
-    # =LOVE & Sister Groups (Exact official symbols)
+    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", "≠ME", ["≠ME", "Not Equal ME", "Noime", "ノイミー"]),
     ("=LOVE / Sister Groups", "≒JOY", "≒JOY", ["≒JOY", "Nearly Equal Joy", "ニアジョイ"]),
@@ -274,7 +273,7 @@ def dismiss_popups(page):
     try:
         page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=800):
+        if close_btn.is_visible(timeout=500):
             close_btn.click()
             time.sleep(0.3)
     except Exception:
@@ -287,7 +286,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
     for attempt in range(1, 3):
         try:
-            # Check if search input is readily available; if not, reload the base site
+            # Ensure search input is ready and visible
             search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
             if not search_input.is_visible():
                 page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
@@ -295,10 +294,19 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
                 time.sleep(1.0)
                 search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
 
-            # Click, clear, type into search bar, and submit
+            # Focus and thoroughly clear previous inputs
             search_input.click()
+            page.keyboard.press("ControlOrMeta+A")
+            page.keyboard.press("Backspace")
             search_input.fill("")
-            search_input.type(query, delay=35)
+            time.sleep(0.2)
+
+            # Atomic fill with target query
+            search_input.fill(query)
+            time.sleep(0.3)
+
+            # Dismiss auto-suggest dropdown so Enter key properly submits search form
+            page.keyboard.press("Escape")
             time.sleep(0.2)
 
             with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
@@ -307,7 +315,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             dismiss_popups(page)
             time.sleep(1.5)
 
-            # Paginate through results using the native Next button
+            # Paginate through search results
             for p_num in range(1, max_pages + 1):
                 page.evaluate("window.scrollBy(0, 900)")
                 time.sleep(1.0)
@@ -331,7 +339,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
         except Exception as e:
             print(f"   Attempt {attempt} warning for {canonical_artist}: {e}")
-            time.sleep(2.5)
+            time.sleep(2.0)
 
     return results
 
@@ -357,7 +365,7 @@ def main():
         )
         page = context.new_page()
 
-        # Warm up initial session on CDJapan
+        # Warm up initial CDJapan session
         try:
             page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
             dismiss_popups(page)

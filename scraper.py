@@ -21,7 +21,7 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 # Official Up-Front / Zetima / Piccolo Town label prefixes for Tanpopo
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
-# Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
+# Schema: (Category, Canonical Artist, Search Query, Keyword Filter List)
 TARGET_GROUPS = [
     # Hello! Project — Active Groups
     ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
@@ -292,6 +292,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
+        page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
         if close_btn.is_visible(timeout=300):
             close_btn.click()
@@ -300,92 +301,39 @@ def dismiss_popups(page):
         pass
 
 
-def get_visible_search_input(page):
-    """Finds the active visible search bar at the top of the viewport."""
-    page.evaluate("window.scrollTo(0, 0)")
-    time.sleep(0.3)
-    selector = "input[name='q']:visible, input#search-input:visible, input.search-input:visible"
-    try:
-        el = page.locator(selector).first
-        if el.is_visible(timeout=2500):
-            return el
-    except Exception:
-        pass
-
-    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-    dismiss_popups(page)
-    page.evaluate("window.scrollTo(0, 0)")
-    time.sleep(1.0)
-    return page.locator("input[name='q']:visible, input#search-input:visible").first
-
-
-def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
+def scrape_artist_session(page, category, canonical_artist, query, keywords, max_pages):
     results = []
-    print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')")
+    print(f"\n-> Querying CDJapan for: {canonical_artist} ('{query}')")
 
-    for attempt in range(1, 3):
-        try:
-            search_input = get_visible_search_input(page)
+    encoded_query = urllib.parse.quote_plus(query)
 
-            # Focus and clear the search input cleanly
-            search_input.click(timeout=4000)
-            search_input.fill("")
-            time.sleep(0.2)
+    for p_num in range(1, max_pages + 1):
+        # Explicit clean query without residual filter parameters
+        clean_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_query}&page={p_num}"
+        success = False
 
-            # Fill target query
-            search_input.fill(query)
-            time.sleep(0.3)
-
-            # Submit search via search button or Enter
-            search_btn = page.locator("button[type='submit']:visible, .search-box button:visible, form[action*='search'] button:visible").first
-            if search_btn.is_visible(timeout=1000):
-                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                    search_btn.click()
-            else:
-                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                    search_input.press("Enter")
-
-            dismiss_popups(page)
-            time.sleep(1.2)
-            print(f"   [Navigated] {page.url}")
-
-            # Paginate through search results
-            for p_num in range(1, max_pages + 1):
+        for attempt in range(1, 3):
+            try:
+                page.goto(clean_url, wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
                 page.evaluate("window.scrollBy(0, 800)")
-                time.sleep(0.8)
+                time.sleep(random.uniform(1.0, 1.8))
 
                 html = page.content()
                 verified = extract_verified_products(html, category, canonical_artist, keywords)
                 print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
                 results.extend(verified)
+                success = True
+                break
+            except Exception as e:
+                print(f"   Attempt {attempt} note for {canonical_artist} (Page {p_num}): {e}")
+                time.sleep(2.0)
 
-                if p_num < max_pages:
-                    next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
-                    next_btn = page.locator(next_selector).first
+        if not success or (p_num == 1 and len(results) == 0):
+            # If page 1 has 0 results, no need to query pages 2 or 3
+            break
 
-                    try:
-                        if next_btn.is_visible(timeout=2500):
-                            with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                                # Pass selector as argument to avoid JavaScript syntax error with inner quotes
-                                page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
-                            dismiss_popups(page)
-                            time.sleep(random.uniform(1.8, 2.8))
-                        else:
-                            break
-                    except Exception as e_page:
-                        print(f"   Pagination note on page {p_num}: {e_page}")
-                        break
-
-            return results
-
-        except Exception as e:
-            print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-            try:
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
-                dismiss_popups(page)
-            except Exception:
-                pass
-            time.sleep(2.0)
+        time.sleep(random.uniform(1.5, 2.5))
 
     return results
 
@@ -411,19 +359,20 @@ def main():
         )
         page = context.new_page()
 
-        # Warm up initial CDJapan session
+        # Seed valid browsing session and cookies from homepage
+        print("Initializing session on CDJapan...")
         try:
             page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
             dismiss_popups(page)
-            time.sleep(1.5)
-        except Exception:
-            pass
+            time.sleep(2.0)
+        except Exception as e_init:
+            print(f"Session init notice: {e_init}")
 
         new_total = 0
 
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
-            items = execute_search_via_bar(
+            items = scrape_artist_session(
                 page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
             )
             added_for_artist = 0
@@ -439,7 +388,7 @@ def main():
                 f"   => {artist}: Found {len(items)} items"
                 f" ({added_for_artist} new to database)"
             )
-            time.sleep(random.uniform(2.5, 4.0))
+            time.sleep(random.uniform(2.0, 3.5))
 
         browser.close()
 

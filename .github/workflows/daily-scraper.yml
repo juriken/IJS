@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Exact Date Re-Scraper
         run: |
-          python rescrape_missing_556.py
+          python fix_corrupt_dates.py
 
       - name: Commit and Push Updated Catalog
         run: |

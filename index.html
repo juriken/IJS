@@ -103,6 +103,13 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    .cursor-grab {
+      cursor: grab;
+    }
+    .cursor-grabbing {
+      cursor: grabbing !important;
+      user-select: none;
+    }
   </style>
 
   <!-- Early Theme Detection -->
@@ -200,17 +207,27 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
-    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar with Desktop Arrows -->
+    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
-        <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar" id="filter-bar">
-          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Groups</button>
-          <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
-          <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
-          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Sakamichi Series">Sakamichi (46)</button>
-          <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-          <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Momoiro Clover Z">Momoclo</button>
-          <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Babymetal">Babymetal</button>
+        <div class="relative flex-1 overflow-hidden flex items-center">
+          <button onclick="scrollElement('filter-bar', 'left')" class="hidden md:flex absolute left-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100" aria-label="Scroll franchises left">
+            <i class="fa-solid fa-chevron-left text-[9px]"></i>
+          </button>
+          
+          <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar cursor-grab select-none scroll-smooth md:px-7" id="filter-bar">
+            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Groups</button>
+            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
+            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
+            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Sakamichi Series">Sakamichi (46)</button>
+            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
+            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Momoiro Clover Z">Momoclo</button>
+            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Babymetal">Babymetal</button>
+          </div>
+
+          <button onclick="scrollElement('filter-bar', 'right')" class="hidden md:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100" aria-label="Scroll franchises right">
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </button>
         </div>
 
         <!-- Desktop Sorting -->
@@ -226,17 +243,29 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Active + Past Groups & Soloists) -->
-    <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar" id="artist-subbar">
-        <!-- Sub-artist pills inserted dynamically -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Desktop Arrows & Smooth Drag/Wheel) -->
+    <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200 relative">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 relative flex items-center">
+        <!-- Desktop Left Scroll Arrow -->
+        <button onclick="scrollElement('artist-subbar', 'left')" class="hidden sm:flex absolute left-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units left" title="Scroll left">
+          <i class="fa-solid fa-chevron-left text-[10px]"></i>
+        </button>
+
+        <div class="flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar w-full sm:px-8 scroll-smooth select-none cursor-grab" id="artist-subbar">
+          <!-- Sub-artist pills inserted dynamically -->
+        </div>
+
+        <!-- Desktop Right Scroll Arrow -->
+        <button onclick="scrollElement('artist-subbar', 'right')" class="hidden sm:flex absolute right-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units right" title="Scroll right">
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </button>
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar -->
-    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar" id="format-filter-bar">
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1">
+    <!-- Tier 2 Navigation: Format Filter Bar with Desktop Drag & Scroll -->
+    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth" id="format-filter-bar">
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
           <i class="fa-solid fa-shapes"></i> Format:
         </span>
         <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm" data-fmt="All">All Formats</button>
@@ -651,6 +680,7 @@
       updateArtistSubBar();
       updateFilterButtonsUI();
       updateWishlistBadge();
+      initAllHorizontalScrollers();
       render();
     }
 
@@ -700,17 +730,17 @@
     function updateFilterButtonsUI() {
       document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm";
+          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0";
         } else {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700";
+          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0";
         }
       });
 
       document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
         if (btn.dataset.fmt === activeFormat) {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm";
+          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0";
         } else {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700";
+          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0";
         }
       });
     }
@@ -729,20 +759,89 @@
 
       wrapper.classList.remove('hidden');
       let html = `
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1">
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 shrink-0 select-none">
           <i class="fa-solid fa-users"></i> Units:
         </span>
-        <button onclick="setSubArtist('All')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition ${activeArtist === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
+        <button onclick="setSubArtist('All')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 ${activeArtist === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
       `;
 
       artists.forEach(art => {
         const isSelected = activeArtist === art;
         html += `
-          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${escapeHtml(art)}</button>
+          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${escapeHtml(art)}</button>
         `;
       });
 
       container.innerHTML = html;
+      initHorizontalScrollable(container);
+    }
+
+    // Smooth Desktop Chevron Button Scrolling
+    function scrollElement(elementId, direction) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const amount = direction === 'left' ? -280 : 280;
+      el.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+
+    // Universal Desktop Scrollable Enhancer: Mouse Wheel & Drag-To-Scroll
+    function initHorizontalScrollable(el) {
+      if (!el || el._hasScrollAttached) return;
+      el._hasScrollAttached = true;
+
+      // 1. Mouse Wheel Translation (Vertical DeltaY -> Horizontal Scroll)
+      el.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0 && el.scrollWidth > el.clientWidth) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY * 0.9;
+        }
+      }, { passive: false });
+
+      // 2. Mouse Click-and-Drag (Grab & Pan)
+      let isDown = false;
+      let startX = 0;
+      let initialScroll = 0;
+      let moved = false;
+
+      el.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return; // Only primary mouse button
+        isDown = true;
+        moved = false;
+        startX = e.pageX - el.offsetLeft;
+        initialScroll = el.scrollLeft;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        el.classList.remove('cursor-grabbing');
+      });
+
+      el.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - el.offsetLeft;
+        const walk = x - startX;
+        if (Math.abs(walk) > 4) {
+          moved = true;
+          el.classList.add('cursor-grabbing');
+          el.scrollLeft = initialScroll - walk;
+        }
+      });
+
+      // Suppress accidental button click if the mouse was actively dragged
+      el.addEventListener('click', (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+    }
+
+    function initAllHorizontalScrollers() {
+      initHorizontalScrollable(document.getElementById('filter-bar'));
+      initHorizontalScrollable(document.getElementById('artist-subbar'));
+      initHorizontalScrollable(document.getElementById('format-filter-bar'));
     }
 
     function setFormat(fmt) {

@@ -1,0 +1,43 @@
+name: Re-sort Petitmoni to Morning Musume
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  resort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Re-sort Script
+        run: |
+          python -c '
+          import json
+          with open("products.json", "r", encoding="utf-8") as f:
+              catalog = json.load(f)
+          count = 0
+          for pid, item in catalog.items():
+              if item.get("artist") == "Petitmoni":
+                  item["artist"] = "Morning Musume"
+                  item["category"] = "Hello! Project"
+                  count += 1
+          with open("products.json", "w", encoding="utf-8") as f:
+              json.dump(catalog, f, indent=2, ensure_ascii=False)
+          print(f"Successfully reassigned {count} Petitmoni releases to Morning Musume.")
+          '
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "IdolJapan Bot"
+          git config --global user.email "bot@idoljapan.store"
+          git add products.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Reassign Petitmoni releases to Morning Musume" && git push)

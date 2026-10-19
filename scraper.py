@@ -23,7 +23,7 @@ TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW"
 
 # Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
-    # Hello! Project — Active Groups (Petitmoni merged into Morning Musume keywords)
+    # Hello! Project — Active Groups
     ("Hello! Project", "Morning Musume", "Morning Musume", [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
@@ -77,7 +77,8 @@ TARGET_GROUPS = [
 ]
 
 PAGES_PER_TARGET = 3
-BATCH_SIZE = 10
+# 5 targets x 3 pages = 15 requests max. Keeps runner safe under the 18-page firewall ceiling.
+BATCH_SIZE = 5
 
 
 def load_catalog():
@@ -314,43 +315,24 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
     for attempt in range(1, 3):
         try:
-            # Check if we need to load or reset the homepage
-            if "cdjapan.co.jp" not in page.url:
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-                dismiss_popups(page)
-                time.sleep(1.0)
+            # 1. Reset to homepage
+            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(page)
+            time.sleep(1.0)
 
-            # Prepare form via direct JS: fill query and delete any term.* filter inputs
-            form_ready = page.evaluate("""(q) => {
+            # 2. Prepare form via direct JS: fill query and strip any format filters
+            page.evaluate("""(q) => {
                 const input = document.querySelector('input[name="q"], input#search-input, input.search-input');
-                if (!input) return false;
+                if (!input) return;
                 const form = input.closest('form') || document.querySelector('form[action*="searchuni"]') || document.querySelector('form');
-                if (!form) return false;
-
-                // Eliminate any hidden input that restricts format
-                const badInputs = form.querySelectorAll('input[name^="term."]');
-                badInputs.forEach(el => el.remove());
-
+                if (form) {
+                    form.querySelectorAll('input[name^="term."]').forEach(el => el.remove());
+                }
                 input.value = q;
-                return true;
             }""", query)
+            time.sleep(0.3)
 
-            if not form_ready:
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-                dismiss_popups(page)
-                time.sleep(1.0)
-                page.evaluate("""(q) => {
-                    const input = document.querySelector('input[name="q"]');
-                    if (input) {
-                        const form = input.closest('form');
-                        if (form) {
-                            form.querySelectorAll('input[name^="term."]').forEach(el => el.remove());
-                            input.value = q;
-                        }
-                    }
-                }""", query)
-
-            # Trigger navigation cleanly without element locator interception
+            # 3. Trigger search submission
             with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
                 page.evaluate("""() => {
                     const form = document.querySelector('form[action*="searchuni"]') || document.querySelector('input[name="q"]').closest('form');
@@ -364,12 +346,12 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
             dismiss_popups(page)
             time.sleep(1.5)
-            print(f"   [Navigated] {page.url}", flush=True)
+            print(f"   [Navigated] {page.url} (Title: '{page.title()}')", flush=True)
 
-            # Paginate through results
+            # 4. Paginate through results
             for p_num in range(1, max_pages + 1):
                 page.evaluate("window.scrollBy(0, 800)")
-                time.sleep(0.5)
+                time.sleep(0.6)
                 page.evaluate("window.scrollBy(0, 800)")
                 time.sleep(0.8)
 
@@ -387,7 +369,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
                             with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
                                 page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
                             dismiss_popups(page)
-                            time.sleep(random.uniform(1.8, 2.5))
+                            time.sleep(random.uniform(2.0, 3.0))
                         except Exception as e_page:
                             print(f"   Pagination note on page {p_num}: {e_page}", flush=True)
                             break
@@ -398,12 +380,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
         except Exception as e:
             print(f"   Attempt {attempt} notice for {canonical_artist}: {e}", flush=True)
-            try:
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
-                dismiss_popups(page)
-            except Exception:
-                pass
-            time.sleep(2.0)
+            time.sleep(3.0)
 
     return results
 
@@ -413,6 +390,7 @@ def main():
     initial_count = len(catalog)
     print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
+    # 5 targets per run safely limits total requests to ~15, staying below the WAF threshold
     batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
     with sync_playwright() as p:
@@ -467,7 +445,8 @@ def main():
             except Exception as e_artist:
                 print(f"   => Error scraping {artist}: {e_artist}", flush=True)
 
-            time.sleep(random.uniform(2.5, 4.0))
+            # Human-like delay between artist searches to keep IP reputation clean
+            time.sleep(random.uniform(4.5, 6.0))
 
         browser.close()
 

@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Exact Date Re-Scraper
         run: |
-          python clean_tanpopo.py
+          python scraper.py
 
       - name: Commit and Push Updated Catalog
         run: |

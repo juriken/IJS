@@ -133,7 +133,7 @@
         <input 
           id="search-input" 
           type="text" 
-          placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
+          placeholder="Search Morning Musume, Berryz Kobo, C-ute, Buono, CD..." 
           class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-stone-400 dark:text-slate-400 text-sm"></i>
@@ -226,10 +226,10 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Dynamically populated) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Active + Past Groups & Soloists) -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar" id="artist-subbar">
-        <!-- Sub-artist pills inserted by JavaScript -->
+        <!-- Sub-artist pills inserted dynamically -->
       </div>
     </div>
 
@@ -396,8 +396,33 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
+    // Comprehensive Group & Artist Mapping
     const FRANCHISE_ARTISTS = {
-      'Hello! Project': ['Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle'],
+      'Hello! Project': [
+        'Morning Musume',
+        'ANGERME',
+        'Juice=Juice',
+        'Tsubaki Factory',
+        'BEYOOOOONDS',
+        'OCHA NORMA',
+        'Rosy Chronicle',
+        'Berryz Kobo',
+        '℃-ute',
+        'Buono!',
+        'Country Girls',
+        'Kobushi Factory',
+        'Melon Kinenbi',
+        'W (Double You)',
+        'Mini Moni',
+        'Tanpopo',
+        'Petitmoni',
+        'v-u-den',
+        'Aya Matsuura',
+        'Maki Goto',
+        'Natsumi Abe',
+        'Erina Mano',
+        'Airi Suzuki'
+      ],
       'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48'],
       'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46'],
       '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
@@ -563,7 +588,6 @@
       render();
     }
 
-    // URL Query Parameter State Synchronization
     function syncUrlParams() {
       const params = new URLSearchParams();
       if (activeFilter !== 'All') params.set('cat', activeFilter);
@@ -757,31 +781,41 @@
       }
     }
 
-    // Media Format Detection Engine
+    // Media Format Detection Engine (Includes Classic Piccolo Town & Up-Front Works label codes)
     function getItemFormatCategory(item) {
       if (!item) return 'Other';
       const pid = String(item.id || '').toUpperCase();
       const title = String(item.title || '').toLowerCase();
 
+      // Books & Photobooks
       if (pid.startsWith('NEOBK-') || title.includes('photobook') || title.includes('magazine') || title.includes('book') || title.includes('写真集')) {
         return 'Book';
       }
+
+      // Collectibles & Merch
       if (pid.startsWith('NEODAI-') || pid.startsWith('NEOODY-') || pid.startsWith('NEOGDS-') || pid.includes('CL-') || pid.endsWith('-A') || title.includes('t-shirt') || title.includes('calendar') || title.includes('acrylic') || title.includes('goods') || title.includes('stand')) {
         return 'Collectable';
       }
-      if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || title.includes('blu-ray') || title.includes('bd')) {
+
+      // Blu-rays (SRXL, SRXW, EPXE, KIXM, TFXQ, UMXK, VVXL, HKXN, AVXD, VPXF, UFXW, TGXF)
+      if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || pid.startsWith('UFXW') || pid.startsWith('TGXF') || title.includes('blu-ray') || title.includes('bd')) {
         return 'Blu-ray';
       }
-      if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.includes('-D') || title.includes('dvd')) {
+
+      // DVDs (SRBL, EPBE, KIBM, TFBQ, UMBK, VVBL, HKBN, AVBD, VPBF, PKBP, UFBW, TGBS)
+      if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.startsWith('PKBP') || pid.startsWith('UFBW') || pid.startsWith('TGBS') || pid.includes('-D') || title.includes('dvd')) {
         return 'DVD';
       }
-      if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || title.includes('cd') || title.includes('single') || title.includes('album')) {
+
+      // CDs (SRCL, EPCE, HKCN, UPCH, KICS, KIZM, KIZC, AVCD, TFCC, VVCL, YRCS, UMCK, DFCL, PKCP)
+      if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || pid.startsWith('PKCP') || title.includes('cd') || title.includes('single') || title.includes('album')) {
         return 'CD';
       }
+
       return 'Other';
     }
 
-    // Search Input with 250ms Debounce
+    // Debounced Search Input
     let searchDebounceTimeout = null;
     const searchInput = document.getElementById('search-input');
     const searchClearBtn = document.getElementById('search-clear-btn');
@@ -937,22 +971,21 @@
       const wishlistIds = getWishlist();
 
       let filtered = allProducts.filter(item => {
-        // Wishlist Mode Filter
         if (isWishlistView && !wishlistIds.includes(item.id)) {
           return false;
         }
 
-        // 1. Group / Franchise Filter
+        // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
-        // 2. Artist / Unit Filter
+        // Sub-Artist Filter
         const matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         
-        // 3. Format Category Filter
+        // Media Format Filter
         const itemFmt = getItemFormatCategory(item);
         const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
 
-        // 4. Search Query Filter
+        // Search Keyword Filter
         const matchesSearch = !searchQuery || 
           (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
           (item.artist && String(item.artist).toLowerCase().includes(searchQuery)) ||

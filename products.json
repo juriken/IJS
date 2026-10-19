@@ -5,11 +5,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,913yen",
-    "release_date": "2004/03/31",
+    "price_num": 2913,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/06/EPCE-5277.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5277",
-    "updated_at": "2026-10-18",
-    "price_num": 2913
+    "updated_at": "2026-10-19"
   },
   "EPXE-5288": {
     "id": "EPXE-5288",
@@ -17,11 +17,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/04/22",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/30/EPXE-5288.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5288",
-    "updated_at": "2026-10-18",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "EPXE-5010": {
     "id": "EPXE-5010",
@@ -29,11 +29,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "5,714yen",
-    "release_date": "2011/08/17",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/EPXE-5010.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5010",
-    "updated_at": "2026-10-18",
-    "price_num": 5714
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2897330": {
     "id": "NEOBK-2897330",
@@ -41,11 +41,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2023/10/07",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/25/NEOBK-2897330.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2897330",
-    "updated_at": "2026-10-18",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3247672": {
     "id": "NEOBK-3247672",
@@ -53,11 +53,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,300yen",
-    "release_date": "2026/10/01",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/35/NEOBK-3247672.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3247672",
-    "updated_at": "2026-10-18",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3130235": {
     "id": "NEOBK-3130235",
@@ -65,11 +65,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,273yen",
-    "release_date": "2026/08/21",
+    "price_num": 1273,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/08/NEOBK-3130235.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3130235",
-    "updated_at": "2026-10-18",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "NEODAI-328736": {
     "id": "NEODAI-328736",
@@ -77,11 +77,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,630yen",
-    "release_date": "2026/10/20",
+    "price_num": 3630,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEODAI-328736.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-328736",
-    "updated_at": "2026-10-18",
-    "price_num": 3630
+    "updated_at": "2026-10-19"
   },
   "NEOODY-98": {
     "id": "NEOODY-98",
@@ -89,11 +89,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2024/12/24",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/34/NEOODY-98.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-98",
-    "updated_at": "2026-10-18",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3222345": {
     "id": "NEOBK-3222345",
@@ -101,11 +101,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,300yen",
-    "release_date": "2026/06/01",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/46/NEOBK-3222345.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3222345",
-    "updated_at": "2026-10-18",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-325366": {
     "id": "NEODAI-325366",
@@ -113,11 +113,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,999yen",
-    "release_date": "2026/08/22",
+    "price_num": 1999,
+    "release_date": "2026/01/01",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-325366.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-325366",
-    "updated_at": "2026-10-18",
-    "price_num": 1999
+    "updated_at": "2026-10-19"
   },
   "EPBE-5629": {
     "id": "EPBE-5629",
@@ -125,11 +125,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,500yen",
-    "release_date": "2024/09/25",
+    "price_num": 4500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/48/EPBE-5629.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5629",
-    "updated_at": "2026-10-18",
-    "price_num": 4500
+    "updated_at": "2026-10-19"
   },
   "EPCE-7772": {
     "id": "EPCE-7772",
@@ -137,11 +137,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,000yen",
-    "release_date": "2023/08/30",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/37/EPCE-7772.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7772",
-    "updated_at": "2026-10-18",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "EPXE-5296": {
     "id": "EPXE-5296",
@@ -149,11 +149,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "7,500yen",
-    "release_date": "2026/12/09",
+    "price_num": 7500,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/EPXE-5296.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5296",
-    "updated_at": "2026-10-18",
-    "price_num": 7500
+    "updated_at": "2026-10-19"
   },
   "EPXE-3005": {
     "id": "EPXE-3005",
@@ -161,11 +161,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/09/11",
+    "price_num": 3000,
+    "release_date": "2002/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/36/EPXE-3005.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-3005",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-5508": {
     "id": "EPCE-5508",
@@ -173,11 +173,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,333yen",
-    "release_date": "2007/10/24",
+    "price_num": 3333,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/05/EPCE-5508.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5508",
-    "updated_at": "2026-10-18",
-    "price_num": 3333
+    "updated_at": "2026-10-19"
   },
   "EPCE-5089": {
     "id": "EPCE-5089",
@@ -185,11 +185,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,913yen",
-    "release_date": "2001/01/31",
+    "price_num": 2913,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/02/EPCE-5089.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5089",
-    "updated_at": "2026-10-18",
-    "price_num": 2913
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2860625": {
     "id": "NEOBK-2860625",
@@ -197,11 +197,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,700yen",
-    "release_date": "2023/06/01",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEOBK-2860625.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2860625",
-    "updated_at": "2026-10-18",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3173071": {
     "id": "NEOBK-3173071",
@@ -209,11 +209,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,300yen",
-    "release_date": "2026/01/31",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/43/NEOBK-3173071.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3173071",
-    "updated_at": "2026-10-18",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEOODY-103": {
     "id": "NEOODY-103",
@@ -221,11 +221,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2025/07/08",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/39/NEOODY-103.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-103",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOODY-106": {
     "id": "NEOODY-106",
@@ -233,11 +233,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2025/11/07",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/42/NEOODY-106.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-106",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPXE-5276": {
     "id": "EPXE-5276",
@@ -245,11 +245,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "11,000yen",
-    "release_date": "2025/11/05",
+    "price_num": 11000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/26/EPXE-5276.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5276",
-    "updated_at": "2026-10-18",
-    "price_num": 11000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3013290": {
     "id": "NEOBK-3013290",
@@ -257,11 +257,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,909yen",
-    "release_date": "2024/09/01",
+    "price_num": 2909,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/24/NEOBK-3013290.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3013290",
-    "updated_at": "2026-10-18",
-    "price_num": 2909
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2882539": {
     "id": "NEOBK-2882539",
@@ -269,11 +269,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,700yen",
-    "release_date": "2023/08/01",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/35/NEOBK-2882539.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2882539",
-    "updated_at": "2026-10-18",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2805048": {
     "id": "NEOBK-2805048",
@@ -281,11 +281,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2023/01/07",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/10/NEOBK-2805048.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2805048",
-    "updated_at": "2026-10-18",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2787292": {
     "id": "NEOBK-2787292",
@@ -293,11 +293,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,700yen",
-    "release_date": "2022/11/01",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/36/NEOBK-2787292.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2787292",
-    "updated_at": "2026-10-18",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2496276": {
     "id": "NEOBK-2496276",
@@ -305,11 +305,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,819yen",
-    "release_date": "2020/07/01",
+    "price_num": 2819,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/46/NEOBK-2496276.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2496276",
-    "updated_at": "2026-10-18",
-    "price_num": 2819
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2454183": {
     "id": "NEOBK-2454183",
@@ -317,11 +317,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,819yen",
-    "release_date": "2020/03/01",
+    "price_num": 2819,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEOBK-2454183.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2454183",
-    "updated_at": "2026-10-18",
-    "price_num": 2819
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2398586": {
     "id": "NEOBK-2398586",
@@ -329,11 +329,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,778yen",
-    "release_date": "2019/08/01",
+    "price_num": 2778,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/44/NEOBK-2398586.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2398586",
-    "updated_at": "2026-10-18",
-    "price_num": 2778
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2233181": {
     "id": "NEOBK-2233181",
@@ -341,11 +341,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,778yen",
-    "release_date": "2018/06/01",
+    "price_num": 2778,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/02/NEOBK-2233181.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2233181",
-    "updated_at": "2026-10-18",
-    "price_num": 2778
+    "updated_at": "2026-10-19"
   },
   "EPCE-5995": {
     "id": "EPCE-5995",
@@ -353,11 +353,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/09/25",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/36/EPCE-5995.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5995",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-313729": {
     "id": "NEODAI-313729",
@@ -365,11 +365,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2026/06/24",
+    "price_num": 1800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/35/NEODAI-313729.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-313729",
-    "updated_at": "2026-10-18",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "EPCE-5167": {
     "id": "EPCE-5167",
@@ -377,11 +377,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,913yen",
-    "release_date": "2002/07/10",
+    "price_num": 2913,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/00/EPCE-5167.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5167",
-    "updated_at": "2026-10-18",
-    "price_num": 2913
+    "updated_at": "2026-10-19"
   },
   "EPXE-3012": {
     "id": "EPXE-3012",
@@ -389,11 +389,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/10/09",
+    "price_num": 3000,
+    "release_date": "2005/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/35/EPXE-3012.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-3012",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-43796": {
     "id": "NEOBK-43796",
@@ -401,11 +401,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,286yen",
-    "release_date": "2007/06/28",
+    "price_num": 2286,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/45/NEOBK-43796.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-43796",
-    "updated_at": "2026-10-18",
-    "price_num": 2286
+    "updated_at": "2026-10-19"
   },
   "EPXE-3021": {
     "id": "EPXE-3021",
@@ -413,11 +413,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/12/04",
+    "price_num": 3000,
+    "release_date": "2009/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/36/EPXE-3021.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-3021",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2675041": {
     "id": "NEOBK-2675041",
@@ -425,11 +425,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,700yen",
-    "release_date": "2021/11/01",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/NEOBK-2675041.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2675041",
-    "updated_at": "2026-10-18",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "NEODAI-168249": {
     "id": "NEODAI-168249",
@@ -437,11 +437,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,232yen",
-    "release_date": "2019/03/31",
+    "price_num": 1232,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/26/NEODAI-168249.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-168249",
-    "updated_at": "2026-10-18",
-    "price_num": 1232
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2629408": {
     "id": "NEOBK-2629408",
@@ -449,11 +449,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,000yen",
+    "price_num": 2000,
     "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/18/NEOBK-2629408.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2629408",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "EPXE-3016": {
     "id": "EPXE-3016",
@@ -461,11 +461,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/11/06",
+    "price_num": 3000,
+    "release_date": "2007/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/39/EPXE-3016.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-3016",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2720586": {
     "id": "NEOBK-2720586",
@@ -473,11 +473,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,364yen",
-    "release_date": "2022/04/01",
+    "price_num": 1364,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/45/NEOBK-2720586.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2720586",
-    "updated_at": "2026-10-18",
-    "price_num": 1364
+    "updated_at": "2026-10-19"
   },
   "EPXE-5040": {
     "id": "EPXE-5040",
@@ -485,11 +485,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2013/09/04",
+    "price_num": 5000,
+    "release_date": "2013/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/06/EPXE-5040.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5040",
-    "updated_at": "2026-10-18",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-199081": {
     "id": "NEODAI-199081",
@@ -497,11 +497,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,800yen",
-    "release_date": "2024/03/16",
+    "price_num": 2800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/25/NEODAI-199081.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-199081",
-    "updated_at": "2026-10-18",
-    "price_num": 2800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-185593": {
     "id": "NEODAI-185593",
@@ -509,11 +509,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,000yen",
-    "release_date": "2023/09/16",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEODAI-185593.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-185593",
-    "updated_at": "2026-10-18",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "EPXE-5030": {
     "id": "EPXE-5030",
@@ -521,11 +521,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "7,619yen",
-    "release_date": "2012/08/29",
+    "price_num": 7619,
+    "release_date": "2012/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/EPXE-5030.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5030",
-    "updated_at": "2026-10-18",
-    "price_num": 7619
+    "updated_at": "2026-10-19"
   },
   "EPBE-5645": {
     "id": "EPBE-5645",
@@ -533,11 +533,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "7,500yen",
-    "release_date": "2026/12/09",
+    "price_num": 7500,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/EPBE-5645.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5645",
-    "updated_at": "2026-10-18",
-    "price_num": 7500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-82536": {
     "id": "NEODAI-82536",
@@ -545,11 +545,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "862yen",
-    "release_date": "2015/10/20",
+    "price_num": 862,
+    "release_date": "2015/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/48/NEODAI-82536.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82536",
-    "updated_at": "2026-10-18",
-    "price_num": 862
+    "updated_at": "2026-10-19"
   },
   "EPXE-5025": {
     "id": "EPXE-5025",
@@ -557,11 +557,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "7,619yen",
-    "release_date": "2012/06/20",
+    "price_num": 7619,
+    "release_date": "2012/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/07/EPXE-5025.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5025",
-    "updated_at": "2026-10-18",
-    "price_num": 7619
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2157588": {
     "id": "NEOBK-2157588",
@@ -569,11 +569,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,157yen",
-    "release_date": "2018/08/23",
+    "price_num": 1157,
+    "release_date": "2018/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/NEOBK-2157588.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2157588",
-    "updated_at": "2026-10-18",
-    "price_num": 1157
+    "updated_at": "2026-10-19"
   },
   "EPXE-3008": {
     "id": "EPXE-3008",
@@ -581,11 +581,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2013/09/11",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/39/EPXE-3008.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-3008",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-228265": {
     "id": "NEODAI-228265",
@@ -593,11 +593,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,820yen",
-    "release_date": "2020/01/28",
+    "price_num": 1820,
+    "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/43/NEODAI-228265.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-228265",
-    "updated_at": "2026-10-18",
-    "price_num": 1820
+    "updated_at": "2026-10-19"
   },
   "EPXE-5013": {
     "id": "EPXE-5013",
@@ -605,11 +605,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "5,714yen",
-    "release_date": "2011/09/14",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/EPXE-5013.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5013",
-    "updated_at": "2026-10-18",
-    "price_num": 5714
+    "updated_at": "2026-10-19"
   },
   "EPXE-5018": {
     "id": "EPXE-5018",
@@ -617,11 +617,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,762yen",
-    "release_date": "2011/12/21",
+    "price_num": 4762,
+    "release_date": "2011/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/EPXE-5018.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5018",
-    "updated_at": "2026-10-18",
-    "price_num": 4762
+    "updated_at": "2026-10-19"
   },
   "NEODAI-233475": {
     "id": "NEODAI-233475",
@@ -629,11 +629,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "900yen",
-    "release_date": "2024/10/01",
+    "price_num": 900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEODAI-233475.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-233475",
-    "updated_at": "2026-10-18",
-    "price_num": 900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-199080": {
     "id": "NEODAI-199080",
@@ -641,11 +641,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,800yen",
-    "release_date": "2024/03/16",
+    "price_num": 3800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/24/NEODAI-199080.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-199080",
-    "updated_at": "2026-10-18",
-    "price_num": 3800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-260341": {
     "id": "NEODAI-260341",
@@ -653,11 +653,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2025/03/15",
+    "price_num": 5000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-260341.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-260341",
-    "updated_at": "2026-10-18",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-177967": {
     "id": "NEODAI-177967",
@@ -665,11 +665,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,500yen",
-    "release_date": "2023/09/16",
+    "price_num": 2500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/15/NEODAI-177967.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-177967",
-    "updated_at": "2026-10-18",
-    "price_num": 2500
+    "updated_at": "2026-10-19"
   },
   "DCFGDS-804310-A": {
     "id": "DCFGDS-804310-A",
@@ -677,11 +677,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,727yen",
-    "release_date": "2017/09/23",
+    "price_num": 2727,
+    "release_date": "2017/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/23/DCFGDS-804310-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-804310-A",
-    "updated_at": "2026-10-18",
-    "price_num": 2727
+    "updated_at": "2026-10-19"
   },
   "EPXE-5021": {
     "id": "EPXE-5021",
@@ -689,11 +689,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "8,571yen",
-    "release_date": "2011/12/28",
+    "price_num": 8571,
+    "release_date": "2011/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/EPXE-5021.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5021",
-    "updated_at": "2026-10-18",
-    "price_num": 8571
+    "updated_at": "2026-10-19"
   },
   "NEODAI-123810": {
     "id": "NEODAI-123810",
@@ -701,11 +701,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "710yen",
-    "release_date": "2018/06/16",
+    "price_num": 710,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/29/NEODAI-123810.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-123810",
-    "updated_at": "2026-10-18",
-    "price_num": 710
+    "updated_at": "2026-10-19"
   },
   "EPBE-5274": {
     "id": "EPBE-5274",
@@ -713,11 +713,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,762yen",
-    "release_date": "2007/12/19",
+    "price_num": 4762,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/37/EPBE-5274.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5274",
-    "updated_at": "2026-10-18",
-    "price_num": 4762
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2657616": {
     "id": "NEOBK-2657616",
@@ -725,11 +725,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2022/05/23",
+    "price_num": 1182,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/NEOBK-2657616.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2657616",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "NEODAI-232452": {
     "id": "NEODAI-232452",
@@ -737,11 +737,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,000yen",
-    "release_date": "2023/06/29",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/14/NEODAI-232452.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-232452",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-95052": {
     "id": "NEODAI-95052",
@@ -749,11 +749,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2021/01/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/19/NEODAI-95052.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-95052",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7462": {
     "id": "EPCE-7462",
@@ -761,11 +761,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "6,500yen",
-    "release_date": "2019/03/20",
+    "price_num": 6500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/23/EPCE-7462.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7462",
-    "updated_at": "2026-10-18",
-    "price_num": 6500
+    "updated_at": "2026-10-19"
   },
   "NEOEGA-26537": {
     "id": "NEOEGA-26537",
@@ -773,11 +773,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "4,630yen",
-    "release_date": "2017/06/19",
+    "price_num": 4630,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/07/NEOEGA-26537.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOEGA-26537",
-    "updated_at": "2026-10-18",
-    "price_num": 4630
+    "updated_at": "2026-10-19"
   },
   "EPCE-7769": {
     "id": "EPCE-7769",
@@ -785,11 +785,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "8,000yen",
-    "release_date": "2023/08/30",
+    "price_num": 8000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/42/EPCE-7769.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7769",
-    "updated_at": "2026-10-18",
-    "price_num": 8000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-1328337": {
     "id": "NEOBK-1328337",
@@ -797,11 +797,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "2,800yen",
-    "release_date": "2012/08/26",
+    "price_num": 2800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/47/NEOBK-1328337.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1328337",
-    "updated_at": "2026-10-18",
-    "price_num": 2800
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2450635": {
     "id": "NEOBK-2450635",
@@ -821,11 +821,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2026/09/17",
+    "price_num": 1182,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/39/NEOBK-3247916.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3247916",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "EPCE-5664": {
     "id": "EPCE-5664",
@@ -833,11 +833,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,333yen",
-    "release_date": "2009/10/07",
+    "price_num": 3333,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/17/EPCE-5664.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5664",
-    "updated_at": "2026-10-18",
-    "price_num": 3333
+    "updated_at": "2026-10-19"
   },
   "NEODAI-260334": {
     "id": "NEODAI-260334",
@@ -845,11 +845,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2025/03/15",
+    "price_num": 5000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-260334.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-260334",
-    "updated_at": "2026-10-18",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-71807": {
     "id": "NEODAI-71807",
@@ -857,11 +857,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2020/01/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/31/NEODAI-71807.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-71807",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-1526857": {
     "id": "NEOBK-1526857",
@@ -869,11 +869,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,048yen",
-    "release_date": "2013/08/11",
+    "price_num": 3048,
+    "release_date": "2013/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEOBK-1526857.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1526857",
-    "updated_at": "2026-10-18",
-    "price_num": 3048
+    "updated_at": "2026-10-19"
   },
   "HKXN-50140": {
     "id": "HKXN-50140",
@@ -4769,11 +4769,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,540yen",
-    "release_date": "2023/03/06",
+    "price_num": 1540,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-183043.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-183043",
-    "updated_at": "2026-10-18",
-    "price_num": 1540
+    "updated_at": "2026-10-19"
   },
   "NEODAI-179702": {
     "id": "NEODAI-179702",
@@ -4781,11 +4781,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "10,518yen",
-    "release_date": "2018/12/19",
+    "price_num": 10518,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/06/NEODAI-179702.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-179702",
-    "updated_at": "2026-10-18",
-    "price_num": 10518
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2814454": {
     "id": "NEOBK-2814454",
@@ -4805,11 +4805,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "2,035yen",
-    "release_date": "2023/05/31",
+    "price_num": 2035,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/28/NEODAI-176371.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-176371",
-    "updated_at": "2026-10-18",
-    "price_num": 2035
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2889936": {
     "id": "NEOBK-2889936",
@@ -4817,11 +4817,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "545yen",
-    "release_date": "2023/08/21",
+    "price_num": 545,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/06/NEOBK-2889936.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2889936",
-    "updated_at": "2026-10-18",
-    "price_num": 545
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2875980": {
     "id": "NEOBK-2875980",
@@ -4829,11 +4829,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "3,000yen",
-    "release_date": "2023/08/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/11/NEOBK-2875980.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2875980",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2778609": {
     "id": "NEOBK-2778609",
@@ -4841,11 +4841,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,350yen",
-    "release_date": "2023/05/31",
+    "price_num": 1350,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/33/NEOBK-2778609.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2778609",
-    "updated_at": "2026-10-18",
-    "price_num": 1350
+    "updated_at": "2026-10-19"
   },
   "KIXM-555": {
     "id": "KIXM-555",
@@ -4853,11 +4853,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "10,000yen",
-    "release_date": "2023/10/04",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/KIXM-555.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-555",
-    "updated_at": "2026-10-18",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "KIBM-982": {
     "id": "KIBM-982",
@@ -4865,11 +4865,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "9,000yen",
-    "release_date": "2023/10/04",
+    "price_num": 9000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/14/KIBM-982.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIBM-982",
-    "updated_at": "2026-10-18",
-    "price_num": 9000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2847894": {
     "id": "NEOBK-2847894",
@@ -4877,11 +4877,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "627yen",
-    "release_date": "2023/04/21",
+    "price_num": 627,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/NEOBK-2847894.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2847894",
-    "updated_at": "2026-10-18",
-    "price_num": 627
+    "updated_at": "2026-10-19"
   },
   "SDP-2301B": {
     "id": "SDP-2301B",
@@ -4889,11 +4889,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "6,200yen",
-    "release_date": "2023/06/02",
+    "price_num": 6200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/17/SDP-2301B.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSDP-2301B",
-    "updated_at": "2026-10-18",
-    "price_num": 6200
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2834953": {
     "id": "NEOBK-2834953",
@@ -4901,11 +4901,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,400yen",
-    "release_date": "2023/03/06",
+    "price_num": 1400,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEOBK-2834953.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2834953",
-    "updated_at": "2026-10-18",
-    "price_num": 1400
+    "updated_at": "2026-10-19"
   },
   "NEODAI-155181": {
     "id": "NEODAI-155181",
@@ -4913,11 +4913,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "230yen",
-    "release_date": "2016/02/17",
+    "price_num": 230,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/31/NEODAI-155181.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-155181",
-    "updated_at": "2026-10-18",
-    "price_num": 230
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2793730": {
     "id": "NEOBK-2793730",
@@ -4925,11 +4925,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "873yen",
-    "release_date": "2022/10/28",
+    "price_num": 873,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/NEOBK-2793730.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2793730",
-    "updated_at": "2026-10-18",
-    "price_num": 873
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2793566": {
     "id": "NEOBK-2793566",
@@ -4937,11 +4937,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,200yen",
+    "price_num": 1200,
     "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/NEOBK-2793566.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2793566",
-    "updated_at": "2026-10-18",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-144548": {
     "id": "NEODAI-144548",
@@ -4949,11 +4949,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,500yen",
-    "release_date": "2022/11/01",
+    "price_num": 1500,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/22/NEODAI-144548.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-144548",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2778303": {
     "id": "NEOBK-2778303",
@@ -4961,11 +4961,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "727yen",
-    "release_date": "2022/09/16",
+    "price_num": 727,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/15/NEOBK-2778303.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2778303",
-    "updated_at": "2026-10-18",
-    "price_num": 727
+    "updated_at": "2026-10-19"
   },
   "KIXM-507": {
     "id": "KIXM-507",
@@ -4973,11 +4973,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "7,000yen",
-    "release_date": "2022/08/10",
+    "price_num": 7000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/05/KIXM-507.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-507",
-    "updated_at": "2026-10-18",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "KIBM-922": {
     "id": "KIBM-922",
@@ -4985,11 +4985,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "6,000yen",
-    "release_date": "2016/02/17",
+    "price_num": 6000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/02/KIBM-922.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIBM-922",
-    "updated_at": "2026-10-18",
-    "price_num": 6000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2748448": {
     "id": "NEOBK-2748448",
@@ -4997,11 +4997,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "664yen",
-    "release_date": "2022/06/21",
+    "price_num": 664,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/33/NEOBK-2748448.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2748448",
-    "updated_at": "2026-10-18",
-    "price_num": 664
+    "updated_at": "2026-10-19"
   },
   "NEODAI-136471": {
     "id": "NEODAI-136471",
@@ -5009,11 +5009,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,316yen",
-    "release_date": "2015/11/25",
+    "price_num": 1316,
+    "release_date": "2015/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-136471.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-136471",
-    "updated_at": "2026-10-18",
-    "price_num": 1316
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2739505": {
     "id": "NEOBK-2739505",
@@ -5021,11 +5021,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "909yen",
-    "release_date": "2022/07/01",
+    "price_num": 909,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/18/NEOBK-2739505.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2739505",
-    "updated_at": "2026-10-18",
-    "price_num": 909
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2737617": {
     "id": "NEOBK-2737617",
@@ -5033,11 +5033,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "800yen",
-    "release_date": "2022/05/20",
+    "price_num": 800,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/NEOBK-2737617.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2737617",
-    "updated_at": "2026-10-18",
-    "price_num": 800
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2738564": {
     "id": "NEOBK-2738564",
@@ -5045,11 +5045,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "454yen",
-    "release_date": "2022/05/31",
+    "price_num": 454,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/21/NEOBK-2738564.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2738564",
-    "updated_at": "2026-10-18",
-    "price_num": 454
+    "updated_at": "2026-10-19"
   },
   "NEODAI-118935": {
     "id": "NEODAI-118935",
@@ -5057,11 +5057,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "5,873yen",
-    "release_date": "2015/11/25",
+    "price_num": 5873,
+    "release_date": "2015/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-118935.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-118935",
-    "updated_at": "2026-10-18",
-    "price_num": 5873
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2562630": {
     "id": "NEOBK-2562630",
@@ -5069,11 +5069,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2021/08/23",
+    "price_num": 1000,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/00/NEOBK-2562630.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2562630",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2633645": {
     "id": "NEOBK-2633645",
@@ -5081,11 +5081,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,500yen",
-    "release_date": "2021/07/01",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/48/NEOBK-2633645.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2633645",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2626493": {
     "id": "NEOBK-2626493",
@@ -5093,11 +5093,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2021/06/21",
+    "price_num": 1000,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/07/NEOBK-2626493.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2626493",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-101438": {
     "id": "NEODAI-101438",
@@ -5105,11 +5105,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,580yen",
-    "release_date": "2015/11/25",
+    "price_num": 1580,
+    "release_date": "2015/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/26/NEODAI-101438.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-101438",
-    "updated_at": "2026-10-18",
-    "price_num": 1580
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2595369": {
     "id": "NEOBK-2595369",
@@ -5117,11 +5117,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "600yen",
-    "release_date": "2021/03/19",
+    "price_num": 600,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/26/NEOBK-2595369.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2595369",
-    "updated_at": "2026-10-18",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2592884": {
     "id": "NEOBK-2592884",
@@ -5129,11 +5129,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "727yen",
-    "release_date": "2021/03/17",
+    "price_num": 727,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/21/NEOBK-2592884.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2592884",
-    "updated_at": "2026-10-18",
-    "price_num": 727
+    "updated_at": "2026-10-19"
   },
   "BMWR-1005": {
     "id": "BMWR-1005",
@@ -5753,16 +5753,16 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2009/03/18",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/08/EPCE-5631.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5631",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-8113": {
     "id": "EPCE-8113",
     "title": "CD Album Lonely...But Not Alone / Yes ka No ka Watashi ka [w/ Blu-ray, Limited Edition / Type SP]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "3,500yen",
     "price_num": 3500,
@@ -5789,11 +5789,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,000yen",
-    "release_date": "2013/08/28",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/32/EPCE-5983.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5983",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7073": {
     "id": "EPCE-7073",
@@ -5801,11 +5801,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2014/10/29",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/10/EPCE-7073.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7073",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-8115": {
     "id": "EPCE-8115",
@@ -5825,11 +5825,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2026/09/30",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/13/EPCE-8116.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8116",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "EPCE-5903": {
     "id": "EPCE-5903",
@@ -5837,11 +5837,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2012/09/12",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/16/EPCE-5903.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5903",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-8109": {
     "id": "EPCE-8109",
@@ -5861,11 +5861,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,000yen",
-    "release_date": "2010/11/17",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/17/EPCE-5728.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5728",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7938": {
     "id": "EPCE-7938",
@@ -5873,11 +5873,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,700yen",
-    "release_date": "2025/07/02",
+    "price_num": 3700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/43/EPCE-7938.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7938",
-    "updated_at": "2026-10-18",
-    "price_num": 3700
+    "updated_at": "2026-10-19"
   },
   "EPCE-8111": {
     "id": "EPCE-8111",
@@ -5897,11 +5897,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2010/03/17",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/28/EPCE-5699.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5699",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-5318": {
     "id": "EPCE-5318",
@@ -5933,11 +5933,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "926yen",
-    "release_date": "2017/03/25",
+    "price_num": 926,
+    "release_date": "2017/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/20/DCFGDS-801329-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-801329-A",
-    "updated_at": "2026-10-18",
-    "price_num": 926
+    "updated_at": "2026-10-19"
   },
   "HKCN-50877": {
     "id": "HKCN-50877",
@@ -7517,11 +7517,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/10/14",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/23/SRCL-13890.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13890",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13896": {
     "id": "SRCL-13896",
@@ -7529,11 +7529,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/10/14",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/29/SRCL-13896.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13896",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13892": {
     "id": "SRCL-13892",
@@ -7541,11 +7541,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/10/14",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/25/SRCL-13892.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13892",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13894": {
     "id": "SRCL-13894",
@@ -7553,11 +7553,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/10/14",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/27/SRCL-13894.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13894",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-663": {
     "id": "SRXL-663",
@@ -7565,11 +7565,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "12,273yen",
-    "release_date": "2026/09/09",
+    "price_num": 12273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/33/SRXL-663.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-663",
-    "updated_at": "2026-10-18",
-    "price_num": 12273
+    "updated_at": "2026-10-19"
   },
   "SRXL-665": {
     "id": "SRXL-665",
@@ -7577,11 +7577,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "7,091yen",
-    "release_date": "2026/09/09",
+    "price_num": 7091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/35/SRXL-665.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-665",
-    "updated_at": "2026-10-18",
-    "price_num": 7091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13750": {
     "id": "SRCL-13750",
@@ -7589,11 +7589,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,273yen",
-    "release_date": "2026/06/10",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/11/SRCL-13750.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13750",
-    "updated_at": "2026-10-18",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "SRBL-2380": {
     "id": "SRBL-2380",
@@ -7601,11 +7601,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "10,091yen",
-    "release_date": "2025/08/27",
+    "price_num": 10091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/12/SRBL-2380.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2380",
-    "updated_at": "2026-10-18",
-    "price_num": 10091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13756": {
     "id": "SRCL-13756",
@@ -7613,11 +7613,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,636yen",
-    "release_date": "2026/06/10",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/17/SRCL-13756.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13756",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "SRXL-423": {
     "id": "SRXL-423",
@@ -7625,11 +7625,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "9,091yen",
-    "release_date": "2023/08/02",
+    "price_num": 9091,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/SRXL-423.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-423",
-    "updated_at": "2026-10-18",
-    "price_num": 9091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13898": {
     "id": "SRCL-13898",
@@ -7637,11 +7637,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2026/10/14",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/31/SRCL-13898.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13898",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "SRBL-2465": {
     "id": "SRBL-2465",
@@ -7649,11 +7649,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "10,909yen",
-    "release_date": "2026/09/09",
+    "price_num": 10909,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/17/SRBL-2465.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2465",
-    "updated_at": "2026-10-18",
-    "price_num": 10909
+    "updated_at": "2026-10-19"
   },
   "SRCL-11624": {
     "id": "SRCL-11624",
@@ -7661,11 +7661,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2020/12/09",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/38/SRCL-11624.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11624",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-13626": {
     "id": "SRCL-13626",
@@ -7673,11 +7673,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/03/11",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/07/SRCL-13626.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13626",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13759": {
     "id": "SRCL-13759",
@@ -7685,11 +7685,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/06/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/20/SRCL-13759.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13759",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13362": {
     "id": "SRCL-13362",
@@ -7697,11 +7697,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/06/25",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/48/SRCL-13362.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13362",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13432": {
     "id": "SRCL-13432",
@@ -7709,11 +7709,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/10/29",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-13432.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13432",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13434": {
     "id": "SRCL-13434",
@@ -7721,11 +7721,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/10/29",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/48/SRCL-13434.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13434",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13754": {
     "id": "SRCL-13754",
@@ -7733,11 +7733,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,636yen",
-    "release_date": "2026/06/10",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/15/SRCL-13754.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13754",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "SRXL-520": {
     "id": "SRXL-520",
@@ -7745,11 +7745,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "10,000yen",
-    "release_date": "2024/08/28",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/SRXL-520.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-520",
-    "updated_at": "2026-10-18",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "SRCL-13752": {
     "id": "SRCL-13752",
@@ -7757,11 +7757,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,273yen",
-    "release_date": "2026/06/10",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/13/SRCL-13752.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13752",
-    "updated_at": "2026-10-18",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "SRCL-13628": {
     "id": "SRCL-13628",
@@ -7769,11 +7769,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2026/03/11",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/09/SRCL-13628.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13628",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "SRCL-11920": {
     "id": "SRCL-11920",
@@ -7781,11 +7781,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2021/10/13",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-11920.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11920",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3180320": {
     "id": "NEOBK-3180320",
@@ -7793,11 +7793,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,400yen",
-    "release_date": "2021/04/14",
+    "price_num": 2400,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/36/NEOBK-3180320.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3180320",
-    "updated_at": "2026-10-18",
-    "price_num": 2400
+    "updated_at": "2026-10-19"
   },
   "SRCL-13436": {
     "id": "SRCL-13436",
@@ -7805,11 +7805,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/10/29",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13436.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13436",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-500": {
     "id": "SRXL-500",
@@ -7817,11 +7817,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "16,364yen",
-    "release_date": "2024/05/15",
+    "price_num": 16364,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/SRXL-500.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-500",
-    "updated_at": "2026-10-18",
-    "price_num": 16364
+    "updated_at": "2026-10-19"
   },
   "SRBL-2440": {
     "id": "SRBL-2440",
@@ -7829,11 +7829,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "10,909yen",
-    "release_date": "2026/04/08",
+    "price_num": 10909,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/08/SRBL-2440.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2440",
-    "updated_at": "2026-10-18",
-    "price_num": 10909
+    "updated_at": "2026-10-19"
   },
   "SRCL-13620": {
     "id": "SRCL-13620",
@@ -7841,11 +7841,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/03/11",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13620.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13620",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13758": {
     "id": "SRCL-13758",
@@ -7853,11 +7853,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "982yen",
-    "release_date": "2026/06/10",
+    "price_num": 982,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/19/SRCL-13758.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13758",
-    "updated_at": "2026-10-18",
-    "price_num": 982
+    "updated_at": "2026-10-19"
   },
   "SRCL-13624": {
     "id": "SRCL-13624",
@@ -7865,11 +7865,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/03/11",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/05/SRCL-13624.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13624",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13622": {
     "id": "SRCL-13622",
@@ -7877,11 +7877,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/03/11",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13622.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13622",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13430": {
     "id": "SRCL-13430",
@@ -7889,11 +7889,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/10/29",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/44/SRCL-13430.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13430",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-12922": {
     "id": "SRCL-12922",
@@ -7901,11 +7901,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2024/06/26",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/07/SRCL-12922.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12922",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-503": {
     "id": "SRXL-503",
@@ -7913,11 +7913,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "6,545yen",
-    "release_date": "2024/05/15",
+    "price_num": 6545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/SRXL-503.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-503",
-    "updated_at": "2026-10-18",
-    "price_num": 6545
+    "updated_at": "2026-10-19"
   },
   "SRCL-12592": {
     "id": "SRCL-12592",
@@ -7925,11 +7925,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2023/06/28",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/05/SRCL-12592.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12592",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-12426": {
     "id": "SRCL-12426",
@@ -7937,11 +7937,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2023/02/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/40/SRCL-12426.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12426",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-12424": {
     "id": "SRCL-12424",
@@ -7949,11 +7949,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2023/08/10",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/38/SRCL-12424.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12424",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-12422": {
     "id": "SRCL-12422",
@@ -7961,11 +7961,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2023/08/10",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/36/SRCL-12422.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12422",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-12420": {
     "id": "SRCL-12420",
@@ -7973,11 +7973,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2023/02/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/34/SRCL-12420.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12420",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-11626": {
     "id": "SRCL-11626",
@@ -7985,11 +7985,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2020/12/09",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/40/SRCL-11626.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11626",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-11622": {
     "id": "SRCL-11622",
@@ -7997,11 +7997,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2020/12/09",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/36/SRCL-11622.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11622",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3179279": {
     "id": "NEOBK-3179279",
@@ -8009,11 +8009,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,400yen",
-    "release_date": "2021/04/14",
+    "price_num": 1400,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/09/NEOBK-3179279.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3179279",
-    "updated_at": "2026-10-18",
-    "price_num": 1400
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3257228": {
     "id": "NEOBK-3257228",
@@ -8021,11 +8021,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "364yen",
-    "release_date": "2026/11/05",
+    "price_num": 364,
+    "release_date": "2026/01/01",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEOBK-3257228.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3257228",
-    "updated_at": "2026-10-18",
-    "price_num": 364
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3257211": {
     "id": "NEOBK-3257211",
@@ -8045,11 +8045,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/02/19",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/32/SRCL-13210.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13210",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-375": {
     "id": "SRXL-375",
@@ -8057,11 +8057,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "9,091yen",
-    "release_date": "2022/10/19",
+    "price_num": 9091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/25/SRXL-375.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-375",
-    "updated_at": "2026-10-18",
-    "price_num": 9091
+    "updated_at": "2026-10-19"
   },
   "SRXL-638": {
     "id": "SRXL-638",
@@ -8069,11 +8069,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "12,273yen",
-    "release_date": "2026/04/08",
+    "price_num": 12273,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/32/SRXL-638.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-638",
-    "updated_at": "2026-10-18",
-    "price_num": 12273
+    "updated_at": "2026-10-19"
   },
   "SRXL-586": {
     "id": "SRXL-586",
@@ -8081,11 +8081,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "11,454yen",
-    "release_date": "2025/08/27",
+    "price_num": 11454,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/36/SRXL-586.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-586",
-    "updated_at": "2026-10-18",
-    "price_num": 11454
+    "updated_at": "2026-10-19"
   },
   "NEODAI-333507": {
     "id": "NEODAI-333507",
@@ -8093,11 +8093,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,500yen",
-    "release_date": "2026/10/30",
+    "price_num": 2500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-333507.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333507",
-    "updated_at": "2026-10-18",
-    "price_num": 2500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-137077": {
     "id": "NEODAI-137077",
@@ -8105,11 +8105,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,200yen",
-    "release_date": "2022/08/23",
+    "price_num": 2200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/15/NEODAI-137077.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-137077",
-    "updated_at": "2026-10-18",
-    "price_num": 2200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-332317": {
     "id": "NEODAI-332317",
@@ -8117,11 +8117,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,200yen",
-    "release_date": "2026/10/31",
+    "price_num": 1200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-332317.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-332317",
-    "updated_at": "2026-10-18",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "SRCL-11628": {
     "id": "SRCL-11628",
@@ -8129,11 +8129,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,000yen",
-    "release_date": "2020/12/09",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/42/SRCL-11628.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11628",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "SRCL-11924": {
     "id": "SRCL-11924",
@@ -8141,11 +8141,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2021/10/13",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-11924.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11924",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-13360": {
     "id": "SRCL-13360",
@@ -8153,11 +8153,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2025/06/25",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-13360.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13360",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "NEODAI-126227": {
     "id": "NEODAI-126227",
@@ -8165,11 +8165,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,900yen",
-    "release_date": "2022/04/06",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/38/NEODAI-126227.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-126227",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "SRXL-425": {
     "id": "SRXL-425",
@@ -8177,11 +8177,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "6,545yen",
-    "release_date": "2023/08/02",
+    "price_num": 6545,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/19/SRXL-425.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-425",
-    "updated_at": "2026-10-18",
-    "price_num": 6545
+    "updated_at": "2026-10-19"
   },
   "SRXW-68": {
     "id": "SRXW-68",
@@ -8189,11 +8189,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "5,500yen",
-    "release_date": "2023/08/10",
+    "price_num": 5500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/48/SRXW-68.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXW-68",
-    "updated_at": "2026-10-18",
-    "price_num": 5500
+    "updated_at": "2026-10-19"
   },
   "SRXL-385": {
     "id": "SRXL-385",
@@ -8201,11 +8201,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "9,091yen",
-    "release_date": "2022/12/07",
+    "price_num": 9091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/27/SRXL-385.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-385",
-    "updated_at": "2026-10-18",
-    "price_num": 9091
+    "updated_at": "2026-10-19"
   },
   "SRBL-2468": {
     "id": "SRBL-2468",
@@ -8213,11 +8213,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "5,727yen",
-    "release_date": "2026/09/09",
+    "price_num": 5727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/20/SRBL-2468.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2468",
-    "updated_at": "2026-10-18",
-    "price_num": 5727
+    "updated_at": "2026-10-19"
   },
   "NEODAI-109460": {
     "id": "NEODAI-109460",
@@ -8225,11 +8225,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,900yen",
-    "release_date": "2021/10/13",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/39/NEODAI-109460.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-109460",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "SRCL-13850": {
     "id": "SRCL-13850",
@@ -12461,11 +12461,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2020/12/19",
+    "price_num": 1000,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/20/NEOBK-2565186.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2565186",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2561833": {
     "id": "NEOBK-2561833",
@@ -12473,11 +12473,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "727yen",
-    "release_date": "2020/12/17",
+    "price_num": 727,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/03/NEOBK-2561833.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2561833",
-    "updated_at": "2026-10-18",
-    "price_num": 727
+    "updated_at": "2026-10-19"
   },
   "NEODAI-89233": {
     "id": "NEODAI-89233",
@@ -12485,11 +12485,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "2,251yen",
-    "release_date": "2021/01/13",
+    "price_num": 2251,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/40/NEODAI-89233.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-89233",
-    "updated_at": "2026-10-18",
-    "price_num": 2251
+    "updated_at": "2026-10-19"
   },
   "NEODAI-88046": {
     "id": "NEODAI-88046",
@@ -12497,11 +12497,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2020/01/17",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/29/NEODAI-88046.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-88046",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-88047": {
     "id": "NEODAI-88047",
@@ -12509,11 +12509,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2020/01/17",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEODAI-88047.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-88047",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2553926": {
     "id": "NEOBK-2553926",
@@ -12521,11 +12521,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2020/11/19",
+    "price_num": 1000,
+    "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/08/NEOBK-2553926.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2553926",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-86318": {
     "id": "NEODAI-86318",
@@ -12533,11 +12533,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,700yen",
-    "release_date": "2020/08/21",
+    "price_num": 1700,
+    "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/21/NEODAI-86318.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-86318",
-    "updated_at": "2026-10-18",
-    "price_num": 1700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2532646": {
     "id": "NEOBK-2532646",
@@ -12545,11 +12545,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,173yen",
-    "release_date": "2020/09/19",
+    "price_num": 1173,
+    "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/NEOBK-2532646.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2532646",
-    "updated_at": "2026-10-18",
-    "price_num": 1173
+    "updated_at": "2026-10-19"
   },
   "NEOBK-1374053": {
     "id": "NEOBK-1374053",
@@ -12557,11 +12557,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "750yen",
-    "release_date": "2012/10/28",
+    "price_num": 750,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/34/NEOBK-1374053.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1374053",
-    "updated_at": "2026-10-18",
-    "price_num": 750
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2521861": {
     "id": "NEOBK-2521861",
@@ -12569,11 +12569,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2020/08/21",
+    "price_num": 1000,
+    "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/41/NEOBK-2521861.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2521861",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2391958": {
     "id": "NEOBK-2391958",
@@ -12581,11 +12581,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
+    "price_num": 1000,
     "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/00/NEOBK-2391958.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2391958",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2523979": {
     "id": "NEOBK-2523979",
@@ -12593,11 +12593,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "909yen",
+    "price_num": 909,
     "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEOBK-2523979.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2523979",
-    "updated_at": "2026-10-18",
-    "price_num": 909
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2495685": {
     "id": "NEOBK-2495685",
@@ -12605,11 +12605,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "345yen",
+    "price_num": 345,
     "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/06/NEOBK-2495685.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2495685",
-    "updated_at": "2026-10-18",
-    "price_num": 345
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2476127": {
     "id": "NEOBK-2476127",
@@ -12617,11 +12617,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,000yen",
-    "release_date": "2016/02/17",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEOBK-2476127.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2476127",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-67460": {
     "id": "NEODAI-67460",
@@ -12629,11 +12629,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "825yen",
-    "release_date": "2015/04/25",
+    "price_num": 825,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/NEODAI-67460.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-67460",
-    "updated_at": "2026-10-18",
-    "price_num": 825
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2448582": {
     "id": "NEOBK-2448582",
@@ -12641,11 +12641,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "818yen",
+    "price_num": 818,
     "release_date": "2017/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEOBK-2448582.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2448582",
-    "updated_at": "2026-10-18",
-    "price_num": 818
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2442856": {
     "id": "NEOBK-2442856",
@@ -12653,11 +12653,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,400yen",
-    "release_date": "2019/12/01",
+    "price_num": 1400,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEOBK-2442856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2442856",
-    "updated_at": "2026-10-18",
-    "price_num": 1400
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2434090": {
     "id": "NEOBK-2434090",
@@ -12665,11 +12665,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "880yen",
+    "price_num": 880,
     "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/22/NEOBK-2434090.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2434090",
-    "updated_at": "2026-10-18",
-    "price_num": 880
+    "updated_at": "2026-10-19"
   },
   "KIZX-397": {
     "id": "KIZX-397",
@@ -12677,11 +12677,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "5,800yen",
-    "release_date": "2019/12/25",
+    "price_num": 5800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/10/KIZX-397.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZX-397",
-    "updated_at": "2026-10-18",
-    "price_num": 5800
+    "updated_at": "2026-10-19"
   },
   "KIZB-290": {
     "id": "KIZB-290",
@@ -12689,11 +12689,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "4,800yen",
-    "release_date": "2019/12/25",
+    "price_num": 4800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/39/KIZB-290.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZB-290",
-    "updated_at": "2026-10-18",
-    "price_num": 4800
+    "updated_at": "2026-10-19"
   },
   "KIJS-90034": {
     "id": "KIJS-90034",
@@ -12701,11 +12701,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "3,909yen",
-    "release_date": "2019/12/25",
+    "price_num": 3909,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/29/KIJS-90034.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIJS-90034",
-    "updated_at": "2026-10-18",
-    "price_num": 3909
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2389024": {
     "id": "NEOBK-2389024",
@@ -12713,11 +12713,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,200yen",
-    "release_date": "2016/02/17",
+    "price_num": 1200,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEOBK-2389024.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2389024",
-    "updated_at": "2026-10-18",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2383017": {
     "id": "NEOBK-2383017",
@@ -12725,11 +12725,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "1,482yen",
+    "price_num": 1482,
     "release_date": "2018/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEOBK-2383017.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2383017",
-    "updated_at": "2026-10-18",
-    "price_num": 1482
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2371210": {
     "id": "NEOBK-2371210",
@@ -12737,11 +12737,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "762yen",
-    "release_date": "2019/06/20",
+    "price_num": 762,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/22/NEOBK-2371210.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2371210",
-    "updated_at": "2026-10-18",
-    "price_num": 762
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2266789": {
     "id": "NEOBK-2266789",
@@ -12749,11 +12749,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "722yen",
+    "price_num": 722,
     "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/NEOBK-2266789.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2266789",
-    "updated_at": "2026-10-18",
-    "price_num": 722
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2277311": {
     "id": "NEOBK-2277311",
@@ -12761,11 +12761,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "370yen",
+    "price_num": 370,
     "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/43/NEOBK-2277311.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2277311",
-    "updated_at": "2026-10-18",
-    "price_num": 370
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2328208": {
     "id": "NEOBK-2328208",
@@ -12773,11 +12773,11 @@
     "artist": "Momoiro Clover Z",
     "category": "Momoiro Clover Z",
     "price": "722yen",
-    "release_date": "2019/02/28",
+    "price_num": 722,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/04/NEOBK-2328208.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2328208",
-    "updated_at": "2026-10-18",
-    "price_num": 722
+    "updated_at": "2026-10-19"
   },
   "BMWR-1008": {
     "id": "BMWR-1008",
@@ -21509,11 +21509,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "7,000yen",
-    "release_date": "2026/11/15",
+    "price_num": 7000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-333553.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333553",
-    "updated_at": "2026-10-18",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-332312": {
     "id": "NEODAI-332312",
@@ -21521,11 +21521,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "1,500yen",
-    "release_date": "2026/10/31",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/34/NEODAI-332312.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-332312",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-332315": {
     "id": "NEODAI-332315",
@@ -21533,11 +21533,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "5,500yen",
-    "release_date": "2026/10/31",
+    "price_num": 5500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/37/NEODAI-332315.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-332315",
-    "updated_at": "2026-10-18",
-    "price_num": 5500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-323399": {
     "id": "NEODAI-323399",
@@ -21545,11 +21545,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,500yen",
-    "release_date": "2021/04/14",
+    "price_num": 2500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEODAI-323399.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-323399",
-    "updated_at": "2026-10-18",
-    "price_num": 2500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-324021": {
     "id": "NEODAI-324021",
@@ -21557,11 +21557,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "4,300yen",
-    "release_date": "2026/08/08",
+    "price_num": 4300,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/23/NEODAI-324021.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-324021",
-    "updated_at": "2026-10-18",
-    "price_num": 4300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-323397": {
     "id": "NEODAI-323397",
@@ -21581,11 +21581,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,500yen",
-    "release_date": "2026/07/31",
+    "price_num": 2500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/27/NEODAI-333962.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333962",
-    "updated_at": "2026-10-18",
-    "price_num": 2500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-333946": {
     "id": "NEODAI-333946",
@@ -21641,11 +21641,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "9,199yen",
-    "release_date": "2026/06/10",
+    "price_num": 9199,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-314787.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-314787",
-    "updated_at": "2026-10-18",
-    "price_num": 9199
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3215516": {
     "id": "NEOBK-3215516",
@@ -21845,11 +21845,11 @@
     "artist": "Sakurazaka46",
     "category": "Sakamichi Series",
     "price": "2,640yen",
-    "release_date": "2026/03/17",
+    "price_num": 2640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEODAI-289991.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-289991",
-    "updated_at": "2026-10-18",
-    "price_num": 2640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-290163": {
     "id": "NEODAI-290163",
@@ -28941,6 +28941,1734 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/47/UPCH-80600.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80600",
+    "updated_at": "2026-10-19"
+  },
+  "829963-A": {
+    "id": "829963-A",
+    "title": "Collectible Aloha Shirt (XL) [Morning Musume.'20 Concert Tour Haru -MOMM-]",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/02/829963-A.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F829963-A",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5198": {
+    "id": "EPCE-5198",
+    "title": "Single CD Morning Musume no Hyokkori Hyoutanjima",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/07/EPCE-5198.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5198",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-179164": {
+    "id": "NEODAI-179164",
+    "title": "BOOK Used [Secondhand w/ Supplement (Poster)] UP to Boy September 2021 Issue [Cover & Poster] Morning Musume.: Makino Maria",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
+    "price": "648yen",
+    "price_num": 648,
+    "release_date": "2021/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/45/NEODAI-179164.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-179164",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-83413": {
+    "id": "NEODAI-83413",
+    "title": "BOOK Used [Secondhand] Abe Natsumi Photo Book (Photobook) Natsumi Abe",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "598yen",
+    "price_num": 598,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/45/NEODAI-83413.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83413",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-26911": {
+    "id": "NEODAI-26911",
+    "title": "BOOK Used Second hand FLASH December 15, 2015 Issue [Cover] Abe Natsumi w/ DVD (Region 2)",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "204yen",
+    "price_num": 204,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-26911.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-26911",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1898157": {
+    "id": "NEOBK-1898157",
+    "title": "BOOK FLASH December 15, 2015 Issue [Cover] Abe Natsumi w/ DVD (Region 2)",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "417yen",
+    "price_num": 417,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/21/NEOBK-1898157.jpg?v=3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1898157",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1879886": {
+    "id": "NEOBK-1879886",
+    "title": "BOOK FLASH November 24, 2015 Issue [Cover] Abe Natsumi",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "398yen",
+    "price_num": 398,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/30/NEOBK-1879886.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1879886",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1881926": {
+    "id": "NEOBK-1881926",
+    "title": "BOOK Abe Natsumi Photo Book \"Fin no Hito\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/23/NEOBK-1881926.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1881926",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFXW-1009": {
+    "id": "DAKUFXW-1009",
+    "title": "Blu-ray Abe Natsumi Birthday Special Live 2015 at LIQUIDROOM",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "6,296yen",
+    "price_num": 6296,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/15/DAKUFXW-1009.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1009",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1401": {
+    "id": "DAKUFBW-1401",
+    "title": "DVD Abe Natsumi Summer Live 2015 - Smile... - Birthday Special",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,537yen",
+    "price_num": 4537,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/36/DAKUFBW-1401.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1401",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1208": {
+    "id": "DAKUFBW-1208",
+    "title": "DVD Abe Natsumi Birthday Live 2012 - thanks all - 2012.8.10",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,571yen",
+    "price_num": 4571,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/35/DAKUFBW-1208.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1208",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1266151": {
+    "id": "NEOBK-1266151",
+    "title": "BOOK Abe Natsumi Photobook \"Subway\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/04/NEOBK-1266151.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1266151",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1060": {
+    "id": "DAKUFBW-1060",
+    "title": "DVD Abe Natsumi Tour 2010 - Autumn voice -",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,572yen",
+    "price_num": 4572,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/31/DAKUFBW-1060.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1060",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50118": {
+    "id": "HKBN-50118",
+    "title": "DVD Natsumi Abe Summer Live Tour 2009 - Yappari Sneaker ga Suki! - Tour Final \"Aratana Chikai\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,762yen",
+    "price_num": 4762,
+    "release_date": "2009/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/02/HKBN-50118.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50118",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50107": {
+    "id": "HKBN-50107",
+    "title": "DVD ABE NATSUMI CONCERT TOUR 2008 AKI-ANGELIC-",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/48/HKBN-50107.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50107",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50070": {
+    "id": "HKCN-50070",
+    "title": "Album CD Natsumi Abe -Best Selection - 15 Shoku no Nigaoe Tachi [CD+DVD]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/HKCN-50070.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50070",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50106": {
+    "id": "HKBN-50106",
+    "title": "DVD Natsumi Abe Birthday Special Concert",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/47/HKBN-50106.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50106",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-503747": {
+    "id": "NEOBK-503747",
+    "title": "BOOK End of Summer Abe Natsumi Photobook (Abe Natsumi Photobook)",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,800yen",
+    "price_num": 2800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEOBK-503747.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-503747",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50096": {
+    "id": "HKBN-50096",
+    "title": "DVD Natsumi Abe Special Live 2007 Aki - Acoustic Nacchi",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2007/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/12/HKBN-50096.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50096",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-450670": {
+    "id": "NEOBK-450670",
+    "title": "BOOK Cam O'n Abe Natsumi Photobook",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,800yen",
+    "price_num": 2800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/23/NEOBK-450670.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-450670",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50087": {
+    "id": "HKBN-50087",
+    "title": "DVD ABE NATSUMI CONCERT TOUR 2007 HARU 25-VANSANK-",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2007/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/11/HKBN-50087.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50087",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-409234": {
+    "id": "NEOBK-409234",
+    "title": "BOOK SCENE Abe Natsumi Photobook",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,667yen",
+    "price_num": 2667,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/44/NEOBK-409234.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-409234",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50079": {
+    "id": "HKBN-50079",
+    "title": "DVD Alo-Hello! 2 Natsumi Abe DVD",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/11/HKBN-50079.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50079",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50075": {
+    "id": "HKBN-50075",
+    "title": "DVD Natsumi Abe Single V Clips 1",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/07/HKBN-50075.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50075",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50070": {
+    "id": "HKBN-50070",
+    "title": "DVD Natsumi Abe Concert Tour 2006 Haru Otomechikku Bank",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2006/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/02/HKBN-50070.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50070",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-367915": {
+    "id": "NEOBK-367915",
+    "title": "BOOK Natsumi Abe Photobook \"ecru\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,800yen",
+    "price_num": 2800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/19/NEOBK-367915.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-367915",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-358154": {
+    "id": "NEOBK-358154",
+    "title": "BOOK Abe Natsumi & Yoshi Isamu Tsutae in Hello! Project 2006 Winter",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,300yen",
+    "price_num": 2300,
+    "release_date": "2006/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/35/NEOBK-358154.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-358154",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50063": {
+    "id": "HKBN-50063",
+    "title": "DVD Natsumi Abe Concert Tour 2005 Autumn - 24 carat",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2005/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/03/HKBN-50063.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50063",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-336490": {
+    "id": "NEOBK-336490",
+    "title": "BOOK Natsumi Abe + Berryz Kobo Hello! Project 2005 Natsu no Uta Kayo Show (Hello!Project2005SUM)",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,200yen",
+    "price_num": 2200,
+    "release_date": "2005/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/03/NEOBK-336490.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-336490",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50058": {
+    "id": "HKBN-50058",
+    "title": "DVD Alo-Hello! Natsumi Abe",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/06/HKBN-50058.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50058",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-318118": {
+    "id": "NEOBK-318118",
+    "title": "BOOK Fu U Abe Natsumi Photobook",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,500yen",
+    "price_num": 2500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEOBK-318118.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-318118",
+    "updated_at": "2026-10-19"
+  },
+  "ZMHH-1817": {
+    "id": "ZMHH-1817",
+    "title": "DVD Natsumi Abe PLATINUM MOMENT BOX [DVD+Collectible Item]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/04/ZMHH-1817.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FZMHH-1817",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-288890": {
+    "id": "NEOBK-288890",
+    "title": "BOOK Natsumi Abe in Hello!Project 2004 summer",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2004/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEOBK-288890.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-288890",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50047": {
+    "id": "HKBN-50047",
+    "title": "DVD Natsumi Abe First Concert Tour 2004 - Anata Iro",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2004/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/03/HKBN-50047.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50047",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-251071": {
+    "id": "NEOBK-251071",
+    "title": "BOOK Abe Natsumi 22 Sai No Na Chi Abe Natsumi Mho Musume. Sotsugyo! Imadakara Ieru Honne Episode Mansai! Sugao No Na Chi Hitorijime!",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,200yen",
+    "price_num": 1200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEOBK-251071.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-251071",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-195937": {
+    "id": "NEOBK-195937",
+    "title": "BOOK Abe Natsumi Photo Book (Photobook) Natsumi Abe",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,300yen",
+    "price_num": 2300,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/42/NEOBK-195937.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-195937",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFCW-1101": {
+    "id": "DAKUFCW-1101",
+    "title": "Album CD Dreams",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,704yen",
+    "price_num": 3704,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/39/DAKUFCW-1101.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1101",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50016": {
+    "id": "HKCN-50016",
+    "title": "Album CD Hitoribocchi",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,913yen",
+    "price_num": 2913,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/26/HKCN-50016.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50016",
+    "updated_at": "2026-10-19"
+  },
+  "COJO-9288": {
+    "id": "COJO-9288",
+    "title": "Vinyl (LP) Hikari he -Classical & Crossover- [Limited Release]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,500yen",
+    "price_num": 4500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/22/COJO-9288.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FCOJO-9288",
+    "updated_at": "2026-10-19"
+  },
+  "COZQ-974": {
+    "id": "COZQ-974",
+    "title": "Album CD Hikari e -classical & crossover- [w/ DVD, Limited Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,500yen",
+    "price_num": 3500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/10/COZQ-974.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FCOZQ-974",
+    "updated_at": "2026-10-19"
+  },
+  "COCQ-85097": {
+    "id": "COCQ-85097",
+    "title": "Album CD Hikari e -classical & crossover- [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,800yen",
+    "price_num": 2800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/12/COCQ-85097.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FCOCQ-85097",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFCW-1079": {
+    "id": "DAKUFCW-1079",
+    "title": "Album CD Smile...",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,704yen",
+    "price_num": 3704,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/08/DAKUFCW-1079.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1079",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1291": {
+    "id": "DAKUFBW-1291",
+    "title": "DVD Birthday Live2013 + The Beating +",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,571yen",
+    "price_num": 4571,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/46/DAKUFBW-1291.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1291",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50144": {
+    "id": "HKBN-50144",
+    "title": "DVD Theatrical Play \"Abe Naikaku\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/04/HKBN-50144.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50144",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50137": {
+    "id": "HKBN-50137",
+    "title": "DVD Natsumi",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/05/HKBN-50137.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50137",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50132": {
+    "id": "HKCN-50132",
+    "title": "Single CD Ameagari no Niji no Yoni [w/ DVD, Limited Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/30/HKCN-50132.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50132",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50134": {
+    "id": "HKCN-50134",
+    "title": "Single CD Ameagari no Niji no Yoni [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/HKCN-50134.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50134",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50105": {
+    "id": "HKBN-50105",
+    "title": "DVD Single V: Screen",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/46/HKBN-50105.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50105",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50067": {
+    "id": "HKCN-50067",
+    "title": "Single CD Screen",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/37/HKCN-50067.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50067",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50103": {
+    "id": "HKBN-50103",
+    "title": "DVD Nac\"chu\"ral",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/44/HKBN-50103.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50103",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50095": {
+    "id": "HKBN-50095",
+    "title": "DVD Single Video \"16sai no Koinante\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/11/HKBN-50095.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50095",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50061": {
+    "id": "HKCN-50061",
+    "title": "Single CD Jurokusai no Koinante [Limited Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,200yen",
+    "price_num": 1200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/31/HKCN-50061.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50061",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50062": {
+    "id": "HKCN-50062",
+    "title": "Single CD Jurokusai no Koinante [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/HKCN-50062.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50062",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50094": {
+    "id": "HKBN-50094",
+    "title": "DVD Gekidan Senior Graffiti Showa Kayo Theater - Far Away",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/10/HKBN-50094.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50094",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50091": {
+    "id": "HKBN-50091",
+    "title": "DVD Single Video \"Iki wo Kasanemasho\"",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/07/HKBN-50091.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50091",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50060": {
+    "id": "HKCN-50060",
+    "title": "Single CD Iki wo Kasanemasho",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/30/HKCN-50060.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50060",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50086": {
+    "id": "HKBN-50086",
+    "title": "DVD Single V: Far away",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/10/HKBN-50086.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50086",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50050": {
+    "id": "HKCN-50050",
+    "title": "Single CD Far away [w/ DVD, Limited Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/28/HKCN-50050.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50050",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50052": {
+    "id": "HKCN-50052",
+    "title": "Single CD Far away [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/30/HKCN-50052.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50052",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50043": {
+    "id": "HKCN-50043",
+    "title": "Album CD 25 - Vingt Cinq [w/ DVD, Limited Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,667yen",
+    "price_num": 2667,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/29/HKCN-50043.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50043",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50045": {
+    "id": "HKCN-50045",
+    "title": "Album CD 25 - Vingt Cinq [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/31/HKCN-50045.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50045",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50077": {
+    "id": "HKBN-50077",
+    "title": "DVD Musical Hakujaden White Lovers",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "4,762yen",
+    "price_num": 4762,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/09/HKBN-50077.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50077",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50076": {
+    "id": "HKBN-50076",
+    "title": "DVD Acoustic Live at Shibuya O-EAST",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/08/HKBN-50076.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50076",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50038": {
+    "id": "HKCN-50038",
+    "title": "Single CD Amasugita Kajitsu",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/HKCN-50038.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50038",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50069": {
+    "id": "HKBN-50069",
+    "title": "DVD Single V: Stress",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/09/HKBN-50069.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50069",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50035": {
+    "id": "HKCN-50035",
+    "title": "Single CD Stress",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/29/HKCN-50035.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50035",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50067": {
+    "id": "HKBN-50067",
+    "title": "DVD Hello Pro on Stage! 2006 Nihon Seinenkan Koen Yujo to Maho no Trump - Star Gakuyaura Monogatari",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2006/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/07/HKBN-50067.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50067",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50062": {
+    "id": "HKBN-50062",
+    "title": "DVD Single V: Sweet Holic",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/02/HKBN-50062.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50062",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50032": {
+    "id": "HKCN-50032",
+    "title": "Single CD Sweet Holic",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/26/HKCN-50032.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50032",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50034": {
+    "id": "HKCN-50034",
+    "title": "Album CD 2nd - Shimiwataru Omoi",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "2,913yen",
+    "price_num": 2913,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/28/HKCN-50034.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50034",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50054": {
+    "id": "HKBN-50054",
+    "title": "DVD Single V: Koi no Hana",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/02/HKBN-50054.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50054",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50028": {
+    "id": "HKCN-50028",
+    "title": "Single CD Koi no Hana",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/30/HKCN-50028.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50028",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50051": {
+    "id": "HKBN-50051",
+    "title": "DVD Yume naraba",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/48/HKBN-50051.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50051",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50025": {
+    "id": "HKCN-50025",
+    "title": "Single CD Yume naraba [Limited Release]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,200yen",
+    "price_num": 1200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/27/HKCN-50025.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50025",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50026": {
+    "id": "HKCN-50026",
+    "title": "Single CD Yume naraba [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/28/HKCN-50026.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50026",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50043": {
+    "id": "HKBN-50043",
+    "title": "DVD Single V: Koi no Telephone Goal",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/48/HKBN-50043.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50043",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50019": {
+    "id": "HKCN-50019",
+    "title": "Single CD Koi no Telephone Goal [Limited Release]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,200yen",
+    "price_num": 1200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/29/HKCN-50019.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50019",
+    "updated_at": "2026-10-19"
+  },
+  "HKCN-50020": {
+    "id": "HKCN-50020",
+    "title": "Single CD Koi no Telephone Goal [Regular Edition]",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/22/HKCN-50020.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50020",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5117": {
+    "id": "EPBE-5117",
+    "title": "DVD Morning Musume Sotsugyo Memorial",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/24/EPBE-5117.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5117",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50042": {
+    "id": "HKBN-50042",
+    "title": "DVD Single V: Datte Ikitekanakucha",
+    "artist": "Natsumi Abe",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/47/HKBN-50042.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50042",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13216": {
+    "id": "SRCL-13216",
+    "title": "Single CD UDAGAWA GENERATION [CD+Blu-ray / Type D]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/38/SRCL-13216.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13216",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-11926": {
+    "id": "SRCL-11926",
+    "title": "Single CD Nagaredama [CD+Blu-ray / Type D]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-11926.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11926",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12670": {
+    "id": "SRCL-12670",
+    "title": "Single CD Shonin Yokkyu [CD+Blu-ray / Type A]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-12670.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12670",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13030": {
+    "id": "SRCL-13030",
+    "title": "Single CD I Want Tomorrow to Come [CD+Blu-ray / Type A]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/28/SRCL-13030.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13030",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-185463": {
+    "id": "NEODAI-185463",
+    "title": "Collectible Acrylic Photo Plate (Morita Hikaru) [@Loppi/HMV Limited]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "2,750yen",
+    "price_num": 2750,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-185463.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-185463",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13366": {
+    "id": "SRCL-13366",
+    "title": "Single CD Make or Break [CD+Blu-ray / Type D]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13366.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13366",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13036": {
+    "id": "SRCL-13036",
+    "title": "Single CD I Want Tomorrow to Come [CD+Blu-ray / Type D]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/34/SRCL-13036.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13036",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13364": {
+    "id": "SRCL-13364",
+    "title": "Single CD Make or Break [CD+Blu-ray / Type C]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13364.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13364",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13295": {
+    "id": "SRCL-13295",
+    "title": "Album CD Addiction [Regular Edition]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "2,727yen",
+    "price_num": 2727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/04/SRCL-13295.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13295",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-11752": {
+    "id": "SRCL-11752",
+    "title": "Single CD BAN [CD+Blu-ray / Type C]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-11752.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11752",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12136": {
+    "id": "SRCL-12136",
+    "title": "Single CD Samidare yo [CD+Blu-ray / Type D]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/30/SRCL-12136.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12136",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12924": {
+    "id": "SRCL-12924",
+    "title": "Single CD Jigo Jitoku [CD+Blu-ray / Type C]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/09/SRCL-12924.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12924",
+    "updated_at": "2026-10-19"
+  },
+  "SRXW-67": {
+    "id": "SRXW-67",
+    "title": "Blu-ray Soko Magattara, Sakurazaka? Karin Fujiyoshi Hen",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "5,500yen",
+    "price_num": 5500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/09/47/SRXW-67.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXW-67",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-229654": {
+    "id": "NEODAI-229654",
+    "title": "Collectible Sakurazaka46 Random Photo [2024 Christmas Santa Costume] (5 Photos Randomly Selected from 108 Kinds)",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "2024/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/15/NEODAI-229654.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229654",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-198031": {
+    "id": "NEODAI-198031",
+    "title": "Collectible Sakurazaka46 Random Photo [\"3rd YEAR ANNIVERSARY LIVE\" Live Costume] (Autographed Photo Could Be Include by Lottery) (5 Photos Randomly Selected from 104 Kinds)",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/07/NEODAI-198031.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-198031",
+    "updated_at": "2026-10-19"
+  },
+  "SRBL-2290": {
+    "id": "SRBL-2290",
+    "title": "DVD Yui Kobayashi Graduation Concert [Limited Edition]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "8,182yen",
+    "price_num": 8182,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/10/SRBL-2290.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2290",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12428": {
+    "id": "SRCL-12428",
+    "title": "Single CD Sakurazuki",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/42/SRCL-12428.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12428",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-229133": {
+    "id": "NEODAI-229133",
+    "title": "APPAREL Sakurazaka46 3rd Year Anniversary LIVE Merch Big Hoodie / Black (Size:L)",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "8,500yen",
+    "price_num": 8500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-229133.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229133",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13293": {
+    "id": "SRCL-13293",
+    "title": "Album CD Addiction [CD + Blu-ray / Limited Edition / Type B]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "6,545yen",
+    "price_num": 6545,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/02/SRCL-13293.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13293",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-136536": {
+    "id": "NEODAI-136536",
+    "title": "Album CD As you know? [Regular Edition] [w/ Mini Canvas Board & A4 Clear Folder, Loppi/HMV Limited Set]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEODAI-136536.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-136536",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-279846": {
+    "id": "NEODAI-279846",
+    "title": "Collectible Sakurazaka46 Oshi-Mem Penlight Morita Hikaru",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/05/NEODAI-279846.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-279846",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-254573": {
+    "id": "NEODAI-254573",
+    "title": "Single CD Make or Break [Set of 5 Editions] w/ @Loppi/HMV Bonus: Photo (Complete Set of 14 Kinds)",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "9,199yen",
+    "price_num": 9199,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-254573.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254573",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13290": {
+    "id": "SRCL-13290",
+    "title": "Album CD Addiction [2CD + Blu-ray / Limited Edition / Type A]",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
+    "price": "8,727yen",
+    "price_num": 8727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/48/SRCL-13290.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13290",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5604": {
+    "id": "EPCE-5604",
+    "title": "Album CD Hello! Project Special Unit Mega Best [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/05/EPCE-5604.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5604",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5602": {
+    "id": "EPCE-5602",
+    "title": "Album CD Hello! Project Shuffle Unit Mega Best [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/03/EPCE-5602.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5602",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5645": {
+    "id": "EPCE-5645",
+    "title": "Album CD Chample 1- Happy Marriage Song Cover Shu -",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/14/EPCE-5645.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5645",
+    "updated_at": "2026-10-19"
+  },
+  "HKXN-50100": {
+    "id": "HKXN-50100",
+    "title": "Blu-ray Hello! Project 2021 Winter - Step By Step -",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "9,000yen",
+    "price_num": 9000,
+    "release_date": "2021/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/15/HKXN-50100.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50100",
+    "updated_at": "2026-10-19"
+  },
+  "HKXN-50068": {
+    "id": "HKXN-50068",
+    "title": "Blu-ray Hello! Project 20th Anniversary!! Hello! Project 2018 Summer - All For One - , - One For All - [2Blu-ray+2DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "12,000yen",
+    "price_num": 12000,
+    "release_date": "2018/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/31/HKXN-50068.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50068",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50227": {
+    "id": "HKBN-50227",
+    "title": "DVD Hello! Project 20th Anniversary!! Hello! Project 2018 Summer - All For One - , - One For All -",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "10,000yen",
+    "price_num": 10000,
+    "release_date": "2018/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/07/HKBN-50227.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50227",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5135": {
+    "id": "EPXE-5135",
+    "title": "Blu-ray Hello! Project 20th Anniversary!! Hello! Project Hina Fes 2018 [Hello! Project 20th Anniversary!! Premium]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "8,000yen",
+    "price_num": 8000,
+    "release_date": "2018/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/13/EPXE-5135.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5135",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5574": {
+    "id": "EPBE-5574",
+    "title": "DVD Hello! Project 20th Anniversary!! Hello! Project Hina Fes 2018 [Hello! Project 20th Anniversary!! Premium]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2018/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/00/EPBE-5574.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5574",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5511": {
+    "id": "EPBE-5511",
+    "title": "DVD Hello ! Project Hina Fes 2015 -mankai ! The Girls' Festival- <angereme&juice=Juice Premium>",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/34/EPBE-5511.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5511",
+    "updated_at": "2026-10-19"
+  },
+  "HKXN-50004": {
+    "id": "HKXN-50004",
+    "title": "Blu-ray BD. Hello! Project 2011 WINTER - Kange Shinsen Matsuri - Kanzen Ban [Blu-ray]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "9,524yen",
+    "price_num": 9524,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/15/HKXN-50004.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50004",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5677": {
+    "id": "EPCE-5677",
+    "title": "Album CD Petit Best (Pucchi Best) 10",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/22/EPCE-5677.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5677",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50112": {
+    "id": "HKBN-50112",
+    "title": "DVD Hello! Project 2009 Winter Kettei! Halo Pro Award 09' - Elder Club Sotsugyo Kinen Special -",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "5,524yen",
+    "price_num": 5524,
+    "release_date": "2009/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/45/HKBN-50112.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50112",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5591": {
+    "id": "EPCE-5591",
+    "title": "Album CD Legend [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/16/EPCE-5591.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5591",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5595": {
+    "id": "EPCE-5595",
+    "title": "Album CD Taiyo to Cisco Moon/T&C Bomber Mega Best [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/20/EPCE-5595.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5595",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5597": {
+    "id": "EPCE-5597",
+    "title": "Album CD Country Musume Mega Best [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/22/EPCE-5597.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5597",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5600": {
+    "id": "EPCE-5600",
+    "title": "Album CD Mega Melon [CD+DVD]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/01/EPCE-5600.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5600",
+    "updated_at": "2026-10-19"
+  },
+  "QWCT-10016": {
+    "id": "QWCT-10016",
+    "title": "Album CD Tsunku Best Sakuhinshu Vol.2 Sharan Q - Morning Musume Tsunku 15th Anniversary Album",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/39/QWCT-10016.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FQWCT-10016",
+    "updated_at": "2026-10-19"
+  },
+  "QWCT-10014": {
+    "id": "QWCT-10014",
+    "title": "Album CD Tsunku Best Sakuhinshu Vol.1 Sharan Q - Morning Musume Tsunku 15th Anniversary Album",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/37/QWCT-10014.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FQWCT-10014",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3010": {
+    "id": "EPBE-3010",
+    "title": "DVD Morning Musume first Budokan -Dancing love site 2000 Spring [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "2000/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/05/46/EPBE-3010.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3010",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3011": {
+    "id": "EPBE-3011",
+    "title": "DVD LIVE REVOLUTION 21 SPRING-Oosaka jo hall last day- [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/05/47/EPBE-3011.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3011",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFXW-1041": {
+    "id": "DAKUFXW-1041",
+    "title": "Blu-ray Hello! Project \"Solo Fes! 2026\"",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "8,000yen",
+    "price_num": 8000,
+    "release_date": "2026/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/15/DAKUFXW-1041.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1041",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3012": {
+    "id": "EPBE-3012",
+    "title": "DVD GREEN LIVE [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/05/48/EPBE-3012.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3012",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3013": {
+    "id": "EPBE-3013",
+    "title": "DVD Together! Clips [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/00/EPBE-3013.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3013",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3014": {
+    "id": "EPBE-3014",
+    "title": "DVD Morning Musume Concert Tour 2002 Spring \"LOVE IS ALIVE!\" at Saitama Super Arena [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "2002/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/01/EPBE-3014.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3014",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-3017": {
+    "id": "EPBE-3017",
+    "title": "DVD Morning Musume LOVE IS ALIVE 2002 Summer at Yokohama Arena [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "2002/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/04/EPBE-3017.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-3017",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-53004": {
+    "id": "HKBN-53004",
+    "title": "DVD Hello! Project 2002 - Kotoshi mo sugoizo! [Limited Pressing]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "2002/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/16/HKBN-53004.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-53004",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50050": {
+    "id": "HKBN-50050",
+    "title": "DVD Hello!Project 2005 Winter Allstars Dairanbu - A Happy New Power! Kaori Iida Sotsugyo Special",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2005/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/47/HKBN-50050.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50050",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5159": {
+    "id": "EPBE-5159",
+    "title": "DVD Petit (Pucchi) Best DVD",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/34/EPBE-5159.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5159",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5160": {
+    "id": "EPBE-5160",
+    "title": "DVD Petit (Pucchi) Best 2 DVD",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/27/EPBE-5160.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5160",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5161": {
+    "id": "EPBE-5161",
+    "title": "DVD Petit (Pucchi) Best 3 DVD",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/28/EPBE-5161.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5161",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50027": {
+    "id": "HKBN-50027",
+    "title": "DVD Hello! Project 2003 Winter - Tanoshinjatte masu",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2003/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/48/HKBN-50027.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50027",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5193": {
+    "id": "EPCE-5193",
+    "title": "Album CD Petit Best (Pucchi Best) 3",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "2,913yen",
+    "price_num": 2913,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/02/EPCE-5193.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5193",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50021": {
+    "id": "HKBN-50021",
+    "title": "DVD Hello! Project 2002 -ONE HAPPY SUMMER DAY",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2002/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/42/HKBN-50021.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50021",
+    "updated_at": "2026-10-19"
+  },
+  "HKBN-50010": {
+    "id": "HKBN-50010",
+    "title": "DVD Hello! Project 2002 - Kotoshi mo sugoizo!",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "4,200yen",
+    "price_num": 4200,
+    "release_date": "2002/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/39/HKBN-50010.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50010",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5137": {
+    "id": "EPCE-5137",
+    "title": "Album CD Petit Best (Pucchi Best) 2 - 3, 7, 10",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "2,913yen",
+    "price_num": 2913,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/43/EPCE-5137.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5137",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5033": {
+    "id": "EPBE-5033",
+    "title": "DVD Together CLIPS",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/20/EPBE-5033.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5033",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5024": {
+    "id": "EPBE-5024",
+    "title": "DVD GREEN LIVE",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/19/EPBE-5024.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5024",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5019": {
+    "id": "EPBE-5019",
+    "title": "DVD LIVE REVOLUTION 21 SPRING-Oosaka jo hall last day-",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "4,200yen",
+    "price_num": 4200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/22/EPBE-5019.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5019",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5011": {
+    "id": "EPBE-5011",
+    "title": "DVD Morning Musume first Budokan -Dancing love site 2000 Spring",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "4,200yen",
+    "price_num": 4200,
+    "release_date": "2000/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/14/EPBE-5011.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5011",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5054": {
+    "id": "EPCE-5054",
+    "title": "Album CD Petit Best (Pucchi Best) KI AO AKA",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "2,838yen",
+    "price_num": 2838,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/40/EPCE-5054.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5054",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5004": {
+    "id": "EPBE-5004",
+    "title": "DVD Morning Musume Memory-Seisyun no hikari-1999.4.18",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "4,369yen",
+    "price_num": 4369,
+    "release_date": "1999/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/15/EPBE-5004.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5004",
     "updated_at": "2026-10-19"
   }
 }

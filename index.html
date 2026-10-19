@@ -96,6 +96,13 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 
   <!-- Early Theme Detection -->
@@ -121,19 +128,34 @@
         <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-rose-200 dark:text-rose-400">.store</span></a>
       </div>
       
-      <!-- Search Input -->
+      <!-- Search Input with Clear Button -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <input 
           id="search-input" 
           type="text" 
           placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
-          class="w-full pl-10 pr-4 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
+          class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-stone-400 dark:text-slate-400 text-sm"></i>
+        <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 text-xs">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
       </div>
 
-      <!-- Controls: Currency, Dark Mode, and X Link -->
+      <!-- Controls: Wishlist, Currency, Dark Mode, and X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
+        <!-- Wishlist Button -->
+        <button 
+          id="wishlist-toggle-btn"
+          onclick="toggleWishlistView()" 
+          title="View Saved Wishlist" 
+          class="relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400"
+        >
+          <i id="wishlist-btn-icon" class="fa-regular fa-heart text-amber-300"></i>
+          <span class="hidden md:inline">Wishlist</span>
+          <span id="wishlist-count-badge" class="bg-white text-rose-700 dark:bg-rose-600 dark:text-white rounded-full px-1.5 py-0.2 text-[10px] font-black">0</span>
+        </button>
+
         <!-- Currency Dropdown -->
         <div class="relative flex items-center bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 rounded-full px-2.5 py-1 border border-rose-400/30 dark:border-slate-700 shadow-sm text-xs font-bold transition">
           <i class="fa-solid fa-coins text-amber-200 dark:text-rose-400 mr-1.5 text-xs"></i>
@@ -178,10 +200,10 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Group / Franchise Filter Bar -->
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
     <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
-        <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full" id="filter-bar">
+        <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar" id="filter-bar">
           <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Groups</button>
           <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
           <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
@@ -204,9 +226,16 @@
       </div>
     </nav>
 
-    <!-- Tier 2 Navigation: Format Filter Bar (CDs, DVDs, Blurays, Books, Collectibles) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Dynamically populated) -->
+    <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar" id="artist-subbar">
+        <!-- Sub-artist pills inserted by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Tier 2 Navigation: Format Filter Bar -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold" id="format-filter-bar">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar" id="format-filter-bar">
         <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1">
           <i class="fa-solid fa-shapes"></i> Format:
         </span>
@@ -296,8 +325,8 @@
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold">No idol merchandise found matching your filter selection.</p>
-      <button onclick="setFilter('All'); setFormat('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition">Reset All Filters</button>
+      <p class="text-base font-semibold" id="empty-state-message">No idol merchandise found matching your filter selection.</p>
+      <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition">Reset All Filters</button>
     </div>
 
     <!-- Bottom Pagination -->
@@ -349,11 +378,13 @@
 
   <script>
     let allProducts = [];
-    let activeFilter = 'All';      // Group Filter (e.g. Hello! Project, AKB48)
-    let activeFormat = 'All';      // Format Filter (CD, DVD, Blu-ray, Book, Collectable)
+    let activeFilter = 'All';      // Group / Franchise
+    let activeArtist = 'All';      // Sub-Unit / Artist
+    let activeFormat = 'All';      // Format
     let searchQuery = '';
     let currentSort = 'newest';
     let currentCurrency = 'JPY';
+    let isWishlistView = false;
     let exchangeRates = { JPY: 1.0, USD: 0.0067 };
 
     let currentPage = 1;
@@ -362,519 +393,32 @@
     const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
     const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
+    const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+
+    const FRANCHISE_ARTISTS = {
+      'Hello! Project': ['Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle'],
+      'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48'],
+      'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46'],
+      '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
+      'Momoiro Clover Z': ['Momoiro Clover Z'],
+      'Babymetal': ['BABYMETAL']
+    };
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
 
-    function onImgLoadError(imgEl) {
-      imgEl.onerror = null;
-      imgEl.src = PLACEHOLDER_IMG;
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-    }
-
-    function updateThemeIcon() {
-      const isDark = document.documentElement.classList.contains('dark');
-      const icon = document.getElementById('theme-icon');
-      if (icon) {
-        icon.className = isDark ? 'fa-solid fa-sun text-amber-200' : 'fa-solid fa-moon text-rose-100';
-      }
-    }
-
-    function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-      updateThemeIcon();
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        if (e.matches) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-        updateThemeIcon();
-      }
-    });
-
-    async function initExchangeRates() {
-      const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
-      currentCurrency = savedCurrency || 'JPY';
-
-      const selectEl = document.getElementById('currency-select');
-      if (selectEl) selectEl.value = currentCurrency;
-
-      const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
-      const cachedTime = localStorage.getItem(RATES_TIME_KEY);
-      const now = Date.now();
-
-      if (cachedRates && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
-        try {
-          exchangeRates = JSON.parse(cachedRates);
-          populateCurrencyOptions(exchangeRates);
-          return;
-        } catch (e) {}
-      }
-
+    function getWishlist() {
       try {
-        const res = await fetch('https://open.er-api.com/v6/latest/JPY');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.rates) {
-            exchangeRates = data.rates;
-            localStorage.setItem(RATES_STORAGE_KEY, JSON.stringify(exchangeRates));
-            localStorage.setItem(RATES_TIME_KEY, now.toString());
-            populateCurrencyOptions(exchangeRates);
-            render();
-          }
-        }
-      } catch (err) {
-        console.warn('Currency API unreachable, keeping base rates:', err);
-      }
-    }
-
-    function populateCurrencyOptions(rates) {
-      const optGroup = document.getElementById('all-currencies-group');
-      if (!optGroup) return;
-
-      const popular = ['JPY', 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
-      const allCodes = Object.keys(rates).sort();
-
-      optGroup.innerHTML = '';
-      allCodes.forEach(code => {
-        if (!popular.includes(code)) {
-          const opt = document.createElement('option');
-          opt.value = code;
-          opt.innerText = code;
-          opt.className = 'text-slate-900 bg-white';
-          optGroup.appendChild(opt);
-        }
-      });
-
-      const selectEl = document.getElementById('currency-select');
-      if (selectEl) selectEl.value = currentCurrency;
-    }
-
-    function onCurrencyChange(selectedCode) {
-      currentCurrency = selectedCode;
-      localStorage.setItem(CURRENCY_STORAGE_KEY, selectedCode);
-      render();
-    }
-
-    async function loadCatalog() {
-      const statsEl = document.getElementById('stats');
-      let data = null;
-
-      try {
-        const res = await fetch('/products.json?v=' + Date.now());
-        if (res.ok) data = await res.json();
+        const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
       } catch (e) {
-        console.warn('Root fetch failed, trying relative:', e);
+        return [];
       }
-
-      if (!data) {
-        try {
-          const res = await fetch('products.json?v=' + Date.now());
-          if (res.ok) data = await res.json();
-        } catch (e2) {
-          console.error('All fetch attempts failed:', e2);
-        }
-      }
-
-      if (data && typeof data === 'object') {
-        allProducts = Object.values(data)
-          .filter(item => item && item.id)
-          .map((item, idx) => ({ ...item, _catalogIndex: idx }));
-        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
-      } else {
-        allProducts = [];
-        if (statsEl) statsEl.innerText = "Syncing catalog...";
-      }
-
-      render();
     }
 
-    function changeSort(sortVal) {
-      currentSort = sortVal;
-      const dSelect = document.getElementById('sort-select');
-      const mSelect = document.getElementById('sort-select-mobile');
-      if (dSelect) dSelect.value = sortVal;
-      if (mSelect) mSelect.value = sortVal;
-      currentPage = 1;
-      render();
+    function saveWishlist(list) {
+      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(list));
+      updateWishlistBadge();
     }
 
-    function changePerPage(countVal) {
-      itemsPerPage = parseInt(countVal, 10) || 50;
-      currentPage = 1;
-      render();
-    }
-
-    function goToPage(pageNumber) {
-      currentPage = pageNumber;
-      render();
-      const anchor = document.getElementById('pagination-top-anchor');
-      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function setFilter(cat) {
-      activeFilter = cat;
-      currentPage = 1;
-      document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
-        if (btn.dataset.cat === cat) {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm";
-        } else {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700";
-        }
-      });
-      render();
-    }
-
-    // New Format Filter Controller (CDs, DVDs, Blu-rays, Books, Collectibles)
-    function setFormat(fmt) {
-      activeFormat = fmt;
-      currentPage = 1;
-      document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
-        if (btn.dataset.fmt === fmt) {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm";
-        } else {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700";
-        }
-      });
-      render();
-    }
-
-    // Media Format Detection Engine (Classifies items by CDJapan product code & title)
-    function getItemFormatCategory(item) {
-      if (!item) return 'Other';
-      const pid = String(item.id || '').toUpperCase();
-      const title = String(item.title || '').toLowerCase();
-
-      // 1. Books, Photobooks & Magazines
-      if (pid.startsWith('NEOBK-') || title.includes('photobook') || title.includes('magazine') || title.includes('book') || title.includes('写真集')) {
-        return 'Book';
-      }
-
-      // 2. Collectibles, Apparel & Venue Merchandise
-      if (pid.startsWith('NEODAI-') || pid.startsWith('NEOODY-') || pid.startsWith('NEOGDS-') || pid.includes('CL-') || pid.endsWith('-A') || title.includes('t-shirt') || title.includes('calendar') || title.includes('acrylic') || title.includes('goods') || title.includes('stand')) {
-        return 'Collectable';
-      }
-
-      // 3. Blu-rays
-      if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || title.includes('blu-ray') || title.includes('bd')) {
-        return 'Blu-ray';
-      }
-
-      // 4. DVDs
-      if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.includes('-D') || title.includes('dvd')) {
-        return 'DVD';
-      }
-
-      // 5. Audio CDs (Singles, Albums, Vinyls)
-      if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || title.includes('cd') || title.includes('single') || title.includes('album')) {
-        return 'CD';
-      }
-
-      return 'Other';
-    }
-
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        currentPage = 1;
-        render();
-      });
-    }
-
-    function parseNumericPrice(priceStr) {
-      if (!priceStr) return 0;
-      const clean = String(priceStr).replace(/[^0-9]/g, '');
-      return parseInt(clean, 10) || 0;
-    }
-
-    function formatDisplayPrice(priceStr) {
-      const jpyAmount = parseNumericPrice(priceStr);
-      if (jpyAmount === 0) return 'Check CDJapan';
-
-      if (currentCurrency === 'JPY') {
-        return `¥${jpyAmount.toLocaleString()}`;
-      }
-
-      const rate = exchangeRates[currentCurrency] || 1;
-      const convertedVal = jpyAmount * rate;
-      const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
-      const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
-
-      let formattedConverted = '';
-      try {
-        formattedConverted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: currentCurrency,
-          minimumFractionDigits: fractionDigits,
-          maximumFractionDigits: fractionDigits
-        }).format(convertedVal);
-      } catch (e) {
-        formattedConverted = `${currentCurrency} ${convertedVal.toFixed(fractionDigits)}`;
-      }
-
-      return `${formattedConverted} <span class="text-[10px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
-    }
-
-    function getItemDateValue(item) {
-      if (!item) return 0;
-      const dStr = String(item.release_date || '').trim();
-
-      const m = dStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
-      if (m) {
-        const y = parseInt(m[1], 10);
-        const mon = parseInt(m[2], 10);
-        const day = parseInt(m[3], 10);
-        if (day <= 31) {
-          return (y * 10000) + (mon * 100) + day;
-        }
-      }
-
-      const ym = dStr.match(/(\d{4})[./-](\d{1,2})/);
-      if (ym) {
-        const y = parseInt(ym[1], 10);
-        const mon = parseInt(ym[2], 10);
-        return (y * 10000) + (mon * 100) + 1;
-      }
-
-      const yOnly = dStr.match(/\b(199\d|20[0-2]\d)\b/);
-      if (yOnly) {
-        return parseInt(yOnly[1], 10) * 10000 + 101;
-      }
-
-      return 0;
-    }
-
-    function isPreOrder(item) {
-      const val = getItemDateValue(item);
-      if (val === 0) return false;
-
-      const today = new Date();
-      const todayVal = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
-
-      return val > todayVal;
-    }
-
-    function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
-      const rangeEl = document.getElementById('page-range-info');
-      const navEl = document.getElementById('pagination-bottom');
-      if (!rangeEl || !navEl) return;
-
-      if (totalItems === 0) {
-        rangeEl.innerText = "0 releases found";
-        navEl.innerHTML = '';
-        return;
-      }
-
-      rangeEl.innerHTML = `Showing <strong class="text-rose-600 dark:text-rose-400 font-bold">${startIndex + 1}–${Math.min(endIndex, totalItems)}</strong> of <strong>${totalItems.toLocaleString()}</strong> releases (Page <strong>${currentPage}</strong> of <strong>${totalPages}</strong>)`;
-
-      if (totalPages <= 1) {
-        navEl.innerHTML = '';
-        return;
-      }
-
-      let navHtml = '';
-      const prevDisabled = currentPage === 1;
-      navHtml += `
-        <button onclick="goToPage(1)" ${prevDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">« First</button>
-        <button onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">‹ Prev</button>
-      `;
-
-      let startP = Math.max(1, currentPage - 2);
-      let endP = Math.min(totalPages, currentPage + 2);
-      if (currentPage <= 3) endP = Math.min(totalPages, 5);
-      else if (currentPage >= totalPages - 2) startP = Math.max(1, totalPages - 4);
-
-      if (startP > 1) navHtml += `<span class="px-2 text-stone-400 dark:text-slate-500">...</span>`;
-
-      for (let p = startP; p <= endP; p++) {
-        if (p === currentPage) {
-          navHtml += `<button class="px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold shadow-sm cursor-default">${p}</button>`;
-        } else {
-          navHtml += `<button onclick="goToPage(${p})" class="px-3.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 hover:bg-rose-50 dark:hover:bg-slate-800 transition">${p}</button>`;
-        }
-      }
-
-      if (endP < totalPages) navHtml += `<span class="px-2 text-stone-400 dark:text-slate-500">...</span>`;
-
-      const nextDisabled = currentPage === totalPages;
-      navHtml += `
-        <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">Next ›</button>
-        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">Last »</button>
-      `;
-
-      navEl.innerHTML = navHtml;
-    }
-
-    function render() {
-      const grid = document.getElementById('product-grid');
-      const empty = document.getElementById('empty-state');
-      if (!grid) return;
-      grid.innerHTML = '';
-
-      let filtered = allProducts.filter(item => {
-        // 1. Group / Franchise Filter
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
-        
-        // 2. Format Category Filter (CD, DVD, Blu-ray, Book, Collectable)
-        const itemFmt = getItemFormatCategory(item);
-        const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
-
-        // 3. Search Query Filter
-        const matchesSearch = !searchQuery || 
-          (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
-          (item.artist && String(item.artist).toLowerCase().includes(searchQuery)) ||
-          (item.id && String(item.id).toLowerCase().includes(searchQuery));
-
-        return matchesCat && matchesFmt && matchesSearch;
-      });
-
-      // Strict Chronological Date & Price Sorting
-      filtered.sort((a, b) => {
-        const dateA = getItemDateValue(a);
-        const dateB = getItemDateValue(b);
-
-        if (currentSort === 'newest') {
-          if (dateB !== dateA) return dateB - dateA;
-          return (b._catalogIndex || 0) - (a._catalogIndex || 0);
-        } 
-        
-        else if (currentSort === 'oldest') {
-          if (dateA !== dateB) return dateA - dateB;
-          return (a._catalogIndex || 0) - (b._catalogIndex || 0);
-        } 
-        
-        else if (currentSort === 'price-asc') {
-          const priceA = parseNumericPrice(a.price);
-          const priceB = parseNumericPrice(b.price);
-          if (priceA !== priceB) return priceA - priceB;
-          return String(a.title || '').localeCompare(String(b.title || ''));
-        } 
-        
-        else if (currentSort === 'price-desc') {
-          const priceA = parseNumericPrice(a.price);
-          const priceB = parseNumericPrice(b.price);
-          if (priceB !== priceA) return priceB - priceA;
-          return String(a.title || '').localeCompare(String(b.title || ''));
-        }
-
-        return 0;
-      });
-
-      const totalItems = filtered.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-      if (currentPage > totalPages) currentPage = 1;
-
-      if (totalItems === 0) {
-        if (empty) empty.classList.remove('hidden');
-        renderPaginationControls(0, 0, 0, 0);
-        return;
-      }
-      if (empty) empty.classList.add('hidden');
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const paginatedItems = filtered.slice(startIndex, endIndex);
-
-      paginatedItems.forEach(p => {
-        const card = document.createElement('div');
-        card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
-        
-        const displayImg = p.image || PLACEHOLDER_IMG;
-        const upcoming = isPreOrder(p);
-        const itemFmt = getItemFormatCategory(p);
-        const safeTitle = escapeHtml(p.title);
-        const safeArtist = escapeHtml(p.artist);
-
-        // Format Badge styling
-        let fmtBadgeBg = 'bg-stone-800/80';
-        if (itemFmt === 'CD') fmtBadgeBg = 'bg-rose-700/85';
-        else if (itemFmt === 'Blu-ray') fmtBadgeBg = 'bg-sky-700/85';
-        else if (itemFmt === 'DVD') fmtBadgeBg = 'bg-amber-700/85';
-        else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
-        else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
-
-        card.innerHTML = `
-          <div class="aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden">
-            <img 
-              src="${displayImg}" 
-              alt="${safeTitle}" 
-              loading="lazy" 
-              referrerpolicy="no-referrer"
-              onerror="onImgLoadError(this)"
-              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-            />
-            
-            <!-- Artist Badge -->
-            <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
-              ${safeArtist}
-            </span>
-
-            <!-- Media Format Badge -->
-            <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
-              ${itemFmt}
-            </span>
-
-            <!-- Pre-Order Badge -->
-            ${upcoming ? `
-              <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
-                <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
-              </span>
-            ` : ''}
-          </div>
-          <div class="p-3 flex-1 flex flex-col justify-between">
-            <div>
-              <h2 class="text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2" title="${safeTitle}">
-                ${safeTitle}
-              </h2>
-              <p class="text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
-                <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
-              <div>
-                <span class="text-xs font-black text-rose-600 dark:text-rose-400">
-                  ${formatDisplayPrice(p.price)}
-                </span>
-                <span class="block text-[9px] text-stone-400 dark:text-slate-500">Official CDJapan Price</span>
-              </div>
-              <a 
-                href="${p.affiliate_url}" 
-                target="_blank" 
-                rel="nofollow noopener" 
-                title="View and order securely on CDJapan"
-                class="bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap"
-              >
-                ${upcoming ? 'Pre-Order on CDJapan' : 'View on CDJapan'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-              </a>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-
-      renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateThemeIcon();
-      initExchangeRates();
-      loadCatalog();
-    });
-  </script>
-</body>
-</html>
+    function toggleWishlist(productId, e) {

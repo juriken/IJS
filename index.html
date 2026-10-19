@@ -7,9 +7,7 @@
 
   <title>IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory</title>
   <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory">
-  <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. We catalog releases from Hello! Project, AKB48 Group, Sakamichi 46, and more, safely fulfilled direct from Tokyo by CDJapan.">
-  <meta name="keywords" content="Japanese idols, Hello Project, Morning Musume, AKB48, Nogizaka46, Sakurazaka46, Hinatazaka46, =LOVE, Babymetal, Momoiro Clover Z, CDJapan affiliate, J-Pop CDs">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. Filter by CDs, DVDs, Blu-rays, Photobooks, and Collectibles.">
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#e11d48">
 
@@ -100,12 +98,11 @@
     }
   </style>
 
-  <!-- Smart Theme Detection: Defaults to Light, Auto-detects OS Preference, Respects Manual Overrides -->
+  <!-- Early Theme Detection -->
   <script>
     (function() {
       const storedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
       if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.classList.add('dark');
       } else {
@@ -116,7 +113,7 @@
 </head>
 <body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Unified Sticky Header & Navigation Wrapper -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
@@ -181,11 +178,11 @@
       </div>
     </div>
 
-    <!-- Category Filter Bar -->
-    <nav class="bg-white dark:bg-slate-900 border-t border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
+    <!-- Tier 1 Navigation: Group / Franchise Filter Bar -->
+    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
         <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full" id="filter-bar">
-          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Items</button>
+          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Groups</button>
           <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
           <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
           <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Sakamichi Series">Sakamichi (46)</button>
@@ -194,7 +191,7 @@
           <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Babymetal">Babymetal</button>
         </div>
 
-        <!-- Sorting -->
+        <!-- Desktop Sorting -->
         <div class="hidden sm:flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
           <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
           <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500">
@@ -206,6 +203,31 @@
         </div>
       </div>
     </nav>
+
+    <!-- Tier 2 Navigation: Format Filter Bar (CDs, DVDs, Blurays, Books, Collectibles) -->
+    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold" id="format-filter-bar">
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1">
+          <i class="fa-solid fa-shapes"></i> Format:
+        </span>
+        <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm" data-fmt="All">All Formats</button>
+        <button onclick="setFormat('CD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="CD">
+          <i class="fa-solid fa-compact-disc mr-1 text-rose-500"></i> CDs
+        </button>
+        <button onclick="setFormat('Blu-ray')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Blu-ray">
+          <i class="fa-solid fa-film mr-1 text-sky-500"></i> Blu-rays
+        </button>
+        <button onclick="setFormat('DVD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="DVD">
+          <i class="fa-solid fa-video mr-1 text-amber-500"></i> DVDs
+        </button>
+        <button onclick="setFormat('Book')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Book">
+          <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books &amp; Photobooks
+        </button>
+        <button onclick="setFormat('Collectable')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Collectable">
+          <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Collectibles &amp; Merch
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- Trust Notice -->
@@ -274,8 +296,8 @@
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold">No idol merchandise found matching your search.</p>
-      <button onclick="setFilter('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition">Reset Filters</button>
+      <p class="text-base font-semibold">No idol merchandise found matching your filter selection.</p>
+      <button onclick="setFilter('All'); setFormat('All'); document.getElementById('search-input').value=''; searchQuery='';" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition">Reset All Filters</button>
     </div>
 
     <!-- Bottom Pagination -->
@@ -327,7 +349,8 @@
 
   <script>
     let allProducts = [];
-    let activeFilter = 'All';
+    let activeFilter = 'All';      // Group Filter (e.g. Hello! Project, AKB48)
+    let activeFormat = 'All';      // Format Filter (CD, DVD, Blu-ray, Book, Collectable)
     let searchQuery = '';
     let currentSort = 'newest';
     let currentCurrency = 'JPY';
@@ -372,10 +395,8 @@
       updateThemeIcon();
     }
 
-    // Live OS Theme Change Listener: Adjusts automatically if user hasn't set a manual override
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      const manualOverride = localStorage.getItem('theme');
-      if (!manualOverride) {
+      if (!localStorage.getItem('theme')) {
         if (e.matches) {
           document.documentElement.classList.add('dark');
         } else {
@@ -508,7 +529,7 @@
     function setFilter(cat) {
       activeFilter = cat;
       currentPage = 1;
-      document.querySelectorAll('.tab-btn').forEach(btn => {
+      document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === cat) {
           btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm";
         } else {
@@ -516,6 +537,54 @@
         }
       });
       render();
+    }
+
+    // New Format Filter Controller (CDs, DVDs, Blu-rays, Books, Collectibles)
+    function setFormat(fmt) {
+      activeFormat = fmt;
+      currentPage = 1;
+      document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
+        if (btn.dataset.fmt === fmt) {
+          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm";
+        } else {
+          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700";
+        }
+      });
+      render();
+    }
+
+    // Media Format Detection Engine (Classifies items by CDJapan product code & title)
+    function getItemFormatCategory(item) {
+      if (!item) return 'Other';
+      const pid = String(item.id || '').toUpperCase();
+      const title = String(item.title || '').toLowerCase();
+
+      // 1. Books, Photobooks & Magazines
+      if (pid.startsWith('NEOBK-') || title.includes('photobook') || title.includes('magazine') || title.includes('book') || title.includes('写真集')) {
+        return 'Book';
+      }
+
+      // 2. Collectibles, Apparel & Venue Merchandise
+      if (pid.startsWith('NEODAI-') || pid.startsWith('NEOODY-') || pid.startsWith('NEOGDS-') || pid.includes('CL-') || pid.endsWith('-A') || title.includes('t-shirt') || title.includes('calendar') || title.includes('acrylic') || title.includes('goods') || title.includes('stand')) {
+        return 'Collectable';
+      }
+
+      // 3. Blu-rays
+      if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || title.includes('blu-ray') || title.includes('bd')) {
+        return 'Blu-ray';
+      }
+
+      // 4. DVDs
+      if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.includes('-D') || title.includes('dvd')) {
+        return 'DVD';
+      }
+
+      // 5. Audio CDs (Singles, Albums, Vinyls)
+      if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || title.includes('cd') || title.includes('single') || title.includes('album')) {
+        return 'CD';
+      }
+
+      return 'Other';
     }
 
     const searchInput = document.getElementById('search-input');
@@ -561,7 +630,6 @@
       return `${formattedConverted} <span class="text-[10px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Mathematical integer date calculator: YYYYMMDD
     function getItemDateValue(item) {
       if (!item) return 0;
       const dStr = String(item.release_date || '').trim();
@@ -659,14 +727,23 @@
       grid.innerHTML = '';
 
       let filtered = allProducts.filter(item => {
+        // 1. Group / Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        
+        // 2. Format Category Filter (CD, DVD, Blu-ray, Book, Collectable)
+        const itemFmt = getItemFormatCategory(item);
+        const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
+
+        // 3. Search Query Filter
         const matchesSearch = !searchQuery || 
           (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
-          (item.artist && String(item.artist).toLowerCase().includes(searchQuery));
-        return matchesCat && matchesSearch;
+          (item.artist && String(item.artist).toLowerCase().includes(searchQuery)) ||
+          (item.id && String(item.id).toLowerCase().includes(searchQuery));
+
+        return matchesCat && matchesFmt && matchesSearch;
       });
 
-      // Strict Mathematical Date & Price Sorting
+      // Strict Chronological Date & Price Sorting
       filtered.sort((a, b) => {
         const dateA = getItemDateValue(a);
         const dateB = getItemDateValue(b);
@@ -719,8 +796,17 @@
         
         const displayImg = p.image || PLACEHOLDER_IMG;
         const upcoming = isPreOrder(p);
+        const itemFmt = getItemFormatCategory(p);
         const safeTitle = escapeHtml(p.title);
         const safeArtist = escapeHtml(p.artist);
+
+        // Format Badge styling
+        let fmtBadgeBg = 'bg-stone-800/80';
+        if (itemFmt === 'CD') fmtBadgeBg = 'bg-rose-700/85';
+        else if (itemFmt === 'Blu-ray') fmtBadgeBg = 'bg-sky-700/85';
+        else if (itemFmt === 'DVD') fmtBadgeBg = 'bg-amber-700/85';
+        else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
+        else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
         card.innerHTML = `
           <div class="aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden">
@@ -733,10 +819,17 @@
               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
             
+            <!-- Artist Badge -->
             <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
               ${safeArtist}
             </span>
 
+            <!-- Media Format Badge -->
+            <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+              ${itemFmt}
+            </span>
+
+            <!-- Pre-Order Badge -->
             ${upcoming ? `
               <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
                 <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER

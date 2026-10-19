@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Idol Catalog Scraper
         run: |
-          python -u repair_catalog_dates.py
+          python -u scraper.py
 
       - name: Commit and Push Updated Catalog
         run: |

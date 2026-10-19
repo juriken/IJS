@@ -104,7 +104,7 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    # Strict validation for Tanpopo
+    # Strict check for Tanpopo
     if canonical_artist == "Tanpopo":
         if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
             return False
@@ -294,8 +294,8 @@ def dismiss_popups(page):
     try:
         page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=300):
-            close_btn.click()
+        if close_btn.is_visible(timeout=250):
+            close_btn.click(force=True)
             time.sleep(0.2)
     except Exception:
         pass
@@ -305,89 +305,65 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
     results = []
     print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')")
 
-    for attempt in range(1, 3):
-        try:
-            # 1. Scroll directly to top to ensure the main search bar is in viewport
-            page.evaluate("window.scrollTo(0, 0)")
-            time.sleep(0.5)
+    # 1. Clean navigation to homepage on fresh page tab
+    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+    dismiss_popups(page)
+    time.sleep(0.5)
 
-            # Locate visible search input
-            search_input = page.locator("input[name='q']:visible, input#search-input:visible, input.search-input:visible").first
-            if not search_input.is_visible(timeout=3000):
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-                dismiss_popups(page)
-                page.evaluate("window.scrollTo(0, 0)")
-                time.sleep(1.0)
-                search_input = page.locator("input[name='q']:visible, input#search-input:visible").first
+    # 2. Prevent hover-menus by parking mouse away from top navbar
+    page.mouse.move(0, 500)
 
-            # 2. Click, clear existing text, and type query
-            search_input.click(timeout=3000)
-            search_input.fill("")
-            search_input.fill(query)
-            time.sleep(0.3)
+    # 3. Locate search input on pristine homepage
+    search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
+    search_input.wait_for(state="visible", timeout=8000)
 
-            # 3. Submit via search button or Enter
-            search_btn = page.locator("button[type='submit']:visible, .search-box button:visible, form[action*='search'] button:visible").first
-            if search_btn.is_visible(timeout=1000):
-                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                    search_btn.click()
-            else:
-                with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                    search_input.press("Enter")
+    # 4. Direct focus and atomic fill (bypasses click interception checks)
+    search_input.focus()
+    search_input.fill("")
+    search_input.fill(query)
+    time.sleep(0.3)
 
-            dismiss_popups(page)
+    # 5. Submit search via search button or Enter key
+    search_btn = page.locator("button[type='submit'], .search-box button, form[action*='search'] button").first
+    if search_btn.is_visible(timeout=1000):
+        with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+            search_btn.click(force=True)
+    else:
+        with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+            search_input.press("Enter")
 
-            # 4. Critical: Wait for CDJapan's product grid container to hydrate into DOM
+    dismiss_popups(page)
+    time.sleep(1.2)
+    print(f"   [Navigated] {page.url}")
+
+    # 6. Extract products and paginate through pages 1 to max_pages
+    for p_num in range(1, max_pages + 1):
+        # Scroll to load lazy-rendered items
+        page.evaluate("window.scrollBy(0, 800)")
+        time.sleep(0.5)
+        page.evaluate("window.scrollBy(0, 800)")
+        time.sleep(0.8)
+
+        html = page.content()
+        verified = extract_verified_products(html, category, canonical_artist, keywords)
+        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+        results.extend(verified)
+
+        if p_num < max_pages:
+            next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
+            next_link = page.locator(next_selector).first
+
             try:
-                page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item, div[class*='item-'], #search-result", timeout=6000)
-            except Exception:
-                pass
-
-            print(f"   [Navigated] {page.url}")
-
-            # 5. Paginate through pages using CDJapan's Next link
-            for p_num in range(1, max_pages + 1):
-                # Smooth scroll to bottom to trigger any lazy-loaded cards
-                page.evaluate("window.scrollBy(0, 1000)")
-                time.sleep(0.5)
-                page.evaluate("window.scrollBy(0, 1000)")
-                time.sleep(1.0)
-
-                html = page.content()
-                verified = extract_verified_products(html, category, canonical_artist, keywords)
-                print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-                results.extend(verified)
-
-                if p_num < max_pages:
-                    next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
-                    next_btn = page.locator(next_selector).first
-
-                    try:
-                        if next_btn.is_visible(timeout=2500):
-                            with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                                page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
-                            dismiss_popups(page)
-                            try:
-                                page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item", timeout=5000)
-                            except Exception:
-                                pass
-                            time.sleep(random.uniform(1.8, 2.8))
-                        else:
-                            break
-                    except Exception as e_page:
-                        print(f"   Pagination note on page {p_num}: {e_page}")
-                        break
-
-            return results
-
-        except Exception as e:
-            print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-            try:
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
-                dismiss_popups(page)
-            except Exception:
-                pass
-            time.sleep(2.0)
+                if next_link.is_visible(timeout=2500):
+                    with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
+                        page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
+                    dismiss_popups(page)
+                    time.sleep(random.uniform(1.8, 2.5))
+                else:
+                    break
+            except Exception as e_page:
+                print(f"   Pagination note on page {p_num}: {e_page}")
+                break
 
     return results
 
@@ -411,36 +387,35 @@ def main():
             ),
             viewport={"width": 1440, "height": 900},
         )
-        page = context.new_page()
-
-        # Warm up initial CDJapan session
-        try:
-            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-            dismiss_popups(page)
-            time.sleep(1.5)
-        except Exception:
-            pass
 
         new_total = 0
 
+        # Execute each target inside an isolated clean page tab to prevent DOM & timeout leaks
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
-            items = execute_search_via_bar(
-                page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
-            )
-            added_for_artist = 0
+            page = context.new_page()
+            try:
+                items = execute_search_via_bar(
+                    page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
+                )
+                added_for_artist = 0
 
-            for it in items:
-                pid = it["id"]
-                if pid not in catalog:
-                    added_for_artist += 1
-                    new_total += 1
-                catalog[pid] = it
+                for it in items:
+                    pid = it["id"]
+                    if pid not in catalog:
+                        added_for_artist += 1
+                        new_total += 1
+                    catalog[pid] = it
 
-            print(
-                f"   => {artist}: Found {len(items)} items"
-                f" ({added_for_artist} new to database)"
-            )
+                print(
+                    f"   => {artist}: Found {len(items)} items"
+                    f" ({added_for_artist} new to database)"
+                )
+            except Exception as e_artist:
+                print(f"   => Error scraping {artist}: {e_artist}")
+            finally:
+                page.close()
+
             time.sleep(random.uniform(2.5, 4.0))
 
         browser.close()

@@ -27,8 +27,8 @@
   <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
   <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
 
-  <!-- Schema.org JSON-LD Structured Data -->
-  <script type="application/ld+json">
+  <!-- Schema.org JSON-LD Structured Data Container -->
+  <script type="application/ld+json" id="structured-data-json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -109,6 +109,13 @@
     .cursor-grabbing {
       cursor: grabbing !important;
       user-select: none;
+    }
+    .img-fade-in {
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 
@@ -222,13 +229,34 @@
           </button>
           
           <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar cursor-grab select-none scroll-smooth md:px-7" id="filter-bar">
-            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0" data-cat="All">All Groups</button>
-            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Hello! Project">Hello! Project</button>
-            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="AKB48 Group">AKB48 Groups</button>
-            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Sakamichi Series">Sakamichi (46)</button>
-            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Momoiro Clover Z">Momoclo</button>
-            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Babymetal">Babymetal</button>
+            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0 flex items-center gap-1.5" data-cat="All">
+              <span>All Groups</span>
+              <span id="badge-cat-All" class="text-[10px] bg-white/20 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="Hello! Project">
+              <span>Hello! Project</span>
+              <span id="badge-cat-Hello! Project" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="AKB48 Group">
+              <span>AKB48 Groups</span>
+              <span id="badge-cat-AKB48 Group" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="Sakamichi Series">
+              <span>Sakamichi (46)</span>
+              <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="=LOVE / Sister Groups">
+              <span>=LOVE &amp; Sisters</span>
+              <span id="badge-cat-=LOVE / Sister Groups" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="Momoiro Clover Z">
+              <span>Momoclo</span>
+              <span id="badge-cat-Momoiro Clover Z" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5" data-cat="Babymetal">
+              <span>Babymetal</span>
+              <span id="badge-cat-Babymetal" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
           </div>
 
           <button onclick="scrollElement('filter-bar', 'right')" class="hidden md:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100" aria-label="Scroll franchises right">
@@ -268,36 +296,62 @@
 
     <!-- Tier 2 Navigation: Format Filter Bar & Release Timing Filter -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between gap-4">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth flex-1" id="format-filter-bar">
           <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
             <i class="fa-solid fa-shapes"></i> Format:
           </span>
-          <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0" data-fmt="All">All Formats</button>
+          <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0" data-fmt="All">
+            <span>All Formats</span>
+            <span id="badge-fmt-All" class="ml-1 text-[9px] opacity-75"></span>
+          </button>
           <button onclick="setFormat('CD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="CD">
             <i class="fa-solid fa-compact-disc mr-1 text-rose-500"></i> CDs
+            <span id="badge-fmt-CD" class="ml-1 text-[9px] opacity-75"></span>
           </button>
           <button onclick="setFormat('Blu-ray')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Blu-ray">
             <i class="fa-solid fa-film mr-1 text-sky-500"></i> Blu-rays
+            <span id="badge-fmt-Blu-ray" class="ml-1 text-[9px] opacity-75"></span>
           </button>
           <button onclick="setFormat('DVD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="DVD">
             <i class="fa-solid fa-video mr-1 text-amber-500"></i> DVDs
+            <span id="badge-fmt-DVD" class="ml-1 text-[9px] opacity-75"></span>
           </button>
           <button onclick="setFormat('Book')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Book">
-            <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books &amp; Photobooks
+            <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books
+            <span id="badge-fmt-Book" class="ml-1 text-[9px] opacity-75"></span>
           </button>
           <button onclick="setFormat('Collectable')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Collectable">
-            <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Collectibles &amp; Merch
+            <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Merch
+            <span id="badge-fmt-Collectable" class="ml-1 text-[9px] opacity-75"></span>
           </button>
         </div>
 
-        <!-- Release Status Segmented Switch (All / Pre-orders / In Stock) -->
-        <div class="hidden lg:flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[11px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-          <button onclick="setAvailability('all')" id="avail-all" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs">All</button>
-          <button onclick="setAvailability('preorder')" id="avail-preorder" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1">
-            <i class="fa-solid fa-clock text-[9px]"></i> Pre-Orders
-          </button>
-          <button onclick="setAvailability('instock')" id="avail-instock" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white">In Stock</button>
+        <div class="flex items-center gap-3 shrink-0">
+          <!-- Price Max Filter Slider -->
+          <div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-stone-500 dark:text-slate-400">
+            <label for="price-range">Max Price:</label>
+            <input 
+              id="price-range" 
+              type="range" 
+              min="1000" 
+              max="20000" 
+              step="500" 
+              value="20000" 
+              oninput="onMaxPriceChange(this.value)"
+              class="w-20 accent-rose-600 cursor-pointer"
+            />
+            <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-12 text-right">Any</span>
+          </div>
+
+          <!-- Release Status Switch -->
+          <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[11px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
+            <button onclick="setAvailability('all')" id="avail-all" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs">All</button>
+            <button onclick="setAvailability('preorder')" id="avail-preorder" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1">
+              <i class="fa-solid fa-clock text-[9px]"></i> Pre-Orders
+            </button>
+            <button onclick="setAvailability('instock')" id="avail-instock" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white">In Stock</button>
+          </div>
         </div>
       </div>
     </div>
@@ -338,6 +392,14 @@
       </div>
 
       <div class="flex items-center gap-3 ml-auto">
+        <!-- Direct Page Jump Navigator -->
+        <div class="flex items-center gap-1">
+          <label for="direct-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Page:</label>
+          <select id="direct-page-select" onchange="goToPage(parseInt(this.value, 10))" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2 rounded-lg text-xs font-semibold focus:outline-none">
+            <option value="1">1</option>
+          </select>
+        </div>
+
         <!-- Mobile Sort -->
         <div class="sm:hidden flex items-center gap-1">
           <label for="sort-select-mobile" class="text-stone-500 dark:text-slate-400 font-semibold">Sort:</label>
@@ -365,34 +427,7 @@
 
   <!-- Product Grid -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      <!-- Loading Skeleton Cards -->
-      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
-        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
-      </div>
-      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
-        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
-      </div>
-      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
-        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
-      </div>
-      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
-        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
-      </div>
-      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
-        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
-        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
-      </div>
-    </div>
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
@@ -512,6 +547,7 @@
     let activeArtist = 'All';          // Sub-Unit / Artist
     let activeFormat = 'All';          // Format
     let activeAvailability = 'all';    // all, preorder, instock
+    let maxPriceLimit = 20000;         // JPY Threshold
     let searchQuery = '';
     let currentSort = 'newest';
     let currentCurrency = 'JPY';
@@ -528,7 +564,6 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Comprehensive Group & Artist Mapping
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
         'Morning Musume',
@@ -736,6 +771,17 @@
       render();
     }
 
+    function onMaxPriceChange(val) {
+      const num = parseInt(val, 10);
+      maxPriceLimit = num;
+      const label = document.getElementById('price-range-label');
+      if (label) {
+        label.innerText = num >= 20000 ? 'Any' : `≤ ¥${num.toLocaleString()}`;
+      }
+      currentPage = 1;
+      render();
+    }
+
     function syncUrlParams() {
       const params = new URLSearchParams();
       if (activeFilter !== 'All') params.set('cat', activeFilter);
@@ -798,12 +844,50 @@
       }
 
       readUrlParams();
+      updateDynamicCounts();
       updateArtistSubBar();
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateWishlistBadge();
       initAllHorizontalScrollers();
       render();
+    }
+
+    function updateDynamicCounts() {
+      const catCounts = {
+        'All': allProducts.length,
+        'Hello! Project': 0,
+        'AKB48 Group': 0,
+        'Sakamichi Series': 0,
+        '=LOVE / Sister Groups': 0,
+        'Momoiro Clover Z': 0,
+        'Babymetal': 0
+      };
+
+      const fmtCounts = {
+        'All': allProducts.length,
+        'CD': 0,
+        'Blu-ray': 0,
+        'DVD': 0,
+        'Book': 0,
+        'Collectable': 0
+      };
+
+      allProducts.forEach(item => {
+        if (catCounts[item.category] !== undefined) catCounts[item.category]++;
+        const fmt = getItemFormatCategory(item);
+        if (fmtCounts[fmt] !== undefined) fmtCounts[fmt]++;
+      });
+
+      Object.entries(catCounts).forEach(([cat, count]) => {
+        const badge = document.getElementById(`badge-cat-${cat}`);
+        if (badge) badge.innerText = count.toLocaleString();
+      });
+
+      Object.entries(fmtCounts).forEach(([fmt, count]) => {
+        const badge = document.getElementById(`badge-fmt-${fmt}`);
+        if (badge) badge.innerText = `(${count.toLocaleString()})`;
+      });
     }
 
     function changeSort(sortVal) {
@@ -874,9 +958,9 @@
     function updateFilterButtonsUI() {
       document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0";
+          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0 flex items-center gap-1.5";
         } else {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0";
+          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5";
         }
       });
 
@@ -996,12 +1080,20 @@
       activeArtist = 'All';
       activeFormat = 'All';
       activeAvailability = 'all';
+      maxPriceLimit = 20000;
       searchQuery = '';
       isWishlistView = false;
+
+      const pRange = document.getElementById('price-range');
+      if (pRange) pRange.value = 20000;
+      const pLabel = document.getElementById('price-range-label');
+      if (pLabel) pLabel.innerText = 'Any';
+
       const input = document.getElementById('search-input');
       if (input) input.value = '';
       const clearBtn = document.getElementById('search-clear-btn');
       if (clearBtn) clearBtn.classList.add('hidden');
+
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateArtistSubBar();
@@ -1138,10 +1230,44 @@
       return val > todayVal;
     }
 
+    function updateDirectPageDropdown(totalPages) {
+      const select = document.getElementById('direct-page-select');
+      if (!select) return;
+      select.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        if (i === currentPage) opt.selected = true;
+        select.appendChild(opt);
+      }
+    }
+
+    function updateStructuredData(items) {
+      const script = document.getElementById('structured-data-json');
+      if (!script) return;
+      try {
+        const base = {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": items.slice(0, 30).map((it, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "url": `https://idoljapan.store/?q=${encodeURIComponent(it.id)}`,
+            "name": it.title,
+            "image": it.image
+          }))
+        };
+        script.textContent = JSON.stringify(base);
+      } catch (e) {}
+    }
+
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
       const rangeEl = document.getElementById('page-range-info');
       const navEl = document.getElementById('pagination-bottom');
       if (!rangeEl || !navEl) return;
+
+      updateDirectPageDropdown(totalPages);
 
       if (totalItems === 0) {
         rangeEl.innerText = "0 releases found";
@@ -1189,11 +1315,8 @@
       navEl.innerHTML = navHtml;
     }
 
-    // Quick-View Modal Actions
     function openModal(productId, e) {
-      if (e) {
-        e.preventDefault();
-      }
+      if (e) e.preventDefault();
       const p = allProducts.find(item => item.id === productId);
       if (!p) return;
       currentModalProduct = p;
@@ -1283,6 +1406,12 @@
           return false;
         }
 
+        // Price Filter Threshold
+        const priceNum = parseNumericPrice(item.price, item);
+        if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) {
+          return false;
+        }
+
         // Availability Timing Filter
         const upcoming = isPreOrder(item);
         if (activeAvailability === 'preorder' && !upcoming) return false;
@@ -1364,6 +1493,9 @@
       const endIndex = startIndex + itemsPerPage;
       const paginatedItems = filtered.slice(startIndex, endIndex);
 
+      // Inject active items into SEO Schema
+      updateStructuredData(paginatedItems);
+
       paginatedItems.forEach(p => {
         const card = document.createElement('div');
         card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
@@ -1383,13 +1515,14 @@
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
         card.innerHTML = `
-          <!-- Image Box (Click opens Modal) -->
-          <div class="aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
+          <!-- Image Container with Skeleton Loader -->
+          <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
             <img 
               src="${displayImg}" 
               alt="${safeTitle}" 
               loading="lazy" 
               referrerpolicy="no-referrer"
+              onload="this.classList.add('img-fade-in')"
               onerror="onImgLoadError(this)"
               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
@@ -1469,7 +1602,7 @@
       renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
     }
 
-    // Scroll to Top Listener
+    // Scroll to Top Button Visibility
     window.addEventListener('scroll', () => {
       const btn = document.getElementById('scroll-to-top');
       if (!btn) return;
@@ -1480,7 +1613,6 @@
       }
     });
 
-    // Keyboard ESC listener for Modal
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });

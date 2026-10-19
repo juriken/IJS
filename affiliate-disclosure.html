@@ -1,27 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Affiliate Disclosure — IdolJapan.store</title>
+  <meta name="referrer" content="no-referrer">
+
+  <title>Affiliate & Commercial Disclosure — IdolJapan.store</title>
+  <meta name="title" content="Affiliate & Commercial Disclosure — IdolJapan.store">
+  <meta name="description" content="Official FTC and commercial affiliate disclosure statement for IdolJapan.store and our partnership with CDJapan.">
+  <link rel="canonical" href="https://idoljapan.store/affiliate-disclosure.html">
+  <meta name="theme-color" content="#e11d48">
+
+  <!-- Open Graph / Twitter Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idoljapan.store/affiliate-disclosure.html">
+  <meta property="og:title" content="Affiliate Disclosure — IdolJapan.store">
+  <meta property="og:description" content="Transparency guidelines regarding affiliate relationships and CDJapan referral links.">
+  <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@IdolJapanStore">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sakura: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Early Theme Detection -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans p-6 sm:p-12 min-h-screen flex flex-col items-center">
-  <div class="max-w-2xl bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-    <a href="/" class="text-xs font-bold text-pink-600">← Back to IdolJapan.store</a>
-    <h1 class="text-2xl font-black text-slate-900">Affiliate Disclosure</h1>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      In compliance with the FTC guidelines and international advertising transparency laws, please assume that all outgoing product links on <strong>IdolJapan.store</strong> are affiliate links.
-    </p>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      IdolJapan.store is an authorized affiliate of <strong>CDJapan</strong> (Neowing Corp, Tokyo). Our affiliate tracking identification is <strong>A033398</strong>. If you follow a product link on this website and proceed to complete an order on CDJapan.co.jp, we may earn an affiliate commission on that purchase.
-    </p>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      This referral commission comes at <strong>no additional charge to you</strong>. Retail prices, shipping calculations, reward points, and checkout policies on CDJapan remain identical whether you use our referral links or navigate directly.
-    </p>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      We do not accept paid placements to artificially promote specific items over others. Our catalog is curated solely based on chronological release schedules of Japanese female idol groups.
-    </p>
+<body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-compact-disc text-amber-200 dark:text-rose-400 text-2xl"></i>
+        <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-rose-200 dark:text-rose-400">.store</span></a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="/" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Catalog</span>
+        </a>
+
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm">
+          <i id="theme-icon" class="fa-solid fa-moon text-rose-100 dark:text-rose-400"></i>
+        </button>
+
+        <a href="https://x.com/IdolJapanStore" target="_blank" rel="noopener noreferrer" aria-label="Follow IdolJapan.store on X" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 hover:text-white">
+          <i class="fa-brands fa-x-twitter text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-stone-100 dark:bg-slate-900/60 border-b border-stone-200 dark:border-slate-800 py-2">
+    <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 text-xs text-stone-500 dark:text-slate-400">
+      <a href="/" class="hover:text-rose-600 dark:hover:text-rose-400">Home</a>
+      <span>/</span>
+      <span class="text-stone-800 dark:text-stone-200 font-bold">Affiliate Disclosure</span>
+    </div>
   </div>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+      <span class="bg-rose-100 dark:bg-rose-950/70 text-rose-600 dark:text-rose-400 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Commercial Transparency
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white mt-3">
+        Affiliate Disclosure &amp; FTC Compliance
+      </h1>
+      <p class="text-xs text-stone-500 dark:text-slate-400 mt-1">
+        Last updated: October 2026 • Compliant with FTC 16 CFR § 255.5
+      </p>
+    </div>
+
+    <!-- Disclosure Callout -->
+    <section class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+        <i class="fa-solid fa-bullhorn text-rose-600 dark:text-rose-400"></i>
+        Standard Affiliate Disclosure Statement
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+        IdolJapan.store participates in the official <strong>CDJapan Affiliate Program</strong> (Affiliate ID: <strong>A033398</strong>). 
+        When you click through our direct product links to CDJapan and make a qualifying purchase, we may receive a small referral commission directly from CDJapan at <strong>no extra cost to you</strong>.
+      </p>
+
+      <div class="p-4 bg-stone-50 dark:bg-slate-950 rounded-xl border border-stone-200 dark:border-slate-800 space-y-2 text-xs sm:text-sm text-stone-600 dark:text-slate-300">
+        <div class="font-bold text-stone-800 dark:text-white flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-500"></i> What This Means for You as a Fan
+        </div>
+        <ul class="space-y-1.5 list-disc list-inside">
+          <li><strong>Zero Price Penalty:</strong> You pay the exact same official retail price listed directly on CDJapan.</li>
+          <li><strong>Direct Point Accrual:</strong> Your purchase earns full standard CDJapan Customer Points and bonus rewards.</li>
+          <li><strong>Direct Official Fulfillment:</strong> Orders are packaged and exported directly by CDJapan's logistics center in Tokyo.</li>
+          <li><strong>Server &amp; Maintenance Support:</strong> Commissions directly cover GitHub Actions cloud runners, API infrastructure, and indexing upkeep.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Implementation Breakdown -->
+    <section class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+        <i class="fa-solid fa-code text-rose-600 dark:text-rose-400"></i>
+        Link Structure &amp; Attribution Architecture
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+        Our outbound links use CDJapan's standardized secure referral format. An example structure is shown below:
+      </p>
+
+      <div class="p-3 bg-stone-100 dark:bg-slate-950 rounded-lg border border-stone-200 dark:border-slate-800 font-mono text-[11px] text-rose-600 dark:text-rose-400 break-all select-all">
+        https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F[CATALOG_ID]?sub_id=[SOURCE]
+      </div>
+
+      <ul class="space-y-2 text-xs text-stone-600 dark:text-slate-300 list-disc list-inside">
+        <li><strong>Affiliate Tag:</strong> <code>A033398</code> is our verified affiliate identifier.</li>
+        <li><strong>Sub-Tracking Parameter:</strong> <code>sub_id</code> (e.g. <code>grid_btn</code>, <code>modal_buy</code>, <code>calendar_view</code>) indicates which interface feature assisted in discovering the release.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200">
+    <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-600 dark:text-slate-400">
+        <a href="./about.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">About Us &amp; Verification</a>
+        <a href="./affiliate-disclosure.html" class="text-rose-600 dark:text-rose-400 font-bold">Affiliate Disclosure</a>
+        <a href="./privacy.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Privacy Policy</a>
+        <a href="./terms.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Terms of Service</a>
+      </div>
+
+      <div class="pt-2 border-t border-stone-100 dark:border-slate-800 text-xs text-stone-400 dark:text-slate-500">
+        <p>© 2019 – 2026 IdolJapan.store. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-amber-200' : 'fa-solid fa-moon text-rose-100';
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateThemeIcon();
+    });
+  </script>
 </body>
 </html>

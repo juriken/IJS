@@ -11,59 +11,58 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Schema: (Category, Canonical Artist, Search Query, Keyword Filter List, is_legacy)
-# is_legacy=True uses CDJapan's relevance ranking instead of release date descending.
+# Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
-    # Hello! Project — Active Groups (sort by newest releases)
-    ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."], False),
-    ("Hello! Project", "ANGERME", "ANGERME", ["ANGERME", "Smileage", "S/mileage"], False),
-    ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"], False),
-    ("Hello! Project", "Tsubaki Factory", "Tsubaki Factory", ["Tsubaki Factory"], False),
-    ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"], False),
-    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"], False),
-    ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle", "Rosy"], False),
+    # Hello! Project — Active Groups
+    ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
+    ("Hello! Project", "ANGERME", "ANGERME", ["ANGERME", "Smileage", "S/mileage"]),
+    ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"]),
+    ("Hello! Project", "Tsubaki Factory", "Tsubaki Factory", ["Tsubaki Factory"]),
+    ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
+    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"]),
+    ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle", "Rosy"]),
 
-    # Hello! Project — Past Groups & Subunits (sort by relevance)
-    ("Hello! Project", "Minimoni", "Minimoni", ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"], True),
-    ("Hello! Project", "Berryz Kobo", "Berryz Kobo", ["Berryz Kobo", "Berryz", "Berryz工房"], True),
-    ("Hello! Project", "℃-ute", "C-ute", ["℃-ute", "C-ute", "Cute"], True),
-    ("Hello! Project", "Buono!", "Buono!", ["Buono!"], True),
-    ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー"], True),
-    ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー"], True),
-    ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], True),
-    ("Hello! Project", "W (Double You)", "Double You", ["Double You", "W (Double You)", "ダブルユー"], True),
-    ("Hello! Project", "Tanpopo", "Tanpopo", ["Tanpopo", "タンポポ"], True),
-    ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"], True),
-    ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"], True),
+    # Hello! Project — Past Groups & Subunits
+    ("Hello! Project", "Minimoni", "Minimoni", ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
+    ("Hello! Project", "Berryz Kobo", "Berryz Kobo", ["Berryz Kobo", "Berryz", "Berryz工房"]),
+    ("Hello! Project", "℃-ute", "C-ute", ["℃-ute", "C-ute", "Cute"]),
+    ("Hello! Project", "Buono!", "Buono!", ["Buono!"]),
+    ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
+    ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー", "こぶし"]),
+    ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
+    ("Hello! Project", "W (Double You)", "Double You", ["Double You", "W (Double You)", "ダブルユー"]),
+    ("Hello! Project", "Tanpopo", "Tanpopo", ["Tanpopo", "タンポポ"]),
+    ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
+    ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
 
     # Hello! Project — Soloists & OGs
-    ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"], True),
-    ("Hello! Project", "Maki Goto", "Maki Goto", ["Maki Goto", "Goto Maki", "後藤真希"], True),
-    ("Hello! Project", "Natsumi Abe", "Natsumi Abe", ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"], True),
-    ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"], True),
-    ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"], False),
+    ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
+    ("Hello! Project", "Maki Goto", "Maki Goto", ["Maki Goto", "Goto Maki", "後藤真希"]),
+    ("Hello! Project", "Natsumi Abe", "Natsumi Abe", ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
+    ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
+    ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
 
     # Sakamichi Series
-    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"], False),
-    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"], False),
-    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"], False),
+    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
+    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
+    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
 
     # AKB48 Group
-    ("AKB48 Group", "AKB48", "AKB48", ["AKB48"], False),
-    ("AKB48 Group", "SKE48", "SKE48", ["SKE48"], False),
-    ("AKB48 Group", "NMB48", "NMB48", ["NMB48"], False),
-    ("AKB48 Group", "HKT48", "HKT48", ["HKT48"], False),
-    ("AKB48 Group", "NGT48", "NGT48", ["NGT48"], False),
-    ("AKB48 Group", "STU48", "STU48", ["STU48"], False),
+    ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
+    ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
+    ("AKB48 Group", "NMB48", "NMB48", ["NMB48"]),
+    ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
+    ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
+    ("AKB48 Group", "STU48", "STU48", ["STU48"]),
 
-    # =LOVE & Sister Groups
-    ("=LOVE / Sister Groups", "=LOVE", "Equal Love", ["=LOVE", "Equal Love", "イコラブ"], False),
-    ("=LOVE / Sister Groups", "≠ME", "Not Equal ME", ["≠ME", "Not Equal ME", "Noime"], False),
-    ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy", ["≒JOY", "Nearly Equal Joy", "Niajoy"], False),
+    # =LOVE & Sister Groups (Exact official symbols)
+    ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love", "イコラブ"]),
+    ("=LOVE / Sister Groups", "≠ME", "≠ME", ["≠ME", "Not Equal ME", "Noime", "ノイミー"]),
+    ("=LOVE / Sister Groups", "≒JOY", "≒JOY", ["≒JOY", "Nearly Equal Joy", "ニアジョイ"]),
 
     # Other Key Units
-    ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"], False),
-    ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"], False),
+    ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"]),
+    ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
 PAGES_PER_TARGET = 3
@@ -94,15 +93,22 @@ def is_relevant_product(card_text, keywords):
     if not keywords:
         return True
     lower_text = card_text.lower()
-    return any(kw.lower() in lower_text for kw in keywords)
+    for kw in keywords:
+        kw_clean = kw.strip().lower()
+        if len(kw_clean) <= 2:
+            if re.search(r"\b" + re.escape(kw_clean) + r"\b", lower_text):
+                return True
+        else:
+            if kw_clean in lower_text:
+                return True
+    return False
 
 
 def extract_verified_products(html, category, canonical_artist, keywords):
     soup = BeautifulSoup(html, "html.parser")
     items_dict = {}
 
-    # Combined selector to avoid missing cards across varied CDJapan result templates
-    cards = soup.select(".item-detail, .n-item, .item, div[class*='item-']")
+    cards = soup.select(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']")
     seen_keys = set()
 
     for card in cards:
@@ -176,7 +182,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
             "/pictures/m/", "/pictures/l/"
         )
 
-        # Price Extraction
+        # Price
         price_el = (
             card.select_one(".price")
             or card.select_one(".item-price")
@@ -197,7 +203,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
                     price_num = int(num_only)
                     price_str = f"{price_num:,}yen"
 
-        # Release Date Extraction
+        # Release Date
         card_text = card.get_text()
         rel_date = ""
 
@@ -266,47 +272,66 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
-        close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save')").first
-        if close_btn.is_visible(timeout=1500):
+        page.keyboard.press("Escape")
+        close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
+        if close_btn.is_visible(timeout=800):
             close_btn.click()
-            time.sleep(0.5)
+            time.sleep(0.3)
     except Exception:
         pass
 
 
-def scrape_artist_releases(page, category, canonical_artist, query, keywords, is_legacy, max_pages):
+def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
     results = []
-    encoded_q = urllib.parse.quote_plus(query)
-    
-    # Active units use release date desc; legacy units use relevance ranking
-    sort_param = "" if is_legacy else "&order=reldesc"
-    print(f"\n-> Querying CDJapan for: {canonical_artist} ('{query}') [Sort: {'Relevance' if is_legacy else 'Newest'}]")
+    print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')")
 
-    for p_num in range(1, max_pages + 1):
-        target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}{sort_param}&page={p_num}"
-        
-        success = False
-        for attempt in range(1, 3):
-            try:
-                page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+    for attempt in range(1, 3):
+        try:
+            # Check if search input is readily available; if not, reload the base site
+            search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
+            if not search_input.is_visible():
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
                 dismiss_popups(page)
-                page.evaluate("window.scrollBy(0, 1000)")
-                time.sleep(random.uniform(1.2, 2.0))
+                time.sleep(1.0)
+                search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
+
+            # Click, clear, type into search bar, and submit
+            search_input.click()
+            search_input.fill("")
+            search_input.type(query, delay=35)
+            time.sleep(0.2)
+
+            with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
+                search_input.press("Enter")
+
+            dismiss_popups(page)
+            time.sleep(1.5)
+
+            # Paginate through results using the native Next button
+            for p_num in range(1, max_pages + 1):
+                page.evaluate("window.scrollBy(0, 900)")
+                time.sleep(1.0)
 
                 html = page.content()
                 verified = extract_verified_products(html, category, canonical_artist, keywords)
                 print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
                 results.extend(verified)
-                success = True
-                break
-            except Exception as e:
-                print(f"   Warning (Page {p_num}, Attempt {attempt}) for {canonical_artist}: {e}")
-                time.sleep(2.0)
 
-        if not success:
-            break
+                if p_num < max_pages:
+                    next_btn = page.locator("a[rel='next'], a.next, li.next a, .pager .next a, a:has-text('Next')").first
+                    if next_btn.count() > 0 and next_btn.is_visible():
+                        with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
+                            next_btn.click()
+                        dismiss_popups(page)
+                        time.sleep(random.uniform(2.0, 3.2))
+                    else:
+                        break
 
-        time.sleep(random.uniform(2.0, 3.5))
+            return results
+
+        except Exception as e:
+            print(f"   Attempt {attempt} warning for {canonical_artist}: {e}")
+            time.sleep(2.5)
 
     return results
 
@@ -332,12 +357,20 @@ def main():
         )
         page = context.new_page()
 
+        # Warm up initial session on CDJapan
+        try:
+            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(page)
+            time.sleep(1.5)
+        except Exception:
+            pass
+
         new_total = 0
 
-        for idx, (cat, artist, query, keywords, is_legacy) in enumerate(batch, 1):
+        for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
-            items = scrape_artist_releases(
-                page, cat, artist, query, keywords, is_legacy, max_pages=PAGES_PER_TARGET
+            items = execute_search_via_bar(
+                page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
             )
             added_for_artist = 0
 

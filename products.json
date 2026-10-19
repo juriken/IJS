@@ -4121,11 +4121,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,000yen",
-    "release_date": "2026/07/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/03/NEOBK-3210999.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3210999",
-    "updated_at": "2026-10-19",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3224712": {
     "id": "NEOBK-3224712",
@@ -4133,11 +4133,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,300yen",
-    "release_date": "2026/08/01",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/20/NEOBK-3224712.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3224712",
-    "updated_at": "2026-10-19",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3254449": {
     "id": "NEOBK-3254449",
@@ -4145,11 +4145,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,364yen",
-    "release_date": "2026/10/01",
+    "price_num": 1364,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/NEOBK-3254449.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3254449",
-    "updated_at": "2026-10-19",
-    "price_num": 1364
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3251056": {
     "id": "NEOBK-3251056",
@@ -4157,11 +4157,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "509yen",
-    "release_date": "2026/10/13",
+    "price_num": 509,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/28/NEOBK-3251056.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3251056",
-    "updated_at": "2026-10-19",
-    "price_num": 509
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3200622": {
     "id": "NEOBK-3200622",
@@ -4169,11 +4169,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,200yen",
-    "release_date": "2026/04/01",
+    "price_num": 3200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/03/NEOBK-3200622.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3200622",
-    "updated_at": "2026-10-19",
-    "price_num": 3200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-178384": {
     "id": "NEODAI-178384",
@@ -4181,11 +4181,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,300yen",
-    "release_date": "2023/11/15",
+    "price_num": 3300,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/00/NEODAI-178384.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-178384",
-    "updated_at": "2026-10-19",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-146211": {
     "id": "NEODAI-146211",
@@ -4193,11 +4193,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,750yen",
-    "release_date": "2022/11/15",
+    "price_num": 2750,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/13/NEODAI-146211.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146211",
-    "updated_at": "2026-10-19",
-    "price_num": 2750
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2771376": {
     "id": "NEOBK-2771376",
@@ -4205,11 +4205,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,700yen",
-    "release_date": "2022/07/10",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/25/NEOBK-2771376.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2771376",
-    "updated_at": "2026-10-19",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "NEODAI-113363": {
     "id": "NEODAI-113363",
@@ -4217,11 +4217,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,500yen",
-    "release_date": "2021/10/31",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/06/NEODAI-113363.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-113363",
-    "updated_at": "2026-10-19",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-113364": {
     "id": "NEODAI-113364",
@@ -4229,11 +4229,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,100yen",
-    "release_date": "2021/10/31",
+    "price_num": 3100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/07/NEODAI-113364.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-113364",
-    "updated_at": "2026-10-19",
-    "price_num": 3100
+    "updated_at": "2026-10-19"
   },
   "KIXM-477": {
     "id": "KIXM-477",
@@ -4241,11 +4241,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "13,000yen",
-    "release_date": "2022/01/26",
+    "price_num": 13000,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/15/KIXM-477.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-477",
-    "updated_at": "2026-10-19",
-    "price_num": 13000
+    "updated_at": "2026-10-19"
   },
   "KIBM-895": {
     "id": "KIBM-895",
@@ -4253,11 +4253,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "4,000yen",
-    "release_date": "2022/01/26",
+    "price_num": 4000,
+    "release_date": "2021/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/15/KIBM-895.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIBM-895",
-    "updated_at": "2026-10-19",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "KIBM-894": {
     "id": "KIBM-894",
@@ -4265,11 +4265,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "4,000yen",
-    "release_date": "2022/01/26",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/14/KIBM-894.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIBM-894",
-    "updated_at": "2026-10-19",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-96035": {
     "id": "NEODAI-96035",
@@ -4277,11 +4277,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "3,300yen",
-    "release_date": "2021/04/30",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/26/NEODAI-96035.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-96035",
-    "updated_at": "2026-10-18",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-96036": {
     "id": "NEODAI-96036",
@@ -4289,11 +4289,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,150yen",
-    "release_date": "2021/03/31",
+    "price_num": 2150,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/27/NEODAI-96036.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-96036",
-    "updated_at": "2026-10-18",
-    "price_num": 2150
+    "updated_at": "2026-10-19"
   },
   "NEODAI-96037": {
     "id": "NEODAI-96037",
@@ -4301,11 +4301,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,500yen",
-    "release_date": "2021/03/31",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-96037.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-96037",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-92162": {
     "id": "NEODAI-92162",
@@ -4313,11 +4313,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,150yen",
-    "release_date": "2021/02/15",
+    "price_num": 2150,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/01/NEODAI-92162.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-92162",
-    "updated_at": "2026-10-18",
-    "price_num": 2150
+    "updated_at": "2026-10-19"
   },
   "NEODAI-92171": {
     "id": "NEODAI-92171",
@@ -4325,11 +4325,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,500yen",
-    "release_date": "2021/02/15",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/NEODAI-92171.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-92171",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-83407": {
     "id": "NEODAI-83407",
@@ -4337,11 +4337,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "6,700yen",
-    "release_date": "2020/12/31",
+    "price_num": 6700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/47/NEODAI-83407.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83407",
-    "updated_at": "2026-10-18",
-    "price_num": 6700
+    "updated_at": "2026-10-19"
   },
   "KIXM-401": {
     "id": "KIXM-401",
@@ -4349,11 +4349,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "7,000yen",
-    "release_date": "2019/11/06",
+    "price_num": 7000,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/44/KIXM-401.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-401",
-    "updated_at": "2026-10-18",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "KIBM-817": {
     "id": "KIBM-817",
@@ -4361,11 +4361,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "5,000yen",
-    "release_date": "2019/11/06",
+    "price_num": 5000,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/01/KIBM-817.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIBM-817",
-    "updated_at": "2026-10-18",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-54464": {
     "id": "NEODAI-54464",
@@ -4373,11 +4373,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,834yen",
-    "release_date": "2019/02/28",
+    "price_num": 1834,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-54464.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-54464",
-    "updated_at": "2026-10-18",
-    "price_num": 1834
+    "updated_at": "2026-10-19"
   },
   "NEODAI-52273": {
     "id": "NEODAI-52273",
@@ -4385,11 +4385,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "713yen",
-    "release_date": "2019/01/31",
+    "price_num": 713,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/42/NEODAI-52273.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-52273",
-    "updated_at": "2026-10-18",
-    "price_num": 713
+    "updated_at": "2026-10-19"
   },
   "KIXM-663": {
     "id": "KIXM-663",
@@ -10649,11 +10649,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/03/04",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/40/KIZM-839.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-839",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90856": {
     "id": "KIZM-90856",
@@ -10661,11 +10661,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/10/07",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/16/KIZM-90856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90856",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZC-757": {
     "id": "KIZC-757",
@@ -10673,11 +10673,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "5,909yen",
-    "release_date": "2024/06/12",
+    "price_num": 5909,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/25/KIZC-757.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-757",
-    "updated_at": "2026-10-19",
-    "price_num": 5909
+    "updated_at": "2026-10-19"
   },
   "KIZM-90827": {
     "id": "KIZM-90827",
@@ -10685,11 +10685,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/08/27",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/11/KIZM-90827.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90827",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-856": {
     "id": "KIZM-856",
@@ -10697,11 +10697,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/10/07",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/41/KIZM-856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-856",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90841": {
     "id": "KIZM-90841",
@@ -10709,11 +10709,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/03/04",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/09/KIZM-90841.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90841",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90858": {
     "id": "KIZM-90858",
@@ -10721,11 +10721,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/10/07",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/18/KIZM-90858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90858",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-858": {
     "id": "KIZM-858",
@@ -10733,11 +10733,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/10/07",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/43/KIZM-858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-858",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90839": {
     "id": "KIZM-90839",
@@ -10745,11 +10745,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/03/04",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/15/KIZM-90839.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90839",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-841": {
     "id": "KIZM-841",
@@ -10757,11 +10757,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2026/03/04",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/KIZM-841.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-841",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90829": {
     "id": "KIZM-90829",
@@ -10769,11 +10769,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/08/27",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/13/KIZM-90829.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90829",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-829": {
     "id": "KIZM-829",
@@ -10781,11 +10781,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/08/27",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/38/KIZM-829.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-829",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-827": {
     "id": "KIZM-827",
@@ -10793,11 +10793,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/08/27",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/36/KIZM-827.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-827",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237196": {
     "id": "NEODAI-237196",
@@ -10805,11 +10805,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,900yen",
-    "release_date": "2025/01/15",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/05/NEODAI-237196.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237196",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237197": {
     "id": "NEODAI-237197",
@@ -10817,11 +10817,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,900yen",
-    "release_date": "2025/01/15",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEODAI-237197.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237197",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237199": {
     "id": "NEODAI-237199",
@@ -10829,11 +10829,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,900yen",
-    "release_date": "2025/01/15",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/NEODAI-237199.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237199",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237200": {
     "id": "NEODAI-237200",
@@ -10841,11 +10841,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,900yen",
-    "release_date": "2025/01/15",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/34/NEODAI-237200.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237200",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "KIZM-90813": {
     "id": "KIZM-90813",
@@ -10853,11 +10853,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/01/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/05/KIZM-90813.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90813",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-90811": {
     "id": "KIZM-90811",
@@ -10865,11 +10865,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/01/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/03/KIZM-90811.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90811",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-813": {
     "id": "KIZM-813",
@@ -10877,11 +10877,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/01/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/KIZM-813.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-813",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZM-811": {
     "id": "KIZM-811",
@@ -10889,11 +10889,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2025/01/15",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/KIZM-811.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-811",
-    "updated_at": "2026-10-19",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "KIZC-759": {
     "id": "KIZC-759",
@@ -10901,11 +10901,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "4,091yen",
-    "release_date": "2024/06/12",
+    "price_num": 4091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/27/KIZC-759.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-759",
-    "updated_at": "2026-10-19",
-    "price_num": 4091
+    "updated_at": "2026-10-19"
   },
   "KIZM-90789": {
     "id": "KIZM-90789",
@@ -10913,11 +10913,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,636yen",
-    "release_date": "2023/11/15",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/21/KIZM-90789.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90789",
-    "updated_at": "2026-10-19",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "KIZM-90787": {
     "id": "KIZM-90787",
@@ -10925,11 +10925,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,636yen",
-    "release_date": "2023/11/15",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/19/KIZM-90787.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90787",
-    "updated_at": "2026-10-19",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "KIZM-789": {
     "id": "KIZM-789",
@@ -10937,11 +10937,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,636yen",
-    "release_date": "2023/11/15",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/46/KIZM-789.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-789",
-    "updated_at": "2026-10-19",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "KIZM-787": {
     "id": "KIZM-787",
@@ -10949,11 +10949,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,636yen",
-    "release_date": "2023/11/15",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/44/KIZM-787.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-787",
-    "updated_at": "2026-10-19",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "KIZM-90763": {
     "id": "KIZM-90763",
@@ -10961,11 +10961,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2023/03/15",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/11/KIZM-90763.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90763",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90761": {
     "id": "KIZM-90761",
@@ -10973,11 +10973,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2023/03/15",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/09/KIZM-90761.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90761",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-763": {
     "id": "KIZM-763",
@@ -10985,11 +10985,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2023/03/15",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/36/KIZM-763.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-763",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-761": {
     "id": "KIZM-761",
@@ -10997,11 +10997,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2023/03/15",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/KIZM-761.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-761",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90723": {
     "id": "KIZM-90723",
@@ -11009,11 +11009,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2022/04/13",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/03/KIZM-90723.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90723",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90721": {
     "id": "KIZM-90721",
@@ -11021,11 +11021,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2022/04/13",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/01/KIZM-90721.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90721",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-723": {
     "id": "KIZM-723",
@@ -11033,11 +11033,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2022/04/13",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/KIZM-723.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-723",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-721": {
     "id": "KIZM-721",
@@ -11045,11 +11045,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-721.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-721",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90707": {
     "id": "KIZM-90707",
@@ -11057,11 +11057,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/10/20",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/03/KIZM-90707.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90707",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90705": {
     "id": "KIZM-90705",
@@ -11069,11 +11069,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2024/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/01/KIZM-90705.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90705",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-707": {
     "id": "KIZM-707",
@@ -11081,11 +11081,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/10/20",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/KIZM-707.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-707",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-705": {
     "id": "KIZM-705",
@@ -11093,11 +11093,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/10/20",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-705.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-705",
-    "updated_at": "2026-10-19",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90683": {
     "id": "KIZM-90683",
@@ -11105,11 +11105,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/02/17",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/11/KIZM-90683.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90683",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90681": {
     "id": "KIZM-90681",
@@ -11117,11 +11117,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/02/17",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/09/KIZM-90681.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90681",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-683": {
     "id": "KIZM-683",
@@ -11129,11 +11129,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/02/17",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/36/KIZM-683.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-683",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-681": {
     "id": "KIZM-681",
@@ -11141,11 +11141,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2021/02/17",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/KIZM-681.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-681",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "NEODAI-84963": {
     "id": "NEODAI-84963",
@@ -11153,11 +11153,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,718yen",
-    "release_date": "2019/02/13",
+    "price_num": 2718,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEODAI-84963.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84963",
-    "updated_at": "2026-10-18",
-    "price_num": 2718
+    "updated_at": "2026-10-19"
   },
   "NEODAI-83576": {
     "id": "NEODAI-83576",
@@ -11165,11 +11165,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,999yen",
-    "release_date": "2019/07/31",
+    "price_num": 2999,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/15/NEODAI-83576.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83576",
-    "updated_at": "2026-10-18",
-    "price_num": 2999
+    "updated_at": "2026-10-19"
   },
   "NEODAI-83584": {
     "id": "NEODAI-83584",
@@ -11177,11 +11177,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "420yen",
-    "release_date": "2020/01/01",
+    "price_num": 420,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/15/NEODAI-83584.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83584",
-    "updated_at": "2026-10-18",
-    "price_num": 420
+    "updated_at": "2026-10-19"
   },
   "NEODAI-83667": {
     "id": "NEODAI-83667",
@@ -11189,11 +11189,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "2,760yen",
+    "price_num": 2760,
     "release_date": "2020/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/18/NEODAI-83667.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83667",
-    "updated_at": "2026-10-18",
-    "price_num": 2760
+    "updated_at": "2026-10-19"
   },
   "NEODAI-82855": {
     "id": "NEODAI-82855",
@@ -11201,11 +11201,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "500yen",
-    "release_date": "2020/02/02",
+    "price_num": 500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/14/NEODAI-82855.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82855",
-    "updated_at": "2026-10-18",
-    "price_num": 500
+    "updated_at": "2026-10-19"
   },
   "KIZM-90669": {
     "id": "KIZM-90669",
@@ -11213,11 +11213,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2020/09/02",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/13/KIZM-90669.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90669",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90667": {
     "id": "KIZM-90667",
@@ -11225,11 +11225,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2020/09/02",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/11/KIZM-90667.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90667",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-669": {
     "id": "KIZM-669",
@@ -11237,11 +11237,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2019/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/38/KIZM-669.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-669",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-667": {
     "id": "KIZM-667",
@@ -11249,11 +11249,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2020/09/02",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/36/KIZM-667.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-667",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90657": {
     "id": "KIZM-90657",
@@ -11261,11 +11261,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2024/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/09/KIZM-90657.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90657",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90655": {
     "id": "KIZM-90655",
@@ -11273,11 +11273,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2024/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/07/KIZM-90655.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90655",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90653": {
     "id": "KIZM-90653",
@@ -11285,11 +11285,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2020/01/29",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/05/KIZM-90653.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90653",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-657": {
     "id": "KIZM-657",
@@ -11297,11 +11297,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2019/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/KIZM-657.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-657",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-655": {
     "id": "KIZM-655",
@@ -11309,11 +11309,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2019/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/KIZM-655.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-655",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-653": {
     "id": "KIZM-653",
@@ -11321,11 +11321,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,591yen",
-    "release_date": "2019/08/10",
+    "price_num": 1591,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/KIZM-653.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-653",
-    "updated_at": "2026-10-18",
-    "price_num": 1591
+    "updated_at": "2026-10-19"
   },
   "KIZM-90629": {
     "id": "KIZM-90629",
@@ -11333,11 +11333,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2024/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/05/KIZM-90629.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90629",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-90627": {
     "id": "KIZM-90627",
@@ -11345,11 +11345,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2019/07/31",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/03/KIZM-90627.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90627",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-90625": {
     "id": "KIZM-90625",
@@ -11357,11 +11357,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2024/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/01/KIZM-90625.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90625",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-90623": {
     "id": "KIZM-90623",
@@ -11369,11 +11369,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2024/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/48/KIZM-90623.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90623",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-629": {
     "id": "KIZM-629",
@@ -11381,11 +11381,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2018/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/KIZM-629.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-629",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-627": {
     "id": "KIZM-627",
@@ -11393,11 +11393,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2018/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/KIZM-627.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-627",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-625": {
     "id": "KIZM-625",
@@ -11405,11 +11405,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2018/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-625.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-625",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-623": {
     "id": "KIZM-623",
@@ -11417,11 +11417,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2018/08/10",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/KIZM-623.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-623",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-90573": {
     "id": "KIZM-90573",
@@ -11429,11 +11429,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2019/02/13",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/05/KIZM-90573.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90573",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "KIZM-90571": {
     "id": "KIZM-90571",
@@ -11441,11 +11441,11 @@
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,574yen",
-    "release_date": "2019/02/13",
+    "price_num": 1574,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/03/KIZM-90571.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90571",
-    "updated_at": "2026-10-18",
-    "price_num": 1574
+    "updated_at": "2026-10-19"
   },
   "VVXL-305": {
     "id": "VVXL-305",
@@ -26606,7 +26606,7 @@
   "EPCE-5184": {
     "id": "EPCE-5184",
     "title": "Album CD CLUB Hello! TRANCE REMIX",
-    "artist": "Minimoni",
+    "artist": "Petitmoni",
     "category": "Hello! Project",
     "price": "2,913yen",
     "price_num": 2913,
@@ -30141,6 +30141,114 @@
     "release_date": "1999/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/15/EPBE-5004.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5004",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-32868": {
+    "id": "NEODAI-32868",
+    "title": "Album CD Oujisama to yuki no yoru [Initial pressing limited edition]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,273yen",
+    "price_num": 1273,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/37/NEODAI-32868.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-32868",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5127": {
+    "id": "EPBE-5127",
+    "title": "DVD Single V Clips 1",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/26/EPBE-5127.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5127",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5126": {
+    "id": "EPCE-5126",
+    "title": "Album CD Oujisama to yuki no yoru [Initial pressing limited edition]",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/40/EPCE-5126.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5126",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5060": {
+    "id": "EPCE-5060",
+    "title": "Album CD Otome Pasta ni Kando",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/38/EPCE-5060.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5060",
+    "updated_at": "2026-10-19"
+  },
+  "EPDE-1056": {
+    "id": "EPDE-1056",
+    "title": "8cm CD Seinaru kane ga hibiku yoru",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/25/EPDE-1056.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1056",
+    "updated_at": "2026-10-19"
+  },
+  "EPDE-1037": {
+    "id": "EPDE-1037",
+    "title": "8cm CD Tanpopo",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/22/EPDE-1037.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1037",
+    "updated_at": "2026-10-19"
+  },
+  "EPDE-1024": {
+    "id": "EPDE-1024",
+    "title": "8cm CD Motto",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/17/EPDE-1024.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1024",
+    "updated_at": "2026-10-19"
+  },
+  "EPDE-1014": {
+    "id": "EPDE-1014",
+    "title": "8cm CD Last Kiss",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "971yen",
+    "price_num": 971,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/15/EPDE-1014.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1014",
+    "updated_at": "2026-10-19"
+  },
+  "VICL-35383": {
+    "id": "VICL-35383",
+    "title": "Single CD Tanpopo",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/19/VICL-35383.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVICL-35383",
     "updated_at": "2026-10-19"
   }
 }

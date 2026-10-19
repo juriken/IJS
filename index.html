@@ -55,7 +55,7 @@
       </div>
 
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Multi-Currency Selector -->
+        <!-- Currency Selector -->
         <div class="relative flex items-center bg-pink-700 dark:bg-pink-900 rounded-full px-2.5 py-1 border border-pink-400/30 shadow-sm text-xs font-bold">
           <i class="fa-solid fa-coins text-yellow-300 mr-1.5 text-xs"></i>
           <select 
@@ -443,48 +443,39 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Precise Integer Date Normalizer
+    // Precise Integer Date Score Generator (YYYYMMDD)
     function getNormalizedDateScore(item) {
       if (!item) return 0;
       const dateStr = String(item.release_date || '').trim();
 
-      // 1. Full Numeric: YYYY/MM/DD or YYYY-MM-DD
+      // 1. Strict YYYY/MM/DD or YYYY-MM-DD
       const fullMatch = dateStr.match(/(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
       if (fullMatch) {
         const y = parseInt(fullMatch[1], 10);
         const m = parseInt(fullMatch[2], 10);
         const d = parseInt(fullMatch[3], 10);
-        return (y * 10000) + (m * 100) + d;
+        if (y >= 1990 && y <= 2030 && m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+          return (y * 10000) + (m * 100) + d;
+        }
       }
 
-      // 2. Year/Month: YYYY/MM
+      // 2. YYYY/MM
       const ymMatch = dateStr.match(/(\d{4})[./-](\d{1,2})/);
       if (ymMatch) {
         const y = parseInt(ymMatch[1], 10);
         const m = parseInt(ymMatch[2], 10);
-        return (y * 10000) + (m * 100) + 1;
+        if (y >= 1990 && y <= 2030 && m >= 1 && m <= 12) {
+          return (y * 10000) + (m * 100) + 1;
+        }
       }
 
-      // 3. English Month Format: "October 23, 2024"
-      const nativeMs = Date.parse(dateStr);
-      if (!isNaN(nativeMs) && nativeMs > 0) {
-        const dt = new Date(nativeMs);
-        return (dt.getFullYear() * 10000) + ((dt.getMonth() + 1) * 100) + dt.getDate();
+      // 3. Fallback: Year inside date or title
+      const yearMatch = (dateStr + ' ' + (item.title || '')).match(/\b(199\d|20[0-3]\d)\b/);
+      if (yearMatch) {
+        return parseInt(yearMatch[1], 10) * 10000 + 101;
       }
 
-      // 4. Four digit year in release_date
-      const yearInDate = dateStr.match(/\b(19\d\d|20\d\d)\b/);
-      if (yearInDate) {
-        return parseInt(yearInDate[1], 10) * 10000 + 101;
-      }
-
-      // 5. Four digit year in title
-      const yearInTitle = String(item.title || '').match(/\b(19\d\d|20\d\d)\b/);
-      if (yearInTitle) {
-        return parseInt(yearInTitle[1], 10) * 10000 + 101;
-      }
-
-      return 0; // Truly undated
+      return 0; // Undated items
     }
 
     function isPreOrder(item) {
@@ -562,28 +553,34 @@
         return matchesCat && matchesSearch;
       });
 
-      // Pure Deterministic Chronological Sorting
+      // Strict Mathematical Date & Price Sorting
       filtered.sort((a, b) => {
         const scoreA = getNormalizedDateScore(a);
         const scoreB = getNormalizedDateScore(b);
 
         if (currentSort === 'newest') {
+          // If both have verified dates, highest date score comes first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreB !== scoreA) return scoreB - scoreA;
             return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
+          // Real dates always precede undated items
           if (scoreA > 0 && scoreB === 0) return -1;
           if (scoreB > 0 && scoreA === 0) return 1;
+          // Undated items: sort by latest database addition
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
+          // If both have verified dates, lowest date score comes first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreA !== scoreB) return scoreA - scoreB;
             return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
+          // Real dates always precede undated items
           if (scoreA > 0 && scoreB === 0) return -1;
           if (scoreB > 0 && scoreA === 0) return 1;
+          // Undated items: sort by earliest database addition
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         

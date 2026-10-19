@@ -54,7 +54,7 @@
         "url": "https://idoljapan.store/",
         "name": "Japanese Idol Release Directory",
         "isPartOf": { "@id": "https://idoljapan.store/#website" },
-        "about": "Official Japanese idol releases fulfilled by authorized retailer CDJapan (Neowing Corporation)."
+        "about": "Official Japanese idol releases fulfilled by authorized retailer CDJapan."
       }
     ]
   }
@@ -301,7 +301,7 @@
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar, Era Filter & Release Timing Filter -->
+    <!-- Tier 2 Navigation: Format Filter Bar & Release Timing Filter -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth flex-1" id="format-filter-bar">
@@ -335,19 +335,8 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <!-- Era Timeline Selector -->
-          <div class="flex items-center gap-1 text-[11px] font-semibold text-stone-500 dark:text-slate-400">
-            <label for="era-select" class="hidden sm:inline">Era:</label>
-            <select id="era-select" onchange="onEraChange(this.value)" class="bg-stone-200/80 dark:bg-slate-800 border-none text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-md text-[11px] font-bold focus:outline-none cursor-pointer">
-              <option value="all" selected>All Eras</option>
-              <option value="modern">Modern (2020–2026)</option>
-              <option value="sengoku">Sengoku (2010–2019)</option>
-              <option value="golden">Golden (1998–2009)</option>
-            </select>
-          </div>
-
           <!-- Price Max Filter Slider -->
-          <div class="hidden md:flex items-center gap-1.5 text-[11px] font-semibold text-stone-500 dark:text-slate-400">
+          <div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-stone-500 dark:text-slate-400">
             <label for="price-range">Max:</label>
             <input 
               id="price-range" 
@@ -357,9 +346,9 @@
               step="500" 
               value="20000" 
               oninput="onMaxPriceChange(this.value)"
-              class="w-16 accent-rose-600 cursor-pointer"
+              class="w-16 sm:w-20 accent-rose-600 cursor-pointer"
             />
-            <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-10 text-right">Any</span>
+            <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-11 text-right">Any</span>
           </div>
 
           <!-- Release Status Switch -->
@@ -498,7 +487,7 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <button id="modal-buy-btn" onclick="triggerOutboundAffiliate(currentModalProduct)" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5">
+            <button id="modal-buy-btn" onclick="triggerOutboundAffiliate(currentModalProduct)" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5 cursor-pointer">
               <span id="modal-buy-btn-text">View &amp; Buy on CDJapan</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </button>
@@ -511,26 +500,27 @@
     </div>
   </div>
 
-  <!-- Outbound Affiliate Transparency Modal -->
+  <!-- Outbound Affiliate Transparency Modal (CDJapan Direct Only) -->
   <div id="redirect-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden" onclick="closeRedirectModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 text-center">
       <div class="w-12 h-12 bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 rounded-full flex items-center justify-center mx-auto text-xl">
         <i class="fa-solid fa-plane-departure"></i>
       </div>
       <div>
-        <h3 class="text-base font-bold text-stone-900 dark:text-white">Redirecting to CDJapan (Tokyo)</h3>
+        <h3 class="text-base font-bold text-stone-900 dark:text-white">Heading to CDJapan (Tokyo)</h3>
         <p class="text-xs text-stone-600 dark:text-slate-400 mt-1 leading-relaxed">
-          You are visiting the official retailer <strong>CDJapan</strong> to complete your purchase. All orders ship directly from Tokyo with authentic tracking numbers.
+          You are being redirected to official retailer <strong>CDJapan</strong> to complete your order. All items ship straight from Tokyo to your door.
         </p>
       </div>
 
-      <div class="p-3 bg-stone-50 dark:bg-slate-800 rounded-xl text-[11px] text-stone-600 dark:text-slate-300 text-left space-y-1">
+      <div class="p-3 bg-stone-50 dark:bg-slate-800 rounded-xl text-[11px] text-stone-600 dark:text-slate-300 text-left space-y-1.5">
         <div class="flex items-center gap-1.5 font-bold text-stone-800 dark:text-white">
-          <i class="fa-solid fa-shield-halved text-emerald-500"></i> Authentic Tokyo Merchant
+          <i class="fa-solid fa-shield-halved text-emerald-500"></i> Direct Tokyo Fulfillment
         </div>
-        <div>• Official Neowing export fulfillment</div>
-        <div>• Zero proxy fees or middleman markups</div>
-        <div>• PayPal, Credit Cards, and direct international shipping</div>
+        <div>• 100% official merchandise directly from CDJapan</div>
+        <div>• Zero proxy fees or middleman charges</div>
+        <div>• Direct international shipping via DHL, FedEx, and EMS</div>
+        <div>• Secure payment via PayPal, Credit Cards, and local methods</div>
       </div>
 
       <div class="pt-2 flex items-center justify-between gap-3">
@@ -541,7 +531,7 @@
         <div class="flex items-center gap-2">
           <button onclick="closeRedirectModal()" class="px-3 py-1.5 text-xs text-stone-600 dark:text-slate-400 hover:underline">Cancel</button>
           <a id="redirect-confirm-link" href="#" target="_blank" rel="nofollow noopener" onclick="onRedirectConfirm()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition shadow flex items-center gap-1">
-            <span>Continue</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            <span>Continue to CDJapan</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </a>
         </div>
       </div>
@@ -607,7 +597,6 @@
     let activeArtist = 'All';          // Sub-Unit / Artist
     let activeFormat = 'All';          // Format
     let activeAvailability = 'all';    // all, preorder, instock
-    let activeEra = 'all';             // all, modern, sengoku, golden
     let maxPriceLimit = 20000;         // JPY Threshold
     let searchQuery = '';
     let currentSort = 'newest';
@@ -925,20 +914,12 @@
       render();
     }
 
-    function onEraChange(eraVal) {
-      activeEra = eraVal;
-      currentPage = 1;
-      syncUrlParams();
-      render();
-    }
-
     function syncUrlParams() {
       const params = new URLSearchParams();
       if (activeFilter !== 'All') params.set('cat', activeFilter);
       if (activeArtist !== 'All') params.set('artist', activeArtist);
       if (activeFormat !== 'All') params.set('fmt', activeFormat);
       if (activeAvailability !== 'all') params.set('status', activeAvailability);
-      if (activeEra !== 'all') params.set('era', activeEra);
       if (searchQuery) params.set('q', searchQuery);
       if (currentSort !== 'newest') params.set('sort', currentSort);
       if (currentPage > 1) params.set('page', currentPage);
@@ -954,7 +935,6 @@
       if (params.has('artist')) activeArtist = params.get('artist');
       if (params.has('fmt')) activeFormat = params.get('fmt');
       if (params.has('status')) activeAvailability = params.get('status');
-      if (params.has('era')) activeEra = params.get('era');
       if (params.has('q')) {
         searchQuery = params.get('q').toLowerCase();
         const input = document.getElementById('search-input');
@@ -963,9 +943,6 @@
       if (params.has('sort')) currentSort = params.get('sort');
       if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
       if (params.get('view') === 'wishlist') isWishlistView = true;
-
-      const eraSelect = document.getElementById('era-select');
-      if (eraSelect && activeEra) eraSelect.value = activeEra;
     }
 
     async function loadCatalog() {
@@ -1235,13 +1212,9 @@
       activeArtist = 'All';
       activeFormat = 'All';
       activeAvailability = 'all';
-      activeEra = 'all';
       maxPriceLimit = 20000;
       searchQuery = '';
       isWishlistView = false;
-
-      const eraSelect = document.getElementById('era-select');
-      if (eraSelect) eraSelect.value = 'all';
 
       const pRange = document.getElementById('price-range');
       if (pRange) pRange.value = 20000;
@@ -1444,12 +1417,6 @@
       return 0;
     }
 
-    function getItemYear(item) {
-      const val = getItemDateValue(item);
-      if (val === 0) return 0;
-      return Math.floor(val / 10000);
-    }
-
     function isPreOrder(item) {
       const val = getItemDateValue(item);
       if (val === 0) return false;
@@ -1645,16 +1612,6 @@
         const upcoming = isPreOrder(item);
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && upcoming) return false;
-
-        // Release Era Filter (Golden 1998-2009, Sengoku 2010-2019, Modern 2020-2026)
-        if (activeEra !== 'all') {
-          const yr = getItemYear(item);
-          if (yr > 0) {
-            if (activeEra === 'golden' && (yr < 1990 || yr > 2009)) return false;
-            if (activeEra === 'sengoku' && (yr < 2010 || yr > 2019)) return false;
-            if (activeEra === 'modern' && yr < 2020) return false;
-          }
-        }
 
         // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);

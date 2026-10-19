@@ -100,6 +100,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     ]:
       continue
 
+    # Title
     title_el = (
         card.select_one(".title a")
         or card.select_one("a.item-title")
@@ -108,6 +109,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     )
     raw_title = clean_text(title_el.get_text()) if title_el else ""
 
+    # Artist
     artist_el = (
         card.select_one(".artist")
         or card.select_one(".item-artist")
@@ -115,6 +117,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     )
     raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
 
+    # Image
     img_el = card.select_one("img")
     img_url = ""
     if img_el:
@@ -146,6 +149,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         "/pictures/m/", "/pictures/l/"
     )
 
+    # Price
     price_el = (
         card.select_one(".price")
         or card.select_one(".item-price")
@@ -163,31 +167,57 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         num_only = re.sub(r"[^\d]", "", p_match.group(1))
         if num_only:
           price_str = f"{int(num_only):,}yen"
-    else:
-      p_match = re.search(
-          r"(\d[\d,]*)\s*(?:yen|JPY|円)", clean_text(card.get_text())
-      )
-      if p_match:
-        price_str = f"{p_match.group(1)}yen"
 
+    # TRUE Release Date Extraction (Precision Parser)
+    card_text = card.get_text()
+    rel_date = ""
+
+    # 1. Search for dedicated date elements first
     date_el = (
         card.select_one(".release_date")
         or card.select_one(".item-date")
         or card.select_one(".date")
+        or card.select_one("span:has-text('Release Date')")
+        or card.select_one("td:has-text('Release Date')")
     )
-    rel_date = "Available Now"
     if date_el:
       d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
       if d_match:
         rel_date = d_match.group(1).replace("-", "/")
-    else:
-      d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", card.get_text())
-      if d_match:
-        rel_date = d_match.group(1).replace("-", "/")
 
-    searchable_card_text = (
-        f"{raw_title} {raw_artist} {clean_text(card.get_text())}"
-    )
+    # 2. Search card text for full Japanese/standard date patterns
+    if not rel_date:
+      d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
+      if d_match:
+        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+        rel_date = f"{y}/{m}/{d}"
+
+    # 3. Search card text for standard YYYY/MM/DD
+    if not rel_date:
+      d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
+      if d_match:
+        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+        rel_date = f"{y}/{m}/{d}"
+
+    # 4. Search card text for year/month: YYYY/MM
+    if not rel_date:
+      ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
+      if ym_match:
+        y, m = ym_match.group(1), ym_match.group(2).zfill(2)
+        rel_date = f"{y}/{m}/01"
+
+    # 5. Extract isolated year from title (e.g. "Live Tour 2023")
+    if not rel_date:
+      year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
+      if year_match:
+        rel_date = f"{year_match.group(1)}/01/01"
+
+    # Default fallback only if zero dates exist anywhere
+    if not rel_date:
+      rel_date = "Available Now"
+
+    # Strict multi-field relevance filter
+    searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
     if not is_relevant_product(searchable_card_text, keywords):
       continue
 
@@ -216,7 +246,6 @@ def execute_session_search(page, category, canonical_artist, query, keywords, ma
       time.sleep(0.5)
 
       search_input = page.locator("input[name='q']").first
-
       if not search_input.is_visible():
         page.goto("https://www.cdjapan.co.jp/searchuni?q=idol", wait_until="domcontentloaded", timeout=20000)
         time.sleep(1.0)
@@ -267,7 +296,7 @@ def main():
   print(f"Current catalog size: {initial_count} items")
 
   # Select a shuffled batch of 7 targets per execution
-batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
+  batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
   with sync_playwright() as p:
     browser = p.chromium.launch(
@@ -304,6 +333,7 @@ batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
       for it in items:
         pid = it["id"]
+        # Update entry with true extracted date
         if pid not in catalog:
           added_for_artist += 1
           new_total += 1

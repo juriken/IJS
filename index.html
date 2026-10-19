@@ -290,15 +290,27 @@
           </button>
         </div>
 
-        <!-- Desktop Sorting -->
-        <div class="hidden sm:flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
-          <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
-          <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500">
-            <option value="newest">Newest Releases</option>
-            <option value="oldest">Oldest Releases</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
+        <!-- Desktop Controls: View Switcher & Sorting -->
+        <div class="hidden sm:flex items-center gap-3 text-xs font-semibold whitespace-nowrap">
+          <!-- Compact Grid vs Dense List Switcher -->
+          <div class="flex items-center bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-lg p-0.5 shadow-2xs">
+            <button id="view-mode-grid" onclick="setViewMode('grid')" title="Visual Grid View" class="px-2 py-1 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs">
+              <i class="fa-solid fa-table-cells-large"></i>
+            </button>
+            <button id="view-mode-list" onclick="setViewMode('list')" title="Dense Collector List View" class="px-2 py-1 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200">
+              <i class="fa-solid fa-list-ul"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
+            <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500">
+              <option value="newest">Newest Releases</option>
+              <option value="oldest">Oldest Releases</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
         </div>
       </div>
     </nav>
@@ -317,6 +329,18 @@
         <button onclick="scrollElement('artist-subbar', 'right')" class="hidden sm:flex absolute right-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units right">
           <i class="fa-solid fa-chevron-right text-[10px]"></i>
         </button>
+      </div>
+    </div>
+
+    <!-- Tier 1.75 Navigation: Artist-Specific Release Year Jump Bar -->
+    <div id="year-jump-bar-container" class="hidden bg-stone-100/60 dark:bg-slate-900/80 border-t border-stone-200/50 dark:border-slate-800/50 transition-all duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-1 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 flex items-center gap-1">
+          <i class="fa-solid fa-calendar text-[9px]"></i> Year:
+        </span>
+        <div id="year-jump-pills" class="flex items-center gap-1 whitespace-nowrap">
+          <!-- Injected dynamically on unit select -->
+        </div>
       </div>
     </div>
 
@@ -423,9 +447,15 @@
         <div class="font-medium text-stone-600 dark:text-slate-300" id="page-range-info">
           Showing releases...
         </div>
-        <button id="wishlist-export-btn" onclick="exportWishlistHaul()" class="hidden px-2.5 py-1 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition items-center gap-1">
-          <i class="fa-solid fa-file-arrow-down text-rose-600"></i> Export Haul
-        </button>
+        <!-- Shareable Wishlist URL & Text Export Action Group -->
+        <div id="wishlist-actions-group" class="hidden items-center gap-1.5">
+          <button onclick="shareWishlistUrl()" title="Copy Shareable Wishlist Link" class="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-link text-rose-600"></i> Share Link
+          </button>
+          <button id="wishlist-export-btn" onclick="exportWishlistHaul()" title="Export Haul to Text File" class="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-file-arrow-down text-rose-600"></i> Export Text
+          </button>
+        </div>
       </div>
 
       <div class="flex items-center gap-3 ml-auto">
@@ -437,9 +467,11 @@
           </select>
         </div>
 
-        <!-- Mobile Sort -->
-        <div class="sm:hidden flex items-center gap-1">
-          <label for="sort-select-mobile" class="text-stone-500 dark:text-slate-400 font-semibold">Sort:</label>
+        <!-- Mobile Controls -->
+        <div class="sm:hidden flex items-center gap-2">
+          <button onclick="toggleMobileViewMode()" class="px-2 py-1 rounded-md bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-xs">
+            <i id="mobile-view-icon" class="fa-solid fa-table-cells-large"></i>
+          </button>
           <select id="sort-select-mobile" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2 rounded-lg text-xs font-semibold focus:outline-none">
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -462,14 +494,14 @@
     </div>
   </section>
 
-  <!-- Product Grid -->
+  <!-- Product Container (Grid or Dense List) -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+    <div id="product-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
       <p class="text-base font-semibold" id="empty-state-message">No idol merchandise found matching your filter selection.</p>
-      <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition">Reset All Filters</button>
+      <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
     </div>
 
     <!-- Bottom Pagination -->
@@ -490,7 +522,7 @@
               <p class="text-[11px] text-rose-100">Consolidate orders for direct Tokyo shipping</p>
             </div>
           </div>
-          <button onclick="toggleCalendarDrawer()" class="text-white hover:text-amber-200 text-lg p-1">
+          <button onclick="toggleCalendarDrawer()" class="text-white hover:text-amber-200 text-lg p-1 cursor-pointer">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -503,14 +535,25 @@
     </div>
   </div>
 
-  <!-- Quick View Modal -->
+  <!-- Quick View Modal (Equipped with Keyboard Arrow Navigation) -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
-      <button onclick="closeModal()" class="absolute top-3.5 right-3.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-lg p-1 z-10" aria-label="Close details">
+      
+      <!-- Close & Arrow Navigator Buttons -->
+      <button onclick="closeModal()" class="absolute top-3.5 right-3.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-lg p-1 z-10 cursor-pointer" aria-label="Close details">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <!-- Modal Image Column (Always loads high-res /pictures/l/) -->
+      <div class="absolute top-3.5 right-12 hidden sm:flex items-center gap-1 z-10">
+        <button onclick="navigateModalPrev()" title="Previous Item (Left Arrow)" class="w-7 h-7 rounded-full bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs transition cursor-pointer">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button onclick="navigateModalNext()" title="Next Item (Right Arrow)" class="w-7 h-7 rounded-full bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs transition cursor-pointer">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Modal Image Column -->
       <div class="w-full sm:w-1/2 aspect-square bg-stone-100 dark:bg-slate-800 rounded-xl overflow-hidden relative shrink-0">
         <img id="modal-img" src="" alt="" class="w-full h-full object-cover" onerror="onImgLoadError(this)" />
         <span id="modal-format-badge" class="absolute bottom-2.5 left-2.5 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CD</span>
@@ -583,8 +626,8 @@
           <span>Don't show again</span>
         </label>
         <div class="flex items-center gap-2">
-          <button onclick="closeRedirectModal()" class="px-3 py-1.5 text-xs text-stone-600 dark:text-slate-400 hover:underline">Cancel</button>
-          <a id="redirect-confirm-link" href="#" target="_blank" rel="nofollow noopener" onclick="onRedirectConfirm()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition shadow flex items-center gap-1">
+          <button onclick="closeRedirectModal()" class="px-3 py-1.5 text-xs text-stone-600 dark:text-slate-400 hover:underline cursor-pointer">Cancel</button>
+          <a id="redirect-confirm-link" href="#" target="_blank" rel="nofollow noopener" onclick="onRedirectConfirm()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition shadow flex items-center gap-1 cursor-pointer">
             <span>Continue to CDJapan</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </a>
         </div>
@@ -597,7 +640,7 @@
     id="scroll-to-top" 
     onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" 
     aria-label="Back to top" 
-    class="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full bg-stone-900/80 dark:bg-slate-800 text-white flex items-center justify-center shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 hover:bg-rose-600"
+    class="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full bg-stone-900/80 dark:bg-slate-800 text-white flex items-center justify-center shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 hover:bg-rose-600 cursor-pointer"
   >
     <i class="fa-solid fa-arrow-up text-sm"></i>
   </button>
@@ -648,10 +691,13 @@
   <script>
     let allProducts = [];
     let clusteredEntities = [];        // Grouped products
+    let activeFilteredList = [];       // Flat list of products matching active filters (for modal navigation)
     let activeFilter = 'All';          // Group / Franchise
     let activeArtist = 'All';          // Sub-Unit / Artist
+    let activeYear = 'All';            // Release Year Jump Filter
     let activeFormat = 'All';          // Format
     let activeAvailability = 'all';    // all, preorder, instock
+    let viewMode = 'grid';             // 'grid' or 'list'
     let isClusteringEnabled = true;    // Groups Type A/B/C editions
     let maxPriceLimit = 20000;         // JPY Threshold
     let searchQuery = '';
@@ -671,6 +717,7 @@
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const SKIP_REDIRECT_KEY = 'idoljapan_skip_redirect_modal';
+    const VIEW_MODE_KEY = 'idoljapan_view_mode';
     const CATALOG_CACHE_KEY = 'idoljapan_catalog_cache_v2';
     const CATALOG_TIME_KEY = 'idoljapan_catalog_time_v2';
     const AFFILIATE_CLICKS_KEY = 'idoljapan_affiliate_clicks';
@@ -722,10 +769,9 @@
       toast.classList.remove('opacity-0', 'pointer-events-none');
       setTimeout(() => {
         toast.classList.add('opacity-0', 'pointer-events-none');
-      }, 2200);
+      }, 2400);
     }
 
-    // Swaps high-res /pictures/l/ into lighter /pictures/m/ for the thumbnail grid
     function getThumbnailUrl(rawUrl) {
       if (!rawUrl || rawUrl.startsWith('data:')) return PLACEHOLDER_IMG;
       return rawUrl.replace('/pictures/l/', '/pictures/m/');
@@ -790,7 +836,6 @@
       closeRedirectModal();
     }
 
-    // Native Mobile Web Share API with Clipboard Fallback
     async function shareProduct(product, e) {
       if (e) {
         e.preventDefault();
@@ -856,10 +901,38 @@
       const badge = document.getElementById('wishlist-count-badge');
       if (badge) badge.innerText = list.length;
 
-      const exportBtn = document.getElementById('wishlist-export-btn');
-      if (exportBtn) {
-        if (isWishlistView && list.length > 0) exportBtn.classList.remove('hidden');
-        else exportBtn.classList.add('hidden');
+      const group = document.getElementById('wishlist-actions-group');
+      if (group) {
+        if (isWishlistView && list.length > 0) {
+          group.classList.remove('hidden');
+          group.classList.add('flex');
+        } else {
+          group.classList.add('hidden');
+          group.classList.remove('flex');
+        }
+      }
+    }
+
+    // Generates a shareable URL containing wishlist items (?wishlist=ID1,ID2)
+    function shareWishlistUrl() {
+      const listIds = getWishlist();
+      if (!listIds.length) {
+        showToast("Wishlist is empty!", false);
+        return;
+      }
+      const shareUrl = `${window.location.origin}/?wishlist=${listIds.join(',')}`;
+      if (navigator.share) {
+        navigator.share({
+          title: "My IdolJapan.store Wishlist Haul",
+          text: `Check out my Japanese idol discography haul (${listIds.length} items):`,
+          url: shareUrl
+        }).catch(() => {
+          navigator.clipboard.writeText(shareUrl).then(() => showToast("Wishlist share link copied!"));
+        });
+      } else {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showToast("Wishlist share link copied to clipboard!");
+        });
       }
     }
 
@@ -905,6 +978,35 @@
       render();
     }
 
+    // View Mode Toggle (Grid vs Dense List)
+    function setViewMode(mode) {
+      viewMode = mode;
+      localStorage.setItem(VIEW_MODE_KEY, mode);
+      updateViewModeUI();
+      render();
+    }
+
+    function toggleMobileViewMode() {
+      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
+    }
+
+    function updateViewModeUI() {
+      const gBtn = document.getElementById('view-mode-grid');
+      const lBtn = document.getElementById('view-mode-list');
+      const mIcon = document.getElementById('mobile-view-icon');
+
+      const activeClass = "px-2 py-1 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs";
+      const inactiveClass = "px-2 py-1 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200";
+
+      if (gBtn && lBtn) {
+        gBtn.className = viewMode === 'grid' ? activeClass : inactiveClass;
+        lBtn.className = viewMode === 'list' ? activeClass : inactiveClass;
+      }
+      if (mIcon) {
+        mIcon.className = viewMode === 'grid' ? 'fa-solid fa-table-cells-large' : 'fa-solid fa-list-ul';
+      }
+    }
+
     function toggleClustering(checked) {
       isClusteringEnabled = checked;
       currentPage = 1;
@@ -948,11 +1050,8 @@
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
-        if (e.matches) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+        if (e.matches) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
         updateThemeIcon();
       }
     });
@@ -1032,10 +1131,19 @@
       render();
     }
 
+    function setYearFilter(yr) {
+      activeYear = yr;
+      currentPage = 1;
+      updateYearJumpBarUI();
+      syncUrlParams();
+      render();
+    }
+
     function syncUrlParams() {
       const params = new URLSearchParams();
       if (activeFilter !== 'All') params.set('cat', activeFilter);
       if (activeArtist !== 'All') params.set('artist', activeArtist);
+      if (activeYear !== 'All') params.set('year', activeYear);
       if (activeFormat !== 'All') params.set('fmt', activeFormat);
       if (activeAvailability !== 'all') params.set('status', activeAvailability);
       if (searchQuery) params.set('q', searchQuery);
@@ -1051,6 +1159,7 @@
       const params = new URLSearchParams(window.location.search);
       if (params.has('cat')) activeFilter = params.get('cat');
       if (params.has('artist')) activeArtist = params.get('artist');
+      if (params.has('year')) activeYear = params.get('year');
       if (params.has('fmt')) activeFormat = params.get('fmt');
       if (params.has('status')) activeAvailability = params.get('status');
       if (params.has('q')) {
@@ -1062,6 +1171,18 @@
       if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
       if (params.get('view') === 'wishlist') isWishlistView = true;
 
+      // Restorable Wishlist URL (?wishlist=ID1,ID2)
+      if (params.has('wishlist')) {
+        const rawIds = params.get('wishlist').split(',').map(s => s.trim()).filter(Boolean);
+        if (rawIds.length) {
+          const currentList = getWishlist();
+          const merged = Array.from(new Set([...currentList, ...rawIds]));
+          saveWishlist(merged);
+          isWishlistView = true;
+          showToast(`Restored ${rawIds.length} wishlist items!`);
+        }
+      }
+
       // Direct Deep-Link handling (?id=...)
       if (params.has('id')) {
         const targetId = params.get('id');
@@ -1069,10 +1190,13 @@
       }
     }
 
-    // Bandwidth Optimization: SessionStorage Catalog Caching (6-hour TTL)
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
+
+      const savedMode = localStorage.getItem(VIEW_MODE_KEY);
+      if (savedMode) viewMode = savedMode;
+      updateViewModeUI();
 
       const cachedData = sessionStorage.getItem(CATALOG_CACHE_KEY);
       const cachedTime = sessionStorage.getItem(CATALOG_TIME_KEY);
@@ -1127,6 +1251,7 @@
       buildClusteredEntities();
       updateDynamicCounts();
       updateArtistSubBar();
+      updateYearJumpBar();
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateWishlistBadge();
@@ -1134,14 +1259,43 @@
       render();
     }
 
-    // Normalized title extraction for single/album edition bundling
     function getCleanBaseTitle(title) {
       if (!title) return '';
       return title
         .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
-        .replace(/\((?:Type [A-Z0-9]|w\/ [A-Za-z0-9 ]+)\)/gi, '')
+        .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+)\)/gi, '')
         .replace(/【.*?】/g, '')
         .trim();
+    }
+
+    // Clean, concise edition label extractor (e.g. "Limited Type A", "Regular", "Type B")
+    function getShortEditionLabel(title) {
+      if (!title) return 'Standard';
+      const clean = title;
+
+      const isLimited = /limited|初回/i.test(clean);
+      const isRegular = /regular|通常/i.test(clean);
+      const typeMatch = clean.match(/Type\s*([A-Za-z0-9]+)/i);
+      const spMatch = /SP\b/i.test(clean);
+      const hasBd = /w\/\s*Blu-ray|Blu-ray\s*Disc付/i.test(clean);
+      const soloMatch = /solo jacket|ソロジャケット/i.test(clean);
+
+      let parts = [];
+      if (isLimited) parts.push('Limited');
+      else if (isRegular) parts.push('Regular');
+
+      if (spMatch) parts.push('SP');
+      if (typeMatch) parts.push(`Type ${typeMatch[1].toUpperCase()}`);
+      if (soloMatch) parts.push('Solo Jacket');
+      if (hasBd) parts.push('(+BD)');
+
+      if (!parts.length) {
+        if (/first press|初回限定/i.test(clean)) return 'First Press';
+        if (/theater|劇場盤/i.test(clean)) return 'Theater';
+        return 'Standard';
+      }
+
+      return parts.join(' ');
     }
 
     function extractEditionTags(title) {
@@ -1153,7 +1307,7 @@
       if (lower.includes('regular edition') || lower.includes('通常盤')) {
         tags.push({ name: 'Regular', color: 'bg-stone-600' });
       }
-      const typeMatch = title.match(/Type\s*([A-Za-z0-9])/i);
+      const typeMatch = title.match(/Type\s*([A-Za-z0-9]+)/i);
       if (typeMatch) {
         tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
       }
@@ -1166,7 +1320,6 @@
       return tags;
     }
 
-    // Bundles sibling editions into unified parent cards
     function buildClusteredEntities() {
       const clusters = {};
       allProducts.forEach(item => {
@@ -1249,17 +1402,21 @@
     function setFilter(cat) {
       activeFilter = cat;
       activeArtist = 'All';
+      activeYear = 'All';
       currentPage = 1;
       updateFilterButtonsUI();
       updateArtistSubBar();
+      updateYearJumpBar();
       syncUrlParams();
       render();
     }
 
     function setSubArtist(artist) {
       activeArtist = artist;
+      activeYear = 'All';
       currentPage = 1;
       updateArtistSubBar();
+      updateYearJumpBar();
       syncUrlParams();
       render();
     }
@@ -1333,6 +1490,68 @@
 
       container.innerHTML = html;
       initHorizontalScrollable(container);
+    }
+
+    // Artist-Specific Release Year Jump Bar Logic
+    function updateYearJumpBar() {
+      const wrapper = document.getElementById('year-jump-bar-container');
+      const pillsContainer = document.getElementById('year-jump-pills');
+      if (!wrapper || !pillsContainer) return;
+
+      // Only show year jump pills when browsing a specific unit or franchise
+      if (activeArtist === 'All' && activeFilter === 'All') {
+        wrapper.classList.add('hidden');
+        pillsContainer.innerHTML = '';
+        return;
+      }
+
+      const relevantItems = allProducts.filter(item => {
+        let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
+        if (!matchesArtist && activeArtist === 'Morning Musume') matchesArtist = (item.artist === 'Morning Musume' || item.artist === 'Petitmoni');
+        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        return matchesArtist && matchesCat;
+      });
+
+      const yearsSet = new Set();
+      relevantItems.forEach(it => {
+        const yr = getItemYear(it);
+        if (yr > 1990 && yr <= 2030) yearsSet.add(yr);
+      });
+
+      const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
+
+      if (sortedYears.length <= 1) {
+        wrapper.classList.add('hidden');
+        pillsContainer.innerHTML = '';
+        return;
+      }
+
+      wrapper.classList.remove('hidden');
+
+      let pillsHtml = `
+        <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All Years</button>
+      `;
+
+      sortedYears.forEach(y => {
+        const isSelected = String(activeYear) === String(y);
+        pillsHtml += `
+          <button onclick="setYearFilter('${y}')" class="px-2 py-0.5 rounded text-[10px] font-bold transition ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${y}</button>
+        `;
+      });
+
+      pillsContainer.innerHTML = pillsHtml;
+    }
+
+    function updateYearJumpBarUI() {
+      document.querySelectorAll('#year-jump-pills button').forEach(btn => {
+        const text = btn.innerText.trim();
+        const isMatch = (text === 'All Years' && activeYear === 'All') || (text === String(activeYear));
+        if (isMatch) {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition bg-rose-600 text-white shadow-xs";
+        } else {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700";
+        }
+      });
     }
 
     function scrollElement(elementId, direction) {
@@ -1409,6 +1628,7 @@
     function resetAllFilters() {
       activeFilter = 'All';
       activeArtist = 'All';
+      activeYear = 'All';
       activeFormat = 'All';
       activeAvailability = 'all';
       maxPriceLimit = 20000;
@@ -1429,6 +1649,7 @@
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateArtistSubBar();
+      updateYearJumpBar();
       updateWishlistBadge();
       syncUrlParams();
       render();
@@ -1611,6 +1832,12 @@
       return 0;
     }
 
+    function getItemYear(item) {
+      const val = getItemDateValue(item);
+      if (val === 0) return 0;
+      return Math.floor(val / 10000);
+    }
+
     function isPreOrder(item) {
       const val = getItemDateValue(item);
       if (val === 0) return false;
@@ -1676,8 +1903,8 @@
       let navHtml = '';
       const prevDisabled = currentPage === 1;
       navHtml += `
-        <button onclick="goToPage(1)" ${prevDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">« First</button>
-        <button onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">‹ Prev</button>
+        <button onclick="goToPage(1)" ${prevDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">« First</button>
+        <button onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">‹ Prev</button>
       `;
 
       let startP = Math.max(1, currentPage - 2);
@@ -1691,7 +1918,7 @@
         if (p === currentPage) {
           navHtml += `<button class="px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold shadow-sm cursor-default">${p}</button>`;
         } else {
-          navHtml += `<button onclick="goToPage(${p})" class="px-3.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 hover:bg-rose-50 dark:hover:bg-slate-800 transition">${p}</button>`;
+          navHtml += `<button onclick="goToPage(${p})" class="px-3.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">${p}</button>`;
         }
       }
 
@@ -1699,14 +1926,13 @@
 
       const nextDisabled = currentPage === totalPages;
       navHtml += `
-        <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">Next ›</button>
-        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition">Last »</button>
+        <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Next ›</button>
+        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Last »</button>
       `;
 
       navEl.innerHTML = navHtml;
     }
 
-    // Pre-Order Release Calendar Drawer Builder
     function toggleCalendarDrawer() {
       const drawer = document.getElementById('calendar-drawer');
       if (!drawer) return;
@@ -1745,7 +1971,6 @@
         return;
       }
 
-      // Group by chronological release date
       const grouped = {};
       preOrders.forEach(p => {
         const d = p.release_date || 'Upcoming';
@@ -1771,7 +1996,7 @@
                 <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${escapeHtml(it.title)}</p>
                 <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
               </div>
-              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs">
+              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
                 Pre-Order
               </button>
             </div>
@@ -1789,7 +2014,6 @@
       if (!p) return;
       currentModalProduct = p;
 
-      // Update deep-link address without reloading
       const params = new URLSearchParams(window.location.search);
       params.set('id', p.id);
       window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
@@ -1807,7 +2031,6 @@
       const buyText = document.getElementById('modal-buy-btn-text');
       const editionBox = document.getElementById('modal-edition-tags');
 
-      // Modal loads full-res image
       img.src = p.image || PLACEHOLDER_IMG;
       title.innerText = p.title || '';
       artist.innerText = p.artist || '';
@@ -1817,7 +2040,6 @@
       price.innerHTML = formatDisplayPrice(p.price, p);
       fmt.innerText = getItemFormatCategory(p);
 
-      // Edition & Tokuten Tag Injection
       if (editionBox) {
         editionBox.innerHTML = '';
         const tags = extractEditionTags(p.title);
@@ -1842,13 +2064,27 @@
       document.body.classList.add('overflow-hidden');
     }
 
+    // Modal Arrow Navigation
+    function navigateModalPrev() {
+      if (!currentModalProduct || !activeFilteredList.length) return;
+      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
+      const prevIdx = idx > 0 ? idx - 1 : activeFilteredList.length - 1;
+      openModal(activeFilteredList[prevIdx].id);
+    }
+
+    function navigateModalNext() {
+      if (!currentModalProduct || !activeFilteredList.length) return;
+      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
+      const nextIdx = idx < activeFilteredList.length - 1 ? idx + 1 : 0;
+      openModal(activeFilteredList[nextIdx].id);
+    }
+
     function closeModal() {
       const modal = document.getElementById('product-modal');
       if (modal) modal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
       currentModalProduct = null;
 
-      // Clean deep-link from URL
       const params = new URLSearchParams(window.location.search);
       if (params.has('id')) {
         params.delete('id');
@@ -1902,11 +2138,11 @@
     }
 
     function render() {
-      const grid = document.getElementById('product-grid');
+      const container = document.getElementById('product-container');
       const empty = document.getElementById('empty-state');
       const emptyMsg = document.getElementById('empty-state-message');
-      if (!grid) return;
-      grid.innerHTML = '';
+      if (!container) return;
+      container.innerHTML = '';
 
       const wishlistIds = getWishlist();
 
@@ -1920,6 +2156,12 @@
         const upcoming = isPreOrder(item);
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && upcoming) return false;
+
+        // Release Year Jump Filter
+        if (activeYear !== 'All') {
+          const yr = getItemYear(item);
+          if (String(yr) !== String(activeYear)) return false;
+        }
 
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
@@ -1945,20 +2187,21 @@
         return matchesCat && matchesArtist && matchesFmt && matchesSearch;
       };
 
+      // Retain flat list for left/right arrow modal navigation
+      activeFilteredList = allProducts.filter(filterItem);
+
       let displayEntities = [];
 
       if (isClusteringEnabled) {
         displayEntities = clusteredEntities.filter(cluster => {
-          // If any child variant passes the filter, keep the cluster
           const matchingVariants = cluster.variants.filter(filterItem);
           if (!matchingVariants.length) return false;
-          // Temporarily attach filtered children
           cluster._activeVariants = matchingVariants;
           cluster._primary = matchingVariants[0];
           return true;
         });
       } else {
-        displayEntities = allProducts.filter(filterItem).map(p => ({
+        displayEntities = activeFilteredList.map(p => ({
           id: p.id,
           _primary: p,
           _activeVariants: [p]
@@ -2017,14 +2260,16 @@
       // SEO ItemList Schema Graph update
       updateStructuredData(paginatedEntities.map(e => e._primary));
 
+      // Container Layout (Grid vs Dense List)
+      if (viewMode === 'grid') {
+        container.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4";
+      } else {
+        container.className = "flex flex-col space-y-2.5";
+      }
+
       paginatedEntities.forEach((entity, idx) => {
         const p = entity._primary;
         const variants = entity._activeVariants || [p];
-        const card = document.createElement('div');
-        card.id = `cluster-card-${startIndex + idx}`;
-        card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
-        
-        // Use optimized medium thumbnail for grid
         const displayImg = getThumbnailUrl(p.image);
         const upcoming = isPreOrder(p);
         const itemFmt = getItemFormatCategory(p);
@@ -2039,100 +2284,149 @@
         else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
-        // Edition Dropdown if multiple variants exist
+        // Edition Dropdown with concise text only
         let editionSelectorHtml = '';
         if (variants.length > 1) {
           editionSelectorHtml = `
-            <div class="mt-2" onclick="event.stopPropagation()">
-              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none">
-                ${variants.map(v => `<option value="${v.id}">${escapeHtml(v.title.slice(0, 32))} (${v.price})</option>`).join('')}
+            <div class="mt-1.5" onclick="event.stopPropagation()">
+              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
+                ${variants.map(v => {
+                  const shortLbl = getShortEditionLabel(v.title);
+                  return `<option value="${v.id}">${escapeHtml(shortLbl)} — ${v.price}</option>`;
+                }).join('')}
               </select>
             </div>
           `;
         }
 
-        card.innerHTML = `
-          <!-- Image Container with Medium Thumbnail -->
-          <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
-            <img 
-              src="${displayImg}" 
-              alt="${safeTitle}" 
-              loading="lazy" 
-              referrerpolicy="no-referrer"
-              onload="this.classList.add('img-fade-in')"
-              onerror="onImgLoadError(this)"
-              class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
-            />
-            
-            <!-- Artist Badge -->
-            <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
-              ${safeArtist}
-            </span>
+        const card = document.createElement('div');
+        card.id = `cluster-card-${startIndex + idx}`;
 
-            <!-- Action Buttons: Native Share & Wishlist -->
-            <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
-              <button 
-                onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
-                aria-label="Share Link"
-                title="Share link"
-                class="w-7 h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm"
-              >
-                <i class="fa-solid fa-share-nodes text-[11px]"></i>
-              </button>
+        if (viewMode === 'grid') {
+          // Visual Grid Card Layout
+          card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
+          card.innerHTML = `
+            <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
+              <img 
+                src="${displayImg}" 
+                alt="${safeTitle}" 
+                loading="lazy" 
+                referrerpolicy="no-referrer"
+                onload="this.classList.add('img-fade-in')"
+                onerror="onImgLoadError(this)"
+                class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
               
-              <button 
-                onclick="toggleWishlist('${p.id}', event)"
-                aria-label="Save to Wishlist"
-                title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
-                class="w-7 h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm"
-              >
-                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
-              </button>
+              <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
+                ${safeArtist}
+              </span>
+
+              <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
+                <button 
+                  onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
+                  aria-label="Share Link"
+                  title="Share link"
+                  class="w-7 h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                >
+                  <i class="fa-solid fa-share-nodes text-[11px]"></i>
+                </button>
+                
+                <button 
+                  onclick="toggleWishlist('${p.id}', event)"
+                  aria-label="Save to Wishlist"
+                  title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
+                  class="w-7 h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                >
+                  <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
+                </button>
+              </div>
+
+              <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                ${itemFmt}
+              </span>
+
+              ${upcoming ? `
+                <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
+                  <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
+                </span>
+              ` : ''}
             </div>
 
-            <!-- Media Format Badge -->
-            <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
-              ${itemFmt}
-            </span>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
+                  ${safeTitle}
+                </h2>
+                <p class="cluster-date text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
+                  <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
+                </p>
+                ${editionSelectorHtml}
+              </div>
+              
+              <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                  <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
+                    ${formatDisplayPrice(p.price, p)}
+                  </span>
+                  <span class="block text-[9px] text-stone-400 dark:text-slate-500">Official CDJapan Price</span>
+                </div>
+                <button 
+                  onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
+                  title="View and order securely on CDJapan"
+                  class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer"
+                >
+                  ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        } else {
+          // Dense Collector List Row Layout
+          card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl p-3 shadow-2xs hover:shadow-sm transition flex flex-col sm:flex-row items-center gap-3.5 group";
+          card.innerHTML = `
+            <div class="w-14 h-14 bg-stone-200 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative" onclick="openModal('${p.id}', event)">
+              <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full object-cover" onerror="onImgLoadError(this)" />
+              <span class="absolute bottom-0.5 left-0.5 ${fmtBadgeBg} text-white text-[8px] font-bold px-1 rounded">${itemFmt}</span>
+            </div>
 
-            <!-- Pre-Order Badge -->
-            ${upcoming ? `
-              <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
-                <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
-              </span>
-            ` : ''}
-          </div>
-
-          <!-- Body Card -->
-          <div class="p-3 flex-1 flex flex-col justify-between">
-            <div>
-              <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
+            <div class="flex-1 min-w-0 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-0.5">
+                <span class="text-[10px] font-black text-rose-600 dark:text-rose-400 uppercase">${safeArtist}</span>
+                <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500">• ${p.id}</span>
+                ${upcoming ? '<span class="bg-rose-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded">Pre-Order</span>' : ''}
+              </div>
+              <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 truncate cursor-pointer hover:text-rose-600" onclick="openModal('${p.id}', event)">
                 ${safeTitle}
               </h2>
-              <p class="cluster-date text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
-                <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
-              </p>
-              ${editionSelectorHtml}
-            </div>
-            
-            <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
-              <div>
-                <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
-                  ${formatDisplayPrice(p.price, p)}
-                </span>
-                <span class="block text-[9px] text-stone-400 dark:text-slate-500">Official CDJapan Price</span>
+              <div class="flex items-center justify-center sm:justify-start gap-3 text-[11px] text-stone-500 dark:text-slate-400 mt-1">
+                <span><i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}</span>
+                ${editionSelectorHtml}
               </div>
-              <button 
-                onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
-                title="View and order securely on CDJapan"
-                class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer"
-              >
-                ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-              </button>
             </div>
-          </div>
-        `;
-        grid.appendChild(card);
+
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="text-right">
+                <div class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
+                  ${formatDisplayPrice(p.price, p)}
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="w-8 h-8 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
+                  <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="w-8 h-8 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
+                  <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                </button>
+                <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'list_btn')" class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow-sm cursor-pointer whitespace-nowrap">
+                  ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        container.appendChild(card);
       });
 
       renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
@@ -2149,13 +2443,21 @@
       }
     });
 
+    // Keyboard Arrow Navigation & Modal Esc Handling
     window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('product-modal');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
+
       if (e.key === 'Escape') {
         closeModal();
         closeRedirectModal();
         closeAutocomplete();
         const drawer = document.getElementById('calendar-drawer');
         if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
+      } else if (isModalOpen && e.key === 'ArrowLeft') {
+        navigateModalPrev();
+      } else if (isModalOpen && e.key === 'ArrowRight') {
+        navigateModalNext();
       }
     });
 

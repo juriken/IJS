@@ -168,51 +168,57 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         if num_only:
           price_str = f"{int(num_only):,}yen"
 
-    # TRUE Release Date Extraction (Precision Parser)
+    # TRUE Release Date Extraction (Safe Standard BeautifulSoup Parsing)
     card_text = card.get_text()
     rel_date = ""
 
-    # 1. Search for dedicated date elements first
+    # 1. Search for dedicated date class elements first
     date_el = (
         card.select_one(".release_date")
         or card.select_one(".item-date")
         or card.select_one(".date")
-        or card.select_one("span:has-text('Release Date')")
-        or card.select_one("td:has-text('Release Date')")
     )
     if date_el:
       d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
       if d_match:
         rel_date = d_match.group(1).replace("-", "/")
 
-    # 2. Search card text for full Japanese/standard date patterns
+    # 2. Look for elements mentioning 'Release Date' safely using Python regex
+    if not rel_date:
+      date_node = card.find(lambda el: el.name in ["span", "td", "p"] and "Release Date" in el.get_text())
+      if date_node:
+        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_node.get_text())
+        if d_match:
+          rel_date = d_match.group(1).replace("-", "/")
+
+    # 3. Search card text for full Japanese/standard date patterns
     if not rel_date:
       d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
       if d_match:
         y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
         rel_date = f"{y}/{m}/{d}"
 
-    # 3. Search card text for standard YYYY/MM/DD
+    # 4. Search card text for standard YYYY/MM/DD
     if not rel_date:
       d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
       if d_match:
         y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
         rel_date = f"{y}/{m}/{d}"
 
-    # 4. Search card text for year/month: YYYY/MM
+    # 5. Search card text for year/month: YYYY/MM
     if not rel_date:
       ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
       if ym_match:
         y, m = ym_match.group(1), ym_match.group(2).zfill(2)
         rel_date = f"{y}/{m}/01"
 
-    # 5. Extract isolated year from title (e.g. "Live Tour 2023")
+    # 6. Extract isolated year from title (e.g. "Live Tour 2023")
     if not rel_date:
       year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
       if year_match:
         rel_date = f"{year_match.group(1)}/01/01"
 
-    # Default fallback only if zero dates exist anywhere
+    # Fallback
     if not rel_date:
       rel_date = "Available Now"
 
@@ -333,7 +339,7 @@ def main():
 
       for it in items:
         pid = it["id"]
-        # Update entry with true extracted date
+        # Update entry with true extracted calendar date
         if pid not in catalog:
           added_for_artist += 1
           new_total += 1

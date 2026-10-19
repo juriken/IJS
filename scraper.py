@@ -1,178 +1,367 @@
-import os
-import sys
 import json
-import logging
-from datetime import datetime, timezone
-import xml.etree.ElementTree as ET
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util import Retry
+import os
+import random
+import re
+import time
+import urllib.parse
+from datetime import datetime
+from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout)]
-)
+AFFILIATE_ID = "A033398"
+DATA_FILE = "products.json"
 
-PRODUCTS_FILE = "products.json"
-SITEMAP_FILE = "sitemap.xml"
-BASE_URL = "https://idoljapan.store"
+TARGET_GROUPS = [
+    # Hello! Project
+    ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
+    ("Hello! Project", "ANGERME", "ANGERME", ["ANGERME", "Smileage", "S/mileage"]),
+    ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"]),
+    ("Hello! Project", "Tsubaki Factory", "Tsubaki Factory", ["Tsubaki Factory"]),
+    ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
+    ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"]),
+    ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle", "Rosy"]),
+    # Sakamichi Series
+    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
+    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
+    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
+    # AKB48 Group
+    ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
+    ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
+    ("AKB48 Group", "NMB48", "NMB48", ["NMB48"]),
+    ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
+    ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
+    ("AKB48 Group", "STU48", "STU48", ["STU48"]),
+    # =LOVE & Sister Groups
+    ("=LOVE / Sister Groups", "=LOVE", "Equal Love", ["=LOVE", "Equal Love", "イコラブ"]),
+    ("=LOVE / Sister Groups", "≠ME", "Not Equal ME", ["≠ME", "Not Equal ME", "Noime"]),
+    ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy", ["≒JOY", "Nearly Equal Joy", "Niajoy"]),
+    # Other Key Units
+    ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"]),
+    ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
+]
 
-# Required keys for each product record
-REQUIRED_FIELDS = {"id", "title", "url", "image", "price"}
+PAGES_PER_TARGET = 3
+BATCH_SIZE = 7
 
-def get_resilient_session(retries: int = 4, backoff_factor: float = 1.5) -> requests.Session:
-    """Configures a requests session with retries and realistic headers."""
-    session = requests.Session()
-    session.headers.update({
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
-        ),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-        "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
-    })
-    
-    retry_strategy = Retry(
-        total=retries,
-        read=retries,
-        connect=retries,
-        backoff_factor=backoff_factor,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["GET", "POST"]
-    )
-    
-    adapter = HTTPAdapter(max_retries=retry_strategy)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
 
-def load_existing_products(filepath: str) -> list[dict]:
-    """Loads current products. Returns empty list if file is absent or invalid."""
-    if not os.path.exists(filepath):
-        return []
+def load_catalog():
+  if os.path.exists(DATA_FILE):
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            return data if isinstance(data, list) else []
-    except Exception as e:
-        logging.warning(f"Could not parse existing {filepath}: {e}")
-        return []
+      with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+    except Exception:
+      return {}
+  return {}
 
-def validate_product(item: dict) -> bool:
-    """Ensures product dictionary satisfies schema requirements."""
-    if not isinstance(item, dict):
-        return False
-    return REQUIRED_FIELDS.issubset(item.keys()) and bool(item.get("id"))
 
-def fetch_catalog_items(session: requests.Session) -> list[dict]:
-    """
-    Main catalog fetcher logic.
-    Adjust endpoints, selectors, or affiliate parameters as needed for your target.
-    """
-    items = []
-    
-    # Example logic: replace or wrap your actual scraping loop here
-    # try:
-    #     response = session.get("TARGET_URL", timeout=15)
-    #     response.raise_for_status()
-    #     ... parsing logic ...
-    # except requests.RequestException as e:
-    #     logging.error(f"Network error during fetch: {e}")
-    #     raise
-    
-    return items
+def make_affiliate_link(product_key):
+  raw_path = f"product/{product_key}"
+  encoded_path = urllib.parse.quote(raw_path, safe="")
+  return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
 
-def atomic_save_json(filepath: str, data: list[dict], min_expected_count: int = 1):
-    """
-    Validates items and writes atomically via a temporary file.
-    Prevents corrupting or emptying existing products on scraping failures.
-    """
-    valid_items = [item for item in data if validate_product(item)]
-    
-    if len(valid_items) < min_expected_count:
-        raise ValueError(
-            f"Validation failed: parsed {len(valid_items)} valid items. "
-            f"Threshold is {min_expected_count}. Aborting file overwrite."
+
+def clean_text(text):
+  return re.sub(r"\s+", " ", text).strip() if text else ""
+
+
+def is_relevant_product(card_text, keywords):
+  if not keywords:
+    return True
+  lower_text = card_text.lower()
+  return any(kw.lower() in lower_text for kw in keywords)
+
+
+def extract_verified_products(html, category, canonical_artist, keywords):
+  soup = BeautifulSoup(html, "html.parser")
+  items_dict = {}
+
+  cards = (
+      soup.select(".item-detail")
+      or soup.select(".n-item")
+      or soup.select(".item")
+      or soup.select("div[class*='item-']")
+  )
+
+  for card in cards:
+    link_el = card.select_one("a[href*='/product/']")
+    if not link_el:
+      continue
+
+    href = link_el.get("href", "")
+    match = re.search(r"/product/([A-Za-z0-9_-]+)", href)
+    if not match:
+      continue
+
+    prod_key = match.group(1)
+
+    if prod_key.lower() in [
+        "cart", "login", "help", "contact", "about",
+        "tokuten", "ranking", "app"
+    ]:
+      continue
+
+    # Title
+    title_el = (
+        card.select_one(".title a")
+        or card.select_one("a.item-title")
+        or card.select_one(".title")
+        or link_el
+    )
+    raw_title = clean_text(title_el.get_text()) if title_el else ""
+
+    # Artist
+    artist_el = (
+        card.select_one(".artist")
+        or card.select_one(".item-artist")
+        or card.select_one(".cast")
+    )
+    raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
+
+    # Image
+    img_el = card.select_one("img")
+    img_url = ""
+    if img_el:
+      img_url = (
+          img_el.get("src")
+          or img_el.get("data-src")
+          or img_el.get("data-original")
+          or ""
+      )
+      if not raw_title and img_el.get("alt"):
+        raw_title = clean_text(img_el.get("alt"))
+
+    if not raw_title:
+      continue
+
+    if (
+        not img_url
+        or "spacer" in img_url
+        or "blank" in img_url
+        or "no_image" in img_url
+    ):
+      img_url = f"https://www.cdjapan.co.jp/pictures/l/{prod_key}.jpg"
+    elif img_url.startswith("//"):
+      img_url = "https:" + img_url
+    elif img_url.startswith("/"):
+      img_url = "https://www.cdjapan.co.jp" + img_url
+
+    img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
+        "/pictures/m/", "/pictures/l/"
+    )
+
+    # Price
+    price_el = (
+        card.select_one(".price")
+        or card.select_one(".item-price")
+        or card.select_one(".price-value")
+        or card.select_one("span.bold")
+    )
+    price_str = "Check CDJapan"
+    if price_el:
+      p_match = re.search(
+          r"(\d[\d,]*\s*(?:yen|JPY|円)?)",
+          clean_text(price_el.get_text()),
+          re.IGNORECASE,
+      )
+      if p_match and p_match.group(1).strip():
+        num_only = re.sub(r"[^\d]", "", p_match.group(1))
+        if num_only:
+          price_str = f"{int(num_only):,}yen"
+
+    # TRUE Release Date Extraction (Safe Standard BeautifulSoup Parsing)
+    card_text = card.get_text()
+    rel_date = ""
+
+    # 1. Search for dedicated date class elements first
+    date_el = (
+        card.select_one(".release_date")
+        or card.select_one(".item-date")
+        or card.select_one(".date")
+    )
+    if date_el:
+      d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
+      if d_match:
+        rel_date = d_match.group(1).replace("-", "/")
+
+    # 2. Look for elements mentioning 'Release Date' safely using Python regex
+    if not rel_date:
+      date_node = card.find(lambda el: el.name in ["span", "td", "p"] and "Release Date" in el.get_text())
+      if date_node:
+        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_node.get_text())
+        if d_match:
+          rel_date = d_match.group(1).replace("-", "/")
+
+    # 3. Search card text for full Japanese/standard date patterns
+    if not rel_date:
+      d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
+      if d_match:
+        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+        rel_date = f"{y}/{m}/{d}"
+
+    # 4. Search card text for standard YYYY/MM/DD
+    if not rel_date:
+      d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
+      if d_match:
+        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+        rel_date = f"{y}/{m}/{d}"
+
+    # 5. Search card text for year/month: YYYY/MM
+    if not rel_date:
+      ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
+      if ym_match:
+        y, m = ym_match.group(1), ym_match.group(2).zfill(2)
+        rel_date = f"{y}/{m}/01"
+
+    # 6. Extract isolated year from title (e.g. "Live Tour 2023")
+    if not rel_date:
+      year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
+      if year_match:
+        rel_date = f"{year_match.group(1)}/01/01"
+
+    # Fallback
+    if not rel_date:
+      rel_date = "Available Now"
+
+    # Strict multi-field relevance filter
+    searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
+    if not is_relevant_product(searchable_card_text, keywords):
+      continue
+
+    items_dict[prod_key] = {
+        "id": prod_key,
+        "title": raw_title,
+        "artist": canonical_artist,
+        "category": category,
+        "price": price_str,
+        "release_date": rel_date,
+        "image": img_url,
+        "affiliate_url": make_affiliate_link(prod_key),
+        "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+    }
+
+  return list(items_dict.values())
+
+
+def execute_session_search(page, category, canonical_artist, query, keywords, max_pages):
+  results = []
+  print(f"\n-> In-Session Search for: {canonical_artist} (Query: '{query}')")
+
+  for attempt in range(1, 3):
+    try:
+      page.evaluate("window.scrollTo(0, 0)")
+      time.sleep(0.5)
+
+      search_input = page.locator("input[name='q']").first
+      if not search_input.is_visible():
+        page.goto("https://www.cdjapan.co.jp/searchuni?q=idol", wait_until="domcontentloaded", timeout=20000)
+        time.sleep(1.0)
+        search_input = page.locator("input[name='q']").first
+
+      search_input.click()
+      search_input.fill("")
+      search_input.fill(query)
+      time.sleep(0.3)
+
+      with page.expect_navigation(wait_until="domcontentloaded", timeout=20000):
+        search_input.press("Enter")
+
+      time.sleep(1.5)
+
+      for p_num in range(1, max_pages + 1):
+        page.evaluate("window.scrollBy(0, 800)")
+        time.sleep(0.8)
+
+        html = page.content()
+        verified = extract_verified_products(
+            html, category, canonical_artist, keywords
         )
+        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+        results.extend(verified)
 
-    temp_filepath = f"{filepath}.tmp"
-    with open(temp_filepath, "w", encoding="utf-8") as f:
-        json.dump(valid_items, f, ensure_ascii=False, indent=2)
+        if p_num < max_pages:
+          next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
+          if next_btn.count() > 0 and next_btn.first.is_visible():
+            with page.expect_navigation(wait_until="domcontentloaded", timeout=15000):
+              next_btn.first.click()
+            time.sleep(random.uniform(2.5, 3.5))
+          else:
+            break
 
-    # Atomic rename (POSIX atomic; on Windows replaces atomically in modern Python)
-    os.replace(temp_filepath, filepath)
-    logging.info(f"Successfully saved {len(valid_items)} products to {filepath}")
+      return results
 
-def generate_sitemap(sitemap_path: str, products: list[dict]):
-    """Generates a valid sitemap.xml including core pages and indexed products."""
-    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    except Exception as e:
+      print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
+      time.sleep(3.0)
 
-    urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+  return results
 
-    # Static pages
-    static_pages = [
-        {"loc": f"{BASE_URL}/", "priority": "1.0", "changefreq": "daily"},
-        {"loc": f"{BASE_URL}/about.html", "priority": "0.3", "changefreq": "monthly"},
-        {"loc": f"{BASE_URL}/privacy.html", "priority": "0.2", "changefreq": "monthly"},
-        {"loc": f"{BASE_URL}/terms.html", "priority": "0.2", "changefreq": "monthly"},
-        {"loc": f"{BASE_URL}/affiliate-disclosure.html", "priority": "0.2", "changefreq": "monthly"},
-    ]
-
-    for page in static_pages:
-        url_elem = ET.SubElement(urlset, "url")
-        ET.SubElement(url_elem, "loc").text = page["loc"]
-        ET.SubElement(url_elem, "lastmod").text = now_iso
-        ET.SubElement(url_elem, "changefreq").text = page["changefreq"]
-        ET.SubElement(url_elem, "priority").text = page["priority"]
-
-    # Product entries (deep-link anchors or individual item views)
-    for prod in products:
-        prod_id = prod.get("id")
-        if not prod_id:
-            continue
-        url_elem = ET.SubElement(urlset, "url")
-        ET.SubElement(url_elem, "loc").text = f"{BASE_URL}/#product-{prod_id}"
-        ET.SubElement(url_elem, "lastmod").text = prod.get("updated_at", now_iso)
-        ET.SubElement(url_elem, "changefreq").text = "weekly"
-        ET.SubElement(url_elem, "priority").text = "0.7"
-
-    tree = ET.ElementTree(urlset)
-    ET.indent(tree, space="  ", level=0)
-    
-    temp_sitemap = f"{sitemap_path}.tmp"
-    with open(temp_sitemap, "wb") as f:
-        f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
-        tree.write(f, encoding="utf-8", xml_declaration=False)
-        
-    os.replace(temp_sitemap, sitemap_path)
-    logging.info(f"Updated {sitemap_path} with {len(static_pages) + len(products)} URLs.")
 
 def main():
-    existing_products = load_existing_products(PRODUCTS_FILE)
-    logging.info(f"Loaded {len(existing_products)} existing records.")
+  catalog = load_catalog()
+  initial_count = len(catalog)
+  print(f"Current catalog size: {initial_count} items")
 
-    session = get_resilient_session()
+  # Select a shuffled batch of 7 targets per execution
+  batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
+
+  with sync_playwright() as p:
+    browser = p.chromium.launch(
+        headless=True,
+        args=["--no-sandbox", "--disable-setuid-sandbox"],
+    )
+    context = browser.new_context(
+        user_agent=(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        ),
+        viewport={"width": 1440, "height": 900},
+    )
+    page = context.new_page()
 
     try:
-        new_items = fetch_catalog_items(session)
-        
-        # Merge logic: if your scraper returns all active items, use new_items directly;
-        # otherwise, deduplicate against existing_products by "id".
-        products_to_store = new_items if new_items else existing_products
+      page.goto(
+          "https://www.cdjapan.co.jp/searchuni?q=Morning+Musume&order=reldesc",
+          wait_until="domcontentloaded",
+          timeout=25000,
+      )
+      time.sleep(2.0)
+    except Exception:
+      pass
 
-        # Set minimum threshold: require at least 50% of previous catalog size if not empty
-        min_threshold = max(1, int(len(existing_products) * 0.5)) if existing_products else 1
-        
-        atomic_save_json(PRODUCTS_FILE, products_to_store, min_expected_count=min_threshold)
-        generate_sitemap(SITEMAP_FILE, products_to_store)
+    new_total = 0
 
-    except Exception as e:
-        logging.error(f"Scraper execution failed: {e}")
-        # Exit with non-zero code to fail GitHub Actions step and avoid bad commits
-        sys.exit(1)
+    for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
+      print(f"\n[{idx}/{len(batch)}] Target: {artist}")
+      items = execute_session_search(
+          page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
+      )
+      added_for_artist = 0
+
+      for it in items:
+        pid = it["id"]
+        # Update entry with true extracted calendar date
+        if pid not in catalog:
+          added_for_artist += 1
+          new_total += 1
+        catalog[pid] = it
+
+      print(
+          f"   => Verified items for {artist}: {len(items)} found"
+          f" ({added_for_artist} new to database)"
+      )
+      time.sleep(random.uniform(3.5, 5.5))
+
+    browser.close()
+
+  with open(DATA_FILE, "w", encoding="utf-8") as f:
+    json.dump(catalog, f, indent=2, ensure_ascii=False)
+
+  final_count = len(catalog)
+  print(f"\n==========================================")
+  print(f"Batch Complete! Added {new_total} brand-new verified products.")
+  print(f"Total active catalog size: {final_count} items.")
+  print(f"==========================================")
+
 
 if __name__ == "__main__":
-    main()
+  main()

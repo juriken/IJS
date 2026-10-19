@@ -127,8 +127,14 @@
 </head>
 <body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">Copied to clipboard</span>
+  </div>
+
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
+  <header class="sticky top-0 z-40 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-compact-disc text-amber-200 dark:text-rose-400 text-2xl"></i>
@@ -140,7 +146,7 @@
         <input 
           id="search-input" 
           type="text" 
-          placeholder="Search Morning Musume, Berryz Kobo, C-ute, Buono, Juice=Juice..." 
+          placeholder="Search Morning Musume, Berryz Kobo, C-ute, Minimoni..." 
           class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-stone-400 dark:text-slate-400 text-sm"></i>
@@ -216,13 +222,13 @@
           </button>
           
           <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar cursor-grab select-none scroll-smooth md:px-7" id="filter-bar">
-            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Groups</button>
-            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
-            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
-            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Sakamichi Series">Sakamichi (46)</button>
-            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Momoiro Clover Z">Momoclo</button>
-            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Babymetal">Babymetal</button>
+            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0" data-cat="All">All Groups</button>
+            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Hello! Project">Hello! Project</button>
+            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="AKB48 Group">AKB48 Groups</button>
+            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Sakamichi Series">Sakamichi (46)</button>
+            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
+            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Momoiro Clover Z">Momoclo</button>
+            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0" data-cat="Babymetal">Babymetal</button>
           </div>
 
           <button onclick="scrollElement('filter-bar', 'right')" class="hidden md:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100" aria-label="Scroll franchises right">
@@ -243,47 +249,56 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Minimoni, v-u-den) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-1.5 relative flex items-center">
-        <!-- Desktop Left Scroll Arrow -->
-        <button onclick="scrollElement('artist-subbar', 'left')" class="hidden sm:flex absolute left-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units left" title="Scroll left">
+        <button onclick="scrollElement('artist-subbar', 'left')" class="hidden sm:flex absolute left-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units left">
           <i class="fa-solid fa-chevron-left text-[10px]"></i>
         </button>
 
         <div class="flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar w-full sm:px-8 scroll-smooth select-none cursor-grab" id="artist-subbar">
-          <!-- Sub-artist pills inserted dynamically -->
+          <!-- Dynamic Units -->
         </div>
 
-        <!-- Desktop Right Scroll Arrow -->
-        <button onclick="scrollElement('artist-subbar', 'right')" class="hidden sm:flex absolute right-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units right" title="Scroll right">
+        <button onclick="scrollElement('artist-subbar', 'right')" class="hidden sm:flex absolute right-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100" aria-label="Scroll units right">
           <i class="fa-solid fa-chevron-right text-[10px]"></i>
         </button>
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar with Desktop Drag & Scroll -->
+    <!-- Tier 2 Navigation: Format Filter Bar & Release Timing Filter -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth" id="format-filter-bar">
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
-          <i class="fa-solid fa-shapes"></i> Format:
-        </span>
-        <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm" data-fmt="All">All Formats</button>
-        <button onclick="setFormat('CD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="CD">
-          <i class="fa-solid fa-compact-disc mr-1 text-rose-500"></i> CDs
-        </button>
-        <button onclick="setFormat('Blu-ray')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Blu-ray">
-          <i class="fa-solid fa-film mr-1 text-sky-500"></i> Blu-rays
-        </button>
-        <button onclick="setFormat('DVD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="DVD">
-          <i class="fa-solid fa-video mr-1 text-amber-500"></i> DVDs
-        </button>
-        <button onclick="setFormat('Book')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Book">
-          <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books &amp; Photobooks
-        </button>
-        <button onclick="setFormat('Collectable')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700" data-fmt="Collectable">
-          <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Collectibles &amp; Merch
-        </button>
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between gap-4">
+        <div class="flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth flex-1" id="format-filter-bar">
+          <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
+            <i class="fa-solid fa-shapes"></i> Format:
+          </span>
+          <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0" data-fmt="All">All Formats</button>
+          <button onclick="setFormat('CD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="CD">
+            <i class="fa-solid fa-compact-disc mr-1 text-rose-500"></i> CDs
+          </button>
+          <button onclick="setFormat('Blu-ray')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Blu-ray">
+            <i class="fa-solid fa-film mr-1 text-sky-500"></i> Blu-rays
+          </button>
+          <button onclick="setFormat('DVD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="DVD">
+            <i class="fa-solid fa-video mr-1 text-amber-500"></i> DVDs
+          </button>
+          <button onclick="setFormat('Book')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Book">
+            <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books &amp; Photobooks
+          </button>
+          <button onclick="setFormat('Collectable')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0" data-fmt="Collectable">
+            <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Collectibles &amp; Merch
+          </button>
+        </div>
+
+        <!-- Release Status Segmented Switch (All / Pre-orders / In Stock) -->
+        <div class="hidden lg:flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[11px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
+          <button onclick="setAvailability('all')" id="avail-all" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs">All</button>
+          <button onclick="setAvailability('preorder')" id="avail-preorder" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1">
+            <i class="fa-solid fa-clock text-[9px]"></i> Pre-Orders
+          </button>
+          <button onclick="setAvailability('instock')" id="avail-instock" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white">In Stock</button>
+        </div>
       </div>
     </div>
   </header>
@@ -350,7 +365,34 @@
 
   <!-- Product Grid -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- Loading Skeleton Cards -->
+      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
+        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
+        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
+        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
+        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden p-3 animate-pulse space-y-3">
+        <div class="aspect-square bg-stone-200 dark:bg-slate-800 rounded-lg"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-3/4"></div>
+        <div class="h-3 bg-stone-200 dark:bg-slate-800 rounded w-1/2"></div>
+      </div>
+    </div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
@@ -361,6 +403,65 @@
     <!-- Bottom Pagination -->
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
+
+  <!-- Quick View Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="absolute top-3.5 right-3.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-lg p-1 z-10" aria-label="Close details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Image Column -->
+      <div class="w-full sm:w-1/2 aspect-square bg-stone-100 dark:bg-slate-800 rounded-xl overflow-hidden relative shrink-0">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover" onerror="onImgLoadError(this)" />
+        <span id="modal-format-badge" class="absolute bottom-2.5 left-2.5 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CD</span>
+        <span id="modal-preorder-badge" class="hidden absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded shadow flex items-center gap-1">
+          <i class="fa-solid fa-clock"></i> PRE-ORDER
+        </span>
+      </div>
+
+      <!-- Modal Details Column -->
+      <div class="flex-1 flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <span id="modal-artist-badge" class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">Morning Musume</span>
+          <h3 id="modal-title" class="text-base font-bold text-stone-900 dark:text-white leading-snug">Product Title</h3>
+          
+          <div class="pt-2 text-xs text-stone-600 dark:text-slate-300 space-y-1.5 border-t border-stone-100 dark:border-slate-800">
+            <p><strong class="text-stone-800 dark:text-stone-200">Release Date:</strong> <span id="modal-release-date">Available Now</span></p>
+            <p><strong class="text-stone-800 dark:text-stone-200">Catalog ID:</strong> <span id="modal-catalog-id" class="font-mono">EPCE-0000</span> <button onclick="copyCatalogId()" class="ml-1 text-rose-600 hover:underline text-[10px]"><i class="fa-regular fa-copy"></i> Copy</button></p>
+            <p><strong class="text-stone-800 dark:text-stone-200">Franchise:</strong> <span id="modal-category">Hello! Project</span></p>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-stone-100 dark:border-slate-800">
+          <div>
+            <span class="block text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-wider">Estimated Retail</span>
+            <div id="modal-price" class="text-lg font-black text-rose-600 dark:text-rose-400">¥0</div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a id="modal-buy-link" href="#" target="_blank" rel="nofollow noopener" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5">
+              <span>View &amp; Buy on CDJapan</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+            <button id="modal-share-btn" onclick="copyCurrentModalLink()" title="Copy Share Link" class="w-10 h-10 rounded-xl bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-slate-700 flex items-center justify-center transition shrink-0">
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll-to-Top Floating Action Button -->
+  <button 
+    id="scroll-to-top" 
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" 
+    aria-label="Back to top" 
+    class="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full bg-stone-900/80 dark:bg-slate-800 text-white flex items-center justify-center shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 hover:bg-rose-600"
+  >
+    <i class="fa-solid fa-arrow-up text-sm"></i>
+  </button>
 
   <!-- Footer -->
   <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200">
@@ -407,14 +508,16 @@
 
   <script>
     let allProducts = [];
-    let activeFilter = 'All';      // Group / Franchise
-    let activeArtist = 'All';      // Sub-Unit / Artist
-    let activeFormat = 'All';      // Format
+    let activeFilter = 'All';          // Group / Franchise
+    let activeArtist = 'All';          // Sub-Unit / Artist
+    let activeFormat = 'All';          // Format
+    let activeAvailability = 'all';    // all, preorder, instock
     let searchQuery = '';
     let currentSort = 'newest';
     let currentCurrency = 'JPY';
     let isWishlistView = false;
     let exchangeRates = { JPY: 1.0, USD: 0.0067 };
+    let currentModalProduct = null;
 
     let currentPage = 1;
     let itemsPerPage = 50;
@@ -425,7 +528,7 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Comprehensive Group & Artist Mapping (Minimoni & v-u-den properly mapped)
+    // Comprehensive Group & Artist Mapping
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
         'Morning Musume',
@@ -460,6 +563,21 @@
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
 
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-message');
+      const icon = document.getElementById('toast-icon');
+      if (!toast || !text) return;
+      text.innerText = message;
+      if (icon) {
+        icon.className = isSuccess ? 'fa-solid fa-circle-check text-emerald-400' : 'fa-solid fa-circle-exclamation text-amber-400';
+      }
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2200);
+    }
+
     function getWishlist() {
       try {
         const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
@@ -483,8 +601,10 @@
       const idx = list.indexOf(productId);
       if (idx > -1) {
         list.splice(idx, 1);
+        showToast("Removed from wishlist");
       } else {
         list.push(productId);
+        showToast("Saved to wishlist!");
       }
       saveWishlist(list);
       render();
@@ -621,6 +741,7 @@
       if (activeFilter !== 'All') params.set('cat', activeFilter);
       if (activeArtist !== 'All') params.set('artist', activeArtist);
       if (activeFormat !== 'All') params.set('fmt', activeFormat);
+      if (activeAvailability !== 'all') params.set('status', activeAvailability);
       if (searchQuery) params.set('q', searchQuery);
       if (currentSort !== 'newest') params.set('sort', currentSort);
       if (currentPage > 1) params.set('page', currentPage);
@@ -635,6 +756,7 @@
       if (params.has('cat')) activeFilter = params.get('cat');
       if (params.has('artist')) activeArtist = params.get('artist');
       if (params.has('fmt')) activeFormat = params.get('fmt');
+      if (params.has('status')) activeAvailability = params.get('status');
       if (params.has('q')) {
         searchQuery = params.get('q').toLowerCase();
         const input = document.getElementById('search-input');
@@ -678,6 +800,7 @@
       readUrlParams();
       updateArtistSubBar();
       updateFilterButtonsUI();
+      updateAvailabilityUI();
       updateWishlistBadge();
       initAllHorizontalScrollers();
       render();
@@ -724,6 +847,28 @@
       updateArtistSubBar();
       syncUrlParams();
       render();
+    }
+
+    function setAvailability(status) {
+      activeAvailability = status;
+      currentPage = 1;
+      updateAvailabilityUI();
+      syncUrlParams();
+      render();
+    }
+
+    function updateAvailabilityUI() {
+      const allBtn = document.getElementById('avail-all');
+      const preBtn = document.getElementById('avail-preorder');
+      const stockBtn = document.getElementById('avail-instock');
+      if (!allBtn || !preBtn || !stockBtn) return;
+
+      const activeClasses = "px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs font-bold";
+      const inactiveClasses = "px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold";
+
+      allBtn.className = activeAvailability === 'all' ? activeClasses : inactiveClasses;
+      preBtn.className = activeAvailability === 'preorder' ? activeClasses : inactiveClasses;
+      stockBtn.className = activeAvailability === 'instock' ? activeClasses : inactiveClasses;
     }
 
     function updateFilterButtonsUI() {
@@ -850,6 +995,7 @@
       activeFilter = 'All';
       activeArtist = 'All';
       activeFormat = 'All';
+      activeAvailability = 'all';
       searchQuery = '';
       isWishlistView = false;
       const input = document.getElementById('search-input');
@@ -857,6 +1003,7 @@
       const clearBtn = document.getElementById('search-clear-btn');
       if (clearBtn) clearBtn.classList.add('hidden');
       updateFilterButtonsUI();
+      updateAvailabilityUI();
       updateArtistSubBar();
       syncUrlParams();
       render();
@@ -1042,6 +1189,86 @@
       navEl.innerHTML = navHtml;
     }
 
+    // Quick-View Modal Actions
+    function openModal(productId, e) {
+      if (e) {
+        e.preventDefault();
+      }
+      const p = allProducts.find(item => item.id === productId);
+      if (!p) return;
+      currentModalProduct = p;
+
+      const modal = document.getElementById('product-modal');
+      const img = document.getElementById('modal-img');
+      const title = document.getElementById('modal-title');
+      const artist = document.getElementById('modal-artist-badge');
+      const cat = document.getElementById('modal-category');
+      const cid = document.getElementById('modal-catalog-id');
+      const relDate = document.getElementById('modal-release-date');
+      const price = document.getElementById('modal-price');
+      const fmt = document.getElementById('modal-format-badge');
+      const preorder = document.getElementById('modal-preorder-badge');
+      const buyLink = document.getElementById('modal-buy-link');
+
+      img.src = p.image || PLACEHOLDER_IMG;
+      title.innerText = p.title || '';
+      artist.innerText = p.artist || '';
+      cat.innerText = p.category || '';
+      cid.innerText = p.id || '';
+      relDate.innerText = p.release_date || 'Available Now';
+      price.innerHTML = formatDisplayPrice(p.price, p);
+      fmt.innerText = getItemFormatCategory(p);
+
+      const upcoming = isPreOrder(p);
+      if (upcoming) {
+        preorder.classList.remove('hidden');
+        buyLink.innerHTML = `<span>Pre-Order on CDJapan</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+      } else {
+        preorder.classList.add('hidden');
+        buyLink.innerHTML = `<span>View &amp; Buy on CDJapan</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+      }
+      buyLink.href = p.affiliate_url;
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('product-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      currentModalProduct = null;
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'product-modal') {
+        closeModal();
+      }
+    }
+
+    function copyCatalogId() {
+      if (!currentModalProduct) return;
+      navigator.clipboard.writeText(currentModalProduct.id).then(() => {
+        showToast(`Catalog ID copied: ${currentModalProduct.id}`);
+      });
+    }
+
+    function copyCurrentModalLink() {
+      if (!currentModalProduct) return;
+      copyProductLink(currentModalProduct.id);
+    }
+
+    function copyProductLink(productId, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const directUrl = `${window.location.origin}/?q=${encodeURIComponent(productId)}`;
+      navigator.clipboard.writeText(directUrl).then(() => {
+        showToast("Product link copied to clipboard!");
+      });
+    }
+
     function render() {
       const grid = document.getElementById('product-grid');
       const empty = document.getElementById('empty-state');
@@ -1056,10 +1283,15 @@
           return false;
         }
 
+        // Availability Timing Filter
+        const upcoming = isPreOrder(item);
+        if (activeAvailability === 'preorder' && !upcoming) return false;
+        if (activeAvailability === 'instock' && upcoming) return false;
+
         // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
-        // Sub-Artist Filter (Minimoni & v-u-den aliases support)
+        // Sub-Artist Filter
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         if (!matchesArtist && (activeArtist === 'Minimoni' || activeArtist === 'Mini Moni')) {
           matchesArtist = (item.artist === 'Minimoni' || item.artist === 'Mini Moni');
@@ -1151,7 +1383,8 @@
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
         card.innerHTML = `
-          <div class="aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden">
+          <!-- Image Box (Click opens Modal) -->
+          <div class="aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
             <img 
               src="${displayImg}" 
               alt="${safeTitle}" 
@@ -1166,15 +1399,26 @@
               ${safeArtist}
             </span>
 
-            <!-- Wishlist Heart Button -->
-            <button 
-              onclick="toggleWishlist('${p.id}', event)"
-              aria-label="Save to Wishlist"
-              title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
-              class="absolute bottom-2 right-2 w-7 h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm"
-            >
-              <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
-            </button>
+            <!-- Action Buttons: Wishlist & Share -->
+            <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
+              <button 
+                onclick="copyProductLink('${p.id}', event)"
+                aria-label="Share Link"
+                title="Copy share link"
+                class="w-7 h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm"
+              >
+                <i class="fa-solid fa-share-nodes text-[11px]"></i>
+              </button>
+              
+              <button 
+                onclick="toggleWishlist('${p.id}', event)"
+                aria-label="Save to Wishlist"
+                title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
+                class="w-7 h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm"
+              >
+                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
+              </button>
+            </div>
 
             <!-- Media Format Badge -->
             <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
@@ -1188,15 +1432,18 @@
               </span>
             ` : ''}
           </div>
+
+          <!-- Body Card -->
           <div class="p-3 flex-1 flex flex-col justify-between">
             <div>
-              <h2 class="text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2" title="${safeTitle}">
+              <h2 class="text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
                 ${safeTitle}
               </h2>
               <p class="text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
               </p>
             </div>
+            
             <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
               <div>
                 <span class="text-xs font-black text-rose-600 dark:text-rose-400">
@@ -1211,7 +1458,7 @@
                 title="View and order securely on CDJapan"
                 class="bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap"
               >
-                ${upcoming ? 'Pre-Order on CDJapan' : 'View on CDJapan'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
               </a>
             </div>
           </div>
@@ -1221,6 +1468,22 @@
 
       renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
     }
+
+    // Scroll to Top Listener
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scroll-to-top');
+      if (!btn) return;
+      if (window.scrollY > 400) {
+        btn.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    // Keyboard ESC listener for Modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();

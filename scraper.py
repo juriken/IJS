@@ -41,327 +41,301 @@ TARGET_GROUPS = [
 ]
 
 PAGES_PER_TARGET = 3
-BATCH_SIZE = 7
+BATCH_SIZE = 8
 
 
 def load_catalog():
-  if os.path.exists(DATA_FILE):
-    try:
-      with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-    except Exception:
-      return {}
-  return {}
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
 
 
 def make_affiliate_link(product_key):
-  raw_path = f"product/{product_key}"
-  encoded_path = urllib.parse.quote(raw_path, safe="")
-  return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
+    raw_path = f"product/{product_key}"
+    encoded_path = urllib.parse.quote(raw_path, safe="")
+    return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
 
 
 def clean_text(text):
-  return re.sub(r"\s+", " ", text).strip() if text else ""
+    return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
 def is_relevant_product(card_text, keywords):
-  if not keywords:
-    return True
-  lower_text = card_text.lower()
-  return any(kw.lower() in lower_text for kw in keywords)
+    if not keywords:
+        return True
+    lower_text = card_text.lower()
+    return any(kw.lower() in lower_text for kw in keywords)
 
 
 def extract_verified_products(html, category, canonical_artist, keywords):
-  soup = BeautifulSoup(html, "html.parser")
-  items_dict = {}
+    soup = BeautifulSoup(html, "html.parser")
+    items_dict = {}
 
-  cards = (
-      soup.select(".item-detail")
-      or soup.select(".n-item")
-      or soup.select(".item")
-      or soup.select("div[class*='item-']")
-  )
-
-  for card in cards:
-    link_el = card.select_one("a[href*='/product/']")
-    if not link_el:
-      continue
-
-    href = link_el.get("href", "")
-    match = re.search(r"/product/([A-Za-z0-9_-]+)", href)
-    if not match:
-      continue
-
-    prod_key = match.group(1)
-
-    if prod_key.lower() in [
-        "cart", "login", "help", "contact", "about",
-        "tokuten", "ranking", "app"
-    ]:
-      continue
-
-    # Title
-    title_el = (
-        card.select_one(".title a")
-        or card.select_one("a.item-title")
-        or card.select_one(".title")
-        or link_el
-    )
-    raw_title = clean_text(title_el.get_text()) if title_el else ""
-
-    # Artist
-    artist_el = (
-        card.select_one(".artist")
-        or card.select_one(".item-artist")
-        or card.select_one(".cast")
-    )
-    raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
-
-    # Image
-    img_el = card.select_one("img")
-    img_url = ""
-    if img_el:
-      img_url = (
-          img_el.get("src")
-          or img_el.get("data-src")
-          or img_el.get("data-original")
-          or ""
-      )
-      if not raw_title and img_el.get("alt"):
-        raw_title = clean_text(img_el.get("alt"))
-
-    if not raw_title:
-      continue
-
-    if (
-        not img_url
-        or "spacer" in img_url
-        or "blank" in img_url
-        or "no_image" in img_url
-    ):
-      img_url = f"https://www.cdjapan.co.jp/pictures/l/{prod_key}.jpg"
-    elif img_url.startswith("//"):
-      img_url = "https:" + img_url
-    elif img_url.startswith("/"):
-      img_url = "https://www.cdjapan.co.jp" + img_url
-
-    img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
-        "/pictures/m/", "/pictures/l/"
+    cards = (
+        soup.select(".item-detail")
+        or soup.select(".n-item")
+        or soup.select(".item")
+        or soup.select("div[class*='item-']")
     )
 
-    # Price
-    price_el = (
-        card.select_one(".price")
-        or card.select_one(".item-price")
-        or card.select_one(".price-value")
-        or card.select_one("span.bold")
-    )
-    price_str = "Check CDJapan"
-    if price_el:
-      p_match = re.search(
-          r"(\d[\d,]*\s*(?:yen|JPY|円)?)",
-          clean_text(price_el.get_text()),
-          re.IGNORECASE,
-      )
-      if p_match and p_match.group(1).strip():
-        num_only = re.sub(r"[^\d]", "", p_match.group(1))
-        if num_only:
-          price_str = f"{int(num_only):,}yen"
+    for card in cards:
+        link_el = card.select_one("a[href*='/product/']")
+        if not link_el:
+            continue
 
-    # TRUE Release Date Extraction (Safe Standard BeautifulSoup Parsing)
-    card_text = card.get_text()
-    rel_date = ""
+        href = link_el.get("href", "")
+        match = re.search(r"/product/([A-Za-z0-9_-]+)", href)
+        if not match:
+            continue
 
-    # 1. Search for dedicated date class elements first
-    date_el = (
-        card.select_one(".release_date")
-        or card.select_one(".item-date")
-        or card.select_one(".date")
-    )
-    if date_el:
-      d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
-      if d_match:
-        rel_date = d_match.group(1).replace("-", "/")
+        prod_key = match.group(1)
 
-    # 2. Look for elements mentioning 'Release Date' safely using Python regex
-    if not rel_date:
-      date_node = card.find(lambda el: el.name in ["span", "td", "p"] and "Release Date" in el.get_text())
-      if date_node:
-        d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_node.get_text())
-        if d_match:
-          rel_date = d_match.group(1).replace("-", "/")
+        if prod_key.lower() in [
+            "cart", "login", "help", "contact", "about",
+            "tokuten", "ranking", "app"
+        ]:
+            continue
 
-    # 3. Search card text for full Japanese/standard date patterns
-    if not rel_date:
-      d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
-      if d_match:
-        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
-        rel_date = f"{y}/{m}/{d}"
-
-    # 4. Search card text for standard YYYY/MM/DD
-    if not rel_date:
-      d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
-      if d_match:
-        y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
-        rel_date = f"{y}/{m}/{d}"
-
-    # 5. Search card text for year/month: YYYY/MM
-    if not rel_date:
-      ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
-      if ym_match:
-        y, m = ym_match.group(1), ym_match.group(2).zfill(2)
-        rel_date = f"{y}/{m}/01"
-
-    # 6. Extract isolated year from title (e.g. "Live Tour 2023")
-    if not rel_date:
-      year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
-      if year_match:
-        rel_date = f"{year_match.group(1)}/01/01"
-
-    # Fallback
-    if not rel_date:
-      rel_date = "Available Now"
-
-    # Strict multi-field relevance filter
-    searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
-    if not is_relevant_product(searchable_card_text, keywords):
-      continue
-
-    items_dict[prod_key] = {
-        "id": prod_key,
-        "title": raw_title,
-        "artist": canonical_artist,
-        "category": category,
-        "price": price_str,
-        "release_date": rel_date,
-        "image": img_url,
-        "affiliate_url": make_affiliate_link(prod_key),
-        "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
-    }
-
-  return list(items_dict.values())
-
-
-def execute_session_search(page, category, canonical_artist, query, keywords, max_pages):
-  results = []
-  print(f"\n-> In-Session Search for: {canonical_artist} (Query: '{query}')")
-
-  for attempt in range(1, 3):
-    try:
-      page.evaluate("window.scrollTo(0, 0)")
-      time.sleep(0.5)
-
-      search_input = page.locator("input[name='q']").first
-      if not search_input.is_visible():
-        page.goto("https://www.cdjapan.co.jp/searchuni?q=idol", wait_until="domcontentloaded", timeout=20000)
-        time.sleep(1.0)
-        search_input = page.locator("input[name='q']").first
-
-      search_input.click()
-      search_input.fill("")
-      search_input.fill(query)
-      time.sleep(0.3)
-
-      with page.expect_navigation(wait_until="domcontentloaded", timeout=20000):
-        search_input.press("Enter")
-
-      time.sleep(1.5)
-
-      for p_num in range(1, max_pages + 1):
-        page.evaluate("window.scrollBy(0, 800)")
-        time.sleep(0.8)
-
-        html = page.content()
-        verified = extract_verified_products(
-            html, category, canonical_artist, keywords
+        # Title
+        title_el = (
+            card.select_one(".title a")
+            or card.select_one("a.item-title")
+            or card.select_one(".title")
+            or link_el
         )
-        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-        results.extend(verified)
+        raw_title = clean_text(title_el.get_text()) if title_el else ""
 
-        if p_num < max_pages:
-          next_btn = page.locator("a[rel='next'], a.next, a:has-text('Next')")
-          if next_btn.count() > 0 and next_btn.first.is_visible():
-            with page.expect_navigation(wait_until="domcontentloaded", timeout=15000):
-              next_btn.first.click()
-            time.sleep(random.uniform(2.5, 3.5))
-          else:
+        # Artist
+        artist_el = (
+            card.select_one(".artist")
+            or card.select_one(".item-artist")
+            or card.select_one(".cast")
+        )
+        raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
+
+        # Image
+        img_el = card.select_one("img")
+        img_url = ""
+        if img_el:
+            img_url = (
+                img_el.get("src")
+                or img_el.get("data-src")
+                or img_el.get("data-original")
+                or ""
+            )
+            if not raw_title and img_el.get("alt"):
+                raw_title = clean_text(img_el.get("alt"))
+
+        if not raw_title:
+            continue
+
+        if (
+            not img_url
+            or "spacer" in img_url
+            or "blank" in img_url
+            or "no_image" in img_url
+        ):
+            img_url = f"https://www.cdjapan.co.jp/pictures/l/{prod_key}.jpg"
+        elif img_url.startswith("//"):
+            img_url = "https:" + img_url
+        elif img_url.startswith("/"):
+            img_url = "https://www.cdjapan.co.jp" + img_url
+
+        img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
+            "/pictures/m/", "/pictures/l/"
+        )
+
+        # Price Extraction & Integer Conversion
+        price_el = (
+            card.select_one(".price")
+            or card.select_one(".item-price")
+            or card.select_one(".price-value")
+            or card.select_one("span.bold")
+        )
+        price_str = "Check CDJapan"
+        price_num = 0
+        if price_el:
+            p_match = re.search(
+                r"(\d[\d,]*\s*(?:yen|JPY|円)?)",
+                clean_text(price_el.get_text()),
+                re.IGNORECASE,
+            )
+            if p_match and p_match.group(1).strip():
+                num_only = re.sub(r"[^\d]", "", p_match.group(1))
+                if num_only:
+                    price_num = int(num_only)
+                    price_str = f"{price_num:,}yen"
+
+        # Release Date Extraction
+        card_text = card.get_text()
+        rel_date = ""
+
+        date_el = (
+            card.select_one(".release_date")
+            or card.select_one(".item-date")
+            or card.select_one(".date")
+        )
+        if date_el:
+            d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
+            if d_match:
+                rel_date = d_match.group(1).replace("-", "/")
+
+        if not rel_date:
+            date_node = card.find(lambda el: el.name in ["span", "td", "p"] and "Release Date" in el.get_text())
+            if date_node:
+                d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_node.get_text())
+                if d_match:
+                    rel_date = d_match.group(1).replace("-", "/")
+
+        if not rel_date:
+            d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
+            if d_match:
+                y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+                rel_date = f"{y}/{m}/{d}"
+
+        if not rel_date:
+            d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
+            if d_match:
+                y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
+                rel_date = f"{y}/{m}/{d}"
+
+        if not rel_date:
+            ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
+            if ym_match:
+                y, m = ym_match.group(1), ym_match.group(2).zfill(2)
+                rel_date = f"{y}/{m}/01"
+
+        if not rel_date:
+            year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
+            if year_match:
+                rel_date = f"{year_match.group(1)}/01/01"
+
+        if not rel_date:
+            rel_date = "Available Now"
+
+        searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
+        if not is_relevant_product(searchable_card_text, keywords):
+            continue
+
+        items_dict[prod_key] = {
+            "id": prod_key,
+            "title": raw_title,
+            "artist": canonical_artist,
+            "category": category,
+            "price": price_str,
+            "price_num": price_num,
+            "release_date": rel_date,
+            "image": img_url,
+            "affiliate_url": make_affiliate_link(prod_key),
+            "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+        }
+
+    return list(items_dict.values())
+
+
+def dismiss_popups(page):
+    try:
+        # Dismiss country selector or cookie consent overlay if present
+        close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save')").first
+        if close_btn.is_visible(timeout=1500):
+            close_btn.click()
+            time.sleep(0.5)
+    except Exception:
+        pass
+
+
+def scrape_artist_releases(page, category, canonical_artist, query, keywords, max_pages):
+    results = []
+    encoded_q = urllib.parse.quote_plus(query)
+    print(f"\n-> Direct URL Query for: {canonical_artist} ('{query}')")
+
+    for p_num in range(1, max_pages + 1):
+        target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&order=reldesc&page={p_num}"
+        
+        success = False
+        for attempt in range(1, 3):
+            try:
+                page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
+                page.evaluate("window.scrollBy(0, 1000)")
+                time.sleep(random.uniform(1.2, 2.0))
+
+                html = page.content()
+                verified = extract_verified_products(html, category, canonical_artist, keywords)
+                print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+                results.extend(verified)
+                success = True
+                break
+            except Exception as e:
+                print(f"   Warning (Page {p_num}, Attempt {attempt}) for {canonical_artist}: {e}")
+                time.sleep(2.0)
+
+        if not success:
             break
 
-      return results
+        time.sleep(random.uniform(2.0, 3.5))
 
-    except Exception as e:
-      print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
-      time.sleep(3.0)
-
-  return results
+    return results
 
 
 def main():
-  catalog = load_catalog()
-  initial_count = len(catalog)
-  print(f"Current catalog size: {initial_count} items")
+    catalog = load_catalog()
+    initial_count = len(catalog)
+    print(f"Starting Catalog Sync. Current active items: {initial_count}")
 
-  # Select a shuffled batch of 7 targets per execution
-  batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
+    batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
-  with sync_playwright() as p:
-    browser = p.chromium.launch(
-        headless=True,
-        args=["--no-sandbox", "--disable-setuid-sandbox"],
-    )
-    context = browser.new_context(
-        user_agent=(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-        ),
-        viewport={"width": 1440, "height": 900},
-    )
-    page = context.new_page()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-setuid-sandbox"],
+        )
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1440, "height": 900},
+        )
+        page = context.new_page()
 
-    try:
-      page.goto(
-          "https://www.cdjapan.co.jp/searchuni?q=Morning+Musume&order=reldesc",
-          wait_until="domcontentloaded",
-          timeout=25000,
-      )
-      time.sleep(2.0)
-    except Exception:
-      pass
+        new_total = 0
 
-    new_total = 0
+        for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
+            print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
+            items = scrape_artist_releases(
+                page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
+            )
+            added_for_artist = 0
 
-    for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
-      print(f"\n[{idx}/{len(batch)}] Target: {artist}")
-      items = execute_session_search(
-          page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
-      )
-      added_for_artist = 0
+            for it in items:
+                pid = it["id"]
+                if pid not in catalog:
+                    added_for_artist += 1
+                    new_total += 1
+                catalog[pid] = it
 
-      for it in items:
-        pid = it["id"]
-        # Update entry with true extracted calendar date
-        if pid not in catalog:
-          added_for_artist += 1
-          new_total += 1
-        catalog[pid] = it
+            print(
+                f"   => {artist}: Found {len(items)} items"
+                f" ({added_for_artist} new to database)"
+            )
+            time.sleep(random.uniform(2.5, 4.0))
 
-      print(
-          f"   => Verified items for {artist}: {len(items)} found"
-          f" ({added_for_artist} new to database)"
-      )
-      time.sleep(random.uniform(3.5, 5.5))
+        browser.close()
 
-    browser.close()
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-  with open(DATA_FILE, "w", encoding="utf-8") as f:
-    json.dump(catalog, f, indent=2, ensure_ascii=False)
-
-  final_count = len(catalog)
-  print(f"\n==========================================")
-  print(f"Batch Complete! Added {new_total} brand-new verified products.")
-  print(f"Total active catalog size: {final_count} items.")
-  print(f"==========================================")
+    final_count = len(catalog)
+    print(f"\n==========================================")
+    print(f"Sync Complete! Added {new_total} new releases.")
+    print(f"Total live catalog items: {final_count}")
+    print(f"==========================================")
 
 
 if __name__ == "__main__":
-  main()
+    main()

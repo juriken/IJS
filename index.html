@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://idoljapan.store/">
   <meta property="og:title" content="IdolJapan.store — Japanese Idol Discography & Release Guide">
   <meta property="og:description" content="Independent Japanese female idol discography index. All purchases securely fulfilled directly by official retailer CDJapan (Tokyo).">
-  <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
+  <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
   <meta name="twitter:url" content="https://idoljapan.store/">
   <meta name="twitter:title" content="IdolJapan.store — Japanese Idol Catalog">
   <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
-  <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/s/11/07/EPCE-7860.jpg">
+  <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
 
   <!-- Schema.org JSON-LD Structured Data Container -->
   <script type="application/ld+json" id="structured-data-json">
@@ -169,8 +169,27 @@
         </div>
       </div>
 
-      <!-- Controls: Wishlist, Currency, Dark Mode, and X Link -->
+      <!-- Controls: Calendar, Lucky Shuffler, Wishlist, Currency, Theme & X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
+        <!-- Pre-Order Release Calendar Button -->
+        <button 
+          onclick="toggleCalendarDrawer()" 
+          title="Pre-Order Shipping Calendar"
+          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400"
+        >
+          <i class="fa-regular fa-calendar-days text-amber-300"></i>
+          <span class="hidden lg:inline">Calendar</span>
+        </button>
+
+        <!-- Lucky Shuffler (Discover Random) -->
+        <button 
+          onclick="pickRandomProduct()" 
+          title="Discover Random Release"
+          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400"
+        >
+          <i class="fa-solid fa-dice text-xs"></i>
+        </button>
+
         <!-- Wishlist Button -->
         <button 
           id="wishlist-toggle-btn"
@@ -301,7 +320,7 @@
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar & Release Timing Filter -->
+    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth flex-1" id="format-filter-bar">
@@ -335,6 +354,12 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <!-- Edition Clustering Switch -->
+          <label class="hidden lg:flex items-center gap-1.5 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
+            <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
+            <span>Group Editions</span>
+          </label>
+
           <!-- Price Max Filter Slider -->
           <div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-stone-500 dark:text-slate-400">
             <label for="price-range">Max:</label>
@@ -391,7 +416,7 @@
     </div>
   </section>
 
-  <!-- Page Controls & Wishlist Action Bar -->
+  <!-- Page Controls & Group Buy Action Bar -->
   <section class="max-w-7xl mx-auto px-4 mt-6" id="pagination-top-anchor">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs transition-colors duration-200">
       <div class="flex items-center gap-2">
@@ -451,6 +476,33 @@
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
 
+  <!-- Pre-Order Release Calendar Slide-over Drawer -->
+  <div id="calendar-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeCalendarOnBackdrop(event)">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl border-l border-stone-200 dark:border-slate-800 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-4 bg-rose-600 text-white flex items-center justify-between shadow">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-amber-300 text-lg"></i>
+            <div>
+              <h3 class="font-black text-sm">Pre-Order Release Calendar</h3>
+              <p class="text-[11px] text-rose-100">Consolidate orders for direct Tokyo shipping</p>
+            </div>
+          </div>
+          <button onclick="toggleCalendarDrawer()" class="text-white hover:text-amber-200 text-lg p-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Drawer Content -->
+        <div id="calendar-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+          <!-- Dynamically populated release timeline -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Quick View Modal -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
@@ -458,7 +510,7 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <!-- Modal Image Column -->
+      <!-- Modal Image Column (Always loads high-res /pictures/l/) -->
       <div class="w-full sm:w-1/2 aspect-square bg-stone-100 dark:bg-slate-800 rounded-xl overflow-hidden relative shrink-0">
         <img id="modal-img" src="" alt="" class="w-full h-full object-cover" onerror="onImgLoadError(this)" />
         <span id="modal-format-badge" class="absolute bottom-2.5 left-2.5 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CD</span>
@@ -473,6 +525,8 @@
           <span id="modal-artist-badge" class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">Morning Musume</span>
           <h3 id="modal-title" class="text-base font-bold text-stone-900 dark:text-white leading-snug">Product Title</h3>
           
+          <div id="modal-edition-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+
           <div class="pt-2 text-xs text-stone-600 dark:text-slate-300 space-y-1.5 border-t border-stone-100 dark:border-slate-800">
             <p><strong class="text-stone-800 dark:text-stone-200">Release Date:</strong> <span id="modal-release-date">Available Now</span></p>
             <p><strong class="text-stone-800 dark:text-stone-200">Catalog ID:</strong> <span id="modal-catalog-id" class="font-mono">EPCE-0000</span> <button onclick="copyCatalogId()" class="ml-1 text-rose-600 hover:underline text-[10px]"><i class="fa-regular fa-copy"></i> Copy</button></p>
@@ -487,11 +541,11 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <button id="modal-buy-btn" onclick="triggerOutboundAffiliate(currentModalProduct)" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5 cursor-pointer">
+            <button id="modal-buy-btn" onclick="triggerOutboundAffiliate(currentModalProduct, 'modal_buy')" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5 cursor-pointer">
               <span id="modal-buy-btn-text">View &amp; Buy on CDJapan</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </button>
-            <button id="modal-share-btn" onclick="copyCurrentModalLink()" title="Copy Share Link" class="w-10 h-10 rounded-xl bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-slate-700 flex items-center justify-center transition shrink-0">
+            <button id="modal-share-btn" onclick="shareProduct(currentModalProduct)" title="Share Item" class="w-10 h-10 rounded-xl bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-slate-700 flex items-center justify-center transition shrink-0 cursor-pointer">
               <i class="fa-solid fa-share-nodes"></i>
             </button>
           </div>
@@ -593,10 +647,12 @@
 
   <script>
     let allProducts = [];
+    let clusteredEntities = [];        // Grouped products
     let activeFilter = 'All';          // Group / Franchise
     let activeArtist = 'All';          // Sub-Unit / Artist
     let activeFormat = 'All';          // Format
     let activeAvailability = 'all';    // all, preorder, instock
+    let isClusteringEnabled = true;    // Groups Type A/B/C editions
     let maxPriceLimit = 20000;         // JPY Threshold
     let searchQuery = '';
     let currentSort = 'newest';
@@ -605,6 +661,7 @@
     let exchangeRates = { JPY: 1.0, USD: 0.0067 };
     let currentModalProduct = null;
     let pendingRedirectProduct = null;
+    let pendingRedirectSubId = 'direct';
 
     let currentPage = 1;
     let itemsPerPage = 50;
@@ -614,7 +671,10 @@
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const SKIP_REDIRECT_KEY = 'idoljapan_skip_redirect_modal';
+    const CATALOG_CACHE_KEY = 'idoljapan_catalog_cache_v2';
+    const CATALOG_TIME_KEY = 'idoljapan_catalog_time_v2';
     const AFFILIATE_CLICKS_KEY = 'idoljapan_affiliate_clicks';
+    const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
     const FRANCHISE_ARTISTS = {
@@ -665,7 +725,13 @@
       }, 2200);
     }
 
-    function recordAffiliateClick(product) {
+    // Swaps high-res /pictures/l/ into lighter /pictures/m/ for the thumbnail grid
+    function getThumbnailUrl(rawUrl) {
+      if (!rawUrl || rawUrl.startsWith('data:')) return PLACEHOLDER_IMG;
+      return rawUrl.replace('/pictures/l/', '/pictures/m/');
+    }
+
+    function recordAffiliateClick(product, subId = 'direct') {
       try {
         const raw = localStorage.getItem(AFFILIATE_CLICKS_KEY);
         const list = raw ? JSON.parse(raw) : [];
@@ -673,26 +739,36 @@
           id: product.id,
           title: product.title,
           artist: product.artist,
+          sub_id: subId,
           timestamp: new Date().toISOString()
         });
         localStorage.setItem(AFFILIATE_CLICKS_KEY, JSON.stringify(list.slice(-100)));
       } catch (e) {}
     }
 
-    function triggerOutboundAffiliate(product) {
-      if (!product) return;
-      recordAffiliateClick(product);
+    function buildAttributedAffiliateUrl(baseAffiliateUrl, subId) {
+      if (!baseAffiliateUrl) return '#';
+      const separator = baseAffiliateUrl.includes('?') ? '&' : '?';
+      return `${baseAffiliateUrl}${separator}sub_id=${encodeURIComponent(subId)}`;
+    }
 
+    function triggerOutboundAffiliate(product, subId = 'direct') {
+      if (!product) return;
+      recordAffiliateClick(product, subId);
+
+      const finalUrl = buildAttributedAffiliateUrl(product.affiliate_url, subId);
       const skipModal = localStorage.getItem(SKIP_REDIRECT_KEY) === 'true';
+
       if (skipModal) {
-        window.open(product.affiliate_url, '_blank', 'noopener,noreferrer');
+        window.open(finalUrl, '_blank', 'noopener,noreferrer');
         return;
       }
 
       pendingRedirectProduct = product;
+      pendingRedirectSubId = subId;
       const modal = document.getElementById('redirect-modal');
       const confirmLink = document.getElementById('redirect-confirm-link');
-      if (confirmLink) confirmLink.href = product.affiliate_url;
+      if (confirmLink) confirmLink.href = finalUrl;
       if (modal) modal.classList.remove('hidden');
     }
 
@@ -712,6 +788,35 @@
         localStorage.setItem(SKIP_REDIRECT_KEY, 'true');
       }
       closeRedirectModal();
+    }
+
+    // Native Mobile Web Share API with Clipboard Fallback
+    async function shareProduct(product, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      if (!product) return;
+
+      const directUrl = `${window.location.origin}/?id=${encodeURIComponent(product.id)}`;
+      const shareData = {
+        title: `${product.title} — ${product.artist}`,
+        text: `Check out ${product.title} on IdolJapan.store:`,
+        url: directUrl
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') console.warn('Native share failed:', err);
+        }
+      }
+
+      navigator.clipboard.writeText(directUrl).then(() => {
+        showToast("Product link copied to clipboard!");
+      });
     }
 
     function getWishlist() {
@@ -767,9 +872,10 @@
       content += "Generated: " + new Date().toLocaleDateString() + "\n\n";
 
       items.forEach((it, idx) => {
+        const buyUrl = buildAttributedAffiliateUrl(it.affiliate_url, 'haul_export');
         content += `${idx + 1}. [${it.artist}] ${it.title}\n`;
         content += `   Catalog ID: ${it.id} | Price: ${it.price}\n`;
-        content += `   Order: ${it.affiliate_url}\n\n`;
+        content += `   Order: ${buyUrl}\n\n`;
       });
 
       const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -797,6 +903,18 @@
       updateWishlistBadge();
       syncUrlParams();
       render();
+    }
+
+    function toggleClustering(checked) {
+      isClusteringEnabled = checked;
+      currentPage = 1;
+      render();
+    }
+
+    function pickRandomProduct() {
+      if (!allProducts.length) return;
+      const rnd = allProducts[Math.floor(Math.random() * allProducts.length)];
+      openModal(rnd.id);
     }
 
     function onImgLoadError(imgEl) {
@@ -943,25 +1061,55 @@
       if (params.has('sort')) currentSort = params.get('sort');
       if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
       if (params.get('view') === 'wishlist') isWishlistView = true;
+
+      // Direct Deep-Link handling (?id=...)
+      if (params.has('id')) {
+        const targetId = params.get('id');
+        setTimeout(() => openModal(targetId), 200);
+      }
     }
 
+    // Bandwidth Optimization: SessionStorage Catalog Caching (6-hour TTL)
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      try {
-        const res = await fetch('/products.json?v=' + Date.now());
-        if (res.ok) data = await res.json();
-      } catch (e) {
-        console.warn('Root fetch failed, trying relative:', e);
+      const cachedData = sessionStorage.getItem(CATALOG_CACHE_KEY);
+      const cachedTime = sessionStorage.getItem(CATALOG_TIME_KEY);
+      const now = Date.now();
+
+      if (cachedData && cachedTime && (now - parseInt(cachedTime, 10) < SIX_HOURS_MS)) {
+        try {
+          data = JSON.parse(cachedData);
+        } catch (e) {
+          sessionStorage.removeItem(CATALOG_CACHE_KEY);
+        }
       }
 
       if (!data) {
         try {
-          const res = await fetch('products.json?v=' + Date.now());
+          const res = await fetch('/products.json?v=' + Date.now());
           if (res.ok) data = await res.json();
-        } catch (e2) {
-          console.error('All fetch attempts failed:', e2);
+        } catch (e) {
+          console.warn('Root fetch failed, trying relative:', e);
+        }
+
+        if (!data) {
+          try {
+            const res = await fetch('products.json?v=' + Date.now());
+            if (res.ok) data = await res.json();
+          } catch (e2) {
+            console.error('All fetch attempts failed:', e2);
+          }
+        }
+
+        if (data) {
+          try {
+            sessionStorage.setItem(CATALOG_CACHE_KEY, JSON.stringify(data));
+            sessionStorage.setItem(CATALOG_TIME_KEY, now.toString());
+          } catch (e_storage) {
+            console.warn('SessionStorage quota exceeded, continuing in memory');
+          }
         }
       }
 
@@ -976,6 +1124,7 @@
       }
 
       readUrlParams();
+      buildClusteredEntities();
       updateDynamicCounts();
       updateArtistSubBar();
       updateFilterButtonsUI();
@@ -983,6 +1132,56 @@
       updateWishlistBadge();
       initAllHorizontalScrollers();
       render();
+    }
+
+    // Normalized title extraction for single/album edition bundling
+    function getCleanBaseTitle(title) {
+      if (!title) return '';
+      return title
+        .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
+        .replace(/\((?:Type [A-Z0-9]|w\/ [A-Za-z0-9 ]+)\)/gi, '')
+        .replace(/【.*?】/g, '')
+        .trim();
+    }
+
+    function extractEditionTags(title) {
+      const tags = [];
+      const lower = (title || '').toLowerCase();
+      if (lower.includes('limited edition') || lower.includes('初回生産限定盤') || lower.includes('初回限定盤')) {
+        tags.push({ name: 'Limited', color: 'bg-amber-600' });
+      }
+      if (lower.includes('regular edition') || lower.includes('通常盤')) {
+        tags.push({ name: 'Regular', color: 'bg-stone-600' });
+      }
+      const typeMatch = title.match(/Type\s*([A-Za-z0-9])/i);
+      if (typeMatch) {
+        tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
+      }
+      if (lower.includes('w/ blu-ray') || lower.includes('blu-ray disc付')) {
+        tags.push({ name: '+BD', color: 'bg-sky-600' });
+      }
+      if (lower.includes('tokuten') || lower.includes('bonus') || lower.includes('外付け特典')) {
+        tags.push({ name: 'Bonus', color: 'bg-emerald-600' });
+      }
+      return tags;
+    }
+
+    // Bundles sibling editions into unified parent cards
+    function buildClusteredEntities() {
+      const clusters = {};
+      allProducts.forEach(item => {
+        const baseKey = `${item.artist}__${getCleanBaseTitle(item.title).toLowerCase()}`;
+        if (!clusters[baseKey]) {
+          clusters[baseKey] = {
+            id: item.id,
+            canonicalItem: item,
+            variants: [item]
+          };
+        } else {
+          clusters[baseKey].variants.push(item);
+        }
+      });
+      clusteredEntities = Object.values(clusters);
     }
 
     function updateDynamicCounts() {
@@ -1271,7 +1470,6 @@
       return 'Other';
     }
 
-    // Predictive Search Autocomplete Dropdown
     function updateAutocomplete(val) {
       const box = document.getElementById('search-autocomplete-box');
       if (!box) return;
@@ -1304,7 +1502,7 @@
         };
 
         row.innerHTML = `
-          <img src="${item.image || PLACEHOLDER_IMG}" class="w-8 h-8 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
+          <img src="${getThumbnailUrl(item.image)}" class="w-8 h-8 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
           <div class="flex-1 min-w-0 text-left">
             <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(item.title)}</p>
             <p class="text-[10px] text-stone-400 dark:text-slate-400 truncate">${escapeHtml(item.artist)} • ${formatDisplayPrice(item.price, item)}</p>
@@ -1397,9 +1595,7 @@
         const y = parseInt(m[1], 10);
         const mon = parseInt(m[2], 10);
         const day = parseInt(m[3], 10);
-        if (day <= 31) {
-          return (y * 10000) + (mon * 100) + day;
-        }
+        if (day <= 31) return (y * 10000) + (mon * 100) + day;
       }
 
       const ym = dStr.match(/(\d{4})[./-](\d{1,2})/);
@@ -1410,9 +1606,7 @@
       }
 
       const yOnly = dStr.match(/\b(199\d|20[0-2]\d)\b/);
-      if (yOnly) {
-        return parseInt(yOnly[1], 10) * 10000 + 101;
-      }
+      if (yOnly) return parseInt(yOnly[1], 10) * 10000 + 101;
 
       return 0;
     }
@@ -1450,7 +1644,7 @@
           "itemListElement": items.slice(0, 30).map((it, idx) => ({
             "@type": "ListItem",
             "position": idx + 1,
-            "url": `https://idoljapan.store/?q=${encodeURIComponent(it.id)}`,
+            "url": `https://idoljapan.store/?id=${encodeURIComponent(it.id)}`,
             "name": it.title,
             "image": it.image
           }))
@@ -1512,11 +1706,93 @@
       navEl.innerHTML = navHtml;
     }
 
+    // Pre-Order Release Calendar Drawer Builder
+    function toggleCalendarDrawer() {
+      const drawer = document.getElementById('calendar-drawer');
+      if (!drawer) return;
+      const isHidden = drawer.classList.contains('hidden');
+
+      if (isHidden) {
+        populateCalendarDrawer();
+        drawer.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        drawer.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function closeCalendarOnBackdrop(e) {
+      if (e.target.id === 'calendar-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+        toggleCalendarDrawer();
+      }
+    }
+
+    function populateCalendarDrawer() {
+      const container = document.getElementById('calendar-drawer-list');
+      if (!container) return;
+
+      const preOrders = allProducts.filter(p => isPreOrder(p));
+      preOrders.sort((a, b) => getItemDateValue(a) - getItemDateValue(b));
+
+      if (!preOrders.length) {
+        container.innerHTML = `
+          <div class="text-center py-10 text-stone-400">
+            <i class="fa-regular fa-calendar-xmark text-3xl mb-2"></i>
+            <p>No scheduled pre-orders found in active catalog.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Group by chronological release date
+      const grouped = {};
+      preOrders.forEach(p => {
+        const d = p.release_date || 'Upcoming';
+        if (!grouped[d]) grouped[d] = [];
+        grouped[d].push(p);
+      });
+
+      let html = '';
+      Object.entries(grouped).forEach(([dateStr, items]) => {
+        html += `
+          <div>
+            <div class="sticky top-0 bg-stone-100 dark:bg-slate-800 py-1 px-2.5 rounded-md font-bold text-rose-600 dark:text-rose-400 flex items-center justify-between mb-2">
+              <span><i class="fa-regular fa-clock mr-1"></i> ${dateStr}</span>
+              <span class="text-[10px] text-stone-500 font-normal">${items.length} release${items.length > 1 ? 's' : ''}</span>
+            </div>
+            <div class="space-y-2">
+        `;
+        items.forEach(it => {
+          html += `
+            <div class="flex items-center gap-3 p-2 rounded-xl border border-stone-100 dark:border-slate-800 hover:bg-stone-50 dark:hover:bg-slate-800/50 transition">
+              <img src="${getThumbnailUrl(it.image)}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
+              <div class="flex-1 min-w-0">
+                <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${escapeHtml(it.title)}</p>
+                <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
+              </div>
+              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs">
+                Pre-Order
+              </button>
+            </div>
+          `;
+        });
+        html += `</div></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
     function openModal(productId, e) {
       if (e) e.preventDefault();
       const p = allProducts.find(item => item.id === productId);
       if (!p) return;
       currentModalProduct = p;
+
+      // Update deep-link address without reloading
+      const params = new URLSearchParams(window.location.search);
+      params.set('id', p.id);
+      window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 
       const modal = document.getElementById('product-modal');
       const img = document.getElementById('modal-img');
@@ -1529,7 +1805,9 @@
       const fmt = document.getElementById('modal-format-badge');
       const preorder = document.getElementById('modal-preorder-badge');
       const buyText = document.getElementById('modal-buy-btn-text');
+      const editionBox = document.getElementById('modal-edition-tags');
 
+      // Modal loads full-res image
       img.src = p.image || PLACEHOLDER_IMG;
       title.innerText = p.title || '';
       artist.innerText = p.artist || '';
@@ -1538,6 +1816,18 @@
       relDate.innerText = p.release_date || 'Available Now';
       price.innerHTML = formatDisplayPrice(p.price, p);
       fmt.innerText = getItemFormatCategory(p);
+
+      // Edition & Tokuten Tag Injection
+      if (editionBox) {
+        editionBox.innerHTML = '';
+        const tags = extractEditionTags(p.title);
+        tags.forEach(t => {
+          const pill = document.createElement('span');
+          pill.className = `${t.color} text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-xs`;
+          pill.innerText = t.name;
+          editionBox.appendChild(pill);
+        });
+      }
 
       const upcoming = isPreOrder(p);
       if (upcoming) {
@@ -1557,6 +1847,14 @@
       if (modal) modal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
       currentModalProduct = null;
+
+      // Clean deep-link from URL
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('id')) {
+        params.delete('id');
+        const rest = params.toString();
+        window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
+      }
     }
 
     function closeModalOnBackdrop(e) {
@@ -1572,20 +1870,35 @@
       });
     }
 
-    function copyCurrentModalLink() {
-      if (!currentModalProduct) return;
-      copyProductLink(currentModalProduct.id);
-    }
+    function switchClusteredEdition(clusterIndex, newProductId, event) {
+      if (event) event.stopPropagation();
+      const variant = allProducts.find(x => x.id === newProductId);
+      if (!variant) return;
 
-    function copyProductLink(productId, e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
+      const card = document.getElementById(`cluster-card-${clusterIndex}`);
+      if (!card) return;
+
+      const imgEl = card.querySelector('.cluster-img');
+      const titleEl = card.querySelector('.cluster-title');
+      const priceEl = card.querySelector('.cluster-price');
+      const dateEl = card.querySelector('.cluster-date');
+      const buyBtn = card.querySelector('.cluster-buy-btn');
+
+      if (imgEl) imgEl.src = getThumbnailUrl(variant.image);
+      if (titleEl) {
+        titleEl.innerText = variant.title;
+        titleEl.setAttribute('title', variant.title);
       }
-      const directUrl = `${window.location.origin}/?q=${encodeURIComponent(productId)}`;
-      navigator.clipboard.writeText(directUrl).then(() => {
-        showToast("Product link copied to clipboard!");
-      });
+      if (priceEl) priceEl.innerHTML = formatDisplayPrice(variant.price, variant);
+      if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar text-[10px]"></i> ${variant.release_date || 'Available Now'}`;
+      if (buyBtn) {
+        const upcoming = isPreOrder(variant);
+        buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>`;
+        buyBtn.onclick = (e) => {
+          e.stopPropagation();
+          triggerOutboundAffiliate(variant, 'grid_cluster_btn');
+        };
+      }
     }
 
     function render() {
@@ -1597,26 +1910,19 @@
 
       const wishlistIds = getWishlist();
 
-      let filtered = allProducts.filter(item => {
-        if (isWishlistView && !wishlistIds.includes(item.id)) {
-          return false;
-        }
+      // Filter Evaluation
+      const filterItem = (item) => {
+        if (isWishlistView && !wishlistIds.includes(item.id)) return false;
 
-        // Price Filter Threshold
         const priceNum = parseNumericPrice(item.price, item);
-        if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) {
-          return false;
-        }
+        if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) return false;
 
-        // Availability Timing Filter
         const upcoming = isPreOrder(item);
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && upcoming) return false;
 
-        // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
-        // Sub-Artist Filter with Aliasing & Petitmoni fallback
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         if (!matchesArtist && activeArtist === 'Morning Musume') {
           matchesArtist = (item.artist === 'Morning Musume' || item.artist === 'Petitmoni');
@@ -1628,49 +1934,65 @@
           matchesArtist = (item.artist === 'v-u-den' || item.artist === 'Biyuden');
         }
         
-        // Media Format Filter
         const itemFmt = getItemFormatCategory(item);
         const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
 
-        // Search Keyword Filter
         const matchesSearch = !searchQuery || 
           (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
           (item.artist && String(item.artist).toLowerCase().includes(searchQuery)) ||
           (item.id && String(item.id).toLowerCase().includes(searchQuery));
 
         return matchesCat && matchesArtist && matchesFmt && matchesSearch;
-      });
+      };
 
-      // Strict Sorting
-      filtered.sort((a, b) => {
+      let displayEntities = [];
+
+      if (isClusteringEnabled) {
+        displayEntities = clusteredEntities.filter(cluster => {
+          // If any child variant passes the filter, keep the cluster
+          const matchingVariants = cluster.variants.filter(filterItem);
+          if (!matchingVariants.length) return false;
+          // Temporarily attach filtered children
+          cluster._activeVariants = matchingVariants;
+          cluster._primary = matchingVariants[0];
+          return true;
+        });
+      } else {
+        displayEntities = allProducts.filter(filterItem).map(p => ({
+          id: p.id,
+          _primary: p,
+          _activeVariants: [p]
+        }));
+      }
+
+      // Sorting
+      displayEntities.sort((entA, entB) => {
+        const a = entA._primary;
+        const b = entB._primary;
         const dateA = getItemDateValue(a);
         const dateB = getItemDateValue(b);
 
         if (currentSort === 'newest') {
           if (dateB !== dateA) return dateB - dateA;
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
-        } 
-        else if (currentSort === 'oldest') {
+        } else if (currentSort === 'oldest') {
           if (dateA !== dateB) return dateA - dateB;
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
-        } 
-        else if (currentSort === 'price-asc') {
+        } else if (currentSort === 'price-asc') {
           const priceA = parseNumericPrice(a.price, a);
           const priceB = parseNumericPrice(b.price, b);
           if (priceA !== priceB) return priceA - priceB;
           return String(a.title || '').localeCompare(String(b.title || ''));
-        } 
-        else if (currentSort === 'price-desc') {
+        } else if (currentSort === 'price-desc') {
           const priceA = parseNumericPrice(a.price, a);
           const priceB = parseNumericPrice(b.price, b);
           if (priceB !== priceA) return priceB - priceA;
           return String(a.title || '').localeCompare(String(b.title || ''));
         }
-
         return 0;
       });
 
-      const totalItems = filtered.length;
+      const totalItems = displayEntities.length;
       const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
       if (currentPage > totalPages) currentPage = 1;
 
@@ -1690,16 +2012,20 @@
 
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      const paginatedItems = filtered.slice(startIndex, endIndex);
+      const paginatedEntities = displayEntities.slice(startIndex, endIndex);
 
-      // Inject active items into SEO Schema
-      updateStructuredData(paginatedItems);
+      // SEO ItemList Schema Graph update
+      updateStructuredData(paginatedEntities.map(e => e._primary));
 
-      paginatedItems.forEach(p => {
+      paginatedEntities.forEach((entity, idx) => {
+        const p = entity._primary;
+        const variants = entity._activeVariants || [p];
         const card = document.createElement('div');
+        card.id = `cluster-card-${startIndex + idx}`;
         card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
         
-        const displayImg = p.image || PLACEHOLDER_IMG;
+        // Use optimized medium thumbnail for grid
+        const displayImg = getThumbnailUrl(p.image);
         const upcoming = isPreOrder(p);
         const itemFmt = getItemFormatCategory(p);
         const safeTitle = escapeHtml(p.title);
@@ -1713,8 +2039,20 @@
         else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
+        // Edition Dropdown if multiple variants exist
+        let editionSelectorHtml = '';
+        if (variants.length > 1) {
+          editionSelectorHtml = `
+            <div class="mt-2" onclick="event.stopPropagation()">
+              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none">
+                ${variants.map(v => `<option value="${v.id}">${escapeHtml(v.title.slice(0, 32))} (${v.price})</option>`).join('')}
+              </select>
+            </div>
+          `;
+        }
+
         card.innerHTML = `
-          <!-- Image Container with Skeleton Loader -->
+          <!-- Image Container with Medium Thumbnail -->
           <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
             <img 
               src="${displayImg}" 
@@ -1723,7 +2061,7 @@
               referrerpolicy="no-referrer"
               onload="this.classList.add('img-fade-in')"
               onerror="onImgLoadError(this)"
-              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
             
             <!-- Artist Badge -->
@@ -1731,12 +2069,12 @@
               ${safeArtist}
             </span>
 
-            <!-- Action Buttons: Wishlist & Share -->
+            <!-- Action Buttons: Native Share & Wishlist -->
             <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
               <button 
-                onclick="copyProductLink('${p.id}', event)"
+                onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
                 aria-label="Share Link"
-                title="Copy share link"
+                title="Share link"
                 class="w-7 h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm"
               >
                 <i class="fa-solid fa-share-nodes text-[11px]"></i>
@@ -1768,25 +2106,26 @@
           <!-- Body Card -->
           <div class="p-3 flex-1 flex flex-col justify-between">
             <div>
-              <h2 class="text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
+              <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
                 ${safeTitle}
               </h2>
-              <p class="text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
+              <p class="cluster-date text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
               </p>
+              ${editionSelectorHtml}
             </div>
             
             <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
               <div>
-                <span class="text-xs font-black text-rose-600 dark:text-rose-400">
+                <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
                   ${formatDisplayPrice(p.price, p)}
                 </span>
                 <span class="block text-[9px] text-stone-400 dark:text-slate-500">Official CDJapan Price</span>
               </div>
               <button 
-                onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'))"
+                onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
                 title="View and order securely on CDJapan"
-                class="bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer"
+                class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer"
               >
                 ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
               </button>
@@ -1815,6 +2154,8 @@
         closeModal();
         closeRedirectModal();
         closeAutocomplete();
+        const drawer = document.getElementById('calendar-drawer');
+        if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
       }
     });
 

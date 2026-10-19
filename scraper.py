@@ -11,19 +11,23 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
-# Strict song and album signatures for authentic Tanpopo releases
+MONTH_MAP = {
+    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
+    "may": "05", "jun": "06", "jul": "07", "aug": "08",
+    "sep": "09", "oct": "10", "nov": "11", "dec": "12",
+    "january": "01", "february": "02", "march": "03", "april": "04",
+    "june": "06", "july": "07", "august": "08", "september": "09",
+    "october": "10", "november": "11", "december": "12"
+}
+
 TANPOPO_AUTHENTIC_SIGNATURES = [
     "last kiss", "motto", "seinaru kane", "otome pasta",
     "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
     "tanpopo 1", "all of tanpopo", "single v clips"
 ]
-
-# Official Up-Front / Zetima / Piccolo Town label prefixes for Tanpopo
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
-# Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
-    # Hello! Project — Active Groups
     ("Hello! Project", "Morning Musume", "Morning Musume", [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
@@ -34,8 +38,6 @@ TARGET_GROUPS = [
     ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
     ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle", "Rosy"]),
-
-    # Hello! Project — Past Groups & Subunits
     ("Hello! Project", "Minimoni", "Minimoni", ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
     ("Hello! Project", "Berryz Kobo", "Berryz Kobo", ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", "C-ute", ["℃-ute", "C-ute", "Cute"]),
@@ -45,39 +47,28 @@ TARGET_GROUPS = [
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", "Tanpopo", TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "v-u-den", "Biyuden", ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
-
-    # Hello! Project — Soloists & OGs
     ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
     ("Hello! Project", "Maki Goto", "Maki Goto", ["Maki Goto", "Goto Maki", "後藤真希"]),
     ("Hello! Project", "Natsumi Abe", "Natsumi Abe", ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
     ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
-
-    # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
     ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
     ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
-
-    # AKB48 Group
     ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
     ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
     ("AKB48 Group", "NMB48", "NMB48", ["NMB48"]),
     ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
     ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
     ("AKB48 Group", "STU48", "STU48", ["STU48"]),
-
-    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", "≠ME", ["≠ME", "Not Equal ME", "Noime", "ノイミー"]),
     ("=LOVE / Sister Groups", "≒JOY", "≒JOY", ["≒JOY", "Nearly Equal Joy", "ニアジョイ"]),
-
-    # Other Key Units
     ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"]),
     ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
 PAGES_PER_TARGET = 3
-# 5 targets x 3 pages = 15 requests max. Keeps runner safe under the 18-page firewall ceiling.
 BATCH_SIZE = 5
 
 
@@ -101,13 +92,58 @@ def clean_text(text):
     return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
+def parse_normalized_date(date_raw_str):
+    if not date_raw_str:
+        return ""
+    text = clean_text(date_raw_str)
+
+    # 1. YYYY/MM/DD or YYYY-MM-DD
+    match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
+    if match:
+        y, m, d = match.group(1), match.group(2).zfill(2), match.group(3).zfill(2)
+        return f"{y}/{m}/{d}"
+
+    # 2. Japanese format: YYYY年MM月DD日
+    match_jp = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
+    if match_jp:
+        y, m, d = match_jp.group(1), match_jp.group(2).zfill(2), match_jp.group(3).zfill(2)
+        return f"{y}/{m}/{d}"
+
+    # 3. English format: Month DD, YYYY (e.g. May 22, 2024 or Oct 05 2025)
+    match_en = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
+    if match_en:
+        mon_str = match_en.group(1).lower()
+        if mon_str in MONTH_MAP:
+            m = MONTH_MAP[mon_str]
+            d = match_en.group(2).zfill(2)
+            y = match_en.group(3)
+            return f"{y}/{m}/{d}"
+
+    # 4. English format: DD Month YYYY (e.g. 22 May 2024)
+    match_en_rev = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
+    if match_en_rev:
+        mon_str = match_en_rev.group(2).lower()
+        if mon_str in MONTH_MAP:
+            d = match_en_rev.group(1).zfill(2)
+            m = MONTH_MAP[mon_str]
+            y = match_en_rev.group(3)
+            return f"{y}/{m}/{d}"
+
+    # 5. Month & Year: YYYY/MM
+    match_ym = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
+    if match_ym:
+        y, m = match_ym.group(1), match_ym.group(2).zfill(2)
+        return f"{y}/{m}/01"
+
+    return ""
+
+
 def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if not keywords:
         return True
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    # Strict check for Tanpopo
     if canonical_artist == "Tanpopo":
         if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
             return False
@@ -116,7 +152,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
             return False
         return any(sig in lower_text or sig in pid_upper.lower() for sig in keywords)
 
-    # v-u-den Piccolo Town catalog number verification
     if canonical_artist == "v-u-den":
         if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
             return True
@@ -136,7 +171,11 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     soup = BeautifulSoup(html, "html.parser")
     items_dict = {}
 
-    cards = soup.select(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']")
+    # Strict card boundaries: exclude sub-elements (item-img, item-price, item-date)
+    cards = soup.select(".item-detail, .n-item, div.item, tr.item, div.search-result-item, li.item")
+    if not cards:
+        cards = soup.find_all(lambda el: el.name in ["div", "li", "tr"] and el.get("class") and any(c in ["item-detail", "n-item", "item"] for c in el.get("class")))
+
     seen_keys = set()
 
     for card in cards:
@@ -161,7 +200,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
         seen_keys.add(prod_key)
 
-        # Title
         title_el = (
             card.select_one(".title a")
             or card.select_one("a.item-title")
@@ -170,7 +208,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         )
         raw_title = clean_text(title_el.get_text()) if title_el else ""
 
-        # Artist
         artist_el = (
             card.select_one(".artist")
             or card.select_one(".item-artist")
@@ -178,7 +215,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         )
         raw_artist = clean_text(artist_el.get_text()) if artist_el else ""
 
-        # Image
         img_el = card.select_one("img")
         img_url = ""
         if img_el:
@@ -206,11 +242,8 @@ def extract_verified_products(html, category, canonical_artist, keywords):
         elif img_url.startswith("/"):
             img_url = "https://www.cdjapan.co.jp" + img_url
 
-        img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace(
-            "/pictures/m/", "/pictures/l/"
-        )
+        img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
 
-        # Price
         price_el = (
             card.select_one(".price")
             or card.select_one(".item-price")
@@ -231,54 +264,35 @@ def extract_verified_products(html, category, canonical_artist, keywords):
                     price_num = int(num_only)
                     price_str = f"{price_num:,}yen"
 
-        # Release Date
-        card_text = card.get_text()
+        # Dedicated Release Date parsing
         rel_date = ""
 
-        date_el = (
-            card.select_one(".release_date")
-            or card.select_one(".item-date")
-            or card.select_one(".date")
-        )
-        if date_el:
-            d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_el.get_text())
-            if d_match:
-                rel_date = d_match.group(1).replace("-", "/")
+        # Check explicit date containers first
+        for sel in [".release_date", ".item-date", ".date", "td.date", "span.date"]:
+            node = card.select_one(sel)
+            if node:
+                parsed = parse_normalized_date(node.get_text())
+                if parsed:
+                    rel_date = parsed
+                    break
 
+        # Check labeled rows or text blocks (e.g. "Release Date: May 22, 2024")
         if not rel_date:
-            date_node = card.find(lambda el: el.name in ["span", "td", "p"] and "Release Date" in el.get_text())
-            if date_node:
-                d_match = re.search(r"(\d{4}[/-]\d{1,2}[/-]\d{1,2})", date_node.get_text())
-                if d_match:
-                    rel_date = d_match.group(1).replace("-", "/")
+            date_nodes = card.find_all(lambda el: el.name in ["span", "td", "p", "div", "li"] and ("release" in el.get_text().lower() or "発売" in el.get_text()))
+            for d_node in date_nodes:
+                parsed = parse_normalized_date(d_node.get_text())
+                if parsed:
+                    rel_date = parsed
+                    break
 
+        # Check general card text without guessing from title numbers
         if not rel_date:
-            d_match = re.search(r"(\d{4})[年/-](\d{1,2})[月/-](\d{1,2})", card_text)
-            if d_match:
-                y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
-                rel_date = f"{y}/{m}/{d}"
-
-        if not rel_date:
-            d_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", card_text)
-            if d_match:
-                y, m, d = d_match.group(1), d_match.group(2).zfill(2), d_match.group(3).zfill(2)
-                rel_date = f"{y}/{m}/{d}"
-
-        if not rel_date:
-            ym_match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", card_text)
-            if ym_match:
-                y, m = ym_match.group(1), ym_match.group(2).zfill(2)
-                rel_date = f"{y}/{m}/01"
-
-        if not rel_date:
-            year_match = re.search(r"\b(19\d\d|20\d\d)\b", raw_title)
-            if year_match:
-                rel_date = f"{year_match.group(1)}/01/01"
+            rel_date = parse_normalized_date(card.get_text())
 
         if not rel_date:
             rel_date = "Available Now"
 
-        searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
+        searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card.get_text())}"
         if not is_relevant_product(searchable_card_text, canonical_artist, keywords, prod_key):
             continue
 
@@ -315,12 +329,10 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
     for attempt in range(1, 3):
         try:
-            # 1. Reset to homepage
             page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
             dismiss_popups(page)
             time.sleep(1.0)
 
-            # 2. Prepare form via direct JS: fill query and strip any format filters
             page.evaluate("""(q) => {
                 const input = document.querySelector('input[name="q"], input#search-input, input.search-input');
                 if (!input) return;
@@ -332,7 +344,6 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             }""", query)
             time.sleep(0.3)
 
-            # 3. Trigger search submission
             with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
                 page.evaluate("""() => {
                     const form = document.querySelector('form[action*="searchuni"]') || document.querySelector('input[name="q"]').closest('form');
@@ -348,7 +359,6 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             time.sleep(1.5)
             print(f"   [Navigated] {page.url} (Title: '{page.title()}')", flush=True)
 
-            # 4. Paginate through results
             for p_num in range(1, max_pages + 1):
                 page.evaluate("window.scrollBy(0, 800)")
                 time.sleep(0.6)
@@ -390,7 +400,6 @@ def main():
     initial_count = len(catalog)
     print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
-    # 5 targets per run safely limits total requests to ~15, staying below the WAF threshold
     batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
     with sync_playwright() as p:
@@ -411,7 +420,6 @@ def main():
         )
         page = context.new_page()
 
-        # Seed initial session on CDJapan
         print("Initializing session on CDJapan...", flush=True)
         try:
             page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
@@ -445,7 +453,6 @@ def main():
             except Exception as e_artist:
                 print(f"   => Error scraping {artist}: {e_artist}", flush=True)
 
-            # Human-like delay between artist searches to keep IP reputation clean
             time.sleep(random.uniform(4.5, 6.0))
 
         browser.close()

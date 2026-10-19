@@ -3233,11 +3233,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,273yen",
-    "release_date": "2026/06/23",
+    "price_num": 1273,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEOBK-3128479.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3128479",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "SRXL-370": {
     "id": "SRXL-370",
@@ -3245,11 +3245,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "15,273yen",
-    "release_date": "2022/07/20",
+    "price_num": 15273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/SRXL-370.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-370",
-    "updated_at": "2026-10-18",
-    "price_num": 15273
+    "updated_at": "2026-10-19"
   },
   "NEODAI-126367": {
     "id": "NEODAI-126367",
@@ -3257,11 +3257,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "8,000yen",
-    "release_date": "2022/07/31",
+    "price_num": 8000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/01/NEODAI-126367.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-126367",
-    "updated_at": "2026-10-18",
-    "price_num": 8000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-315489": {
     "id": "NEODAI-315489",
@@ -3269,11 +3269,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "2,640yen",
-    "release_date": "2026/08/04",
+    "price_num": 2640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/NEODAI-315489.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315489",
-    "updated_at": "2026-10-19",
-    "price_num": 2640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-331159": {
     "id": "NEODAI-331159",
@@ -3281,11 +3281,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "3,500yen",
-    "release_date": "2026/10/15",
+    "price_num": 3500,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/33/NEODAI-331159.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331159",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-315506": {
     "id": "NEODAI-315506",
@@ -3293,11 +3293,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "2,640yen",
-    "release_date": "2026/08/04",
+    "price_num": 2640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/36/NEODAI-315506.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315506",
-    "updated_at": "2026-10-19",
-    "price_num": 2640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-333454": {
     "id": "NEODAI-333454",
@@ -3305,11 +3305,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,000yen",
-    "release_date": "2026/10/15",
+    "price_num": 1000,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/NEODAI-333454.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333454",
-    "updated_at": "2026-10-19",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-333531": {
     "id": "NEODAI-333531",
@@ -3317,11 +3317,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,200yen",
-    "release_date": "2026/10/15",
+    "price_num": 1200,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-333531.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333531",
-    "updated_at": "2026-10-19",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-331155": {
     "id": "NEODAI-331155",
@@ -8225,11 +8225,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/09/30",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/15/SRCL-13850.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13850",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-660": {
     "id": "SRXL-660",
@@ -8237,11 +8237,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "12,273yen",
-    "release_date": "2026/08/05",
+    "price_num": 12273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/30/SRXL-660.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-660",
-    "updated_at": "2026-10-19",
-    "price_num": 12273
+    "updated_at": "2026-10-19"
   },
   "SRCL-13710": {
     "id": "SRCL-13710",
@@ -8249,11 +8249,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/05/20",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13710.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13710",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-662": {
     "id": "SRXL-662",
@@ -8261,11 +8261,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "7,091yen",
-    "release_date": "2026/08/05",
+    "price_num": 7091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/32/SRXL-662.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-662",
-    "updated_at": "2026-10-19",
-    "price_num": 7091
+    "updated_at": "2026-10-19"
   },
   "NEODAI-326477": {
     "id": "NEODAI-326477",
@@ -8273,11 +8273,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "2,900yen",
+    "price_num": 2900,
     "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-326477.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326477",
-    "updated_at": "2026-10-19",
-    "price_num": 2900
+    "updated_at": "2026-10-19"
   },
   "SRCL-13858": {
     "id": "SRCL-13858",
@@ -8285,11 +8285,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2026/09/30",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/23/SRCL-13858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13858",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13854": {
     "id": "SRCL-13854",
@@ -8297,11 +8297,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/09/30",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/19/SRCL-13854.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13854",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13856": {
     "id": "SRCL-13856",
@@ -8309,11 +8309,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/21/SRCL-13856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13856",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13852": {
     "id": "SRCL-13852",
@@ -8321,11 +8321,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/09/30",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/17/SRCL-13852.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13852",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-12720": {
     "id": "SRCL-12720",
@@ -8333,11 +8333,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "7,091yen",
-    "release_date": "2023/11/08",
+    "price_num": 7091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-12720.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12720",
-    "updated_at": "2026-10-18",
-    "price_num": 7091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13712": {
     "id": "SRCL-13712",
@@ -8345,11 +8345,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/05/20",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/05/SRCL-13712.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13712",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13526": {
     "id": "SRCL-13526",
@@ -8357,11 +8357,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/01/28",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13526.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13526",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13520": {
     "id": "SRCL-13520",
@@ -8369,11 +8369,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/01/28",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-13520.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13520",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13714": {
     "id": "SRCL-13714",
@@ -8381,11 +8381,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/05/20",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/07/SRCL-13714.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13714",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13716": {
     "id": "SRCL-13716",
@@ -8393,11 +8393,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/05/20",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/09/SRCL-13716.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13716",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "NEODAI-331755": {
     "id": "NEODAI-331755",
@@ -8405,11 +8405,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "9,199yen",
-    "release_date": "2026/09/30",
+    "price_num": 9199,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-331755.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331755",
-    "updated_at": "2026-10-19",
-    "price_num": 9199
+    "updated_at": "2026-10-19"
   },
   "NEODAI-326884": {
     "id": "NEODAI-326884",
@@ -8417,11 +8417,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "13,500yen",
-    "release_date": "2026/08/05",
+    "price_num": 13500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/37/NEODAI-326884.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326884",
-    "updated_at": "2026-10-19",
-    "price_num": 13500
+    "updated_at": "2026-10-19"
   },
   "SRCL-13524": {
     "id": "SRCL-13524",
@@ -8429,11 +8429,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/01/28",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13524.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13524",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13128": {
     "id": "SRCL-13128",
@@ -8441,11 +8441,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2025/01/29",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/38/SRCL-13128.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13128",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "SRCL-12723": {
     "id": "SRCL-12723",
@@ -8453,11 +8453,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "6,182yen",
-    "release_date": "2023/11/08",
+    "price_num": 6182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/00/SRCL-12723.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12723",
-    "updated_at": "2026-10-18",
-    "price_num": 6182
+    "updated_at": "2026-10-19"
   },
   "SRCL-12320": {
     "id": "SRCL-12320",
@@ -8465,11 +8465,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,727yen",
-    "release_date": "2022/10/26",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/30/SRCL-12320.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12320",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "SRCL-11125": {
     "id": "SRCL-11125",
@@ -8477,11 +8477,11 @@
     "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "1,713yen",
-    "release_date": "2019/03/27",
+    "price_num": 1713,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/19/SRCL-11125.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11125",
-    "updated_at": "2026-10-18",
-    "price_num": 1713
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3128498": {
     "id": "NEOBK-3128498",
@@ -10657,7 +10657,7 @@
   },
   "KIZM-90856": {
     "id": "KIZM-90856",
-    "title": "CD Maxi Fuyufuku ni Kigaetara [Type A] [Limited Edition] [CD + Blu-ray]",
+    "title": "Single CD Fuyufuku ni Kigaetara [Type A] [Limited Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -10717,7 +10717,7 @@
   },
   "KIZM-90858": {
     "id": "KIZM-90858",
-    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Limited Edition] [CD + Blu-ray]",
+    "title": "Single CD Fuyufuku ni Kigaetara [Type B] [Limited Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -10729,7 +10729,7 @@
   },
   "KIZM-858": {
     "id": "KIZM-858",
-    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Regular Edition] [CD + Blu-ray]",
+    "title": "Single CD Fuyufuku ni Kigaetara [Type B] [Regular Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -11453,11 +11453,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "12,636yen",
-    "release_date": "2026/10/14",
+    "price_num": 12636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/14/VVXL-305.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-305",
-    "updated_at": "2026-10-18",
-    "price_num": 12636
+    "updated_at": "2026-10-19"
   },
   "VVCL-2980": {
     "id": "VVCL-2980",
@@ -11465,23 +11465,23 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,091yen",
-    "release_date": "2026/08/26",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/VVCL-2980.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2980",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "VVCL-2974": {
     "id": "VVCL-2974",
-    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type C]",
+    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type C]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "982yen",
-    "release_date": "2024/08/10",
+    "price_num": 982,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/10/VVCL-2974.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2974",
-    "updated_at": "2026-10-18",
-    "price_num": 982
+    "updated_at": "2026-10-19"
   },
   "VVCL-2526": {
     "id": "VVCL-2526",
@@ -11489,23 +11489,23 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2024/07/31",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/35/VVCL-2526.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2526",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2970": {
     "id": "VVCL-2970",
-    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type A]",
+    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type A]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
-    "release_date": "2026/08/26",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/06/VVCL-2970.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2970",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2978": {
     "id": "VVCL-2978",
@@ -11513,11 +11513,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,273yen",
-    "release_date": "2026/08/26",
+    "price_num": 2273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/14/VVCL-2978.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2978",
-    "updated_at": "2026-10-18",
-    "price_num": 2273
+    "updated_at": "2026-10-19"
   },
   "VVCL-1112": {
     "id": "VVCL-1112",
@@ -11525,11 +11525,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "926yen",
-    "release_date": "2017/09/06",
+    "price_num": 926,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/05/VVCL-1112.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1112",
-    "updated_at": "2026-10-18",
-    "price_num": 926
+    "updated_at": "2026-10-19"
   },
   "VVCL-2870": {
     "id": "VVCL-2870",
@@ -11537,11 +11537,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
-    "release_date": "2026/04/01",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/02/VVCL-2870.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2870",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "VVXL-207": {
     "id": "VVXL-207",
@@ -11549,11 +11549,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "6,800yen",
-    "release_date": "2024/06/26",
+    "price_num": 6800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/12/VVXL-207.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-207",
-    "updated_at": "2026-10-18",
-    "price_num": 6800
+    "updated_at": "2026-10-19"
   },
   "VVXL-290": {
     "id": "VVXL-290",
@@ -11561,11 +11561,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "9,800yen",
-    "release_date": "2026/06/17",
+    "price_num": 9800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/23/VVXL-290.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-290",
-    "updated_at": "2026-10-18",
-    "price_num": 9800
+    "updated_at": "2026-10-19"
   },
   "VVXL-308": {
     "id": "VVXL-308",
@@ -11573,11 +11573,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "7,000yen",
-    "release_date": "2026/10/14",
+    "price_num": 7000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/17/VVXL-308.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-308",
-    "updated_at": "2026-10-18",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2118": {
     "id": "VVCL-2118",
@@ -11585,23 +11585,23 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2022/08/10",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/19/VVCL-2118.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2118",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2972": {
     "id": "VVCL-2972",
-    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type B]",
+    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type B]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
-    "release_date": "2026/08/26",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/VVCL-2972.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2972",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2976": {
     "id": "VVCL-2976",
@@ -11609,11 +11609,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
-    "release_date": "2026/08/26",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/VVCL-2976.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2976",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1982": {
     "id": "VVCL-1982",
@@ -11621,11 +11621,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2021/12/15",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/02/VVCL-1982.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1982",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2880": {
     "id": "VVCL-2880",
@@ -11645,11 +11645,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,500yen",
-    "release_date": "2020/11/25",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/41/VVCL-1780.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1780",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "VVCL-2609": {
     "id": "VVCL-2609",
@@ -11813,11 +11813,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "7,000yen",
-    "release_date": "2026/09/30",
+    "price_num": 7000,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/09/VVXL-300.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-300",
-    "updated_at": "2026-10-18",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2960": {
     "id": "VVCL-2960",
@@ -11825,11 +11825,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
-    "release_date": "2026/08/05",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/04/VVCL-2960.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2960",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "VVCL-2962": {
     "id": "VVCL-2962",
@@ -11837,11 +11837,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
-    "release_date": "2024/08/10",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/06/VVCL-2962.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2962",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "VVXL-298": {
     "id": "VVXL-298",
@@ -11849,11 +11849,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "9,800yen",
-    "release_date": "2026/09/30",
+    "price_num": 9800,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/31/VVXL-298.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-298",
-    "updated_at": "2026-10-18",
-    "price_num": 9800
+    "updated_at": "2026-10-19"
   },
   "VVCL-2968": {
     "id": "VVCL-2968",
@@ -11861,11 +11861,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,091yen",
-    "release_date": "2026/08/05",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/VVCL-2968.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2968",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "VVCL-2964": {
     "id": "VVCL-2964",
@@ -11873,11 +11873,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
-    "release_date": "2026/08/05",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/VVCL-2964.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2964",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "VVCL-2576": {
     "id": "VVCL-2576",
@@ -11885,11 +11885,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2024/10/16",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/VVCL-2576.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2576",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2858": {
     "id": "VVCL-2858",
@@ -11897,11 +11897,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2026/02/18",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/06/VVCL-2858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2858",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2689": {
     "id": "VVCL-2689",
@@ -11909,11 +11909,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2025/06/11",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/05/VVCL-2689.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2689",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2408": {
     "id": "VVCL-2408",
@@ -11921,11 +11921,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
-    "release_date": "2024/04/01",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/29/VVCL-2408.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2408",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2489": {
     "id": "VVCL-2489",
@@ -11933,11 +11933,11 @@
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2024/06/12",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/46/VVCL-2489.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2489",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2966": {
     "id": "VVCL-2966",
@@ -12805,7 +12805,7 @@
   },
   "UICC-90016": {
     "id": "UICC-90016",
-    "title": "CD Album METAL FORTH [Deluxe Edition (Limited Edition)]",
+    "title": "Album CD METAL FORTH [Deluxe Edition (Limited Edition)]",
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "4,000yen",
@@ -12877,7 +12877,7 @@
   },
   "TFCC-86890": {
     "id": "TFCC-86890",
-    "title": "CD Album The Other One [Regular Edition (First Press)]",
+    "title": "Album CD The Other One [Regular Edition (First Press)]",
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "3,000yen",
@@ -13309,51 +13309,51 @@
   },
   "SRCL-13790": {
     "id": "SRCL-13790",
-    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-A]",
+    "title": "Single CD Zehi ni Oyobazu [CD + Blu-ray / Type-A]",
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/07/22",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/19/SRCL-13790.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13790",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13796": {
     "id": "SRCL-13796",
-    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-D]",
+    "title": "Single CD Zehi ni Oyobazu [CD + Blu-ray / Type-D]",
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/07/22",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/25/SRCL-13796.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13796",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13792": {
     "id": "SRCL-13792",
-    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-B]",
+    "title": "Single CD Zehi ni Oyobazu [CD + Blu-ray / Type-B]",
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/07/22",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/21/SRCL-13792.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13792",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13794": {
     "id": "SRCL-13794",
-    "title": "CD Maxi Zehi ni Oyobazu [CD + Blu-ray / Type-C]",
+    "title": "Single CD Zehi ni Oyobazu [CD + Blu-ray / Type-C]",
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/07/22",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/23/SRCL-13794.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13794",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRXL-544": {
     "id": "SRXL-544",
@@ -13361,11 +13361,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "8,800yen",
-    "release_date": "2024/10/02",
+    "price_num": 8800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/26/SRXL-544.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-544",
-    "updated_at": "2026-10-18",
-    "price_num": 8800
+    "updated_at": "2026-10-19"
   },
   "UPCH-89635": {
     "id": "UPCH-89635",
@@ -22985,11 +22985,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2026/12/02",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/SRCL-13948.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13948",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "SRCL-13946": {
     "id": "SRCL-13946",
@@ -22997,11 +22997,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/12/02",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/SRCL-13946.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13946",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13942": {
     "id": "SRCL-13942",
@@ -23009,11 +23009,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/12/02",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/SRCL-13942.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13942",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13940": {
     "id": "SRCL-13940",
@@ -23021,11 +23021,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/12/02",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/SRCL-13940.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13940",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13944": {
     "id": "SRCL-13944",
@@ -23033,11 +23033,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/SRCL-13944.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13944",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "NEODAI-334582": {
     "id": "NEODAI-334582",
@@ -23165,11 +23165,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,273yen",
-    "release_date": "2026/08/31",
+    "price_num": 1273,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEOBK-3128497.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3128497",
-    "updated_at": "2026-10-18",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "NEODAI-323588": {
     "id": "NEODAI-323588",
@@ -23177,11 +23177,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "25,300yen",
-    "release_date": "2026/08/26",
+    "price_num": 25300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/05/NEODAI-323588.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-323588",
-    "updated_at": "2026-10-18",
-    "price_num": 25300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-323690": {
     "id": "NEODAI-323690",
@@ -23333,11 +23333,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,091yen",
-    "release_date": "2024/08/10",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/27/SRCL-13798.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13798",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "NEODAI-319379": {
     "id": "NEODAI-319379",
@@ -23465,11 +23465,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "23,000yen",
-    "release_date": "2026/05/13",
+    "price_num": 23000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/26/SRXL-640.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-640",
-    "updated_at": "2026-10-18",
-    "price_num": 23000
+    "updated_at": "2026-10-19"
   },
   "SRBL-2450": {
     "id": "SRBL-2450",
@@ -23765,11 +23765,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2026/04/08",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/09/SRCL-13660.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13660",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13664": {
     "id": "SRCL-13664",
@@ -23777,11 +23777,11 @@
     "artist": "Nogizaka46",
     "category": "Sakamichi Series",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/13/SRCL-13664.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13664",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "SRCL-13668": {
     "id": "SRCL-13668",
@@ -31629,6 +31629,186 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/26/NEODAI-101526.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-101526",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12956": {
+    "id": "SRCL-12956",
+    "title": "Single CD Cheat Day [CD + Blu-ray / Type D]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/17/SRCL-12956.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12956",
+    "updated_at": "2026-10-19"
+  },
+  "SRXL-430": {
+    "id": "SRXL-430",
+    "title": "Blu-ray Nogizaka46 Asuka Saito Graduation Concert [Limited Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "23,000yen",
+    "price_num": 23000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/16/SRXL-430.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-430",
+    "updated_at": "2026-10-19"
+  },
+  "SRXL-249": {
+    "id": "SRXL-249",
+    "title": "Blu-ray 7th Year Birthday Live Day 4 [Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,800yen",
+    "price_num": 7800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/19/SRXL-249.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-249",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12029": {
+    "id": "SRCL-12029",
+    "title": "Album CD Time flies [2CD / Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,182yen",
+    "price_num": 3182,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/27/SRCL-12029.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12029",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13220": {
+    "id": "SRCL-13220",
+    "title": "Single CD Navel Orange [CD+Blu-ray / Type A]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/34/SRCL-13220.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13220",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-11192": {
+    "id": "SRCL-11192",
+    "title": "Single CD Sing Out! [CD+Blu-ray / Type D]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,713yen",
+    "price_num": 1713,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/30/SRCL-11192.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11192",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-11262": {
+    "id": "SRCL-11262",
+    "title": "Single CD Yoake Made Tsuyogaranakutemoii [CD+Blu-ray / Type B]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,713yen",
+    "price_num": 1713,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/28/SRCL-11262.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11262",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13460": {
+    "id": "SRCL-13460",
+    "title": "Single CD Biryani [CD + Blu-ray / Type A]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13460.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13460",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12958": {
+    "id": "SRCL-12958",
+    "title": "Single CD Cheat Day [Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,091yen",
+    "price_num": 1091,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/19/SRCL-12958.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12958",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12738": {
+    "id": "SRCL-12738",
+    "title": "Single CD Monopoly [Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,091yen",
+    "price_num": 1091,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/07/SRCL-12738.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12738",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-8844": {
+    "id": "SRCL-8844",
+    "title": "Single CD Taiyo Knock [CD+DVD/Type C]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,528yen",
+    "price_num": 1528,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/42/SRCL-8844.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-8844",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13372": {
+    "id": "SRCL-13372",
+    "title": "Single CD Same numbers [CD + Blu-ray / Type B]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,818yen",
+    "price_num": 1818,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13372.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13372",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-12858": {
+    "id": "SRCL-12858",
+    "title": "Single CD Chance wa Byodo [Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,091yen",
+    "price_num": 1091,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/15/SRCL-12858.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12858",
+    "updated_at": "2026-10-19"
+  },
+  "SRCL-13078": {
+    "id": "SRCL-13078",
+    "title": "Single CD Hodokyo [Regular Edition]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,091yen",
+    "price_num": 1091,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/44/SRCL-13078.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13078",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-315660": {
+    "id": "NEODAI-315660",
+    "title": "Album CD My Respect [2CD+Blu-ray / Limited Edition / Type A]",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
+    "price": "12,800yen",
+    "price_num": 12800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/46/NEODAI-315660.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315660",
     "updated_at": "2026-10-19"
   }
 }

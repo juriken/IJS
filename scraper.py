@@ -15,10 +15,11 @@ DATA_FILE = "products.json"
 TANPOPO_AUTHENTIC_SIGNATURES = [
     "last kiss", "motto", "seinaru kane", "otome pasta",
     "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
-    "tanpopo 1", "all of tanpopo", "single v clips",
-    "epce-5019", "epce-5066", "epce-5093", "epce-5129", "epce-5176",
-    "epde-1014", "epde-1024", "epde-1037", "epde-1058", "epbe-5118"
+    "tanpopo 1", "all of tanpopo", "single v clips"
 ]
+
+# Official Up-Front / Zetima / Piccolo Town label prefixes for Tanpopo
+TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
 # Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
@@ -101,13 +102,18 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if not keywords:
         return True
     lower_text = card_text.lower()
-    pid_lower = str(prod_key).lower()
+    pid_upper = str(prod_key).upper()
 
-    # Strict check for Tanpopo: title must contain tanpopo AND match a song/album signature
+    # Strict check for Tanpopo:
+    # 1. Reject any non-UpFront label (blocks Victor/VICL, Sony, King, etc.)
+    # 2. Must contain Tanpopo AND a known song/album signature
     if canonical_artist == "Tanpopo":
-        if "tanpopo" not in lower_text and "タンポポ" not in card_text and "たんぽぽ" not in card_text:
+        if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
             return False
-        return any(sig in lower_text or sig in pid_lower for sig in keywords)
+        has_name = "tanpopo" in lower_text or "タンポポ" in card_text or "たんぽぽ" in card_text
+        if not has_name:
+            return False
+        return any(sig in lower_text or sig in pid_upper.lower() for sig in keywords)
 
     for kw in keywords:
         kw_clean = kw.strip().lower()
@@ -289,11 +295,31 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 def dismiss_popups(page):
     try:
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=400):
+        if close_btn.is_visible(timeout=300):
             close_btn.click()
             time.sleep(0.2)
     except Exception:
         pass
+
+
+def get_visible_search_input(page):
+    """Finds the active visible search bar at the top of the viewport."""
+    page.evaluate("window.scrollTo(0, 0)")
+    time.sleep(0.3)
+    selector = "input[name='q']:visible, input#search-input:visible, input.search-input:visible"
+    try:
+        el = page.locator(selector).first
+        if el.is_visible(timeout=2500):
+            return el
+    except Exception:
+        pass
+
+    # Clean fallback: Navigate directly to CDJapan home if DOM got stuck
+    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+    dismiss_popups(page)
+    page.evaluate("window.scrollTo(0, 0)")
+    time.sleep(1.0)
+    return page.locator("input[name='q']:visible, input#search-input:visible").first
 
 
 def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
@@ -302,26 +328,19 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
 
     for attempt in range(1, 3):
         try:
-            # 1. Reset viewport scroll to top so header search bar is directly accessible
-            page.evaluate("window.scrollTo(0, 0)")
-            time.sleep(0.5)
+            search_input = get_visible_search_input(page)
 
-            search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
-            if not search_input.is_visible(timeout=2000):
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-                dismiss_popups(page)
-                page.evaluate("window.scrollTo(0, 0)")
-                time.sleep(1.0)
-                search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
-
-            # 2. Click, clear, and fill query cleanly
-            search_input.click(timeout=3000)
+            # Focus and clear the search input cleanly
+            search_input.click(timeout=4000)
             search_input.fill("")
+            time.sleep(0.2)
+
+            # Fill target query
             search_input.fill(query)
             time.sleep(0.3)
 
-            # 3. Submit search via search button or Enter key (WITHOUT pressing Escape)
-            search_btn = page.locator("button[type='submit'], .search-box button, form[action*='search'] button").first
+            # Submit search via button or Enter
+            search_btn = page.locator("button[type='submit']:visible, .search-box button:visible, form[action*='search'] button:visible").first
             if search_btn.is_visible(timeout=1000):
                 with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
                     search_btn.click()
@@ -333,7 +352,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             time.sleep(1.2)
             print(f"   [Navigated] {page.url}")
 
-            # 4. Paginate through results using CDJapan's native Next link
+            # Paginate through search results
             for p_num in range(1, max_pages + 1):
                 page.evaluate("window.scrollBy(0, 800)")
                 time.sleep(0.8)
@@ -344,7 +363,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
                 results.extend(verified)
 
                 if p_num < max_pages:
-                    next_btn = page.locator("a[rel='next'], a.next, li.next a, .pager .next a, a:has-text('Next')").first
+                    next_btn = page.locator("a[rel='next']:visible, a.next:visible, li.next a:visible, a:has-text('Next'):visible").first
                     if next_btn.count() > 0 and next_btn.is_visible(timeout=2000):
                         with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
                             next_btn.click()

@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Scraper
         run: |
-          python fix_catalog_dates.py
+          python scraper.py
 
       - name: Commit and Push Updated Catalog
         run: |

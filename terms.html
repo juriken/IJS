@@ -1,31 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+
   <title>Terms of Service — IdolJapan.store</title>
+  <meta name="title" content="Terms of Service — IdolJapan.store">
+  <meta name="description" content="Terms of service, liability limits, and nominative fair use disclaimers for IdolJapan.store.">
+  <link rel="canonical" href="https://idoljapan.store/terms.html">
+  <meta name="theme-color" content="#e11d48">
+
+  <!-- Open Graph / Twitter Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idoljapan.store/terms.html">
+  <meta property="og:title" content="Terms of Service — IdolJapan.store">
+  <meta property="og:description" content="Terms of service and merchant-of-record liability guidelines for IdolJapan.store.">
+  <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@IdolJapanStore">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sakura: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Early Theme Detection -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans p-6 sm:p-12 min-h-screen flex flex-col items-center">
-  <div class="max-w-2xl bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-    <a href="/" class="text-xs font-bold text-pink-600">← Back to IdolJapan.store</a>
-    <h1 class="text-2xl font-black text-slate-900">Terms of Service</h1>
-    <p class="text-xs text-slate-400">Last updated: October 2026</p>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      By using IdolJapan.store, you agree to these Terms of Service.
-    </p>
-    <h2 class="text-base font-bold text-slate-800">1. Information & Directory Only</h2>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      IdolJapan.store acts as a free, searchable discography directory. We do not manufacture, sell, store, package, or ship any physical goods.
-    </p>
-    <h2 class="text-base font-bold text-slate-800">2. Retail Fulfillment & Accuracy</h2>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      Prices, availability, and release dates are synchronized periodically with CDJapan's public catalog but are subject to change without notice. The finalized price and availability shown on CDJapan.co.jp at time of checkout is definitive.
-    </p>
-    <h2 class="text-base font-bold text-slate-800">3. Intellectual Property</h2>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      All album cover artwork, track titles, artist names, and product descriptions remain the property of their respective recording labels, talent agencies, and CDJapan.
-    </p>
+<body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-compact-disc text-amber-200 dark:text-rose-400 text-2xl"></i>
+        <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-rose-200 dark:text-rose-400">.store</span></a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="/" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Catalog</span>
+        </a>
+
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm">
+          <i id="theme-icon" class="fa-solid fa-moon text-rose-100 dark:text-rose-400"></i>
+        </button>
+
+        <a href="https://x.com/IdolJapanStore" target="_blank" rel="noopener noreferrer" aria-label="Follow IdolJapan.store on X" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 hover:text-white">
+          <i class="fa-brands fa-x-twitter text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-stone-100 dark:bg-slate-900/60 border-b border-stone-200 dark:border-slate-800 py-2">
+    <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 text-xs text-stone-500 dark:text-slate-400">
+      <a href="/" class="hover:text-rose-600 dark:hover:text-rose-400">Home</a>
+      <span>/</span>
+      <span class="text-stone-800 dark:text-stone-200 font-bold">Terms of Service</span>
+    </div>
   </div>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+      <span class="bg-rose-100 dark:bg-rose-950/70 text-rose-600 dark:text-rose-400 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Legal Agreements
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white mt-3">
+        Terms of Service
+      </h1>
+      <p class="text-xs text-stone-500 dark:text-slate-400 mt-1">
+        Last updated: October 2026 • Governing website access &amp; usage
+      </p>
+    </div>
+
+    <!-- Merchant of Record Disclaimer -->
+    <section class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+        <i class="fa-solid fa-file-contract text-rose-600 dark:text-rose-400"></i>
+        1. Nature of Directory Service &amp; Merchant of Record
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+        IdolJapan.store functions exclusively as an informational discography catalog and curated index. 
+        <strong>IdolJapan.store is not the seller, merchant of record, or shipping handler for any items indexed on this website.</strong>
+      </p>
+      <ul class="space-y-1.5 text-xs sm:text-sm text-stone-600 dark:text-slate-300 list-disc list-inside">
+        <li>All sales transactions, invoicing, billing disputes, and card charges occur directly between you and <strong>CDJapan</strong>.</li>
+        <li>Shipping schedules, customs duties, international courier tracking, and import taxes are governed strictly by CDJapan's store policies.</li>
+        <li>Pre-order cancellations, returns, refunds for damaged goods, or defective media must be directed directly to CDJapan Customer Support.</li>
+      </ul>
+    </section>
+
+    <!-- Pricing Accuracy -->
+    <section class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+        <i class="fa-solid fa-calculator text-rose-600 dark:text-rose-400"></i>
+        2. Pricing &amp; Currency Conversion Accuracy
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+        Prices displayed on IdolJapan.store in non-JPY currencies (e.g., USD, EUR, GBP, CAD) are calculated estimates based on public mid-market exchange rates fetched periodically. 
+        The definitive, binding purchase price is always the Japanese Yen (JPY) amount charged by CDJapan at final checkout.
+      </p>
+    </section>
+
+    <!-- Intellectual Property -->
+    <section class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+        <i class="fa-solid fa-copyright text-rose-600 dark:text-rose-400"></i>
+        3. Intellectual Property &amp; Nominative Fair Use
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+        All idol group names, artist names, logos, music titles, and album jacket imagery are the exclusive trademarks and copyrights of their respective entertainment agencies and record companies, including:
+      </p>
+      <ul class="space-y-1 text-xs sm:text-sm text-stone-600 dark:text-slate-300 list-disc list-inside">
+        <li>Up-Front Group Co., Ltd. (Hello! Project, Morning Musume, ANGERME, Juice=Juice)</li>
+        <li>Seed &amp; Flower LLC / Sony Music Labels Inc. (Nogizaka46, Sakurazaka46, Hinatazaka46)</li>
+        <li>Vernalossom Co., Ltd. / DH Co., Ltd. (AKB48 Group)</li>
+        <li>Yoyogi Animation Academy (≠ME, =LOVE, ≒JOY)</li>
+        <li>Stardust Promotion Inc. (Momoiro Clover Z) &amp; Amuse Inc. (BABYMETAL)</li>
+      </ul>
+      <p class="text-xs sm:text-sm text-stone-500 dark:text-slate-400 leading-relaxed pt-1">
+        These assets are referenced strictly under nominative fair use for discographical identification, archival verification, and official product indexing.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200">
+    <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-600 dark:text-slate-400">
+        <a href="./about.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">About Us &amp; Verification</a>
+        <a href="./affiliate-disclosure.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Affiliate Disclosure</a>
+        <a href="./privacy.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Privacy Policy</a>
+        <a href="./terms.html" class="text-rose-600 dark:text-rose-400 font-bold">Terms of Service</a>
+      </div>
+
+      <div class="pt-2 border-t border-stone-100 dark:border-slate-800 text-xs text-stone-400 dark:text-slate-500">
+        <p>© 2019 – 2026 IdolJapan.store. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-amber-200' : 'fa-solid fa-moon text-rose-100';
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateThemeIcon();
+    });
+  </script>
 </body>
 </html>

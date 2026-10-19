@@ -443,7 +443,7 @@
       return `${formattedConverted} <span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Direct YYYYMMDD Integer Calculator
+    // Mathematical integer date calculator: YYYYMMDD
     function getItemDateValue(item) {
       if (!item) return 0;
       const dStr = String(item.release_date || '').trim();
@@ -546,7 +546,7 @@
         return matchesCat && matchesSearch;
       });
 
-      // Pure Integer Date Sort
+      // Strict Mathematical Date & Price Sorting
       filtered.sort((a, b) => {
         const dateA = getItemDateValue(a);
         const dateB = getItemDateValue(b);

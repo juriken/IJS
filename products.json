@@ -3341,11 +3341,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,000yen",
-    "release_date": "2025/12/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/NEOBK-3151712.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3151712",
-    "updated_at": "2026-10-19",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-285970": {
     "id": "NEODAI-285970",
@@ -3353,11 +3353,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,300yen",
-    "release_date": "2025/12/17",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/42/NEODAI-285970.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-285970",
-    "updated_at": "2026-10-19",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "UPCH-29489": {
     "id": "UPCH-29489",
@@ -3365,11 +3365,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2024/12/25",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/40/UPCH-29489.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-29489",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3164483": {
     "id": "NEOBK-3164483",
@@ -3377,11 +3377,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,000yen",
-    "release_date": "2026/01/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEOBK-3164483.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3164483",
-    "updated_at": "2026-10-19",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "AKB-D2151": {
     "id": "AKB-D2151",
@@ -3389,11 +3389,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "6,648yen",
-    "release_date": "2013/03/27",
+    "price_num": 6648,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/AKB-D2151.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAKB-D2151",
-    "updated_at": "2026-10-18",
-    "price_num": 6648
+    "updated_at": "2026-10-19"
   },
   "UPCH-20687": {
     "id": "UPCH-20687",
@@ -3401,11 +3401,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,273yen",
-    "release_date": "2024/12/25",
+    "price_num": 2273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/23/UPCH-20687.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20687",
-    "updated_at": "2026-10-19",
-    "price_num": 2273
+    "updated_at": "2026-10-19"
   },
   "AKB-D2291": {
     "id": "AKB-D2291",
@@ -3413,11 +3413,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "6,700yen",
-    "release_date": "2014/12/10",
+    "price_num": 6700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/AKB-D2291.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAKB-D2291",
-    "updated_at": "2026-10-18",
-    "price_num": 6700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2626601": {
     "id": "NEOBK-2626601",
@@ -3665,11 +3665,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "13,991yen",
-    "release_date": "2021/12/21",
+    "price_num": 13991,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/31/POBD-21045.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOBD-21045",
-    "updated_at": "2026-10-18",
-    "price_num": 13991
+    "updated_at": "2026-10-19"
   },
   "POBD-21049": {
     "id": "POBD-21049",
@@ -3677,11 +3677,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,900yen",
-    "release_date": "2021/12/21",
+    "price_num": 4900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/35/POBD-21049.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOBD-21049",
-    "updated_at": "2026-10-18",
-    "price_num": 4900
+    "updated_at": "2026-10-19"
   },
   "HKT-D0010": {
     "id": "HKT-D0010",
@@ -3689,11 +3689,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "11,000yen",
-    "release_date": "2014/11/12",
+    "price_num": 11000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/20/HKT-D0010.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0010",
-    "updated_at": "2026-10-18",
-    "price_num": 11000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3234105": {
     "id": "NEOBK-3234105",
@@ -3701,11 +3701,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "2,000yen",
-    "release_date": "2026/08/01",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/13/NEOBK-3234105.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3234105",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0011": {
     "id": "HKT-D0011",
@@ -3713,11 +3713,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "8,000yen",
-    "release_date": "2017/07/05",
+    "price_num": 8000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/21/HKT-D0011.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0011",
-    "updated_at": "2026-10-18",
-    "price_num": 8000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-307215": {
     "id": "NEODAI-307215",
@@ -3725,11 +3725,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "13,600yen",
-    "release_date": "2021/12/21",
+    "price_num": 13600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/25/NEODAI-307215.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-307215",
-    "updated_at": "2026-10-18",
-    "price_num": 13600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-290289": {
     "id": "NEODAI-290289",
@@ -3737,11 +3737,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "6,100yen",
-    "release_date": "2021/12/21",
+    "price_num": 6100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEODAI-290289.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-290289",
-    "updated_at": "2026-10-18",
-    "price_num": 6100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-191029": {
     "id": "NEODAI-191029",
@@ -3749,11 +3749,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "5,208yen",
-    "release_date": "2015/10/14",
+    "price_num": 5208,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEODAI-191029.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-191029",
-    "updated_at": "2026-10-18",
-    "price_num": 5208
+    "updated_at": "2026-10-19"
   },
   "NEODAI-155658": {
     "id": "NEODAI-155658",
@@ -3761,11 +3761,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "2,200yen",
-    "release_date": "2023/03/15",
+    "price_num": 2200,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEODAI-155658.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-155658",
-    "updated_at": "2026-10-18",
-    "price_num": 2200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-149331": {
     "id": "NEODAI-149331",
@@ -3773,11 +3773,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/12/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/45/NEODAI-149331.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-149331",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-146055": {
     "id": "NEODAI-146055",
@@ -3785,11 +3785,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/11/30",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-146055.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146055",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-146056": {
     "id": "NEODAI-146056",
@@ -3797,11 +3797,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/10/15",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEODAI-146056.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146056",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-144569": {
     "id": "NEODAI-144569",
@@ -3809,11 +3809,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/10/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEODAI-144569.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-144569",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-144571": {
     "id": "NEODAI-144571",
@@ -3821,11 +3821,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/10/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEODAI-144571.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-144571",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-143380": {
     "id": "NEODAI-143380",
@@ -3833,11 +3833,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/10/15",
+    "price_num": 1100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/06/NEODAI-143380.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-143380",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-143381": {
     "id": "NEODAI-143381",
@@ -3845,11 +3845,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/10/15",
+    "price_num": 1100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/07/NEODAI-143381.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-143381",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-141846": {
     "id": "NEODAI-141846",
@@ -3857,11 +3857,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/09/30",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/NEODAI-141846.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-141846",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-141954": {
     "id": "NEODAI-141954",
@@ -3869,11 +3869,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/09/30",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/NEODAI-141954.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-141954",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-139371": {
     "id": "NEODAI-139371",
@@ -3881,11 +3881,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/08/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/37/NEODAI-139371.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139371",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-139374": {
     "id": "NEODAI-139374",
@@ -3893,11 +3893,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/08/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-139374.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139374",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-131413": {
     "id": "NEODAI-131413",
@@ -3905,11 +3905,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/05/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/16/NEODAI-131413.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131413",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-131416": {
     "id": "NEODAI-131416",
@@ -3917,11 +3917,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/05/31",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/19/NEODAI-131416.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131416",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-131417": {
     "id": "NEODAI-131417",
@@ -3929,11 +3929,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2022/04/15",
+    "price_num": 1100,
+    "release_date": "2022/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/20/NEODAI-131417.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131417",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "POXS-21003": {
     "id": "POXS-21003",
@@ -3941,11 +3941,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "15,809yen",
-    "release_date": "2021/12/21",
+    "price_num": 15809,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/24/POXS-21003.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOXS-21003",
-    "updated_at": "2026-10-18",
-    "price_num": 15809
+    "updated_at": "2026-10-19"
   },
   "NEODAI-113837": {
     "id": "NEODAI-113837",
@@ -3953,11 +3953,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "33,000yen",
-    "release_date": "2021/12/15",
+    "price_num": 33000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/24/NEODAI-113837.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-113837",
-    "updated_at": "2026-10-18",
-    "price_num": 33000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0033": {
     "id": "HKT-D0033",
@@ -3965,11 +3965,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "14,000yen",
-    "release_date": "2018/10/24",
+    "price_num": 14000,
+    "release_date": "2018/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/27/HKT-D0033.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0033",
-    "updated_at": "2026-10-18",
-    "price_num": 14000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0034": {
     "id": "HKT-D0034",
@@ -3977,11 +3977,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "17,000yen",
-    "release_date": "2018/10/24",
+    "price_num": 17000,
+    "release_date": "2018/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/28/HKT-D0034.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0034",
-    "updated_at": "2026-10-18",
-    "price_num": 17000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-33949": {
     "id": "NEODAI-33949",
@@ -3989,11 +3989,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "9,703yen",
-    "release_date": "2014/11/12",
+    "price_num": 9703,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/46/NEODAI-33949.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-33949",
-    "updated_at": "2026-10-18",
-    "price_num": 9703
+    "updated_at": "2026-10-19"
   },
   "HKT-D0029": {
     "id": "HKT-D0029",
@@ -4001,11 +4001,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "12,000yen",
-    "release_date": "2017/09/06",
+    "price_num": 12000,
+    "release_date": "2017/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/31/HKT-D0029.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0029",
-    "updated_at": "2026-10-18",
-    "price_num": 12000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0030": {
     "id": "HKT-D0030",
@@ -4013,11 +4013,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "15,000yen",
-    "release_date": "2017/09/06",
+    "price_num": 15000,
+    "release_date": "2017/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/24/HKT-D0030.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0030",
-    "updated_at": "2026-10-18",
-    "price_num": 15000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0012": {
     "id": "HKT-D0012",
@@ -4025,11 +4025,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "10,000yen",
-    "release_date": "2017/07/05",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/22/HKT-D0012.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0012",
-    "updated_at": "2026-10-18",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0022": {
     "id": "HKT-D0022",
@@ -4037,11 +4037,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "5,800yen",
-    "release_date": "2017/07/05",
+    "price_num": 5800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/24/HKT-D0022.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0022",
-    "updated_at": "2026-10-18",
-    "price_num": 5800
+    "updated_at": "2026-10-19"
   },
   "HKT-D0021": {
     "id": "HKT-D0021",
@@ -4049,11 +4049,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,800yen",
-    "release_date": "2017/07/05",
+    "price_num": 4800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/23/HKT-D0021.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0021",
-    "updated_at": "2026-10-18",
-    "price_num": 4800
+    "updated_at": "2026-10-19"
   },
   "HKT-D0028": {
     "id": "HKT-D0028",
@@ -4061,11 +4061,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "12,000yen",
-    "release_date": "2017/07/05",
+    "price_num": 12000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/30/HKT-D0028.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0028",
-    "updated_at": "2026-10-18",
-    "price_num": 12000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0027": {
     "id": "HKT-D0027",
@@ -4073,11 +4073,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "10,000yen",
-    "release_date": "2017/07/05",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/29/HKT-D0027.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0027",
-    "updated_at": "2026-10-18",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "HKT-D0026": {
     "id": "HKT-D0026",
@@ -4085,11 +4085,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "15,000yen",
+    "price_num": 15000,
     "release_date": "2016/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/28/HKT-D0026.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0026",
-    "updated_at": "2026-10-18",
-    "price_num": 15000
+    "updated_at": "2026-10-19"
   },
   "NEOGDS-211382": {
     "id": "NEOGDS-211382",
@@ -4097,11 +4097,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "9,028yen",
-    "release_date": "2016/11/01",
+    "price_num": 9028,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/NEOGDS-211382.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-211382",
-    "updated_at": "2026-10-18",
-    "price_num": 9028
+    "updated_at": "2026-10-19"
   },
   "HKT-D0024": {
     "id": "HKT-D0024",
@@ -4109,11 +4109,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "21,000yen",
+    "price_num": 21000,
     "release_date": "2016/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/26/HKT-D0024.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0024",
-    "updated_at": "2026-10-18",
-    "price_num": 21000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3210999": {
     "id": "NEOBK-3210999",
@@ -10049,11 +10049,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/06/01",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/38/UMCK-5444.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5444",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UMCK-5445": {
     "id": "UMCK-5445",
@@ -10061,11 +10061,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/06/01",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/39/UMCK-5445.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5445",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UMCK-5446": {
     "id": "UMCK-5446",
@@ -10073,11 +10073,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/06/01",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/40/UMCK-5446.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5446",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80555": {
     "id": "UPCH-80555",
@@ -10085,11 +10085,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2021/05/12",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80555.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80555",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80553": {
     "id": "UPCH-80553",
@@ -10097,11 +10097,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2023/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/07/UPCH-80553.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80553",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80587": {
     "id": "UPCH-80587",
@@ -10109,11 +10109,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2023/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/17/UPCH-80587.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80587",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-89473": {
     "id": "UPCH-89473",
@@ -10121,11 +10121,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "952yen",
-    "release_date": "2024/08/10",
+    "price_num": 952,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/UPCH-89473.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89473",
-    "updated_at": "2026-10-18",
-    "price_num": 952
+    "updated_at": "2026-10-19"
   },
   "UMCK-5464": {
     "id": "UMCK-5464",
@@ -10133,11 +10133,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2014/03/12",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/42/UMCK-5464.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5464",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80575": {
     "id": "UPCH-80575",
@@ -10145,11 +10145,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2023/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/UPCH-80575.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80575",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UMCK-5463": {
     "id": "UMCK-5463",
@@ -10157,11 +10157,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/06/01",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/41/UMCK-5463.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5463",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80606": {
     "id": "UPCH-80606",
@@ -10169,11 +10169,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2024/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/UPCH-80606.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80606",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80605": {
     "id": "UPCH-80605",
@@ -10181,11 +10181,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2023/12/20",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80605.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80605",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-20472": {
     "id": "UPCH-20472",
@@ -10193,11 +10193,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,980yen",
-    "release_date": "2016/08/10",
+    "price_num": 4980,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/UPCH-20472.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20472",
-    "updated_at": "2026-10-18",
-    "price_num": 4980
+    "updated_at": "2026-10-19"
   },
   "UMCK-5561": {
     "id": "UMCK-5561",
@@ -10205,11 +10205,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/06/01",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/43/UMCK-5561.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5561",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-20602": {
     "id": "UPCH-20602",
@@ -10217,11 +10217,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2018/08/10",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/UPCH-20602.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20602",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "UPCH-80628": {
     "id": "UPCH-80628",
@@ -10229,11 +10229,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2025/07/23",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80628.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80628",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "UPCH-80627": {
     "id": "UPCH-80627",
@@ -10241,11 +10241,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80627.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80627",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "UPCH-80618": {
     "id": "UPCH-80618",
@@ -10253,11 +10253,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2024/09/11",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80618.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80618",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80617": {
     "id": "UPCH-80617",
@@ -10265,11 +10265,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2024/09/11",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/07/UPCH-80617.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80617",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80586": {
     "id": "UPCH-80586",
@@ -10277,11 +10277,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2023/02/08",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/16/UPCH-80586.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80586",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80576": {
     "id": "UPCH-80576",
@@ -10289,11 +10289,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2022/06/22",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/14/UPCH-80576.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80576",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-20607": {
     "id": "UPCH-20607",
@@ -10301,11 +10301,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "14,000yen",
-    "release_date": "2021/12/01",
+    "price_num": 14000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/UPCH-20607.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20607",
-    "updated_at": "2026-10-18",
-    "price_num": 14000
+    "updated_at": "2026-10-19"
   },
   "UPCH-20605": {
     "id": "UPCH-20605",
@@ -10313,11 +10313,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2021/12/01",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/05/UPCH-20605.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20605",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "UPCH-20604": {
     "id": "UPCH-20604",
@@ -10325,11 +10325,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2021/12/01",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/UPCH-20604.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20604",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "UPCH-20603": {
     "id": "UPCH-20603",
@@ -10337,11 +10337,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2021/12/01",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/UPCH-20603.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20603",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-112388": {
     "id": "NEODAI-112388",
@@ -10349,11 +10349,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,676yen",
-    "release_date": "2019/04/10",
+    "price_num": 1676,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/07/NEODAI-112388.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-112388",
-    "updated_at": "2026-10-18",
-    "price_num": 1676
+    "updated_at": "2026-10-19"
   },
   "NEODAI-102138": {
     "id": "NEODAI-102138",
@@ -10361,11 +10361,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,100yen",
-    "release_date": "2021/06/15",
+    "price_num": 1100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/22/NEODAI-102138.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-102138",
-    "updated_at": "2026-10-18",
-    "price_num": 1100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-98960": {
     "id": "NEODAI-98960",
@@ -10373,11 +10373,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,676yen",
-    "release_date": "2015/04/22",
+    "price_num": 1676,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/NEODAI-98960.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-98960",
-    "updated_at": "2026-10-18",
-    "price_num": 1676
+    "updated_at": "2026-10-19"
   },
   "UPCH-80556": {
     "id": "UPCH-80556",
@@ -10385,11 +10385,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2021/05/12",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80556.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80556",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80554": {
     "id": "UPCH-80554",
@@ -10397,11 +10397,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2021/05/12",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80554.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80554",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "NEODAI-78572": {
     "id": "NEODAI-78572",
@@ -10409,11 +10409,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "248yen",
-    "release_date": "2013/03/20",
+    "price_num": 248,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/35/NEODAI-78572.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78572",
-    "updated_at": "2026-10-18",
-    "price_num": 248
+    "updated_at": "2026-10-19"
   },
   "UPCH-80540": {
     "id": "UPCH-80540",
@@ -10421,11 +10421,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2020/04/22",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80540.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80540",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80539": {
     "id": "UPCH-80539",
@@ -10433,11 +10433,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2020/04/22",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80539.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80539",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80508": {
     "id": "UPCH-80508",
@@ -10445,11 +10445,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2019/04/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80508.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80508",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80507": {
     "id": "UPCH-80507",
@@ -10457,11 +10457,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2019/04/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/01/UPCH-80507.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80507",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80506": {
     "id": "UPCH-80506",
@@ -10469,11 +10469,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2019/04/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80506.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80506",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80492": {
     "id": "UPCH-80492",
@@ -10481,11 +10481,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/05/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80492.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80492",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80491": {
     "id": "UPCH-80491",
@@ -10493,11 +10493,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/05/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80491.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80491",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80490": {
     "id": "UPCH-80490",
@@ -10505,11 +10505,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/05/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80490.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80490",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-20471": {
     "id": "UPCH-20471",
@@ -10517,11 +10517,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,980yen",
-    "release_date": "2017/12/27",
+    "price_num": 4980,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/UPCH-20471.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20471",
-    "updated_at": "2026-10-18",
-    "price_num": 4980
+    "updated_at": "2026-10-19"
   },
   "UPCH-20470": {
     "id": "UPCH-20470",
@@ -10529,11 +10529,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,980yen",
-    "release_date": "2017/12/27",
+    "price_num": 4980,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/UPCH-20470.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20470",
-    "updated_at": "2026-10-18",
-    "price_num": 4980
+    "updated_at": "2026-10-19"
   },
   "UPCH-20469": {
     "id": "UPCH-20469",
@@ -10541,11 +10541,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "4,980yen",
-    "release_date": "2017/12/27",
+    "price_num": 4980,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/UPCH-20469.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20469",
-    "updated_at": "2026-10-18",
-    "price_num": 4980
+    "updated_at": "2026-10-19"
   },
   "UPCH-89355": {
     "id": "UPCH-89355",
@@ -10553,11 +10553,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/08/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/UPCH-89355.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89355",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-89354": {
     "id": "UPCH-89354",
@@ -10565,11 +10565,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/08/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/23/UPCH-89354.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89354",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-89353": {
     "id": "UPCH-89353",
@@ -10577,11 +10577,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/08/02",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/22/UPCH-89353.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89353",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80463": {
     "id": "UPCH-80463",
@@ -10589,11 +10589,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/02/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/05/UPCH-80463.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80463",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80462": {
     "id": "UPCH-80462",
@@ -10601,11 +10601,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/02/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/UPCH-80462.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80462",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80461": {
     "id": "UPCH-80461",
@@ -10613,11 +10613,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/02/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80461.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80461",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80444": {
     "id": "UPCH-80444",
@@ -10625,11 +10625,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/09/07",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80444.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80444",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80443": {
     "id": "UPCH-80443",
@@ -10637,11 +10637,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/09/07",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/01/UPCH-80443.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80443",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80442": {
     "id": "UPCH-80442",
@@ -10649,11 +10649,11 @@
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/09/07",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80442.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80442",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-839": {
     "id": "KIZM-839",
@@ -14573,11 +14573,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,165yen",
-    "release_date": "2006/10/25",
+    "price_num": 1165,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/25/DFCL-1308.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFCL-1308",
-    "updated_at": "2026-10-18",
-    "price_num": 1165
+    "updated_at": "2026-10-19"
   },
   "UPCH-80639": {
     "id": "UPCH-80639",
@@ -14585,11 +14585,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2026/08/19",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/UPCH-80639.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80639",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "NEODAI-37063": {
     "id": "NEODAI-37063",
@@ -14597,11 +14597,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,666yen",
-    "release_date": "2011/06/08",
+    "price_num": 3666,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-37063.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-37063",
-    "updated_at": "2026-10-18",
-    "price_num": 3666
+    "updated_at": "2026-10-19"
   },
   "UPCH-80607": {
     "id": "UPCH-80607",
@@ -14609,11 +14609,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,000yen",
-    "release_date": "2024/03/13",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/05/UPCH-80607.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80607",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "KIZM-455": {
     "id": "KIZM-455",
@@ -14621,11 +14621,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/11/16",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/KIZM-455.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-455",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-89604": {
     "id": "UPCH-89604",
@@ -14633,11 +14633,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2025/04/02",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/UPCH-89604.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89604",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "KIZM-473": {
     "id": "KIZM-473",
@@ -14645,11 +14645,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/03/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-473.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-473",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KICS-3675": {
     "id": "KICS-3675",
@@ -14657,11 +14657,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,593yen",
-    "release_date": "2018/01/24",
+    "price_num": 2593,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/14/KICS-3675.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKICS-3675",
-    "updated_at": "2026-10-18",
-    "price_num": 2593
+    "updated_at": "2026-10-19"
   },
   "KIZM-167": {
     "id": "KIZM-167",
@@ -14669,11 +14669,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2012/08/29",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-167.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-167",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80601": {
     "id": "UPCH-80601",
@@ -14681,11 +14681,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,545yen",
-    "release_date": "2023/09/27",
+    "price_num": 1545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/48/UPCH-80601.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80601",
-    "updated_at": "2026-10-18",
-    "price_num": 1545
+    "updated_at": "2026-10-19"
   },
   "UPCH-80610": {
     "id": "UPCH-80610",
@@ -14693,11 +14693,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2024/07/17",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80610.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80610",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "KIZM-327": {
     "id": "KIZM-327",
@@ -14705,11 +14705,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/03/04",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-327.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-327",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-69": {
     "id": "KIZM-69",
@@ -14717,11 +14717,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2010/12/08",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/34/KIZM-69.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-69",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-413": {
     "id": "KIZM-413",
@@ -14729,11 +14729,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/03/09",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-413.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-413",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-263": {
     "id": "KIZM-263",
@@ -14741,11 +14741,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2013/10/30",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-263.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-263",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-443": {
     "id": "KIZM-443",
@@ -14753,11 +14753,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/08/31",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-443.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-443",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-441": {
     "id": "KIZM-441",
@@ -14765,11 +14765,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/08/31",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/18/KIZM-441.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-441",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-89605": {
     "id": "UPCH-89605",
@@ -14777,11 +14777,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2025/04/02",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/UPCH-89605.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89605",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "KIZM-477": {
     "id": "KIZM-477",
@@ -14789,11 +14789,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2017/03/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/KIZM-477.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-477",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-275": {
     "id": "KIZM-275",
@@ -14801,11 +14801,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2014/02/26",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-275.jpg?v=5",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-275",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-415": {
     "id": "KIZM-415",
@@ -14813,11 +14813,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/03/09",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-415.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-415",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-405": {
     "id": "KIZM-405",
@@ -14825,11 +14825,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/12/09",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-405.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-405",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80591": {
     "id": "UPCH-80591",
@@ -14849,11 +14849,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,857yen",
-    "release_date": "2013/01/01",
+    "price_num": 2857,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/05/DFCL-1865.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFCL-1865",
-    "updated_at": "2026-10-18",
-    "price_num": 2857
+    "updated_at": "2026-10-19"
   },
   "KIZM-143": {
     "id": "KIZM-143",
@@ -14861,11 +14861,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2012/02/15",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/08/KIZM-143.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-143",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80629": {
     "id": "UPCH-80629",
@@ -14873,11 +14873,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2025/08/13",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/11/UPCH-80629.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80629",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "KIZM-83": {
     "id": "KIZM-83",
@@ -14885,11 +14885,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2011/02/16",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/32/KIZM-83.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-83",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-235": {
     "id": "KIZM-235",
@@ -14897,11 +14897,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2013/10/30",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/12/KIZM-235.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-235",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-617": {
     "id": "KIZM-617",
@@ -14909,11 +14909,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2019/03/13",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-617.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-617",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80621": {
     "id": "UPCH-80621",
@@ -14921,11 +14921,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2025/04/02",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80621.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80621",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "UPCH-89564": {
     "id": "UPCH-89564",
@@ -14933,11 +14933,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,727yen",
-    "release_date": "2024/03/13",
+    "price_num": 1727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/33/UPCH-89564.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89564",
-    "updated_at": "2026-10-18",
-    "price_num": 1727
+    "updated_at": "2026-10-19"
   },
   "UPCH-89527": {
     "id": "UPCH-89527",
@@ -14945,11 +14945,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,545yen",
-    "release_date": "2023/04/26",
+    "price_num": 1545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/UPCH-89527.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89527",
-    "updated_at": "2026-10-18",
-    "price_num": 1545
+    "updated_at": "2026-10-19"
   },
   "KIZM-743": {
     "id": "KIZM-743",
@@ -14957,11 +14957,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,545yen",
-    "release_date": "2022/10/19",
+    "price_num": 1545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/KIZM-743.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-743",
-    "updated_at": "2026-10-18",
-    "price_num": 1545
+    "updated_at": "2026-10-19"
   },
   "KIZM-90699": {
     "id": "KIZM-90699",
@@ -14981,11 +14981,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,250yen",
-    "release_date": "2021/01/01",
+    "price_num": 1250,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/29/NEODAI-95318.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-95318",
-    "updated_at": "2026-10-18",
-    "price_num": 1250
+    "updated_at": "2026-10-19"
   },
   "KIZM-325": {
     "id": "KIZM-325",
@@ -14993,11 +14993,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/03/04",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-325.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-325",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-303": {
     "id": "KIZM-303",
@@ -15005,11 +15005,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2014/08/27",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/08/KIZM-303.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-303",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-297": {
     "id": "KIZM-297",
@@ -15017,11 +15017,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2014/08/27",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-297.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-297",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-191": {
     "id": "KIZM-191",
@@ -15029,11 +15029,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,400yen",
-    "release_date": "2012/12/05",
+    "price_num": 1400,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-191.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-191",
-    "updated_at": "2026-10-18",
-    "price_num": 1400
+    "updated_at": "2026-10-19"
   },
   "DFXL-5": {
     "id": "DFXL-5",
@@ -15041,11 +15041,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "6,800yen",
-    "release_date": "2007/07/18",
+    "price_num": 6800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/30/DFXL-5.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFXL-5",
-    "updated_at": "2026-10-18",
-    "price_num": 6800
+    "updated_at": "2026-10-19"
   },
   "KIZM-195": {
     "id": "KIZM-195",
@@ -15053,11 +15053,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2013/02/20",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-195.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-195",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-259": {
     "id": "KIZM-259",
@@ -15065,11 +15065,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2013/12/11",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-259.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-259",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3106786": {
     "id": "NEOBK-3106786",
@@ -15077,11 +15077,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,800yen",
-    "release_date": "2025/07/01",
+    "price_num": 2800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/39/NEOBK-3106786.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3106786",
-    "updated_at": "2026-10-19",
-    "price_num": 2800
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3180736": {
     "id": "NEOBK-3180736",
@@ -15089,11 +15089,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,000yen",
-    "release_date": "2026/02/01",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/NEOBK-3180736.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3180736",
-    "updated_at": "2026-10-19",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3130233": {
     "id": "NEOBK-3130233",
@@ -15101,11 +15101,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,273yen",
-    "release_date": "2026/06/23",
+    "price_num": 1273,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/06/NEOBK-3130233.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3130233",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3058271": {
     "id": "NEOBK-3058271",
@@ -15113,11 +15113,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,200yen",
-    "release_date": "2025/03/01",
+    "price_num": 3200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEOBK-3058271.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3058271",
-    "updated_at": "2026-10-19",
-    "price_num": 3200
+    "updated_at": "2026-10-19"
   },
   "SSBX-2383": {
     "id": "SSBX-2383",
@@ -15125,11 +15125,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,900yen",
-    "release_date": "2018/01/17",
+    "price_num": 3900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/37/SSBX-2383.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSSBX-2383",
-    "updated_at": "2026-10-18",
-    "price_num": 3900
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3025632": {
     "id": "NEOBK-3025632",
@@ -15137,11 +15137,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,200yen",
+    "price_num": 1200,
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/13/NEOBK-3025632.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3025632",
-    "updated_at": "2026-10-18",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3260958": {
     "id": "NEOBK-3260958",
@@ -15149,11 +15149,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,500yen",
-    "release_date": "2018/06/01",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/25/NEOBK-3260958.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3260958",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "KICS-3014": {
     "id": "KICS-3014",
@@ -15161,11 +15161,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,700yen",
-    "release_date": "2014/01/22",
+    "price_num": 2700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/26/KICS-3014.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKICS-3014",
-    "updated_at": "2026-10-18",
-    "price_num": 2700
+    "updated_at": "2026-10-19"
   },
   "UPCH-89617": {
     "id": "UPCH-89617",
@@ -15173,11 +15173,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/UPCH-89617.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89617",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "KIZC-163": {
     "id": "KIZC-163",
@@ -15185,11 +15185,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,048yen",
-    "release_date": "2014/08/10",
+    "price_num": 3048,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/KIZC-163.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-163",
-    "updated_at": "2026-10-18",
-    "price_num": 3048
+    "updated_at": "2026-10-19"
   },
   "KIZM-111": {
     "id": "KIZM-111",
@@ -15197,11 +15197,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/00/KIZM-111.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-111",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "NEODAI-170474": {
     "id": "NEODAI-170474",
@@ -15209,11 +15209,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,300yen",
+    "price_num": 2300,
     "release_date": "2011/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/36/NEODAI-170474.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-170474",
-    "updated_at": "2026-10-18",
-    "price_num": 2300
+    "updated_at": "2026-10-19"
   },
   "UPCH-89653": {
     "id": "UPCH-89653",
@@ -15221,11 +15221,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89653.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89653",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "KIZM-90399": {
     "id": "KIZM-90399",
@@ -15233,11 +15233,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/08/26",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/07/KIZM-90399.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90399",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-90393": {
     "id": "KIZM-90393",
@@ -15245,11 +15245,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/08/26",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/01/KIZM-90393.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90393",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "UPCH-80644": {
     "id": "UPCH-80644",
@@ -15257,11 +15257,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2024/08/10",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-80644.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80644",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "UPCH-89654": {
     "id": "UPCH-89654",
@@ -15269,11 +15269,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2027/02/24",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89654.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89654",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "KIZM-393": {
     "id": "KIZM-393",
@@ -15281,11 +15281,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/08/26",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-393.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-393",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-59": {
     "id": "KIZM-59",
@@ -15293,11 +15293,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2010/08/18",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/32/KIZM-59.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-59",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-90401": {
     "id": "KIZM-90401",
@@ -15305,11 +15305,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2015/12/09",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/34/KIZM-90401.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90401",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-289": {
     "id": "KIZM-289",
@@ -15317,11 +15317,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2014/05/21",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-289.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-289",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "KIZM-90455": {
     "id": "KIZM-90455",
@@ -15329,11 +15329,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2016/11/16",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/48/KIZM-90455.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-90455",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "TBBD-5": {
     "id": "TBBD-5",
@@ -15341,11 +15341,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "16,000yen",
-    "release_date": "2016/10/20",
+    "price_num": 16000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/25/TBBD-5.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTBBD-5",
-    "updated_at": "2026-10-18",
-    "price_num": 16000
+    "updated_at": "2026-10-19"
   },
   "AKB-D2216": {
     "id": "AKB-D2216",
@@ -15353,11 +15353,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "23,714yen",
-    "release_date": "2013/12/18",
+    "price_num": 23714,
+    "release_date": "2013/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/46/AKB-D2216.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAKB-D2216",
-    "updated_at": "2026-10-18",
-    "price_num": 23714
+    "updated_at": "2026-10-19"
   },
   "UPCH-89655": {
     "id": "UPCH-89655",
@@ -15365,11 +15365,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2024/08/10",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89655.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89655",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "NEODAI-32947": {
     "id": "NEODAI-32947",
@@ -15377,11 +15377,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "305yen",
-    "release_date": "2018/06/01",
+    "price_num": 305,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/36/NEODAI-32947.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-32947",
-    "updated_at": "2026-10-18",
-    "price_num": 305
+    "updated_at": "2026-10-19"
   },
   "NEODAI-41433": {
     "id": "NEODAI-41433",
@@ -15389,11 +15389,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "12,153yen",
-    "release_date": "2018/06/01",
+    "price_num": 12153,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/NEODAI-41433.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-41433",
-    "updated_at": "2026-10-18",
-    "price_num": 12153
+    "updated_at": "2026-10-19"
   },
   "KIZM-57": {
     "id": "KIZM-57",
@@ -15401,11 +15401,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2010/08/18",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/30/KIZM-57.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-57",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "NEODAI-119158": {
     "id": "NEODAI-119158",
@@ -15413,11 +15413,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,980yen",
-    "release_date": "2010/08/18",
+    "price_num": 2980,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/00/NEODAI-119158.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-119158",
-    "updated_at": "2026-10-18",
-    "price_num": 2980
+    "updated_at": "2026-10-19"
   },
   "KIZC-448": {
     "id": "KIZC-448",
@@ -15425,11 +15425,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "3,241yen",
-    "release_date": "2018/01/24",
+    "price_num": 3241,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/KIZC-448.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-448",
-    "updated_at": "2026-10-18",
-    "price_num": 3241
+    "updated_at": "2026-10-19"
   },
   "KIZM-23": {
     "id": "KIZM-23",
@@ -15437,11 +15437,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,524yen",
-    "release_date": "2018/08/10",
+    "price_num": 1524,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/20/KIZM-23.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-23",
-    "updated_at": "2026-10-18",
-    "price_num": 1524
+    "updated_at": "2026-10-19"
   },
   "NEODAI-189905": {
     "id": "NEODAI-189905",
@@ -15449,11 +15449,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "2,490yen",
-    "release_date": "2007/11/28",
+    "price_num": 2490,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/33/NEODAI-189905.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-189905",
-    "updated_at": "2026-10-18",
-    "price_num": 2490
+    "updated_at": "2026-10-19"
   },
   "DFCL-1335": {
     "id": "DFCL-1335",
@@ -15461,11 +15461,11 @@
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,500yen",
-    "release_date": "2007/01/31",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/28/DFCL-1335.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFCL-1335",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "AVCD-83954": {
     "id": "AVCD-83954",
@@ -27657,6 +27657,2178 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/04/EPCE-5355.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5355",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-68319": {
+    "id": "NEODAI-68319",
+    "title": "Album CD Used [Secondhand] The Best Buono! [2CD+DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,081yen",
+    "price_num": 2081,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/06/NEODAI-68319.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-68319",
+    "updated_at": "2026-10-19"
+  },
+  "PCCA-3244": {
+    "id": "PCCA-3244",
+    "title": "Album CD The Best Buono! [2CD+DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/25/PCCA-3244.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPCCA-3244",
+    "updated_at": "2026-10-19"
+  },
+  "PCCA-3245": {
+    "id": "PCCA-3245",
+    "title": "Album CD The Best Buono! [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,857yen",
+    "price_num": 2857,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/26/PCCA-3245.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPCCA-3245",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5411": {
+    "id": "EPBE-5411",
+    "title": "DVD Single V \"Natsu Dakara!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/30/EPBE-5411.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5411",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-166842": {
+    "id": "NEODAI-166842",
+    "title": "DVD Used [Secondhand (Sealed)] Single V \"Natsu Dakara!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "500yen",
+    "price_num": 500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/27/NEODAI-166842.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-166842",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-149904": {
+    "id": "NEODAI-149904",
+    "title": "Album CD Used [Secondhand] Buono! 2 [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "512yen",
+    "price_num": 512,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/17/NEODAI-149904.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-149904",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5008": {
+    "id": "EPXE-5008",
+    "title": "Blu-ray Buono! Live 2011 winter - Re; Buono! - [Blu-ray]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/06/EPXE-5008.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5008",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-279452": {
+    "id": "NEODAI-279452",
+    "title": "Blu-ray Used [Secondhand] Buono! Live 2017 - Pienezza! - [2Blu-ray+4CD / Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "20,800yen",
+    "price_num": 20800,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/36/NEODAI-279452.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-279452",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157117": {
+    "id": "NEODAI-157117",
+    "title": "DVD Used [Secondhand] Single Video \"Kiss! Kiss! Kiss!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "216yen",
+    "price_num": 216,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-157117.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157117",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5117": {
+    "id": "EPXE-5117",
+    "title": "Blu-ray Buono! Live 2017 - Pienezza! - [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/11/EPXE-5117.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5117",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5032": {
+    "id": "EPXE-5032",
+    "title": "Blu-ray PIZZA-LA Presents Buono! Delivery LIVE 2012 - Ai wo Otodoke! - [Blu-ray]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/06/EPXE-5032.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5032",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-328755": {
+    "id": "NEODAI-328755",
+    "title": "DVD Used [Secondhand (Unopened / Maybe Degraded Over Years)] Single V \"Natsu Dakara!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "850yen",
+    "price_num": 850,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/44/NEODAI-328755.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-328755",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-234375": {
+    "id": "NEODAI-234375",
+    "title": "Single CD Used [Secondhand] Rottara Rottara [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "330yen",
+    "price_num": 330,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/33/NEODAI-234375.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-234375",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-166894": {
+    "id": "NEODAI-166894",
+    "title": "Single CD Zasso no Uta [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,950yen",
+    "price_num": 1950,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/39/NEODAI-166894.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-166894",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-166897": {
+    "id": "NEODAI-166897",
+    "title": "Single CD Used [Secondhand (Sealed)] Natsu Dakara [w/ DVD, Limited Edition / Type A]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "388yen",
+    "price_num": 388,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/42/NEODAI-166897.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-166897",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-166900": {
+    "id": "NEODAI-166900",
+    "title": "Single CD Natsu Dakara [w/ DVD, Limited Edition / Type B]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "979yen",
+    "price_num": 979,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/21/NEODAI-166900.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-166900",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158064": {
+    "id": "NEODAI-158064",
+    "title": "DVD Used [Secondhand] Buono!days 2009 Summer Special Drama Buono! Kiki Ippatsu",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "500yen",
+    "price_num": 500,
+    "release_date": "2009/01/01",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158064.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158064",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158066": {
+    "id": "NEODAI-158066",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.8",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158066.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158066",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158072": {
+    "id": "NEODAI-158072",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.1",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "550yen",
+    "price_num": 550,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158072.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158072",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158073": {
+    "id": "NEODAI-158073",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.2",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "800yen",
+    "price_num": 800,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158073.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158073",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158074": {
+    "id": "NEODAI-158074",
+    "title": "DVD Used [Secondhand] Hello!days Buono!days Buono! Leader Kettei Sen!",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "900yen",
+    "price_num": 900,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158074.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158074",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158095": {
+    "id": "NEODAI-158095",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.3",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "920yen",
+    "price_num": 920,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158095.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158095",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158096": {
+    "id": "NEODAI-158096",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.4 Choshi Angle",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,612yen",
+    "price_num": 1612,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158096.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158096",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158097": {
+    "id": "NEODAI-158097",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.5 Miyabi Angle",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,470yen",
+    "price_num": 2470,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158097.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158097",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158098": {
+    "id": "NEODAI-158098",
+    "title": "DVD Used [Secondhand] Buono! DVD MAGAZINE Vol.6 Airi Angle",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158098.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158098",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158099": {
+    "id": "NEODAI-158099",
+    "title": "DVD Used [Secondhand] Buono!DVD Magazine Vol.7",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-158099.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158099",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-158102": {
+    "id": "NEODAI-158102",
+    "title": "BOOK Used [Secondhand] Buono! In Paris \"C'est bon!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "312yen",
+    "price_num": 312,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-158102.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-158102",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157495": {
+    "id": "NEODAI-157495",
+    "title": "Single CD Used [Secondhand] Our Songs [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "330yen",
+    "price_num": 330,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEODAI-157495.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157495",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157529": {
+    "id": "NEODAI-157529",
+    "title": "Single CD Used [Secondhand] Gachinko de Iko! [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "110yen",
+    "price_num": 110,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-157529.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157529",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157538": {
+    "id": "NEODAI-157538",
+    "title": "Single CD Used [Secondhand] co. no. mi. chi [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "110yen",
+    "price_num": 110,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/11/NEODAI-157538.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157538",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1514": {
+    "id": "DAKUFBW-1514",
+    "title": "DVD Sorashido - Nene - [DVD+CD]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,389yen",
+    "price_num": 1389,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/45/DAKUFBW-1514.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1514",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157101": {
+    "id": "NEODAI-157101",
+    "title": "DVD Used [Secondhand] Single V: Renai Rider",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "216yen",
+    "price_num": 216,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/31/NEODAI-157101.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157101",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157109": {
+    "id": "NEODAI-157109",
+    "title": "DVD Used [Secondhand] Single Video \"My Boy\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "155yen",
+    "price_num": 155,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-157109.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157109",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157110": {
+    "id": "NEODAI-157110",
+    "title": "DVD Used [Secondhand] Take It Easy!",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "792yen",
+    "price_num": 792,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/NEODAI-157110.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157110",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157111": {
+    "id": "NEODAI-157111",
+    "title": "DVD Used [Secondhand] Single Video \"Bravo Bravo\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "110yen",
+    "price_num": 110,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/33/NEODAI-157111.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157111",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157112": {
+    "id": "NEODAI-157112",
+    "title": "DVD Used [Secondhand] Single V: co. no. mi. chi",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "110yen",
+    "price_num": 110,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/34/NEODAI-157112.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157112",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157118": {
+    "id": "NEODAI-157118",
+    "title": "DVD Used [Secondhand] Zasso no Uta",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "331yen",
+    "price_num": 331,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-157118.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157118",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157119": {
+    "id": "NEODAI-157119",
+    "title": "DVD Used [Secondhand] Single Video: Rottara Rottara",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "155yen",
+    "price_num": 155,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/41/NEODAI-157119.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157119",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157120": {
+    "id": "NEODAI-157120",
+    "title": "DVD Used [Secondhand] Single Video \"Honto no Jibun\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "792yen",
+    "price_num": 792,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/34/NEODAI-157120.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157120",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-157122": {
+    "id": "NEODAI-157122",
+    "title": "DVD Used [Secondhand] Single Video \"Gachinko de Iko!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "155yen",
+    "price_num": 155,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/36/NEODAI-157122.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-157122",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-154636": {
+    "id": "NEODAI-154636",
+    "title": "Album CD Used [Secondhand] Sherbet [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,200yen",
+    "price_num": 1200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/38/NEODAI-154636.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-154636",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-149900": {
+    "id": "NEODAI-149900",
+    "title": "Album CD Used [Secondhand] We are Buono! [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "713yen",
+    "price_num": 713,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/13/NEODAI-149900.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-149900",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-149907": {
+    "id": "NEODAI-149907",
+    "title": "Single CD Used [Secondhand] Take It Easy! [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "235yen",
+    "price_num": 235,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/20/NEODAI-149907.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-149907",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-146128": {
+    "id": "NEODAI-146128",
+    "title": "DVD Used [Secondhand] We are Buono! Buono! Live Tour 2010",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "990yen",
+    "price_num": 990,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEODAI-146128.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146128",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-145300": {
+    "id": "NEODAI-145300",
+    "title": "DVD Used [Secondhand] 1th Anniversary FC Special Live -Rock'n Buono!-",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "9,380yen",
+    "price_num": 9380,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/06/NEODAI-145300.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-145300",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-139616": {
+    "id": "NEODAI-139616",
+    "title": "Album CD Used [Secondhand] Cafe Buono! [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-139616.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139616",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-36143": {
+    "id": "NEODAI-36143",
+    "title": "Album CD Used Second hand Sherbet [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "650yen",
+    "price_num": 650,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/32/NEODAI-36143.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-36143",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-36217": {
+    "id": "NEODAI-36217",
+    "title": "Album CD Used Second hand Partenza",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "200yen",
+    "price_num": 200,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/34/NEODAI-36217.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-36217",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-35913": {
+    "id": "NEODAI-35913",
+    "title": "Album CD Used Second Hand We are Buono! [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "825yen",
+    "price_num": 825,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEODAI-35913.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-35913",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-801073-A": {
+    "id": "DCFGDS-801073-A",
+    "title": "Collectible A5 Wide Photo Set (3 Pieces) [Live Viewing e-LineUP! Mall Limited] [Buono! Live 2017 - Pienezza!-]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,389yen",
+    "price_num": 1389,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/37/DCFGDS-801073-A.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-801073-A",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-801068-A": {
+    "id": "DCFGDS-801068-A",
+    "title": "Collectible Suzuki Airi A4 Photo [Buono! Live 2017 - Pienezza!-]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,389yen",
+    "price_num": 1389,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/00/DCFGDS-801068-A.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-801068-A",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-801067-A": {
+    "id": "DCFGDS-801067-A",
+    "title": "Collectible Natsuyaki Miyabi A4 Photo [Buono! Live 2017 - Pienezza!-]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,364yen",
+    "price_num": 1364,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/45/DCFGDS-801067-A.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-801067-A",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-801022-A": {
+    "id": "DCFGDS-801022-A",
+    "title": "Collectible Suzuki Airi Muffler Towel [Buono! Live 2017 - Pienezza!-]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/42/DCFGDS-801022-A.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-801022-A",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25239": {
+    "id": "NEODAI-25239",
+    "title": "Single CD Used [Second Hand] Honto no Jibun [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "155yen",
+    "price_num": 155,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEODAI-25239.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25239",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25240": {
+    "id": "NEODAI-25240",
+    "title": "Single CD Used [Second Hand] Renai Rider [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "312yen",
+    "price_num": 312,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/09/NEODAI-25240.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25240",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25241": {
+    "id": "NEODAI-25241",
+    "title": "Single CD Used [Second Hand] Rottara Rottara [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "110yen",
+    "price_num": 110,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-25241.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25241",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25020": {
+    "id": "NEODAI-25020",
+    "title": "Single CD Used Second hand Honto no Jibun [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "201yen",
+    "price_num": 201,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/46/NEODAI-25020.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25020",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25021": {
+    "id": "NEODAI-25021",
+    "title": "Single CD Used Second hand My Boy [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "155yen",
+    "price_num": 155,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/47/NEODAI-25021.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25021",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-25022": {
+    "id": "NEODAI-25022",
+    "title": "Single CD Used [Secondhand] Bravo Bravo [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "235yen",
+    "price_num": 235,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/48/NEODAI-25022.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-25022",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5111": {
+    "id": "EPXE-5111",
+    "title": "Blu-ray Buono! Live 2017 - Pienezza! - [2Blu-ray+4CD / Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "11,111yen",
+    "price_num": 11111,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/05/EPXE-5111.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5111",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5556": {
+    "id": "EPBE-5556",
+    "title": "DVD Buono! Live 2017 - Pienezza! -",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2017/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/47/EPBE-5556.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5556",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-953513": {
+    "id": "DCFGDS-953513",
+    "title": "Collectible Microfiber Towel: Buono! [Buono! Festa2016]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,426yen",
+    "price_num": 3426,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/08/DCFGDS-953513.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-953513",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-953559": {
+    "id": "DCFGDS-953559",
+    "title": "Collectible A4-sized Photo (Group) [Buono! Festa2016]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,389yen",
+    "price_num": 1389,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/22/DCFGDS-953559.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-953559",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-953563": {
+    "id": "DCFGDS-953563",
+    "title": "Collectible Bucket Hat [Buono! Festa2016]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,182yen",
+    "price_num": 3182,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/18/DCFGDS-953563.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-953563",
+    "updated_at": "2026-10-19"
+  },
+  "DCFGDS-953509": {
+    "id": "DCFGDS-953509",
+    "title": "Collectible Muffler Towel: Buono! [Buono! Festa2016]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,037yen",
+    "price_num": 2037,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/12/DCFGDS-953509.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-953509",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5092": {
+    "id": "EPXE-5092",
+    "title": "Blu-ray Buono! Festa 2016",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "7,000yen",
+    "price_num": 7000,
+    "release_date": "2016/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/18/EPXE-5092.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5092",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5539": {
+    "id": "EPBE-5539",
+    "title": "DVD Buono! Festa 2016",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2016/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/46/EPBE-5539.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5539",
+    "updated_at": "2026-10-19"
+  },
+  "NEOEGA-18": {
+    "id": "NEOEGA-18",
+    "title": "Collectible Buono! Cell Phone Flip Case [Suzuki Airi ver.]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,241yen",
+    "price_num": 3241,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/44/NEOEGA-18.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOEGA-18",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5454": {
+    "id": "EPBE-5454",
+    "title": "DVD PIZZA-LA Presents Buono! Delivery LIVE 2012 - Ai wo Otodoke! -",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/41/EPBE-5454.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5454",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5445": {
+    "id": "EPBE-5445",
+    "title": "DVD CLIPS Vol.2",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/40/EPBE-5445.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5445",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5889": {
+    "id": "EPCE-5889",
+    "title": "Album CD Sherbet [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,667yen",
+    "price_num": 2667,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/34/EPCE-5889.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5889",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5891": {
+    "id": "EPCE-5891",
+    "title": "Album CD Sherbet [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/28/EPCE-5891.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5891",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5027": {
+    "id": "EPXE-5027",
+    "title": "Blu-ray Buono! Zen Single MUSIC VIDEO Blu-ray File 2012 [Blu-ray]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/09/EPXE-5027.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5027",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1250051": {
+    "id": "NEOBK-1250051",
+    "title": "BOOK Buono! In Paris \"C'est bon!\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,857yen",
+    "price_num": 2857,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/34/NEOBK-1250051.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1250051",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5435": {
+    "id": "EPBE-5435",
+    "title": "DVD Buono! LIVE 2012 \"R E A L\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/38/EPBE-5435.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5435",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5024": {
+    "id": "EPXE-5024",
+    "title": "Blu-ray Buono! LIVE 2012 \"R E A L\" [Blu-ray]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/06/EPXE-5024.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5024",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5428": {
+    "id": "EPBE-5428",
+    "title": "DVD Single V \"Hatsukoi Cider / DEEP MIND\"",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/39/EPBE-5428.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5428",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5833": {
+    "id": "EPCE-5833",
+    "title": "Single CD Hatsukoi Cider / Deep Mind [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/18/EPCE-5833.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5833",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5835": {
+    "id": "EPCE-5835",
+    "title": "Single CD Hatsukoi Cider / Deep Mind [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/20/EPCE-5835.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5835",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5424": {
+    "id": "EPBE-5424",
+    "title": "DVD Buono! Live Tour 2011 summer - Rock'n Buono! 4 -",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/35/EPBE-5424.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5424",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5017": {
+    "id": "EPXE-5017",
+    "title": "Blu-ray Buono! Live Tour 2011 summer - Rock'n Buono! 4 - [Blu-ray]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/07/EPXE-5017.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5017",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5798": {
+    "id": "EPCE-5798",
+    "title": "Album CD Partenza",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/31/EPCE-5798.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5798",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5791": {
+    "id": "EPCE-5791",
+    "title": "Single CD Natsu Dakara [w/ DVD, Limited Edition / Type A]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/24/EPCE-5791.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5791",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5793": {
+    "id": "EPCE-5793",
+    "title": "Single CD Natsu Dakara [w/ DVD, Limited Edition / Type B]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/26/EPCE-5793.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5793",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5795": {
+    "id": "EPCE-5795",
+    "title": "Single CD Natsu Dakara [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/28/EPCE-5795.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5795",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5408": {
+    "id": "EPBE-5408",
+    "title": "DVD Buono! Live 2011 winter - Re; Buono! - [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/35/EPBE-5408.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5408",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-957162": {
+    "id": "NEOBK-957162",
+    "title": "BOOK Buono! Live 2011 winter RE:Buno! LIVE PHOTO DOCUMENT",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "2,381yen",
+    "price_num": 2381,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/23/NEOBK-957162.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-957162",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5399": {
+    "id": "EPBE-5399",
+    "title": "DVD Zasso no Uta",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/01/EPBE-5399.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5399",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5743": {
+    "id": "EPCE-5743",
+    "title": "Single CD Zasso no Uta [w/ DVD, Limited Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,600yen",
+    "price_num": 1600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/16/EPCE-5743.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5743",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5745": {
+    "id": "EPCE-5745",
+    "title": "Single CD Zasso no Uta [Regular Edition]",
+    "artist": "Buono!",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/18/EPCE-5745.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5745",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5288": {
+    "id": "PKCP-5288",
+    "title": "Album CD Kanjuku Berryz Kobo The Final Completion Box [Regular Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/38/PKCP-5288.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5288",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5278": {
+    "id": "PKCP-5278",
+    "title": "Album CD Kanjuku Berryz Kobo The Final Completion Box [3CD+2Blu-ray / Limited Edition / Type A]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "9,000yen",
+    "price_num": 9000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/36/PKCP-5278.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5278",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5012": {
+    "id": "PKXP-5012",
+    "title": "Blu-ray Berryz Kobo Debut 10 Shunen Kinen Special Concert 2014 Thank You Berikyu! in Nippon Budokan \"Ko Hen\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/31/PKXP-5012.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5012",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5011": {
+    "id": "PKXP-5011",
+    "title": "Blu-ray Berryz Kobo Debut 10 Shunen Kinen Concert Tour 2014 Haru - Real Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/30/PKXP-5011.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5011",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5009": {
+    "id": "PKXP-5009",
+    "title": "Blu-ray Berryz Kobo 10 Shunen Kinen Nippon Budokan Special Live 2013 - Yappari Anata Nashi Dewa Ikite Yukenai -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/36/PKXP-5009.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5009",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5006": {
+    "id": "PKXP-5006",
+    "title": "Blu-ray Berryz Kobo Concert Tour 2012 Haru - Berryz Station - [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/33/PKXP-5006.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5006",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5013": {
+    "id": "PKXP-5013",
+    "title": "Blu-ray Professional 10th Anniversary Concert Tour 2014 Autumn",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/32/PKXP-5013.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5013",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-903039": {
+    "id": "NEOBK-903039",
+    "title": "BOOK Berryz Kobo Shimizu Saki 1st Solo Photobook \"Shimizu Saki\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,857yen",
+    "price_num": 2857,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/06/NEOBK-903039.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-903039",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5283": {
+    "id": "PKCP-5283",
+    "title": "Album CD Kanjuku Berryz Kobo The Final Completion Box [3CD+2DVD / Limited Edition / Type B]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "7,000yen",
+    "price_num": 7000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/33/PKCP-5283.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5283",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-324804": {
+    "id": "NEODAI-324804",
+    "title": "BOOK Used [Secondhand (Shrink Wrap Unopened / Somewhat Worn)] Berryz Kobo Shimizu Saki 1st Solo Photobook \"Shimizu Saki\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,257yen",
+    "price_num": 1257,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/05/NEODAI-324804.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-324804",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-324823": {
+    "id": "NEODAI-324823",
+    "title": "BOOK Berryz Kobo Shimizu Saki 1st Solo Photobook \"Shimizu Saki\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,143yen",
+    "price_num": 3143,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/08/NEODAI-324823.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-324823",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-316502": {
+    "id": "NEODAI-316502",
+    "title": "DVD Used [Secondhand] Berryz Kobo Concert Tour 2013 Haru Berryz Mansion Nyukyosha Boshuchu!",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-316502.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-316502",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-316603": {
+    "id": "NEODAI-316603",
+    "title": "Blu-ray Used [Secondhand] Berryz Kobo Concert Tour 2013 Haru Berryz Mansion Nyukyosha Boshuchu! [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,400yen",
+    "price_num": 1400,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/45/NEODAI-316603.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-316603",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-205927": {
+    "id": "NEODAI-205927",
+    "title": "Blu-ray Berryz Kobo Last Concert 2015 Berryz Kobo Ikube! Completion Box [6Blu-ray+2CD]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "24,000yen",
+    "price_num": 24000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/09/NEODAI-205927.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-205927",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-203747": {
+    "id": "NEODAI-203747",
+    "title": "DVD [New (Shrink Wrap Somewhat Worn)] Alo-Hello! Berryz Kobo DVD",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,970yen",
+    "price_num": 2970,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/38/NEODAI-203747.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-203747",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-89295": {
+    "id": "NEODAI-89295",
+    "title": "Blu-ray Used [Secondhand] Berryz Kobo Last Concert 2015 Berryz Kobo Ikube! Completion Box [6Blu-ray+2CD]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "8,086yen",
+    "price_num": 8086,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/05/NEODAI-89295.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-89295",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-2241894": {
+    "id": "NEOBK-2241894",
+    "title": "BOOK MAMOR (Mamoru) August 2018 Issue [Cover] Yurina Kumai (Berryz Kobo)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "535yen",
+    "price_num": 535,
+    "release_date": "2018/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/35/NEOBK-2241894.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2241894",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-30134": {
+    "id": "NEODAI-30134",
+    "title": "BOOK CD Journal 2014 December Issue [Cover & Top Feature] Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "817yen",
+    "price_num": 817,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/32/NEODAI-30134.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-30134",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1399": {
+    "id": "DAKUFBW-1399",
+    "title": "DVD Japan Expo 15th Anniversary Berryz Kobo x C-ute in Hello! Project Festival",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/09/DAKUFBW-1399.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1399",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1445": {
+    "id": "DAKUFBW-1445",
+    "title": "DVD Berryz Kobo NARUCHIKA 2015 in Bangkok",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/48/DAKUFBW-1445.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1445",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1789892": {
+    "id": "NEOBK-1789892",
+    "title": "BOOK Hello!Project BEST SHOT!! VOL.22 [Cover] Berryz Kobo & C-ute (Wani Mook Series)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,204yen",
+    "price_num": 1204,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/12/NEOBK-1789892.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1789892",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5022": {
+    "id": "PKXP-5022",
+    "title": "Blu-ray Berryz Kobo Last Concert 2015 Berryz Kobo Ikube! [Regular Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "8,000yen",
+    "price_num": 8000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/33/PKXP-5022.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5022",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5014": {
+    "id": "PKXP-5014",
+    "title": "Blu-ray Berryz Kobo Last Concert 2015 Berryz Kobo Ikube! Completion Box [6Blu-ray+2CD]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "16,000yen",
+    "price_num": 16000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/33/PKXP-5014.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5014",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5155": {
+    "id": "PKBP-5155",
+    "title": "DVD Berryz Kobo Last Concert 2015 Berryz Kobo Ikube!",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2015/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/10/PKBP-5155.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5155",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1772204": {
+    "id": "NEOBK-1772204",
+    "title": "BOOK Berryz Kobo Photo Book \"Berryz Kobo 2004-2015\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,852yen",
+    "price_num": 1852,
+    "release_date": "2004/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/47/NEOBK-1772204.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1772204",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1739338": {
+    "id": "NEOBK-1739338",
+    "title": "BOOK CD Journal 2014 December Issue [Cover & Top Feature] Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "743yen",
+    "price_num": 743,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEOBK-1739338.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1739338",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5153": {
+    "id": "PKBP-5153",
+    "title": "DVD Berryz Kobo Debut 10 Shunen Kinen Special Concert 2014 Thank You Berikyu! in Nippon Budokan \"Ko Hen\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/08/PKBP-5153.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5153",
+    "updated_at": "2026-10-19"
+  },
+  "NEODAI-6758": {
+    "id": "NEODAI-6758",
+    "title": "DVD Berryz & C-ute DVD JAPAN EXPO 15TH ANNIVERSARY: Berryz Kobo & C-ute IN HELLO! PROJECT FESTIVAL",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,500yen",
+    "price_num": 5500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/22/NEODAI-6758.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-6758",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1382": {
+    "id": "DAKUFBW-1382",
+    "title": "DVD Berryz Kobo 10 Shunen Kinen Butai Musical \"Sengoku Jieitai\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/00/DAKUFBW-1382.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1382",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1667291": {
+    "id": "NEOBK-1667291",
+    "title": "BOOK Anikan R Yanyan!! Vol.17 2014 June Issue [Cover] Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,204yen",
+    "price_num": 1204,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEOBK-1667291.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1667291",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5152": {
+    "id": "PKBP-5152",
+    "title": "DVD Berryz Kobo Debut 10 Shunen Kinen Concert Tour 2014 Haru - Real Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/07/PKBP-5152.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5152",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5151": {
+    "id": "PKBP-5151",
+    "title": "DVD NARUCHIKA 2013 AKI BERRYZ KOBO * JUICE=JUICE",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/06/PKBP-5151.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5151",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5010": {
+    "id": "PKXP-5010",
+    "title": "Blu-ray NARUCHIKA 2013 AKI BERRYZ KOBO * JUICE=JUICE",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/29/PKXP-5010.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5010",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1625717": {
+    "id": "NEOBK-1625717",
+    "title": "BOOK Anikan R Yanyan!! Vol.14 2014 March Issue w/ booklet (Cover: The Possible) [Cover & Feature] Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,238yen",
+    "price_num": 1238,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/33/NEOBK-1625717.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1625717",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5150": {
+    "id": "PKBP-5150",
+    "title": "DVD Berryz Kobo 10 Shunen Kinen Nippon Budokan Special Live 2013 - Yappari Anata Nashi Dewa Ikite Yukenai -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/05/PKBP-5150.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5150",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1620081": {
+    "id": "NEOBK-1620081",
+    "title": "BOOK Idol Saizensen 2014 [Cover] Berryz Kobo [Top Feature] Hello! Project (Otona Anime Special Issue)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,680yen",
+    "price_num": 1680,
+    "release_date": "2014/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/22/NEOBK-1620081.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1620081",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5259": {
+    "id": "PKCP-5259",
+    "title": "Album CD Berryz Kobo Special Best Vol.2 [Regular Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/33/PKCP-5259.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5259",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5257": {
+    "id": "PKCP-5257",
+    "title": "Album CD Berryz Kobo Special Best Vol.2 [w/ DVD, Limited Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,600yen",
+    "price_num": 3600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/31/PKCP-5257.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5257",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1569423": {
+    "id": "NEOBK-1569423",
+    "title": "BOOK Berryz Kobo Natsuyaki Miyabi Photobook \"GLOW\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/34/NEOBK-1569423.jpg?v=3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1569423",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1274": {
+    "id": "DAKUFBW-1274",
+    "title": "DVD Berryz Kobo Tanabata Special Live 2013",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2013/01/01",
+    "image": "https://www.cdjapan.co.jp/pictures/l/DAKUFBW-1274.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1274",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1565643": {
+    "id": "NEOBK-1565643",
+    "title": "BOOK Top Yell 2013 November Issue w/ Large Double-sided poster (Front: Cute / Back: Berryz Kobo)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "933yen",
+    "price_num": 933,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/14/NEOBK-1565643.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1565643",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1538039": {
+    "id": "NEOBK-1538039",
+    "title": "BOOK Top Yell 2013 September Issue w/ Double-sided A2 Poster (Front Berryz Kobo x Cute / Back: Smileage x Juice=Juice)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "933yen",
+    "price_num": 933,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/19/NEOBK-1538039.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1538039",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5149": {
+    "id": "PKBP-5149",
+    "title": "DVD Berryz Kobo Concert Tour 2013 Haru Berryz Mansion Nyukyosha Boshuchu!",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/12/PKBP-5149.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5149",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5008": {
+    "id": "PKXP-5008",
+    "title": "Blu-ray Berryz Kobo Concert Tour 2013 Haru Berryz Mansion Nyukyosha Boshuchu! [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/35/PKXP-5008.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5008",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5148": {
+    "id": "PKBP-5148",
+    "title": "DVD Alohalo! 3 Berryz Kobo DVD",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/PKBP-5148.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5148",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5007": {
+    "id": "PKXP-5007",
+    "title": "Blu-ray Alohalo! 3 Berryz Kobo Blu-ray Disc [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/PKXP-5007.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5007",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1248": {
+    "id": "DAKUFBW-1248",
+    "title": "DVD Berryz Kobo Concert Tour 2013 Spring in Bangkok",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,600yen",
+    "price_num": 3600,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/43/DAKUFBW-1248.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1248",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5467": {
+    "id": "EPBE-5467",
+    "title": "DVD Hello! Project Haru no Dai Kanshasai Hinamatsuri Festival 2013 - Berryz Kobo 10 Nenme Totsunyu Special! -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/46/EPBE-5467.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5467",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1509042": {
+    "id": "NEOBK-1509042",
+    "title": "BOOK Alohalo! Berryz Kobo Photo Book 2013",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,048yen",
+    "price_num": 3048,
+    "release_date": "2013/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/23/NEOBK-1509042.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1509042",
+    "updated_at": "2026-10-19"
+  },
+  "DAKUFBW-1200": {
+    "id": "DAKUFBW-1200",
+    "title": "DVD Berryz Kobo Tanabata Special Live 2012",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/27/DAKUFBW-1200.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1200",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5146": {
+    "id": "PKBP-5146",
+    "title": "DVD Berryz Kobo Concert Tour 2012 Haru - Berryz Station -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2012/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/09/PKBP-5146.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5146",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1268643": {
+    "id": "NEOBK-1268643",
+    "title": "BOOK GIRL'S STAR [Cover & Top Feature] Berryz Kobo & C-ute (GLIDE MEDIA MOOK)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,143yen",
+    "price_num": 1143,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/40/NEOBK-1268643.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1268643",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-1088914": {
+    "id": "NEOBK-1088914",
+    "title": "BOOK Berryz Kobo & Cute Collabo Concert Tour Photobook \"Berikyu Island\" (Tokyo News Mook)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,857yen",
+    "price_num": 2857,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/15/NEOBK-1088914.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1088914",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5430": {
+    "id": "EPBE-5430",
+    "title": "DVD Berryz Kobo & Cute Collabo Concert Tour 2011 Aki - Berikyu Island -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/33/EPBE-5430.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5430",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5023": {
+    "id": "EPXE-5023",
+    "title": "Blu-ray Berryz Kobo & Cute Collabo Concert Tour 2011 Aki - Berikyu Island - [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/05/EPXE-5023.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5023",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5005": {
+    "id": "PKXP-5005",
+    "title": "Blu-ray Berryz Kobo Zen Single MUSIC VIDEO Blu-ray File 2011 [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/32/PKXP-5005.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5005",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-5824": {
+    "id": "EPCE-5824",
+    "title": "Single CD Busu ni Naranai Tetsugaku [Limited Edition / Type C: Berryz Kobo Ban]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,000yen",
+    "price_num": 1000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/17/EPCE-5824.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5824",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5141": {
+    "id": "PKBP-5141",
+    "title": "DVD Berryz Kobo Single V Clips 5",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/04/PKBP-5141.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5141",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5004": {
+    "id": "PKXP-5004",
+    "title": "Blu-ray Berryz Kobo Kessei 7 Shunen Kinen Concert Tour 2011 Spring - Shukan Berryz Times - [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/31/PKXP-5004.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5004",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5140": {
+    "id": "PKBP-5140",
+    "title": "DVD Berryz Kobo Kessei 7 Shunen Concert Tour 2011 Spring - Shukan Berryz Times -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2011/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/03/PKBP-5140.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5140",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5003": {
+    "id": "PKXP-5003",
+    "title": "Blu-ray Berryz Kobo Concert Tour 2010 Aki Fuyu - Beriko Fes! - [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/30/PKXP-5003.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5003",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-918934": {
+    "id": "NEOBK-918934",
+    "title": "BOOK Berryz Kobo 7 Shunen Kinen Photobook \"7\"",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "1,905yen",
+    "price_num": 1905,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/03/44/NEOBK-918934.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-918934",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5002": {
+    "id": "PKXP-5002",
+    "title": "Blu-ray Alo-Hello! 2 Berryz Kobo [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/29/PKXP-5002.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5002",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5137": {
+    "id": "PKBP-5137",
+    "title": "DVD Berryz Kobo Concert Tour 2010 Aki Fuyu - Beriko Fes! -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/08/PKBP-5137.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5137",
+    "updated_at": "2026-10-19"
+  },
+  "PKXP-5001": {
+    "id": "PKXP-5001",
+    "title": "Blu-ray Berryz Kobo Concert Tour 2010 Shoka - Umi no Ie Otakebi House - [Blu-ray]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "5,714yen",
+    "price_num": 5714,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/28/PKXP-5001.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKXP-5001",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-884033": {
+    "id": "NEOBK-884033",
+    "title": "BOOK Aroharo! Berryz Kobo Photo Book Nijiiro Berryz",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,857yen",
+    "price_num": 2857,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/06/NEOBK-884033.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-884033",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5134": {
+    "id": "PKBP-5134",
+    "title": "DVD Alo-Hello! Berryz Kobo DVD",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/05/PKBP-5134.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5134",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5132": {
+    "id": "PKBP-5132",
+    "title": "DVD Berryz Kobo Concert Tour 2010 Shoka - Umi no Ie Otakebi House -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2010/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/03/PKBP-5132.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5132",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5130": {
+    "id": "PKBP-5130",
+    "title": "DVD Berryz Kobo Festival -Yokoso Otakebi Land e-",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/01/PKBP-5130.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5130",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5128": {
+    "id": "PKBP-5128",
+    "title": "DVD Berryz Kobo Concert Tour 2009 Aki Medachitai !!",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2009/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/07/PKBP-5128.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5128",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5124": {
+    "id": "PKBP-5124",
+    "title": "DVD Berryz Kobo Single V Clips 4",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,333yen",
+    "price_num": 3333,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/03/PKBP-5124.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5124",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5119": {
+    "id": "PKBP-5119",
+    "title": "DVD Berryz Kobo Concert Tour 2009 Haru - Sono Subete no Ai ni -",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2009/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/06/PKBP-5119.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5119",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-564794": {
+    "id": "NEOBK-564794",
+    "title": "BOOK Alo-Hello! Berryz Kobo in HAWAII -LIVE&DVD MAKING- 5th Anniversary Hello! Project Hawaiian Style (5th)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,667yen",
+    "price_num": 2667,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/17/NEOBK-564794.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-564794",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5112": {
+    "id": "PKBP-5112",
+    "title": "DVD Alo-Hello! Berryz Kobo DVD",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/48/PKBP-5112.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5112",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-66944": {
+    "id": "NEOBK-66944",
+    "title": "BOOK Yan Yan Vol.5 [Cover & Feature] Berryz Kobo (Roman Album)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "952yen",
+    "price_num": 952,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/09/48/NEOBK-66944.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-66944",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5108": {
+    "id": "PKBP-5108",
+    "title": "DVD Gekidan Gekihalo Dai 5 Kai Koen Berryz Kobo vs Berryz Kobo",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/03/PKBP-5108.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5108",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5130": {
+    "id": "PKCP-5130",
+    "title": "Album CD Berryz Kobo Special Best Vol.1 [w/ DVD, Limited Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,600yen",
+    "price_num": 3600,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/16/PKCP-5130.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5130",
+    "updated_at": "2026-10-19"
+  },
+  "PKCP-5132": {
+    "id": "PKCP-5132",
+    "title": "Album CD Berryz Kobo Special Best Vol.1 [Regular Edition]",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/18/PKCP-5132.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5132",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5106": {
+    "id": "PKBP-5106",
+    "title": "DVD Berryz Kobo Concert Tour 2008 Aki -Berikore!-",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/01/PKBP-5106.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5106",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-57726": {
+    "id": "NEOBK-57726",
+    "title": "BOOK Berryz Kobo & Cute Nakayoshi Battle Concert Tour 2008 Haru Berryz Kamen VS Cutie Ranger (TOKYO NEWS MOOK Tsukan 110 Go)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,095yen",
+    "price_num": 2095,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/09/30/NEOBK-57726.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-57726",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-57727": {
+    "id": "NEOBK-57727",
+    "title": "BOOK Berryz Kamen vs Cue Tea Ranger Berryz Kobo & C Ute Nakayoshi Battle Concert Tour 2008 Haru Live Photobook Document Ver. (TOKYO NEWS MOOK Tsukan 111 Go)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,095yen",
+    "price_num": 2095,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/09/31/NEOBK-57727.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-57727",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5099": {
+    "id": "PKBP-5099",
+    "title": "DVD Berryz Kobo & Cute Nakayoshi Battle Concert Tour 2008 Haru - Berryz Kamen vs Cutie Ranger - with Berryz Kobo Tracks",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/18/PKBP-5099.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5099",
+    "updated_at": "2026-10-19"
+  },
+  "EPBE-5297": {
+    "id": "EPBE-5297",
+    "title": "DVD Berryz Kobo & Cute Nakayoshi Battle Concert Tour 2008 Haru - Berryz Kamen vs Cutie Ranger - with Cute Tracks",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2008/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/44/EPBE-5297.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5297",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5092": {
+    "id": "PKBP-5092",
+    "title": "DVD Berryz Kobo Single V Clips 3",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/11/PKBP-5092.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5092",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5091": {
+    "id": "PKBP-5091",
+    "title": "DVD Berryz Kobo Concert Tour 2007 Natsu -Welcome! Berryz Kyuden-",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2007/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/10/PKBP-5091.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5091",
+    "updated_at": "2026-10-19"
+  },
+  "PKBP-5075": {
+    "id": "PKBP-5075",
+    "title": "DVD 2007 Sakura Mankai Berryz Kobo Live - Kono Kando wa Nido to Nai Shunkan de Aru!",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "3,800yen",
+    "price_num": 3800,
+    "release_date": "2007/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/10/PKBP-5075.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5075",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-381210": {
+    "id": "NEOBK-381210",
+    "title": "BOOK Berryz Kobo & Cute in Hello! Project 2006 Summer Wonderful Hearts Land",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,300yen",
+    "price_num": 2300,
+    "release_date": "2006/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/19/NEOBK-381210.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-381210",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-33299": {
+    "id": "NEOBK-33299",
+    "title": "BOOK Berryz Kobo Third Live Photobook \"Nyoki Nyoki Champion\" (TOKYO NEWS MOOK Tsukan 60 Go)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,095yen",
+    "price_num": 2095,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/12/NEOBK-33299.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-33299",
+    "updated_at": "2026-10-19"
+  },
+  "NEOBK-28805": {
+    "id": "NEOBK-28805",
+    "title": "BOOK Berryz Kobo Second Live Photobook \"Switch On!\" (Tokyo News Mook Tsukan 52 Go)",
+    "artist": "Berryz Kobo",
+    "category": "Hello! Project",
+    "price": "2,095yen",
+    "price_num": 2095,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/38/NEOBK-28805.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-28805",
+    "updated_at": "2026-10-19"
+  },
+  "KIZM-33": {
+    "id": "KIZM-33",
+    "title": "Single CD Namida Surprise! [CD+DVD]",
+    "artist": "AKB48",
+    "category": "AKB48 Group",
+    "price": "1,524yen",
+    "price_num": 1524,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/09/22/KIZM-33.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-33",
+    "updated_at": "2026-10-19"
+  },
+  "UPCH-80600": {
+    "id": "UPCH-80600",
+    "title": "Single CD Idol nankajya Nakattara [Type A] [Regular Edition] [CD+DVD]",
+    "artist": "AKB48",
+    "category": "AKB48 Group",
+    "price": "1,545yen",
+    "price_num": 1545,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/47/UPCH-80600.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80600",
     "updated_at": "2026-10-19"
   }
 }

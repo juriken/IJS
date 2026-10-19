@@ -11,6 +11,14 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
+# Strict keywords for Tanpopo to prevent generic dandelion/anime items
+TANPOPO_STRICT_KEYWORDS = [
+    "tanpopo", "iida kaori", "ishiguro aya", "yaguchi mari",
+    "kago ai", "ishikawa rika", "konno asami", "niigaki risa",
+    "hello! project", "morning musume", "last kiss", "motto",
+    "otome pasta", "koi wo shichaimashita", "tanpopo 1", "all of tanpopo"
+]
+
 # Schema: (Category, Canonical Artist, Search Bar Query, Keyword Filter List)
 TARGET_GROUPS = [
     # Hello! Project — Active Groups
@@ -30,7 +38,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
     ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー", "こぶし"]),
     ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日", "メロン"]),
-    ("Hello! Project", "Tanpopo", "Tanpopo", ["Tanpopo", "タンポポ"]),
+    ("Hello! Project", "Tanpopo", "Tanpopo Hello Project", TANPOPO_STRICT_KEYWORDS),
     ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
     ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
 
@@ -88,10 +96,19 @@ def clean_text(text):
     return re.sub(r"\s+", " ", text).strip() if text else ""
 
 
-def is_relevant_product(card_text, keywords):
+def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if not keywords:
         return True
     lower_text = card_text.lower()
+
+    # Special filter for Tanpopo to reject non-Hello! Project items
+    if canonical_artist == "Tanpopo":
+        pid = str(prod_key).upper()
+        if any(pid.startswith(pfx) for pfx in ["EPCE", "EPBE", "EPTE", "PKCP", "PKBP", "UFBW", "UFXW"]):
+            return True
+        # Must explicitly contain at least one member or H!P indicator
+        return any(kw in lower_text for kw in keywords if kw != "tanpopo")
+
     for kw in keywords:
         kw_clean = kw.strip().lower()
         if len(kw_clean) <= 2:
@@ -250,7 +267,7 @@ def extract_verified_products(html, category, canonical_artist, keywords):
             rel_date = "Available Now"
 
         searchable_card_text = f"{raw_title} {raw_artist} {clean_text(card_text)}"
-        if not is_relevant_product(searchable_card_text, keywords):
+        if not is_relevant_product(searchable_card_text, canonical_artist, keywords, prod_key):
             continue
 
         items_dict[prod_key] = {
@@ -280,22 +297,45 @@ def dismiss_popups(page):
         pass
 
 
+def get_search_input(page):
+    """Resilient locator helper that finds the search input or reloads to desktop view."""
+    selector = "input[name='q'], input#search-input, input.search-input, input[type='search']"
+    input_el = page.locator(selector).first
+
+    try:
+        if input_el.is_visible(timeout=2500):
+            return input_el
+    except Exception:
+        pass
+
+    # If hidden by a collapsed mobile nav bar on narrower viewports, click the toggle
+    toggle_btn = page.locator(".search-btn, #nav-search, a:has(.fa-search), button:has(.fa-search)").first
+    try:
+        if toggle_btn.is_visible(timeout=1000):
+            toggle_btn.click()
+            time.sleep(0.5)
+            if input_el.is_visible(timeout=2000):
+                return input_el
+    except Exception:
+        pass
+
+    # Fallback: clean reload to CDJapan root to reset DOM structure
+    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+    dismiss_popups(page)
+    time.sleep(1.0)
+    return page.locator(selector).first
+
+
 def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
     results = []
     print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')")
 
     for attempt in range(1, 3):
         try:
-            # Ensure search input is ready and visible
-            search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
-            if not search_input.is_visible():
-                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-                dismiss_popups(page)
-                time.sleep(1.0)
-                search_input = page.locator("input[name='q'], input#search-input, input.search-input, input[type='search']").first
+            search_input = get_search_input(page)
 
-            # Focus and thoroughly clear previous inputs
-            search_input.click()
+            # Focus and clear search bar cleanly
+            search_input.click(timeout=4000)
             page.keyboard.press("ControlOrMeta+A")
             page.keyboard.press("Backspace")
             search_input.fill("")
@@ -305,7 +345,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             search_input.fill(query)
             time.sleep(0.3)
 
-            # Dismiss auto-suggest dropdown so Enter key properly submits search form
+            # Dismiss auto-suggest popup before pressing Enter
             page.keyboard.press("Escape")
             time.sleep(0.2)
 

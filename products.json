@@ -1337,11 +1337,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/03/11",
+    "price_num": 10000,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/HKXN-50135.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50135",
-    "updated_at": "2026-10-19",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-174222": {
     "id": "NEODAI-174222",
@@ -1349,11 +1349,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2023/09/28",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/NEODAI-174222.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-174222",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "HKBN-50268": {
     "id": "HKBN-50268",
@@ -1361,11 +1361,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/10/14",
+    "price_num": 10000,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/16/HKBN-50268.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50268",
-    "updated_at": "2026-10-19",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-273056": {
     "id": "NEODAI-273056",
@@ -1373,11 +1373,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/01/01",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/25/NEODAI-273056.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-273056",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-317896": {
     "id": "NEODAI-317896",
@@ -1385,11 +1385,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2026/04/29",
+    "price_num": 5000,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/33/NEODAI-317896.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-317896",
-    "updated_at": "2026-10-19",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "860661-A": {
     "id": "860661-A",
@@ -1397,11 +1397,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,545yen",
-    "release_date": "2022/09/25",
+    "price_num": 4545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/12/860661-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F860661-A",
-    "updated_at": "2026-10-18",
-    "price_num": 4545
+    "updated_at": "2026-10-19"
   },
   "HKBN-50265": {
     "id": "HKBN-50265",
@@ -1409,11 +1409,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/03/11",
+    "price_num": 10000,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/13/HKBN-50265.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50265",
-    "updated_at": "2026-10-19",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-275728": {
     "id": "NEODAI-275728",
@@ -1421,11 +1421,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "720yen",
-    "release_date": "2025/10/24",
+    "price_num": 720,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-275728.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275728",
-    "updated_at": "2026-10-19",
-    "price_num": 720
+    "updated_at": "2026-10-19"
   },
   "HKXN-50134": {
     "id": "HKXN-50134",
@@ -1433,11 +1433,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "7,500yen",
-    "release_date": "2025/10/29",
+    "price_num": 7500,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/HKXN-50134.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50134",
-    "updated_at": "2026-10-19",
-    "price_num": 7500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-265487": {
     "id": "NEODAI-265487",
@@ -1445,11 +1445,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,000yen",
-    "release_date": "2024/02/14",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/48/NEODAI-265487.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-265487",
-    "updated_at": "2026-10-19",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-258188": {
     "id": "NEODAI-258188",
@@ -1457,11 +1457,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "640yen",
-    "release_date": "2025/04/18",
+    "price_num": 640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/45/NEODAI-258188.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-258188",
-    "updated_at": "2026-10-19",
-    "price_num": 640
+    "updated_at": "2026-10-19"
   },
   "HKXN-50130": {
     "id": "HKXN-50130",
@@ -1469,11 +1469,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "7,500yen",
-    "release_date": "2025/04/23",
+    "price_num": 7500,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/21/HKXN-50130.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50130",
-    "updated_at": "2026-10-19",
-    "price_num": 7500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-235883": {
     "id": "NEODAI-235883",
@@ -1481,11 +1481,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,500yen",
-    "release_date": "2024/01/01",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/NEODAI-235883.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-235883",
-    "updated_at": "2026-10-19",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-231907": {
     "id": "NEODAI-231907",
@@ -1493,11 +1493,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2024/06/14",
+    "price_num": 1800,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEODAI-231907.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-231907",
-    "updated_at": "2026-10-19",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229667": {
     "id": "NEODAI-229667",
@@ -1505,11 +1505,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "750yen",
-    "release_date": "2024/01/01",
+    "price_num": 750,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/NEODAI-229667.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229667",
-    "updated_at": "2026-10-19",
-    "price_num": 750
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229669": {
     "id": "NEODAI-229669",
@@ -1517,11 +1517,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "750yen",
-    "release_date": "2024/01/01",
+    "price_num": 750,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-229669.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229669",
-    "updated_at": "2026-10-19",
-    "price_num": 750
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229351": {
     "id": "NEODAI-229351",
@@ -1529,11 +1529,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2024/03/14",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEODAI-229351.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229351",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229354": {
     "id": "NEODAI-229354",
@@ -1541,11 +1541,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2024/02/14",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEODAI-229354.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229354",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "HKXN-50126": {
     "id": "HKXN-50126",
@@ -1553,11 +1553,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "9,000yen",
-    "release_date": "2024/10/23",
+    "price_num": 9000,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/HKXN-50126.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50126",
-    "updated_at": "2026-10-19",
-    "price_num": 9000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-212248": {
     "id": "NEODAI-212248",
@@ -1565,11 +1565,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,138yen",
-    "release_date": "2024/01/01",
+    "price_num": 2138,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/27/NEODAI-212248.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212248",
-    "updated_at": "2026-10-19",
-    "price_num": 2138
+    "updated_at": "2026-10-19"
   },
   "NEODAI-212310": {
     "id": "NEODAI-212310",
@@ -1577,11 +1577,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,138yen",
-    "release_date": "2024/01/01",
+    "price_num": 2138,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/17/NEODAI-212310.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212310",
-    "updated_at": "2026-10-19",
-    "price_num": 2138
+    "updated_at": "2026-10-19"
   },
   "NEODAI-212311": {
     "id": "NEODAI-212311",
@@ -1589,11 +1589,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,138yen",
-    "release_date": "2024/01/01",
+    "price_num": 2138,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEODAI-212311.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212311",
-    "updated_at": "2026-10-19",
-    "price_num": 2138
+    "updated_at": "2026-10-19"
   },
   "NEODAI-200687": {
     "id": "NEODAI-200687",
@@ -1601,11 +1601,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2024/05/23",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEODAI-200687.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-200687",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "HKXN-50125": {
     "id": "HKXN-50125",
@@ -1613,11 +1613,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "6,500yen",
-    "release_date": "2024/05/29",
+    "price_num": 6500,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/HKXN-50125.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50125",
-    "updated_at": "2026-10-19",
-    "price_num": 6500
+    "updated_at": "2026-10-19"
   },
   "HKBN-50264": {
     "id": "HKBN-50264",
@@ -1625,11 +1625,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,500yen",
-    "release_date": "2024/05/29",
+    "price_num": 4500,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/12/HKBN-50264.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50264",
-    "updated_at": "2026-10-19",
-    "price_num": 4500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-170982": {
     "id": "NEODAI-170982",
@@ -1637,11 +1637,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,800yen",
-    "release_date": "2023/07/23",
+    "price_num": 2800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/NEODAI-170982.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-170982",
-    "updated_at": "2026-10-19",
-    "price_num": 2800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-171066": {
     "id": "NEODAI-171066",
@@ -1649,11 +1649,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,800yen",
-    "release_date": "2023/07/23",
+    "price_num": 2800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/28/NEODAI-171066.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-171066",
-    "updated_at": "2026-10-19",
-    "price_num": 2800
+    "updated_at": "2026-10-19"
   },
   "865571-A": {
     "id": "865571-A",
@@ -1661,11 +1661,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,727yen",
-    "release_date": "2023/04/15",
+    "price_num": 2727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/865571-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F865571-A",
-    "updated_at": "2026-10-19",
-    "price_num": 2727
+    "updated_at": "2026-10-19"
   },
   "865785-A": {
     "id": "865785-A",
@@ -1673,11 +1673,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,727yen",
-    "release_date": "2023/05/29",
+    "price_num": 2727,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/24/865785-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F865785-A",
-    "updated_at": "2026-10-19",
-    "price_num": 2727
+    "updated_at": "2026-10-19"
   },
   "2023CL-4503": {
     "id": "2023CL-4503",
@@ -1685,11 +1685,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,720yen",
-    "release_date": "2023/02/25",
+    "price_num": 2720,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/2023CL-4503.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F2023CL-4503",
-    "updated_at": "2026-10-19",
-    "price_num": 2720
+    "updated_at": "2026-10-19"
   },
   "HKXN-50112": {
     "id": "HKXN-50112",
@@ -1697,11 +1697,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "9,000yen",
-    "release_date": "2023/02/08",
+    "price_num": 9000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/19/HKXN-50112.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50112",
-    "updated_at": "2026-10-19",
-    "price_num": 9000
+    "updated_at": "2026-10-19"
   },
   "2023CL-805": {
     "id": "2023CL-805",
@@ -1709,11 +1709,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,180yen",
-    "release_date": "2022/12/03",
+    "price_num": 3180,
+    "release_date": "2023/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/44/2023CL-805.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F2023CL-805",
-    "updated_at": "2026-10-19",
-    "price_num": 3180
+    "updated_at": "2026-10-19"
   },
   "HKXN-50107": {
     "id": "HKXN-50107",
@@ -1721,11 +1721,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "6,000yen",
-    "release_date": "2022/10/19",
+    "price_num": 6000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/22/HKXN-50107.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50107",
-    "updated_at": "2026-10-18",
-    "price_num": 6000
+    "updated_at": "2026-10-19"
   },
   "HKBN-50258": {
     "id": "HKBN-50258",
@@ -1733,11 +1733,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,500yen",
-    "release_date": "2022/10/19",
+    "price_num": 4500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/14/HKBN-50258.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50258",
-    "updated_at": "2026-10-18",
-    "price_num": 4500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-139700": {
     "id": "NEODAI-139700",
@@ -1745,11 +1745,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "610yen",
-    "release_date": "2017/07/15",
+    "price_num": 610,
+    "release_date": "2017/01/01",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-139700.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139700",
-    "updated_at": "2026-10-18",
-    "price_num": 610
+    "updated_at": "2026-10-19"
   },
   "NEODAI-139702": {
     "id": "NEODAI-139702",
@@ -1757,11 +1757,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,400yen",
-    "release_date": "2020/01/04",
+    "price_num": 1400,
+    "release_date": "2019/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-139702.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139702",
-    "updated_at": "2026-10-18",
-    "price_num": 1400
+    "updated_at": "2026-10-19"
   },
   "848638-A": {
     "id": "848638-A",
@@ -1769,11 +1769,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,545yen",
-    "release_date": "2022/05/30",
+    "price_num": 4545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/46/848638-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F848638-A",
-    "updated_at": "2026-10-18",
-    "price_num": 4545
+    "updated_at": "2026-10-19"
   },
   "847745-A": {
     "id": "847745-A",
@@ -1781,11 +1781,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,545yen",
-    "release_date": "2022/04/16",
+    "price_num": 4545,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/26/847745-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F847745-A",
-    "updated_at": "2026-10-18",
-    "price_num": 4545
+    "updated_at": "2026-10-19"
   },
   "NEODAI-123938": {
     "id": "NEODAI-123938",
@@ -1793,11 +1793,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "270yen",
-    "release_date": "2021/11/15",
+    "price_num": 270,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/NEODAI-123938.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-123938",
-    "updated_at": "2026-10-18",
-    "price_num": 270
+    "updated_at": "2026-10-19"
   },
   "NEODAI-328739": {
     "id": "NEODAI-328739",
@@ -6577,7 +6577,7 @@
   },
   "HKCN-50870": {
     "id": "HKCN-50870",
-    "title": "CD Album MORE! MORE! EP [w/ Blu-ray, Limited Edition / Type B]",
+    "title": "Album CD MORE! MORE! EP [w/ Blu-ray, Limited Edition / Type B]",
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "5,000yen",
@@ -6605,11 +6605,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,000yen",
-    "release_date": "2015/07/15",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/41/HKCN-50423.jpg?v=4",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50423",
-    "updated_at": "2026-10-18",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50803": {
     "id": "HKCN-50803",
@@ -6617,11 +6617,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,273yen",
-    "release_date": "2024/05/15",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/HKCN-50803.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50803",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "HKCN-50858": {
     "id": "HKCN-50858",
@@ -6629,11 +6629,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2024/08/10",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/19/HKCN-50858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50858",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50856": {
     "id": "HKCN-50856",
@@ -6641,11 +6641,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2024/08/10",
+    "price_num": 5000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50856",
-    "updated_at": "2026-10-19",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50859": {
     "id": "HKCN-50859",
@@ -6653,11 +6653,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2025/10/08",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/HKCN-50859.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50859",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50854": {
     "id": "HKCN-50854",
@@ -6665,11 +6665,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2025/10/08",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50854.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50854",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50852": {
     "id": "HKCN-50852",
@@ -6677,11 +6677,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2025/10/08",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50852.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50852",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-244258": {
     "id": "NEODAI-244258",
@@ -6689,11 +6689,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,350yen",
-    "release_date": "2018/06/01",
+    "price_num": 2350,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/44/NEODAI-244258.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-244258",
-    "updated_at": "2026-10-18",
-    "price_num": 2350
+    "updated_at": "2026-10-19"
   },
   "HKCN-50833": {
     "id": "HKCN-50833",
@@ -6701,11 +6701,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2025/02/26",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/HKCN-50833.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50833",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50832": {
     "id": "HKCN-50832",
@@ -6713,11 +6713,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2025/02/26",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/HKCN-50832.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50832",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50830": {
     "id": "HKCN-50830",
@@ -6725,11 +6725,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2025/02/26",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50830.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50830",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "HKCN-50828": {
     "id": "HKCN-50828",
@@ -6737,11 +6737,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2025/02/26",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50828.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50828",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50826": {
     "id": "HKCN-50826",
@@ -6749,11 +6749,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2025/02/26",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50826.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50826",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50802": {
     "id": "HKCN-50802",
@@ -6761,11 +6761,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,273yen",
-    "release_date": "2024/05/15",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/HKCN-50802.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50802",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "HKCN-50801": {
     "id": "HKCN-50801",
@@ -6773,11 +6773,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,273yen",
-    "release_date": "2024/05/15",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/HKCN-50801.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50801",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "HKCN-50799": {
     "id": "HKCN-50799",
@@ -6785,11 +6785,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,600yen",
-    "release_date": "2024/05/15",
+    "price_num": 3600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/24/HKCN-50799.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50799",
-    "updated_at": "2026-10-19",
-    "price_num": 3600
+    "updated_at": "2026-10-19"
   },
   "HKCN-50797": {
     "id": "HKCN-50797",
@@ -6797,11 +6797,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,100yen",
-    "release_date": "2024/05/15",
+    "price_num": 2100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/HKCN-50797.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50797",
-    "updated_at": "2026-10-19",
-    "price_num": 2100
+    "updated_at": "2026-10-19"
   },
   "HKCN-50795": {
     "id": "HKCN-50795",
@@ -6809,11 +6809,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,100yen",
-    "release_date": "2024/05/15",
+    "price_num": 2100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/HKCN-50795.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50795",
-    "updated_at": "2026-10-19",
-    "price_num": 2100
+    "updated_at": "2026-10-19"
   },
   "HKCN-50793": {
     "id": "HKCN-50793",
@@ -6821,11 +6821,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,100yen",
-    "release_date": "2024/05/15",
+    "price_num": 2100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/HKCN-50793.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50793",
-    "updated_at": "2026-10-19",
-    "price_num": 2100
+    "updated_at": "2026-10-19"
   },
   "HR7S-298": {
     "id": "HR7S-298",
@@ -6833,11 +6833,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,273yen",
-    "release_date": "2023/12/06",
+    "price_num": 2273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/HR7S-298.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-298",
-    "updated_at": "2026-10-19",
-    "price_num": 2273
+    "updated_at": "2026-10-19"
   },
   "HR7S-299": {
     "id": "HR7S-299",
@@ -6845,11 +6845,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,273yen",
-    "release_date": "2023/12/06",
+    "price_num": 2273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/29/HR7S-299.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-299",
-    "updated_at": "2026-10-19",
-    "price_num": 2273
+    "updated_at": "2026-10-19"
   },
   "HR7S-300": {
     "id": "HR7S-300",
@@ -6857,11 +6857,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,273yen",
-    "release_date": "2023/12/06",
+    "price_num": 2273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/06/HR7S-300.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-300",
-    "updated_at": "2026-10-19",
-    "price_num": 2273
+    "updated_at": "2026-10-19"
   },
   "HKCN-50776": {
     "id": "HKCN-50776",
@@ -6869,11 +6869,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2023/10/11",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50776.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50776",
-    "updated_at": "2026-10-19",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50774": {
     "id": "HKCN-50774",
@@ -6881,11 +6881,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "7,000yen",
-    "release_date": "2023/10/11",
+    "price_num": 7000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50774.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50774",
-    "updated_at": "2026-10-19",
-    "price_num": 7000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50773": {
     "id": "HKCN-50773",
@@ -6893,11 +6893,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2023/07/12",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50773.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50773",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50772": {
     "id": "HKCN-50772",
@@ -6905,11 +6905,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2023/07/12",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50772.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50772",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50770": {
     "id": "HKCN-50770",
@@ -6917,11 +6917,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2023/07/12",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50770.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50770",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "HKCN-50768": {
     "id": "HKCN-50768",
@@ -6929,11 +6929,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2023/07/12",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50768.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50768",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50766": {
     "id": "HKCN-50766",
@@ -6941,11 +6941,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2023/07/12",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50766.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50766",
-    "updated_at": "2026-10-19",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-148932": {
     "id": "NEODAI-148932",
@@ -6953,11 +6953,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,580yen",
-    "release_date": "2015/07/15",
+    "price_num": 4580,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/NEODAI-148932.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-148932",
-    "updated_at": "2026-10-18",
-    "price_num": 4580
+    "updated_at": "2026-10-19"
   },
   "HKCN-50749": {
     "id": "HKCN-50749",
@@ -6965,11 +6965,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2022/11/23",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50749.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50749",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50748": {
     "id": "HKCN-50748",
@@ -6977,11 +6977,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2022/11/23",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50748.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50748",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "HKCN-50746": {
     "id": "HKCN-50746",
@@ -6989,11 +6989,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2022/11/23",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50746.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50746",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50744": {
     "id": "HKCN-50744",
@@ -7001,11 +7001,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2022/11/23",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/HKCN-50744.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50744",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50742": {
     "id": "HKCN-50742",
@@ -7013,11 +7013,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2022/11/23",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50742.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50742",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "HKCN-50718": {
     "id": "HKCN-50718",
@@ -7025,11 +7025,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2022/04/20",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50718.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50718",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50715": {
     "id": "HKCN-50715",
@@ -7037,11 +7037,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "6,000yen",
-    "release_date": "2022/04/20",
+    "price_num": 6000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/HKCN-50715.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50715",
-    "updated_at": "2026-10-18",
-    "price_num": 6000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50712": {
     "id": "HKCN-50712",
@@ -7049,11 +7049,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "6,000yen",
-    "release_date": "2022/04/20",
+    "price_num": 6000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/01/HKCN-50712.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50712",
-    "updated_at": "2026-10-18",
-    "price_num": 6000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50688": {
     "id": "HKCN-50688",
@@ -7061,11 +7061,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2021/12/22",
+    "price_num": 1182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50688.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50688",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "HKCN-50687": {
     "id": "HKCN-50687",
@@ -7073,11 +7073,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2021/12/22",
+    "price_num": 1182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/HKCN-50687.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50687",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "HKCN-50686": {
     "id": "HKCN-50686",
@@ -7085,11 +7085,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,182yen",
-    "release_date": "2021/12/22",
+    "price_num": 1182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50686.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50686",
-    "updated_at": "2026-10-18",
-    "price_num": 1182
+    "updated_at": "2026-10-19"
   },
   "HKCN-50685": {
     "id": "HKCN-50685",
@@ -7097,11 +7097,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "1,500yen",
-    "release_date": "2021/12/22",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50685.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50685",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "HKCN-50683": {
     "id": "HKCN-50683",
@@ -7109,11 +7109,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,000yen",
-    "release_date": "2021/12/22",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/HKCN-50683.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50683",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7996": {
     "id": "EPCE-7996",
@@ -10057,7 +10057,7 @@
   },
   "UMCK-5446": {
     "id": "UMCK-5446",
-    "title": "Single CD Melon Juice [CD+DVD / Type C]",
+    "title": "CD Maxi Melon Juice [CD+DVD / Type C]",
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
@@ -11833,7 +11833,7 @@
   },
   "VVCL-2962": {
     "id": "VVCL-2962",
-    "title": "Album CD Summer Twintail [CD + DVD / Type B]",
+    "title": "CD Album Summer Twintail [CD + DVD / Type B]",
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
@@ -11869,7 +11869,7 @@
   },
   "VVCL-2964": {
     "id": "VVCL-2964",
-    "title": "Album CD Summer Twintail [CD + DVD / Type C]",
+    "title": "CD Album Summer Twintail [CD + DVD / Type C]",
     "artist": "≒JOY",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",

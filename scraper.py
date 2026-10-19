@@ -12,7 +12,7 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 
 TARGET_GROUPS = [
-    # Hello! Project
+    # Hello! Project — Active Groups
     ("Hello! Project", "Morning Musume", "Morning Musume", ["Morning Musume", "Morning Musume."]),
     ("Hello! Project", "ANGERME", "ANGERME", ["ANGERME", "Smileage", "S/mileage"]),
     ("Hello! Project", "Juice=Juice", "Juice=Juice", ["Juice=Juice"]),
@@ -20,10 +20,32 @@ TARGET_GROUPS = [
     ("Hello! Project", "BEYOOOOONDS", "BEYOOOOONDS", ["BEYOOOOONDS"]),
     ("Hello! Project", "OCHA NORMA", "OCHA NORMA", ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", "Rosy Chronicle", ["Rosy Chronicle", "Rosy"]),
+
+    # Hello! Project — Past Groups & Subunits
+    ("Hello! Project", "Berryz Kobo", "Berryz Kobo", ["Berryz Kobo", "Berryz", "Berryz工房"]),
+    ("Hello! Project", "℃-ute", "C-ute", ["℃-ute", "C-ute", "Cute"]),
+    ("Hello! Project", "Buono!", "Buono!", ["Buono!"]),
+    ("Hello! Project", "Country Girls", "Country Girls", ["Country Girls", "Country Musume", "カントリー"]),
+    ("Hello! Project", "Kobushi Factory", "Kobushi Factory", ["Kobushi Factory", "こぶしファクトリー"]),
+    ("Hello! Project", "Melon Kinenbi", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"]),
+    ("Hello! Project", "W (Double You)", "Double You", ["Double You", "W (Double You)", "ダブルユー"]),
+    ("Hello! Project", "Mini Moni", "Mini Moni", ["Mini Moni", "Minimoni", "ミニモニ。"]),
+    ("Hello! Project", "Tanpopo", "Tanpopo", ["Tanpopo", "タンポポ"]),
+    ("Hello! Project", "Petitmoni", "Petitmoni", ["Petitmoni", "Pucchimoni", "プッチモニ"]),
+    ("Hello! Project", "v-u-den", "v-u-den", ["v-u-den", "美勇伝"]),
+
+    # Hello! Project — Soloists & OGs
+    ("Hello! Project", "Aya Matsuura", "Aya Matsuura", ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
+    ("Hello! Project", "Maki Goto", "Maki Goto", ["Maki Goto", "Goto Maki", "後藤真希"]),
+    ("Hello! Project", "Natsumi Abe", "Natsumi Abe", ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
+    ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
+    ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
+
     # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
     ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
     ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
+
     # AKB48 Group
     ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
     ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
@@ -31,17 +53,19 @@ TARGET_GROUPS = [
     ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
     ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
     ("AKB48 Group", "STU48", "STU48", ["STU48"]),
+
     # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", "Equal Love", ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", "Not Equal ME", ["≠ME", "Not Equal ME", "Noime"]),
     ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy", ["≒JOY", "Nearly Equal Joy", "Niajoy"]),
+
     # Other Key Units
     ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"]),
     ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
 PAGES_PER_TARGET = 3
-BATCH_SIZE = 8
+BATCH_SIZE = 10
 
 
 def load_catalog():
@@ -239,7 +263,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
-        # Dismiss country selector or cookie consent overlay if present
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save')").first
         if close_btn.is_visible(timeout=1500):
             close_btn.click()
@@ -251,7 +274,7 @@ def dismiss_popups(page):
 def scrape_artist_releases(page, category, canonical_artist, query, keywords, max_pages):
     results = []
     encoded_q = urllib.parse.quote_plus(query)
-    print(f"\n-> Direct URL Query for: {canonical_artist} ('{query}')")
+    print(f"\n-> Querying CDJapan for: {canonical_artist} ('{query}')")
 
     for p_num in range(1, max_pages + 1):
         target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&order=reldesc&page={p_num}"
@@ -287,6 +310,7 @@ def main():
     initial_count = len(catalog)
     print(f"Starting Catalog Sync. Current active items: {initial_count}")
 
+    # Randomly select batch from the complete pool of targets
     batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
 
     with sync_playwright() as p:

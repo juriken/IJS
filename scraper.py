@@ -292,7 +292,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
 
 def dismiss_popups(page):
     try:
-        page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
         if close_btn.is_visible(timeout=250):
             close_btn.click(force=True)
@@ -301,69 +300,54 @@ def dismiss_popups(page):
         pass
 
 
-def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
+def execute_search_in_session(page, category, canonical_artist, query, keywords, max_pages):
     results = []
-    print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')")
+    print(f"\n-> In-Session Search Query for: {canonical_artist} ('{query}')")
 
-    # 1. Clean navigation to homepage on fresh page tab
-    page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-    dismiss_popups(page)
-    time.sleep(0.5)
+    encoded_q = urllib.parse.quote_plus(query)
 
-    # 2. Prevent hover-menus by parking mouse away from top navbar
-    page.mouse.move(0, 500)
-
-    # 3. Locate search input on pristine homepage
-    search_input = page.locator("input[name='q'], input#search-input, input.search-input").first
-    search_input.wait_for(state="visible", timeout=8000)
-
-    # 4. Direct focus and atomic fill (bypasses click interception checks)
-    search_input.focus()
-    search_input.fill("")
-    search_input.fill(query)
-    time.sleep(0.3)
-
-    # 5. Submit search via search button or Enter key
-    search_btn = page.locator("button[type='submit'], .search-box button, form[action*='search'] button").first
-    if search_btn.is_visible(timeout=1000):
-        with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-            search_btn.click(force=True)
-    else:
-        with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-            search_input.press("Enter")
-
-    dismiss_popups(page)
-    time.sleep(1.2)
-    print(f"   [Navigated] {page.url}")
-
-    # 6. Extract products and paginate through pages 1 to max_pages
     for p_num in range(1, max_pages + 1):
-        # Scroll to load lazy-rendered items
-        page.evaluate("window.scrollBy(0, 800)")
-        time.sleep(0.5)
-        page.evaluate("window.scrollBy(0, 800)")
-        time.sleep(0.8)
+        target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&page={p_num}"
+        success = False
 
-        html = page.content()
-        verified = extract_verified_products(html, category, canonical_artist, keywords)
-        print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
-        results.extend(verified)
-
-        if p_num < max_pages:
-            next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
-            next_link = page.locator(next_selector).first
-
+        for attempt in range(1, 3):
             try:
-                if next_link.is_visible(timeout=2500):
-                    with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                        page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
-                    dismiss_popups(page)
-                    time.sleep(random.uniform(1.8, 2.5))
-                else:
-                    break
-            except Exception as e_page:
-                print(f"   Pagination note on page {p_num}: {e_page}")
+                # Direct navigation under the existing authenticated browser session with internal Referer
+                page.set_extra_http_headers({
+                    "Referer": "https://www.cdjapan.co.jp/",
+                    "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
+                })
+
+                page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
+
+                # Wait for product grid container to ensure hydration
+                try:
+                    page.wait_for_selector(".item-detail, .n-item, .item, .search-result-item, div[class*='item-']", timeout=5000)
+                except Exception:
+                    pass
+
+                # Scroll to load any lazy elements
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.5)
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.8)
+
+                html = page.content()
+                verified = extract_verified_products(html, category, canonical_artist, keywords)
+                print(f"   [Page {p_num}] Extracted {len(verified)} verified products")
+                results.extend(verified)
+                success = True
                 break
+
+            except Exception as e:
+                print(f"   Attempt {attempt} notice on Page {p_num} for {canonical_artist}: {e}")
+                time.sleep(2.0)
+
+        if not success or (p_num == 1 and len(results) == 0):
+            break
+
+        time.sleep(random.uniform(1.8, 3.0))
 
     return results
 
@@ -378,7 +362,11 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-setuid-sandbox"],
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-blink-features=AutomationControlled"
+            ],
         )
         context = browser.new_context(
             user_agent=(
@@ -388,14 +376,25 @@ def main():
             viewport={"width": 1440, "height": 900},
         )
 
+        # 1. Warm up CDJapan cookies and security tokens
+        warmup_page = context.new_page()
+        try:
+            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(warmup_page)
+            time.sleep(1.5)
+        except Exception as e_warm:
+            print(f"Warmup notice: {e_warm}")
+        finally:
+            warmup_page.close()
+
         new_total = 0
 
-        # Execute each target inside an isolated clean page tab to prevent DOM & timeout leaks
+        # 2. Iterate through target batch using isolated tabs with session persistence
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}")
             page = context.new_page()
             try:
-                items = execute_search_via_bar(
+                items = execute_search_in_session(
                     page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
                 )
                 added_for_artist = 0

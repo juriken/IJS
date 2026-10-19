@@ -1325,11 +1325,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/10/14",
+    "price_num": 10000,
+    "release_date": "2026/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/29/HKXN-50138.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50138",
-    "updated_at": "2026-10-19",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "HKXN-50135": {
     "id": "HKXN-50135",
@@ -3325,15 +3325,15 @@
   },
   "NEODAI-331155": {
     "id": "NEODAI-331155",
-    "title": "Album CD AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined",
+    "title": "CD Album AKB48-Studio Recordings Collection -Team A 7th Stage \"M.T ni Sasagu\" [Limited Edition] w/ AKB48 Official Shop Bonus: To Be Determined",
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "4,800yen",
-    "release_date": "2026/12/16",
+    "price_num": 4800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEODAI-331155.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331155",
-    "updated_at": "2026-10-19",
-    "price_num": 4800
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3151712": {
     "id": "NEOBK-3151712",
@@ -4397,11 +4397,11 @@
     "artist": "≠ME",
     "category": "=LOVE / Sister Groups",
     "price": "8,000yen",
-    "release_date": "2026/04/29",
+    "price_num": 8000,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/17/KIXM-663.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-663",
-    "updated_at": "2026-10-18",
-    "price_num": 8000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2965550": {
     "id": "NEOBK-2965550",
@@ -4433,11 +4433,11 @@
     "artist": "≠ME",
     "category": "=LOVE / Sister Groups",
     "price": "6,500yen",
-    "release_date": "2026/02/04",
+    "price_num": 6500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/KIXM-651.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIXM-651",
-    "updated_at": "2026-10-18",
-    "price_num": 6500
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3106897": {
     "id": "NEOBK-3106897",
@@ -5765,11 +5765,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2026/09/30",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/10/EPCE-8113.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8113",
-    "updated_at": "2026-10-18",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "EPCE-7888": {
     "id": "EPCE-7888",
@@ -5777,11 +5777,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "3,000yen",
-    "release_date": "2024/11/27",
+    "price_num": 3000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/00/EPCE-7888.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7888",
-    "updated_at": "2026-10-18",
-    "price_num": 3000
+    "updated_at": "2026-10-19"
   },
   "EPCE-5983": {
     "id": "EPCE-5983",
@@ -5813,11 +5813,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,091yen",
-    "release_date": "2026/09/30",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/12/EPCE-8115.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8115",
-    "updated_at": "2026-10-18",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "EPCE-8116": {
     "id": "EPCE-8116",
@@ -5849,11 +5849,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2026/09/30",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/14/EPCE-8109.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8109",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "EPCE-5728": {
     "id": "EPCE-5728",
@@ -5885,11 +5885,11 @@
     "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "1,900yen",
-    "release_date": "2026/09/30",
+    "price_num": 1900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/08/EPCE-8111.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-8111",
-    "updated_at": "2026-10-18",
-    "price_num": 1900
+    "updated_at": "2026-10-19"
   },
   "EPCE-5699": {
     "id": "EPCE-5699",
@@ -6581,11 +6581,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "2,000yen",
-    "release_date": "2026/06/24",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50872.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50872",
-    "updated_at": "2026-10-19",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50870": {
     "id": "HKCN-50870",
@@ -6593,11 +6593,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "5,000yen",
-    "release_date": "2024/08/10",
+    "price_num": 5000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50870.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50870",
-    "updated_at": "2026-10-19",
-    "price_num": 5000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50868": {
     "id": "HKCN-50868",
@@ -6605,11 +6605,11 @@
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "10,000yen",
-    "release_date": "2026/06/24",
+    "price_num": 10000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/21/HKCN-50868.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50868",
-    "updated_at": "2026-10-19",
-    "price_num": 10000
+    "updated_at": "2026-10-19"
   },
   "HKCN-50423": {
     "id": "HKCN-50423",
@@ -9221,11 +9221,11 @@
     "artist": "SKE48",
     "category": "AKB48 Group",
     "price": "3,300yen",
-    "release_date": "2026/07/01",
+    "price_num": 3300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/05/27/AVCD-63886.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-63886",
-    "updated_at": "2026-10-18",
-    "price_num": 3300
+    "updated_at": "2026-10-19"
   },
   "AVCD-61793": {
     "id": "AVCD-61793",
@@ -9245,11 +9245,11 @@
     "artist": "SKE48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2026/09/09",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/05/07/AVCD-61794.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-61794",
-    "updated_at": "2026-10-18",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "AVCD-61680": {
     "id": "AVCD-61680",
@@ -13381,51 +13381,51 @@
   },
   "UPCH-89635": {
     "id": "UPCH-89635",
-    "title": "Single CD Sukish [Type A] [Limited Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Sukish [Type A] [Limited Edition] [CD + Blu-ray]",
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2026/08/19",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/UPCH-89635.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89635",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "UPCH-89637": {
     "id": "UPCH-89637",
-    "title": "Single CD Sukish [Type C] [Limited Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Sukish [Type C] [Limited Edition] [CD + Blu-ray]",
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,818yen",
-    "release_date": "2026/08/19",
+    "price_num": 1818,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/UPCH-89637.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89637",
-    "updated_at": "2026-10-19",
-    "price_num": 1818
+    "updated_at": "2026-10-19"
   },
   "UPCH-80635": {
     "id": "UPCH-80635",
-    "title": "Single CD Nagorizakura [Regular Edition]",
+    "title": "CD Maxi Nagorizakura [Regular Edition]",
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,091yen",
-    "release_date": "2026/02/25",
+    "price_num": 1091,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80635.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80635",
-    "updated_at": "2026-10-19",
-    "price_num": 1091
+    "updated_at": "2026-10-19"
   },
   "UPCH-89636": {
     "id": "UPCH-89636",
-    "title": "Single CD Sukish [Type B] [Limited Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Sukish [Type B] [Limited Edition] [CD + Blu-ray]",
     "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "1,273yen",
-    "release_date": "2026/08/19",
+    "price_num": 1273,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/33/UPCH-89636.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89636",
-    "updated_at": "2026-10-19",
-    "price_num": 1273
+    "updated_at": "2026-10-19"
   },
   "UPCH-89651": {
     "id": "UPCH-89651",
@@ -24070,5 +24070,65 @@
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-205440",
     "updated_at": "2026-10-19",
     "price_num": 500
+  },
+  "ESCL-5916": {
+    "id": "ESCL-5916",
+    "title": "CD Album 28/29 [w/ Blu-ray, Limited Edition]",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
+    "price": "5,000yen",
+    "price_num": 5000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/03/41/ESCL-5916.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FESCL-5916",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-7555": {
+    "id": "EPCE-7555",
+    "title": "CD Album i [Regular Edition]",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
+    "price": "2,500yen",
+    "price_num": 2500,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/28/EPCE-7555.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7555",
+    "updated_at": "2026-10-19"
+  },
+  "EPCE-7660": {
+    "id": "EPCE-7660",
+    "title": "CD Album 26/27 [w/ Blu-ray, Limited Edition / Type A]",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
+    "price": "7,000yen",
+    "price_num": 7000,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/29/EPCE-7660.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7660",
+    "updated_at": "2026-10-19"
+  },
+  "EPXE-5240": {
+    "id": "EPXE-5240",
+    "title": "Blu-ray Suzuki Airi Live 2023 - Kokoro no Oto wo -",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
+    "price": "9,000yen",
+    "price_num": 9000,
+    "release_date": "2023/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/14/EPXE-5240.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5240",
+    "updated_at": "2026-10-19"
+  },
+  "AVCD-63752": {
+    "id": "AVCD-63752",
+    "title": "CD Album COLLECTION [Regular Edition]",
+    "artist": "Maki Goto",
+    "category": "Hello! Project",
+    "price": "2,727yen",
+    "price_num": 2727,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/pictures/l/05/13/AVCD-63752.jpg?v=1",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-63752",
+    "updated_at": "2026-10-19"
   }
 }

@@ -243,7 +243,7 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Minimoni, No W Double You) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Includes Minimoni, v-u-den) -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200 relative">
       <div class="max-w-7xl mx-auto px-4 py-1.5 relative flex items-center">
         <!-- Desktop Left Scroll Arrow -->
@@ -425,7 +425,7 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
-    // Comprehensive Group & Artist Mapping (Minimoni properly mapped, W Double You removed)
+    // Comprehensive Group & Artist Mapping (Minimoni & v-u-den properly mapped)
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
         'Morning Musume',
@@ -1059,10 +1059,13 @@
         // Franchise Filter
         const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
 
-        // Sub-Artist Filter
+        // Sub-Artist Filter (Minimoni & v-u-den aliases support)
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         if (!matchesArtist && (activeArtist === 'Minimoni' || activeArtist === 'Mini Moni')) {
           matchesArtist = (item.artist === 'Minimoni' || item.artist === 'Mini Moni');
+        }
+        if (!matchesArtist && (activeArtist === 'v-u-den' || activeArtist === 'Biyuden')) {
+          matchesArtist = (item.artist === 'v-u-den' || item.artist === 'Biyuden');
         }
         
         // Media Format Filter

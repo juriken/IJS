@@ -1,15 +1,19 @@
-name: Daily Catalog Scraper
+name: Daily Idol Product Sync
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Daily at 06:00 UTC
+    # Runs automatically every day at 03:00 UTC
+    - cron: '0 3 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   scrape-and-update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -17,23 +21,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install Scraping Tools & Playwright Chrome
         run: |
           python -m pip install --upgrade pip
-          pip install requests urllib3
+          pip install requests beautifulsoup4 playwright
+          playwright install --with-deps chromium
 
-      - name: Run Scraper
-        run: python scraper.py
-
-      - name: Commit and Push Changes
+      - name: Run Exact Date Re-Scraper
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add products.json sitemap.xml
-          
-          if git diff --staged --quiet; then
-            echo "No changes detected. Skipping commit."
-          else
-            git commit -m "Auto: update catalog and sitemap [skip ci]"
-            git push
-          fi
+          python scraper.py
+
+      - name: Commit and Push Updated Catalog
+        run: |
+          git config --global user.name "IdolJapan Bot"
+          git config --global user.email "bot@idoljapan.store"
+          git add products.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog release dates" && git push)

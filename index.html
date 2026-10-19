@@ -11,7 +11,7 @@
   <meta name="keywords" content="Japanese idols, Hello Project, Morning Musume, AKB48, Nogizaka46, Sakurazaka46, Hinatazaka46, =LOVE, Babymetal, Momoiro Clover Z, CDJapan affiliate, J-Pop CDs">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://idoljapan.store/">
-  <meta name="theme-color" content="#e05375">
+  <meta name="theme-color" content="#e11d48">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -62,15 +62,33 @@
   }
   </script>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sakura: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          }
+        }
+      }
     }
   </script>
 
-  <!-- Font Awesome 6.5.2 -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
   <style>
@@ -91,32 +109,32 @@
     }
   </script>
 </head>
-<body class="bg-[#faf7f5] dark:bg-[#12131a] text-[#2c2527] dark:text-[#e8e6f0] font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+<body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Combined Header & Navigation Bar -->
-  <header class="sticky top-0 z-50 bg-[#e05375] dark:bg-[#1a1c29] text-white shadow-sm border-b border-pink-400/20 dark:border-slate-800">
+  <!-- Unified Sticky Header & Navigation Wrapper -->
+  <header class="sticky top-0 z-50 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-compact-disc text-amber-200 dark:text-[#f47293] text-2xl"></i>
-        <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-pink-100 dark:text-[#f47293]">.store</span></a>
+        <i class="fa-solid fa-compact-disc text-amber-200 dark:text-rose-400 text-2xl"></i>
+        <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-rose-200 dark:text-rose-400">.store</span></a>
       </div>
       
-      <!-- Search -->
+      <!-- Search Input -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <input 
           id="search-input" 
           type="text" 
           placeholder="Search Morning Musume, Nogizaka46, CD, Blu-ray..." 
-          class="w-full pl-10 pr-4 py-2 rounded-full text-[#2c2527] dark:text-[#e8e6f0] bg-white/95 dark:bg-[#25283a] placeholder-[#8c7e82] dark:placeholder-[#7e8299] focus:outline-none focus:ring-2 focus:ring-[#f47293] text-sm shadow-inner border border-transparent dark:border-slate-700/60"
+          class="w-full pl-10 pr-4 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
         />
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-[#9c8e92] dark:text-[#7e8299] text-sm"></i>
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-stone-400 dark:text-slate-400 text-sm"></i>
       </div>
 
-      <!-- Controls: Currency Selector, Dark Mode, and X Link -->
+      <!-- Controls: Currency, Dark Mode, and X Link -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Multi-Currency Selector -->
-        <div class="relative flex items-center bg-[#cc4466] dark:bg-[#25283a] hover:bg-[#b83858] dark:hover:bg-[#2e3247] rounded-full px-2.5 py-1 border border-white/20 dark:border-slate-700 shadow-sm text-xs font-bold transition">
-          <i class="fa-solid fa-coins text-amber-200 dark:text-[#f47293] mr-1.5 text-xs"></i>
+        <!-- Currency Dropdown -->
+        <div class="relative flex items-center bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 rounded-full px-2.5 py-1 border border-rose-400/30 dark:border-slate-700 shadow-sm text-xs font-bold transition">
+          <i class="fa-solid fa-coins text-amber-200 dark:text-rose-400 mr-1.5 text-xs"></i>
           <select 
             id="currency-select" 
             onchange="onCurrencyChange(this.value)" 
@@ -139,18 +157,19 @@
           </select>
         </div>
 
-        <!-- Theme Toggle -->
-        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-[#cc4466] dark:bg-[#25283a] hover:bg-[#b83858] dark:hover:bg-[#2e3247] text-xs font-bold w-8 h-8 rounded-full border border-white/20 dark:border-slate-700 transition flex items-center justify-center shadow-sm">
-          <i id="theme-icon" class="fa-solid fa-moon text-pink-100 dark:text-[#f47293]"></i>
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm">
+          <i id="theme-icon" class="fa-solid fa-moon text-rose-100 dark:text-rose-400"></i>
         </button>
 
-        <!-- X Link -->
+        <!-- Official X Link -->
         <a 
           href="https://x.com/IdolJapanStore" 
           target="_blank" 
           rel="noopener noreferrer" 
-          aria-label="Follow on X" 
-          class="bg-[#cc4466] dark:bg-[#25283a] hover:bg-[#b83858] dark:hover:bg-[#2e3247] text-xs font-bold w-8 h-8 rounded-full border border-white/20 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-pink-100 dark:text-[#f47293] hover:text-white"
+          aria-label="Follow IdolJapan.store on X" 
+          title="Official X Profile: @IdolJapanStore"
+          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 hover:text-white"
         >
           <i class="fa-brands fa-x-twitter text-sm"></i>
         </a>
@@ -158,19 +177,84 @@
     </div>
 
     <!-- Category Filter Bar -->
-    <nav class="bg-white dark:bg-[#181a24] border-t border-b border-[#ede5e1] dark:border-[#26293a] transition-colors duration-200">
+    <nav class="bg-white dark:bg-slate-900 border-t border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
         <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full" id="filter-bar">
-          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#e05375] dark:bg-[#e05375] text-white shadow-sm" data-cat="All">All Items</button>
-          <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="Hello! Project">Hello! Project</button>
-          <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="AKB48 Group">AKB48 Groups</button>
-          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="Sakamichi Series">Sakamichi (46)</button>
-          <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
-          <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="Momoiro Clover Z">Momoclo</button>
-          <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-[#f3ece8] dark:bg-[#25283a] text-[#6b5a60] dark:text-[#a5a7b8] hover:bg-[#faebee] dark:hover:bg-[#2e3247]" data-cat="Babymetal">Babymetal</button>
+          <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm" data-cat="All">All Items</button>
+          <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Hello! Project">Hello! Project</button>
+          <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="AKB48 Group">AKB48 Groups</button>
+          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Sakamichi Series">Sakamichi (46)</button>
+          <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="=LOVE / Sister Groups">=LOVE & Sisters</button>
+          <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Momoiro Clover Z">Momoclo</button>
+          <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700" data-cat="Babymetal">Babymetal</button>
         </div>
 
         <!-- Sorting -->
         <div class="hidden sm:flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
-          <label for="sort-select" class="text-[#7d6f73] dark:text-[#8d90a5]">Sort:</label>
-          <select id="sort-select" onchange="changeSort(this.value)" class="bg-[#f3ece8] dark:bg-[#25283a] border border-[#ede5e1] dark:border-[#2a2d3e] text-[#2c2527] dark:text-[#e8e6f0] py-1 px-2.5 rounded-lg text
+          <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
+          <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500">
+            <option value="newest">Newest Releases</option>
+            <option value="oldest">Oldest Releases</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Trust Notice -->
+  <aside class="bg-amber-50 dark:bg-slate-900 border-b border-amber-200/80 dark:border-slate-800 text-amber-900 dark:text-amber-200 text-xs py-2.5 px-4 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center justify-center sm:justify-start gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-sm"></i>
+        <span><strong>Verified Directory Notice:</strong> IdolJapan.store is an independent discography catalog. We do <u>not</u> process payments, sell goods, or run a proxy service. All links redirect directly to official merchant <strong>CDJapan (Tokyo)</strong>.</span>
+      </div>
+      <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-rose-600 whitespace-nowrap">Learn How It Works →</a>
+    </div>
+  </aside>
+
+  <!-- Hero Banner -->
+  <section class="max-w-7xl mx-auto px-4 mt-6">
+    <div class="bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-white p-5 rounded-2xl shadow-sm border border-rose-400/30 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h1 class="text-xl md:text-2xl font-black flex items-center gap-2">
+          <span>Official Japanese Idol Catalog</span>
+          <span class="bg-white/20 dark:bg-rose-500/20 backdrop-blur-md text-white dark:text-rose-300 border border-white/30 dark:border-rose-400/30 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> CDJapan Authorized Affiliate
+          </span>
+        </h1>
+        <p class="text-sm text-rose-100 dark:text-slate-300 mt-1">Official singles, albums, photobooks, and concert Blu-rays shipped straight from Tokyo by authorized retailer CDJapan.</p>
+      </div>
+      <div id="stats" class="text-xs bg-black/20 dark:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-rose-100 dark:text-rose-400 border border-white/10 dark:border-white/5">Loading catalog...</div>
+    </div>
+  </section>
+
+  <!-- Page Controls -->
+  <section class="max-w-7xl mx-auto px-4 mt-6" id="pagination-top-anchor">
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs transition-colors duration-200">
+      <div class="font-medium text-stone-600 dark:text-slate-300" id="page-range-info">
+        Showing releases...
+      </div>
+
+      <div class="flex items-center gap-3 ml-auto">
+        <!-- Mobile Sort -->
+        <div class="sm:hidden flex items-center gap-1">
+          <label for="sort-select-mobile" class="text-stone-500 dark:text-slate-400 font-semibold">Sort:</label>
+          <select id="sort-select-mobile" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2 rounded-lg text-xs font-semibold focus:outline-none">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+          </select>
+        </div>
+
+        <!-- Per Page Selector -->
+        <div class="flex items-center gap-1.5">
+          <label for="per-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Per page:</label>
+          <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500">
+            <option value="30">30</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+          </select>

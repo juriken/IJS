@@ -1805,11 +1805,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,520yen",
-    "release_date": "2026/09/25",
+    "price_num": 3520,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/44/NEODAI-328739.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-328739",
-    "updated_at": "2026-10-19",
-    "price_num": 3520
+    "updated_at": "2026-10-19"
   },
   "NEOODY-100": {
     "id": "NEOODY-100",
@@ -1817,11 +1817,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2025/03/14",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/03/36/NEOODY-100.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOODY-100",
-    "updated_at": "2026-10-19",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "NEODAI-119722": {
     "id": "NEODAI-119722",
@@ -1829,11 +1829,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,100yen",
-    "release_date": "2021/12/17",
+    "price_num": 3100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/NEODAI-119722.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-119722",
-    "updated_at": "2026-10-18",
-    "price_num": 3100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-153247": {
     "id": "NEODAI-153247",
@@ -1841,11 +1841,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,000yen",
-    "release_date": "2023/01/01",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-153247.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-153247",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2318883": {
     "id": "NEOBK-2318883",
@@ -1853,11 +1853,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "2,037yen",
-    "release_date": "2019/02/01",
+    "price_num": 2037,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/23/NEOBK-2318883.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2318883",
-    "updated_at": "2026-10-18",
-    "price_num": 2037
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267719": {
     "id": "NEODAI-267719",
@@ -1865,11 +1865,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2025/07/18",
+    "price_num": 480,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/15/NEODAI-267719.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267719",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-92139": {
     "id": "NEODAI-92139",
@@ -1877,11 +1877,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,100yen",
-    "release_date": "2020/11/16",
+    "price_num": 3100,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/NEODAI-92139.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-92139",
-    "updated_at": "2026-10-18",
-    "price_num": 3100
+    "updated_at": "2026-10-19"
   },
   "NEODAI-281482": {
     "id": "NEODAI-281482",
@@ -1889,11 +1889,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/12/01",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/43/NEODAI-281482.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-281482",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-281492": {
     "id": "NEODAI-281492",
@@ -1901,11 +1901,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/12/01",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/45/NEODAI-281492.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-281492",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-281493": {
     "id": "NEODAI-281493",
@@ -1913,11 +1913,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/12/01",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/46/NEODAI-281493.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-281493",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-275979": {
     "id": "NEODAI-275979",
@@ -1925,11 +1925,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "540yen",
-    "release_date": "2025/10/24",
+    "price_num": 540,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/35/NEODAI-275979.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275979",
-    "updated_at": "2026-10-19",
-    "price_num": 540
+    "updated_at": "2026-10-19"
   },
   "NEODAI-275980": {
     "id": "NEODAI-275980",
@@ -1937,11 +1937,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2025/10/01",
+    "price_num": 1800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/28/NEODAI-275980.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275980",
-    "updated_at": "2026-10-19",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-272173": {
     "id": "NEODAI-272173",
@@ -1949,11 +1949,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "640yen",
-    "release_date": "2025/09/12",
+    "price_num": 640,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-272173.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-272173",
-    "updated_at": "2026-10-19",
-    "price_num": 640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-272175": {
     "id": "NEODAI-272175",
@@ -1961,11 +1961,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2025/10/04",
+    "price_num": 1800,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/24/NEODAI-272175.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-272175",
-    "updated_at": "2026-10-19",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-272177": {
     "id": "NEODAI-272177",
@@ -1973,11 +1973,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "700yen",
-    "release_date": "2025/10/04",
+    "price_num": 700,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/26/NEODAI-272177.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-272177",
-    "updated_at": "2026-10-19",
-    "price_num": 700
+    "updated_at": "2026-10-19"
   },
   "NEOBK-3142638": {
     "id": "NEOBK-3142638",
@@ -1985,11 +1985,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,182yen",
-    "release_date": "2025/10/01",
+    "price_num": 3182,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/10/NEOBK-3142638.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3142638",
-    "updated_at": "2026-10-19",
-    "price_num": 3182
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267713": {
     "id": "NEODAI-267713",
@@ -1997,11 +1997,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,200yen",
-    "release_date": "2025/08/28",
+    "price_num": 1200,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/09/NEODAI-267713.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267713",
-    "updated_at": "2026-10-19",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267714": {
     "id": "NEODAI-267714",
@@ -2009,11 +2009,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/08/28",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/10/NEODAI-267714.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267714",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267715": {
     "id": "NEODAI-267715",
@@ -2021,11 +2021,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/08/28",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-267715.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267715",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267716": {
     "id": "NEODAI-267716",
@@ -2033,11 +2033,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/08/28",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-267716.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267716",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267717": {
     "id": "NEODAI-267717",
@@ -2045,11 +2045,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/08/28",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-267717.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267717",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267718": {
     "id": "NEODAI-267718",
@@ -2057,11 +2057,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/08/28",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-267718.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267718",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267720": {
     "id": "NEODAI-267720",
@@ -2069,11 +2069,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2025/08/22",
+    "price_num": 480,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/08/NEODAI-267720.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267720",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-267721": {
     "id": "NEODAI-267721",
@@ -2081,11 +2081,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "640yen",
-    "release_date": "2025/08/27",
+    "price_num": 640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/09/NEODAI-267721.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-267721",
-    "updated_at": "2026-10-19",
-    "price_num": 640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-266637": {
     "id": "NEODAI-266637",
@@ -2093,11 +2093,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "2,200yen",
-    "release_date": "2025/10/31",
+    "price_num": 2200,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEODAI-266637.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-266637",
-    "updated_at": "2026-10-19",
-    "price_num": 2200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-260656": {
     "id": "NEODAI-260656",
@@ -2105,11 +2105,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "640yen",
-    "release_date": "2025/07/11",
+    "price_num": 640,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/NEODAI-260656.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-260656",
-    "updated_at": "2026-10-19",
-    "price_num": 640
+    "updated_at": "2026-10-19"
   },
   "NEODAI-260657": {
     "id": "NEODAI-260657",
@@ -2117,11 +2117,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2025/04/30",
+    "price_num": 480,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-260657.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-260657",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-258203": {
     "id": "NEODAI-258203",
@@ -2129,11 +2129,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2025/01/01",
+    "price_num": 1800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/28/NEODAI-258203.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-258203",
-    "updated_at": "2026-10-19",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253074": {
     "id": "NEODAI-253074",
@@ -2141,11 +2141,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/04/30",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/44/NEODAI-253074.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253074",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253075": {
     "id": "NEODAI-253075",
@@ -2153,11 +2153,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/04/30",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/45/NEODAI-253075.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253075",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253076": {
     "id": "NEODAI-253076",
@@ -2165,11 +2165,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/04/30",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/46/NEODAI-253076.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253076",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253080": {
     "id": "NEODAI-253080",
@@ -2177,11 +2177,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/04/30",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-253080.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253080",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253220": {
     "id": "NEODAI-253220",
@@ -2189,11 +2189,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,800yen",
-    "release_date": "2025/05/01",
+    "price_num": 1800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/38/NEODAI-253220.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253220",
-    "updated_at": "2026-10-19",
-    "price_num": 1800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253221": {
     "id": "NEODAI-253221",
@@ -2201,11 +2201,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,500yen",
-    "release_date": "2025/05/01",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-253221.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253221",
-    "updated_at": "2026-10-19",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253222": {
     "id": "NEODAI-253222",
@@ -2213,11 +2213,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/04/30",
+    "price_num": 600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-253222.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253222",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253224": {
     "id": "NEODAI-253224",
@@ -2225,11 +2225,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2025/04/30",
+    "price_num": 1600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-253224.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253224",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-253227": {
     "id": "NEODAI-253227",
@@ -2237,11 +2237,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "700yen",
-    "release_date": "2025/04/30",
+    "price_num": 700,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/45/NEODAI-253227.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-253227",
-    "updated_at": "2026-10-19",
-    "price_num": 700
+    "updated_at": "2026-10-19"
   },
   "NEODAI-254117": {
     "id": "NEODAI-254117",
@@ -2249,11 +2249,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2025/04/30",
+    "price_num": 480,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/47/NEODAI-254117.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254117",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-254119": {
     "id": "NEODAI-254119",
@@ -2261,11 +2261,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/05/10",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEODAI-254119.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254119",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-254120": {
     "id": "NEODAI-254120",
@@ -2273,11 +2273,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/05/10",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-254120.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254120",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-254121": {
     "id": "NEODAI-254121",
@@ -2285,11 +2285,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/05/10",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/43/NEODAI-254121.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254121",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-254122": {
     "id": "NEODAI-254122",
@@ -2297,11 +2297,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/05/10",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/44/NEODAI-254122.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-254122",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-250899": {
     "id": "NEODAI-250899",
@@ -2309,11 +2309,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2025/04/04",
+    "price_num": 1600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/NEODAI-250899.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-250899",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-250900": {
     "id": "NEODAI-250900",
@@ -2321,11 +2321,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2025/04/04",
+    "price_num": 1600,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/38/NEODAI-250900.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-250900",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-250901": {
     "id": "NEODAI-250901",
@@ -2333,11 +2333,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "800yen",
-    "release_date": "2025/01/01",
+    "price_num": 800,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/39/NEODAI-250901.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-250901",
-    "updated_at": "2026-10-19",
-    "price_num": 800
+    "updated_at": "2026-10-19"
   },
   "NEODAI-245878": {
     "id": "NEODAI-245878",
@@ -2345,11 +2345,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,200yen",
-    "release_date": "2025/03/10",
+    "price_num": 1200,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/31/NEODAI-245878.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-245878",
-    "updated_at": "2026-10-19",
-    "price_num": 1200
+    "updated_at": "2026-10-19"
   },
   "NEODAI-245879": {
     "id": "NEODAI-245879",
@@ -2357,11 +2357,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2025/03/10",
+    "price_num": 600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/32/NEODAI-245879.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-245879",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-246024": {
     "id": "NEODAI-246024",
@@ -2369,11 +2369,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2025/03/10",
+    "price_num": 1600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-246024.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-246024",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-246025": {
     "id": "NEODAI-246025",
@@ -2381,11 +2381,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2025/03/10",
+    "price_num": 1600,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/43/NEODAI-246025.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-246025",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-244965": {
     "id": "NEODAI-244965",
@@ -2393,11 +2393,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "500yen",
-    "release_date": "2025/01/01",
+    "price_num": 500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-244965.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-244965",
-    "updated_at": "2026-10-19",
-    "price_num": 500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-241182": {
     "id": "NEODAI-241182",
@@ -2405,11 +2405,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "3,500yen",
-    "release_date": "2025/03/14",
+    "price_num": 3500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/16/NEODAI-241182.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-241182",
-    "updated_at": "2026-10-19",
-    "price_num": 3500
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237663": {
     "id": "NEODAI-237663",
@@ -2417,11 +2417,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,980yen",
-    "release_date": "2025/01/02",
+    "price_num": 1980,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEODAI-237663.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237663",
-    "updated_at": "2026-10-19",
-    "price_num": 1980
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237668": {
     "id": "NEODAI-237668",
@@ -2429,11 +2429,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "650yen",
-    "release_date": "2025/01/01",
+    "price_num": 650,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/21/NEODAI-237668.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237668",
-    "updated_at": "2026-10-19",
-    "price_num": 650
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237669": {
     "id": "NEODAI-237669",
@@ -2441,11 +2441,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,300yen",
-    "release_date": "2025/01/01",
+    "price_num": 1300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-237669.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237669",
-    "updated_at": "2026-10-19",
-    "price_num": 1300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237670": {
     "id": "NEODAI-237670",
@@ -2453,11 +2453,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,300yen",
-    "release_date": "2025/01/01",
+    "price_num": 1300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/NEODAI-237670.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237670",
-    "updated_at": "2026-10-19",
-    "price_num": 1300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237671": {
     "id": "NEODAI-237671",
@@ -2465,11 +2465,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,300yen",
-    "release_date": "2025/01/01",
+    "price_num": 1300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEODAI-237671.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237671",
-    "updated_at": "2026-10-19",
-    "price_num": 1300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-237672": {
     "id": "NEODAI-237672",
@@ -2477,11 +2477,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,300yen",
-    "release_date": "2025/01/01",
+    "price_num": 1300,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/NEODAI-237672.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-237672",
-    "updated_at": "2026-10-19",
-    "price_num": 1300
+    "updated_at": "2026-10-19"
   },
   "NEODAI-233039": {
     "id": "NEODAI-233039",
@@ -2489,11 +2489,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/02",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/09/NEODAI-233039.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-233039",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-233079": {
     "id": "NEODAI-233079",
@@ -2501,11 +2501,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/26",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-233079.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-233079",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-233078": {
     "id": "NEODAI-233078",
@@ -2513,11 +2513,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/23",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/16/NEODAI-233078.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-233078",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-230493": {
     "id": "NEODAI-230493",
@@ -2525,11 +2525,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/02",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/07/NEODAI-230493.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-230493",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-230516": {
     "id": "NEODAI-230516",
@@ -2537,11 +2537,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/02",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/47/NEODAI-230516.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-230516",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-230517": {
     "id": "NEODAI-230517",
@@ -2549,11 +2549,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/02",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/48/NEODAI-230517.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-230517",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-230530": {
     "id": "NEODAI-230530",
@@ -2561,11 +2561,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/11/02",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/NEODAI-230530.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-230530",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229134": {
     "id": "NEODAI-229134",
@@ -2573,11 +2573,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "320yen",
-    "release_date": "2024/10/03",
+    "price_num": 320,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-229134.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229134",
-    "updated_at": "2026-10-19",
-    "price_num": 320
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229135": {
     "id": "NEODAI-229135",
@@ -2585,11 +2585,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "900yen",
-    "release_date": "2024/01/01",
+    "price_num": 900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/41/NEODAI-229135.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229135",
-    "updated_at": "2026-10-18",
-    "price_num": 900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229136": {
     "id": "NEODAI-229136",
@@ -2597,11 +2597,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "900yen",
-    "release_date": "2024/01/01",
+    "price_num": 900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEODAI-229136.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229136",
-    "updated_at": "2026-10-18",
-    "price_num": 900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229165": {
     "id": "NEODAI-229165",
@@ -2609,11 +2609,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2024/10/03",
+    "price_num": 480,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/47/NEODAI-229165.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229165",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-229183": {
     "id": "NEODAI-229183",
@@ -2621,11 +2621,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "480yen",
-    "release_date": "2024/10/03",
+    "price_num": 480,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEODAI-229183.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229183",
-    "updated_at": "2026-10-19",
-    "price_num": 480
+    "updated_at": "2026-10-19"
   },
   "NEODAI-228395": {
     "id": "NEODAI-228395",
@@ -2633,11 +2633,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "4,000yen",
-    "release_date": "2024/12/31",
+    "price_num": 4000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-228395.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-228395",
-    "updated_at": "2026-10-19",
-    "price_num": 4000
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226998": {
     "id": "NEODAI-226998",
@@ -2645,11 +2645,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "900yen",
-    "release_date": "2024/01/01",
+    "price_num": 900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/NEODAI-226998.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226998",
-    "updated_at": "2026-10-18",
-    "price_num": 900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-227022": {
     "id": "NEODAI-227022",
@@ -2657,11 +2657,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "900yen",
-    "release_date": "2024/01/01",
+    "price_num": 900,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/16/NEODAI-227022.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-227022",
-    "updated_at": "2026-10-18",
-    "price_num": 900
+    "updated_at": "2026-10-19"
   },
   "NEODAI-227023": {
     "id": "NEODAI-227023",
@@ -2669,11 +2669,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/08",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-227023.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-227023",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-227024": {
     "id": "NEODAI-227024",
@@ -2681,11 +2681,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/08",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEODAI-227024.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-227024",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-227073": {
     "id": "NEODAI-227073",
@@ -2693,11 +2693,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/08",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEODAI-227073.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-227073",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226348": {
     "id": "NEODAI-226348",
@@ -2705,11 +2705,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,600yen",
-    "release_date": "2024/09/29",
+    "price_num": 1600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/30/NEODAI-226348.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226348",
-    "updated_at": "2026-10-19",
-    "price_num": 1600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226351": {
     "id": "NEODAI-226351",
@@ -2717,11 +2717,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "700yen",
-    "release_date": "2024/09/29",
+    "price_num": 700,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/25/NEODAI-226351.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226351",
-    "updated_at": "2026-10-19",
-    "price_num": 700
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226352": {
     "id": "NEODAI-226352",
@@ -2729,11 +2729,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/29",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/26/NEODAI-226352.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226352",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226354": {
     "id": "NEODAI-226354",
@@ -2741,11 +2741,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/29",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/28/NEODAI-226354.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226354",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226355": {
     "id": "NEODAI-226355",
@@ -2753,11 +2753,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/29",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEODAI-226355.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226355",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226357": {
     "id": "NEODAI-226357",
@@ -2765,11 +2765,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/29",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/31/NEODAI-226357.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226357",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-226358": {
     "id": "NEODAI-226358",
@@ -2777,11 +2777,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/09/29",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/32/NEODAI-226358.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-226358",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "NEODAI-221914": {
     "id": "NEODAI-221914",
@@ -2789,11 +2789,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "600yen",
-    "release_date": "2024/10/31",
+    "price_num": 600,
+    "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/04/NEODAI-221914.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-221914",
-    "updated_at": "2026-10-19",
-    "price_num": 600
+    "updated_at": "2026-10-19"
   },
   "EPCE-7970": {
     "id": "EPCE-7970",
@@ -7121,11 +7121,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "6,000yen",
-    "release_date": "2026/06/03",
+    "price_num": 6000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/04/EPCE-7996.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7996",
-    "updated_at": "2026-10-19",
-    "price_num": 6000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7992": {
     "id": "EPCE-7992",
@@ -7133,11 +7133,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,540yen",
-    "release_date": "2026/06/03",
+    "price_num": 1540,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/00/EPCE-7992.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7992",
-    "updated_at": "2026-10-19",
-    "price_num": 1540
+    "updated_at": "2026-10-19"
   },
   "EPCE-7563": {
     "id": "EPCE-7563",
@@ -7145,11 +7145,11 @@
     "artist": "Tsubaki Factory",
     "category": "Hello! Project",
     "price": "1,000yen",
-    "release_date": "2020/01/15",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/28/EPCE-7563.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7563",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "EPCE-7957": {
     "id": "EPCE-7957",
@@ -10657,7 +10657,7 @@
   },
   "KIZM-90856": {
     "id": "KIZM-90856",
-    "title": "Single CD Fuyufuku ni Kigaetara [Type A] [Limited Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type A] [Limited Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -10717,7 +10717,7 @@
   },
   "KIZM-90858": {
     "id": "KIZM-90858",
-    "title": "Single CD Fuyufuku ni Kigaetara [Type B] [Limited Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Limited Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -10729,7 +10729,7 @@
   },
   "KIZM-858": {
     "id": "KIZM-858",
-    "title": "Single CD Fuyufuku ni Kigaetara [Type B] [Regular Edition] [CD + Blu-ray]",
+    "title": "CD Maxi Fuyufuku ni Kigaetara [Type B] [Regular Edition] [CD + Blu-ray]",
     "artist": "STU48",
     "category": "AKB48 Group",
     "price": "1,727yen",
@@ -11473,7 +11473,7 @@
   },
   "VVCL-2974": {
     "id": "VVCL-2974",
-    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type C]",
+    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type C]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "982yen",
@@ -11497,7 +11497,7 @@
   },
   "VVCL-2970": {
     "id": "VVCL-2970",
-    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type A]",
+    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type A]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
@@ -11593,7 +11593,7 @@
   },
   "VVCL-2972": {
     "id": "VVCL-2972",
-    "title": "Album CD Koi, Hajimemashita. [CD + Blu-ray / Type B]",
+    "title": "CD Album Koi, Hajimemashita. [CD + Blu-ray / Type B]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
@@ -11633,11 +11633,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2026/04/01",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/04/VVCL-2880.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2880",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1780": {
     "id": "VVCL-1780",
@@ -11653,15 +11653,15 @@
   },
   "VVCL-2609": {
     "id": "VVCL-2609",
-    "title": "CD Maxi Tokubechu, Shite / Koibito Ijo, Suki Miman [Type F]",
+    "title": "Single CD Tokubechu, Shite / Koibito Ijo, Suki Miman [Type F]",
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2025/02/26",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/38/VVCL-2609.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2609",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1656": {
     "id": "VVCL-1656",
@@ -11669,11 +11669,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2019/08/10",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/37/VVCL-1656.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1656",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1241": {
     "id": "VVCL-1241",
@@ -11681,11 +11681,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "926yen",
-    "release_date": "2018/05/16",
+    "price_num": 926,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/14/VVCL-1241.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1241",
-    "updated_at": "2026-10-18",
-    "price_num": 926
+    "updated_at": "2026-10-19"
   },
   "VVCL-2310": {
     "id": "VVCL-2310",
@@ -11693,11 +11693,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2023/08/10",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/19/VVCL-2310.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2310",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2188": {
     "id": "VVCL-2188",
@@ -11705,11 +11705,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,500yen",
-    "release_date": "2023/02/22",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/33/VVCL-2188.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2188",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "VVCL-1139": {
     "id": "VVCL-1139",
@@ -11717,11 +11717,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "926yen",
-    "release_date": "2017/12/06",
+    "price_num": 926,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/16/VVCL-1139.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1139",
-    "updated_at": "2026-10-18",
-    "price_num": 926
+    "updated_at": "2026-10-19"
   },
   "VVXL-272": {
     "id": "VVXL-272",
@@ -11729,11 +11729,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "13,800yen",
-    "release_date": "2025/12/24",
+    "price_num": 13800,
+    "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/12/21/VVXL-272.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-272",
-    "updated_at": "2026-10-18",
-    "price_num": 13800
+    "updated_at": "2026-10-19"
   },
   "VVCL-1304": {
     "id": "VVCL-1304",
@@ -11741,11 +11741,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "926yen",
-    "release_date": "2018/10/17",
+    "price_num": 926,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/13/VVCL-1304.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1304",
-    "updated_at": "2026-10-18",
-    "price_num": 926
+    "updated_at": "2026-10-19"
   },
   "VVCL-2810": {
     "id": "VVCL-2810",
@@ -11753,11 +11753,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2025/10/08",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/39/VVCL-2810.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2810",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2800": {
     "id": "VVCL-2800",
@@ -11765,11 +11765,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,636yen",
-    "release_date": "2025/10/08",
+    "price_num": 1636,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/37/VVCL-2800.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2800",
-    "updated_at": "2026-10-18",
-    "price_num": 1636
+    "updated_at": "2026-10-19"
   },
   "VVCL-2518": {
     "id": "VVCL-2518",
@@ -11777,11 +11777,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,500yen",
-    "release_date": "2024/07/31",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/35/VVCL-2518.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2518",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "VVCL-2458": {
     "id": "VVCL-2458",
@@ -11789,11 +11789,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2024/03/06",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/39/VVCL-2458.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2458",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2368": {
     "id": "VVCL-2368",
@@ -11801,11 +11801,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2023/11/29",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/37/VVCL-2368.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2368",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVXL-300": {
     "id": "VVXL-300",
@@ -16445,11 +16445,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2022/05/25",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/20/VVCL-2039.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2039",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1932": {
     "id": "VVCL-1932",
@@ -16457,11 +16457,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,000yen",
-    "release_date": "2021/08/25",
+    "price_num": 1000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/41/VVCL-1932.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1932",
-    "updated_at": "2026-10-18",
-    "price_num": 1000
+    "updated_at": "2026-10-19"
   },
   "VVCL-1784": {
     "id": "VVCL-1784",
@@ -16469,11 +16469,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,500yen",
-    "release_date": "2020/08/10",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/VVCL-1784.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-1784",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "NEOBK-2922414": {
     "id": "NEOBK-2922414",
@@ -16709,11 +16709,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "1,500yen",
-    "release_date": "2024/03/06",
+    "price_num": 1500,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/31/VVCL-2450.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2450",
-    "updated_at": "2026-10-18",
-    "price_num": 1500
+    "updated_at": "2026-10-19"
   },
   "VVCL-2308": {
     "id": "VVCL-2308",
@@ -16805,11 +16805,11 @@
     "artist": "=LOVE",
     "category": "=LOVE / Sister Groups",
     "price": "2,000yen",
-    "release_date": "2024/08/10",
+    "price_num": 2000,
+    "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/43/VVCL-2806.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVCL-2806",
-    "updated_at": "2026-10-18",
-    "price_num": 2000
+    "updated_at": "2026-10-19"
   },
   "VVCL-2804": {
     "id": "VVCL-2804",

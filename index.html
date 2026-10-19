@@ -55,7 +55,7 @@
       </div>
 
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Currency Selector -->
+        <!-- Multi-Currency Selector -->
         <div class="relative flex items-center bg-pink-700 dark:bg-pink-900 rounded-full px-2.5 py-1 border border-pink-400/30 shadow-sm text-xs font-bold">
           <i class="fa-solid fa-coins text-yellow-300 mr-1.5 text-xs"></i>
           <select 
@@ -331,7 +331,6 @@
       render();
     }
 
-    // Direct, absolute path fetch for maximum reliability
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
@@ -569,30 +568,22 @@
         const scoreB = getNormalizedDateScore(b);
 
         if (currentSort === 'newest') {
-          // If both have verified dates, highest date integer first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreB !== scoreA) return scoreB - scoreA;
             return (b._catalogIndex || 0) - (a._catalogIndex || 0);
           }
-          // Items with real dates always precede items with no date
           if (scoreA > 0 && scoreB === 0) return -1;
           if (scoreB > 0 && scoreA === 0) return 1;
-
-          // Undated items: sort by latest addition to database
           return (b._catalogIndex || 0) - (a._catalogIndex || 0);
         } 
         
         else if (currentSort === 'oldest') {
-          // If both have verified dates, lowest date integer first
           if (scoreA > 0 && scoreB > 0) {
             if (scoreA !== scoreB) return scoreA - scoreB;
             return (a._catalogIndex || 0) - (b._catalogIndex || 0);
           }
-          // Items with real dates always precede items with no date
           if (scoreA > 0 && scoreB === 0) return -1;
           if (scoreB > 0 && scoreA === 0) return 1;
-
-          // Undated items: sort by earliest addition to database
           return (a._catalogIndex || 0) - (b._catalogIndex || 0);
         } 
         

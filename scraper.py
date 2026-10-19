@@ -331,7 +331,7 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
             search_input = get_visible_search_input(page)
 
             # Focus and clear the search input cleanly
-            search_input.click(timeout=4000)
+            search_input.click(timeout=3000)
             search_input.fill("")
             time.sleep(0.2)
 
@@ -363,19 +363,33 @@ def execute_search_via_bar(page, category, canonical_artist, query, keywords, ma
                 results.extend(verified)
 
                 if p_num < max_pages:
-                    next_btn = page.locator("a[rel='next']:visible, a.next:visible, li.next a:visible, a:has-text('Next'):visible").first
-                    if next_btn.count() > 0 and next_btn.is_visible(timeout=2000):
-                        with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                            next_btn.click()
-                        dismiss_popups(page)
-                        time.sleep(random.uniform(1.8, 2.8))
-                    else:
+                    # Strict pagination selector: only matches actual pagination containers
+                    next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
+                    next_btn = page.locator(next_selector).first
+
+                    try:
+                        if next_btn.is_visible(timeout=2500):
+                            with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
+                                # Trigger click directly via JS to prevent pointer event intercept timeouts
+                                page.evaluate(f"() => {{ const el = document.querySelector('{next_selector}'); if (el) el.click(); }}")
+                            dismiss_popups(page)
+                            time.sleep(random.uniform(1.8, 2.8))
+                        else:
+                            break
+                    except Exception as e_page:
+                        print(f"   Pagination note on page {p_num}: {e_page}")
                         break
 
             return results
 
         except Exception as e:
             print(f"   Attempt {attempt} notice for {canonical_artist}: {e}")
+            # Reset page back to clean root state if search stalled
+            try:
+                page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
+                dismiss_popups(page)
+            except Exception:
+                pass
             time.sleep(2.0)
 
     return results

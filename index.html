@@ -2,8 +2,35 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
+
+  <!-- Early Viewport & Layout Mode Detection (Defaults to 1280px Desktop Canvas on all devices) -->
+  <script>
+    (function() {
+      const savedLayout = localStorage.getItem('idoljapan_layout_mode') || 'desktop';
+      const viewportMeta = document.createElement('meta');
+      viewportMeta.name = 'viewport';
+      viewportMeta.id = 'dynamic-viewport';
+
+      if (savedLayout === 'mobile') {
+        viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
+        document.documentElement.classList.add('layout-mobile');
+      } else {
+        // Default Desktop Canvas Mode (1280px wide canvas, pinch-to-zoom allowed)
+        viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
+        document.documentElement.classList.add('layout-desktop');
+      }
+      document.head.appendChild(viewportMeta);
+
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 
   <title>IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory</title>
   <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory">
@@ -103,25 +130,19 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    /* Fixed Virtual Desktop Width when in Desktop Mode */
+    html.layout-desktop body {
+      min-width: 1280px;
+    }
+    html.layout-mobile body {
+      min-width: 100%;
+    }
   </style>
-
-  <!-- Early Theme Detection -->
-  <script>
-    (function() {
-      const storedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    })();
-  </script>
 </head>
-<body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+<body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
   <!-- Toast Notification Container -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+  <div id="toast" class="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
     <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
     <span id="toast-message">Copied to clipboard</span>
   </div>
@@ -140,7 +161,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search =LOVE, ≠ME, ≒JOY, Morning Musume..." 
+            placeholder="Search Morning Musume, NiziU, ME:I, FRUITS ZIPPER..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -154,12 +175,24 @@
         </div>
       </div>
 
-      <!-- Controls -->
+      <!-- Controls: Layout Switcher, Currency, Theme & Actions -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
+        <!-- Layout Mode Toggle (Desktop vs Mobile) -->
+        <div class="flex items-center bg-rose-700 dark:bg-slate-800 rounded-full p-0.5 border border-rose-400/30 dark:border-slate-700 text-xs font-bold shadow-sm">
+          <button id="layout-btn-desktop" onclick="setLayoutMode('desktop')" title="Desktop Virtual View" class="px-2.5 py-1 rounded-full transition flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-desktop text-xs"></i>
+            <span class="hidden xl:inline">Desktop</span>
+          </button>
+          <button id="layout-btn-mobile" onclick="setLayoutMode('mobile')" title="Mobile Responsive View" class="px-2.5 py-1 rounded-full transition flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-mobile-screen-button text-xs"></i>
+            <span class="hidden xl:inline">Mobile</span>
+          </button>
+        </div>
+
         <button 
           onclick="toggleCalendarDrawer()" 
           title="Pre-Order Shipping Calendar"
-          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
+          class="desktop-only-header-btn bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i class="fa-regular fa-calendar-days text-amber-300"></i>
           <span class="hidden lg:inline">Calendar</span>
@@ -168,7 +201,7 @@
         <button 
           onclick="pickRandomProduct()" 
           title="Discover Random Release"
-          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
+          class="desktop-only-header-btn bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i class="fa-solid fa-dice text-xs"></i>
         </button>
@@ -177,7 +210,7 @@
           id="wishlist-toggle-btn"
           onclick="toggleWishlistView()" 
           title="View Saved Wishlist" 
-          class="relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
+          class="desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i id="wishlist-btn-icon" class="fa-regular fa-heart text-amber-300"></i>
           <span class="hidden md:inline">Wishlist</span>
@@ -208,18 +241,6 @@
           </select>
         </div>
 
-        <!-- Ko-fi Support Button -->
-<a 
-  href="https://ko-fi.com/idoljapanstore" 
-  target="_blank" 
-  rel="noopener noreferrer" 
-  title="Support Catalog Server Upkeep on Ko-fi"
-  class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-amber-200 dark:text-amber-300 hover:text-white"
->
-  <i class="fa-solid fa-mug-hot text-xs"></i>
-  <span class="hidden md:inline">Tip</span>
-</a>
-        
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm cursor-pointer">
           <i id="theme-icon" class="fa-solid fa-moon text-rose-100 dark:text-rose-400"></i>
         </button>
@@ -230,15 +251,27 @@
           rel="noopener noreferrer" 
           aria-label="Follow IdolJapan.store on X" 
           title="Official X Profile: @IdolJapanStore"
-          class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 hover:text-white"
+          class="desktop-only-header-btn bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-8 h-8 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-sm text-rose-100 dark:text-rose-400 hover:text-white"
         >
           <i class="fa-brands fa-x-twitter text-sm"></i>
         </a>
       </div>
     </div>
 
+    <!-- Mobile-Only Sticky Trigger Bar (Revealed strictly in Mobile Layout Mode) -->
+    <div id="mobile-filter-bar" class="hidden bg-stone-100 dark:bg-slate-800 border-t border-rose-500/20 px-4 py-2 flex items-center justify-between gap-2 text-xs">
+      <button onclick="toggleMobileFilterDrawer()" class="flex-1 bg-white dark:bg-slate-700 py-2 px-3 rounded-xl border border-stone-200 dark:border-slate-600 font-bold text-stone-800 dark:text-white shadow-xs flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-sliders text-rose-600"></i>
+        <span>Filters &amp; Units (<span id="mobile-filter-count-badge">All</span>)</span>
+      </button>
+      <button onclick="openSortMenuMobile()" class="bg-white dark:bg-slate-700 py-2 px-3 rounded-xl border border-stone-200 dark:border-slate-600 font-bold text-stone-800 dark:text-white shadow-xs flex items-center gap-1.5 cursor-pointer">
+        <i class="fa-solid fa-arrow-down-short-wide text-rose-600"></i>
+        <span>Sort</span>
+      </button>
+    </div>
+
     <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
-    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
+    <nav id="desktop-nav-tier1" class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1" id="filter-bar">
           <button onclick="setFilter('All')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm flex items-center gap-1.5 cursor-pointer" data-cat="All">
@@ -324,7 +357,7 @@
     </div>
 
     <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter -->
-    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
+    <div id="desktop-nav-tier2" class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
           <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
@@ -441,18 +474,6 @@
           </select>
         </div>
 
-        <div class="sm:hidden flex items-center gap-2">
-          <button onclick="toggleMobileViewMode()" class="px-2 py-1 rounded-md bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-xs cursor-pointer">
-            <i id="mobile-view-icon" class="fa-solid fa-table-cells-large"></i>
-          </button>
-          <select id="sort-select-mobile" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2 rounded-lg text-xs font-semibold focus:outline-none cursor-pointer">
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="price-asc">Price ↑</option>
-            <option value="price-desc">Price ↓</option>
-          </select>
-        </div>
-
         <div class="flex items-center gap-1.5">
           <label for="per-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Per page:</label>
           <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500 cursor-pointer">
@@ -479,6 +500,99 @@
     <!-- Bottom Pagination -->
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
+
+  <!-- Mobile Off-Canvas Filter & Units Drawer (Active strictly in Mobile Layout Mode) -->
+  <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl border-l border-stone-200 dark:border-slate-800 flex flex-col">
+        <div class="p-4 bg-rose-600 text-white flex items-center justify-between shadow">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-amber-300 text-lg"></i>
+            <div>
+              <h3 class="font-black text-sm">Filter Idol Discography</h3>
+              <p class="text-[11px] text-rose-100">Select franchises, sub-units &amp; formats</p>
+            </div>
+          </div>
+          <button onclick="toggleMobileFilterDrawer()" class="text-white hover:text-amber-200 text-lg p-1 cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+          <!-- Mobile Drawer: Franchise Groups -->
+          <div>
+            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Franchise Group</h4>
+            <div id="mobile-drawer-franchises" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <!-- Mobile Drawer: Units Sub-Bar -->
+          <div id="mobile-drawer-units-box">
+            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Idol Unit / Sub-Group</h4>
+            <div id="mobile-drawer-units" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <!-- Mobile Drawer: Formats -->
+          <div>
+            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Media Format</h4>
+            <div id="mobile-drawer-formats" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <!-- Mobile Drawer: Max Price & Availability -->
+          <div class="pt-3 border-t border-stone-200 dark:border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold">Max JPY Price:</span>
+              <span id="mobile-drawer-price-label" class="font-bold text-rose-600 dark:text-rose-400">Any</span>
+            </div>
+            <input 
+              id="mobile-drawer-price-range" 
+              type="range" 
+              min="1000" 
+              max="20000" 
+              step="500" 
+              value="20000" 
+              oninput="onMaxPriceChange(this.value); document.getElementById('mobile-drawer-price-label').innerText = this.value >= 20000 ? 'Any' : '≤ ¥' + parseInt(this.value, 10).toLocaleString();"
+              class="w-full accent-rose-600 cursor-pointer"
+            />
+          </div>
+        </div>
+
+        <div class="p-3 bg-stone-100 dark:bg-slate-800 border-t border-stone-200 dark:border-slate-700 flex gap-2">
+          <button onclick="resetAllFilters(); toggleMobileFilterDrawer();" class="flex-1 py-2.5 rounded-xl bg-white dark:bg-slate-700 font-bold border border-stone-300 dark:border-slate-600 text-stone-700 dark:text-white">Reset</button>
+          <button onclick="toggleMobileFilterDrawer()" class="flex-1 py-2.5 rounded-xl bg-rose-600 font-bold text-white shadow">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bottom App Bar (Visible strictly in Mobile Layout Mode) -->
+  <nav id="mobile-bottom-nav" class="hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-stone-200 dark:border-slate-800 py-2 px-4 flex items-center justify-around text-center shadow-lg">
+    <button onclick="setFilter('All'); window.scrollTo({ top: 0, behavior: 'smooth' });" class="flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
+      <i class="fa-solid fa-house text-sm mb-0.5"></i>
+      <span>Browse</span>
+    </button>
+
+    <button onclick="document.getElementById('search-input').focus(); window.scrollTo({ top: 0, behavior: 'smooth' });" class="flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
+      <i class="fa-solid fa-magnifying-glass text-sm mb-0.5"></i>
+      <span>Search</span>
+    </button>
+
+    <button onclick="toggleCalendarDrawer()" class="flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
+      <i class="fa-regular fa-calendar-days text-sm mb-0.5 text-amber-500"></i>
+      <span>Calendar</span>
+    </button>
+
+    <button onclick="toggleWishlistView()" class="relative flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
+      <i class="fa-solid fa-heart text-sm mb-0.5 text-rose-500"></i>
+      <span>Wishlist</span>
+      <span id="mobile-bottom-wishlist-badge" class="absolute -top-1 right-2 bg-rose-600 text-white rounded-full px-1.5 py-0.2 text-[8px] font-black">0</span>
+    </button>
+
+    <button onclick="toggleMobileFilterDrawer()" class="flex flex-col items-center text-rose-600 dark:text-rose-400 text-[10px] font-bold cursor-pointer">
+      <i class="fa-solid fa-sliders text-sm mb-0.5"></i>
+      <span>Filters</span>
+    </button>
+  </nav>
 
   <!-- Pre-Order Release Calendar Slide-over Drawer -->
   <div id="calendar-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeCalendarOnBackdrop(event)">
@@ -606,42 +720,43 @@
     id="scroll-to-top" 
     onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" 
     aria-label="Back to top" 
-    class="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full bg-stone-900/80 dark:bg-slate-800 text-white flex items-center justify-center shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 hover:bg-rose-600 cursor-pointer"
+    class="fixed bottom-20 sm:bottom-6 right-6 z-30 w-10 h-10 rounded-full bg-stone-900/80 dark:bg-slate-800 text-white flex items-center justify-center shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 hover:bg-rose-600 cursor-pointer"
   >
     <i class="fa-solid fa-arrow-up text-sm"></i>
   </button>
 
   <!-- Footer -->
-  <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200">
+  <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200 pb-24 sm:pb-10">
     <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
-
-      <!-- Ko-fi Community & Server Upkeep Card -->
-<div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-stone-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
-  <div class="flex items-center gap-3.5">
-    <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 border border-amber-200/50 dark:border-amber-900/50">
-      <i class="fa-solid fa-mug-hot"></i>
-    </div>
-    <div>
-      <h3 class="text-xs font-bold text-stone-900 dark:text-white flex items-center gap-2">
-        <span>Support IdolJapan.store Infrastructure</span>
-        <span class="bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 text-[10px] px-2 py-0.2 rounded-full font-bold">100% Ad-Free</span>
-      </h3>
-      <p class="text-[11px] text-stone-500 dark:text-slate-400 mt-0.5">
-        Help cover cloud scrapers, database hosting, and automated CDJapan catalog verification.
-      </p>
-    </div>
-  </div>
-  <a 
-    href="https://ko-fi.com/idoljapanstore" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    class="shrink-0 bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap cursor-pointer"
-  >
-    <i class="fa-solid fa-heart text-rose-600"></i>
-    <span>Support on Ko-fi</span>
-  </a>
-</div>
       
+      <!-- Ko-fi Server & Upkeep Card -->
+      <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-stone-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 border border-amber-200/50 dark:border-amber-900/50">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-stone-900 dark:text-white flex items-center gap-2">
+              <span>Support IdolJapan.store Infrastructure</span>
+              <span class="bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 text-[10px] px-2 py-0.2 rounded-full font-bold">100% Ad-Free</span>
+            </h3>
+            <p class="text-[11px] text-stone-500 dark:text-slate-400 mt-0.5">
+              Help cover cloud scrapers, database hosting, and automated CDJapan catalog verification.
+            </p>
+          </div>
+        </div>
+        <a 
+          href="https://ko-fi.com/idoljapanstore" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="shrink-0 bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap cursor-pointer"
+        >
+          <i class="fa-solid fa-heart text-rose-600"></i>
+          <span>Support on Ko-fi</span>
+        </a>
+      </div>
+
+      <!-- Disclosure Box -->
       <div class="p-4 bg-stone-50 dark:bg-slate-950 rounded-xl border border-stone-200 dark:border-slate-800 text-stone-700 dark:text-slate-300 text-sm leading-relaxed text-left sm:text-center">
         <p class="font-semibold text-stone-900 dark:text-white mb-1 flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Affiliate & Operating Disclosure
@@ -653,6 +768,7 @@
         </p>
       </div>
 
+      <!-- Trust Links -->
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-600 dark:text-slate-400">
         <a href="./about.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">About Us &amp; Verification</a>
         <a href="./affiliate-disclosure.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Affiliate Disclosure</a>
@@ -661,16 +777,15 @@
         <a href="./contact.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Contact &amp; Suggestions</a>
       </div>
 
-      <div class="flex items-center justify-center gap-2 pt-2">
-        <a 
-          href="https://x.com/IdolJapanStore" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-xs font-semibold text-stone-800 dark:text-slate-200 transition border border-stone-200 dark:border-slate-700"
-        >
-          <i class="fa-brands fa-x-twitter text-stone-900 dark:text-white"></i>
-          <span>Follow @IdolJapanStore on X</span>
-        </a>
+      <!-- Explicit Footer Layout Switcher -->
+      <div class="flex items-center justify-center gap-3 text-xs pt-2">
+        <span class="text-stone-400 dark:text-slate-500 font-semibold">Layout View:</span>
+        <button onclick="setLayoutMode('desktop')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
+          <i class="fa-solid fa-desktop"></i> Desktop Canvas (Default)
+        </button>
+        <button onclick="setLayoutMode('mobile')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
+          <i class="fa-solid fa-mobile-screen-button"></i> Mobile App Layout
+        </button>
       </div>
 
       <div class="pt-2 border-t border-stone-100 dark:border-slate-800 text-xs text-stone-400 dark:text-slate-500">
@@ -689,6 +804,7 @@
     let activeFormat = 'All';
     let activeAvailability = 'all';
     let viewMode = 'grid';
+    let layoutMode = 'desktop';
     let isClusteringEnabled = true;
     let maxPriceLimit = 20000;
     let searchQuery = '';
@@ -703,6 +819,7 @@
     let currentPage = 1;
     let itemsPerPage = 50;
 
+    const LAYOUT_MODE_KEY = 'idoljapan_layout_mode';
     const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
     const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
@@ -780,6 +897,137 @@
       setTimeout(() => {
         toast.classList.add('opacity-0', 'pointer-events-none');
       }, 2400);
+    }
+
+    // Dynamic Layout Switcher (Desktop 1280px Virtual Canvas vs Mobile Responsive)
+    function setLayoutMode(mode) {
+      layoutMode = mode;
+      localStorage.setItem(LAYOUT_MODE_KEY, mode);
+      applyLayoutModeToDom();
+      render();
+    }
+
+    function applyLayoutModeToDom() {
+      const isMobile = (layoutMode === 'mobile');
+      const viewportMeta = document.getElementById('dynamic-viewport');
+      const htmlEl = document.documentElement;
+      const dBtn = document.getElementById('layout-btn-desktop');
+      const mBtn = document.getElementById('layout-btn-mobile');
+
+      const mobileBar = document.getElementById('mobile-filter-bar');
+      const mobileNav = document.getElementById('mobile-bottom-nav');
+      const desktopTier1 = document.getElementById('desktop-nav-tier1');
+      const desktopTier2 = document.getElementById('desktop-nav-tier2');
+      const artistContainer = document.getElementById('artist-subbar-container');
+      const yearContainer = document.getElementById('year-jump-bar-container');
+
+      if (isMobile) {
+        if (viewportMeta) viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
+        htmlEl.classList.remove('layout-desktop');
+        htmlEl.classList.add('layout-mobile');
+
+        // Show mobile app bars; hide tall desktop multi-tier navigation
+        if (mobileBar) mobileBar.classList.remove('hidden');
+        if (mobileNav) mobileNav.classList.remove('hidden');
+        if (desktopTier1) desktopTier1.classList.add('hidden');
+        if (desktopTier2) desktopTier2.classList.add('hidden');
+        if (artistContainer) artistContainer.classList.add('hidden');
+        if (yearContainer) yearContainer.classList.add('hidden');
+
+        // Button states
+        if (dBtn) dBtn.className = "px-2.5 py-1 rounded-full transition text-stone-300 hover:text-white cursor-pointer";
+        if (mBtn) mBtn.className = "px-2.5 py-1 rounded-full transition bg-white text-rose-600 font-black shadow-xs cursor-pointer";
+      } else {
+        // Desktop default mode (1280px wide canvas)
+        if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
+        htmlEl.classList.add('layout-desktop');
+        htmlEl.classList.remove('layout-mobile');
+
+        if (mobileBar) mobileBar.classList.add('hidden');
+        if (mobileNav) mobileNav.classList.add('hidden');
+        if (desktopTier1) desktopTier1.classList.remove('hidden');
+        if (desktopTier2) desktopTier2.classList.remove('hidden');
+        if (artistContainer && activeFilter !== 'All') artistContainer.classList.remove('hidden');
+
+        if (dBtn) dBtn.className = "px-2.5 py-1 rounded-full transition bg-white text-rose-600 font-black shadow-xs cursor-pointer";
+        if (mBtn) mBtn.className = "px-2.5 py-1 rounded-full transition text-stone-300 hover:text-white cursor-pointer";
+      }
+
+      updateMobileDrawerContent();
+    }
+
+    function toggleMobileFilterDrawer() {
+      const drawer = document.getElementById('mobile-filter-drawer');
+      if (!drawer) return;
+      const isHidden = drawer.classList.contains('hidden');
+      if (isHidden) {
+        updateMobileDrawerContent();
+        drawer.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        drawer.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function closeMobileFilterDrawerOnBackdrop(e) {
+      if (e.target.id === 'mobile-filter-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+        toggleMobileFilterDrawer();
+      }
+    }
+
+    function updateMobileDrawerContent() {
+      const fBox = document.getElementById('mobile-drawer-franchises');
+      const uBox = document.getElementById('mobile-drawer-units');
+      const fmtBox = document.getElementById('mobile-drawer-formats');
+      const uBoxWrapper = document.getElementById('mobile-drawer-units-box');
+      const filterBadge = document.getElementById('mobile-filter-count-badge');
+
+      if (filterBadge) {
+        filterBadge.innerText = (activeArtist !== 'All' ? activeArtist : activeFilter);
+      }
+
+      // Franchises
+      if (fBox) {
+        const cats = ['All', 'Hello! Project', 'Up-Front Alumni', 'AKB48 Group', 'Sakamichi Series', 'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern Idols', 'Babymetal'];
+        fBox.innerHTML = cats.map(c => {
+          const isAct = (activeFilter === c);
+          return `<button onclick="setFilter('${c}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white shadow-xs' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${c}</button>`;
+        }).join('');
+      }
+
+      // Sub-units
+      if (uBox) {
+        const units = FRANCHISE_ARTISTS[activeFilter];
+        if (!units || units.length <= 1) {
+          if (uBoxWrapper) uBoxWrapper.classList.add('hidden');
+          uBox.innerHTML = '';
+        } else {
+          if (uBoxWrapper) uBoxWrapper.classList.remove('hidden');
+          let uHtml = `<button onclick="setSubArtist('All')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${activeArtist === 'All' ? 'bg-stone-800 text-white dark:bg-rose-600' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">All</button>`;
+          units.forEach(u => {
+            const isAct = (activeArtist === u);
+            uHtml += `<button onclick="setSubArtist('${u}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${u}</button>`;
+          });
+          uBox.innerHTML = uHtml;
+        }
+      }
+
+      // Formats
+      if (fmtBox) {
+        const fmts = ['All', 'CD', 'Blu-ray', 'DVD', 'Book', 'Collectable'];
+        fmtBox.innerHTML = fmts.map(f => {
+          const isAct = (activeFormat === f);
+          return `<button onclick="setFormat('${f}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${f}</button>`;
+        }).join('');
+      }
+    }
+
+    function openSortMenuMobile() {
+      const order = ['newest', 'oldest', 'price-asc', 'price-desc'];
+      const nextSort = order[(order.indexOf(currentSort) + 1) % order.length];
+      changeSort(nextSort);
+      showToast(`Sorted: ${nextSort.replace('-', ' ')}`);
     }
 
     function getThumbnailUrl(rawUrl) {
@@ -909,7 +1157,9 @@
     function updateWishlistBadge() {
       const list = getWishlist();
       const badge = document.getElementById('wishlist-count-badge');
+      const mobileBadge = document.getElementById('mobile-bottom-wishlist-badge');
       if (badge) badge.innerText = list.length;
+      if (mobileBadge) mobileBadge.innerText = list.length;
 
       const group = document.getElementById('wishlist-actions-group');
       if (group) {
@@ -976,11 +1226,11 @@
       const btn = document.getElementById('wishlist-toggle-btn');
       const icon = document.getElementById('wishlist-btn-icon');
       if (isWishlistView) {
-        btn.className = "relative bg-amber-400 hover:bg-amber-500 text-slate-900 text-xs font-black px-3 py-1.5 rounded-full border border-amber-300 transition flex items-center gap-1.5 shadow-sm cursor-pointer";
-        icon.className = "fa-solid fa-heart text-rose-600";
+        if (btn) btn.className = "desktop-only-header-btn relative bg-amber-400 hover:bg-amber-500 text-slate-900 text-xs font-black px-3 py-1.5 rounded-full border border-amber-300 transition flex items-center gap-1.5 shadow-sm cursor-pointer";
+        if (icon) icon.className = "fa-solid fa-heart text-rose-600";
       } else {
-        btn.className = "relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer";
-        icon.className = "fa-regular fa-heart text-amber-300";
+        if (btn) btn.className = "desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer";
+        if (icon) icon.className = "fa-regular fa-heart text-amber-300";
       }
       updateWishlistBadge();
       syncUrlParams();
@@ -994,24 +1244,15 @@
       render();
     }
 
-    function toggleMobileViewMode() {
-      setViewMode(viewMode === 'grid' ? 'list' : 'grid');
-    }
-
     function updateViewModeUI() {
       const gBtn = document.getElementById('view-mode-grid');
       const lBtn = document.getElementById('view-mode-list');
-      const mIcon = document.getElementById('mobile-view-icon');
-
       const activeClass = "px-2 py-1 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer";
       const inactiveClass = "px-2 py-1 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer";
 
       if (gBtn && lBtn) {
         gBtn.className = viewMode === 'grid' ? activeClass : inactiveClass;
         lBtn.className = viewMode === 'list' ? activeClass : inactiveClass;
-      }
-      if (mIcon) {
-        mIcon.className = viewMode === 'grid' ? 'fa-solid fa-table-cells-large' : 'fa-solid fa-list-ul';
       }
     }
 
@@ -1261,6 +1502,7 @@
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateWishlistBadge();
+      applyLayoutModeToDom();
       render();
     }
 
@@ -1388,9 +1630,7 @@
     function changeSort(sortVal) {
       currentSort = sortVal;
       const dSelect = document.getElementById('sort-select');
-      const mSelect = document.getElementById('sort-select-mobile');
       if (dSelect) dSelect.value = sortVal;
-      if (mSelect) mSelect.value = sortVal;
       currentPage = 1;
       syncUrlParams();
       render();
@@ -1418,6 +1658,7 @@
       updateFilterButtonsUI();
       updateArtistSubBar();
       updateYearJumpBar();
+      updateMobileDrawerContent();
       syncUrlParams();
       render();
     }
@@ -1428,6 +1669,7 @@
       currentPage = 1;
       updateArtistSubBar();
       updateYearJumpBar();
+      updateMobileDrawerContent();
       syncUrlParams();
       render();
     }
@@ -1484,7 +1726,10 @@
         return;
       }
 
-      wrapper.classList.remove('hidden');
+      // Keep hidden if currently in Mobile layout mode
+      if (layoutMode !== 'mobile') {
+        wrapper.classList.remove('hidden');
+      }
       let html = `
         <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 shrink-0 select-none">
           <i class="fa-solid fa-users"></i> Units:
@@ -1534,7 +1779,9 @@
         return;
       }
 
-      wrapper.classList.remove('hidden');
+      if (layoutMode !== 'mobile') {
+        wrapper.classList.remove('hidden');
+      }
 
       let pillsHtml = `
         <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition cursor-pointer ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All Years</button>
@@ -1566,6 +1813,7 @@
       activeFormat = fmt;
       currentPage = 1;
       updateFilterButtonsUI();
+      updateMobileDrawerContent();
       syncUrlParams();
       render();
     }
@@ -1596,6 +1844,7 @@
       updateArtistSubBar();
       updateYearJumpBar();
       updateWishlistBadge();
+      updateMobileDrawerContent();
       syncUrlParams();
       render();
     }
@@ -2243,7 +2492,10 @@
 
       updateStructuredData(paginatedEntities.map(e => e._primary));
 
-      if (viewMode === 'grid') {
+      // In Mobile Layout Mode, grid is always clean 2-column or 1-column list
+      if (layoutMode === 'mobile') {
+        container.className = "grid grid-cols-2 gap-3";
+      } else if (viewMode === 'grid') {
         container.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4";
       } else {
         container.className = "flex flex-col space-y-2.5";
@@ -2270,7 +2522,7 @@
         if (variants.length > 1) {
           editionSelectorHtml = `
             <div class="mt-1.5" onclick="event.stopPropagation()">
-              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
+              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1.5 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
                 ${variants.map(v => {
                   const shortLbl = getShortEditionLabel(v.title);
                   return `<option value="${v.id}">${escapeHtml(shortLbl)} — ${v.price}</option>`;
@@ -2283,7 +2535,7 @@
         const card = document.createElement('div');
         card.id = `cluster-card-${startIndex + idx}`;
 
-        if (viewMode === 'grid') {
+        if (layoutMode === 'mobile' || viewMode === 'grid') {
           card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
           card.innerHTML = `
             <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
@@ -2306,7 +2558,7 @@
                   onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
                   aria-label="Share Link"
                   title="Share link"
-                  class="w-7 h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                  class="w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
                 >
                   <i class="fa-solid fa-share-nodes text-[11px]"></i>
                 </button>
@@ -2315,7 +2567,7 @@
                   onclick="toggleWishlist('${p.id}', event)"
                   aria-label="Save to Wishlist"
                   title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
-                  class="w-7 h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                  class="w-8 h-8 sm:w-7 sm:h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
                 >
                   <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
                 </button>
@@ -2348,12 +2600,12 @@
                   <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
                     ${formatDisplayPrice(p.price, p)}
                   </span>
-                  <span class="block text-[9px] text-stone-400 dark:text-slate-500">Official CDJapan Price</span>
+                  <span class="block text-[9px] text-stone-400 dark:text-slate-500">CDJapan Price</span>
                 </div>
                 <button 
                   onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
                   title="View and order securely on CDJapan"
-                  class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer"
+                  class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer min-h-[36px]"
                 >
                   ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                 </button>
@@ -2431,6 +2683,8 @@
         closeAutocomplete();
         const drawer = document.getElementById('calendar-drawer');
         if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
+        const mobileDrawer = document.getElementById('mobile-filter-drawer');
+        if (mobileDrawer && !mobileDrawer.classList.contains('hidden')) toggleMobileFilterDrawer();
       } else if (isModalOpen && e.key === 'ArrowLeft') {
         navigateModalPrev();
       } else if (isModalOpen && e.key === 'ArrowRight') {

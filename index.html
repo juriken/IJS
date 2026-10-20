@@ -140,7 +140,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search Morning Musume, NiziU, ME:I, FRUITS ZIPPER..." 
+            placeholder="Search Morning Musume, Sayumi, Up Up Girls, NiziU..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -225,7 +225,7 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (8 Umbrella Groups) -->
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (Multi-Row Wrapped) -->
     <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1" id="filter-bar">
@@ -236,6 +236,10 @@
           <button onclick="setFilter('Hello! Project')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Hello! Project">
             <span>Hello! Project</span>
             <span id="badge-cat-Hello! Project" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Up-Front Alumni')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Up-Front Alumni">
+            <span>Up-Front Alumni</span>
+            <span id="badge-cat-Up-Front Alumni" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
           <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="AKB48 Group">
             <span>AKB48 Groups</span>
@@ -488,7 +492,7 @@
     </div>
   </div>
 
-  <!-- Quick View Modal -->
+  <!-- Quick View Modal with Keyboard Arrow Navigation -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
       
@@ -689,6 +693,7 @@
         'BEYOOOOONDS',
         'OCHA NORMA',
         'Rosy Chronicle',
+        'Hello Pro Kenshuusei',
         'Berryz Kobo',
         '℃-ute',
         'Buono!',
@@ -698,11 +703,18 @@
         'Minimoni',
         'Tanpopo',
         'v-u-den',
+        'LoVendoR',
+        'PINK CRES.',
+        'Sayumi Michishige',
         'Aya Matsuura',
         'Maki Goto',
         'Natsumi Abe',
         'Erina Mano',
         'Airi Suzuki'
+      ],
+      'Up-Front Alumni': [
+        'You Kikkawa',
+        'Up Up Girls'
       ],
       'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48', 'Sayaka Yamamoto'],
       'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Keyakizaka46', '22/7'],
@@ -1293,6 +1305,7 @@
       const catCounts = {
         'All': allProducts.length,
         'Hello! Project': 0,
+        'Up-Front Alumni': 0,
         'AKB48 Group': 0,
         'Sakamichi Series': 0,
         'Stardust Planet': 0,
@@ -2088,6 +2101,12 @@
         }
         if (!matchesArtist && (activeArtist === 'v-u-den' || activeArtist === 'Biyuden')) {
           matchesArtist = (item.artist === 'v-u-den' || item.artist === 'Biyuden');
+        }
+        if (!matchesArtist && (activeArtist === 'LoVendoR' || activeArtist === 'LoVendoЯ')) {
+          matchesArtist = (item.artist === 'LoVendoR' || item.artist === 'LoVendoЯ');
+        }
+        if (!matchesArtist && activeArtist === 'Up Up Girls') {
+          matchesArtist = String(item.artist || '').toLowerCase().includes('up up girls');
         }
         
         const itemFmt = getItemFormatCategory(item);

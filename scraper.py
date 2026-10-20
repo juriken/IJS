@@ -20,7 +20,6 @@ MONTH_MAP = {
     "october": "10", "november": "11", "december": "12"
 }
 
-# Defined BEFORE TARGET_GROUPS to prevent NameError
 TANPOPO_AUTHENTIC_SIGNATURES = [
     "last kiss", "motto", "seinaru kane", "otome pasta",
     "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
@@ -70,14 +69,17 @@ TARGET_GROUPS = [
     ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
 
-    # Up-Front / H!P Alumni (YU-M / Associated)
+    # Up-Front / H!P Alumni (Separated into distinct branches)
     ("Up-Front Alumni", "You Kikkawa", "You Kikkawa", [
         "You Kikkawa", "Kikkawa You", "Kikkawa Yu", "吉川友", "Kikkawa"
     ]),
-    ("Up-Front Alumni", "Up Up Girls", "Up Up Girls", [
-        "Up Up Girls", "アップアップガールズ", "Up Up Girls (Kari)", "アップアップガールズ(仮)",
-        "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ", "Up Up Girls (Pro Wres)",
-        "アップアップガールズ(プロレス)", "UpUpGirls"
+    ("Up-Front Alumni", "Up Up Girls (Kari)", "Up Up Girls (Kari)", [
+        "Up Up Girls (Kari)", "Up Up Girls (kari)", "アップアップガールズ(仮)", "アプガ(仮)",
+        "アップアップガールズ（仮）", "UpUpGirls(Kari)"
+    ]),
+    ("Up-Front Alumni", "Up Up Girls (2)", "Up Up Girls (2)", [
+        "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
+        "UpUpGirls(2)", "Up Up Girls 2"
     ]),
 
     # AKB48 Group
@@ -202,6 +204,15 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if canonical_artist == "v-u-den":
         if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
             return True
+
+    # Discriminate between Up Up Girls (Kari) and Up Up Girls (2)
+    if canonical_artist == "Up Up Girls (Kari)":
+        if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text:
+            return False
+
+    if canonical_artist == "Up Up Girls (2)":
+        if "(2)" not in lower_text and "（2）" not in card_text and "アプガ2" not in card_text:
+            return False
 
     for kw in keywords:
         kw_clean = kw.strip().lower()

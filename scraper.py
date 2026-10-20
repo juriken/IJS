@@ -28,6 +28,7 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
 TARGET_GROUPS = [
+    # Hello! Project
     ("Hello! Project", "Morning Musume", "Morning Musume", [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
@@ -52,19 +53,44 @@ TARGET_GROUPS = [
     ("Hello! Project", "Natsumi Abe", "Natsumi Abe", ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
     ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
-    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
-    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
-    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
+
+    # AKB48 Group
     ("AKB48 Group", "AKB48", "AKB48", ["AKB48"]),
     ("AKB48 Group", "SKE48", "SKE48", ["SKE48"]),
     ("AKB48 Group", "NMB48", "NMB48", ["NMB48"]),
     ("AKB48 Group", "HKT48", "HKT48", ["HKT48"]),
     ("AKB48 Group", "NGT48", "NGT48", ["NGT48"]),
     ("AKB48 Group", "STU48", "STU48", ["STU48"]),
+    ("AKB48 Group", "Sayaka Yamamoto", "Sayaka Yamamoto", ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
+
+    # Sakamichi Series
+    ("Sakamichi Series", "Nogizaka46", "Nogizaka46", ["Nogizaka46", "Nogizaka", "乃木坂"]),
+    ("Sakamichi Series", "Sakurazaka46", "Sakurazaka46", ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
+    ("Sakamichi Series", "Hinatazaka46", "Hinatazaka46", ["Hinatazaka46", "Hinatazaka", "日向坂"]),
+    ("Sakamichi Series", "Keyakizaka46", "Keyakizaka46", ["Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"]),
+    ("Sakamichi Series", "22/7", "22/7", ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
+
+    # Stardust Planet
+    ("Stardust Planet", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
+    ("Stardust Planet", "Shiritsu Ebisu Chugaku", "Shiritsu Ebisu Chugaku", ["Shiritsu Ebisu Chugaku", "Ebichu", "私立恵比寿中学", "エビ中"]),
+    ("Stardust Planet", "Chou Tokimeki Sendenbu", "Cho Tokimeki Sendenbu", [
+        "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
+    ]),
+
+    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", "≠ME", ["≠ME", "Not Equal ME", "Noime", "ノイミー"]),
     ("=LOVE / Sister Groups", "≒JOY", "≒JOY", ["≒JOY", "Nearly Equal Joy", "ニアジョイ"]),
-    ("Momoiro Clover Z", "Momoiro Clover Z", "Momoiro Clover Z", ["Momoiro Clover", "Momoclo"]),
+
+    # KAWAII LAB.
+    ("KAWAII LAB.", "FRUITS ZIPPER", "FRUITS ZIPPER", ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
+    ("KAWAII LAB.", "CUTIE STREET", "CUTIE STREET", ["CUTIE STREET", "Cutie Street", "きゅーすと", "KAWAII LAB."]),
+
+    # Modern Idols
+    ("Modern Idols", "NiziU", "NiziU", ["NiziU", "ニジュー"]),
+    ("Modern Idols", "ME:I", "ME:I", ["ME:I", "ミーアイ", "Produce 101"]),
+
+    # Babymetal
     ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
@@ -330,11 +356,9 @@ def execute_artist_search(page, category, canonical_artist, query, keywords, max
                     "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
                 })
 
-                # Direct URL navigation cleanly eliminates unwanted term.media_format= parameters
                 response = page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
                 dismiss_popups(page)
 
-                # Check if server served an empty/blank response or challenge
                 current_title = page.title().strip()
                 if not current_title or (response and response.status in [429, 403, 503]):
                     print(f"   [Notice] Blank title/status on attempt {attempt}. Backing off 4.0s...", flush=True)
@@ -412,7 +436,6 @@ def main():
 
         new_total = 0
 
-        # Fresh isolated page tab for every artist prevents connection bloat & WAF drops
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}", flush=True)
             target_page = context.new_page()

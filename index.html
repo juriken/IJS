@@ -826,10 +826,7 @@
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
     const SKIP_REDIRECT_KEY = 'idoljapan_skip_redirect_modal';
     const VIEW_MODE_KEY = 'idoljapan_view_mode';
-    const CATALOG_CACHE_KEY = 'idoljapan_catalog_cache_v2';
-    const CATALOG_TIME_KEY = 'idoljapan_catalog_time_v2';
     const AFFILIATE_CLICKS_KEY = 'idoljapan_affiliate_clicks';
-    const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
     const EN_MONTHS = {
@@ -1445,42 +1442,22 @@
       if (savedMode) viewMode = savedMode;
       updateViewModeUI();
 
-      const cachedData = sessionStorage.getItem(CATALOG_CACHE_KEY);
-      const cachedTime = sessionStorage.getItem(CATALOG_TIME_KEY);
-      const now = Date.now();
-
-      if (cachedData && cachedTime && (now - parseInt(cachedTime, 10) < SIX_HOURS_MS)) {
-        try {
-          data = JSON.parse(cachedData);
-        } catch (e) {
-          sessionStorage.removeItem(CATALOG_CACHE_KEY);
-        }
+      // ALWAYS FETCH FRESH DATA - Cache Busting Applied
+      const cacheBuster = Date.now();
+      
+      try {
+        const res = await fetch(`/products.json?v=${cacheBuster}`);
+        if (res.ok) data = await res.json();
+      } catch (e) {
+        console.warn('Root fetch failed, trying relative:', e);
       }
 
       if (!data) {
         try {
-          const res = await fetch('/products.json?v=' + Date.now());
+          const res = await fetch(`products.json?v=${cacheBuster}`);
           if (res.ok) data = await res.json();
-        } catch (e) {
-          console.warn('Root fetch failed, trying relative:', e);
-        }
-
-        if (!data) {
-          try {
-            const res = await fetch('products.json?v=' + Date.now());
-            if (res.ok) data = await res.json();
-          } catch (e2) {
-            console.error('All fetch attempts failed:', e2);
-          }
-        }
-
-        if (data) {
-          try {
-            sessionStorage.setItem(CATALOG_CACHE_KEY, JSON.stringify(data));
-            sessionStorage.setItem(CATALOG_TIME_KEY, now.toString());
-          } catch (e_storage) {
-            console.warn('SessionStorage quota exceeded, continuing in memory');
-          }
+        } catch (e2) {
+          console.error('All fetch attempts failed:', e2);
         }
       }
 

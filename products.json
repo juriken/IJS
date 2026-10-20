@@ -5418,7 +5418,7 @@
     "category": "Babymetal",
     "price": "3,800yen",
     "price_num": 3800,
-    "release_date": "Available Now",
+    "release_date": "2020/03/97",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/31/NEOBK-2466052.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2466052",
     "updated_at": "2026-10-20"
@@ -5442,7 +5442,7 @@
     "category": "Babymetal",
     "price": "750yen",
     "price_num": 750,
-    "release_date": "Available Now",
+    "release_date": "2018/06/73",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/31/NEOBK-2242914.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2242914",
     "updated_at": "2026-10-20"
@@ -5454,7 +5454,7 @@
     "category": "Babymetal",
     "price": "750yen",
     "price_num": 750,
-    "release_date": "Available Now",
+    "release_date": "2016/08/73",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/47/NEOBK-1990702.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1990702",
     "updated_at": "2026-10-20"
@@ -5466,7 +5466,7 @@
     "category": "Babymetal",
     "price": "750yen",
     "price_num": 750,
-    "release_date": "Available Now",
+    "release_date": "2016/07/73",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/00/NEOBK-1982376.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1982376",
     "updated_at": "2026-10-20"
@@ -5502,7 +5502,7 @@
     "category": "Babymetal",
     "price": "750yen",
     "price_num": 750,
-    "release_date": "Available Now",
+    "release_date": "2014/12/73",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/26/NEOBK-1761303.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1761303",
     "updated_at": "2026-10-20"
@@ -5514,7 +5514,7 @@
     "category": "Babymetal",
     "price": "750yen",
     "price_num": 750,
-    "release_date": "Available Now",
+    "release_date": "2014/10/73",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/09/NEOBK-1728959.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1728959",
     "updated_at": "2026-10-20"
@@ -5574,7 +5574,7 @@
     "category": "Babymetal",
     "price": "1,400yen",
     "price_num": 1400,
-    "release_date": "Available Now",
+    "release_date": "2018/11/83",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/NEOBK-2295415.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2295415",
     "updated_at": "2026-10-20"
@@ -5610,7 +5610,7 @@
     "category": "Babymetal",
     "price": "1,700yen",
     "price_num": 1700,
-    "release_date": "Available Now",
+    "release_date": "2016/08/72",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/39/NEOBK-1993855.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1993855",
     "updated_at": "2026-10-20"
@@ -12805,7 +12805,7 @@
   },
   "UICC-90016": {
     "id": "UICC-90016",
-    "title": "Album CD METAL FORTH [Deluxe Edition (Limited Edition)]",
+    "title": "CD Album METAL FORTH [Deluxe Edition (Limited Edition)]",
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "4,000yen",
@@ -12877,7 +12877,7 @@
   },
   "TFCC-86890": {
     "id": "TFCC-86890",
-    "title": "Album CD The Other One [Regular Edition (First Press)]",
+    "title": "CD Album The Other One [Regular Edition (First Press)]",
     "artist": "BABYMETAL",
     "category": "Babymetal",
     "price": "3,000yen",
@@ -32342,7 +32342,7 @@
   "DSTD-2612": {
     "id": "DSTD-2612",
     "title": "DVD Aya Matsuura x Biyuden Yo-Yo Girl Mission - Making of Sukeban Deka Code Name Saki Asamiya",
-    "artist": "v-u-den",
+    "artist": "Aya Matsuura",
     "category": "Hello! Project",
     "price": "3,800yen",
     "price_num": 3800,
@@ -44361,6 +44361,18 @@
     "release_date": "2014/01/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/30/KIZC-90240.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-90240",
+    "updated_at": "2026-10-20"
+  },
+  "VVXL-317": {
+    "id": "VVXL-317",
+    "title": "Blu-ray =LOVE STADIUM LIVE \"Beyond \"KYUN\"\" [Limited Edition]",
+    "artist": "=LOVE",
+    "category": "=LOVE / Sister Groups",
+    "price": "16,000yen",
+    "price_num": 16000,
+    "release_date": "2026/12/23",
+    "image": "https://www.cdjapan.co.jp/pictures/l/VVXL-317.jpg",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FVVXL-317",
     "updated_at": "2026-10-20"
   }
 }

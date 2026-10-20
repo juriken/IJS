@@ -97,19 +97,16 @@ def parse_normalized_date(date_raw_str):
         return ""
     text = clean_text(date_raw_str)
 
-    # 1. YYYY/MM/DD or YYYY-MM-DD
-    match = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
-    if match:
-        y, m, d = match.group(1), match.group(2).zfill(2), match.group(3).zfill(2)
+    m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
+    if m1:
+        y, m, d = m1.group(1), m1.group(2).zfill(2), m1.group(3).zfill(2)
         return f"{y}/{m}/{d}"
 
-    # 2. Japanese format: YYYY年MM月DD日
     match_jp = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
     if match_jp:
         y, m, d = match_jp.group(1), match_jp.group(2).zfill(2), match_jp.group(3).zfill(2)
         return f"{y}/{m}/{d}"
 
-    # 3. English format: Month DD, YYYY (e.g. May 22, 2024 or Oct 05 2025)
     match_en = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
     if match_en:
         mon_str = match_en.group(1).lower()
@@ -119,7 +116,6 @@ def parse_normalized_date(date_raw_str):
             y = match_en.group(3)
             return f"{y}/{m}/{d}"
 
-    # 4. English format: DD Month YYYY (e.g. 22 May 2024)
     match_en_rev = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
     if match_en_rev:
         mon_str = match_en_rev.group(2).lower()
@@ -129,7 +125,6 @@ def parse_normalized_date(date_raw_str):
             y = match_en_rev.group(3)
             return f"{y}/{m}/{d}"
 
-    # 5. Month & Year: YYYY/MM
     match_ym = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
     if match_ym:
         y, m = match_ym.group(1), match_ym.group(2).zfill(2)
@@ -171,7 +166,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
     soup = BeautifulSoup(html, "html.parser")
     items_dict = {}
 
-    # Strict card boundaries: exclude sub-elements (item-img, item-price, item-date)
     cards = soup.select(".item-detail, .n-item, div.item, tr.item, div.search-result-item, li.item")
     if not cards:
         cards = soup.find_all(lambda el: el.name in ["div", "li", "tr"] and el.get("class") and any(c in ["item-detail", "n-item", "item"] for c in el.get("class")))
@@ -264,10 +258,8 @@ def extract_verified_products(html, category, canonical_artist, keywords):
                     price_num = int(num_only)
                     price_str = f"{price_num:,}yen"
 
-        # Dedicated Release Date parsing
         rel_date = ""
 
-        # Check explicit date containers first
         for sel in [".release_date", ".item-date", ".date", "td.date", "span.date"]:
             node = card.select_one(sel)
             if node:
@@ -276,7 +268,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
                     rel_date = parsed
                     break
 
-        # Check labeled rows or text blocks (e.g. "Release Date: May 22, 2024")
         if not rel_date:
             date_nodes = card.find_all(lambda el: el.name in ["span", "td", "p", "div", "li"] and ("release" in el.get_text().lower() or "発売" in el.get_text()))
             for d_node in date_nodes:
@@ -285,7 +276,6 @@ def extract_verified_products(html, category, canonical_artist, keywords):
                     rel_date = parsed
                     break
 
-        # Check general card text without guessing from title numbers
         if not rel_date:
             rel_date = parse_normalized_date(card.get_text())
 
@@ -316,81 +306,71 @@ def dismiss_popups(page):
     try:
         page.keyboard.press("Escape")
         close_btn = page.locator("button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close").first
-        if close_btn.is_visible(timeout=300):
+        if close_btn.is_visible(timeout=250):
             close_btn.click(force=True)
             time.sleep(0.2)
     except Exception:
         pass
 
 
-def execute_search_via_bar(page, category, canonical_artist, query, keywords, max_pages):
+def execute_artist_search(page, category, canonical_artist, query, keywords, max_pages):
     results = []
-    print(f"\n-> In-Session Search Bar Query for: {canonical_artist} ('{query}')", flush=True)
+    print(f"\n-> In-Session Search Query for: {canonical_artist} ('{query}')", flush=True)
 
-    for attempt in range(1, 3):
-        try:
-            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-            dismiss_popups(page)
-            time.sleep(1.0)
+    encoded_q = urllib.parse.quote_plus(query)
 
-            page.evaluate("""(q) => {
-                const input = document.querySelector('input[name="q"], input#search-input, input.search-input');
-                if (!input) return;
-                const form = input.closest('form') || document.querySelector('form[action*="searchuni"]') || document.querySelector('form');
-                if (form) {
-                    form.querySelectorAll('input[name^="term."]').forEach(el => el.remove());
-                }
-                input.value = q;
-            }""", query)
-            time.sleep(0.3)
+    for p_num in range(1, max_pages + 1):
+        target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&page={p_num}"
+        extracted_on_page = []
 
-            with page.expect_navigation(wait_until="domcontentloaded", timeout=25000):
-                page.evaluate("""() => {
-                    const form = document.querySelector('form[action*="searchuni"]') || document.querySelector('input[name="q"]').closest('form');
-                    const btn = form ? form.querySelector('button[type="submit"], input[type="submit"], .btn-search') : null;
-                    if (btn) {
-                        btn.click();
-                    } else if (form) {
-                        form.submit();
-                    }
-                }""")
+        for attempt in range(1, 3):
+            try:
+                page.set_extra_http_headers({
+                    "Referer": "https://www.cdjapan.co.jp/",
+                    "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
+                })
 
-            dismiss_popups(page)
-            time.sleep(1.5)
-            print(f"   [Navigated] {page.url} (Title: '{page.title()}')", flush=True)
+                # Direct URL navigation cleanly eliminates unwanted term.media_format= parameters
+                response = page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+                dismiss_popups(page)
 
-            for p_num in range(1, max_pages + 1):
-                page.evaluate("window.scrollBy(0, 800)")
-                time.sleep(0.6)
-                page.evaluate("window.scrollBy(0, 800)")
+                # Check if server served an empty/blank response or challenge
+                current_title = page.title().strip()
+                if not current_title or (response and response.status in [429, 403, 503]):
+                    print(f"   [Notice] Blank title/status on attempt {attempt}. Backing off 4.0s...", flush=True)
+                    time.sleep(4.0)
+                    continue
+
+                try:
+                    page.wait_for_selector(".item-detail, .n-item, div.item, tr.item, div.search-result-item", timeout=6000)
+                except Exception:
+                    pass
+
+                page.evaluate("window.scrollBy(0, 750)")
+                time.sleep(0.5)
+                page.evaluate("window.scrollBy(0, 850)")
                 time.sleep(0.8)
 
                 html = page.content()
-                verified = extract_verified_products(html, category, canonical_artist, keywords)
-                print(f"   [Page {p_num}] Extracted {len(verified)} verified products", flush=True)
-                results.extend(verified)
+                extracted_on_page = extract_verified_products(html, category, canonical_artist, keywords)
 
-                if p_num < max_pages:
-                    next_selector = "ul.pager li.next a, div.pager a.next, a[rel='next']"
-                    has_next = page.evaluate("(sel) => { return !!document.querySelector(sel); }", next_selector)
+                if len(extracted_on_page) == 0 and attempt == 1:
+                    print(f"   [Notice] 0 items extracted on attempt 1 for {canonical_artist}. Retrying in 3.0s...", flush=True)
+                    time.sleep(3.0)
+                    continue
 
-                    if has_next:
-                        try:
-                            with page.expect_navigation(wait_until="domcontentloaded", timeout=18000):
-                                page.evaluate("(sel) => { const el = document.querySelector(sel); if (el) el.click(); }", next_selector)
-                            dismiss_popups(page)
-                            time.sleep(random.uniform(2.0, 3.0))
-                        except Exception as e_page:
-                            print(f"   Pagination note on page {p_num}: {e_page}", flush=True)
-                            break
-                    else:
-                        break
+                print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified products (Title: '{current_title}')", flush=True)
+                results.extend(extracted_on_page)
+                break
 
-            return results
+            except Exception as e:
+                print(f"   Attempt {attempt} notice on Page {p_num} for {canonical_artist}: {e}", flush=True)
+                time.sleep(3.5)
 
-        except Exception as e:
-            print(f"   Attempt {attempt} notice for {canonical_artist}: {e}", flush=True)
-            time.sleep(3.0)
+        if p_num == 1 and len(extracted_on_page) == 0:
+            break
+
+        time.sleep(random.uniform(2.0, 3.5))
 
     return results
 
@@ -418,23 +398,27 @@ def main():
             ),
             viewport={"width": 1440, "height": 900},
         )
-        page = context.new_page()
 
         print("Initializing session on CDJapan...", flush=True)
+        warmup_page = context.new_page()
         try:
-            page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
-            dismiss_popups(page)
+            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(warmup_page)
             time.sleep(1.5)
         except Exception as e_warm:
             print(f"Warmup notice: {e_warm}", flush=True)
+        finally:
+            warmup_page.close()
 
         new_total = 0
 
+        # Fresh isolated page tab for every artist prevents connection bloat & WAF drops
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
             print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}", flush=True)
+            target_page = context.new_page()
             try:
-                items = execute_search_via_bar(
-                    page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
+                items = execute_artist_search(
+                    target_page, cat, artist, query, keywords, max_pages=PAGES_PER_TARGET
                 )
                 added_for_artist = 0
 
@@ -452,8 +436,10 @@ def main():
                 )
             except Exception as e_artist:
                 print(f"   => Error scraping {artist}: {e_artist}", flush=True)
+            finally:
+                target_page.close()
 
-            time.sleep(random.uniform(4.5, 6.0))
+            time.sleep(random.uniform(4.0, 6.0))
 
         browser.close()
 

@@ -140,7 +140,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search Morning Musume, Berryz Kobo, C-ute, Minimoni..." 
+            placeholder="Search Morning Musume, NiziU, ME:I, FRUITS ZIPPER..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -154,7 +154,7 @@
         </div>
       </div>
 
-      <!-- Controls: Calendar, Lucky Shuffler, Wishlist, Currency, Theme & X Link -->
+      <!-- Controls -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
         <button 
           onclick="toggleCalendarDrawer()" 
@@ -225,10 +225,9 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (Multi-Row Wrapped) -->
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (8 Umbrella Groups) -->
     <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
-        <!-- Multi-Row Franchise Pills -->
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1" id="filter-bar">
           <button onclick="setFilter('All')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm flex items-center gap-1.5 cursor-pointer" data-cat="All">
             <span>All Groups</span>
@@ -242,17 +241,25 @@
             <span>AKB48 Groups</span>
             <span id="badge-cat-AKB48 Group" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
-          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Sakamichi Series">
-            <span>Sakamichi (46)</span>
+          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Sakamichi Series">
+            <span>Sakamichi &amp; 22/7</span>
             <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
+            <span>Stardust Planet</span>
+            <span id="badge-cat-Stardust Planet" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
           <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="=LOVE / Sister Groups">
             <span>=LOVE &amp; Sisters</span>
             <span id="badge-cat-=LOVE / Sister Groups" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
-          <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Momoiro Clover Z">
-            <span>Momoclo</span>
-            <span id="badge-cat-Momoiro Clover Z" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          <button onclick="setFilter('KAWAII LAB.')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="KAWAII LAB.">
+            <span>KAWAII LAB.</span>
+            <span id="badge-cat-KAWAII LAB." class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Modern Idols')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Modern Idols">
+            <span>Modern Idols</span>
+            <span id="badge-cat-Modern Idols" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
           <button onclick="setFilter('Babymetal')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Babymetal">
             <span>Babymetal</span>
@@ -260,7 +267,6 @@
           </button>
         </div>
 
-        <!-- Desktop Controls: View Switcher & Sorting -->
         <div class="hidden sm:flex items-center gap-3 text-xs font-semibold whitespace-nowrap ml-auto">
           <div class="flex items-center bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-lg p-0.5 shadow-2xs">
             <button id="view-mode-grid" onclick="setViewMode('grid')" title="Visual Grid View" class="px-2 py-1 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">
@@ -287,26 +293,23 @@
     <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Multi-Row Wrapped) -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-1.5" id="artist-subbar">
-        <!-- Dynamically injected units wrap automatically across multiple rows -->
       </div>
     </div>
 
-    <!-- Tier 1.75 Navigation: Artist-Specific Release Year Jump Bar (Multi-Row Wrapped) -->
+    <!-- Tier 1.75 Navigation: Artist-Specific Release Year Jump Bar -->
     <div id="year-jump-bar-container" class="hidden bg-stone-100/60 dark:bg-slate-900/80 border-t border-stone-200/50 dark:border-slate-800/50 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center gap-1.5">
         <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1">
           <i class="fa-solid fa-calendar text-[9px]"></i> Year:
         </span>
         <div id="year-jump-pills" class="flex flex-wrap items-center gap-1">
-          <!-- Dynamically injected year pills wrap automatically across multiple rows -->
         </div>
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter (Multi-Row Wrapped) -->
+    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter -->
     <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
-        <!-- Multi-Row Format Pills -->
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
           <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
             <i class="fa-solid fa-shapes"></i> Format:
@@ -337,7 +340,6 @@
           </button>
         </div>
 
-        <!-- Filter Controls -->
         <div class="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
           <label class="hidden lg:flex items-center gap-1.5 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
             <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
@@ -486,7 +488,7 @@
     </div>
   </div>
 
-  <!-- Quick View Modal with Keyboard Arrow Navigation -->
+  <!-- Quick View Modal -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
       
@@ -702,10 +704,12 @@
         'Erina Mano',
         'Airi Suzuki'
       ],
-      'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48'],
-      'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46'],
+      'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48', 'Sayaka Yamamoto'],
+      'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Keyakizaka46', '22/7'],
+      'Stardust Planet': ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu'],
       '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
-      'Momoiro Clover Z': ['Momoiro Clover Z'],
+      'KAWAII LAB.': ['FRUITS ZIPPER', 'CUTIE STREET'],
+      'Modern Idols': ['NiziU', 'ME:I'],
       'Babymetal': ['BABYMETAL']
     };
 
@@ -1291,8 +1295,10 @@
         'Hello! Project': 0,
         'AKB48 Group': 0,
         'Sakamichi Series': 0,
+        'Stardust Planet': 0,
         '=LOVE / Sister Groups': 0,
-        'Momoiro Clover Z': 0,
+        'KAWAII LAB.': 0,
+        'Modern Idols': 0,
         'Babymetal': 0
       };
 
@@ -1306,7 +1312,11 @@
       };
 
       allProducts.forEach(item => {
-        if (catCounts[item.category] !== undefined) catCounts[item.category]++;
+        if (catCounts[item.category] !== undefined) {
+          catCounts[item.category]++;
+        } else if (item.category === 'Momoiro Clover Z') {
+          catCounts['Stardust Planet']++;
+        }
         const fmt = getItemFormatCategory(item);
         if (fmtCounts[fmt] !== undefined) fmtCounts[fmt]++;
       });
@@ -1453,7 +1463,7 @@
       const relevantItems = allProducts.filter(item => {
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         if (!matchesArtist && activeArtist === 'Morning Musume') matchesArtist = (item.artist === 'Morning Musume' || item.artist === 'Petitmoni');
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        const matchesCat = (activeFilter === 'All' || item.category === activeFilter || (activeFilter === 'Stardust Planet' && item.category === 'Momoiro Clover Z'));
         return matchesArtist && matchesCat;
       });
 
@@ -2063,7 +2073,11 @@
           if (String(yr) !== String(activeYear)) return false;
         }
 
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        const matchesCat = (
+          activeFilter === 'All' || 
+          item.category === activeFilter ||
+          (activeFilter === 'Stardust Planet' && item.category === 'Momoiro Clover Z')
+        );
 
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         if (!matchesArtist && activeArtist === 'Morning Musume') {

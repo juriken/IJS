@@ -1,9 +1,9 @@
 name: Auto-Heal Catalog Release Dates
 
 on:
-  schedule:
-    # Runs every 2 hours to process a fresh batch of 150 items automatically
-    - cron: '0 */2 * * *'
+  # Automated schedule paused; uncomment below to resume
+  # schedule:
+  #   - cron: '0 */2 * * *'
   workflow_dispatch:
 
 permissions:

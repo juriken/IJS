@@ -96,20 +96,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .cursor-grab {
-      cursor: grab;
-    }
-    .cursor-grabbing {
-      cursor: grabbing !important;
-      user-select: none;
-    }
     .img-fade-in {
       animation: fadeIn 0.3s ease-in-out forwards;
     }
@@ -239,52 +225,43 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
-    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
-      <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
-        <div class="relative flex-1 overflow-hidden flex items-center">
-          <button onclick="scrollElement('filter-bar', 'left')" class="hidden md:flex absolute left-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100 cursor-pointer" aria-label="Scroll franchises left">
-            <i class="fa-solid fa-chevron-left text-[9px]"></i>
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (Multi-Row Wrapped) -->
+    <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+        <!-- Multi-Row Franchise Pills -->
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1" id="filter-bar">
+          <button onclick="setFilter('All')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm flex items-center gap-1.5 cursor-pointer" data-cat="All">
+            <span>All Groups</span>
+            <span id="badge-cat-All" class="text-[10px] bg-white/20 px-1.5 py-0.2 rounded-full">0</span>
           </button>
-          
-          <div class="flex space-x-2 whitespace-nowrap overflow-x-auto pb-1 max-w-full no-scrollbar cursor-grab select-none scroll-smooth md:px-7" id="filter-bar">
-            <button onclick="setFilter('All')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="All">
-              <span>All Groups</span>
-              <span id="badge-cat-All" class="text-[10px] bg-white/20 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('Hello! Project')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Hello! Project">
-              <span>Hello! Project</span>
-              <span id="badge-cat-Hello! Project" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="AKB48 Group">
-              <span>AKB48 Groups</span>
-              <span id="badge-cat-AKB48 Group" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Sakamichi Series">
-              <span>Sakamichi (46)</span>
-              <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="=LOVE / Sister Groups">
-              <span>=LOVE &amp; Sisters</span>
-              <span id="badge-cat-=LOVE / Sister Groups" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Momoiro Clover Z">
-              <span>Momoclo</span>
-              <span id="badge-cat-Momoiro Clover Z" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-            <button onclick="setFilter('Babymetal')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Babymetal">
-              <span>Babymetal</span>
-              <span id="badge-cat-Babymetal" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-            </button>
-          </div>
-
-          <button onclick="scrollElement('filter-bar', 'right')" class="hidden md:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-300 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-80 hover:opacity-100 cursor-pointer" aria-label="Scroll franchises right">
-            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          <button onclick="setFilter('Hello! Project')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Hello! Project">
+            <span>Hello! Project</span>
+            <span id="badge-cat-Hello! Project" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="AKB48 Group">
+            <span>AKB48 Groups</span>
+            <span id="badge-cat-AKB48 Group" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Sakamichi Series">
+            <span>Sakamichi (46)</span>
+            <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="=LOVE / Sister Groups">
+            <span>=LOVE &amp; Sisters</span>
+            <span id="badge-cat-=LOVE / Sister Groups" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Momoiro Clover Z')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Momoiro Clover Z">
+            <span>Momoclo</span>
+            <span id="badge-cat-Momoiro Clover Z" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="setFilter('Babymetal')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Babymetal">
+            <span>Babymetal</span>
+            <span id="badge-cat-Babymetal" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
         </div>
 
         <!-- Desktop Controls: View Switcher & Sorting -->
-        <div class="hidden sm:flex items-center gap-3 text-xs font-semibold whitespace-nowrap">
+        <div class="hidden sm:flex items-center gap-3 text-xs font-semibold whitespace-nowrap ml-auto">
           <div class="flex items-center bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 rounded-lg p-0.5 shadow-2xs">
             <button id="view-mode-grid" onclick="setViewMode('grid')" title="Visual Grid View" class="px-2 py-1 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">
               <i class="fa-solid fa-table-cells-large"></i>
@@ -307,67 +284,61 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar -->
-    <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200 relative">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 relative flex items-center">
-        <button onclick="scrollElement('artist-subbar', 'left')" class="hidden sm:flex absolute left-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100 cursor-pointer" aria-label="Scroll units left">
-          <i class="fa-solid fa-chevron-left text-[10px]"></i>
-        </button>
-
-        <div class="flex items-center space-x-1.5 whitespace-nowrap overflow-x-auto text-xs no-scrollbar w-full sm:px-8 scroll-smooth select-none cursor-grab" id="artist-subbar">
-        </div>
-
-        <button onclick="scrollElement('artist-subbar', 'right')" class="hidden sm:flex absolute right-2 z-10 w-6 h-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-stone-600 dark:text-stone-200 shadow border border-stone-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-slate-700 transition opacity-90 hover:opacity-100 cursor-pointer" aria-label="Scroll units right">
-          <i class="fa-solid fa-chevron-right text-[10px]"></i>
-        </button>
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Multi-Row Wrapped) -->
+    <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-1.5" id="artist-subbar">
+        <!-- Dynamically injected units wrap automatically across multiple rows -->
       </div>
     </div>
 
-    <!-- Tier 1.75 Navigation: Artist-Specific Release Year Jump Bar -->
+    <!-- Tier 1.75 Navigation: Artist-Specific Release Year Jump Bar (Multi-Row Wrapped) -->
     <div id="year-jump-bar-container" class="hidden bg-stone-100/60 dark:bg-slate-900/80 border-t border-stone-200/50 dark:border-slate-800/50 transition-all duration-200">
-      <div class="max-w-7xl mx-auto px-4 py-1 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 flex items-center gap-1">
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center gap-1.5">
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1">
           <i class="fa-solid fa-calendar text-[9px]"></i> Year:
         </span>
-        <div id="year-jump-pills" class="flex items-center gap-1 whitespace-nowrap">
+        <div id="year-jump-pills" class="flex flex-wrap items-center gap-1">
+          <!-- Dynamically injected year pills wrap automatically across multiple rows -->
         </div>
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter -->
-    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200 relative">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap overflow-x-auto text-[11px] font-semibold no-scrollbar cursor-grab select-none scroll-smooth flex-1" id="format-filter-bar">
+    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter (Multi-Row Wrapped) -->
+    <div class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
+        <!-- Multi-Row Format Pills -->
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
           <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 select-none">
             <i class="fa-solid fa-shapes"></i> Format:
           </span>
-          <button onclick="setFormat('All')" class="fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0 cursor-pointer" data-fmt="All">
+          <button onclick="setFormat('All')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm cursor-pointer" data-fmt="All">
             <span>All Formats</span>
             <span id="badge-fmt-All" class="ml-1 text-[9px] opacity-75"></span>
           </button>
-          <button onclick="setFormat('CD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="CD">
+          <button onclick="setFormat('CD')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer" data-fmt="CD">
             <i class="fa-solid fa-compact-disc mr-1 text-rose-500"></i> CDs
             <span id="badge-fmt-CD" class="ml-1 text-[9px] opacity-75"></span>
           </button>
-          <button onclick="setFormat('Blu-ray')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Blu-ray">
+          <button onclick="setFormat('Blu-ray')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer" data-fmt="Blu-ray">
             <i class="fa-solid fa-film mr-1 text-sky-500"></i> Blu-rays
             <span id="badge-fmt-Blu-ray" class="ml-1 text-[9px] opacity-75"></span>
           </button>
-          <button onclick="setFormat('DVD')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="DVD">
+          <button onclick="setFormat('DVD')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer" data-fmt="DVD">
             <i class="fa-solid fa-video mr-1 text-amber-500"></i> DVDs
             <span id="badge-fmt-DVD" class="ml-1 text-[9px] opacity-75"></span>
           </button>
-          <button onclick="setFormat('Book')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Book">
+          <button onclick="setFormat('Book')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer" data-fmt="Book">
             <i class="fa-solid fa-book-open mr-1 text-emerald-500"></i> Books
             <span id="badge-fmt-Book" class="ml-1 text-[9px] opacity-75"></span>
           </button>
-          <button onclick="setFormat('Collectable')" class="fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Collectable">
+          <button onclick="setFormat('Collectable')" class="fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer" data-fmt="Collectable">
             <i class="fa-solid fa-gift mr-1 text-purple-500"></i> Merch
             <span id="badge-fmt-Collectable" class="ml-1 text-[9px] opacity-75"></span>
           </button>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
           <label class="hidden lg:flex items-center gap-1.5 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
             <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
             <span>Group Editions</span>
@@ -638,7 +609,7 @@
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-600 dark:text-slate-400">
-        <a href="./about.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">About Us & Verification</a>
+        <a href="./about.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">About Us &amp; Verification</a>
         <a href="./affiliate-disclosure.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Affiliate Disclosure</a>
         <a href="./privacy.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Privacy Policy</a>
         <a href="./terms.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Terms of Service</a>
@@ -1234,7 +1205,6 @@
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateWishlistBadge();
-      initAllHorizontalScrollers();
       render();
     }
 
@@ -1424,17 +1394,17 @@
     function updateFilterButtonsUI() {
       document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm shrink-0 flex items-center gap-1.5 cursor-pointer";
+          btn.className = "tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm flex items-center gap-1.5 cursor-pointer";
         } else {
-          btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer";
+          btn.className = "tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer";
         }
       });
 
       document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
         if (btn.dataset.fmt === activeFormat) {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm shrink-0 cursor-pointer";
+          btn.className = "fmt-btn px-2.5 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm cursor-pointer";
         } else {
-          btn.className = "fmt-btn px-3 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer";
+          btn.className = "fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer";
         }
       });
     }
@@ -1467,7 +1437,6 @@
       });
 
       container.innerHTML = html;
-      initHorizontalScrollable(container);
     }
 
     function updateYearJumpBar() {
@@ -1528,69 +1497,6 @@
           btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer";
         }
       });
-    }
-
-    function scrollElement(elementId, direction) {
-      const el = document.getElementById(elementId);
-      if (!el) return;
-      const amount = direction === 'left' ? -280 : 280;
-      el.scrollBy({ left: amount, behavior: 'smooth' });
-    }
-
-    function initHorizontalScrollable(el) {
-      if (!el || el._hasScrollAttached) return;
-      el._hasScrollAttached = true;
-
-      el.addEventListener('wheel', (e) => {
-        if (e.deltaY !== 0 && el.scrollWidth > el.clientWidth) {
-          e.preventDefault();
-          el.scrollLeft += e.deltaY * 0.9;
-        }
-      }, { passive: false });
-
-      let isDown = false;
-      let startX = 0;
-      let initialScroll = 0;
-      let moved = false;
-
-      el.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return;
-        isDown = true;
-        moved = false;
-        startX = e.pageX - el.offsetLeft;
-        initialScroll = el.scrollLeft;
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (!isDown) return;
-        isDown = false;
-        el.classList.remove('cursor-grabbing');
-      });
-
-      el.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        const x = e.pageX - el.offsetLeft;
-        const walk = x - startX;
-        if (Math.abs(walk) > 4) {
-          moved = true;
-          el.classList.add('cursor-grabbing');
-          el.scrollLeft = initialScroll - walk;
-        }
-      });
-
-      el.addEventListener('click', (e) => {
-        if (moved) {
-          e.preventDefault();
-          e.stopPropagation();
-          moved = false;
-        }
-      }, true);
-    }
-
-    function initAllHorizontalScrollers() {
-      initHorizontalScrollable(document.getElementById('filter-bar'));
-      initHorizontalScrollable(document.getElementById('artist-subbar'));
-      initHorizontalScrollable(document.getElementById('format-filter-bar'));
     }
 
     function setFormat(fmt) {
@@ -1783,13 +1689,11 @@
       return `${formattedConverted} <span class="text-[10px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
     }
 
-    // Accurate Multi-Format Date Parser
     function getItemDateValue(item) {
       if (!item) return 0;
       const dStr = String(item.release_date || '').trim();
       if (!dStr || dStr.toLowerCase().includes('available now')) return 0;
 
-      // 1. Standard YYYY/MM/DD or YYYY-MM-DD
       const m = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b/);
       if (m) {
         const y = parseInt(m[1], 10);
@@ -1798,7 +1702,6 @@
         if (day <= 31 && mon <= 12) return (y * 10000) + (mon * 100) + day;
       }
 
-      // 2. English textual dates: Month DD, YYYY
       const en = dStr.match(/\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b/);
       if (en) {
         const monKey = en[1].toLowerCase();
@@ -1810,7 +1713,6 @@
         }
       }
 
-      // 3. Month & Year: YYYY/MM
       const ym = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})\b/);
       if (ym) {
         const y = parseInt(ym[1], 10);
@@ -1821,7 +1723,6 @@
       return 0;
     }
 
-    // Resolves the latest valid date across all clustered editions
     function getClusterEffectiveDateValue(cluster) {
       if (!cluster) return 0;
       const variants = cluster._activeVariants || cluster.variants || (cluster._primary ? [cluster._primary] : []);
@@ -2206,7 +2107,6 @@
         }));
       }
 
-      // Accurate Sorting with Cluster Multi-Variant Evaluation
       displayEntities.sort((entA, entB) => {
         const a = entA._primary;
         const b = entB._primary;

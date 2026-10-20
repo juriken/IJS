@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /products.json
+Disallow: /repair_progress.json
 
-Sitemap: https://idoljapan.store/
+# Explicit Crawl Guidance
+Sitemap: https://idoljapan.store/sitemap.xml

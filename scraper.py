@@ -27,6 +27,22 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 ]
 TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
 
+NOIME_AUTHENTIC_SIGNATURES = [
+    "≠me", "not equal me", "ノイミー", "noime",
+    "kimi wa kono natsu", "mahoroba asterisk", "chocolate melancholy",
+    "su kida", "hanikami short", "tenshi wa doko e", "antihime",
+    "anti-confiture", "omoide champion", "last chance, last dance",
+    "natsumatsuri koi shitau", "kimi no oto dattanda", "chozetsu shoujo",
+    "springtime in you", "hatsukoi camouflage"
+]
+
+NIAGO_AUTHENTIC_SIGNATURES = [
+    "nearly equal joy", "nearly equal", "≒joy", "ニアジョイ",
+    "waratte flatte", "chou kodoku", "taiikukan disco", "shonichi",
+    "kitto, aoi", "yuransen", "daisuki da", "hatsukoi sync", "kimi to watashi no uta",
+    "muda de ii", "yubiwa to aribai", "watashi, idol sengen"
+]
+
 TARGET_GROUPS = [
     # Hello! Project — Groups & Active Units
     ("Hello! Project", "Morning Musume", "Morning Musume", [
@@ -69,7 +85,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Erina Mano", "Erina Mano", ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", "Airi Suzuki", ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
 
-    # Up-Front / H!P Alumni (Separated into distinct branches)
+    # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", "You Kikkawa", [
         "You Kikkawa", "Kikkawa You", "Kikkawa Yu", "吉川友", "Kikkawa"
     ]),
@@ -105,10 +121,10 @@ TARGET_GROUPS = [
         "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
     ]),
 
-    # =LOVE & Sister Groups
+    # =LOVE & Sister Groups (Targeted with verified CDJapan index keys)
     ("=LOVE / Sister Groups", "=LOVE", "=LOVE", ["=LOVE", "Equal Love", "イコラブ"]),
-    ("=LOVE / Sister Groups", "≠ME", "≠ME", ["≠ME", "Not Equal ME", "Noime", "ノイミー"]),
-    ("=LOVE / Sister Groups", "≒JOY", "≒JOY", ["≒JOY", "Nearly Equal Joy", "ニアジョイ"]),
+    ("=LOVE / Sister Groups", "≠ME", "ノイミー", NOIME_AUTHENTIC_SIGNATURES),
+    ("=LOVE / Sister Groups", "≒JOY", "Nearly Equal Joy", NIAGO_AUTHENTIC_SIGNATURES),
 
     # KAWAII LAB.
     ("KAWAII LAB.", "FRUITS ZIPPER", "FRUITS ZIPPER", ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
@@ -205,7 +221,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
         if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
             return True
 
-    # Discriminate between Up Up Girls (Kari) and Up Up Girls (2)
     if canonical_artist == "Up Up Girls (Kari)":
         if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text:
             return False
@@ -213,6 +228,18 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key):
     if canonical_artist == "Up Up Girls (2)":
         if "(2)" not in lower_text and "（2）" not in card_text and "アプガ2" not in card_text:
             return False
+
+    # Strict ≠ME Filter: Prevents common English word "me" from extracting random products
+    if canonical_artist == "≠ME":
+        if "≠me" in lower_text or "ノイミー" in card_text or "not equal me" in lower_text or "noime" in lower_text:
+            return True
+        return any(sig in lower_text for sig in NOIME_AUTHENTIC_SIGNATURES)
+
+    # Strict ≒JOY Filter: Validates against Nearly Equal Joy and verified tracks
+    if canonical_artist == "≒JOY":
+        if "nearly equal" in lower_text or "≒joy" in lower_text or "ニアジョイ" in card_text:
+            return True
+        return any(sig in lower_text for sig in NIAGO_AUTHENTIC_SIGNATURES)
 
     for kw in keywords:
         kw_clean = kw.strip().lower()

@@ -2,8 +2,9 @@ name: Daily Idol Product Sync
 
 on:
   schedule:
-    # Runs every 8 minutes
-    - cron: '*/8 * * * *'
+    # Runs 5 times daily during GitHub off-peak hours at an off-beat minute:
+    # 01:23, 05:23, 09:23, 19:23, and 23:23 UTC
+    - cron: '23 1,5,9,19,23 * * *'
   workflow_dispatch:
 
 permissions:

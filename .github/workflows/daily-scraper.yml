@@ -2,8 +2,8 @@ name: Daily Idol Product Sync
 
 on:
   schedule:
-    # Runs automatically every day at 03:00 UTC
-    - cron: '0 3 * * *'
+    # Runs every 4 hours (00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -41,4 +41,4 @@ jobs:
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
           git add products.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog release dates" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog release dates [skip ci]" && git push)

@@ -140,7 +140,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search Morning Musume, Up Up Girls, NiziU, ME:I..." 
+            placeholder="Search =LOVE, ≠ME, ≒JOY, Morning Musume..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -249,7 +249,7 @@
             <span>Sakamichi &amp; 22/7</span>
             <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
-          <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
+          <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
             <span>Stardust Planet</span>
             <span id="badge-cat-Stardust Planet" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
@@ -2107,10 +2107,16 @@
           matchesArtist = (item.artist === 'LoVendoR' || item.artist === 'LoVendoЯ');
         }
         if (!matchesArtist && activeArtist === 'Up Up Girls (Kari)') {
-          matchesArtist = item.artist === 'Up Up Girls (Kari)';
+          matchesArtist = (item.artist === 'Up Up Girls (Kari)');
         }
         if (!matchesArtist && activeArtist === 'Up Up Girls (2)') {
-          matchesArtist = item.artist === 'Up Up Girls (2)';
+          matchesArtist = (item.artist === 'Up Up Girls (2)');
+        }
+        if (!matchesArtist && (activeArtist === '≠ME' || activeArtist === 'ME')) {
+          matchesArtist = (item.artist === '≠ME' || item.artist === 'ME' || item.artist === 'Not Equal ME');
+        }
+        if (!matchesArtist && (activeArtist === '≒JOY' || activeArtist === 'Nearly Equal Joy')) {
+          matchesArtist = (item.artist === '≒JOY' || item.artist === 'Nearly Equal Joy' || item.artist === 'Nearly Equal JOY');
         }
         
         const itemFmt = getItemFormatCategory(item);

@@ -141,6 +141,25 @@
 </head>
 <body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
+  <!-- SEO Crawlability Fallback -->
+  <noscript>
+    <div style="padding: 20px; background: #fff; color: #000;">
+      <h1>IdolJapan.store Catalog Map</h1>
+      <p>JavaScript is required to view the interactive catalog. Please use the links below to navigate our categories.</p>
+      <ul>
+        <li><a href="/?cat=Hello!+Project">Hello! Project Releases</a></li>
+        <li><a href="/?cat=Up-Front+Alumni">Up-Front Alumni Releases</a></li>
+        <li><a href="/?cat=AKB48+Group">AKB48 Group Releases</a></li>
+        <li><a href="/?cat=Sakamichi+Series">Sakamichi Series Releases</a></li>
+        <li><a href="/?cat=Stardust+Planet">Stardust Planet Releases</a></li>
+        <li><a href="/?cat=%3DLOVE+%2F+Sister+Groups">=LOVE / Sister Groups Releases</a></li>
+        <li><a href="/?cat=KAWAII+LAB.">KAWAII LAB. Releases</a></li>
+        <li><a href="/?cat=Modern+Idols">Modern Idols Releases</a></li>
+        <li><a href="/?cat=Babymetal">Babymetal Releases</a></li>
+      </ul>
+    </div>
+  </noscript>
+
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
     <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
@@ -652,7 +671,7 @@
 
           <div class="pt-2 text-xs text-stone-600 dark:text-slate-300 space-y-1.5 border-t border-stone-100 dark:border-slate-800">
             <p><strong class="text-stone-800 dark:text-stone-200">Release Date:</strong> <span id="modal-release-date">Available Now</span></p>
-            <p><strong class="text-stone-800 dark:text-stone-200">Catalog ID:</strong> <span id="modal-catalog-id" class="font-mono">EPCE-0000</span> <button onclick="copyCatalogId()" class="ml-1 text-rose-600 hover:underline text-[10px] cursor-pointer"><i class="fa-regular fa-copy"></i> Copy</button></p>
+            <p><strong class="text-stone-800 dark:text-stone-200">Catalog ID:</strong> <span id="modal-catalog-id" class="font-mono">EPCE-0000</span> <button onclick="copyToClipboard(document.getElementById('modal-catalog-id').innerText, 'Catalog ID copied!')" class="ml-1 text-rose-600 hover:underline text-[10px] cursor-pointer"><i class="fa-regular fa-copy"></i> Copy</button></p>
             <p><strong class="text-stone-800 dark:text-stone-200">Franchise:</strong> <span id="modal-category">Hello! Project</span></p>
           </div>
         </div>
@@ -715,6 +734,52 @@
     </div>
   </div>
 
+  <!-- Crypto Donation Modal -->
+  <div id="crypto-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeCryptoModalOnBackdrop(event)">
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
+          <i class="fa-brands fa-bitcoin text-amber-500"></i> Cryptocurrency
+        </h3>
+        <button onclick="toggleCryptoModal()" class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-xs text-stone-600 dark:text-slate-400">Support our server costs directly via Web3. Tap to copy the address.</p>
+      
+      <div class="space-y-3">
+        <!-- BTC -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Bitcoin (BTC)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">bc1q4xy3vhth0jgjce4h6vrsn8k87a8pp8hft839xt</p>
+          </div>
+          <button onclick="copyToClipboard('REPLACE_WITH_YOUR_BTC_ADDRESS', 'BTC Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+        <!-- ETH -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Ethereum, Polygon, Arbitrum, or EVM Chains (ERC-20)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0xa7f593C77299AE5Da093d6878E51e3cF529B2DFd</p>
+          </div>
+          <button onclick="copyToClipboard('REPLACE_WITH_YOUR_ETH_ADDRESS', 'ETH Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+        <!-- SOL -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Solana (SOL)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">BR2myaNz57vfULN9oAMWbDCq13fbirz8MxniBYbBbrRf</p>
+          </div>
+          <button onclick="copyToClipboard('REPLACE_WITH_YOUR_SOL_ADDRESS', 'SOL Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Scroll-to-Top Floating Action Button -->
   <button 
     id="scroll-to-top" 
@@ -745,15 +810,24 @@
             </p>
           </div>
         </div>
-        <a 
-          href="https://ko-fi.com/idoljapanstore" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="shrink-0 bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap cursor-pointer"
-        >
-          <i class="fa-solid fa-heart text-rose-600"></i>
-          <span>Support on Ko-fi</span>
-        </a>
+        <div class="flex items-center gap-2 shrink-0">
+          <button 
+            onclick="toggleCryptoModal()" 
+            class="bg-stone-800 hover:bg-stone-900 dark:bg-slate-800 dark:hover:bg-slate-700 text-white text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap cursor-pointer"
+          >
+            <i class="fa-brands fa-bitcoin text-amber-400"></i>
+            <span>Crypto</span>
+          </button>
+          <a 
+            href="https://ko-fi.com/idoljapanstore" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap cursor-pointer"
+          >
+            <i class="fa-solid fa-heart text-rose-600"></i>
+            <span>Support on Ko-fi</span>
+          </a>
+        </div>
       </div>
 
       <!-- Disclosure Box -->
@@ -894,6 +968,39 @@
       setTimeout(() => {
         toast.classList.add('opacity-0', 'pointer-events-none');
       }, 2400);
+    }
+
+    function copyToClipboard(text, successMessage) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage);
+      });
+    }
+
+    function toggleCryptoModal() {
+      const modal = document.getElementById('crypto-modal');
+      if (!modal) return;
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function closeCryptoModalOnBackdrop(e) {
+      if (e.target.id === 'crypto-modal') toggleCryptoModal();
+    }
+
+    function updatePageTitle() {
+      let baseTitle = "IdolJapan.store — Official Japanese Idol Discography";
+      if (activeFilter !== 'All') {
+        baseTitle = `${activeFilter} Discography — IdolJapan.store`;
+      }
+      if (activeArtist !== 'All') {
+        baseTitle = `${activeArtist} CDJapan Releases — IdolJapan.store`;
+      }
+      document.title = baseTitle;
     }
 
     // Dynamic Layout Switcher (Desktop 1280px Virtual Canvas vs Mobile Responsive)
@@ -1114,9 +1221,7 @@
         }
       }
 
-      navigator.clipboard.writeText(directUrl).then(() => {
-        showToast("Product link copied to clipboard!");
-      });
+      copyToClipboard(directUrl, "Product link copied to clipboard!");
     }
 
     function getWishlist() {
@@ -1183,12 +1288,10 @@
           text: `Check out my Japanese idol discography haul (${listIds.length} items):`,
           url: shareUrl
         }).catch(() => {
-          navigator.clipboard.writeText(shareUrl).then(() => showToast("Wishlist share link copied!"));
+          copyToClipboard(shareUrl, "Wishlist share link copied!");
         });
       } else {
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          showToast("Wishlist share link copied to clipboard!");
-        });
+        copyToClipboard(shareUrl, "Wishlist share link copied to clipboard!");
       }
     }
 
@@ -1399,6 +1502,7 @@
 
       const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState({}, '', newUrl);
+      updatePageTitle();
     }
 
     function readUrlParams() {
@@ -1432,6 +1536,8 @@
         const targetId = params.get('id');
         setTimeout(() => openModal(targetId), 200);
       }
+      
+      updatePageTitle();
     }
 
     async function loadCatalog() {
@@ -2209,6 +2315,8 @@
       const params = new URLSearchParams(window.location.search);
       params.set('id', p.id);
       window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+      
+      document.title = `${p.title} — ${p.artist} | IdolJapan.store`;
 
       const modal = document.getElementById('product-modal');
       const img = document.getElementById('modal-img');
@@ -2282,6 +2390,8 @@
         const rest = params.toString();
         window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
       }
+      
+      updatePageTitle();
     }
 
     function closeModalOnBackdrop(e) {
@@ -2292,9 +2402,7 @@
 
     function copyCatalogId() {
       if (!currentModalProduct) return;
-      navigator.clipboard.writeText(currentModalProduct.id).then(() => {
-        showToast(`Catalog ID copied: ${currentModalProduct.id}`);
-      });
+      copyToClipboard(currentModalProduct.id, `Catalog ID copied: ${currentModalProduct.id}`);
     }
 
     function switchClusteredEdition(clusterIndex, newProductId, event) {
@@ -2652,12 +2760,14 @@
 
     window.addEventListener('keydown', (e) => {
       const modal = document.getElementById('product-modal');
+      const cryptoModal = document.getElementById('crypto-modal');
       const isModalOpen = modal && !modal.classList.contains('hidden');
 
       if (e.key === 'Escape') {
         closeModal();
         closeRedirectModal();
         closeAutocomplete();
+        if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();
         const drawer = document.getElementById('calendar-drawer');
         if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
         const mobileDrawer = document.getElementById('mobile-filter-drawer');

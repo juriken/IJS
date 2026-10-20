@@ -140,7 +140,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search Morning Musume, Sayumi, Up Up Girls, NiziU..." 
+            placeholder="Search Morning Musume, Up Up Girls, NiziU, ME:I..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -225,7 +225,7 @@
       </div>
     </div>
 
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (Multi-Row Wrapped) -->
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
     <nav class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1" id="filter-bar">
@@ -249,7 +249,7 @@
             <span>Sakamichi &amp; 22/7</span>
             <span id="badge-cat-Sakamichi Series" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
-          <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
+          <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
             <span>Stardust Planet</span>
             <span id="badge-cat-Stardust Planet" class="text-[10px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
           </button>
@@ -294,7 +294,7 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Multi-Row Wrapped) -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-1.5" id="artist-subbar">
       </div>
@@ -714,7 +714,8 @@
       ],
       'Up-Front Alumni': [
         'You Kikkawa',
-        'Up Up Girls'
+        'Up Up Girls (Kari)',
+        'Up Up Girls (2)'
       ],
       'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48', 'Sayaka Yamamoto'],
       'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Keyakizaka46', '22/7'],
@@ -2105,8 +2106,11 @@
         if (!matchesArtist && (activeArtist === 'LoVendoR' || activeArtist === 'LoVendoЯ')) {
           matchesArtist = (item.artist === 'LoVendoR' || item.artist === 'LoVendoЯ');
         }
-        if (!matchesArtist && activeArtist === 'Up Up Girls') {
-          matchesArtist = String(item.artist || '').toLowerCase().includes('up up girls');
+        if (!matchesArtist && activeArtist === 'Up Up Girls (Kari)') {
+          matchesArtist = item.artist === 'Up Up Girls (Kari)';
+        }
+        if (!matchesArtist && activeArtist === 'Up Up Girls (2)') {
+          matchesArtist = item.artist === 'Up Up Girls (2)';
         }
         
         const itemFmt = getItemFormatCategory(item);

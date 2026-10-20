@@ -3566,7 +3566,7 @@
   "YRXS-80044": {
     "id": "YRXS-80044",
     "title": "Blu-ray NMB48 Yamamoto Sayaka Sotsugyo Concert \"AYAKA SONIC - Sayaka, Sasayaka, Sayonara, Sayaka -\"",
-    "artist": "NMB48",
+    "artist": "Sayaka Yamamoto",
     "category": "AKB48 Group",
     "price": "8,500yen",
     "price_num": 8500,
@@ -4098,7 +4098,7 @@
     "category": "AKB48 Group",
     "price": "9,028yen",
     "price_num": 9028,
-    "release_date": "2016/11/13",
+    "release_date": "2016/11/94",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/NEOGDS-211382.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-211382",
     "updated_at": "2026-10-20"
@@ -44349,6 +44349,18 @@
     "release_date": "2004/09/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/23/TKCA-72715.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTKCA-72715",
+    "updated_at": "2026-10-20"
+  },
+  "KIZC-90240": {
+    "id": "KIZC-90240",
+    "title": "Album CD Tsugi no Ashiato [w/ 2CD+DVD, Limited Edition / Type A]",
+    "artist": "AKB48",
+    "category": "AKB48 Group",
+    "price": "3,400yen",
+    "price_num": 3400,
+    "release_date": "2014/01/22",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/30/KIZC-90240.jpg?v=2",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZC-90240",
     "updated_at": "2026-10-20"
   }
 }

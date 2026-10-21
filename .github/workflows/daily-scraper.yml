@@ -2,8 +2,7 @@ name: Daily Idol Product Sync
 
 on:
   schedule:
-    # Runs 5 times daily during GitHub off-peak hours at an off-beat minute:
-    # 01:23, 05:23, 09:23, 19:23, and 23:23 UTC
+    # Runs 5 times daily at 01:23, 05:23, 09:23, 19:23, and 23:23 UTC
     - cron: '23 1,5,9,19,23 * * *'
   workflow_dispatch:
 
@@ -38,37 +37,9 @@ jobs:
         run: |
           python -u scraper.py
 
-      - name: Audit and Repair Jacket URLs
+      - name: Run Unified Build Pipeline
         run: |
-          python fix_images.py
-
-      - name: Build Summary Index
-        run: |
-          python build_summary.py
-
-      - name: Generate Pre-rendered Group Landing Pages
-        run: |
-          python generate_group_pages.py
-
-      - name: Validate Catalog Integrity
-        run: |
-          python validate_catalog.py
-
-      - name: Auto-Generate XML Sitemap
-        run: |
-          python generate_sitemap.py
-
-      - name: Auto-Generate RSS Release Feed
-        run: |
-          python generate_feed.py
-
-      - name: Generate Schema.org Product Graph
-        run: |
-          python generate_schema.py
-
-      - name: Stamp Offline Service Worker Cache Key
-        run: |
-          python generate_offline_manifest.py
+          python build_catalog.py
 
       - name: Ping Search Engines for Rapid Indexing
         run: |

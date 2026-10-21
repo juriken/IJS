@@ -1,0 +1,16 @@
+# Cloudflare Pages Clean Rewrites & Navigation Aliases
+
+# Clean Product Deep Links
+/product/:sku  /?id=:sku  200
+
+# Quick Views & Utility Shortcuts
+/calendar      /?status=preorder  200
+/preorders     /?status=preorder  200
+/instock       /?status=instock   200
+/archive       /?status=oop       200
+/wishlist      /?view=wishlist    200
+
+# Legacy fallback redirects
+/catalog.json  /catalog-index.json  301
+/feed          /feed.xml            301
+/rss           /feed.xml            301

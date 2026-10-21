@@ -1,0 +1,58 @@
+name: Targeted Idol Scraper (Manual Test)
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_group:
+        description: 'Select the idol group(s) to test and scrape:'
+        required: true
+        default: 'Updated 3 Groups (Up Up Girls (2), Hello Pro Kenshuusei, Kobushi Factory)'
+        type: choice
+        options:
+          - 'Updated 3 Groups (Up Up Girls (2), Hello Pro Kenshuusei, Kobushi Factory)'
+          - 'Up Up Girls (2)'
+          - 'Hello Pro Kenshuusei'
+          - 'Kobushi Factory'
+          - 'All Groups'
+
+permissions:
+  contents: write
+
+jobs:
+  test-scrape:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUNBUFFERED: "1"
+      TARGET_ARTIST: ${{ github.event.inputs.target_group }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Run Targeted Scraper
+        run: |
+          python -u scraper.py
+
+      - name: Rebuild Catalog Summary Index
+        run: |
+          python build_summary.py
+
+      - name: Validate Scraped Integrity
+        run: |
+          python validate_catalog.py
+
+      - name: Commit and Push Verified Changes
+        run: |
+          git config --global user.name "IdolJapan Bot"
+          git config --global user.email "bot@idoljapan.store"
+          git add products.json catalog-index.json scraper_state.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Test scrape: ${{ github.event.inputs.target_group }} [skip ci]" && git push)

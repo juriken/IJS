@@ -37,6 +37,10 @@ jobs:
         run: |
           python -u scraper.py
 
+      - name: Validate Catalog Integrity
+        run: |
+          python validate_catalog.py
+
       - name: Auto-Generate XML Sitemap
         run: |
           python generate_sitemap.py

@@ -2,7 +2,7 @@ name: Weekly CDJapan Catalog Healthcheck
 
 on:
   schedule:
-    # Runs once weekly on Sunday at 03:15 UTC
+    # Runs every Sunday at 03:15 UTC
     - cron: '15 3 * * 0'
   workflow_dispatch:
 
@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Python Dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests

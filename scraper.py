@@ -51,9 +51,8 @@ NIAGO_AUTHENTIC_SIGNATURES = [
     "muda de ii", "yubiwa to aribai", "watashi, idol sengen"
 ]
 
-# Master Registry with Multi-Target Query & Person ID Routing
 TARGET_GROUPS = [
-    # Hello! Project — Groups & Active Units
+    # Hello! Project — Active Groups & Units
     ("Hello! Project", "Morning Musume", ["Morning Musume", "モーニング娘"], [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
@@ -65,7 +64,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "Rosy"]),
 
-    # Problem 2 Solved: Multi-query for Hello Pro Kenshuusei
+    # Hello Pro Kenshuusei
     ("Hello! Project", "Hello Pro Kenshuusei", [
         "Hello Pro Kenshusei",
         "ハロプロ研修生",
@@ -82,7 +81,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
     ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
 
-    # Problem 3 Solved: Query both Kobushi-Factory and Kobushi Factory
+    # Kobushi Factory
     ("Hello! Project", "Kobushi Factory", [
         "Kobushi-Factory",
         "Kobushi Factory",
@@ -118,11 +117,11 @@ TARGET_GROUPS = [
         "アップアップガールズ（仮）", "UpUpGirls(Kari)"
     ]),
 
-    # Problem 1 Solved: Direct Person ID Endpoint + Japanese Alias
+    # Up Up Girls (2) — Japanese Kana & Space Normalized Queries
     ("Up-Front Alumni", "Up Up Girls (2)", [
-        "https://www.cdjapan.co.jp/person/700786352",
         "アップアップガールズ(2)",
-        "Up Up Girls 2"
+        "Up Up Girls 2",
+        "アップアップガールズ（2）"
     ], [
         "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
         "UpUpGirls(2)", "Up Up Girls 2"
@@ -243,7 +242,6 @@ def is_date_upcoming(date_str):
 
 
 def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_direct_person=False):
-    # Direct person URLs are verified by CDJapan's artist database
     if is_direct_person:
         return True
 
@@ -495,7 +493,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                 except Exception:
                     pass
 
-                # Lazy-load scroll triggers
                 page.evaluate("window.scrollBy(0, 750)")
                 time.sleep(0.5)
                 page.evaluate("window.scrollBy(0, 850)")

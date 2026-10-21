@@ -36,15 +36,18 @@ def validate_json_file(file_path, is_summary=False):
             print(f"❌ Error: Item '{pid}' in '{file_path}' is not a valid object.")
             return False
 
+        # Verify essential fields
         for field in REQUIRED_FIELDS:
             if field not in item or item[field] is None:
                 print(f"❌ Error: Item '{pid}' missing required field '{field}'.")
                 return False
 
+        # Validate SKU format (no spaces or control characters)
         if re.search(r'\s', item["id"]):
             print(f"❌ Error: SKU '{item['id']}' contains illegal whitespace characters.")
             return False
 
+        # Validate affiliate links on full payload
         if not is_summary and "affiliate_url" in item:
             aff_url = item.get("affiliate_url", "")
             if EXPECTED_AFFILIATE_ID not in aff_url:

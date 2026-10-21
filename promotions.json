@@ -1,0 +1,15 @@
+{
+  "active_campaign": {
+    "badge": "CDJapan Official Promotion",
+    "headline": "500 JPY Off First Order",
+    "description": "New to CDJapan? Get 500 JPY off your first international order of 3,000 JPY or more at checkout.",
+    "code": "WELCOME",
+    "chart_eligible": true,
+    "shipping_carriers": ["DHL Express", "FedEx International", "EMS Japan Post", "Airmail"]
+  },
+  "trust_badges": [
+    "100% Oricon Chart Registration",
+    "Direct Tokyo Dispatch",
+    "Zero Middleman Fees"
+  ]
+}

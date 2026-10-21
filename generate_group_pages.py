@@ -1,6 +1,12 @@
+"""
+IdolJapan.store — Pre-rendered Group Landing Page Generator
+Builds static SEO-optimized landing pages with Schema.org MusicGroup markup for every idol unit.
+"""
+
 import os
 import json
 import re
+import urllib.parse
 from xml.sax.saxutils import escape
 
 DATA_FILE = "products.json"
@@ -15,7 +21,7 @@ def slugify(name):
 
 def generate_static_group_pages():
     if not os.path.exists(DATA_FILE):
-        print(f"❌ Error: {DATA_FILE} not found.")
+        print(f"Error: {DATA_FILE} not found.")
         return
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
@@ -23,7 +29,6 @@ def generate_static_group_pages():
 
     os.makedirs(GROUPS_DIR, exist_ok=True)
 
-    # Group items by canonical artist
     grouped_catalog = {}
     for pid, item in catalog.items():
         artist = item.get("artist", "Other")
@@ -38,11 +43,9 @@ def generate_static_group_pages():
         file_path = os.path.join(GROUPS_DIR, f"{slug}.html")
         category = items[0].get("category", "Japanese Idol")
 
-        # Sort items by street date descending
         items.sort(key=lambda x: str(x.get("release_date", "")), reverse=True)
         sample_image = items[0].get("image") or f"{BASE_URL}/favicon.ico"
 
-        # Generate JSON-LD microdata
         schema_data = {
             "@context": "https://schema.org",
             "@type": "MusicGroup",
@@ -61,7 +64,6 @@ def generate_static_group_pages():
             ]
         }
 
-        # Build card grid
         cards_html = []
         for it in items:
             title = escape(it.get("title", "Untitled"))
@@ -167,7 +169,7 @@ def generate_static_group_pages():
         with open(file_path, "w", encoding="utf-8") as out_f:
             out_f.write(page_content)
 
-    print(f"✅ Generated {len(grouped_catalog)} static group landing pages in /{GROUPS_DIR}/.")
+    print(f"Generated {len(grouped_catalog)} static group landing pages in /{GROUPS_DIR}/.")
 
 if __name__ == "__main__":
     generate_static_group_pages()

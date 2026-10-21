@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Dashboard — IdolJapan.store</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen p-4 sm:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+      <div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-chart-line text-rose-500 text-xl"></i>
+          <h1 class="text-2xl font-black">IdolJapan Telemetry Dashboard</h1>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">Real-time engagement, affiliate conversion tracking, and audio playback metrics.</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="exportReportJson()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded-xl border border-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-file-arrow-down text-rose-400"></i> Export JSON
+        </button>
+        <button onclick="clearAllData()" class="px-3.5 py-1.5 bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 text-xs font-bold rounded-xl border border-rose-500/30 transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-trash-can"></i> Clear Events
+        </button>
+        <a href="/" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow transition cursor-pointer">
+          Return to Catalog →
+        </a>
+      </div>
+    </div>
+
+    <!-- Summary KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+        <span class="text-xs font-semibold text-slate-400">Total Outbound Clicks</span>
+        <div id="kpi-clicks" class="text-2xl font-black text-rose-500 mt-1">0</div>
+        <span class="text-[10px] text-slate-500">Redirects to CDJapan</span>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+        <span class="text-xs font-semibold text-slate-400">Quick View Opens</span>
+        <div id="kpi-views" class="text-2xl font-black text-amber-400 mt-1">0</div>
+        <span class="text-[10px] text-slate-500">Release modal impressions</span>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+        <span class="text-xs font-semibold text-slate-400">Audio Previews Played</span>
+        <div id="kpi-audio" class="text-2xl font-black text-sky-400 mt-1">0</div>
+        <span class="text-[10px] text-slate-500">30s sample stream listens</span>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+        <span class="text-xs font-semibold text-slate-400">Wishlist Saves</span>
+        <div id="kpi-wishlist" class="text-2xl font-black text-emerald-400 mt-1">0</div>
+        <span class="text-[10px] text-slate-500">Added to personal hauls</span>
+      </div>
+    </div>
+
+    <!-- Top Clicked Releases -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <h2 class="text-sm font-bold flex items-center gap-2">
+        <i class="fa-solid fa-fire text-rose-500"></i> Top Clicked Releases (CDJapan Outbound)
+      </h2>
+      <div id="top-clicks-list" class="divide-y divide-slate-800 text-xs">
+        <p class="text-slate-500 py-4 text-center">No outbound click events recorded yet.</p>
+      </div>
+    </div>
+
+    <!-- Event Feed -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-bold flex items-center gap-2">
+          <i class="fa-solid fa-list-ul text-slate-400"></i> Raw Event Log (Most Recent First)
+        </h2>
+        <span id="log-count" class="text-xs text-slate-500">0 events</span>
+      </div>
+      <div id="event-feed-box" class="space-y-2 max-h-96 overflow-y-auto text-xs font-mono">
+        <p class="text-slate-500 text-center py-4">No logged events found in browser storage.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'idoljapan_telemetry_events';
+
+    function getEvents() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderDashboard() {
+      const events = getEvents();
+
+      let clicks = 0;
+      let views = 0;
+      let audio = 0;
+      let wishlist = 0;
+      const clickedProducts = {};
+
+      events.forEach(ev => {
+        if (ev.event === 'affiliate_outbound_click') {
+          clicks++;
+          const pid = ev.data?.id || 'Unknown';
+          const title = ev.data?.title || 'Unknown Title';
+          const artist = ev.data?.artist || 'Unknown Artist';
+          if (!clickedProducts[pid]) {
+            clickedProducts[pid] = { title, artist, count: 0 };
+          }
+          clickedProducts[pid].count++;
+        } else if (ev.event === 'view_release_modal') {
+          views++;
+        } else if (ev.event === 'play_audio_sample') {
+          audio++;
+        } else if (ev.event === 'add_to_wishlist') {
+          wishlist++;
+        }
+      });
+
+      document.getElementById('kpi-clicks').innerText = clicks.toLocaleString();
+      document.getElementById('kpi-views').innerText = views.toLocaleString();
+      document.getElementById('kpi-audio').innerText = audio.toLocaleString();
+      document.getElementById('kpi-wishlist').innerText = wishlist.toLocaleString();
+
+      // Render Top Clicks
+      const topList = document.getElementById('top-clicks-list');
+      const sortedClicked = Object.entries(clickedProducts).sort((a, b) => b[1].count - a[1].count);
+
+      if (sortedClicked.length === 0) {
+        topList.innerHTML = '<p class="text-slate-500 py-4 text-center">No outbound click events recorded yet.</p>';
+      } else {
+        topList.innerHTML = sortedClicked.slice(0, 10).map(([pid, info], idx) => `
+          <div class="py-2.5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="font-bold text-rose-500 w-5">#${idx + 1}</span>
+              <div class="truncate">
+                <span class="font-bold text-slate-200">${info.title}</span>
+                <span class="text-slate-400 block text-[11px]">${info.artist} (${pid})</span>
+              </div>
+            </div>
+            <div class="shrink-0 bg-slate-800 px-3 py-1 rounded-lg text-rose-400 font-bold">
+              ${info.count} click${info.count > 1 ? 's' : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Event Feed
+      const feedBox = document.getElementById('event-feed-box');
+      document.getElementById('log-count').innerText = `${events.length} total events`;
+
+      if (events.length === 0) {
+        feedBox.innerHTML = '<p class="text-slate-500 text-center py-4">No logged events found in browser storage.</p>';
+      } else {
+        feedBox.innerHTML = events.slice().reverse().map(ev => {
+          let badgeColor = 'bg-slate-800 text-slate-300';
+          if (ev.event === 'affiliate_outbound_click') badgeColor = 'bg-rose-950 text-rose-300 border border-rose-800';
+          else if (ev.event === 'play_audio_sample') badgeColor = 'bg-sky-950 text-sky-300 border border-sky-800';
+          else if (ev.event === 'add_to_wishlist') badgeColor = 'bg-emerald-950 text-emerald-300 border border-emerald-800';
+
+          const timeStr = new Date(ev.timestamp).toLocaleTimeString();
+          return `
+            <div class="p-2.5 bg-slate-950 rounded-xl border border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-md font-bold ${badgeColor}">${ev.event}</span>
+                <span class="text-slate-300 truncate">${ev.data?.title || ev.data?.id || 'Event action'}</span>
+              </div>
+              <div class="text-[10px] text-slate-500 flex items-center gap-2 shrink-0">
+                <span>${ev.viewport}</span>
+                <span>•</span>
+                <span>${timeStr}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function exportReportJson() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(getEvents(), null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `idoljapan_telemetry_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function clearAllData() {
+      if (confirm("Clear all recorded telemetry events from this device?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderDashboard();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderDashboard);
+  </script>
+</body>
+</html>

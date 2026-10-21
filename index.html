@@ -947,8 +947,9 @@
     </div>
   </footer>
 
-  <!-- Telemetry, Geolocation & Audio Jukebox Engines -->
+  <!-- Telemetry, IndexedDB, Geolocation & Audio Jukebox Engines -->
   <script src="/analytics.js"></script>
+  <script src="/db.js"></script>
   <script src="/geo_currency.js"></script>
   <script src="/jukebox.js"></script>
 
@@ -960,7 +961,7 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'active'; // 'active', 'preorder', 'instock', 'oop'
+    let activeAvailability = 'active';
     let viewMode = 'grid';
     let searchAliases = {};
 
@@ -1541,7 +1542,6 @@
       const selectEl = document.getElementById('currency-select');
       if (selectEl) selectEl.value = currentCurrency;
 
-      // 1. Instant hydration from static rates.json on domain
       try {
         const localRes = await fetch('/rates.json');
         if (localRes.ok) {
@@ -1553,7 +1553,6 @@
         }
       } catch (e) {}
 
-      // 2. Background freshness sweep
       const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
       const cachedTime = localStorage.getItem(RATES_TIME_KEY);
       const now = Date.now();
@@ -1693,8 +1692,28 @@
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
-      const cacheBuster = Date.now();
 
+      // 1. Instant loading from client-side IndexedDB
+      if (window.IdolDB) {
+        const cachedDb = await window.IdolDB.loadCatalog();
+        if (cachedDb && cachedDb.length > 0) {
+          allProducts = cachedDb.map((item, idx) => ({ ...item, _catalogIndex: idx }));
+          if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (Instant DB)`;
+          readUrlParams();
+          buildClusteredEntities();
+          updateDynamicCounts();
+          updateArtistSubBar();
+          updateYearJumpBar();
+          updateFilterButtonsUI();
+          updateAvailabilityUI();
+          updateWishlistBadge();
+          applyLayoutModeToDom();
+          render();
+        }
+      }
+
+      // 2. Cascade network sweep
+      const cacheBuster = Date.now();
       const candidatePaths = [
         `catalog-index.json?v=${cacheBuster}`,
         `./catalog-index.json?v=${cacheBuster}`,
@@ -1718,7 +1737,7 @@
       }
 
       if (data && typeof data === 'object') {
-        allProducts = Object.values(data)
+        const parsedItems = Object.values(data)
           .filter(item => item && (item.id || item.title))
           .map((item, idx) => ({
             ...item,
@@ -1729,8 +1748,15 @@
             price: String(item.price || 'Check CDJapan'),
             _catalogIndex: idx
           }));
+
+        allProducts = parsedItems;
         if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
-      } else {
+        
+        // Save to IndexedDB for next session
+        if (window.IdolDB) {
+          window.IdolDB.saveCatalog(parsedItems);
+        }
+      } else if (!allProducts.length) {
         allProducts = [];
         if (statsEl) statsEl.innerText = "Syncing catalog...";
       }
@@ -2193,7 +2219,6 @@
         return `¥${jpyAmount.toLocaleString()}`;
       }
 
-      // Convert from base JPY to active currency
       const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.4);
       const targetRate = exchangeRates[currentCurrency] || 1.0;
       const convertedVal = jpyAmount * usdPerJpy * targetRate;

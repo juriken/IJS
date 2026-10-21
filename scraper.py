@@ -26,7 +26,6 @@ USER_AGENTS = [
 ]
 
 # Targeted Franchise & Artist Master Registry
-# Resolves queries, direct person endpoints, and alternate spellings
 ARTIST_REGISTRY = [
     # Hello! Project
     {
@@ -307,7 +306,6 @@ def extract_products_from_html(html_content, artist_name, category_name):
     soup = BeautifulSoup(html_content, "html.parser")
     extracted = []
 
-    # Product cards on CDJapan appear in various list structures
     product_anchors = soup.select('a[href*="/product/"]')
     seen_ids_on_page = set()
 
@@ -337,7 +335,7 @@ def extract_products_from_html(html_content, artist_name, category_name):
         else:
             title = clean_text(anchor.get_text())
 
-        # Discard irrelevant navigation anchors matching product link
+        # Discard non-product anchor text
         if not title or len(title) < 2 or title.lower() in ["buy", "details", "pre-order", "order"]:
             continue
 
@@ -406,6 +404,7 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
     for page in range(1, max_pages + 1):
         url = build_target_url(target, page=page)
         success = False
+        items = []
 
         for attempt in range(1, 4):
             try:
@@ -417,7 +416,6 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
                         success = True
                         break
                     else:
-                        # Page has no more items
                         success = True
                         break
                 elif resp.status_code == 404:
@@ -425,7 +423,7 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
                     break
                 else:
                     time.sleep(attempt * 2.0)
-            except Exception as e:
+            except Exception:
                 time.sleep(attempt * 2.5)
 
         if not success or not items:
@@ -435,10 +433,28 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
 
     return total_found
 
+def get_filtered_registry():
+    """
+    Filters ARTIST_REGISTRY if TARGET_ARTIST environment variable is set.
+    """
+    raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
+    if not raw_filter or raw_filter.lower() == "all groups":
+        return ARTIST_REGISTRY
+
+    if "updated 3 groups" in raw_filter.lower():
+        target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
+        return [a for a in ARTIST_REGISTRY if a["name"] in target_names]
+
+    # Specific single artist match
+    matched = [a for a in ARTIST_REGISTRY if a["name"].lower() == raw_filter.lower()]
+    return matched if matched else ARTIST_REGISTRY
+
 def run_catalog_sync():
     print(f"🚀 Starting IdolJapan Catalog Scraper Sync at {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}...")
 
-    # Load existing catalog
+    active_registry = get_filtered_registry()
+    print(f"📋 Active Filter: Running {len(active_registry)} artist group(s): {[a['name'] for a in active_registry]}")
+
     existing_catalog = {}
     if os.path.exists(PRODUCTS_FILE):
         try:
@@ -451,7 +467,7 @@ def run_catalog_sync():
     session = requests.Session()
     total_new_or_updated = 0
 
-    for artist_cfg in ARTIST_REGISTRY:
+    for artist_cfg in active_registry:
         canonical_name = artist_cfg["name"]
         category = artist_cfg["category"]
         targets = artist_cfg.get("targets", [canonical_name])
@@ -465,14 +481,14 @@ def run_catalog_sync():
             
             for item in found_items:
                 pid = item["id"]
-                # Keep latest or more informative data
                 if pid not in artist_items_map:
                     artist_items_map[pid] = item
                 else:
-                    # Update price if previously missing
                     if artist_items_map[pid]["price"] == "Check CDJapan" and item["price"] != "Check CDJapan":
                         artist_items_map[pid]["price"] = item["price"]
                         artist_items_map[pid]["price_num"] = item["price_num"]
+
+        print(f"  ==> Total unique releases for {canonical_name}: {len(artist_items_map)}")
 
         # Merge extracted items into main catalog
         for pid, item in artist_items_map.items():
@@ -490,12 +506,13 @@ def run_catalog_sync():
     state_data = {
         "last_sync": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
         "total_catalog_size": len(existing_catalog),
-        "items_updated_this_pass": total_new_or_updated
+        "items_updated_this_pass": total_new_or_updated,
+        "last_targeted_filter": [a["name"] for a in active_registry]
     }
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state_data, f, ensure_ascii=False, indent=2)
 
-    print(f"\n Sync finished successfully!")
+    print(f"\n✅ Sync finished successfully!")
     print(f"   Total items stored: {len(existing_catalog)}")
     print(f"   Items added or updated this run: {total_new_or_updated}")
 

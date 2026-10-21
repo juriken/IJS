@@ -17,6 +17,12 @@
   Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
   Content-Type: application/json; charset=utf-8
 
+# Schema.org Product JSON-LD Graph
+/schema-catalog.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=1800, s-maxage=86400
+  Content-Type: application/json; charset=utf-8
+
 # Currency rates cache
 /rates.json
   Access-Control-Allow-Origin: *

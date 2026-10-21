@@ -22,7 +22,6 @@
         viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
         document.documentElement.classList.add('layout-mobile');
       } else {
-        // Desktop Canvas Mode (1280px wide canvas, pinch-to-zoom allowed)
         viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
         document.documentElement.classList.add('layout-desktop');
       }
@@ -136,35 +135,23 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    /* Fixed Virtual Desktop Width when in Desktop Mode */
     html.layout-desktop body {
       min-width: 1280px;
     }
     html.layout-mobile body {
       min-width: 100%;
     }
+    /* Content visibility for deferred off-screen layout */
+    .catalog-card-item {
+      content-visibility: auto;
+      contain-intrinsic-size: 320px 420px;
+    }
   </style>
 </head>
 <body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- SEO Crawlability Fallback -->
-  <noscript>
-    <div style="padding: 20px; background: #fff; color: #000;">
-      <h1>IdolJapan.store Catalog Map</h1>
-      <p>JavaScript is required to view the interactive catalog. Please use the links below to navigate our categories.</p>
-      <ul>
-        <li><a href="/?cat=Hello!+Project">Hello! Project Releases</a></li>
-        <li><a href="/?cat=Up-Front+Alumni">Up-Front Alumni Releases</a></li>
-        <li><a href="/?cat=AKB48+Group">AKB48 Group Releases</a></li>
-        <li><a href="/?cat=Sakamichi+Series">Sakamichi Series Releases</a></li>
-        <li><a href="/?cat=Stardust+Planet">Stardust Planet Releases</a></li>
-        <li><a href="/?cat=%3DLOVE+%2F+Sister+Groups">=LOVE / Sister Groups Releases</a></li>
-        <li><a href="/?cat=KAWAII+LAB.">KAWAII LAB. Releases</a></li>
-        <li><a href="/?cat=Modern+Idols">Modern Idols Releases</a></li>
-        <li><a href="/?cat=Babymetal">Babymetal Releases</a></li>
-      </ul>
-    </div>
-  </noscript>
+  <!-- Global Audio Player (Hidden Engine) -->
+  <audio id="global-audio-player" class="hidden" preload="none"></audio>
 
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
@@ -180,7 +167,7 @@
         <a href="/" class="text-xl sm:text-2xl font-black tracking-tight text-white">IdolJapan<span class="text-rose-200 dark:text-rose-400">.store</span></a>
       </div>
       
-      <!-- Search Input with Predictive Dropdown -->
+      <!-- Search Input with Fuzzy Dropdown -->
       <div class="flex-1 min-w-[220px] max-w-md relative order-3 sm:order-2 w-full sm:w-auto">
         <div class="relative">
           <input 
@@ -202,7 +189,6 @@
 
       <!-- Controls: Layout Switcher, Currency, Theme & Actions -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <!-- Layout Mode Toggle (Desktop vs Mobile) -->
         <div class="flex items-center bg-rose-700 dark:bg-slate-800 rounded-full p-0.5 border border-rose-400/30 dark:border-slate-700 text-xs font-bold shadow-sm">
           <button id="layout-btn-desktop" onclick="setLayoutMode('desktop')" title="Desktop Virtual View" class="px-2.5 py-1 rounded-full transition flex items-center gap-1 cursor-pointer">
             <i class="fa-solid fa-desktop text-xs"></i>
@@ -234,7 +220,7 @@
         <button 
           id="wishlist-toggle-btn"
           onclick="toggleWishlistView()" 
-          title="View Saved Wishlist" 
+          title="View Saved Wishlist & Haul Calculator" 
           class="desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i id="wishlist-btn-icon" class="fa-regular fa-heart text-amber-300"></i>
@@ -283,7 +269,7 @@
       </div>
     </div>
 
-    <!-- Mobile-Only Sticky Trigger Bar (Revealed strictly in Mobile Layout Mode) -->
+    <!-- Mobile-Only Sticky Trigger Bar -->
     <div id="mobile-filter-bar" class="hidden bg-stone-100 dark:bg-slate-800 border-t border-rose-500/20 px-4 py-2 flex items-center justify-between gap-2 text-xs">
       <button onclick="toggleMobileFilterDrawer()" class="flex-1 bg-white dark:bg-slate-700 py-2 px-3 rounded-xl border border-stone-200 dark:border-slate-600 font-bold text-stone-800 dark:text-white shadow-xs flex items-center justify-center gap-2 cursor-pointer">
         <i class="fa-solid fa-sliders text-rose-600"></i>
@@ -354,8 +340,8 @@
           <div class="flex items-center gap-1.5">
             <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
             <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500 cursor-pointer">
-              <option value="newest">Newest Releases</option>
-              <option value="oldest">Oldest Releases</option>
+              <option value="newest">Newest Street Date</option>
+              <option value="oldest">Oldest Street Date</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
             </select>
@@ -364,7 +350,7 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar with Explicit 22/7 Separation -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-1.5" id="artist-subbar">
       </div>
@@ -381,7 +367,7 @@
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & Release Timing Filter -->
+    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & 4-Tier Availability Filter -->
     <div id="desktop-nav-tier2" class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
@@ -435,12 +421,14 @@
             <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-11 text-right">Any</span>
           </div>
 
+          <!-- 4-Tier Stock & Archive Availability System -->
           <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[11px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-            <button onclick="setAvailability('all')" id="avail-all" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">All</button>
-            <button onclick="setAvailability('preorder')" id="avail-preorder" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
+            <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">Active</button>
+            <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
               <i class="fa-solid fa-clock text-[9px]"></i> Pre-Orders
             </button>
-            <button onclick="setAvailability('instock')" id="avail-instock" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
+            <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
+            <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP Archive</button>
           </div>
         </div>
       </div>
@@ -452,7 +440,7 @@
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
       <div class="flex items-center justify-center sm:justify-start gap-2">
         <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-sm"></i>
-        <span><strong>Verified Directory Notice:</strong> IdolJapan.store is an independent discography catalog. We do <u>not</u> process payments, sell goods, or run a proxy service. All links redirect directly to official merchant <strong>CDJapan (Tokyo)</strong>.</span>
+        <span><strong>Official Retailer Notice:</strong> IdolJapan.store is an independent discography catalog. We do not collect card details or run a proxy service. All links redirect directly to official merchant <strong>CDJapan (Tokyo)</strong> for chart-eligible international delivery.</span>
       </div>
       <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-rose-600 whitespace-nowrap">Learn How It Works →</a>
     </div>
@@ -468,9 +456,9 @@
             <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> CDJapan Authorized Affiliate
           </span>
         </h1>
-        <p class="text-sm text-rose-100 dark:text-slate-300 mt-1">Official singles, albums, photobooks, and concert Blu-rays shipped straight from Tokyo by authorized retailer CDJapan.</p>
+        <p class="text-sm text-rose-100 dark:text-slate-300 mt-1">Direct Tokyo shipment with Oricon &amp; Billboard Japan chart registration.</p>
       </div>
-      <div id="stats" class="text-xs bg-black/20 dark:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-rose-100 dark:text-rose-400 border border-white/10 dark:border-white/5">Loading catalog...</div>
+      <div id="stats" class="text-xs bg-black/20 dark:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-rose-100 dark:text-rose-400 border border-white/10 dark:border-white/5">Loading index...</div>
     </div>
   </section>
 
@@ -479,7 +467,7 @@
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs transition-colors duration-200">
       <div class="flex items-center gap-2">
         <div class="font-medium text-stone-600 dark:text-slate-300" id="page-range-info">
-          Showing releases...
+          Loading catalog entries...
         </div>
         <div id="wishlist-actions-group" class="hidden items-center gap-1.5">
           <button onclick="shareWishlistUrl()" title="Copy Shareable Wishlist Link" class="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 cursor-pointer">
@@ -512,13 +500,13 @@
     </div>
   </section>
 
-  <!-- Product Container (Grid or Dense List) -->
+  <!-- Product Container (4 Columns Desktop / 2 Columns Mobile) -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
     <div id="product-container" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold" id="empty-state-message">No idol merchandise found matching your filter selection.</p>
+      <p class="text-base font-semibold" id="empty-state-message">No idol releases found matching this active filter criteria.</p>
       <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
     </div>
 
@@ -526,7 +514,7 @@
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
 
-  <!-- Mobile Off-Canvas Filter & Units Drawer (Active strictly in Mobile Layout Mode) -->
+  <!-- Mobile Off-Canvas Filter & Units Drawer -->
   <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
@@ -545,25 +533,21 @@
         </div>
 
         <div class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
-          <!-- Mobile Drawer: Franchise Groups -->
           <div>
             <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Franchise Group</h4>
             <div id="mobile-drawer-franchises" class="flex flex-wrap gap-1.5"></div>
           </div>
 
-          <!-- Mobile Drawer: Units Sub-Bar -->
           <div id="mobile-drawer-units-box">
             <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Idol Unit / Sub-Group</h4>
             <div id="mobile-drawer-units" class="flex flex-wrap gap-1.5"></div>
           </div>
 
-          <!-- Mobile Drawer: Formats -->
           <div>
             <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Media Format</h4>
             <div id="mobile-drawer-formats" class="flex flex-wrap gap-1.5"></div>
           </div>
 
-          <!-- Mobile Drawer: Max Price & Availability -->
           <div class="pt-3 border-t border-stone-200 dark:border-slate-800 space-y-3">
             <div class="flex items-center justify-between">
               <span class="font-bold">Max JPY Price:</span>
@@ -590,7 +574,7 @@
     </div>
   </div>
 
-  <!-- Mobile Sticky Bottom App Bar (Visible strictly in Mobile Layout Mode) -->
+  <!-- Mobile Sticky Bottom App Bar -->
   <nav id="mobile-bottom-nav" class="hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-stone-200 dark:border-slate-800 py-2 px-4 flex items-center justify-around text-center shadow-lg">
     <button onclick="setFilter('All'); window.scrollTo({ top: 0, behavior: 'smooth' });" class="flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
       <i class="fa-solid fa-house text-sm mb-0.5"></i>
@@ -619,7 +603,7 @@
     </button>
   </nav>
 
-  <!-- Pre-Order Release Calendar Slide-over Drawer -->
+  <!-- Pre-Order Release Calendar Slide-over Drawer with .ICS Export -->
   <div id="calendar-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeCalendarOnBackdrop(event)">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
@@ -628,12 +612,19 @@
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-calendar-check text-amber-300 text-lg"></i>
             <div>
-              <h3 class="font-black text-sm">Pre-Order Release Calendar</h3>
-              <p class="text-[11px] text-rose-100">Consolidate orders for direct Tokyo shipping</p>
+              <h3 class="font-black text-sm">Tokyo Pre-Order Street Dates</h3>
+              <p class="text-[11px] text-rose-100">Export schedule or synchronize direct shipping</p>
             </div>
           </div>
           <button onclick="toggleCalendarDrawer()" class="text-white hover:text-amber-200 text-lg p-1 cursor-pointer">
             <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="p-3 bg-stone-100 dark:bg-slate-800 border-b border-stone-200 dark:border-slate-700 flex items-center justify-between gap-2">
+          <span class="text-[11px] text-stone-600 dark:text-slate-300">Synchronize to personal calendar:</span>
+          <button onclick="exportAllPreOrdersIcs()" class="px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[10px] shadow-xs flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-file-arrow-down"></i> Export .ICS File
           </button>
         </div>
 
@@ -643,7 +634,7 @@
     </div>
   </div>
 
-  <!-- Quick View Modal with Keyboard Arrow Navigation -->
+  <!-- Quick View Modal with Audio Preview & Arrow Navigation -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
       
@@ -666,6 +657,9 @@
         <span id="modal-preorder-badge" class="hidden absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded shadow flex items-center gap-1">
           <i class="fa-solid fa-clock"></i> PRE-ORDER
         </span>
+        <span id="modal-oop-badge" class="hidden absolute top-2.5 left-2.5 bg-stone-800 text-amber-300 text-[10px] font-black px-2 py-0.5 rounded shadow flex items-center gap-1">
+          <i class="fa-solid fa-box-archive"></i> OOP ARCHIVE
+        </span>
       </div>
 
       <div class="flex-1 flex flex-col justify-between space-y-4">
@@ -674,6 +668,14 @@
           <h3 id="modal-title" class="text-base font-bold text-stone-900 dark:text-white leading-snug">Product Title</h3>
           
           <div id="modal-edition-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+
+          <!-- HTML5 Sample Audio Player Widget -->
+          <div id="modal-audio-preview-box" class="hidden pt-2">
+            <button id="modal-audio-btn" onclick="toggleAudioPreview(currentModalProduct, this)" class="w-full py-1.5 px-3 bg-amber-50 dark:bg-amber-950/60 hover:bg-amber-100 border border-amber-300 dark:border-amber-800 rounded-xl text-amber-900 dark:text-amber-200 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer">
+              <i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i>
+              <span>Listen to Official 30s Audio Sample</span>
+            </button>
+          </div>
 
           <div class="pt-2 text-xs text-stone-600 dark:text-slate-300 space-y-1.5 border-t border-stone-100 dark:border-slate-800">
             <p><strong class="text-stone-800 dark:text-stone-200">Release Date:</strong> <span id="modal-release-date">Available Now</span></p>
@@ -684,57 +686,19 @@
 
         <div class="space-y-3 pt-3 border-t border-stone-100 dark:border-slate-800">
           <div>
-            <span class="block text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-wider">Estimated Retail</span>
+            <span class="block text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-wider">CDJapan Tokyo Price</span>
             <div id="modal-price" class="text-lg font-black text-rose-600 dark:text-rose-400">¥0</div>
           </div>
 
           <div class="flex items-center gap-2">
             <button id="modal-buy-btn" onclick="triggerOutboundAffiliate(currentModalProduct, 'modal_buy')" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl text-center shadow transition flex items-center justify-center gap-1.5 cursor-pointer">
-              <span id="modal-buy-btn-text">View &amp; Buy on CDJapan</span>
+              <span id="modal-buy-btn-text">Order Securely on CDJapan</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </button>
             <button id="modal-share-btn" onclick="shareProduct(currentModalProduct)" title="Share Item" class="w-10 h-10 rounded-xl bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-slate-700 flex items-center justify-center transition shrink-0 cursor-pointer">
               <i class="fa-solid fa-share-nodes"></i>
             </button>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Outbound Affiliate Transparency Modal -->
-  <div id="redirect-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden" onclick="closeRedirectModalOnBackdrop(event)">
-    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 text-center">
-      <div class="w-12 h-12 bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 rounded-full flex items-center justify-center mx-auto text-xl">
-        <i class="fa-solid fa-plane-departure"></i>
-      </div>
-      <div>
-        <h3 class="text-base font-bold text-stone-900 dark:text-white">Heading to CDJapan (Tokyo)</h3>
-        <p class="text-xs text-stone-600 dark:text-slate-400 mt-1 leading-relaxed">
-          You are being redirected to official retailer <strong>CDJapan</strong> to complete your order. All items ship straight from Tokyo to your door.
-        </p>
-      </div>
-
-      <div class="p-3 bg-stone-50 dark:bg-slate-800 rounded-xl text-[11px] text-stone-600 dark:text-slate-300 text-left space-y-1.5">
-        <div class="flex items-center gap-1.5 font-bold text-stone-800 dark:text-white">
-          <i class="fa-solid fa-shield-halved text-emerald-500"></i> Direct Tokyo Fulfillment
-        </div>
-        <div>• 100% official merchandise directly from CDJapan</div>
-        <div>• Zero proxy fees or middleman charges</div>
-        <div>• Direct international shipping via DHL, FedEx, and EMS</div>
-        <div>• Secure payment via PayPal, Credit Cards, and local methods</div>
-      </div>
-
-      <div class="pt-2 flex items-center justify-between gap-3">
-        <label class="text-[11px] text-stone-500 dark:text-slate-400 flex items-center gap-1.5 cursor-pointer">
-          <input type="checkbox" id="skip-redirect-modal-cb" class="accent-rose-600 rounded">
-          <span>Don't show again</span>
-        </label>
-        <div class="flex items-center gap-2">
-          <button onclick="closeRedirectModal()" class="px-3 py-1.5 text-xs text-stone-600 dark:text-slate-400 hover:underline cursor-pointer">Cancel</button>
-          <a id="redirect-confirm-link" href="#" target="_blank" rel="nofollow noopener" onclick="onRedirectConfirm()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition shadow flex items-center gap-1 cursor-pointer">
-            <span>Continue to CDJapan</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </a>
         </div>
       </div>
     </div>
@@ -787,7 +751,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k" alt="Bitcoin QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
 
@@ -813,7 +776,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq" alt="Bitcoin Cash QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
 
@@ -839,7 +801,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0xADF4947Ad75844143E814bD8DB78a1121Ac293E3" alt="EVM Multi-Chain QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
 
@@ -865,7 +826,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL" alt="Solana QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
 
@@ -891,7 +851,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15" alt="Aptos QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
 
@@ -917,7 +876,6 @@
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" title="Click to copy address">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2" alt="Sui QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
           </div>
         </div>
       </div>
@@ -938,7 +896,7 @@
   <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200 pb-24 sm:pb-10">
     <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
       
-      <!-- Ko-fi Server & Upkeep Card -->
+      <!-- Ko-fi & Upkeep Card -->
       <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-stone-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
         <div class="flex items-center gap-3.5">
           <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 border border-amber-200/50 dark:border-amber-900/50">
@@ -950,7 +908,7 @@
               <span class="bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 text-[10px] px-2 py-0.2 rounded-full font-bold">100% Ad-Free</span>
             </h3>
             <p class="text-[11px] text-stone-500 dark:text-slate-400 mt-0.5">
-              Help cover cloud scrapers, database hosting, and automated CDJapan catalog verification.
+              Help cover scraper automation, cloud storage, and CDJapan catalog validation.
             </p>
           </div>
         </div>
@@ -974,14 +932,14 @@
         </div>
       </div>
 
-      <!-- Disclosure Box -->
+      <!-- Affiliate Disclosure -->
       <div class="p-4 bg-stone-50 dark:bg-slate-950 rounded-xl border border-stone-200 dark:border-slate-800 text-stone-700 dark:text-slate-300 text-sm leading-relaxed text-left sm:text-center">
         <p class="font-semibold text-stone-900 dark:text-white mb-1 flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Affiliate & Operating Disclosure
+          <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Retailer & Operating Disclosure
         </p>
         <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-400">
-          <strong>IdolJapan.store</strong> is an independent discography catalog. We do not collect payments, hold inventory, or process shipping.
-          All purchases, international shipping, and returns are handled exclusively by 
+          <strong>IdolJapan.store</strong> is an independent discography catalog. We do not collect payments, hold inventory, or process international freight.
+          All purchases and shipments are fulfilled directly by 
           <a href="https://www.cdjapan.co.jp" class="underline font-bold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong>A033398</strong>.
         </p>
       </div>
@@ -995,11 +953,11 @@
         <a href="./contact.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Contact &amp; Suggestions</a>
       </div>
 
-      <!-- Explicit Footer Layout Switcher -->
+      <!-- Layout View -->
       <div class="flex items-center justify-center gap-3 text-xs pt-2">
         <span class="text-stone-400 dark:text-slate-500 font-semibold">Layout View:</span>
         <button onclick="setLayoutMode('desktop')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
-          <i class="fa-solid fa-desktop"></i> Desktop Canvas (Default)
+          <i class="fa-solid fa-desktop"></i> Desktop View
         </button>
         <button onclick="setLayoutMode('mobile')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
           <i class="fa-solid fa-mobile-screen-button"></i> Mobile App Layout
@@ -1020,7 +978,7 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'all';
+    let activeAvailability = 'active'; // 4-tier: 'active', 'preorder', 'instock', 'oop'
     let viewMode = 'grid';
     let layoutMode = localStorage.getItem('idoljapan_layout_mode') || 
       ((window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop');
@@ -1032,8 +990,7 @@
     let isWishlistView = false;
     let exchangeRates = { JPY: 1.0, USD: 0.0067 };
     let currentModalProduct = null;
-    let pendingRedirectProduct = null;
-    let pendingRedirectSubId = 'direct';
+    let activeAudioButton = null;
 
     let currentPage = 1;
     let itemsPerPage = 48;
@@ -1043,9 +1000,7 @@
     const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
     const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
-    const SKIP_REDIRECT_KEY = 'idoljapan_skip_redirect_modal';
     const VIEW_MODE_KEY = 'idoljapan_view_mode';
-    const AFFILIATE_CLICKS_KEY = 'idoljapan_affiliate_clicks';
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
     const EN_MONTHS = {
@@ -1056,39 +1011,17 @@
       october: 10, november: 11, december: 12
     };
 
+    // Clarified Taxonomy: Sakamichi core groups vs Yasushi animation units
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
-        'Morning Musume',
-        'ANGERME',
-        'Juice=Juice',
-        'Tsubaki Factory',
-        'BEYOOOOONDS',
-        'OCHA NORMA',
-        'Rosy Chronicle',
-        'Hello Pro Kenshuusei',
-        'Berryz Kobo',
-        '℃-ute',
-        'Buono!',
-        'Country Girls',
-        'Kobushi Factory',
-        'Melon Kinenbi',
-        'Minimoni',
-        'Tanpopo',
-        'v-u-den',
-        'LoVendoR',
-        'PINK CRES.',
-        'Sayumi Michishige',
-        'Aya Matsuura',
-        'Maki Goto',
-        'Natsumi Abe',
-        'Erina Mano',
-        'Airi Suzuki'
+        'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
+        'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei',
+        'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls', 'Kobushi Factory',
+        'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'LoVendoR',
+        'PINK CRES.', 'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto',
+        'Natsumi Abe', 'Erina Mano', 'Airi Suzuki'
       ],
-      'Up-Front Alumni': [
-        'You Kikkawa',
-        'Up Up Girls (Kari)',
-        'Up Up Girls (2)'
-      ],
+      'Up-Front Alumni': ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'],
       'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48', 'Sayaka Yamamoto'],
       'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Keyakizaka46', '22/7'],
       'Stardust Planet': ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu'],
@@ -1099,6 +1032,16 @@
     };
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
+
+    // Standardized Media Weights for Haul Calculator
+    const MEDIA_WEIGHTS_GRAMS = {
+      'CD': 110,
+      'Blu-ray': 180,
+      'DVD': 140,
+      'Book': 480,
+      'Collectable': 160,
+      'Other': 140
+    };
 
     function showToast(message, isSuccess = true) {
       const toast = document.getElementById('toast');
@@ -1112,7 +1055,7 @@
       toast.classList.remove('opacity-0', 'pointer-events-none');
       setTimeout(() => {
         toast.classList.add('opacity-0', 'pointer-events-none');
-      }, 2400);
+      }, 2600);
     }
 
     function copyToClipboard(text, successMessage) {
@@ -1121,53 +1064,173 @@
       });
     }
 
-    function toggleQr(coinKey) {
-      const el = document.getElementById(`qr-box-${coinKey}`);
-      if (!el) return;
-      el.classList.toggle('hidden');
-    }
+    // Audio Sample Preview Controller
+    function toggleAudioPreview(product, btnEl) {
+      const player = document.getElementById('global-audio-player');
+      if (!player || !product) return;
 
-    function toggleAllQrs() {
-      const boxes = document.querySelectorAll('.crypto-qr-box');
-      const anyHidden = Array.from(boxes).some(b => b.classList.contains('hidden'));
-      boxes.forEach(b => {
-        if (anyHidden) b.classList.remove('hidden');
-        else b.classList.add('hidden');
+      const sampleUrl = product.sample_audio || `https://www.neowing.co.jp/audio/${product.id}_01.mp3`;
+
+      if (player.src === sampleUrl && !player.paused) {
+        player.pause();
+        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
+        return;
+      }
+
+      if (activeAudioButton && activeAudioButton !== btnEl) {
+        activeAudioButton.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
+      }
+
+      player.src = sampleUrl;
+      player.play().then(() => {
+        activeAudioButton = btnEl;
+        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-pause text-amber-600 dark:text-amber-400 animate-pulse"></i> <span>Pause Preview</span>`;
+      }).catch(err => {
+        showToast("Audio sample preview unavailable for this item.", false);
       });
-      const btnText = document.getElementById('toggle-all-qr-text');
-      if (btnText) {
-        btnText.innerText = anyHidden ? 'Hide All QRs' : 'Show All QRs';
-      }
+
+      player.onended = () => {
+        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
+      };
     }
 
-    function toggleCryptoModal() {
-      const modal = document.getElementById('crypto-modal');
-      if (!modal) return;
-      if (modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
+    // Direct Outbound Affiliate Redirection (Zero-friction)
+    function triggerOutboundAffiliate(product, subId = 'direct') {
+      if (!product) return;
+      
+      const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${product.id}?affi=A033398`;
+      const sep = baseUrl.includes('?') ? '&' : '?';
+      const finalUrl = `${baseUrl}${sep}sub_id=${encodeURIComponent(subId)}`;
+
+      showToast("Redirecting to official retailer CDJapan (Tokyo)...");
+      window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
-    function closeCryptoModalOnBackdrop(e) {
-      if (e.target.id === 'crypto-modal') toggleCryptoModal();
+    // Standardized Edition Badges Parser
+    function extractEditionTags(title) {
+      const tags = [];
+      const lower = (title || '').toLowerCase();
+      
+      if (/limited edition|初回生産限定盤|初回限定盤/i.test(lower)) {
+        tags.push({ name: 'Limited', color: 'bg-amber-600' });
+      }
+      if (/regular edition|通常盤/i.test(lower)) {
+        tags.push({ name: 'Regular', color: 'bg-stone-600' });
+      }
+      const typeMatch = title.match(/Type\s*([A-Za-z0-9]+)/i);
+      if (typeMatch) {
+        tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
+      }
+      if (/w\/\s*blu-ray|blu-ray disc付|\+bd/i.test(lower)) {
+        tags.push({ name: 'CD+BD', color: 'bg-sky-600' });
+      }
+      if (/w\/\s*dvd|dvd付/i.test(lower)) {
+        tags.push({ name: 'CD+DVD', color: 'bg-purple-600' });
+      }
+      if (/tokuten|bonus|外付け特典/i.test(lower)) {
+        tags.push({ name: 'Bonus Included', color: 'bg-emerald-600' });
+      }
+      return tags;
     }
 
-    function updatePageTitle() {
-      let baseTitle = "IdolJapan.store — Official Japanese Idol Discography";
-      if (activeFilter !== 'All') {
-        baseTitle = `${activeFilter} Discography — IdolJapan.store`;
+    // Export .ICS iCalendar for Pre-Orders
+    function exportAllPreOrdersIcs() {
+      const preOrders = allProducts.filter(p => isPreOrder(p));
+      if (!preOrders.length) {
+        showToast("No active pre-orders to export.", false);
+        return;
       }
-      if (activeArtist !== 'All') {
-        baseTitle = `${activeArtist} CDJapan Releases — IdolJapan.store`;
-      }
-      document.title = baseTitle;
+
+      let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//IdolJapan.store//Tokyo Street Dates//EN\n";
+
+      preOrders.forEach(p => {
+        const dVal = getItemDateValue(p);
+        if (dVal > 0) {
+          const y = Math.floor(dVal / 10000);
+          const m = String(Math.floor((dVal % 10000) / 100)).padStart(2, '0');
+          const d = String(dVal % 100).padStart(2, '0');
+          const dateStr = `${y}${m}${d}`;
+
+          ics += "BEGIN:VEVENT\n";
+          ics += `UID:${p.id}@idoljapan.store\n`;
+          ics += `DTSTAMP:${dateStr}T090000Z\n`;
+          ics += `DTSTART;VALUE=DATE:${dateStr}\n`;
+          ics += `SUMMARY:[Release] ${p.artist} - ${p.title}\n`;
+          ics += `DESCRIPTION:Official Tokyo Street Date for ${p.title} (${p.id}). CDJapan Order: ${p.affiliate_url || ''}\n`;
+          ics += `URL:https://idoljapan.store/?id=${p.id}\n`;
+          ics += "END:VEVENT\n";
+        }
+      });
+
+      ics += "END:VCALENDAR";
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `idoljapan_preorders_${Date.now()}.ics`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("Pre-Order .ICS calendar exported!");
     }
 
-    // Dynamic Layout Switcher (Desktop 1280px Virtual Canvas vs Mobile Responsive)
+    // Tokyo Shipping Haul Weight Calculator
+    function calculateWishlistHaulMetrics() {
+      const listIds = getWishlist();
+      const items = allProducts.filter(p => listIds.includes(p.id));
+
+      let totalWeightGrams = 0;
+      let totalJpy = 0;
+
+      items.forEach(it => {
+        const fmt = getItemFormatCategory(it);
+        totalWeightGrams += MEDIA_WEIGHTS_GRAMS[fmt] || 140;
+        totalJpy += parseNumericPrice(it.price, it);
+      });
+
+      let bracket = "≤ 500g (Minimum Tier)";
+      if (totalWeightGrams > 2000) bracket = "> 2,000g (Heavy Freight Tier)";
+      else if (totalWeightGrams > 1000) bracket = "1,001g – 2,000g Tier";
+      else if (totalWeightGrams > 500) bracket = "501g – 1,000g Tier";
+
+      return { count: items.length, weight: totalWeightGrams, jpy: totalJpy, bracket };
+    }
+
+    function exportWishlistHaul() {
+      const listIds = getWishlist();
+      if (!listIds.length) return;
+
+      const metrics = calculateWishlistHaulMetrics();
+      const items = allProducts.filter(p => listIds.includes(p.id));
+
+      let content = "========================================\n";
+      content += "IDOLJAPAN.STORE — SAVED CDJAPAN HAUL\n";
+      content += "Generated: " + new Date().toLocaleDateString() + "\n";
+      content += `Total Items: ${metrics.count} | Est. Weight: ~${metrics.weight}g\n`;
+      content += `Courier Shipping Bracket: ${metrics.bracket}\n`;
+      content += `Estimated Merchandise Value: ¥${metrics.jpy.toLocaleString()}\n`;
+      content += "========================================\n\n";
+
+      items.forEach((it, idx) => {
+        const fmt = getItemFormatCategory(it);
+        const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
+        content += `${idx + 1}. [${it.artist}] ${it.title}\n`;
+        content += `   Catalog ID: ${it.id} | Format: ${fmt} (~${weight}g)\n`;
+        content += `   Price: ${it.price}\n`;
+        content += `   Direct Link: https://idoljapan.store/?id=${it.id}\n\n`;
+      });
+
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `idoljapan_haul_${Date.now()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("Wishlist haul exported with weight calculations!");
+    }
+
+    // Dynamic Layout Switcher
     function setLayoutMode(mode) {
       layoutMode = mode;
       localStorage.setItem(LAYOUT_MODE_KEY, mode);
@@ -1194,7 +1257,6 @@
         htmlEl.classList.remove('layout-desktop');
         htmlEl.classList.add('layout-mobile');
 
-        // Show mobile app bars; hide tall desktop multi-tier navigation
         if (mobileBar) mobileBar.classList.remove('hidden');
         if (mobileNav) mobileNav.classList.remove('hidden');
         if (desktopTier1) desktopTier1.classList.add('hidden');
@@ -1202,11 +1264,9 @@
         if (artistContainer) artistContainer.classList.add('hidden');
         if (yearContainer) yearContainer.classList.add('hidden');
 
-        // Button states
         if (dBtn) dBtn.className = "px-2.5 py-1 rounded-full transition text-stone-300 hover:text-white cursor-pointer";
         if (mBtn) mBtn.className = "px-2.5 py-1 rounded-full transition bg-white text-rose-600 font-black shadow-xs cursor-pointer";
       } else {
-        // Desktop default mode (1280px wide canvas)
         if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
         htmlEl.classList.add('layout-desktop');
         htmlEl.classList.remove('layout-mobile');
@@ -1255,7 +1315,6 @@
         filterBadge.innerText = (activeArtist !== 'All' ? activeArtist : activeFilter);
       }
 
-      // Franchises
       if (fBox) {
         const cats = ['All', 'Hello! Project', 'Up-Front Alumni', 'AKB48 Group', 'Sakamichi Series', 'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern Idols', 'Babymetal'];
         fBox.innerHTML = cats.map(c => {
@@ -1264,7 +1323,6 @@
         }).join('');
       }
 
-      // Sub-units
       if (uBox) {
         const units = FRANCHISE_ARTISTS[activeFilter];
         if (!units || units.length <= 1) {
@@ -1281,7 +1339,6 @@
         }
       }
 
-      // Formats
       if (fmtBox) {
         const fmts = ['All', 'CD', 'Blu-ray', 'DVD', 'Book', 'Collectable'];
         fmtBox.innerHTML = fmts.map(f => {
@@ -1301,65 +1358,6 @@
     function getThumbnailUrl(rawUrl) {
       if (!rawUrl || rawUrl.startsWith('data:')) return PLACEHOLDER_IMG;
       return rawUrl.replace('/pictures/l/', '/pictures/m/');
-    }
-
-    function recordAffiliateClick(product, subId = 'direct') {
-      try {
-        const raw = localStorage.getItem(AFFILIATE_CLICKS_KEY);
-        const list = raw ? JSON.parse(raw) : [];
-        list.push({
-          id: product.id,
-          title: product.title,
-          artist: product.artist,
-          sub_id: subId,
-          timestamp: new Date().toISOString()
-        });
-        localStorage.setItem(AFFILIATE_CLICKS_KEY, JSON.stringify(list.slice(-100)));
-      } catch (e) {}
-    }
-
-    function buildAttributedAffiliateUrl(baseAffiliateUrl, subId) {
-      if (!baseAffiliateUrl) return '#';
-      const separator = baseAffiliateUrl.includes('?') ? '&' : '?';
-      return `${baseAffiliateUrl}${separator}sub_id=${encodeURIComponent(subId)}`;
-    }
-
-    function triggerOutboundAffiliate(product, subId = 'direct') {
-      if (!product) return;
-      recordAffiliateClick(product, subId);
-
-      const finalUrl = buildAttributedAffiliateUrl(product.affiliate_url, subId);
-      const skipModal = localStorage.getItem(SKIP_REDIRECT_KEY) === 'true';
-
-      if (skipModal) {
-        window.open(finalUrl, '_blank', 'noopener,noreferrer');
-        return;
-      }
-
-      pendingRedirectProduct = product;
-      pendingRedirectSubId = subId;
-      const modal = document.getElementById('redirect-modal');
-      const confirmLink = document.getElementById('redirect-confirm-link');
-      if (confirmLink) confirmLink.href = finalUrl;
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeRedirectModal() {
-      const modal = document.getElementById('redirect-modal');
-      if (modal) modal.classList.add('hidden');
-      pendingRedirectProduct = null;
-    }
-
-    function closeRedirectModalOnBackdrop(e) {
-      if (e.target.id === 'redirect-modal') closeRedirectModal();
-    }
-
-    function onRedirectConfirm() {
-      const cb = document.getElementById('skip-redirect-modal-cb');
-      if (cb && cb.checked) {
-        localStorage.setItem(SKIP_REDIRECT_KEY, 'true');
-      }
-      closeRedirectModal();
     }
 
     async function shareProduct(product, e) {
@@ -1385,7 +1383,7 @@
         }
       }
 
-      copyToClipboard(directUrl, "Product link copied to clipboard!");
+      copyToClipboard(directUrl, "Product deep link copied to clipboard!");
     }
 
     function getWishlist() {
@@ -1446,42 +1444,7 @@
         return;
       }
       const shareUrl = `${window.location.origin}/?wishlist=${listIds.join(',')}`;
-      if (navigator.share) {
-        navigator.share({
-          title: "My IdolJapan.store Wishlist Haul",
-          text: `Check out my Japanese idol discography haul (${listIds.length} items):`,
-          url: shareUrl
-        }).catch(() => {
-          copyToClipboard(shareUrl, "Wishlist share link copied!");
-        });
-      } else {
-        copyToClipboard(shareUrl, "Wishlist share link copied to clipboard!");
-      }
-    }
-
-    function exportWishlistHaul() {
-      const listIds = getWishlist();
-      if (!listIds.length) return;
-
-      const items = allProducts.filter(p => listIds.includes(p.id));
-      let content = "IDOLJAPAN.STORE — SAVED CDJAPAN HAUL\n";
-      content += "Generated: " + new Date().toLocaleDateString() + "\n\n";
-
-      items.forEach((it, idx) => {
-        const buyUrl = buildAttributedAffiliateUrl(it.affiliate_url, 'haul_export');
-        content += `${idx + 1}. [${it.artist}] ${it.title}\n`;
-        content += `   Catalog ID: ${it.id} | Price: ${it.price}\n`;
-        content += `   Order: ${buyUrl}\n\n`;
-      });
-
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `idoljapan_haul_${Date.now()}.txt`;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast("Wishlist haul exported!");
+      copyToClipboard(shareUrl, "Wishlist share link copied!");
     }
 
     function toggleWishlistView() {
@@ -1560,14 +1523,6 @@
       }
       updateThemeIcon();
     }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        if (e.matches) document.documentElement.classList.add('dark');
-        else document.documentElement.classList.remove('dark');
-        updateThemeIcon();
-      }
-    });
 
     async function initExchangeRates() {
       const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
@@ -1658,7 +1613,7 @@
       if (activeArtist !== 'All') params.set('artist', activeArtist);
       if (activeYear !== 'All') params.set('year', activeYear);
       if (activeFormat !== 'All') params.set('fmt', activeFormat);
-      if (activeAvailability !== 'all') params.set('status', activeAvailability);
+      if (activeAvailability !== 'active') params.set('status', activeAvailability);
       if (searchQuery) params.set('q', searchQuery);
       if (currentSort !== 'newest') params.set('sort', currentSort);
       if (currentPage > 1) params.set('page', currentPage);
@@ -1685,17 +1640,6 @@
       if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
       if (params.get('view') === 'wishlist') isWishlistView = true;
 
-      if (params.has('wishlist')) {
-        const rawIds = params.get('wishlist').split(',').map(s => s.trim()).filter(Boolean);
-        if (rawIds.length) {
-          const currentList = getWishlist();
-          const merged = Array.from(new Set([...currentList, ...rawIds]));
-          saveWishlist(merged);
-          isWishlistView = true;
-          showToast(`Restored ${rawIds.length} wishlist items!`);
-        }
-      }
-
       if (params.has('id')) {
         const targetId = params.get('id');
         setTimeout(() => openModal(targetId), 200);
@@ -1704,41 +1648,34 @@
       updatePageTitle();
     }
 
+    // Hydrate catalog with fast fallback between catalog-index.json and products.json
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      const savedMode = localStorage.getItem(VIEW_MODE_KEY);
-      if (savedMode) viewMode = savedMode;
-      updateViewModeUI();
-
-      // ALWAYS FETCH FRESH DATA - Cache Busting Applied
       const cacheBuster = Date.now();
       
+      // Attempt to load fast lightweight summary index first
       try {
-        const res = await fetch(`/products.json?v=${cacheBuster}`);
+        const res = await fetch(`/catalog-index.json?v=${cacheBuster}`);
         if (res.ok) data = await res.json();
-      } catch (e) {
-        console.warn('Root fetch failed, trying relative:', e);
-      }
+      } catch (e) {}
 
       if (!data) {
         try {
-          const res = await fetch(`products.json?v=${cacheBuster}`);
+          const res = await fetch(`/products.json?v=${cacheBuster}`);
           if (res.ok) data = await res.json();
-        } catch (e2) {
-          console.error('All fetch attempts failed:', e2);
-        }
+        } catch (e2) {}
       }
 
       if (data && typeof data === 'object') {
         allProducts = Object.values(data)
           .filter(item => item && item.id)
           .map((item, idx) => ({ ...item, _catalogIndex: idx }));
-        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
+        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Indexed`;
       } else {
         allProducts = [];
-        if (statsEl) statsEl.innerText = "Syncing catalog...";
+        if (statsEl) statsEl.innerText = "Syncing index...";
       }
 
       readUrlParams();
@@ -1759,58 +1696,8 @@
         .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
         .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+)\)/gi, '')
         .replace(/【.*?】/g, '')
+        .replace(/(?:\s*[\(\[【]?\s*(?:¥\s*[\d,]+|[\d,]+\s*(?:yen|JPY))\s*(?:\([^)]*\)|（[^）]*）|tax\s*(?:incl|included|\.|\s*in)?|税込)?\s*[\)\]】]?)+$/gi, '')
         .trim();
-    }
-
-    function getShortEditionLabel(title) {
-      if (!title) return 'Standard';
-      const clean = title;
-
-      const isLimited = /limited|初回/i.test(clean);
-      const isRegular = /regular|通常/i.test(clean);
-      const typeMatch = clean.match(/Type\s*([A-Za-z0-9]+)/i);
-      const spMatch = /SP\b/i.test(clean);
-      const hasBd = /w\/\s*Blu-ray|Blu-ray\s*Disc付/i.test(clean);
-      const soloMatch = /solo jacket|ソロジャケット/i.test(clean);
-
-      let parts = [];
-      if (isLimited) parts.push('Limited');
-      else if (isRegular) parts.push('Regular');
-
-      if (spMatch) parts.push('SP');
-      if (typeMatch) parts.push(`Type ${typeMatch[1].toUpperCase()}`);
-      if (soloMatch) parts.push('Solo Jacket');
-      if (hasBd) parts.push('(+BD)');
-
-      if (!parts.length) {
-        if (/first press|初回限定/i.test(clean)) return 'First Press';
-        if (/theater|劇場盤/i.test(clean)) return 'Theater';
-        return 'Standard';
-      }
-
-      return parts.join(' ');
-    }
-
-    function extractEditionTags(title) {
-      const tags = [];
-      const lower = (title || '').toLowerCase();
-      if (lower.includes('limited edition') || lower.includes('初回生産限定盤') || lower.includes('初回限定盤')) {
-        tags.push({ name: 'Limited', color: 'bg-amber-600' });
-      }
-      if (lower.includes('regular edition') || lower.includes('通常盤')) {
-        tags.push({ name: 'Regular', color: 'bg-stone-600' });
-      }
-      const typeMatch = title.match(/Type\s*([A-Za-z0-9]+)/i);
-      if (typeMatch) {
-        tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
-      }
-      if (lower.includes('w/ blu-ray') || lower.includes('blu-ray disc付')) {
-        tags.push({ name: '+BD', color: 'bg-sky-600' });
-      }
-      if (lower.includes('tokuten') || lower.includes('bonus') || lower.includes('外付け特典')) {
-        tags.push({ name: 'Bonus', color: 'bg-emerald-600' });
-      }
-      return tags;
     }
 
     function buildClusteredEntities() {
@@ -1930,17 +1817,19 @@
     }
 
     function updateAvailabilityUI() {
-      const allBtn = document.getElementById('avail-all');
+      const actBtn = document.getElementById('avail-active');
       const preBtn = document.getElementById('avail-preorder');
       const stockBtn = document.getElementById('avail-instock');
-      if (!allBtn || !preBtn || !stockBtn) return;
+      const oopBtn = document.getElementById('avail-oop');
+      if (!actBtn || !preBtn || !stockBtn || !oopBtn) return;
 
       const activeClasses = "px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs font-bold cursor-pointer";
       const inactiveClasses = "px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer";
 
-      allBtn.className = activeAvailability === 'all' ? activeClasses : inactiveClasses;
+      actBtn.className = activeAvailability === 'active' ? activeClasses : inactiveClasses;
       preBtn.className = activeAvailability === 'preorder' ? activeClasses : inactiveClasses;
       stockBtn.className = activeAvailability === 'instock' ? activeClasses : inactiveClasses;
+      oopBtn.className = activeAvailability === 'oop' ? activeClasses : inactiveClasses;
     }
 
     function updateFilterButtonsUI() {
@@ -1973,10 +1862,10 @@
         return;
       }
 
-      // Keep hidden if currently in Mobile layout mode
       if (layoutMode !== 'mobile') {
         wrapper.classList.remove('hidden');
       }
+
       let html = `
         <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 shrink-0 select-none">
           <i class="fa-solid fa-users"></i> Units:
@@ -1986,8 +1875,11 @@
 
       artists.forEach(art => {
         const isSelected = activeArtist === art;
+        const isDigitalUnit = (activeFilter === 'Sakamichi Series' && art === '22/7');
+        const badgeLabel = isDigitalUnit ? `${escapeHtml(art)} (Digital Idol)` : escapeHtml(art);
+        
         html += `
-          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${escapeHtml(art)}</button>
+          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${badgeLabel}</button>
         `;
       });
 
@@ -2007,8 +1899,7 @@
 
       const relevantItems = allProducts.filter(item => {
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
-        if (!matchesArtist && activeArtist === 'Morning Musume') matchesArtist = (item.artist === 'Morning Musume' || item.artist === 'Petitmoni');
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter || (activeFilter === 'Stardust Planet' && item.category === 'Momoiro Clover Z'));
+        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
         return matchesArtist && matchesCat;
       });
 
@@ -2070,7 +1961,7 @@
       activeArtist = 'All';
       activeYear = 'All';
       activeFormat = 'All';
-      activeAvailability = 'all';
+      activeAvailability = 'active';
       maxPriceLimit = 20000;
       searchQuery = '';
       isWishlistView = false;
@@ -2132,6 +2023,19 @@
       return 'Other';
     }
 
+    // Fuzzy Japanese Romanization Matching
+    function matchesFuzzyQuery(text, query) {
+      if (!text || !query) return false;
+      const t = text.toLowerCase();
+      const q = query.toLowerCase();
+      if (t.includes(q)) return true;
+
+      // Romanization normalization (long vowels and common equivalents)
+      const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
+      const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
+      return normT.includes(normQ);
+    }
+
     function updateAutocomplete(val) {
       const box = document.getElementById('search-autocomplete-box');
       if (!box) return;
@@ -2142,10 +2046,7 @@
       }
 
       const matches = allProducts.filter(p => {
-        const title = (p.title || '').toLowerCase();
-        const artist = (p.artist || '').toLowerCase();
-        const pid = (p.id || '').toLowerCase();
-        return title.includes(val) || artist.includes(val) || pid.includes(val);
+        return matchesFuzzyQuery(p.title, val) || matchesFuzzyQuery(p.artist, val) || (p.id && p.id.toLowerCase().includes(val));
       }).slice(0, 5);
 
       if (!matches.length) {
@@ -2301,13 +2202,17 @@
     }
 
     function isPreOrder(item) {
+      if (item && item.availability === 'preorder') return true;
       const val = getItemDateValue(item);
       if (val === 0) return false;
 
       const today = new Date();
       const todayVal = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
-
       return val > todayVal;
+    }
+
+    function isOutOfPrint(item) {
+      return item && (item.availability === 'oop' || /no longer available|out of print|discontinued|廃盤/i.test(item.price || ''));
     }
 
     function updateDirectPageDropdown(totalPages) {
@@ -2321,25 +2226,6 @@
         if (i === currentPage) opt.selected = true;
         select.appendChild(opt);
       }
-    }
-
-    function updateStructuredData(items) {
-      const script = document.getElementById('structured-data-json');
-      if (!script) return;
-      try {
-        const base = {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "itemListElement": items.slice(0, 30).map((it, idx) => ({
-            "@type": "ListItem",
-            "position": idx + 1,
-            "url": `https://idoljapan.store/?id=${encodeURIComponent(it.id)}`,
-            "name": it.title,
-            "image": it.image
-          }))
-        };
-        script.textContent = JSON.stringify(base);
-      } catch (e) {}
     }
 
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
@@ -2435,7 +2321,7 @@
 
       const grouped = {};
       preOrders.forEach(p => {
-        const d = p.release_date || 'Upcoming';
+        const d = p.release_date || 'Upcoming Street Date';
         if (!grouped[d]) grouped[d] = [];
         grouped[d].push(p);
       });
@@ -2492,8 +2378,10 @@
       const price = document.getElementById('modal-price');
       const fmt = document.getElementById('modal-format-badge');
       const preorder = document.getElementById('modal-preorder-badge');
+      const oopBadge = document.getElementById('modal-oop-badge');
       const buyText = document.getElementById('modal-buy-btn-text');
       const editionBox = document.getElementById('modal-edition-tags');
+      const audioBox = document.getElementById('modal-audio-preview-box');
 
       img.src = p.image || PLACEHOLDER_IMG;
       title.innerText = p.title || '';
@@ -2515,13 +2403,30 @@
         });
       }
 
+      // Check Audio Preview capability
+      if (audioBox) {
+        if (p.sample_audio || getItemFormatCategory(p) === 'CD') {
+          audioBox.classList.remove('hidden');
+        } else {
+          audioBox.classList.add('hidden');
+        }
+      }
+
       const upcoming = isPreOrder(p);
+      const oop = isOutOfPrint(p);
+
       if (upcoming) {
         preorder.classList.remove('hidden');
+        oopBadge.classList.add('hidden');
         if (buyText) buyText.innerText = "Pre-Order on CDJapan";
+      } else if (oop) {
+        oopBadge.classList.remove('hidden');
+        preorder.classList.add('hidden');
+        if (buyText) buyText.innerText = "Check Archive Status on CDJapan";
       } else {
         preorder.classList.add('hidden');
-        if (buyText) buyText.innerText = "View & Buy on CDJapan";
+        oopBadge.classList.add('hidden');
+        if (buyText) buyText.innerText = "Order Securely on CDJapan";
       }
 
       modal.classList.remove('hidden');
@@ -2548,6 +2453,9 @@
       document.body.classList.remove('overflow-hidden');
       currentModalProduct = null;
 
+      const player = document.getElementById('global-audio-player');
+      if (player) player.pause();
+
       const params = new URLSearchParams(window.location.search);
       if (params.has('id')) {
         params.delete('id');
@@ -2562,11 +2470,6 @@
       if (e.target.id === 'product-modal') {
         closeModal();
       }
-    }
-
-    function copyCatalogId() {
-      if (!currentModalProduct) return;
-      copyToClipboard(currentModalProduct.id, `Catalog ID copied: ${currentModalProduct.id}`);
     }
 
     function switchClusteredEdition(clusterIndex, newProductId, event) {
@@ -2616,52 +2519,28 @@
         if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) return false;
 
         const upcoming = isPreOrder(item);
+        const oop = isOutOfPrint(item);
+
+        // 4-tier availability triage
+        if (activeAvailability === 'active' && oop) return false;
         if (activeAvailability === 'preorder' && !upcoming) return false;
-        if (activeAvailability === 'instock' && upcoming) return false;
+        if (activeAvailability === 'instock' && (upcoming || oop)) return false;
+        if (activeAvailability === 'oop' && !oop) return false;
 
         if (activeYear !== 'All') {
           const yr = getItemYear(item);
           if (String(yr) !== String(activeYear)) return false;
         }
 
-        const matchesCat = (
-          activeFilter === 'All' || 
-          item.category === activeFilter ||
-          (activeFilter === 'Stardust Planet' && item.category === 'Momoiro Clover Z')
-        );
-
+        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
-        if (!matchesArtist && activeArtist === 'Morning Musume') {
-          matchesArtist = (item.artist === 'Morning Musume' || item.artist === 'Petitmoni');
-        }
-        if (!matchesArtist && (activeArtist === 'Minimoni' || activeArtist === 'Mini Moni')) {
-          matchesArtist = (item.artist === 'Minimoni' || item.artist === 'Mini Moni');
-        }
-        if (!matchesArtist && (activeArtist === 'v-u-den' || activeArtist === 'Biyuden')) {
-          matchesArtist = (item.artist === 'v-u-den' || item.artist === 'Biyuden');
-        }
-        if (!matchesArtist && (activeArtist === 'LoVendoR' || activeArtist === 'LoVendoЯ')) {
-          matchesArtist = (item.artist === 'LoVendoR' || item.artist === 'LoVendoЯ');
-        }
-        if (!matchesArtist && activeArtist === 'Up Up Girls (Kari)') {
-          matchesArtist = (item.artist === 'Up Up Girls (Kari)');
-        }
-        if (!matchesArtist && activeArtist === 'Up Up Girls (2)') {
-          matchesArtist = (item.artist === 'Up Up Girls (2)');
-        }
-        if (!matchesArtist && (activeArtist === '≠ME' || activeArtist === 'ME')) {
-          matchesArtist = (item.artist === '≠ME' || item.artist === 'ME' || item.artist === 'Not Equal ME');
-        }
-        if (!matchesArtist && (activeArtist === '≒JOY' || activeArtist === 'Nearly Equal Joy')) {
-          matchesArtist = (item.artist === '≒JOY' || item.artist === 'Nearly Equal Joy' || item.artist === 'Nearly Equal JOY');
-        }
-        
+
         const itemFmt = getItemFormatCategory(item);
         const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
 
         const matchesSearch = !searchQuery || 
-          (item.title && String(item.title).toLowerCase().includes(searchQuery)) || 
-          (item.artist && String(item.artist).toLowerCase().includes(searchQuery)) ||
+          matchesFuzzyQuery(item.title, searchQuery) || 
+          matchesFuzzyQuery(item.artist, searchQuery) ||
           (item.id && String(item.id).toLowerCase().includes(searchQuery));
 
         return matchesCat && matchesArtist && matchesFmt && matchesSearch;
@@ -2726,8 +2605,8 @@
           empty.classList.remove('hidden');
           if (emptyMsg) {
             emptyMsg.innerText = isWishlistView 
-              ? "Your wishlist is currently empty. Click the heart icon on any product to save it here!"
-              : "No idol merchandise found matching your filter selection.";
+              ? "Your wishlist is empty. Tap the heart on any release to track it here!"
+              : "No idol releases match this filter selection.";
           }
         }
         renderPaginationControls(0, 0, 0, 0);
@@ -2739,9 +2618,6 @@
       const endIndex = startIndex + itemsPerPage;
       const paginatedEntities = displayEntities.slice(startIndex, endIndex);
 
-      updateStructuredData(paginatedEntities.map(e => e._primary));
-
-      // In Mobile Layout Mode: 2 columns; In Desktop Grid View: 4 columns
       if (layoutMode === 'mobile') {
         container.className = "grid grid-cols-2 gap-3";
       } else if (viewMode === 'grid') {
@@ -2755,6 +2631,7 @@
         const variants = entity._activeVariants || [p];
         const displayImg = getThumbnailUrl(p.image);
         const upcoming = isPreOrder(p);
+        const oop = isOutOfPrint(p);
         const itemFmt = getItemFormatCategory(p);
         const safeTitle = escapeHtml(p.title);
         const safeArtist = escapeHtml(p.artist);
@@ -2773,8 +2650,7 @@
             <div class="mt-1.5" onclick="event.stopPropagation()">
               <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1.5 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
                 ${variants.map(v => {
-                  const shortLbl = getShortEditionLabel(v.title);
-                  return `<option value="${v.id}">${escapeHtml(shortLbl)} — ${v.price}</option>`;
+                  return `<option value="${v.id}">${escapeHtml(v.title.slice(0, 28))}... — ${v.price}</option>`;
                 }).join('')}
               </select>
             </div>
@@ -2783,124 +2659,142 @@
 
         const card = document.createElement('div');
         card.id = `cluster-card-${startIndex + idx}`;
+        card.className = "catalog-card-item";
 
         if (layoutMode === 'mobile' || viewMode === 'grid') {
-          card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative";
           card.innerHTML = `
-            <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
-              <img 
-                src="${displayImg}" 
-                alt="${safeTitle}" 
-                loading="lazy" 
-                referrerpolicy="no-referrer"
-                onload="this.classList.add('img-fade-in')"
-                onerror="onImgLoadError(this)"
-                class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
-              />
-              
-              <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
-                ${safeArtist}
-              </span>
-
-              <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
-                <button 
-                  onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
-                  aria-label="Share Link"
-                  title="Share link"
-                  class="w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
-                >
-                  <i class="fa-solid fa-share-nodes text-[11px]"></i>
-                </button>
+            <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group relative h-full">
+              <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
+                <img 
+                  src="${displayImg}" 
+                  alt="${safeTitle}" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer"
+                  onload="this.classList.add('img-fade-in')"
+                  onerror="onImgLoadError(this)"
+                  class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                />
                 
-                <button 
-                  onclick="toggleWishlist('${p.id}', event)"
-                  aria-label="Save to Wishlist"
-                  title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
-                  class="w-8 h-8 sm:w-7 sm:h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
-                >
-                  <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
-                </button>
-              </div>
-
-              <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
-                ${itemFmt}
-              </span>
-
-              ${upcoming ? `
-                <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
-                  <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
+                <span class="absolute top-2 left-2 bg-stone-900/75 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
+                  ${safeArtist}
                 </span>
-              ` : ''}
-            </div>
 
-            <div class="p-3 flex-1 flex flex-col justify-between">
-              <div>
-                <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
-                  ${safeTitle}
-                </h2>
-                <p class="cluster-date text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
-                  <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
-                </p>
-                ${editionSelectorHtml}
-              </div>
-              
-              <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
-                <div>
-                  <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
-                    ${formatDisplayPrice(p.price, p)}
-                  </span>
-                  <span class="block text-[9px] text-stone-400 dark:text-slate-500">CDJapan Price</span>
+                <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
+                  ${p.sample_audio || itemFmt === 'CD' ? `
+                    <button 
+                      onclick="event.stopPropagation(); toggleAudioPreview(allProducts.find(x => x.id === '${p.id}'), this)"
+                      aria-label="Preview Audio Sample"
+                      title="Play 30s Audio Sample"
+                      class="w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-amber-500/80 hover:bg-amber-500 text-slate-950 backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                    >
+                      <i class="fa-solid fa-play text-[10px]"></i>
+                    </button>
+                  ` : ''}
+                  
+                  <button 
+                    onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
+                    aria-label="Share Link"
+                    title="Share link"
+                    class="w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                  >
+                    <i class="fa-solid fa-share-nodes text-[11px]"></i>
+                  </button>
+                  
+                  <button 
+                    onclick="toggleWishlist('${p.id}', event)"
+                    aria-label="Save to Wishlist"
+                    title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
+                    class="w-8 h-8 sm:w-7 sm:h-7 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
+                  >
+                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
+                  </button>
                 </div>
-                <button 
-                  onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
-                  title="View and order securely on CDJapan"
-                  class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer min-h-[36px]"
-                >
-                  ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                </button>
+
+                <span class="absolute bottom-2 left-2 ${fmtBadgeBg} backdrop-blur-md text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                  ${itemFmt}
+                </span>
+
+                ${upcoming ? `
+                  <span class="absolute top-2 right-2 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
+                    <i class="fa-solid fa-clock text-[9px]"></i> PRE-ORDER
+                  </span>
+                ` : oop ? `
+                  <span class="absolute top-2 right-2 bg-stone-800 text-amber-300 text-[10px] font-black px-2 py-0.5 rounded-md shadow-md uppercase tracking-wide flex items-center gap-1 border border-amber-300/40">
+                    <i class="fa-solid fa-box-archive text-[9px]"></i> OOP
+                  </span>
+                ` : ''}
+              </div>
+
+              <div class="p-3 flex-1 flex flex-col justify-between">
+                <div>
+                  <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
+                    ${safeTitle}
+                  </h2>
+                  <p class="cluster-date text-[11px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
+                    <i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}
+                  </p>
+                  ${editionSelectorHtml}
+                </div>
+                
+                <div class="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
+                  <div>
+                    <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
+                      ${formatDisplayPrice(p.price, p)}
+                    </span>
+                    <span class="block text-[9px] text-stone-400 dark:text-slate-500">Tokyo Price</span>
+                  </div>
+                  <button 
+                    onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
+                    title="View and order securely on CDJapan"
+                    class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm whitespace-nowrap cursor-pointer min-h-[36px]"
+                  >
+                    ${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                  </button>
+                </div>
               </div>
             </div>
           `;
         } else {
-          card.className = "bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl p-3 shadow-2xs hover:shadow-sm transition flex flex-col sm:flex-row items-center gap-3.5 group";
           card.innerHTML = `
-            <div class="w-14 h-14 bg-stone-200 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative" onclick="openModal('${p.id}', event)">
-              <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full object-cover" onerror="onImgLoadError(this)" />
-              <span class="absolute bottom-0.5 left-0.5 ${fmtBadgeBg} text-white text-[8px] font-bold px-1 rounded">${itemFmt}</span>
-            </div>
-
-            <div class="flex-1 min-w-0 text-center sm:text-left">
-              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-0.5">
-                <span class="text-[10px] font-black text-rose-600 dark:text-rose-400 uppercase">${safeArtist}</span>
-                <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500">• ${p.id}</span>
-                ${upcoming ? '<span class="bg-rose-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded">Pre-Order</span>' : ''}
+            <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl p-3 shadow-2xs hover:shadow-sm transition flex flex-col sm:flex-row items-center gap-3.5 group">
+              <div class="w-14 h-14 bg-stone-200 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative" onclick="openModal('${p.id}', event)">
+                <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full object-cover" onerror="onImgLoadError(this)" />
+                <span class="absolute bottom-0.5 left-0.5 ${fmtBadgeBg} text-white text-[8px] font-bold px-1 rounded">${itemFmt}</span>
               </div>
-              <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 truncate cursor-pointer hover:text-rose-600" onclick="openModal('${p.id}', event)">
-                ${safeTitle}
-              </h2>
-              <div class="flex items-center justify-center sm:justify-start gap-3 text-[11px] text-stone-500 dark:text-slate-400 mt-1">
-                <span><i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}</span>
-                ${editionSelectorHtml}
-              </div>
-            </div>
 
-            <div class="flex items-center gap-3 shrink-0">
-              <div class="text-right">
-                <div class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
-                  ${formatDisplayPrice(p.price, p)}
+              <div class="flex-1 min-w-0 text-center sm:text-left">
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-0.5">
+                  <span class="text-[10px] font-black text-rose-600 dark:text-rose-400 uppercase">${safeArtist}</span>
+                  <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500">• ${p.id}</span>
+                  ${upcoming ? '<span class="bg-rose-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded">Pre-Order</span>' : ''}
+                </div>
+                <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 truncate cursor-pointer hover:text-rose-600" onclick="openModal('${p.id}', event)">
+                  ${safeTitle}
+                </h2>
+                <div class="flex items-center justify-center sm:justify-start gap-3 text-[11px] text-stone-500 dark:text-slate-400 mt-1">
+                  <span><i class="fa-regular fa-calendar text-[10px]"></i> ${p.release_date || 'Available Now'}</span>
+                  ${editionSelectorHtml}
                 </div>
               </div>
 
-              <div class="flex items-center gap-1.5">
-                <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="w-8 h-8 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
-                  <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="w-8 h-8 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
-                  <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                </button>
-                <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'list_btn')" class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow-sm cursor-pointer whitespace-nowrap">
-                  ${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                </button>
+              <div class="flex items-center gap-3 shrink-0">
+                <div class="text-right">
+                  <div class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
+                    ${formatDisplayPrice(p.price, p)}
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                  <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="w-8 h-8 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
+                    <i class="fa-solid fa-share-nodes"></i>
+                  </button>
+                  <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="w-8 h-8 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
+                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                  </button>
+                  <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'list_btn')" class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow-sm cursor-pointer whitespace-nowrap">
+                    ${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                  </button>
+                </div>
               </div>
             </div>
           `;
@@ -2929,7 +2823,6 @@
 
       if (e.key === 'Escape') {
         closeModal();
-        closeRedirectModal();
         closeAutocomplete();
         if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();
         const drawer = document.getElementById('calendar-drawer');

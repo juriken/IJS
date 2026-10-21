@@ -45,5 +45,5 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json sitemap.xml
+          git add products.json catalog-index.json sitemap.xml
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog & sitemap [skip ci]" && git push)

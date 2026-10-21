@@ -1403,7 +1403,9 @@
     "release_date": "2026/10/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/29/HKXN-50138.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50138",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50138_01.mp3"
   },
   "HKXN-50135": {
     "id": "HKXN-50135",
@@ -1415,7 +1417,9 @@
     "release_date": "2026/03/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/HKXN-50135.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50135",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50135_01.mp3"
   },
   "NEODAI-174222": {
     "id": "NEODAI-174222",
@@ -1427,7 +1431,9 @@
     "release_date": "2023/09/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/NEODAI-174222.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-174222",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-174222_01.mp3"
   },
   "HKBN-50268": {
     "id": "HKBN-50268",
@@ -1439,7 +1445,9 @@
     "release_date": "2026/10/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/16/HKBN-50268.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50268",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKBN-50268_01.mp3"
   },
   "NEODAI-273056": {
     "id": "NEODAI-273056",
@@ -1451,7 +1459,9 @@
     "release_date": "2025/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/25/NEODAI-273056.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-273056",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-273056_01.mp3"
   },
   "NEODAI-317896": {
     "id": "NEODAI-317896",
@@ -1463,7 +1473,9 @@
     "release_date": "2026/04/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/33/NEODAI-317896.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-317896",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-317896_01.mp3"
   },
   "860661-A": {
     "id": "860661-A",
@@ -1475,7 +1487,9 @@
     "release_date": "2022/09/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/12/860661-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F860661-A",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/860661-A_01.mp3"
   },
   "HKBN-50265": {
     "id": "HKBN-50265",
@@ -1487,7 +1501,9 @@
     "release_date": "2026/03/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/13/HKBN-50265.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50265",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKBN-50265_01.mp3"
   },
   "NEODAI-275728": {
     "id": "NEODAI-275728",
@@ -1499,7 +1515,9 @@
     "release_date": "2025/10/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-275728.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275728",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275728_01.mp3"
   },
   "HKXN-50134": {
     "id": "HKXN-50134",
@@ -1511,7 +1529,9 @@
     "release_date": "2025/10/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/HKXN-50134.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50134",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50134_01.mp3"
   },
   "NEODAI-265487": {
     "id": "NEODAI-265487",
@@ -1523,7 +1543,9 @@
     "release_date": "2024/02/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/48/NEODAI-265487.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-265487",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-265487_01.mp3"
   },
   "NEODAI-258188": {
     "id": "NEODAI-258188",
@@ -1535,7 +1557,9 @@
     "release_date": "2025/04/18",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/45/NEODAI-258188.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-258188",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-258188_01.mp3"
   },
   "HKXN-50130": {
     "id": "HKXN-50130",
@@ -1547,7 +1571,9 @@
     "release_date": "2025/04/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/21/HKXN-50130.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50130",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50130_01.mp3"
   },
   "NEODAI-235883": {
     "id": "NEODAI-235883",
@@ -1559,7 +1585,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/NEODAI-235883.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-235883",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-235883_01.mp3"
   },
   "NEODAI-231907": {
     "id": "NEODAI-231907",
@@ -1571,7 +1599,9 @@
     "release_date": "2024/06/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEODAI-231907.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-231907",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-231907_01.mp3"
   },
   "NEODAI-229667": {
     "id": "NEODAI-229667",
@@ -1583,7 +1613,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/NEODAI-229667.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229667",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-229667_01.mp3"
   },
   "NEODAI-229669": {
     "id": "NEODAI-229669",
@@ -1595,7 +1627,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-229669.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229669",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-229669_01.mp3"
   },
   "NEODAI-229351": {
     "id": "NEODAI-229351",
@@ -1607,7 +1641,9 @@
     "release_date": "2024/03/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEODAI-229351.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229351",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-229351_01.mp3"
   },
   "NEODAI-229354": {
     "id": "NEODAI-229354",
@@ -1619,7 +1655,9 @@
     "release_date": "2024/02/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEODAI-229354.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-229354",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-229354_01.mp3"
   },
   "HKXN-50126": {
     "id": "HKXN-50126",
@@ -1631,7 +1669,9 @@
     "release_date": "2024/10/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/HKXN-50126.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50126",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50126_01.mp3"
   },
   "NEODAI-212248": {
     "id": "NEODAI-212248",
@@ -1643,7 +1683,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/27/NEODAI-212248.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212248",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-212248_01.mp3"
   },
   "NEODAI-212310": {
     "id": "NEODAI-212310",
@@ -1655,7 +1697,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/17/NEODAI-212310.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212310",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-212310_01.mp3"
   },
   "NEODAI-212311": {
     "id": "NEODAI-212311",
@@ -1667,7 +1711,9 @@
     "release_date": "2024/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEODAI-212311.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-212311",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-212311_01.mp3"
   },
   "NEODAI-200687": {
     "id": "NEODAI-200687",
@@ -1679,11 +1725,13 @@
     "release_date": "2024/05/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEODAI-200687.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-200687",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-200687_01.mp3"
   },
   "HKXN-50125": {
     "id": "HKXN-50125",
-    "title": "Blu-ray Juice=Juice 10th Anniversary Concert Tour 2023 Final -Juicetory-",
+    "title": "Blu-ray Juice=Juice 10th Anniversary Concert Tour 2023 Final -Juicetory",
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "6,500yen",
@@ -1691,11 +1739,13 @@
     "release_date": "2024/05/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/HKXN-50125.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50125",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50125_01.mp3"
   },
   "HKBN-50264": {
     "id": "HKBN-50264",
-    "title": "DVD Juice=Juice 10th Anniversary Concert Tour 2023 Final -Juicetory-",
+    "title": "DVD Juice=Juice 10th Anniversary Concert Tour 2023 Final -Juicetory",
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "4,500yen",
@@ -1703,7 +1753,9 @@
     "release_date": "2024/05/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/12/HKBN-50264.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50264",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKBN-50264_01.mp3"
   },
   "NEODAI-170982": {
     "id": "NEODAI-170982",
@@ -1715,7 +1767,9 @@
     "release_date": "2023/07/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/NEODAI-170982.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-170982",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-170982_01.mp3"
   },
   "NEODAI-171066": {
     "id": "NEODAI-171066",
@@ -1727,7 +1781,9 @@
     "release_date": "2023/07/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/28/NEODAI-171066.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-171066",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-171066_01.mp3"
   },
   "865571-A": {
     "id": "865571-A",
@@ -1739,7 +1795,9 @@
     "release_date": "2023/04/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/865571-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F865571-A",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/865571-A_01.mp3"
   },
   "865785-A": {
     "id": "865785-A",
@@ -1751,7 +1809,9 @@
     "release_date": "2023/05/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/24/865785-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F865785-A",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/865785-A_01.mp3"
   },
   "2023CL-4503": {
     "id": "2023CL-4503",
@@ -1763,11 +1823,13 @@
     "release_date": "2023/02/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/2023CL-4503.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F2023CL-4503",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/2023CL-4503_01.mp3"
   },
   "HKXN-50112": {
     "id": "HKXN-50112",
-    "title": "Blu-ray Juice=Juice CONCERT TOUR - terzo bis -",
+    "title": "Blu-ray Juice=Juice CONCERT TOUR - terzo bis",
     "artist": "Juice=Juice",
     "category": "Hello! Project",
     "price": "9,000yen",
@@ -1775,7 +1837,9 @@
     "release_date": "2023/02/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/19/HKXN-50112.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50112",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50112_01.mp3"
   },
   "2023CL-805": {
     "id": "2023CL-805",
@@ -1787,7 +1851,9 @@
     "release_date": "2022/12/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/44/2023CL-805.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F2023CL-805",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/2023CL-805_01.mp3"
   },
   "HKXN-50107": {
     "id": "HKXN-50107",
@@ -1799,7 +1865,9 @@
     "release_date": "2022/10/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/22/HKXN-50107.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKXN-50107",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKXN-50107_01.mp3"
   },
   "HKBN-50258": {
     "id": "HKBN-50258",
@@ -1811,7 +1879,9 @@
     "release_date": "2022/10/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/14/HKBN-50258.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50258",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKBN-50258_01.mp3"
   },
   "NEODAI-139700": {
     "id": "NEODAI-139700",
@@ -1823,7 +1893,9 @@
     "release_date": "2017/07/15",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-139700.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139700",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-139700_01.mp3"
   },
   "NEODAI-139702": {
     "id": "NEODAI-139702",
@@ -1835,7 +1907,9 @@
     "release_date": "2020/01/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-139702.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139702",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-139702_01.mp3"
   },
   "848638-A": {
     "id": "848638-A",
@@ -1847,7 +1921,9 @@
     "release_date": "2022/05/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/46/848638-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F848638-A",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/848638-A_01.mp3"
   },
   "847745-A": {
     "id": "847745-A",
@@ -1859,7 +1935,9 @@
     "release_date": "2022/04/16",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/26/847745-A.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2F847745-A",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/847745-A_01.mp3"
   },
   "NEODAI-123938": {
     "id": "NEODAI-123938",
@@ -1871,7 +1949,9 @@
     "release_date": "2021/11/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/NEODAI-123938.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-123938",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-123938_01.mp3"
   },
   "NEODAI-328739": {
     "id": "NEODAI-328739",
@@ -3383,7 +3463,9 @@
     "release_date": "2026/06/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEOBK-3128479.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3128479",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3128479_01.mp3"
   },
   "SRXL-370": {
     "id": "SRXL-370",
@@ -3395,7 +3477,9 @@
     "release_date": "2022/07/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/SRXL-370.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-370",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-370_01.mp3"
   },
   "NEODAI-126367": {
     "id": "NEODAI-126367",
@@ -3407,7 +3491,9 @@
     "release_date": "2022/07/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/01/NEODAI-126367.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-126367",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-126367_01.mp3"
   },
   "NEODAI-315489": {
     "id": "NEODAI-315489",
@@ -3419,7 +3505,9 @@
     "release_date": "2026/08/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/NEODAI-315489.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315489",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-315489_01.mp3"
   },
   "NEODAI-331159": {
     "id": "NEODAI-331159",
@@ -3431,7 +3519,9 @@
     "release_date": "2026/10/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/33/NEODAI-331159.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331159",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-331159_01.mp3"
   },
   "NEODAI-315506": {
     "id": "NEODAI-315506",
@@ -3443,7 +3533,9 @@
     "release_date": "2026/08/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/36/NEODAI-315506.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315506",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-315506_01.mp3"
   },
   "NEODAI-333454": {
     "id": "NEODAI-333454",
@@ -3455,7 +3547,9 @@
     "release_date": "2026/10/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/NEODAI-333454.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333454",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-333454_01.mp3"
   },
   "NEODAI-333531": {
     "id": "NEODAI-333531",
@@ -3467,7 +3561,9 @@
     "release_date": "2026/10/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-333531.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-333531",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-333531_01.mp3"
   },
   "NEODAI-331155": {
     "id": "NEODAI-331155",
@@ -3831,7 +3927,9 @@
     "release_date": "2021/12/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/31/POBD-21045.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOBD-21045",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/POBD-21045_01.mp3"
   },
   "POBD-21049": {
     "id": "POBD-21049",
@@ -3843,7 +3941,9 @@
     "release_date": "2021/12/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/35/POBD-21049.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOBD-21049",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/POBD-21049_01.mp3"
   },
   "HKT-D0010": {
     "id": "HKT-D0010",
@@ -3855,7 +3955,9 @@
     "release_date": "2014/11/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/20/HKT-D0010.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0010",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0010_01.mp3"
   },
   "NEOBK-3234105": {
     "id": "NEOBK-3234105",
@@ -3867,7 +3969,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/13/NEOBK-3234105.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3234105",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3234105_01.mp3"
   },
   "HKT-D0011": {
     "id": "HKT-D0011",
@@ -3879,7 +3983,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/21/HKT-D0011.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0011",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0011_01.mp3"
   },
   "NEODAI-307215": {
     "id": "NEODAI-307215",
@@ -3891,7 +3997,9 @@
     "release_date": "2021/12/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/25/NEODAI-307215.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-307215",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-307215_01.mp3"
   },
   "NEODAI-290289": {
     "id": "NEODAI-290289",
@@ -3903,7 +4011,9 @@
     "release_date": "2021/12/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEODAI-290289.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-290289",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-290289_01.mp3"
   },
   "NEODAI-191029": {
     "id": "NEODAI-191029",
@@ -3915,7 +4025,9 @@
     "release_date": "2015/10/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEODAI-191029.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-191029",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-191029_01.mp3"
   },
   "NEODAI-155658": {
     "id": "NEODAI-155658",
@@ -3927,7 +4039,9 @@
     "release_date": "2023/03/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEODAI-155658.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-155658",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-155658_01.mp3"
   },
   "NEODAI-149331": {
     "id": "NEODAI-149331",
@@ -3939,7 +4053,9 @@
     "release_date": "2022/12/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/45/NEODAI-149331.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-149331",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-149331_01.mp3"
   },
   "NEODAI-146055": {
     "id": "NEODAI-146055",
@@ -3951,7 +4067,9 @@
     "release_date": "2022/11/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEODAI-146055.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146055",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-146055_01.mp3"
   },
   "NEODAI-146056": {
     "id": "NEODAI-146056",
@@ -3963,7 +4081,9 @@
     "release_date": "2022/11/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEODAI-146056.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146056",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-146056_01.mp3"
   },
   "NEODAI-144569": {
     "id": "NEODAI-144569",
@@ -3975,7 +4095,9 @@
     "release_date": "2022/10/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEODAI-144569.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-144569",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-144569_01.mp3"
   },
   "NEODAI-144571": {
     "id": "NEODAI-144571",
@@ -3987,7 +4109,9 @@
     "release_date": "2022/10/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEODAI-144571.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-144571",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-144571_01.mp3"
   },
   "NEODAI-143380": {
     "id": "NEODAI-143380",
@@ -3999,7 +4123,9 @@
     "release_date": "2022/10/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/06/NEODAI-143380.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-143380",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-143380_01.mp3"
   },
   "NEODAI-143381": {
     "id": "NEODAI-143381",
@@ -4011,7 +4137,9 @@
     "release_date": "2022/10/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/07/NEODAI-143381.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-143381",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-143381_01.mp3"
   },
   "NEODAI-141846": {
     "id": "NEODAI-141846",
@@ -4023,7 +4151,9 @@
     "release_date": "2022/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/NEODAI-141846.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-141846",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-141846_01.mp3"
   },
   "NEODAI-141954": {
     "id": "NEODAI-141954",
@@ -4035,7 +4165,9 @@
     "release_date": "2022/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/NEODAI-141954.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-141954",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-141954_01.mp3"
   },
   "NEODAI-139371": {
     "id": "NEODAI-139371",
@@ -4047,7 +4179,9 @@
     "release_date": "2022/08/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/37/NEODAI-139371.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139371",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-139371_01.mp3"
   },
   "NEODAI-139374": {
     "id": "NEODAI-139374",
@@ -4059,7 +4193,9 @@
     "release_date": "2022/08/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/40/NEODAI-139374.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-139374",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-139374_01.mp3"
   },
   "NEODAI-131413": {
     "id": "NEODAI-131413",
@@ -4071,7 +4207,9 @@
     "release_date": "2022/05/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/16/NEODAI-131413.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131413",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-131413_01.mp3"
   },
   "NEODAI-131416": {
     "id": "NEODAI-131416",
@@ -4083,7 +4221,9 @@
     "release_date": "2022/05/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/19/NEODAI-131416.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131416",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-131416_01.mp3"
   },
   "NEODAI-131417": {
     "id": "NEODAI-131417",
@@ -4095,7 +4235,9 @@
     "release_date": "2022/05/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/20/NEODAI-131417.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131417",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-131417_01.mp3"
   },
   "POXS-21003": {
     "id": "POXS-21003",
@@ -4107,7 +4249,9 @@
     "release_date": "2021/12/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/24/POXS-21003.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPOXS-21003",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/POXS-21003_01.mp3"
   },
   "NEODAI-113837": {
     "id": "NEODAI-113837",
@@ -4119,7 +4263,9 @@
     "release_date": "2021/12/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/24/NEODAI-113837.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-113837",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-113837_01.mp3"
   },
   "HKT-D0033": {
     "id": "HKT-D0033",
@@ -4131,7 +4277,9 @@
     "release_date": "2018/10/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/27/HKT-D0033.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0033",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0033_01.mp3"
   },
   "HKT-D0034": {
     "id": "HKT-D0034",
@@ -4143,7 +4291,9 @@
     "release_date": "2018/10/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/28/HKT-D0034.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0034",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0034_01.mp3"
   },
   "NEODAI-33949": {
     "id": "NEODAI-33949",
@@ -4155,7 +4305,9 @@
     "release_date": "2014/11/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/46/NEODAI-33949.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-33949",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-33949_01.mp3"
   },
   "HKT-D0029": {
     "id": "HKT-D0029",
@@ -4167,7 +4319,9 @@
     "release_date": "2017/09/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/31/HKT-D0029.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0029",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0029_01.mp3"
   },
   "HKT-D0030": {
     "id": "HKT-D0030",
@@ -4179,7 +4333,9 @@
     "release_date": "2017/09/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/24/HKT-D0030.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0030",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0030_01.mp3"
   },
   "HKT-D0012": {
     "id": "HKT-D0012",
@@ -4191,7 +4347,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/22/HKT-D0012.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0012",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0012_01.mp3"
   },
   "HKT-D0022": {
     "id": "HKT-D0022",
@@ -4203,7 +4361,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/24/HKT-D0022.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0022",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0022_01.mp3"
   },
   "HKT-D0021": {
     "id": "HKT-D0021",
@@ -4215,7 +4375,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/23/HKT-D0021.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0021",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0021_01.mp3"
   },
   "HKT-D0028": {
     "id": "HKT-D0028",
@@ -4227,7 +4389,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/30/HKT-D0028.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0028",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0028_01.mp3"
   },
   "HKT-D0027": {
     "id": "HKT-D0027",
@@ -4239,7 +4403,9 @@
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/29/HKT-D0027.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0027",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0027_01.mp3"
   },
   "HKT-D0026": {
     "id": "HKT-D0026",
@@ -4251,7 +4417,9 @@
     "release_date": "2016/12/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/28/HKT-D0026.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0026",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0026_01.mp3"
   },
   "NEOGDS-211382": {
     "id": "NEOGDS-211382",
@@ -4263,7 +4431,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/NEOGDS-211382.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOGDS-211382",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOGDS-211382_01.mp3"
   },
   "HKT-D0024": {
     "id": "HKT-D0024",
@@ -4275,7 +4445,9 @@
     "release_date": "2016/06/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/26/HKT-D0024.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKT-D0024",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKT-D0024_01.mp3"
   },
   "NEOBK-3210999": {
     "id": "NEOBK-3210999",
@@ -6943,7 +7115,9 @@
     "release_date": "2026/06/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50872.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50872",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50872_01.mp3"
   },
   "HKCN-50870": {
     "id": "HKCN-50870",
@@ -6955,7 +7129,9 @@
     "release_date": "2026/06/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50870.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50870",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50870_01.mp3"
   },
   "HKCN-50868": {
     "id": "HKCN-50868",
@@ -6967,7 +7143,9 @@
     "release_date": "2026/06/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/21/HKCN-50868.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50868",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50868_01.mp3"
   },
   "HKCN-50423": {
     "id": "HKCN-50423",
@@ -6979,7 +7157,9 @@
     "release_date": "2015/07/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/41/HKCN-50423.jpg?v=4",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50423",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50423_01.mp3"
   },
   "HKCN-50803": {
     "id": "HKCN-50803",
@@ -6991,7 +7171,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/HKCN-50803.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50803",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50803_01.mp3"
   },
   "HKCN-50858": {
     "id": "HKCN-50858",
@@ -7003,7 +7185,9 @@
     "release_date": "2025/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/19/HKCN-50858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50858",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50858_01.mp3"
   },
   "HKCN-50856": {
     "id": "HKCN-50856",
@@ -7015,7 +7199,9 @@
     "release_date": "2025/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50856",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50856_01.mp3"
   },
   "HKCN-50859": {
     "id": "HKCN-50859",
@@ -7027,7 +7213,9 @@
     "release_date": "2025/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/HKCN-50859.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50859",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50859_01.mp3"
   },
   "HKCN-50854": {
     "id": "HKCN-50854",
@@ -7039,7 +7227,9 @@
     "release_date": "2025/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50854.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50854",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50854_01.mp3"
   },
   "HKCN-50852": {
     "id": "HKCN-50852",
@@ -7051,7 +7241,9 @@
     "release_date": "2025/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50852.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50852",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50852_01.mp3"
   },
   "NEODAI-244258": {
     "id": "NEODAI-244258",
@@ -7063,7 +7255,9 @@
     "release_date": "2014/12/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/44/NEODAI-244258.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-244258",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-244258_01.mp3"
   },
   "HKCN-50833": {
     "id": "HKCN-50833",
@@ -7075,7 +7269,9 @@
     "release_date": "2025/02/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/HKCN-50833.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50833",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50833_01.mp3"
   },
   "HKCN-50832": {
     "id": "HKCN-50832",
@@ -7087,7 +7283,9 @@
     "release_date": "2025/02/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/HKCN-50832.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50832",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50832_01.mp3"
   },
   "HKCN-50830": {
     "id": "HKCN-50830",
@@ -7099,7 +7297,9 @@
     "release_date": "2025/02/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50830.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50830",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50830_01.mp3"
   },
   "HKCN-50828": {
     "id": "HKCN-50828",
@@ -7111,7 +7311,9 @@
     "release_date": "2025/02/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50828.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50828",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50828_01.mp3"
   },
   "HKCN-50826": {
     "id": "HKCN-50826",
@@ -7123,7 +7325,9 @@
     "release_date": "2025/02/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50826.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50826",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50826_01.mp3"
   },
   "HKCN-50802": {
     "id": "HKCN-50802",
@@ -7135,7 +7339,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/HKCN-50802.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50802",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50802_01.mp3"
   },
   "HKCN-50801": {
     "id": "HKCN-50801",
@@ -7147,7 +7353,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/HKCN-50801.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50801",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50801_01.mp3"
   },
   "HKCN-50799": {
     "id": "HKCN-50799",
@@ -7159,7 +7367,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/24/HKCN-50799.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50799",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50799_01.mp3"
   },
   "HKCN-50797": {
     "id": "HKCN-50797",
@@ -7171,7 +7381,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/HKCN-50797.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50797",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50797_01.mp3"
   },
   "HKCN-50795": {
     "id": "HKCN-50795",
@@ -7183,7 +7395,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/HKCN-50795.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50795",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50795_01.mp3"
   },
   "HKCN-50793": {
     "id": "HKCN-50793",
@@ -7195,7 +7409,9 @@
     "release_date": "2024/05/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/HKCN-50793.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50793",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50793_01.mp3"
   },
   "HR7S-298": {
     "id": "HR7S-298",
@@ -7207,7 +7423,9 @@
     "release_date": "2023/12/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/HR7S-298.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-298",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HR7S-298_01.mp3"
   },
   "HR7S-299": {
     "id": "HR7S-299",
@@ -7219,7 +7437,9 @@
     "release_date": "2023/12/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/29/HR7S-299.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-299",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HR7S-299_01.mp3"
   },
   "HR7S-300": {
     "id": "HR7S-300",
@@ -7231,7 +7451,9 @@
     "release_date": "2023/12/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/06/HR7S-300.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHR7S-300",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HR7S-300_01.mp3"
   },
   "HKCN-50776": {
     "id": "HKCN-50776",
@@ -7243,7 +7465,9 @@
     "release_date": "2023/10/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50776.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50776",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50776_01.mp3"
   },
   "HKCN-50774": {
     "id": "HKCN-50774",
@@ -7255,7 +7479,9 @@
     "release_date": "2023/10/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50774.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50774",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50774_01.mp3"
   },
   "HKCN-50773": {
     "id": "HKCN-50773",
@@ -7267,7 +7493,9 @@
     "release_date": "2023/07/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50773.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50773",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50773_01.mp3"
   },
   "HKCN-50772": {
     "id": "HKCN-50772",
@@ -7279,7 +7507,9 @@
     "release_date": "2023/07/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50772.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50772",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50772_01.mp3"
   },
   "HKCN-50770": {
     "id": "HKCN-50770",
@@ -7291,7 +7521,9 @@
     "release_date": "2023/07/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50770.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50770",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50770_01.mp3"
   },
   "HKCN-50768": {
     "id": "HKCN-50768",
@@ -7303,7 +7535,9 @@
     "release_date": "2023/07/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50768.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50768",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50768_01.mp3"
   },
   "HKCN-50766": {
     "id": "HKCN-50766",
@@ -7315,7 +7549,9 @@
     "release_date": "2023/07/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50766.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50766",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50766_01.mp3"
   },
   "NEODAI-148932": {
     "id": "NEODAI-148932",
@@ -7327,7 +7563,9 @@
     "release_date": "2015/07/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/NEODAI-148932.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-148932",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-148932_01.mp3"
   },
   "HKCN-50749": {
     "id": "HKCN-50749",
@@ -7339,7 +7577,9 @@
     "release_date": "2022/11/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50749.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50749",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50749_01.mp3"
   },
   "HKCN-50748": {
     "id": "HKCN-50748",
@@ -7351,7 +7591,9 @@
     "release_date": "2022/11/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/HKCN-50748.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50748",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50748_01.mp3"
   },
   "HKCN-50746": {
     "id": "HKCN-50746",
@@ -7363,7 +7605,9 @@
     "release_date": "2022/11/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/HKCN-50746.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50746",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50746_01.mp3"
   },
   "HKCN-50744": {
     "id": "HKCN-50744",
@@ -7375,7 +7619,9 @@
     "release_date": "2022/11/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/HKCN-50744.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50744",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50744_01.mp3"
   },
   "HKCN-50742": {
     "id": "HKCN-50742",
@@ -7387,7 +7633,9 @@
     "release_date": "2022/11/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50742.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50742",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50742_01.mp3"
   },
   "HKCN-50718": {
     "id": "HKCN-50718",
@@ -7399,7 +7647,9 @@
     "release_date": "2022/04/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/HKCN-50718.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50718",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50718_01.mp3"
   },
   "HKCN-50715": {
     "id": "HKCN-50715",
@@ -7411,7 +7661,9 @@
     "release_date": "2022/04/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/HKCN-50715.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50715",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50715_01.mp3"
   },
   "HKCN-50712": {
     "id": "HKCN-50712",
@@ -7423,7 +7675,9 @@
     "release_date": "2022/04/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/01/HKCN-50712.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50712",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50712_01.mp3"
   },
   "HKCN-50688": {
     "id": "HKCN-50688",
@@ -7435,7 +7689,9 @@
     "release_date": "2021/12/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/HKCN-50688.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50688",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50688_01.mp3"
   },
   "HKCN-50687": {
     "id": "HKCN-50687",
@@ -7447,7 +7703,9 @@
     "release_date": "2021/12/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/HKCN-50687.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50687",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50687_01.mp3"
   },
   "HKCN-50686": {
     "id": "HKCN-50686",
@@ -7459,7 +7717,9 @@
     "release_date": "2021/12/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/HKCN-50686.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50686",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50686_01.mp3"
   },
   "HKCN-50685": {
     "id": "HKCN-50685",
@@ -7471,7 +7731,9 @@
     "release_date": "2021/12/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/HKCN-50685.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50685",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50685_01.mp3"
   },
   "HKCN-50683": {
     "id": "HKCN-50683",
@@ -7483,7 +7745,9 @@
     "release_date": "2021/12/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/12/HKCN-50683.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKCN-50683",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKCN-50683_01.mp3"
   },
   "EPCE-7996": {
     "id": "EPCE-7996",
@@ -8599,7 +8863,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/15/SRCL-13850.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13850",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13850_01.mp3"
   },
   "SRXL-660": {
     "id": "SRXL-660",
@@ -8611,7 +8877,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/30/SRXL-660.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-660",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-660_01.mp3"
   },
   "SRCL-13710": {
     "id": "SRCL-13710",
@@ -8623,7 +8891,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13710.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13710",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13710_01.mp3"
   },
   "SRXL-662": {
     "id": "SRXL-662",
@@ -8635,7 +8905,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/32/SRXL-662.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-662",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-662_01.mp3"
   },
   "NEODAI-326477": {
     "id": "NEODAI-326477",
@@ -8647,7 +8919,9 @@
     "release_date": "2026/09/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/22/NEODAI-326477.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326477",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-326477_01.mp3"
   },
   "SRCL-13858": {
     "id": "SRCL-13858",
@@ -8659,7 +8933,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/23/SRCL-13858.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13858",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13858_01.mp3"
   },
   "SRCL-13854": {
     "id": "SRCL-13854",
@@ -8671,7 +8947,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/19/SRCL-13854.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13854",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13854_01.mp3"
   },
   "SRCL-13856": {
     "id": "SRCL-13856",
@@ -8683,7 +8961,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/21/SRCL-13856.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13856",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13856_01.mp3"
   },
   "SRCL-13852": {
     "id": "SRCL-13852",
@@ -8695,7 +8975,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/17/SRCL-13852.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13852",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13852_01.mp3"
   },
   "SRCL-12720": {
     "id": "SRCL-12720",
@@ -8707,7 +8989,9 @@
     "release_date": "2023/11/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-12720.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12720",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12720_01.mp3"
   },
   "SRCL-13712": {
     "id": "SRCL-13712",
@@ -8719,7 +9003,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/05/SRCL-13712.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13712",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13712_01.mp3"
   },
   "SRCL-13526": {
     "id": "SRCL-13526",
@@ -8731,7 +9017,9 @@
     "release_date": "2026/01/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/03/SRCL-13526.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13526",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13526_01.mp3"
   },
   "SRCL-13520": {
     "id": "SRCL-13520",
@@ -8743,7 +9031,9 @@
     "release_date": "2026/01/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-13520.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13520",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13520_01.mp3"
   },
   "SRCL-13714": {
     "id": "SRCL-13714",
@@ -8755,7 +9045,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/07/SRCL-13714.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13714",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13714_01.mp3"
   },
   "SRCL-13716": {
     "id": "SRCL-13716",
@@ -8767,7 +9059,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/09/SRCL-13716.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13716",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13716_01.mp3"
   },
   "NEODAI-331755": {
     "id": "NEODAI-331755",
@@ -8779,7 +9073,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEODAI-331755.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331755",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-331755_01.mp3"
   },
   "NEODAI-326884": {
     "id": "NEODAI-326884",
@@ -8791,7 +9087,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/37/NEODAI-326884.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326884",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-326884_01.mp3"
   },
   "SRCL-13524": {
     "id": "SRCL-13524",
@@ -8803,7 +9101,9 @@
     "release_date": "2026/01/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/01/SRCL-13524.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13524",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13524_01.mp3"
   },
   "SRCL-13128": {
     "id": "SRCL-13128",
@@ -8827,7 +9127,9 @@
     "release_date": "2023/11/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/00/SRCL-12723.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12723",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12723_01.mp3"
   },
   "SRCL-12320": {
     "id": "SRCL-12320",
@@ -8839,7 +9141,9 @@
     "release_date": "2022/10/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/30/SRCL-12320.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12320",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12320_01.mp3"
   },
   "SRCL-11125": {
     "id": "SRCL-11125",
@@ -8851,7 +9155,9 @@
     "release_date": "2019/03/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/19/SRCL-11125.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11125",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11125_01.mp3"
   },
   "NEOBK-3128498": {
     "id": "NEOBK-3128498",
@@ -8863,7 +9169,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/30/NEOBK-3128498.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3128498",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3128498_01.mp3"
   },
   "NEOBK-3130236": {
     "id": "NEOBK-3130236",
@@ -8875,7 +9183,9 @@
     "release_date": "2026/09/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/09/NEOBK-3130236.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3130236",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3130236_01.mp3"
   },
   "NEODAI-331752": {
     "id": "NEODAI-331752",
@@ -8887,7 +9197,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/01/NEODAI-331752.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331752",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-331752_01.mp3"
   },
   "NEOBK-3240567": {
     "id": "NEOBK-3240567",
@@ -8899,7 +9211,9 @@
     "release_date": "2026/10/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEOBK-3240567.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3240567",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3240567_01.mp3"
   },
   "NEOBK-3149310": {
     "id": "NEOBK-3149310",
@@ -8911,7 +9225,9 @@
     "release_date": "2026/09/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/42/NEOBK-3149310.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3149310",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3149310_01.mp3"
   },
   "NEOBK-3247664": {
     "id": "NEOBK-3247664",
@@ -8923,7 +9239,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/35/NEOBK-3247664.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3247664",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3247664_01.mp3"
   },
   "NEOBK-3224707": {
     "id": "NEOBK-3224707",
@@ -8935,7 +9253,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/23/NEOBK-3224707.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3224707",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3224707_01.mp3"
   },
   "NEOBK-2927377": {
     "id": "NEOBK-2927377",
@@ -8947,7 +9267,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/09/NEOBK-2927377.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2927377",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-2927377_01.mp3"
   },
   "AICL-4932": {
     "id": "AICL-4932",
@@ -8959,7 +9281,9 @@
     "release_date": "2026/08/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/32/AICL-4932.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAICL-4932",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/AICL-4932_01.mp3"
   },
   "NEOBK-3130293": {
     "id": "NEOBK-3130293",
@@ -8971,7 +9295,9 @@
     "release_date": "2026/06/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEOBK-3130293.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3130293",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3130293_01.mp3"
   },
   "NEOBK-3149309": {
     "id": "NEOBK-3149309",
@@ -8983,7 +9309,9 @@
     "release_date": "2026/08/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/00/NEOBK-3149309.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3149309",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3149309_01.mp3"
   },
   "NEOBK-3032413": {
     "id": "NEOBK-3032413",
@@ -8995,7 +9323,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/43/NEOBK-3032413.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3032413",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-3032413_01.mp3"
   },
   "NEODAI-331750": {
     "id": "NEODAI-331750",
@@ -9007,7 +9337,9 @@
     "release_date": "2026/06/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/NEODAI-331750.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331750",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-331750_01.mp3"
   },
   "SRCL-11941": {
     "id": "SRCL-11941",
@@ -9019,7 +9351,9 @@
     "release_date": "2021/10/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/02/SRCL-11941.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11941",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11941_01.mp3"
   },
   "NEOBK-2927376": {
     "id": "NEOBK-2927376",
@@ -9031,7 +9365,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/08/NEOBK-2927376.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2927376",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-2927376_01.mp3"
   },
   "SRCL-11450": {
     "id": "SRCL-11450",
@@ -9043,7 +9379,9 @@
     "release_date": "2020/02/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/32/SRCL-11450.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11450",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11450_01.mp3"
   },
   "NEODAI-126338": {
     "id": "NEODAI-126338",
@@ -9055,7 +9393,9 @@
     "release_date": "2022/07/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/NEODAI-126338.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-126338",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-126338_01.mp3"
   },
   "SRCL-12614": {
     "id": "SRCL-12614",
@@ -9067,7 +9407,9 @@
     "release_date": "2023/07/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/44/SRCL-12614.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12614",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12614_01.mp3"
   },
   "NEODAI-236720": {
     "id": "NEODAI-236720",
@@ -9079,7 +9421,9 @@
     "release_date": "2024/10/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/01/NEODAI-236720.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-236720",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-236720_01.mp3"
   },
   "NEODAI-231055": {
     "id": "NEODAI-231055",
@@ -9091,7 +9435,9 @@
     "release_date": "2023/12/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/42/NEODAI-231055.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-231055",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-231055_01.mp3"
   },
   "NEODAI-224570": {
     "id": "NEODAI-224570",
@@ -9103,7 +9449,9 @@
     "release_date": "2024/10/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/20/NEODAI-224570.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-224570",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-224570_01.mp3"
   },
   "SRBL-2376": {
     "id": "SRBL-2376",
@@ -9115,7 +9463,9 @@
     "release_date": "2025/07/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/16/SRBL-2376.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2376",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-2376_01.mp3"
   },
   "NEODAI-263217": {
     "id": "NEODAI-263217",
@@ -9127,7 +9477,9 @@
     "release_date": "2025/09/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-263217.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-263217",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-263217_01.mp3"
   },
   "SRCL-12612": {
     "id": "SRCL-12612",
@@ -9139,7 +9491,9 @@
     "release_date": "2023/07/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/42/SRCL-12612.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12612",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12612_01.mp3"
   },
   "NEODAI-165728": {
     "id": "NEODAI-165728",
@@ -9151,7 +9505,9 @@
     "release_date": "2023/07/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/17/NEODAI-165728.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-165728",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-165728_01.mp3"
   },
   "SRCL-13122": {
     "id": "SRCL-13122",
@@ -9163,7 +9519,9 @@
     "release_date": "2025/01/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/32/SRCL-13122.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13122",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13122_01.mp3"
   },
   "SRCL-12326": {
     "id": "SRCL-12326",
@@ -9175,7 +9533,9 @@
     "release_date": "2022/10/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/36/SRCL-12326.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12326",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12326_01.mp3"
   },
   "SRCL-12324": {
     "id": "SRCL-12324",
@@ -9187,7 +9547,9 @@
     "release_date": "2022/10/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/34/SRCL-12324.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12324",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12324_01.mp3"
   },
   "NEODAI-232831": {
     "id": "NEODAI-232831",
@@ -9199,7 +9561,9 @@
     "release_date": "2024/12/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/25/NEODAI-232831.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-232831",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-232831_01.mp3"
   },
   "SRCL-11798": {
     "id": "SRCL-11798",
@@ -9211,7 +9575,9 @@
     "release_date": "2021/05/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/11/SRCL-11798.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11798",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11798_01.mp3"
   },
   "NEODAI-142254": {
     "id": "NEODAI-142254",
@@ -9223,7 +9589,9 @@
     "release_date": "2022/12/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/41/NEODAI-142254.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-142254",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-142254_01.mp3"
   },
   "SRCL-12496": {
     "id": "SRCL-12496",
@@ -9235,7 +9603,9 @@
     "release_date": "2023/04/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/05/SRCL-12496.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12496",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12496_01.mp3"
   },
   "SRCL-12142": {
     "id": "SRCL-12142",
@@ -9247,7 +9617,9 @@
     "release_date": "2022/06/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/28/SRCL-12142.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12142",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12142_01.mp3"
   },
   "SRCL-12616": {
     "id": "SRCL-12616",
@@ -9259,7 +9631,9 @@
     "release_date": "2023/07/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-12616.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12616",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12616_01.mp3"
   },
   "SRCL-12610": {
     "id": "SRCL-12610",
@@ -9271,7 +9645,9 @@
     "release_date": "2023/07/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/40/SRCL-12610.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12610",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12610_01.mp3"
   },
   "SRCL-12618": {
     "id": "SRCL-12618",
@@ -9283,7 +9659,9 @@
     "release_date": "2023/07/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/48/SRCL-12618.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12618",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12618_01.mp3"
   },
   "NEODAI-262124": {
     "id": "NEODAI-262124",
@@ -9295,7 +9673,9 @@
     "release_date": "2025/06/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/46/NEODAI-262124.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-262124",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-262124_01.mp3"
   },
   "SRCL-12866": {
     "id": "SRCL-12866",
@@ -9307,7 +9687,9 @@
     "release_date": "2024/05/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/15/SRCL-12866.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-12866",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-12866_01.mp3"
   },
   "SRCL-13270": {
     "id": "SRCL-13270",
@@ -9319,7 +9701,9 @@
     "release_date": "2025/05/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/44/SRCL-13270.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13270",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13270_01.mp3"
   },
   "NEODAI-263215": {
     "id": "NEODAI-263215",
@@ -9331,7 +9715,9 @@
     "release_date": "2025/09/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/NEODAI-263215.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-263215",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-263215_01.mp3"
   },
   "SRCL-13006": {
     "id": "SRCL-13006",
@@ -9343,7 +9729,9 @@
     "release_date": "2024/09/18",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/28/SRCL-13006.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13006",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13006_01.mp3"
   },
   "SRCL-11314": {
     "id": "SRCL-11314",
@@ -9355,7 +9743,9 @@
     "release_date": "2019/10/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/24/SRCL-11314.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11314",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11314_01.mp3"
   },
   "SRCL-13408": {
     "id": "SRCL-13408",
@@ -9367,7 +9757,9 @@
     "release_date": "2025/09/17",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/46/SRCL-13408.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13408",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13408_01.mp3"
   },
   "SRCL-11121": {
     "id": "SRCL-11121",
@@ -9379,7 +9771,9 @@
     "release_date": "2019/03/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/15/SRCL-11121.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11121",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11121_01.mp3"
   },
   "NEODAI-326086": {
     "id": "NEODAI-326086",
@@ -9391,7 +9785,9 @@
     "release_date": "2026/09/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/NEODAI-326086.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-326086",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-326086_01.mp3"
   },
   "NEODAI-315507": {
     "id": "NEODAI-315507",
@@ -9403,7 +9799,9 @@
     "release_date": "2026/08/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/37/NEODAI-315507.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-315507",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-315507_01.mp3"
   },
   "NEODAI-227251": {
     "id": "NEODAI-227251",
@@ -9415,7 +9813,9 @@
     "release_date": "2024/12/17",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEODAI-227251.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-227251",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-227251_01.mp3"
   },
   "SRCL-11222": {
     "id": "SRCL-11222",
@@ -9427,7 +9827,9 @@
     "release_date": "2019/07/17",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/20/SRCL-11222.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11222",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11222_01.mp3"
   },
   "SRBL-2463": {
     "id": "SRBL-2463",
@@ -9439,7 +9841,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/15/SRBL-2463.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2463",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-2463_01.mp3"
   },
   "NEODAI-230635": {
     "id": "NEODAI-230635",
@@ -9451,7 +9855,9 @@
     "release_date": "2024/12/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/05/NEODAI-230635.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-230635",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-230635_01.mp3"
   },
   "NEODAI-305015": {
     "id": "NEODAI-305015",
@@ -9463,7 +9869,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/01/NEODAI-305015.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-305015",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-305015_01.mp3"
   },
   "NEODAI-280315": {
     "id": "NEODAI-280315",
@@ -9475,7 +9883,9 @@
     "release_date": "2026/02/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/NEODAI-280315.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-280315",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-280315_01.mp3"
   },
   "SRBL-2460": {
     "id": "SRBL-2460",
@@ -9487,7 +9897,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/04/12/SRBL-2460.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-2460",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-2460_01.mp3"
   },
   "NEODAI-146767": {
     "id": "NEODAI-146767",
@@ -9499,7 +9911,9 @@
     "release_date": "2022/12/20",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-146767.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-146767",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-146767_01.mp3"
   },
   "SRCL-13718": {
     "id": "SRCL-13718",
@@ -9511,7 +9925,9 @@
     "release_date": "2026/05/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/11/11/SRCL-13718.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-13718",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-13718_01.mp3"
   },
   "NEODAI-318983": {
     "id": "NEODAI-318983",
@@ -9523,7 +9939,9 @@
     "release_date": "2026/08/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-318983.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-318983",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-318983_01.mp3"
   },
   "SRXL-510": {
     "id": "SRXL-510",
@@ -9535,7 +9953,9 @@
     "release_date": "2024/07/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/SRXL-510.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-510",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-510_01.mp3"
   },
   "NEODAI-327053": {
     "id": "NEODAI-327053",
@@ -9547,7 +9967,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEODAI-327053.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-327053",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-327053_01.mp3"
   },
   "NEODAI-327055": {
     "id": "NEODAI-327055",
@@ -9559,7 +9981,9 @@
     "release_date": "2026/09/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/NEODAI-327055.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-327055",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-327055_01.mp3"
   },
   "NEODAI-327057": {
     "id": "NEODAI-327057",
@@ -9571,7 +9995,9 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-327057.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-327057",
     "updated_at": "2026-10-19",
-    "price_num": 2600
+    "price_num": 2600,
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-327057_01.mp3"
   },
   "AVCD-63886": {
     "id": "AVCD-63886",
@@ -10411,7 +10837,9 @@
     "release_date": "2013/09/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/38/UMCK-5444.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5444",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5444_01.mp3"
   },
   "UMCK-5445": {
     "id": "UMCK-5445",
@@ -10423,11 +10851,13 @@
     "release_date": "2013/09/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/39/UMCK-5445.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5445",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5445_01.mp3"
   },
   "UMCK-5446": {
     "id": "UMCK-5446",
-    "title": "Single CD Melon Juice [CD+DVD / Type C]",
+    "title": "CD Maxi Melon Juice [CD+DVD / Type C]",
     "artist": "HKT48",
     "category": "AKB48 Group",
     "price": "1,524yen",
@@ -10435,7 +10865,9 @@
     "release_date": "2013/09/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/40/UMCK-5446.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5446",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5446_01.mp3"
   },
   "UPCH-80555": {
     "id": "UPCH-80555",
@@ -10447,7 +10879,9 @@
     "release_date": "2021/05/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80555.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80555",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80555_01.mp3"
   },
   "UPCH-80553": {
     "id": "UPCH-80553",
@@ -10459,7 +10893,9 @@
     "release_date": "2021/05/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/07/UPCH-80553.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80553",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80553_01.mp3"
   },
   "UPCH-80587": {
     "id": "UPCH-80587",
@@ -10471,7 +10907,9 @@
     "release_date": "2023/02/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/17/UPCH-80587.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80587",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80587_01.mp3"
   },
   "UPCH-89473": {
     "id": "UPCH-89473",
@@ -10483,7 +10921,9 @@
     "release_date": "2022/06/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/UPCH-89473.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89473",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-89473_01.mp3"
   },
   "UMCK-5464": {
     "id": "UMCK-5464",
@@ -10495,7 +10935,9 @@
     "release_date": "2014/03/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/42/UMCK-5464.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5464",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5464_01.mp3"
   },
   "UPCH-80575": {
     "id": "UPCH-80575",
@@ -10507,7 +10949,9 @@
     "release_date": "2022/06/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/UPCH-80575.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80575",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80575_01.mp3"
   },
   "UMCK-5463": {
     "id": "UMCK-5463",
@@ -10519,7 +10963,9 @@
     "release_date": "2014/03/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/41/UMCK-5463.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5463",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5463_01.mp3"
   },
   "UPCH-80606": {
     "id": "UPCH-80606",
@@ -10531,7 +10977,9 @@
     "release_date": "2023/12/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/UPCH-80606.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80606",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80606_01.mp3"
   },
   "UPCH-80605": {
     "id": "UPCH-80605",
@@ -10543,7 +10991,9 @@
     "release_date": "2023/12/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80605.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80605",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80605_01.mp3"
   },
   "UPCH-20472": {
     "id": "UPCH-20472",
@@ -10555,7 +11005,9 @@
     "release_date": "2017/12/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/08/UPCH-20472.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20472",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20472_01.mp3"
   },
   "UMCK-5561": {
     "id": "UMCK-5561",
@@ -10567,7 +11019,9 @@
     "release_date": "2015/04/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/43/UMCK-5561.jpg?v=3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUMCK-5561",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UMCK-5561_01.mp3"
   },
   "UPCH-20602": {
     "id": "UPCH-20602",
@@ -10579,7 +11033,9 @@
     "release_date": "2021/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/UPCH-20602.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20602",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20602_01.mp3"
   },
   "UPCH-80628": {
     "id": "UPCH-80628",
@@ -10591,7 +11047,9 @@
     "release_date": "2025/07/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80628.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80628",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80628_01.mp3"
   },
   "UPCH-80627": {
     "id": "UPCH-80627",
@@ -10603,7 +11061,9 @@
     "release_date": "2025/07/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80627.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80627",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80627_01.mp3"
   },
   "UPCH-80618": {
     "id": "UPCH-80618",
@@ -10615,7 +11075,9 @@
     "release_date": "2024/09/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80618.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80618",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80618_01.mp3"
   },
   "UPCH-80617": {
     "id": "UPCH-80617",
@@ -10627,7 +11089,9 @@
     "release_date": "2024/09/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/07/UPCH-80617.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80617",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80617_01.mp3"
   },
   "UPCH-80586": {
     "id": "UPCH-80586",
@@ -10639,7 +11103,9 @@
     "release_date": "2023/02/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/16/UPCH-80586.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80586",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80586_01.mp3"
   },
   "UPCH-80576": {
     "id": "UPCH-80576",
@@ -10651,7 +11117,9 @@
     "release_date": "2022/06/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/14/UPCH-80576.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80576",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80576_01.mp3"
   },
   "UPCH-20607": {
     "id": "UPCH-20607",
@@ -10663,7 +11131,9 @@
     "release_date": "2021/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/UPCH-20607.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20607",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20607_01.mp3"
   },
   "UPCH-20605": {
     "id": "UPCH-20605",
@@ -10675,7 +11145,9 @@
     "release_date": "2021/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/05/UPCH-20605.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20605",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20605_01.mp3"
   },
   "UPCH-20604": {
     "id": "UPCH-20604",
@@ -10687,7 +11159,9 @@
     "release_date": "2021/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/UPCH-20604.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20604",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20604_01.mp3"
   },
   "UPCH-20603": {
     "id": "UPCH-20603",
@@ -10699,7 +11173,9 @@
     "release_date": "2021/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/UPCH-20603.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20603",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20603_01.mp3"
   },
   "NEODAI-112388": {
     "id": "NEODAI-112388",
@@ -10711,7 +11187,9 @@
     "release_date": "2019/04/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/07/NEODAI-112388.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-112388",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-112388_01.mp3"
   },
   "NEODAI-102138": {
     "id": "NEODAI-102138",
@@ -10723,7 +11201,9 @@
     "release_date": "2021/06/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/22/NEODAI-102138.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-102138",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-102138_01.mp3"
   },
   "NEODAI-98960": {
     "id": "NEODAI-98960",
@@ -10735,7 +11215,9 @@
     "release_date": "2015/04/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/NEODAI-98960.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-98960",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-98960_01.mp3"
   },
   "UPCH-80556": {
     "id": "UPCH-80556",
@@ -10747,7 +11229,9 @@
     "release_date": "2021/05/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80556.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80556",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80556_01.mp3"
   },
   "UPCH-80554": {
     "id": "UPCH-80554",
@@ -10759,7 +11243,9 @@
     "release_date": "2021/05/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80554.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80554",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80554_01.mp3"
   },
   "NEODAI-78572": {
     "id": "NEODAI-78572",
@@ -10771,7 +11257,9 @@
     "release_date": "2013/03/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/35/NEODAI-78572.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78572",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78572_01.mp3"
   },
   "UPCH-80540": {
     "id": "UPCH-80540",
@@ -10783,7 +11271,9 @@
     "release_date": "2020/04/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80540.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80540",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80540_01.mp3"
   },
   "UPCH-80539": {
     "id": "UPCH-80539",
@@ -10795,7 +11285,9 @@
     "release_date": "2020/04/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80539.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80539",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80539_01.mp3"
   },
   "UPCH-80508": {
     "id": "UPCH-80508",
@@ -10807,7 +11299,9 @@
     "release_date": "2019/04/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80508.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80508",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80508_01.mp3"
   },
   "UPCH-80507": {
     "id": "UPCH-80507",
@@ -10819,7 +11313,9 @@
     "release_date": "2019/04/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/01/UPCH-80507.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80507",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80507_01.mp3"
   },
   "UPCH-80506": {
     "id": "UPCH-80506",
@@ -10831,7 +11327,9 @@
     "release_date": "2019/04/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80506.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80506",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80506_01.mp3"
   },
   "UPCH-80492": {
     "id": "UPCH-80492",
@@ -10843,7 +11341,9 @@
     "release_date": "2018/05/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/UPCH-80492.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80492",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80492_01.mp3"
   },
   "UPCH-80491": {
     "id": "UPCH-80491",
@@ -10855,7 +11355,9 @@
     "release_date": "2018/05/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80491.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80491",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80491_01.mp3"
   },
   "UPCH-80490": {
     "id": "UPCH-80490",
@@ -10867,7 +11369,9 @@
     "release_date": "2018/05/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/08/UPCH-80490.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80490",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80490_01.mp3"
   },
   "UPCH-20471": {
     "id": "UPCH-20471",
@@ -10879,7 +11383,9 @@
     "release_date": "2017/12/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/UPCH-20471.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20471",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20471_01.mp3"
   },
   "UPCH-20470": {
     "id": "UPCH-20470",
@@ -10891,7 +11397,9 @@
     "release_date": "2017/12/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/UPCH-20470.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20470",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20470_01.mp3"
   },
   "UPCH-20469": {
     "id": "UPCH-20469",
@@ -10903,7 +11411,9 @@
     "release_date": "2017/12/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/13/UPCH-20469.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20469",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-20469_01.mp3"
   },
   "UPCH-89355": {
     "id": "UPCH-89355",
@@ -10915,7 +11425,9 @@
     "release_date": "2017/08/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/UPCH-89355.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89355",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-89355_01.mp3"
   },
   "UPCH-89354": {
     "id": "UPCH-89354",
@@ -10927,7 +11439,9 @@
     "release_date": "2017/08/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/23/UPCH-89354.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89354",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-89354_01.mp3"
   },
   "UPCH-89353": {
     "id": "UPCH-89353",
@@ -10939,7 +11453,9 @@
     "release_date": "2017/08/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/22/UPCH-89353.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89353",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-89353_01.mp3"
   },
   "UPCH-80463": {
     "id": "UPCH-80463",
@@ -10951,7 +11467,9 @@
     "release_date": "2017/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/05/UPCH-80463.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80463",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80463_01.mp3"
   },
   "UPCH-80462": {
     "id": "UPCH-80462",
@@ -10963,7 +11481,9 @@
     "release_date": "2017/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/UPCH-80462.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80462",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80462_01.mp3"
   },
   "UPCH-80461": {
     "id": "UPCH-80461",
@@ -10975,7 +11495,9 @@
     "release_date": "2017/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80461.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80461",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80461_01.mp3"
   },
   "UPCH-80444": {
     "id": "UPCH-80444",
@@ -10987,7 +11509,9 @@
     "release_date": "2016/09/07",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/02/UPCH-80444.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80444",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80444_01.mp3"
   },
   "UPCH-80443": {
     "id": "UPCH-80443",
@@ -10999,7 +11523,9 @@
     "release_date": "2016/09/07",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/01/UPCH-80443.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80443",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80443_01.mp3"
   },
   "UPCH-80442": {
     "id": "UPCH-80442",
@@ -11011,7 +11537,9 @@
     "release_date": "2016/09/07",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80442.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80442",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/UPCH-80442_01.mp3"
   },
   "KIZM-839": {
     "id": "KIZM-839",
@@ -39995,7 +40523,9 @@
     "release_date": "2024/07/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/20/SRXL-514.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-514",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-514_01.mp3"
   },
   "SRCL-11884": {
     "id": "SRCL-11884",
@@ -49433,6 +49963,1252 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/16/NEODAI-141021.jpg?v=1",
     "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-141021_01.mp3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-141021",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9271": {
+    "id": "SRCL-9271",
+    "title": "Single CD Futari Sezon [CD+DVD / Type-C]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,528yen",
+    "price_num": 1528,
+    "release_date": "2016/11/30",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/29/SRCL-9271.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9271_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9271",
+    "updated_at": "2026-10-21"
+  },
+  "SRXL-310": {
+    "id": "SRXL-310",
+    "title": "Blu-ray The Last Live - Day 1 & Day 2 - [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "15,273yen",
+    "price_num": 15273,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/08/SRXL-310.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-310_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-310",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9269": {
+    "id": "SRCL-9269",
+    "title": "Single CD Futari Sezon [CD+DVD / Type-B]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,528yen",
+    "price_num": 1528,
+    "release_date": "2016/11/30",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/35/SRCL-9269.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9269_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9269",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9983": {
+    "id": "SRCL-9983",
+    "title": "Single CD Kuroi Hitsuji [CD+Blu-ray / Type A]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,713yen",
+    "price_num": 1713,
+    "release_date": "2019/02/27",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/12/SRCL-9983.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9983_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9983",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9482": {
+    "id": "SRCL-9482",
+    "title": "Album CD Masshiro na Mono wa Yogoshitaku naru [2CD+DVD / Type A]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,611yen",
+    "price_num": 4611,
+    "release_date": "2017/07/19",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/40/SRCL-9482.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9482_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9482",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9922": {
+    "id": "SRCL-9922",
+    "title": "Single CD Ambivalent [CD+DVD / Type A]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,528yen",
+    "price_num": 1528,
+    "release_date": "2018/08/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/48/SRCL-9922.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9922_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9922",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-11516": {
+    "id": "SRCL-11516",
+    "title": "CD Album Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,545yen",
+    "price_num": 2545,
+    "release_date": "2020/10/07",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/34/SRCL-11516.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11516_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11516",
+    "updated_at": "2026-10-21"
+  },
+  "SRXL-272": {
+    "id": "SRXL-272",
+    "title": "Blu-ray Keyaki Kyowakoku 2019 [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,545yen",
+    "price_num": 6545,
+    "release_date": "2020/08/12",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/18/SRXL-272.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-272_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-272",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9985": {
+    "id": "SRCL-9985",
+    "title": "Single CD Kuroi Hitsuji [CD+Blu-ray / Type B]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,713yen",
+    "price_num": 1713,
+    "release_date": "2019/02/27",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/14/SRCL-9985.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9985_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9985",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-9989": {
+    "id": "SRCL-9989",
+    "title": "Single CD Kuroi Hitsuji [CD+Blu-ray / Type D]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,713yen",
+    "price_num": 1713,
+    "release_date": "2019/02/27",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/18/SRCL-9989.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-9989_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-9989",
+    "updated_at": "2026-10-21"
+  },
+  "SRXL-270": {
+    "id": "SRXL-270",
+    "title": "Blu-ray Keyaki Kyowakoku 2019 [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "9,091yen",
+    "price_num": 9091,
+    "release_date": "2020/08/12",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/16/SRXL-270.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-270_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-270",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-92764": {
+    "id": "NEODAI-92764",
+    "title": "Blu-ray The Last Live - Day 1 & Day 2 - [Limited Edition] [w/ 2 B2 Clear Posters & Bonus Clear Folder, HMV Exclusive Set]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "17,400yen",
+    "price_num": 17400,
+    "release_date": "2021/03/24",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/27/NEODAI-92764.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-92764_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-92764",
+    "updated_at": "2026-10-21"
+  },
+  "SRBL-1985": {
+    "id": "SRBL-1985",
+    "title": "DVD The Last Live - Day 1 & Day 2 - [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "11,636yen",
+    "price_num": 11636,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/33/SRBL-1985.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-1985_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-1985",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-179899": {
+    "id": "NEODAI-179899",
+    "title": "Blu-ray Keyaki Kyowakoku 2017 [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,800yen",
+    "price_num": 4800,
+    "release_date": "2018/09/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/35/NEODAI-179899.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-179899_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-179899",
+    "updated_at": "2026-10-21"
+  },
+  "SRXL-314": {
+    "id": "SRXL-314",
+    "title": "Blu-ray The Last Live - Day 2 - [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,545yen",
+    "price_num": 6545,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/12/SRXL-314.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-314_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-314",
+    "updated_at": "2026-10-21"
+  },
+  "SRXL-313": {
+    "id": "SRXL-313",
+    "title": "Blu-ray The Last Live - Day 1 - [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,545yen",
+    "price_num": 6545,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/11/SRXL-313.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRXL-313_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRXL-313",
+    "updated_at": "2026-10-21"
+  },
+  "SRBL-1989": {
+    "id": "SRBL-1989",
+    "title": "DVD The Last Live - Day 2 - [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,727yen",
+    "price_num": 4727,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/37/SRBL-1989.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-1989_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-1989",
+    "updated_at": "2026-10-21"
+  },
+  "SRBL-1988": {
+    "id": "SRBL-1988",
+    "title": "DVD The Last Live - Day 1 - [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,727yen",
+    "price_num": 4727,
+    "release_date": "2021/03/24",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/36/SRBL-1988.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-1988_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-1988",
+    "updated_at": "2026-10-21"
+  },
+  "TDV-31100D": {
+    "id": "TDV-31100D",
+    "title": "DVD Boku Tachi no Uso to Shinjitsu Documentary of Keyakizaka46",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,800yen",
+    "price_num": 4800,
+    "release_date": "2021/02/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/11/44/TDV-31100D.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/TDV-31100D_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTDV-31100D",
+    "updated_at": "2026-10-21"
+  },
+  "TDV-31099D": {
+    "id": "TDV-31099D",
+    "title": "DVD Boku Tachi no Uso to Shinjitsu Documentary of Keyakizaka46 DVD Complete Box [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "12,000yen",
+    "price_num": 12000,
+    "release_date": "2021/02/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/41/TDV-31099D.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/TDV-31099D_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTDV-31099D",
+    "updated_at": "2026-10-21"
+  },
+  "TBR-31098D": {
+    "id": "TBR-31098D",
+    "title": "Blu-ray Boku Tachi no Uso to Shinjitsu Documentary of Keyakizaka46 Blu-ray Complete Box [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "13,000yen",
+    "price_num": 13000,
+    "release_date": "2021/02/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/44/TBR-31098D.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/TBR-31098D_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTBR-31098D",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-88595": {
+    "id": "NEODAI-88595",
+    "title": "DVD Boku Tachi no Uso to Shinjitsu Documentary of Keyakizaka46 DVD Complete Box [Limited Edition] (w/ HMV bonuses: 2 clear bookmarks & mini clear folder)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "13,200yen",
+    "price_num": 13200,
+    "release_date": "2021/02/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/09/NEODAI-88595.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-88595_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-88595",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84393": {
+    "id": "NEODAI-84393",
+    "title": "APPAREL Rubber Band (Black) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "500yen",
+    "price_num": 500,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/16/NEODAI-84393.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84393_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84393",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84394": {
+    "id": "NEODAI-84394",
+    "title": "APPAREL Smartphone Shoulder Bag (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/17/NEODAI-84394.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84394_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84394",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84404": {
+    "id": "NEODAI-84404",
+    "title": "Collectible Random Photo (5 photos in 1 set) - Kohaku 2019 Opening Costume (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/03/NEODAI-84404.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84404_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84404",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84405": {
+    "id": "NEODAI-84405",
+    "title": "Collectible Random Photo (5 photos in 1 set) - Kohaku 2019 \"Fukyowaon\" Costume (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/04/NEODAI-84405.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84405_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84405",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84308": {
+    "id": "NEODAI-84308",
+    "title": "APPAREL THE LAST LIVE T-Shirt (White / XL)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/03/NEODAI-84308.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84308_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84308",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84309": {
+    "id": "NEODAI-84309",
+    "title": "APPAREL THE LAST LIVE T-Shirt (Black / L)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/04/NEODAI-84309.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84309_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84309",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84310": {
+    "id": "NEODAI-84310",
+    "title": "APPAREL THE LAST LIVE T-Shirt (Black / XL)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/46/NEODAI-84310.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84310_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84310",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-11513": {
+    "id": "SRCL-11513",
+    "title": "CD Album Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type B]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "5,273yen",
+    "price_num": 5273,
+    "release_date": "2020/10/07",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/31/SRCL-11513.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11513_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11513",
+    "updated_at": "2026-10-21"
+  },
+  "SRCL-11510": {
+    "id": "SRCL-11510",
+    "title": "CD Album Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type A]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,727yen",
+    "price_num": 7727,
+    "release_date": "2020/10/07",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/10/28/SRCL-11510.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRCL-11510_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRCL-11510",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84311": {
+    "id": "NEODAI-84311",
+    "title": "APPAREL THE LAST LIVE T-Shirt (White / M)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/47/NEODAI-84311.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84311_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84311",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84315": {
+    "id": "NEODAI-84315",
+    "title": "APPAREL Newspaper T-Shirt (Charcoal / S) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/02/NEODAI-84315.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84315_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84315",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84321": {
+    "id": "NEODAI-84321",
+    "title": "APPAREL [Encore Resale] Top Selling No. 3 / Keyaki Republic 2019 Nylon Hoodie (S)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,100yen",
+    "price_num": 7100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/00/NEODAI-84321.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84321_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84321",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-84323": {
+    "id": "NEODAI-84323",
+    "title": "APPAREL [Encore Resale] Top Selling No. 3 / Keyaki Republic 2019 Nylon Hoodie (L)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,100yen",
+    "price_num": 7100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/02/NEODAI-84323.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-84323_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-84323",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83981": {
+    "id": "NEODAI-83981",
+    "title": "APPAREL Long Sleeve T-Shirt (Black / M) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,600yen",
+    "price_num": 4600,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/28/NEODAI-83981.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83981_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83981",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83982": {
+    "id": "NEODAI-83982",
+    "title": "APPAREL Long Sleeve T-Shirt (Black / XL) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,600yen",
+    "price_num": 4600,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/29/NEODAI-83982.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83982_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83982",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83983": {
+    "id": "NEODAI-83983",
+    "title": "APPAREL Long Sleeve T-Shirt (Whtie / M) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,600yen",
+    "price_num": 4600,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEODAI-83983.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83983_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83983",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83984": {
+    "id": "NEODAI-83984",
+    "title": "APPAREL Long Sleeve T-Shirt (Whtie / L) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,600yen",
+    "price_num": 4600,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/31/NEODAI-83984.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83984_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83984",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83986": {
+    "id": "NEODAI-83986",
+    "title": "APPAREL Hoodie (White) (XL) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,800yen",
+    "price_num": 6800,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/33/NEODAI-83986.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83986_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83986",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83987": {
+    "id": "NEODAI-83987",
+    "title": "APPAREL Hoodie (White) (L) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,800yen",
+    "price_num": 6800,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEODAI-83987.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83987_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83987",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83991": {
+    "id": "NEODAI-83991",
+    "title": "APPAREL Backpack (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "10,000yen",
+    "price_num": 10000,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEODAI-83991.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83991_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83991",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83992": {
+    "id": "NEODAI-83992",
+    "title": "APPAREL [Encore Resale] Top Selling No. 10 TOKYO DOME Tote Bag (ARENA TOUR 2019)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/31/NEODAI-83992.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83992_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83992",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83995": {
+    "id": "NEODAI-83995",
+    "title": "APPAREL [Encore Resale] Top Selling No. 4 Glass wo Ware! Release Commemorative Pouch NEODAI-83995",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,600yen",
+    "price_num": 2600,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEODAI-83995.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83995_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83995",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83997": {
+    "id": "NEODAI-83997",
+    "title": "APPAREL Hoodie (White) (M) (THE LAST LIVE)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,800yen",
+    "price_num": 6800,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/36/NEODAI-83997.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83997_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83997",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83627": {
+    "id": "NEODAI-83627",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type A] [w/ 2 B2 clear posters, HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "9,100yen",
+    "price_num": 9100,
+    "release_date": "2020/10/07",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/10/NEODAI-83627.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83627_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83627",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-83629": {
+    "id": "NEODAI-83629",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [Regular Edition] [w/ 2 B2 clear posters, HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,400yen",
+    "price_num": 3400,
+    "release_date": "2020/10/07",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/12/NEODAI-83629.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-83629_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-83629",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-82688": {
+    "id": "NEODAI-82688",
+    "title": "Collectible \"Keyakizaka46\" Random Photo Set (5 Photos from 112 types) [Dare ga Sonokane o Narasunoka? Costume]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/15/NEODAI-82688.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-82688_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82688",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-82690": {
+    "id": "NEODAI-82690",
+    "title": "Collectible \"Keyakizaka46\" Random Photo Set (5 Photos from 88 types) [Tokyo Dome Silent Majority Costume]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,050yen",
+    "price_num": 1050,
+    "release_date": "2021/01/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/09/NEODAI-82690.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-82690_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82690",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-82264": {
+    "id": "NEODAI-82264",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type B] (w/ Amazon.co.jp exclusive bonus: Mega Jacket)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "5,800yen",
+    "price_num": 5800,
+    "release_date": "2020/10/07",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/40/NEODAI-82264.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-82264_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82264",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-81716": {
+    "id": "NEODAI-81716",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [Regular Edition] (w/ TSUTAYA bonus: another jacket)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,799yen",
+    "price_num": 2799,
+    "release_date": "2020/10/07",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/44/NEODAI-81716.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-81716_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-81716",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80677": {
+    "id": "NEODAI-80677",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type A] [w/ 2 B2 clear posters, HMV exclusive] (w/ HMV bonus: clear folder)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "9,100yen",
+    "price_num": 9100,
+    "release_date": "2020/10/07",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/45/NEODAI-80677.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80677_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80677",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80678": {
+    "id": "NEODAI-80678",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [2CD+Blu-ray / Type B] [w/ 2 B2 clear posters, HMV exclusive] (w/ HMV bonus: clear folder)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "6,400yen",
+    "price_num": 6400,
+    "release_date": "2020/10/07",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/46/NEODAI-80678.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80678_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80678",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80681": {
+    "id": "NEODAI-80681",
+    "title": "Album CD Eien yori Nagai Isshun - Anokoro, Tashikani Sonzai shita Watashitachi - [Regular Edition] [w/ 2 B2 clear posters, HMV exclusive] (w/ HMV bonus: clear folder)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,400yen",
+    "price_num": 3400,
+    "release_date": "2020/10/07",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/41/NEODAI-80681.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80681_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80681",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80185": {
+    "id": "NEODAI-80185",
+    "title": "APPAREL Tie-Dye T-Shirt [F] (The Last Single \"Dare ga Sono Kane o Narasu noka?\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2020/10/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/25/NEODAI-80185.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80185_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80185",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80187": {
+    "id": "NEODAI-80187",
+    "title": "APPAREL The Last Single Release Commemoration Printed T-Shirt (L) NEODAI-80187",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/10/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/27/NEODAI-80187.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80187_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80187",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-80189": {
+    "id": "NEODAI-80189",
+    "title": "APPAREL The Last Single Release Commemoration Printed T-Shirt (M) NEODAI-80189",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/10/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/29/NEODAI-80189.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-80189_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-80189",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-79387": {
+    "id": "NEODAI-79387",
+    "title": "Collectible Acrylic Table Clock (Keyakizaka46) [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/42/NEODAI-79387.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-79387_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-79387",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-79013": {
+    "id": "NEODAI-79013",
+    "title": "Collectible Oshi-Mem Muffler Towel vol. 12 Watanabe Risa",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/09/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/12/NEODAI-79013.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-79013_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-79013",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-79014": {
+    "id": "NEODAI-79014",
+    "title": "Collectible Oshi-Mem Muffler Towel vol. 12 Kobayashi Yui",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/09/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/13/NEODAI-79014.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-79014_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-79014",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78723": {
+    "id": "NEODAI-78723",
+    "title": "Collectible Penlight Strap [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/34/NEODAI-78723.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78723_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78723",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78656": {
+    "id": "NEODAI-78656",
+    "title": "Collectible Penlight Strap [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/39/NEODAI-78656.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78656_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78656",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78657": {
+    "id": "NEODAI-78657",
+    "title": "Collectible Acrylic Smartphone Stand [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,650yen",
+    "price_num": 1650,
+    "release_date": "2020/10/20",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/40/NEODAI-78657.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78657_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78657",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78658": {
+    "id": "NEODAI-78658",
+    "title": "Collectible Penlight Strap [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/41/NEODAI-78658.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78658_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78658",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78659": {
+    "id": "NEODAI-78659",
+    "title": "Collectible Penlight Strap [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/42/NEODAI-78659.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78659_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78659",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-78660": {
+    "id": "NEODAI-78660",
+    "title": "Collectible Penlight Strap [Loppi/HMV exclusive]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,100yen",
+    "price_num": 1100,
+    "release_date": "2020/11/26",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/35/NEODAI-78660.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-78660_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-78660",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77970": {
+    "id": "NEODAI-77970",
+    "title": "Collectible Stainless Tumbler (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,500yen",
+    "price_num": 3500,
+    "release_date": "2020/09/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/41/NEODAI-77970.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77970_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77970",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77971": {
+    "id": "NEODAI-77971",
+    "title": "Collectible Original Photo Album (for 240 photos) (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2010/09/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/42/NEODAI-77971.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77971_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77971",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77380": {
+    "id": "NEODAI-77380",
+    "title": "APPAREL Logo Tape Big T-Shirt (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/19/NEODAI-77380.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77380_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77380",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77384": {
+    "id": "NEODAI-77384",
+    "title": "APPAREL Live Online T-Shirt (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/23/NEODAI-77384.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77384_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77384",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77394": {
+    "id": "NEODAI-77394",
+    "title": "APPAREL Live Online T-Shirt (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "3,100yen",
+    "price_num": 3100,
+    "release_date": "2020/12/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/25/NEODAI-77394.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77394_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77394",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77396": {
+    "id": "NEODAI-77396",
+    "title": "Collectible Oshi-Mem Muffler Towel vol.5 (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/27/NEODAI-77396.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77396_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77396",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77398": {
+    "id": "NEODAI-77398",
+    "title": "APPAREL Logo Tape Big T-Shirt (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,320yen",
+    "price_num": 1320,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/29/NEODAI-77398.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77398_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77398",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77391": {
+    "id": "NEODAI-77391",
+    "title": "Collectible Hako-Oshi Muffler Towel (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "380yen",
+    "price_num": 380,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/22/NEODAI-77391.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77391_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77391",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77395": {
+    "id": "NEODAI-77395",
+    "title": "Collectible Oshi-Mem Muffler Towel vol.5 (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/26/NEODAI-77395.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77395_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77395",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77397": {
+    "id": "NEODAI-77397",
+    "title": "Collectible Oshi-Mem Muffler Towel vol.5 (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "630yen",
+    "price_num": 630,
+    "release_date": "2020/08/31",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/28/NEODAI-77397.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77397_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77397",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77400": {
+    "id": "NEODAI-77400",
+    "title": "Collectible Acrylic Keychain (\"KEYAKIZAKA46 Live Online, but with You!\")",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "1,500yen",
+    "price_num": 1500,
+    "release_date": "2020/08/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/07/NEODAI-77400.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77400_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77400",
+    "updated_at": "2026-10-21"
+  },
+  "SRBL-1928": {
+    "id": "SRBL-1928",
+    "title": "DVD Keyaki Kyowakoku 2019 [Regular Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "4,727yen",
+    "price_num": 4727,
+    "release_date": "2020/08/12",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/24/SRBL-1928.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-1928_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-1928",
+    "updated_at": "2026-10-21"
+  },
+  "SRBL-1926": {
+    "id": "SRBL-1926",
+    "title": "DVD Keyaki Kyowakoku 2019 [Limited Edition]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,273yen",
+    "price_num": 7273,
+    "release_date": "2020/08/12",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/22/SRBL-1926.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/SRBL-1926_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FSRBL-1926",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77022": {
+    "id": "NEODAI-77022",
+    "title": "Blu-ray Keyaki Kyowakoku 2019 [Limited Edition] [w/ 2 B2 clear posters, Loppi/HMV Exclusive Set]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "10,600yen",
+    "price_num": 10600,
+    "release_date": "2020/08/12",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/46/NEODAI-77022.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77022_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77022",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-77023": {
+    "id": "NEODAI-77023",
+    "title": "DVD Keyaki Kyowakoku 2019 [Limited Edition] [w/ 2 B2 clear posters, Loppi/HMV Exclusive Set]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "8,600yen",
+    "price_num": 8600,
+    "release_date": "2020/08/12",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/47/NEODAI-77023.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-77023_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-77023",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-75475": {
+    "id": "NEODAI-75475",
+    "title": "BOOK Keyakizaka46 First Photo Book: 21 Nin no Mikansei (Shueisha Mook) [Loppi/HMV Exclusive Edition (Another jacket w/ a bonus postcard)]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,200yen",
+    "price_num": 2200,
+    "release_date": "2018/11/19",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/10/NEODAI-75475.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-75475_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-75475",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-74094": {
+    "id": "NEODAI-74094",
+    "title": "APPAREL Keyakizaka46 4th Anniversary Coach Jacket (L) NEODAI-74094",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,500yen",
+    "price_num": 7500,
+    "release_date": "2020/07/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/38/NEODAI-74094.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-74094_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-74094",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-74100": {
+    "id": "NEODAI-74100",
+    "title": "APPAREL Keyakizaka46 4th Anniversary Coach Jacket (XL) NEODAI-74100",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "7,500yen",
+    "price_num": 7500,
+    "release_date": "2020/07/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/20/NEODAI-74100.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-74100_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-74100",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-72013": {
+    "id": "NEODAI-72013",
+    "title": "Collectible \"Keyakizaka46\" Clear Bottle (w/ Original Kinchaku)",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,600yen",
+    "price_num": 2600,
+    "release_date": "2020/01/01",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEODAI-72013.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-72013_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-72013",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-72014": {
+    "id": "NEODAI-72014",
+    "title": "Collectible \"Keyakizaka46\" Oshi-Mem Muffler Towel [Moriya Akane vol.10]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/01/01",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/06/NEODAI-72014.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-72014_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-72014",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-72019": {
+    "id": "NEODAI-72019",
+    "title": "Collectible \"Keyakizaka46\" Oshi-Mem Muffler Towel [Inoue Rina vol.3]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/01/01",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-72019.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-72019_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-72019",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-72020": {
+    "id": "NEODAI-72020",
+    "title": "Collectible \"Keyakizaka46\" Oshi-Mem Muffler Towel [Takemoto Yui vol.3]",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "2,100yen",
+    "price_num": 2100,
+    "release_date": "2020/01/01",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEODAI-72020.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-72020_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-72020",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-71246": {
+    "id": "NEODAI-71246",
+    "title": "APPAREL \"Keyakizaka46\" 4th Anniversary Rubber Band NEODAI-71246",
+    "artist": "Keyakizaka46",
+    "category": "Sakamichi Series",
+    "price": "500yen",
+    "price_num": 500,
+    "release_date": "2020/05/31",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-71246.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-71246_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-71246",
     "updated_at": "2026-10-21"
   }
 }

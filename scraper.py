@@ -1,7 +1,7 @@
 """
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Automated batch crawler with direct Person ID routing, multi-alias queries,
-and automatic item deduplication.
+robust multi-anchor grouping, and automatic item deduplication.
 """
 
 import os
@@ -63,7 +63,7 @@ ARTIST_REGISTRY = [
         "category": "Hello! Project",
         "targets": ["Rosy Chronicle", "ロージークロニクル"]
     },
-    # Problem 2 Solved: Multi-query for Hello Pro Kenshuusei
+    # Hello Pro Kenshuusei
     {
         "name": "Hello Pro Kenshuusei",
         "category": "Hello! Project",
@@ -94,7 +94,7 @@ ARTIST_REGISTRY = [
         "category": "Hello! Project",
         "targets": ["Country Girls", "カントリー・ガールズ"]
     },
-    # Problem 3 Solved: Query both Kobushi-Factory and Kobushi Factory
+    # Kobushi Factory
     {
         "name": "Kobushi Factory",
         "category": "Hello! Project",
@@ -126,7 +126,7 @@ ARTIST_REGISTRY = [
         "category": "Up-Front Alumni",
         "targets": ["Up Up Girls (Kari)", "アップアップガールズ(仮)"]
     },
-    # Problem 1 Solved: Direct Person ID Endpoint + Escaped Queries
+    # Up Up Girls (2)
     {
         "name": "Up Up Girls (2)",
         "category": "Up-Front Alumni",
@@ -293,94 +293,136 @@ def is_date_upcoming(date_str):
 
 def build_target_url(target, page=1):
     """
-    Directly routes person/series URLs or formats standard search endpoints.
+    Directly routes person/series URLs or queries canonical /searches endpoint.
     """
     if target.startswith("http://") or target.startswith("https://"):
         sep = "&" if "?" in target else "?"
         return f"{target}{sep}term.order=reldate_desc&page={page}"
     else:
         encoded_q = urllib.parse.quote_plus(target)
-        return f"{BASE_URL}/searchuni?q={encoded_q}&order=reldate_desc&page={page}"
+        return f"{BASE_URL}/searches?term.media_format=&q={encoded_q}&order=reldate_desc&page={page}"
 
 def extract_products_from_html(html_content, artist_name, category_name):
     soup = BeautifulSoup(html_content, "html.parser")
     extracted = []
+    products_by_id = {}
 
-    product_anchors = soup.select('a[href*="/product/"]')
-    seen_ids_on_page = set()
-
-    for anchor in product_anchors:
-        href = anchor.get("href", "")
+    # 1. Collect and group all product anchors on the page by SKU
+    anchors = soup.select('a[href*="/product/"]')
+    
+    for a in anchors:
+        href = a.get("href", "")
         m = re.search(r'/product/([A-Za-z0-9\-]+)', href)
         if not m:
             continue
-
         pid = m.group(1).upper()
-        if pid in seen_ids_on_page:
+
+        # Ignore internal utility links
+        if pid in ["REVIEW", "CART", "SEARCH", "HELP", "RANKING", "INDEX"]:
             continue
-        seen_ids_on_page.add(pid)
 
-        # Locate enclosing card container
-        card = anchor.find_parent("tr") or anchor.find_parent("li") or anchor.find_parent("div", class_=re.compile(r'item|product|unit', re.I))
-        if not card:
-            card = anchor.parent
+        if pid not in products_by_id:
+            products_by_id[pid] = {
+                "anchors": [],
+                "images": [],
+                "texts": []
+            }
 
-        # 1. Title Extraction
+        products_by_id[pid]["anchors"].append(a)
+
+        # Check anchor text
+        txt = clean_text(a.get_text())
+        if txt and len(txt) > 1 and txt.lower() not in ["buy", "order", "details", "pre-order", "view", "more", "add to cart", "cart"]:
+            products_by_id[pid]["texts"].append(txt)
+
+        # Check image alt attribute and image source inside anchor
+        img = a.select_one("img")
+        if img:
+            alt = clean_text(img.get("alt", ""))
+            if alt and len(alt) > 1 and "cdjapan" not in alt.lower():
+                products_by_id[pid]["texts"].append(alt)
+
+            src = img.get("data-original") or img.get("data-src") or img.get("src") or ""
+            if src and "no_image" not in src:
+                if src.startswith("//"):
+                    src = f"https:{src}"
+                elif src.startswith("/"):
+                    src = f"{BASE_URL}{src}"
+                products_by_id[pid]["images"].append(
+                    src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
+                )
+
+    # 2. Extract full details for each unique product ID
+    for pid, data in products_by_id.items():
+        # Title: Select longest available title string
         title = ""
-        title_elem = card.select_one(".title, .item-title, h3, h2, a[title]")
-        if title_elem and title_elem.get("title"):
-            title = clean_text(title_elem["title"])
-        elif title_elem:
-            title = clean_text(title_elem.get_text())
-        else:
-            title = clean_text(anchor.get_text())
+        if data["texts"]:
+            title = max(data["texts"], key=len)
 
-        # Discard non-product anchor text
-        if not title or len(title) < 2 or title.lower() in ["buy", "details", "pre-order", "order"]:
+        first_anchor = data["anchors"][0]
+        card = (
+            first_anchor.find_parent("tr") or
+            first_anchor.find_parent("li") or
+            first_anchor.find_parent("div", class_=re.compile(r'item|product|unit|box', re.I))
+        )
+        if not card:
+            card = first_anchor.parent
+
+        if not title and card:
+            t_elem = card.select_one(".title, .item_title, .item-title, h3, h2, h4, .name")
+            if t_elem:
+                title = clean_text(t_elem.get_text())
+
+        if not title or len(title) < 2:
             continue
 
-        # 2. Image Extraction
+        # Image
         image_url = ""
-        img_elem = card.select_one("img")
-        if img_elem:
-            raw_src = img_elem.get("data-original") or img_elem.get("data-src") or img_elem.get("src") or ""
-            if raw_src.startswith("//"):
-                raw_src = f"https:{raw_src}"
-            elif raw_src.startswith("/"):
-                raw_src = f"{BASE_URL}{raw_src}"
-            image_url = raw_src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
+        if data["images"]:
+            image_url = data["images"][0]
+        elif card:
+            card_img = card.select_one("img")
+            if card_img:
+                src = card_img.get("data-original") or card_img.get("data-src") or card_img.get("src") or ""
+                if src and "no_image" not in src:
+                    if src.startswith("//"):
+                        src = f"https:{src}"
+                    elif src.startswith("/"):
+                        src = f"{BASE_URL}{src}"
+                    image_url = src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
 
         if not image_url or "no_image" in image_url:
             image_url = f"https://www.cdjapan.co.jp/pictures/l/{pid}.jpg"
 
-        # 3. Release Date Extraction
+        # Release Date
         release_date = "Available Now"
-        date_match = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', card.get_text())
+        card_text = card.get_text() if card else ""
+        date_match = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', card_text)
         if date_match:
             release_date = f"{date_match.group(1)}/{date_match.group(2).zfill(2)}/{date_match.group(3).zfill(2)}"
 
-        # 4. Price Extraction
+        # Price
         price_str = "Check CDJapan"
-        price_match = re.search(r'([\d,]+)\s*(?:yen|JPY)', card.get_text(), re.IGNORECASE)
+        price_match = re.search(r'([\d,]+)\s*(?:yen|JPY)', card_text, re.IGNORECASE)
         if price_match:
             price_str = f"¥{price_match.group(1)}"
-        elif "¥" in card.get_text():
-            yen_match = re.search(r'¥\s*([\d,]+)', card.get_text())
+        elif "¥" in card_text:
+            yen_match = re.search(r'¥\s*([\d,]+)', card_text)
             if yen_match:
                 price_str = f"¥{yen_match.group(1)}"
 
-        # 5. Availability Status
-        card_text_lower = card.get_text().lower()
+        # Availability
+        card_text_lower = card_text.lower()
         if is_date_upcoming(release_date) or "pre-order" in card_text_lower:
             availability = "preorder"
-        elif "out of print" in card_text_lower or "sold out" in card_text_lower or "archive" in card_text_lower:
+        elif "out of print" in card_text_lower or "sold out" in card_text_lower or "archive" in card_text_lower or "no longer available" in card_text_lower:
             availability = "oop"
         else:
             availability = "instock"
 
         affiliate_url = f"https://www.cdjapan.co.jp/product/{pid}?affi={AFFILIATE_ID}"
 
-        item_record = {
+        extracted.append({
             "id": pid,
             "title": title,
             "artist": artist_name,
@@ -392,15 +434,14 @@ def extract_products_from_html(html_content, artist_name, category_name):
             "availability": availability,
             "affiliate_url": affiliate_url,
             "updated_at": datetime.utcnow().strftime("%Y-%m-%d")
-        }
-
-        extracted.append(item_record)
+        })
 
     return extracted
 
-def scrape_artist_target(session, target, artist_name, category_name, max_pages=3):
+def scrape_artist_target(session, target, artist_name, category_name, max_pages=5):
     total_found = []
-    
+    seen_ids = set()
+
     for page in range(1, max_pages + 1):
         url = build_target_url(target, page=page)
         success = False
@@ -411,13 +452,8 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
                 resp = session.get(url, headers=get_request_headers(), timeout=15)
                 if resp.status_code == 200 and len(resp.text) > 1000:
                     items = extract_products_from_html(resp.text, artist_name, category_name)
-                    if items:
-                        total_found.extend(items)
-                        success = True
-                        break
-                    else:
-                        success = True
-                        break
+                    success = True
+                    break
                 elif resp.status_code == 404:
                     success = True
                     break
@@ -427,6 +463,17 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
                 time.sleep(attempt * 2.5)
 
         if not success or not items:
+            break
+
+        # Deduplicate across pages
+        new_on_page = 0
+        for it in items:
+            if it["id"] not in seen_ids:
+                seen_ids.add(it["id"])
+                total_found.append(it)
+                new_on_page += 1
+
+        if new_on_page == 0:
             break
 
         time.sleep(random.uniform(1.2, 2.4))
@@ -445,7 +492,6 @@ def get_filtered_registry():
         target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
         return [a for a in ARTIST_REGISTRY if a["name"] in target_names]
 
-    # Specific single artist match
     matched = [a for a in ARTIST_REGISTRY if a["name"].lower() == raw_filter.lower()]
     return matched if matched else ARTIST_REGISTRY
 
@@ -478,7 +524,7 @@ def run_catalog_sync():
         for target in targets:
             found_items = scrape_artist_target(session, target, canonical_name, category)
             print(f"  Target '{target}' -> Extracted {len(found_items)} items.")
-            
+
             for item in found_items:
                 pid = item["id"]
                 if pid not in artist_items_map:

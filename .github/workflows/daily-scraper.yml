@@ -45,6 +45,10 @@ jobs:
         run: |
           python generate_sitemap.py
 
+      - name: Ping Search Engines for Rapid Indexing
+        run: |
+          python ping_search_engines.py
+
       - name: Commit and Push Updated Catalog & Sitemap
         run: |
           git config --global user.name "IdolJapan Bot"

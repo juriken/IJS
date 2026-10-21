@@ -1,7 +1,12 @@
 User-agent: *
 Allow: /
-Disallow: /products.json
-Disallow: /repair_progress.json
+Allow: /catalog-index.json
+Allow: /products.json
+Allow: /sitemap.xml
 
-# Explicit Crawl Guidance
+# Avoid wasting crawl budget on endless parameter combinations
+Disallow: /*?*q=*
+Disallow: /*?*wishlist=*
+
+# Link to canonical XML Sitemap
 Sitemap: https://idoljapan.store/sitemap.xml

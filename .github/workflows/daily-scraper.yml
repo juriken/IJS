@@ -57,6 +57,10 @@ jobs:
         run: |
           python generate_feed.py
 
+      - name: Generate Schema.org Product Graph
+        run: |
+          python generate_schema.py
+
       - name: Ping Search Engines for Rapid Indexing
         run: |
           python ping_search_engines.py
@@ -65,5 +69,5 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json sitemap.xml feed.xml scraper_state.json rates.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, feed, sitemap & state [skip ci]" && git push)
+          git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, schema, feed & state [skip ci]" && git push)

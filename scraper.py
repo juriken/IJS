@@ -1,602 +1,636 @@
 """
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
-Automated batch crawler with Playwright Chromium rendering, direct Person ID routing,
-archive EOA parameter support, and header/footer decomposition.
+Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
+direct Person ID routing, and multi-query aliasing.
 """
 
+import json
 import os
+import random
 import re
 import time
-import json
-import random
 import urllib.parse
 from datetime import datetime
-import requests
 from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
-# Try importing Playwright; fallback to requests if unavailable
-try:
-    from playwright.sync_api import sync_playwright
-    HAS_PLAYWRIGHT = True
-except ImportError:
-    HAS_PLAYWRIGHT = False
-
-# Global Configuration
-PRODUCTS_FILE = "products.json"
-STATE_FILE = "scraper_state.json"
-BASE_URL = "https://www.cdjapan.co.jp"
 AFFILIATE_ID = "A033398"
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+DATA_FILE = "products.json"
+STATE_FILE = "scraper_state.json"
+PAGES_PER_TARGET = 3
+
+MONTH_MAP = {
+    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
+    "may": "05", "jun": "06", "jul": "07", "aug": "08",
+    "sep": "09", "oct": "10", "nov": "11", "dec": "12",
+    "january": "01", "february": "02", "march": "03", "april": "04",
+    "june": "06", "july": "07", "august": "08", "september": "09",
+    "october": "10", "november": "11", "december": "12"
+}
+
+TANPOPO_AUTHENTIC_SIGNATURES = [
+    "last kiss", "motto", "seinaru kane", "otome pasta",
+    "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
+    "tanpopo 1", "all of tanpopo", "single v clips"
+]
+TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
+
+NOIME_AUTHENTIC_SIGNATURES = [
+    "≠me", "not equal me", "ノイミー", "noime",
+    "kimi wa kono natsu", "mahoroba asterisk", "chocolate melancholy",
+    "su kida", "hanikami short", "tenshi wa doko e", "antihime",
+    "anti-confiture", "omoide champion", "last chance, last dance",
+    "natsumatsuri koi shitau", "kimi no oto dattanda", "chozetsu shoujo",
+    "springtime in you", "hatsukoi camouflage"
 ]
 
-# Master Registry
-ARTIST_REGISTRY = [
-    # Hello! Project
-    {
-        "name": "Morning Musume",
-        "category": "Hello! Project",
-        "targets": ["Morning Musume", "モーニング娘"]
-    },
-    {
-        "name": "ANGERME",
-        "category": "Hello! Project",
-        "targets": ["ANGERME", "アンジュルム", "S/mileage", "スマイレージ"]
-    },
-    {
-        "name": "Juice=Juice",
-        "category": "Hello! Project",
-        "targets": ["Juice=Juice", "Juice Juice", "ジュースジュース"]
-    },
-    {
-        "name": "Tsubaki Factory",
-        "category": "Hello! Project",
-        "targets": ["Tsubaki Factory", "つばきファクトリー"]
-    },
-    {
-        "name": "BEYOOOOONDS",
-        "category": "Hello! Project",
-        "targets": ["BEYOOOOONDS", "ビヨーンズ"]
-    },
-    {
-        "name": "OCHA NORMA",
-        "category": "Hello! Project",
-        "targets": ["OCHA NORMA", "オチャノーマ"]
-    },
-    {
-        "name": "Rosy Chronicle",
-        "category": "Hello! Project",
-        "targets": ["Rosy Chronicle", "ロージークロニクル"]
-    },
-    # Hello Pro Kenshuusei
-    {
-        "name": "Hello Pro Kenshuusei",
-        "category": "Hello! Project",
-        "targets": [
-            "Hello Pro Kenshusei",
-            "ハロプロ研修生",
-            "Hello Pro Kenshuusei"
-        ]
-    },
-    {
-        "name": "Berryz Kobo",
-        "category": "Hello! Project",
-        "targets": ["Berryz Kobo", "Berryz工房"]
-    },
-    {
-        "name": "℃-ute",
-        "category": "Hello! Project",
-        "targets": ["℃-ute", "C-ute"]
-    },
-    {
-        "name": "Buono!",
-        "category": "Hello! Project",
-        "targets": ["Buono!"]
-    },
-    {
-        "name": "Country Girls",
-        "category": "Hello! Project",
-        "targets": ["Country Girls", "カントリー・ガールズ"]
-    },
-    # Kobushi Factory
-    {
-        "name": "Kobushi Factory",
-        "category": "Hello! Project",
-        "targets": [
-            "Kobushi-Factory",
-            "Kobushi Factory",
-            "こぶしファクトリー"
-        ]
-    },
-    {
-        "name": "Airi Suzuki",
-        "category": "Hello! Project",
-        "targets": ["Airi Suzuki", "鈴木愛理"]
-    },
-    {
-        "name": "Sayumi Michishige",
-        "category": "Hello! Project",
-        "targets": ["Sayumi Michishige", "道重さゆみ"]
-    },
+NIAGO_AUTHENTIC_SIGNATURES = [
+    "nearly equal joy", "nearly equal", "≒joy", "ニアジョイ",
+    "waratte flatte", "chou kodoku", "taiikukan disco", "shonichi",
+    "kitto, aoi", "yuransen", "daisuki da", "hatsukoi sync", "kimi to watashi no uta",
+    "muda de ii", "yubiwa to aribai", "watashi, idol sengen"
+]
 
-    # Up-Front Alumni
-    {
-        "name": "You Kikkawa",
-        "category": "Up-Front Alumni",
-        "targets": ["You Kikkawa", "吉川友"]
-    },
-    {
-        "name": "Up Up Girls (Kari)",
-        "category": "Up-Front Alumni",
-        "targets": ["Up Up Girls (Kari)", "アップアップガールズ(仮)"]
-    },
-    # Up Up Girls (2) — Direct Person ID + Japanese Kanji/Katakana
-    {
-        "name": "Up Up Girls (2)",
-        "category": "Up-Front Alumni",
-        "targets": [
-            "https://www.cdjapan.co.jp/person/700786352",
-            "アップアップガールズ(2)",
-            "Up Up Girls 2"
-        ]
-    },
+# Master Registry with Multi-Target Query & Person ID Routing
+TARGET_GROUPS = [
+    # Hello! Project — Groups & Active Units
+    ("Hello! Project", "Morning Musume", ["Morning Musume", "モーニング娘"], [
+        "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
+        "Chokotto Love", "Baby! Koi ni Knock Out"
+    ]),
+    ("Hello! Project", "ANGERME", ["ANGERME", "アンジュルム"], ["ANGERME", "Smileage", "S/mileage"]),
+    ("Hello! Project", "Juice=Juice", ["Juice=Juice"], ["Juice=Juice"]),
+    ("Hello! Project", "Tsubaki Factory", ["Tsubaki Factory", "つばきファクトリー"], ["Tsubaki Factory"]),
+    ("Hello! Project", "BEYOOOOONDS", ["BEYOOOOONDS", "ビヨーンズ"], ["BEYOOOOONDS"]),
+    ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "OCHA"]),
+    ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "Rosy"]),
+
+    # Problem 2 Solved: Multi-query for Hello Pro Kenshuusei
+    ("Hello! Project", "Hello Pro Kenshuusei", [
+        "Hello Pro Kenshusei",
+        "ハロプロ研修生",
+        "Hello Pro Kenshuusei"
+    ], [
+        "Hello Pro Kenshuusei", "Hello Pro Kenshusei", "Hello! Pro Kenshuusei",
+        "ハロプロ研修生", "Kenshuusei", "Kenshusei", "Hello Pro Egg", "ハロプロエッグ"
+    ]),
+
+    # Hello! Project — Past Groups & Subunits
+    ("Hello! Project", "Minimoni", ["Minimoni", "ミニモニ"], ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
+    ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
+    ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
+    ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
+    ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
+
+    # Problem 3 Solved: Query both Kobushi-Factory and Kobushi Factory
+    ("Hello! Project", "Kobushi Factory", [
+        "Kobushi-Factory",
+        "Kobushi Factory",
+        "こぶしファクトリー"
+    ], [
+        "Kobushi Factory", "Kobushi-Factory", "こぶしファクトリー", "こぶし"
+    ]),
+
+    ("Hello! Project", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], ["Melon Kinenbi", "メロン記念日", "メロン"]),
+    ("Hello! Project", "Tanpopo", ["Tanpopo", "タンポポ"], TANPOPO_AUTHENTIC_SIGNATURES),
+    ("Hello! Project", "v-u-den", ["Biyuden", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
+
+    # Hello! Project — OG Post-Graduation Units
+    ("Hello! Project", "LoVendoR", ["LoVendoR", "ラベンダー"], ["LoVendoR", "LoVendoЯ", "ラベンダー", "Reina Tanaka"]),
+    ("Hello! Project", "PINK CRES.", ["PINK CRES."], ["PINK CRES.", "PINK CRES", "ピンククレス", "Miyabi Natsuyaki"]),
+
+    # Hello! Project — Soloists & OGs
+    ("Hello! Project", "Sayumi Michishige", ["Sayumi Michishige", "道重さゆみ"], [
+        "Sayumi Michishige", "Michishige Sayumi", "道重さゆみ", "SAYUMINGLANDOLL", "SAYUMING"
+    ]),
+    ("Hello! Project", "Aya Matsuura", ["Aya Matsuura", "松浦亜弥"], ["Aya Matsuura", "Matsuura Aya", "松浦亜弥"]),
+    ("Hello! Project", "Maki Goto", ["Maki Goto", "後藤真希"], ["Maki Goto", "Goto Maki", "後藤真希"]),
+    ("Hello! Project", "Natsumi Abe", ["Natsumi Abe", "安倍なつみ"], ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
+    ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
+    ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
+
+    # Up-Front / H!P Alumni
+    ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
+        "You Kikkawa", "Kikkawa You", "Kikkawa Yu", "吉川友", "Kikkawa"
+    ]),
+    ("Up-Front Alumni", "Up Up Girls (Kari)", ["Up Up Girls (Kari)", "アップアップガールズ(仮)"], [
+        "Up Up Girls (Kari)", "Up Up Girls (kari)", "アップアップガールズ(仮)", "アプガ(仮)",
+        "アップアップガールズ（仮）", "UpUpGirls(Kari)"
+    ]),
+
+    # Problem 1 Solved: Direct Person ID Endpoint + Japanese Alias
+    ("Up-Front Alumni", "Up Up Girls (2)", [
+        "https://www.cdjapan.co.jp/person/700786352",
+        "アップアップガールズ(2)",
+        "Up Up Girls 2"
+    ], [
+        "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
+        "UpUpGirls(2)", "Up Up Girls 2"
+    ]),
 
     # AKB48 Group
-    {
-        "name": "AKB48",
-        "category": "AKB48 Group",
-        "targets": ["AKB48"]
-    },
-    {
-        "name": "SKE48",
-        "category": "AKB48 Group",
-        "targets": ["SKE48"]
-    },
-    {
-        "name": "NMB48",
-        "category": "AKB48 Group",
-        "targets": ["NMB48"]
-    },
-    {
-        "name": "HKT48",
-        "category": "AKB48 Group",
-        "targets": ["HKT48"]
-    },
-    {
-        "name": "NGT48",
-        "category": "AKB48 Group",
-        "targets": ["NGT48"]
-    },
-    {
-        "name": "STU48",
-        "category": "AKB48 Group",
-        "targets": ["STU48"]
-    },
+    ("AKB48 Group", "AKB48", ["AKB48"], ["AKB48"]),
+    ("AKB48 Group", "SKE48", ["SKE48"], ["SKE48"]),
+    ("AKB48 Group", "NMB48", ["NMB48"], ["NMB48"]),
+    ("AKB48 Group", "HKT48", ["HKT48"], ["HKT48"]),
+    ("AKB48 Group", "NGT48", ["NGT48"], ["NGT48"]),
+    ("AKB48 Group", "STU48", ["STU48"], ["STU48"]),
+    ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
 
-    # Sakamichi Series & 22/7
-    {
-        "name": "Nogizaka46",
-        "category": "Sakamichi Series",
-        "targets": ["Nogizaka46", "乃木坂46"]
-    },
-    {
-        "name": "Sakurazaka46",
-        "category": "Sakamichi Series",
-        "targets": ["Sakurazaka46", "櫻坂46"]
-    },
-    {
-        "name": "Hinatazaka46",
-        "category": "Sakamichi Series",
-        "targets": ["Hinatazaka46", "日向坂46"]
-    },
-    {
-        "name": "22/7",
-        "category": "Sakamichi Series",
-        "targets": ["22/7", "ナナブンノニジュウニ"]
-    },
+    # Sakamichi Series
+    ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
+    ("Sakamichi Series", "Sakurazaka46", ["Sakurazaka46", "櫻坂46"], ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
+    ("Sakamichi Series", "Hinatazaka46", ["Hinatazaka46", "日向坂46"], ["Hinatazaka46", "Hinatazaka", "日向坂"]),
+    ("Sakamichi Series", "Keyakizaka46", ["Keyakizaka46", "欅坂46"], ["Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"]),
+    ("Sakamichi Series", "22/7", ["22/7", "ナナブンノニジュウニ"], ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
 
     # Stardust Planet
-    {
-        "name": "Momoiro Clover Z",
-        "category": "Stardust Planet",
-        "targets": ["Momoiro Clover Z", "ももいろクローバーZ"]
-    },
-    {
-        "name": "Shiritsu Ebisu Chugaku",
-        "category": "Stardust Planet",
-        "targets": ["Shiritsu Ebisu Chugaku", "私立恵比寿中学"]
-    },
-    {
-        "name": "Chou Tokimeki Sendenbu",
-        "category": "Stardust Planet",
-        "targets": ["Chou Tokimeki Sendenbu", "超ときめき♡宣伝部"]
-    },
+    ("Stardust Planet", "Momoiro Clover Z", ["Momoiro Clover Z", "ももいろクローバーZ"], ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
+    ("Stardust Planet", "Shiritsu Ebisu Chugaku", ["Shiritsu Ebisu Chugaku", "私立恵比寿中学"], ["Shiritsu Ebisu Chugaku", "Ebichu", "私立恵比寿中学", "エビ中"]),
+    ("Stardust Planet", "Chou Tokimeki Sendenbu", ["Cho Tokimeki Sendenbu", "超ときめき♡宣伝部"], [
+        "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
+    ]),
 
-    # =LOVE / Sister Groups
-    {
-        "name": "=LOVE",
-        "category": "=LOVE / Sister Groups",
-        "targets": ["=LOVE", "イコールラブ"]
-    },
-    {
-        "name": "≠ME",
-        "category": "=LOVE / Sister Groups",
-        "targets": ["≠ME", "ノットイコールミー"]
-    },
-    {
-        "name": "≒JOY",
-        "category": "=LOVE / Sister Groups",
-        "targets": ["≒JOY", "ニアリーイコールジョイ"]
-    },
+    # =LOVE & Sister Groups
+    ("=LOVE / Sister Groups", "=LOVE", ["=LOVE", "イコールラブ"], ["=LOVE", "Equal Love", "イコラブ"]),
+    ("=LOVE / Sister Groups", "≠ME", ["ノイミー", "≠ME"], NOIME_AUTHENTIC_SIGNATURES),
+    ("=LOVE / Sister Groups", "≒JOY", ["Nearly Equal Joy", "≒JOY"], NIAGO_AUTHENTIC_SIGNATURES),
 
     # KAWAII LAB.
-    {
-        "name": "FRUITS ZIPPER",
-        "category": "KAWAII LAB.",
-        "targets": ["FRUITS ZIPPER", "フルーツジッパー"]
-    },
-    {
-        "name": "CUTIE STREET",
-        "category": "KAWAII LAB.",
-        "targets": ["CUTIE STREET", "キューティーストリート"]
-    },
+    ("KAWAII LAB.", "FRUITS ZIPPER", ["FRUITS ZIPPER", "フルーツジッパー"], ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
+    ("KAWAII LAB.", "CUTIE STREET", ["CUTIE STREET", "キューティーストリート"], ["CUTIE STREET", "Cutie Street", "きゅーすと", "KAWAII LAB."]),
 
-    # Modern Idols & Babymetal
-    {
-        "name": "NiziU",
-        "category": "Modern Idols",
-        "targets": ["NiziU", "ニジュー"]
-    },
-    {
-        "name": "ME:I",
-        "category": "Modern Idols",
-        "targets": ["ME:I", "ミーアイ"]
-    },
-    {
-        "name": "BABYMETAL",
-        "category": "Babymetal",
-        "targets": ["BABYMETAL"]
-    }
+    # Modern Idols
+    ("Modern Idols", "NiziU", ["NiziU", "ニジュー"], ["NiziU", "ニジュー"]),
+    ("Modern Idols", "ME:I", ["ME:I", "ミーアイ"], ["ME:I", "ミーアイ", "Produce 101"]),
+
+    # Babymetal
+    ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
 ]
 
-def get_request_headers():
-    return {
-        "User-Agent": random.choice(USER_AGENTS),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
-        "Referer": "https://www.cdjapan.co.jp/",
-        "DNT": "1"
-    }
+
+def load_catalog():
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+
+def make_affiliate_link(product_key):
+    raw_path = f"product/{product_key}"
+    encoded_path = urllib.parse.quote(raw_path, safe="")
+    return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
+
 
 def clean_text(text):
-    if not text:
+    return re.sub(r"\s+", " ", text).strip() if text else ""
+
+
+def parse_normalized_date(date_raw_str):
+    if not date_raw_str:
         return ""
-    return re.sub(r'\s+', ' ', text).strip()
+    text = clean_text(date_raw_str)
 
-def parse_price_numeric(price_str):
-    if not price_str:
-        return 0
-    digits = re.sub(r'[^\d]', '', price_str)
-    return int(digits) if digits else 0
+    m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
+    if m1:
+        y, m, d = m1.group(1), m1.group(2).zfill(2), m1.group(3).zfill(2)
+        return f"{y}/{m}/{d}"
 
-def parse_date_value(date_str):
-    if not date_str:
-        return 0
-    m = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', date_str)
-    if m:
-        return (int(m.group(1)) * 10000) + (int(m.group(2)) * 100) + int(m.group(3))
-    return 0
+    match_jp = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
+    if match_jp:
+        y, m, d = match_jp.group(1), match_jp.group(2).zfill(2), match_jp.group(3).zfill(2)
+        return f"{y}/{m}/{d}"
+
+    match_en = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
+    if match_en:
+        mon_str = match_en.group(1).lower()
+        if mon_str in MONTH_MAP:
+            m = MONTH_MAP[mon_str]
+            d = match_en.group(2).zfill(2)
+            y = match_en.group(3)
+            return f"{y}/{m}/{d}"
+
+    match_en_rev = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
+    if match_en_rev:
+        mon_str = match_en_rev.group(2).lower()
+        if mon_str in MONTH_MAP:
+            d = match_en_rev.group(1).zfill(2)
+            m = MONTH_MAP[mon_str]
+            y = match_en_rev.group(3)
+            return f"{y}/{m}/{d}"
+
+    match_ym = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
+    if match_ym:
+        y, m = match_ym.group(1), match_ym.group(2).zfill(2)
+        return f"{y}/{m}/01"
+
+    return ""
+
 
 def is_date_upcoming(date_str):
-    val = parse_date_value(date_str)
-    if val == 0:
+    if not date_str:
         return False
+    m = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", date_str)
+    if not m:
+        return False
+    val = (int(m.group(1)) * 10000) + (int(m.group(2)) * 100) + int(m.group(3))
     now = datetime.utcnow()
     today_val = (now.year * 10000) + (now.month * 100) + now.day
     return val > today_val
 
-def build_target_url(target, page=1):
-    """
-    Constructs target search/person URLs including EOA (out of print) archives.
-    """
-    if target.startswith("http://") or target.startswith("https://"):
-        sep = "&" if "?" in target else "?"
-        return f"{target}{sep}page={page}&order=reldate_desc"
-    else:
-        encoded_q = urllib.parse.quote_plus(target)
-        return f"{BASE_URL}/searchuni?q={encoded_q}&order=reldate_desc&opt.include_eoa=1&page={page}"
 
-def extract_products_from_html(html_content, artist_name, category_name):
-    soup = BeautifulSoup(html_content, "html.parser")
-    
-    # Decompose header, footer, nav, and sidebar widgets to avoid promo card leakage
-    for el in soup.select("header, footer, nav, aside, #header, #footer, .header, .footer, .global-nav, .cart-nav, .recommend_list, .ranking_list"):
-        el.decompose()
+def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_direct_person=False):
+    # Direct person URLs are verified by CDJapan's artist database
+    if is_direct_person:
+        return True
 
-    extracted = []
-    products_by_id = {}
+    if not keywords:
+        return True
+    lower_text = card_text.lower()
+    pid_upper = str(prod_key).upper()
 
-    anchors = soup.select('a[href*="/product/"]')
-    for a in anchors:
-        href = a.get("href", "")
-        m = re.search(r'/product/([A-Za-z0-9\-]+)', href)
-        if not m:
-            continue
-        pid = m.group(1).upper()
+    if canonical_artist == "Tanpopo":
+        if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
+            return False
+        has_name = "tanpopo" in lower_text or "タンポポ" in card_text or "たんぽぽ" in card_text
+        if not has_name:
+            return False
+        return any(sig in lower_text or sig in pid_upper.lower() for sig in keywords)
 
-        if pid in ["REVIEW", "CART", "SEARCH", "HELP", "RANKING", "INDEX"]:
-            continue
+    if canonical_artist == "v-u-den":
+        if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
+            return True
 
-        if pid not in products_by_id:
-            products_by_id[pid] = {
-                "anchors": [],
-                "images": [],
-                "texts": []
-            }
-        products_by_id[pid]["anchors"].append(a)
+    if canonical_artist == "Up Up Girls (Kari)":
+        if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text:
+            return False
 
-        txt = clean_text(a.get_text())
-        if txt and len(txt) > 2 and txt.lower() not in ["buy", "order", "details", "pre-order", "view", "more", "add to cart", "cart", "next", "prev"]:
-            products_by_id[pid]["texts"].append(txt)
+    if canonical_artist == "Up Up Girls (2)":
+        if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text or "up up girls 2" in lower_text:
+            return True
 
-        img = a.select_one("img")
-        if img:
-            alt = clean_text(img.get("alt", ""))
-            if alt and len(alt) > 2:
-                products_by_id[pid]["texts"].append(alt)
-            src = img.get("data-original") or img.get("data-src") or img.get("src") or ""
-            if src and "no_image" not in src:
-                if src.startswith("//"):
-                    src = f"https:{src}"
-                elif src.startswith("/"):
-                    src = f"{BASE_URL}{src}"
-                products_by_id[pid]["images"].append(
-                    src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
-                )
+    if canonical_artist == "≠ME":
+        if "≠me" in lower_text or "ノイミー" in card_text or "not equal me" in lower_text or "noime" in lower_text:
+            return True
+        return any(sig in lower_text for sig in NOIME_AUTHENTIC_SIGNATURES)
 
-    for pid, data in products_by_id.items():
-        title = ""
-        if data["texts"]:
-            title = max(data["texts"], key=len)
+    if canonical_artist == "≒JOY":
+        if "nearly equal" in lower_text or "≒joy" in lower_text or "ニアジョイ" in card_text:
+            return True
+        return any(sig in lower_text for sig in NIAGO_AUTHENTIC_SIGNATURES)
 
-        first_anchor = data["anchors"][0]
-        card = (
-            first_anchor.find_parent("tr") or
-            first_anchor.find_parent("li") or
-            first_anchor.find_parent("div", class_=re.compile(r'item|product|unit|box', re.I))
+    for kw in keywords:
+        kw_clean = kw.strip().lower()
+        if len(kw_clean) <= 2:
+            if re.search(r"\b" + re.escape(kw_clean) + r"\b", lower_text):
+                return True
+        else:
+            if kw_clean in lower_text:
+                return True
+    return False
+
+
+def extract_verified_products(html, category, canonical_artist, keywords, is_direct_person=False):
+    soup = BeautifulSoup(html, "html.parser")
+    items_dict = {}
+
+    cards = soup.select(".item-detail, .n-item, div.item, tr.item, div.search-result-item, li.item")
+    if not cards:
+        cards = soup.find_all(
+            lambda el: el.name in ["div", "li", "tr"]
+            and el.get("class")
+            and any(c in ["item-detail", "n-item", "item"] for c in el.get("class"))
         )
-        if not card:
-            card = first_anchor.parent
 
-        if not title and card:
-            t_elem = card.select_one(".title, .item_title, .item-title, h3, h2, h4, .name")
-            if t_elem:
-                title = clean_text(t_elem.get_text())
+    seen_keys = set()
 
-        if not title or len(title) < 2:
+    for card in cards:
+        link_el = card.select_one("a[href*='/product/']")
+        if not link_el:
             continue
 
-        image_url = ""
-        if data["images"]:
-            image_url = data["images"][0]
-        elif card:
-            card_img = card.select_one("img")
-            if card_img:
-                src = card_img.get("data-original") or card_img.get("data-src") or card_img.get("src") or ""
-                if src and "no_image" not in src:
-                    if src.startswith("//"):
-                        src = f"https:{src}"
-                    elif src.startswith("/"):
-                        src = f"{BASE_URL}{src}"
-                    image_url = src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
+        href = link_el.get("href", "")
+        match = re.search(r"/product/([A-Za-z0-9_-]+)", href)
+        if not match:
+            continue
 
-        if not image_url or "no_image" in image_url:
-            image_url = f"https://www.cdjapan.co.jp/pictures/l/{pid}.jpg"
+        prod_key = match.group(1).upper()
+        if prod_key in seen_keys:
+            continue
 
-        release_date = "Available Now"
-        card_text = card.get_text() if card else ""
-        date_match = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', card_text)
-        if date_match:
-            release_date = f"{date_match.group(1)}/{date_match.group(2).zfill(2)}/{date_match.group(3).zfill(2)}"
+        if prod_key.lower() in [
+            "cart", "login", "help", "contact", "about",
+            "tokuten", "ranking", "app", "review", "index"
+        ]:
+            continue
 
+        seen_keys.add(prod_key)
+
+        title_el = (
+            card.select_one(".title a")
+            or card.select_one("a.item-title")
+            or card.select_one(".title")
+            or card.select_one("h3 a")
+            or card.select_one("h2 a")
+            or link_el
+        )
+        raw_title = clean_text(title_el.get_text()) if title_el else ""
+
+        img_el = card.select_one("img")
+        img_url = ""
+        if img_el:
+            img_url = (
+                img_el.get("src")
+                or img_el.get("data-src")
+                or img_el.get("data-original")
+                or ""
+            )
+            if not raw_title and img_el.get("alt"):
+                raw_title = clean_text(img_el.get("alt"))
+
+        if not raw_title or len(raw_title) < 2:
+            continue
+
+        if (
+            not img_url
+            or "spacer" in img_url
+            or "blank" in img_url
+            or "no_image" in img_url
+        ):
+            img_url = f"https://www.cdjapan.co.jp/pictures/l/{prod_key}.jpg"
+        elif img_url.startswith("//"):
+            img_url = "https:" + img_url
+        elif img_url.startswith("/"):
+            img_url = "https://www.cdjapan.co.jp" + img_url
+
+        img_url = img_url.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
+
+        price_el = (
+            card.select_one(".price")
+            or card.select_one(".item-price")
+            or card.select_one(".price-value")
+            or card.select_one("span.bold")
+        )
         price_str = "Check CDJapan"
-        price_match = re.search(r'([\d,]+)\s*(?:yen|JPY)', card_text, re.IGNORECASE)
-        if price_match:
-            price_str = f"¥{price_match.group(1)}"
-        elif "¥" in card_text:
-            yen_match = re.search(r'¥\s*([\d,]+)', card_text)
-            if yen_match:
-                price_str = f"¥{yen_match.group(1)}"
+        price_num = 0
+        if price_el:
+            p_match = re.search(
+                r"(\d[\d,]*\s*(?:yen|JPY|円)?)",
+                clean_text(price_el.get_text()),
+                re.IGNORECASE,
+            )
+            if p_match and p_match.group(1).strip():
+                num_only = re.sub(r"[^\d]", "", p_match.group(1))
+                if num_only:
+                    price_num = int(num_only)
+                    price_str = f"¥{price_num:,}"
 
-        card_text_lower = card_text.lower()
-        if is_date_upcoming(release_date) or "pre-order" in card_text_lower:
+        rel_date = ""
+        for sel in [".release_date", ".item-date", ".date", "td.date", "span.date"]:
+            node = card.select_one(sel)
+            if node:
+                parsed = parse_normalized_date(node.get_text())
+                if parsed:
+                    rel_date = parsed
+                    break
+
+        if not rel_date:
+            date_nodes = card.find_all(
+                lambda el: el.name in ["span", "td", "p", "div", "li"]
+                and ("release" in el.get_text().lower() or "発売" in el.get_text())
+            )
+            for d_node in date_nodes:
+                parsed = parse_normalized_date(d_node.get_text())
+                if parsed:
+                    rel_date = parsed
+                    break
+
+        if not rel_date:
+            rel_date = parse_normalized_date(card.get_text())
+
+        if not rel_date:
+            rel_date = "Available Now"
+
+        card_text_lower = card.get_text().lower()
+        if is_date_upcoming(rel_date) or "pre-order" in card_text_lower:
             availability = "preorder"
-        elif "out of print" in card_text_lower or "sold out" in card_text_lower or "archive" in card_text_lower or "no longer available" in card_text_lower:
+        elif "out of print" in card_text_lower or "sold out" in card_text_lower or "archive" in card_text_lower:
             availability = "oop"
         else:
             availability = "instock"
 
-        affiliate_url = f"https://www.cdjapan.co.jp/product/{pid}?affi={AFFILIATE_ID}"
+        searchable_card_text = f"{raw_title} {clean_text(card.get_text())}"
+        if not is_relevant_product(searchable_card_text, canonical_artist, keywords, prod_key, is_direct_person=is_direct_person):
+            continue
 
-        extracted.append({
-            "id": pid,
-            "title": title,
-            "artist": artist_name,
-            "category": category_name,
+        items_dict[prod_key] = {
+            "id": prod_key,
+            "title": raw_title,
+            "artist": canonical_artist,
+            "category": category,
             "price": price_str,
-            "price_num": parse_price_numeric(price_str),
-            "release_date": release_date,
-            "image": image_url,
+            "price_num": price_num,
+            "release_date": rel_date,
+            "image": img_url,
             "availability": availability,
-            "affiliate_url": affiliate_url,
-            "updated_at": datetime.utcnow().strftime("%Y-%m-%d")
-        })
+            "affiliate_url": make_affiliate_link(prod_key),
+            "updated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+        }
 
-    return extracted
+    return list(items_dict.values())
 
-def fetch_html_content(url, playwright_page=None, requests_session=None):
-    """
-    Renders via Playwright Chromium if available; falls back to requests.Session.
-    """
-    if playwright_page:
-        for attempt in range(1, 4):
+
+def dismiss_popups(page):
+    try:
+        page.keyboard.press("Escape")
+        close_btn = page.locator(
+            "button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close, #btn_close"
+        ).first
+        if close_btn.is_visible(timeout=300):
+            close_btn.click(force=True)
+            time.sleep(0.2)
+    except Exception:
+        pass
+
+
+def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
+    results = []
+    is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
+    print(f"\n-> Querying: {canonical_artist} ('{target_query_or_url}')", flush=True)
+
+    for p_num in range(1, max_pages + 1):
+        if is_direct_person:
+            sep = "&" if "?" in target_query_or_url else "?"
+            target_url = f"{target_query_or_url}{sep}page={p_num}&order=reldate_desc"
+        else:
+            encoded_q = urllib.parse.quote_plus(target_query_or_url)
+            target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&opt.include_eoa=1&order=reldate_desc&page={p_num}"
+
+        extracted_on_page = []
+
+        for attempt in range(1, 3):
             try:
-                playwright_page.goto(url, wait_until="domcontentloaded", timeout=40000)
+                page.set_extra_http_headers({
+                    "Referer": "https://www.cdjapan.co.jp/",
+                    "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
+                })
+
+                response = page.goto(target_url, wait_until="domcontentloaded", timeout=30000)
+                dismiss_popups(page)
+
+                current_title = page.title().strip()
+                if not current_title or (response and response.status in [429, 403, 503]):
+                    print(f"   [Notice] Backing off on attempt {attempt}...", flush=True)
+                    time.sleep(3.0)
+                    continue
+
                 try:
-                    playwright_page.wait_for_selector('a[href*="/product/"]', timeout=8000)
+                    page.wait_for_selector(
+                        ".item-detail, .n-item, div.item, tr.item, div.search-result-item, .item_list",
+                        timeout=7000
+                    )
                 except Exception:
                     pass
-                playwright_page.wait_for_timeout(1000)
-                return playwright_page.content()
+
+                # Lazy-load scroll triggers
+                page.evaluate("window.scrollBy(0, 750)")
+                time.sleep(0.5)
+                page.evaluate("window.scrollBy(0, 850)")
+                time.sleep(0.8)
+
+                html = page.content()
+                extracted_on_page = extract_verified_products(
+                    html, category, canonical_artist, keywords, is_direct_person=is_direct_person
+                )
+
+                if len(extracted_on_page) == 0 and attempt == 1:
+                    time.sleep(2.0)
+                    continue
+
+                print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
+                results.extend(extracted_on_page)
+                break
+
             except Exception as e:
-                time.sleep(attempt * 2.0)
-        return ""
-    elif requests_session:
-        for attempt in range(1, 4):
-            try:
-                resp = requests_session.get(url, headers=get_request_headers(), timeout=15)
-                if resp.status_code == 200:
-                    return resp.text
-            except Exception:
-                time.sleep(attempt * 2.0)
-        return ""
-    return ""
+                print(f"   Attempt {attempt} notice on Page {p_num}: {e}", flush=True)
+                time.sleep(2.5)
 
-def scrape_artist_target(target, artist_name, category_name, playwright_page=None, requests_session=None, max_pages=3):
-    total_found = []
-    seen_ids = set()
-
-    for page in range(1, max_pages + 1):
-        url = build_target_url(target, page=page)
-        html = fetch_html_content(url, playwright_page=playwright_page, requests_session=requests_session)
-        if not html:
+        if p_num == 1 and len(extracted_on_page) == 0:
             break
 
-        items = extract_products_from_html(html, artist_name, category_name)
-        if not items:
-            break
+        time.sleep(random.uniform(1.5, 2.5))
 
-        new_on_page = 0
-        for it in items:
-            if it["id"] not in seen_ids:
-                seen_ids.add(it["id"])
-                total_found.append(it)
-                new_on_page += 1
+    return results
 
-        if new_on_page == 0:
-            break
 
-        time.sleep(random.uniform(0.8, 1.6))
-
-    return total_found
-
-def get_filtered_registry():
+def get_active_targets():
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
     if not raw_filter or raw_filter.lower() == "all groups":
-        return ARTIST_REGISTRY
+        return TARGET_GROUPS
 
     if "updated 3 groups" in raw_filter.lower():
         target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
-        return [a for a in ARTIST_REGISTRY if a["name"] in target_names]
+        return [g for g in TARGET_GROUPS if g[1] in target_names]
 
-    matched = [a for a in ARTIST_REGISTRY if a["name"].lower() == raw_filter.lower()]
-    return matched if matched else ARTIST_REGISTRY
+    matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
+    return matched if matched else TARGET_GROUPS
 
-def run_catalog_sync():
-    print(f"🚀 Starting IdolJapan Catalog Scraper Sync at {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}...")
-    print(f"⚙️ Engine Mode: {'Playwright Headless Chromium' if HAS_PLAYWRIGHT else 'Requests (Fallback)'}")
 
-    active_registry = get_filtered_registry()
-    print(f"📋 Active Filter: Running {len(active_registry)} artist group(s): {[a['name'] for a in active_registry]}")
+def main():
+    catalog = load_catalog()
+    initial_count = len(catalog)
+    print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
-    existing_catalog = {}
-    if os.path.exists(PRODUCTS_FILE):
-        try:
-            with open(PRODUCTS_FILE, "r", encoding="utf-8") as f:
-                existing_catalog = json.load(f)
-            print(f"Loaded existing database with {len(existing_catalog)} releases.")
-        except Exception as e:
-            print(f"Warning: Could not read existing {PRODUCTS_FILE}: {e}")
+    active_groups = get_active_targets()
+    print(f"Active Filter: Running {len(active_groups)} artist group(s): {[g[1] for g in active_groups]}", flush=True)
 
-    total_new_or_updated = 0
-
-    # Initialize crawler engine
-    playwright_instance = None
-    browser = None
-    playwright_page = None
-    requests_session = None
-
-    if HAS_PLAYWRIGHT:
-        playwright_instance = sync_playwright().start()
-        browser = playwright_instance.chromium.launch(headless=True)
-        context = browser.new_context(
-            user_agent=random.choice(USER_AGENTS),
-            locale="en-US"
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-blink-features=AutomationControlled"
+            ],
         )
-        playwright_page = context.new_page()
-    else:
-        requests_session = requests.Session()
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                " (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1440, "height": 900},
+        )
 
-    try:
-        for artist_cfg in active_registry:
-            canonical_name = artist_cfg["name"]
-            category = artist_cfg["category"]
-            targets = artist_cfg.get("targets", [canonical_name])
+        print("Initializing session on CDJapan...", flush=True)
+        warmup_page = context.new_page()
+        try:
+            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            dismiss_popups(warmup_page)
+            time.sleep(1.5)
+        except Exception as e_warm:
+            print(f"Warmup notice: {e_warm}", flush=True)
+        finally:
+            warmup_page.close()
 
-            print(f"\nScanning: {canonical_name} ({category}) across {len(targets)} targets...")
+        new_total = 0
+
+        for idx, (cat, artist, targets, keywords) in enumerate(active_groups, 1):
+            print(f"\n[{idx}/{len(active_groups)}] Scraping Target Group: {artist}", flush=True)
+            target_page = context.new_page()
             artist_items_map = {}
 
-            for target in targets:
-                found_items = scrape_artist_target(
-                    target, 
-                    canonical_name, 
-                    category, 
-                    playwright_page=playwright_page, 
-                    requests_session=requests_session
+            try:
+                for target_q in targets:
+                    items = execute_artist_search(
+                        target_page, cat, artist, target_q, keywords, max_pages=PAGES_PER_TARGET
+                    )
+                    for it in items:
+                        pid = it["id"]
+                        if pid not in artist_items_map:
+                            artist_items_map[pid] = it
+
+                added_for_artist = 0
+                for pid, it in artist_items_map.items():
+                    if pid not in catalog:
+                        added_for_artist += 1
+                        new_total += 1
+                    catalog[pid] = it
+
+                print(
+                    f"   => {artist}: Extracted {len(artist_items_map)} unique releases"
+                    f" ({added_for_artist} new to database)",
+                    flush=True
                 )
-                print(f"  Target '{target}' -> Extracted {len(found_items)} items.")
+            except Exception as e_artist:
+                print(f"   => Error scraping {artist}: {e_artist}", flush=True)
+            finally:
+                target_page.close()
 
-                for item in found_items:
-                    pid = item["id"]
-                    if pid not in artist_items_map:
-                        artist_items_map[pid] = item
-                    else:
-                        if artist_items_map[pid]["price"] == "Check CDJapan" and item["price"] != "Check CDJapan":
-                            artist_items_map[pid]["price"] = item["price"]
-                            artist_items_map[pid]["price_num"] = item["price_num"]
+            time.sleep(random.uniform(2.0, 4.0))
 
-            print(f"  ==> Total unique releases for {canonical_name}: {len(artist_items_map)}")
+        browser.close()
 
-            for pid, item in artist_items_map.items():
-                if pid not in existing_catalog or existing_catalog[pid] != item:
-                    existing_catalog[pid] = item
-                    total_new_or_updated += 1
-
-            time.sleep(random.uniform(0.5, 1.2))
-
-    finally:
-        if browser:
-            browser.close()
-        if playwright_instance:
-            playwright_instance.stop()
-
-    with open(PRODUCTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(existing_catalog, f, ensure_ascii=False, indent=2)
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
 
     state_data = {
         "last_sync": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
-        "total_catalog_size": len(existing_catalog),
-        "items_updated_this_pass": total_new_or_updated,
-        "last_targeted_filter": [a["name"] for a in active_registry]
+        "total_catalog_size": len(catalog),
+        "items_added_this_pass": new_total,
+        "active_groups": [g[1] for g in active_groups]
     }
     with open(STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump(state_data, f, ensure_ascii=False, indent=2)
+        json.dump(state_data, f, indent=2, ensure_ascii=False)
 
-    print(f"\n✅ Sync finished successfully!")
-    print(f"   Total items stored: {len(existing_catalog)}")
-    print(f"   Items added or updated this run: {total_new_or_updated}")
+    final_count = len(catalog)
+    print(f"\n==========================================", flush=True)
+    print(f"Sync Complete! Added {new_total} new releases.", flush=True)
+    print(f"Total live catalog items: {final_count}", flush=True)
+    print(f"==========================================", flush=True)
+
 
 if __name__ == "__main__":
-    run_catalog_sync()
+    main()

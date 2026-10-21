@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline — IdolJapan.store</title>
+  <meta name="theme-color" content="#e11d48">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 min-h-screen flex flex-col items-center justify-center p-6 text-center">
+
+  <div class="max-w-md w-full bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-3xl p-8 shadow-xl space-y-5">
+    <div class="w-16 h-16 bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 rounded-2xl flex items-center justify-center text-3xl mx-auto border border-rose-200 dark:border-rose-900/50">
+      <i class="fa-solid fa-plane"></i>
+    </div>
+
+    <div>
+      <h1 class="text-xl font-black text-stone-900 dark:text-white">You Are Currently Offline</h1>
+      <p class="text-xs text-stone-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+        It looks like you lost your internet connection. Previously loaded discographies and your saved wishlist items are still safely stored on this device.
+      </p>
+    </div>
+
+    <div class="pt-2 flex flex-col gap-2.5">
+      <button onclick="window.location.href='/?view=wishlist'" class="w-full py-2.5 px-4 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-heart"></i>
+        <span>Open Saved Wishlist</span>
+      </button>
+
+      <button onclick="window.location.reload()" class="w-full py-2.5 px-4 bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-200 text-xs font-bold rounded-xl border border-stone-200 dark:border-slate-700 transition flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-rotate-right"></i>
+        <span>Retry Connection</span>
+      </button>
+    </div>
+  </div>
+
+  <footer class="mt-8 text-[11px] text-stone-400 dark:text-slate-500 font-mono">
+    IdolJapan.store — PWA Offline Cache
+  </footer>
+
+</body>
+</html>

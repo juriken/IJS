@@ -37,6 +37,14 @@ jobs:
         run: |
           python -u scraper.py
 
+      - name: Audit and Repair Jacket URLs
+        run: |
+          python fix_images.py
+
+      - name: Build Summary Index
+        run: |
+          python build_summary.py
+
       - name: Validate Catalog Integrity
         run: |
           python validate_catalog.py
@@ -53,5 +61,5 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json sitemap.xml scraper_state.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, sitemap & state [skip ci]" && git push)
+          git add products.json catalog-index.json sitemap.xml scraper_state.json rates.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, index, sitemap & state [skip ci]" && git push)

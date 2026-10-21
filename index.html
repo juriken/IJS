@@ -980,7 +980,7 @@
     let currentSort = 'newest';
     let currentCurrency = 'USD';
     let isWishlistView = false;
-    let exchangeRates = { USD: 1.0, JPY: 152.0 };
+    let exchangeRates = { USD: 1.0, JPY: 152.4, EUR: 0.92, GBP: 0.79, CAD: 1.38, AUD: 1.51, TWD: 32.1, HKD: 7.78, KRW: 1375.0, SGD: 1.32 };
     let currentModalProduct = null;
     let activeAudioButton = null;
 
@@ -1545,6 +1545,19 @@
       const selectEl = document.getElementById('currency-select');
       if (selectEl) selectEl.value = currentCurrency;
 
+      // 1. Instant hydration from static rates.json on domain
+      try {
+        const localRes = await fetch('/rates.json');
+        if (localRes.ok) {
+          const localData = await localRes.json();
+          if (localData && localData.rates) {
+            exchangeRates = localData.rates;
+            populateCurrencyOptions(exchangeRates);
+          }
+        }
+      } catch (e) {}
+
+      // 2. Background check on freshness
       const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
       const cachedTime = localStorage.getItem(RATES_TIME_KEY);
       const now = Date.now();
@@ -1678,12 +1691,12 @@
       const cacheBuster = Date.now();
 
       const candidatePaths = [
-        `products.json?v=${cacheBuster}`,
-        `./products.json?v=${cacheBuster}`,
-        `/products.json?v=${cacheBuster}`,
         `catalog-index.json?v=${cacheBuster}`,
         `./catalog-index.json?v=${cacheBuster}`,
-        `/catalog-index.json?v=${cacheBuster}`
+        `/catalog-index.json?v=${cacheBuster}`,
+        `products.json?v=${cacheBuster}`,
+        `./products.json?v=${cacheBuster}`,
+        `/products.json?v=${cacheBuster}`
       ];
 
       for (const p of candidatePaths) {
@@ -2167,7 +2180,8 @@
         return `¥${jpyAmount.toLocaleString()}`;
       }
 
-      const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.0);
+      // Convert from base JPY to active currency
+      const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.4);
       const targetRate = exchangeRates[currentCurrency] || 1.0;
       const convertedVal = jpyAmount * usdPerJpy * targetRate;
 

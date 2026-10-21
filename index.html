@@ -4,21 +4,18 @@
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer">
 
-  <!-- Early Viewport & Layout Mode Detection (Autodetects Mobile vs Desktop) -->
+  <!-- Automatic Mobile vs Desktop Viewport Autodetection -->
   <script>
     (function() {
-      let savedLayout = localStorage.getItem('idoljapan_layout_mode');
-      if (!savedLayout) {
-        const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || 
-                               /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        savedLayout = isMobileDevice ? 'mobile' : 'desktop';
-      }
+      const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || 
+                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const layoutMode = isMobileDevice ? 'mobile' : 'desktop';
 
       const viewportMeta = document.createElement('meta');
       viewportMeta.name = 'viewport';
       viewportMeta.id = 'dynamic-viewport';
 
-      if (savedLayout === 'mobile') {
+      if (layoutMode === 'mobile') {
         viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
         document.documentElement.classList.add('layout-mobile');
       } else {
@@ -141,22 +138,21 @@
     html.layout-mobile body {
       min-width: 100%;
     }
-    /* Content visibility for deferred off-screen layout */
     .catalog-card-item {
       content-visibility: auto;
-      contain-intrinsic-size: 320px 420px;
+      contain-intrinsic-size: 300px 400px;
     }
   </style>
 </head>
 <body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Global Audio Player (Hidden Engine) -->
+  <!-- Global Audio Player -->
   <audio id="global-audio-player" class="hidden" preload="none"></audio>
 
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
     <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
-    <span id="toast-message">Copied to clipboard</span>
+    <span id="toast-message">Notification</span>
   </div>
 
   <!-- Header -->
@@ -187,19 +183,8 @@
         </div>
       </div>
 
-      <!-- Controls: Layout Switcher, Currency, Theme & Actions -->
+      <!-- Controls: Currency, Theme & Actions (Manual layout buttons removed) -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <div class="flex items-center bg-rose-700 dark:bg-slate-800 rounded-full p-0.5 border border-rose-400/30 dark:border-slate-700 text-xs font-bold shadow-sm">
-          <button id="layout-btn-desktop" onclick="setLayoutMode('desktop')" title="Desktop Virtual View" class="px-2.5 py-1 rounded-full transition flex items-center gap-1 cursor-pointer">
-            <i class="fa-solid fa-desktop text-xs"></i>
-            <span class="hidden xl:inline">Desktop</span>
-          </button>
-          <button id="layout-btn-mobile" onclick="setLayoutMode('mobile')" title="Mobile Responsive View" class="px-2.5 py-1 rounded-full transition flex items-center gap-1 cursor-pointer">
-            <i class="fa-solid fa-mobile-screen-button text-xs"></i>
-            <span class="hidden xl:inline">Mobile</span>
-          </button>
-        </div>
-
         <button 
           onclick="toggleCalendarDrawer()" 
           title="Pre-Order Shipping Calendar"
@@ -237,8 +222,8 @@
             aria-label="Select Currency"
           >
             <optgroup label="Popular">
-              <option value="JPY" class="text-slate-900 bg-white" selected>JPY (¥)</option>
-              <option value="USD" class="text-slate-900 bg-white">USD ($)</option>
+              <option value="USD" class="text-slate-900 bg-white" selected>USD ($)</option>
+              <option value="JPY" class="text-slate-900 bg-white">JPY (¥)</option>
               <option value="EUR" class="text-slate-900 bg-white">EUR (€)</option>
               <option value="GBP" class="text-slate-900 bg-white">GBP (£)</option>
               <option value="CAD" class="text-slate-900 bg-white">CAD ($)</option>
@@ -269,7 +254,7 @@
       </div>
     </div>
 
-    <!-- Mobile-Only Sticky Trigger Bar -->
+    <!-- Mobile-Only Sticky Trigger Bar (Autodetected) -->
     <div id="mobile-filter-bar" class="hidden bg-stone-100 dark:bg-slate-800 border-t border-rose-500/20 px-4 py-2 flex items-center justify-between gap-2 text-xs">
       <button onclick="toggleMobileFilterDrawer()" class="flex-1 bg-white dark:bg-slate-700 py-2 px-3 rounded-xl border border-stone-200 dark:border-slate-600 font-bold text-stone-800 dark:text-white shadow-xs flex items-center justify-center gap-2 cursor-pointer">
         <i class="fa-solid fa-sliders text-rose-600"></i>
@@ -350,7 +335,7 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar with Explicit 22/7 Separation -->
+    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar -->
     <div id="artist-subbar-container" class="bg-stone-50 dark:bg-slate-900/60 border-t border-stone-200/70 dark:border-slate-800/80 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-1.5" id="artist-subbar">
       </div>
@@ -367,7 +352,7 @@
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar, Cluster Toggle & 4-Tier Availability Filter -->
+    <!-- Tier 2 Navigation: Format Filter Bar & 4-Tier Availability Filter -->
     <div id="desktop-nav-tier2" class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
@@ -458,7 +443,7 @@
         </h1>
         <p class="text-sm text-rose-100 dark:text-slate-300 mt-1">Direct Tokyo shipment with Oricon &amp; Billboard Japan chart registration.</p>
       </div>
-      <div id="stats" class="text-xs bg-black/20 dark:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-rose-100 dark:text-rose-400 border border-white/10 dark:border-white/5">Loading index...</div>
+      <div id="stats" class="text-xs bg-black/20 dark:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl font-mono text-rose-100 dark:text-rose-400 border border-white/10 dark:border-white/5">Loading catalog...</div>
     </div>
   </section>
 
@@ -467,7 +452,7 @@
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs transition-colors duration-200">
       <div class="flex items-center gap-2">
         <div class="font-medium text-stone-600 dark:text-slate-300" id="page-range-info">
-          Loading catalog entries...
+          Loading catalog releases...
         </div>
         <div id="wishlist-actions-group" class="hidden items-center gap-1.5">
           <button onclick="shareWishlistUrl()" title="Copy Shareable Wishlist Link" class="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 cursor-pointer">
@@ -500,13 +485,13 @@
     </div>
   </section>
 
-  <!-- Product Container (4 Columns Desktop / 2 Columns Mobile) -->
+  <!-- Product Container (4 Columns on Desktop / 2 Columns on Mobile) -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
     <div id="product-container" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold" id="empty-state-message">No idol releases found matching this active filter criteria.</p>
+      <p class="text-base font-semibold" id="empty-state-message">No idol merchandise found matching this filter criteria.</p>
       <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
     </div>
 
@@ -514,7 +499,7 @@
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
 
-  <!-- Mobile Off-Canvas Filter & Units Drawer -->
+  <!-- Mobile Off-Canvas Filter Drawer -->
   <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
@@ -892,7 +877,7 @@
     <i class="fa-solid fa-arrow-up text-sm"></i>
   </button>
 
-  <!-- Footer -->
+  <!-- Footer (Manual layout switch buttons removed) -->
   <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200 pb-24 sm:pb-10">
     <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
       
@@ -953,17 +938,6 @@
         <a href="./contact.html" class="hover:text-rose-600 dark:hover:text-rose-400 transition">Contact &amp; Suggestions</a>
       </div>
 
-      <!-- Layout View -->
-      <div class="flex items-center justify-center gap-3 text-xs pt-2">
-        <span class="text-stone-400 dark:text-slate-500 font-semibold">Layout View:</span>
-        <button onclick="setLayoutMode('desktop')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
-          <i class="fa-solid fa-desktop"></i> Desktop View
-        </button>
-        <button onclick="setLayoutMode('mobile')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
-          <i class="fa-solid fa-mobile-screen-button"></i> Mobile App Layout
-        </button>
-      </div>
-
       <div class="pt-2 border-t border-stone-100 dark:border-slate-800 text-xs text-stone-400 dark:text-slate-500">
         <p>© 2019 – 2026 IdolJapan.store. All rights reserved.</p>
       </div>
@@ -978,24 +952,28 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'active'; // 4-tier: 'active', 'preorder', 'instock', 'oop'
+    let activeAvailability = 'active'; // 'active', 'preorder', 'instock', 'oop'
     let viewMode = 'grid';
-    let layoutMode = localStorage.getItem('idoljapan_layout_mode') || 
-      ((window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop');
+
+    function detectDeviceLayout() {
+      return (window.matchMedia('(max-width: 768px)').matches || 
+              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
+    }
+    let layoutMode = detectDeviceLayout();
+
     let isClusteringEnabled = true;
     let maxPriceLimit = 20000;
     let searchQuery = '';
     let currentSort = 'newest';
-    let currentCurrency = 'JPY';
+    let currentCurrency = 'USD';
     let isWishlistView = false;
-    let exchangeRates = { JPY: 1.0, USD: 0.0067 };
+    let exchangeRates = { USD: 1.0, JPY: 152.0 };
     let currentModalProduct = null;
     let activeAudioButton = null;
 
     let currentPage = 1;
     let itemsPerPage = 48;
 
-    const LAYOUT_MODE_KEY = 'idoljapan_layout_mode';
     const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
     const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
     const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
@@ -1011,7 +989,6 @@
       october: 10, november: 11, december: 12
     };
 
-    // Clarified Taxonomy: Sakamichi core groups vs Yasushi animation units
     const FRANCHISE_ARTISTS = {
       'Hello! Project': [
         'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
@@ -1033,7 +1010,6 @@
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
 
-    // Standardized Media Weights for Haul Calculator
     const MEDIA_WEIGHTS_GRAMS = {
       'CD': 110,
       'Blu-ray': 180,
@@ -1064,7 +1040,41 @@
       });
     }
 
-    // Audio Sample Preview Controller
+    function toggleQr(coinKey) {
+      const el = document.getElementById(`qr-box-${coinKey}`);
+      if (!el) return;
+      el.classList.toggle('hidden');
+    }
+
+    function toggleAllQrs() {
+      const boxes = document.querySelectorAll('.crypto-qr-box');
+      const anyHidden = Array.from(boxes).some(b => b.classList.contains('hidden'));
+      boxes.forEach(b => {
+        if (anyHidden) b.classList.remove('hidden');
+        else b.classList.add('hidden');
+      });
+      const btnText = document.getElementById('toggle-all-qr-text');
+      if (btnText) {
+        btnText.innerText = anyHidden ? 'Hide All QRs' : 'Show All QRs';
+      }
+    }
+
+    function toggleCryptoModal() {
+      const modal = document.getElementById('crypto-modal');
+      if (!modal) return;
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function closeCryptoModalOnBackdrop(e) {
+      if (e.target.id === 'crypto-modal') toggleCryptoModal();
+    }
+
     function toggleAudioPreview(product, btnEl) {
       const player = document.getElementById('global-audio-player');
       if (!player || !product) return;
@@ -1094,10 +1104,8 @@
       };
     }
 
-    // Direct Outbound Affiliate Redirection (Zero-friction)
     function triggerOutboundAffiliate(product, subId = 'direct') {
       if (!product) return;
-      
       const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${product.id}?affi=A033398`;
       const sep = baseUrl.includes('?') ? '&' : '?';
       const finalUrl = `${baseUrl}${sep}sub_id=${encodeURIComponent(subId)}`;
@@ -1106,7 +1114,6 @@
       window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
-    // Standardized Edition Badges Parser
     function extractEditionTags(title) {
       const tags = [];
       const lower = (title || '').toLowerCase();
@@ -1117,7 +1124,7 @@
       if (/regular edition|通常盤/i.test(lower)) {
         tags.push({ name: 'Regular', color: 'bg-stone-600' });
       }
-      const typeMatch = title.match(/Type\s*([A-Za-z0-9]+)/i);
+      const typeMatch = (title || '').match(/Type\s*([A-Za-z0-9]+)/i);
       if (typeMatch) {
         tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
       }
@@ -1133,7 +1140,6 @@
       return tags;
     }
 
-    // Export .ICS iCalendar for Pre-Orders
     function exportAllPreOrdersIcs() {
       const preOrders = allProducts.filter(p => isPreOrder(p));
       if (!preOrders.length) {
@@ -1174,7 +1180,6 @@
       showToast("Pre-Order .ICS calendar exported!");
     }
 
-    // Tokyo Shipping Haul Weight Calculator
     function calculateWishlistHaulMetrics() {
       const listIds = getWishlist();
       const items = allProducts.filter(p => listIds.includes(p.id));
@@ -1230,20 +1235,11 @@
       showToast("Wishlist haul exported with weight calculations!");
     }
 
-    // Dynamic Layout Switcher
-    function setLayoutMode(mode) {
-      layoutMode = mode;
-      localStorage.setItem(LAYOUT_MODE_KEY, mode);
-      applyLayoutModeToDom();
-      render();
-    }
-
     function applyLayoutModeToDom() {
+      layoutMode = detectDeviceLayout();
       const isMobile = (layoutMode === 'mobile');
       const viewportMeta = document.getElementById('dynamic-viewport');
       const htmlEl = document.documentElement;
-      const dBtn = document.getElementById('layout-btn-desktop');
-      const mBtn = document.getElementById('layout-btn-mobile');
 
       const mobileBar = document.getElementById('mobile-filter-bar');
       const mobileNav = document.getElementById('mobile-bottom-nav');
@@ -1263,9 +1259,6 @@
         if (desktopTier2) desktopTier2.classList.add('hidden');
         if (artistContainer) artistContainer.classList.add('hidden');
         if (yearContainer) yearContainer.classList.add('hidden');
-
-        if (dBtn) dBtn.className = "px-2.5 py-1 rounded-full transition text-stone-300 hover:text-white cursor-pointer";
-        if (mBtn) mBtn.className = "px-2.5 py-1 rounded-full transition bg-white text-rose-600 font-black shadow-xs cursor-pointer";
       } else {
         if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
         htmlEl.classList.add('layout-desktop');
@@ -1276,9 +1269,6 @@
         if (desktopTier1) desktopTier1.classList.remove('hidden');
         if (desktopTier2) desktopTier2.classList.remove('hidden');
         if (artistContainer && activeFilter !== 'All') artistContainer.classList.remove('hidden');
-
-        if (dBtn) dBtn.className = "px-2.5 py-1 rounded-full transition bg-white text-rose-600 font-black shadow-xs cursor-pointer";
-        if (mBtn) mBtn.className = "px-2.5 py-1 rounded-full transition text-stone-300 hover:text-white cursor-pointer";
       }
 
       updateMobileDrawerContent();
@@ -1383,7 +1373,7 @@
         }
       }
 
-      copyToClipboard(directUrl, "Product deep link copied to clipboard!");
+      copyToClipboard(directUrl, "Product link copied to clipboard!");
     }
 
     function getWishlist() {
@@ -1526,7 +1516,7 @@
 
     async function initExchangeRates() {
       const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
-      currentCurrency = savedCurrency || 'JPY';
+      currentCurrency = savedCurrency || 'USD';
 
       const selectEl = document.getElementById('currency-select');
       if (selectEl) selectEl.value = currentCurrency;
@@ -1544,7 +1534,7 @@
       }
 
       try {
-        const res = await fetch('https://open.er-api.com/v6/latest/JPY');
+        const res = await fetch('https://open.er-api.com/v6/latest/USD');
         if (res.ok) {
           const data = await res.json();
           if (data && data.rates) {
@@ -1556,7 +1546,7 @@
           }
         }
       } catch (err) {
-        console.warn('Currency API unreachable, keeping base rates:', err);
+        console.warn('Currency API fallback retained:', err);
       }
     }
 
@@ -1564,7 +1554,7 @@
       const optGroup = document.getElementById('all-currencies-group');
       if (!optGroup) return;
 
-      const popular = ['JPY', 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
+      const popular = ['USD', 'JPY', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
       const allCodes = Object.keys(rates).sort();
 
       optGroup.innerHTML = '';
@@ -1624,6 +1614,17 @@
       updatePageTitle();
     }
 
+    function updatePageTitle() {
+      let baseTitle = "IdolJapan.store — Official Japanese Idol Discography";
+      if (activeFilter !== 'All') {
+        baseTitle = `${activeFilter} Discography — IdolJapan.store`;
+      }
+      if (activeArtist !== 'All') {
+        baseTitle = `${activeArtist} CDJapan Releases — IdolJapan.store`;
+      }
+      document.title = baseTitle;
+    }
+
     function readUrlParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has('cat')) activeFilter = params.get('cat');
@@ -1642,40 +1643,55 @@
 
       if (params.has('id')) {
         const targetId = params.get('id');
-        setTimeout(() => openModal(targetId), 200);
+        setTimeout(() => openModal(targetId), 250);
       }
-      
       updatePageTitle();
     }
 
-    // Hydrate catalog with fast fallback between catalog-index.json and products.json
+    // Cascading resilient catalog loader (handles local, subpath & root environments)
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
-
       const cacheBuster = Date.now();
-      
-      // Attempt to load fast lightweight summary index first
-      try {
-        const res = await fetch(`/catalog-index.json?v=${cacheBuster}`);
-        if (res.ok) data = await res.json();
-      } catch (e) {}
 
-      if (!data) {
+      const candidatePaths = [
+        `products.json?v=${cacheBuster}`,
+        `./products.json?v=${cacheBuster}`,
+        `/products.json?v=${cacheBuster}`,
+        `catalog-index.json?v=${cacheBuster}`,
+        `./catalog-index.json?v=${cacheBuster}`,
+        `/catalog-index.json?v=${cacheBuster}`
+      ];
+
+      for (const p of candidatePaths) {
         try {
-          const res = await fetch(`/products.json?v=${cacheBuster}`);
-          if (res.ok) data = await res.json();
-        } catch (e2) {}
+          const res = await fetch(p);
+          if (res.ok) {
+            const parsed = await res.json();
+            if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
+              data = parsed;
+              break;
+            }
+          }
+        } catch (e) {}
       }
 
       if (data && typeof data === 'object') {
         allProducts = Object.values(data)
-          .filter(item => item && item.id)
-          .map((item, idx) => ({ ...item, _catalogIndex: idx }));
-        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Indexed`;
+          .filter(item => item && (item.id || item.title))
+          .map((item, idx) => ({
+            ...item,
+            id: String(item.id || `sku-${idx}`),
+            title: String(item.title || 'Untitled Release'),
+            artist: String(item.artist || 'Idol Artist'),
+            category: String(item.category || 'Hello! Project'),
+            price: String(item.price || 'Check CDJapan'),
+            _catalogIndex: idx
+          }));
+        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
       } else {
         allProducts = [];
-        if (statsEl) statsEl.innerText = "Syncing index...";
+        if (statsEl) statsEl.innerText = "Syncing catalog...";
       }
 
       readUrlParams();
@@ -1692,7 +1708,7 @@
 
     function getCleanBaseTitle(title) {
       if (!title) return '';
-      return title
+      return String(title)
         .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
         .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+)\)/gi, '')
         .replace(/【.*?】/g, '')
@@ -1703,7 +1719,8 @@
     function buildClusteredEntities() {
       const clusters = {};
       allProducts.forEach(item => {
-        const baseKey = `${item.artist}__${getCleanBaseTitle(item.title).toLowerCase()}`;
+        const cleanTitle = getCleanBaseTitle(item.title).toLowerCase();
+        const baseKey = `${item.artist || ''}__${cleanTitle}`;
         if (!clusters[baseKey]) {
           clusters[baseKey] = {
             id: item.id,
@@ -2023,14 +2040,12 @@
       return 'Other';
     }
 
-    // Fuzzy Japanese Romanization Matching
     function matchesFuzzyQuery(text, query) {
       if (!text || !query) return false;
       const t = text.toLowerCase();
       const q = query.toLowerCase();
       if (t.includes(q)) return true;
 
-      // Romanization normalization (long vowels and common equivalents)
       const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
       const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
       return normT.includes(normQ);
@@ -2129,8 +2144,11 @@
         return `¥${jpyAmount.toLocaleString()}`;
       }
 
-      const rate = exchangeRates[currentCurrency] || 1;
-      const convertedVal = jpyAmount * rate;
+      // Convert from base JPY to active currency
+      const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.0);
+      const targetRate = exchangeRates[currentCurrency] || 1.0;
+      const convertedVal = jpyAmount * usdPerJpy * targetRate;
+
       const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
       const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
 
@@ -2202,7 +2220,8 @@
     }
 
     function isPreOrder(item) {
-      if (item && item.availability === 'preorder') return true;
+      if (!item) return false;
+      if (item.availability === 'preorder') return true;
       const val = getItemDateValue(item);
       if (val === 0) return false;
 
@@ -2212,7 +2231,10 @@
     }
 
     function isOutOfPrint(item) {
-      return item && (item.availability === 'oop' || /no longer available|out of print|discontinued|廃盤/i.test(item.price || ''));
+      if (!item) return false;
+      if (item.availability === 'oop') return true;
+      const priceStr = String(item.price || '').toLowerCase();
+      return /no longer available|out of print|discontinued|sold out|廃盤|取扱終了/i.test(priceStr);
     }
 
     function updateDirectPageDropdown(totalPages) {
@@ -2403,7 +2425,6 @@
         });
       }
 
-      // Check Audio Preview capability
       if (audioBox) {
         if (p.sample_audio || getItemFormatCategory(p) === 'CD') {
           audioBox.classList.remove('hidden');
@@ -2462,7 +2483,6 @@
         const rest = params.toString();
         window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
       }
-      
       updatePageTitle();
     }
 
@@ -2495,7 +2515,8 @@
       if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar text-[10px]"></i> ${variant.release_date || 'Available Now'}`;
       if (buyBtn) {
         const upcoming = isPreOrder(variant);
-        buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>`;
+        const oop = isOutOfPrint(variant);
+        buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>`;
         buyBtn.onclick = (e) => {
           e.stopPropagation();
           triggerOutboundAffiliate(variant, 'grid_cluster_btn');
@@ -2521,7 +2542,6 @@
         const upcoming = isPreOrder(item);
         const oop = isOutOfPrint(item);
 
-        // 4-tier availability triage
         if (activeAvailability === 'active' && oop) return false;
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && (upcoming || oop)) return false;
@@ -2650,7 +2670,9 @@
             <div class="mt-1.5" onclick="event.stopPropagation()">
               <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1.5 px-2 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
                 ${variants.map(v => {
-                  return `<option value="${v.id}">${escapeHtml(v.title.slice(0, 28))}... — ${v.price}</option>`;
+                  const titleStr = String(v.title || 'Edition');
+                  const shortLbl = titleStr.length > 30 ? titleStr.slice(0, 30) + '...' : titleStr;
+                  return `<option value="${escapeHtml(v.id)}">${escapeHtml(shortLbl)} — ${escapeHtml(v.price || '')}</option>`;
                 }).join('')}
               </select>
             </div>
@@ -2805,6 +2827,15 @@
 
       renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
     }
+
+    window.addEventListener('resize', () => {
+      const newLayout = detectDeviceLayout();
+      if (newLayout !== layoutMode) {
+        layoutMode = newLayout;
+        applyLayoutModeToDom();
+        render();
+      }
+    });
 
     window.addEventListener('scroll', () => {
       const btn = document.getElementById('scroll-to-top');

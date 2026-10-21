@@ -56058,5 +56058,18 @@
     "sample_audio": "https://www.neowing.co.jp/audio/KIZM-689_01.mp3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-689",
     "updated_at": "2026-10-21"
+  },
+  "RECENT": {
+    "id": "RECENT",
+    "title": "See more",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
+    "price": "Check CDJapan",
+    "price_num": 0,
+    "release_date": "Available Now",
+    "image": "https://www.cdjapan.co.jp/pictures/l/RECENT.jpg",
+    "availability": "instock",
+    "affiliate_url": "https://www.cdjapan.co.jp/product/RECENT?affi=A033398",
+    "updated_at": "2026-10-21"
   }
 }

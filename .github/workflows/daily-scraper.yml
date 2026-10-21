@@ -46,6 +46,10 @@ jobs:
         run: |
           python build_summary.py
 
+      - name: Generate Pre-rendered Group Landing Pages
+        run: |
+          python generate_group_pages.py
+
       - name: Validate Catalog Integrity
         run: |
           python validate_catalog.py
@@ -78,5 +82,5 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json search_aliases.json sw.js
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, schema, feed & state [skip ci]" && git push)
+          git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json search_aliases.json sw.js promotions.json groups/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, landing pages & sitemap [skip ci]" && git push)

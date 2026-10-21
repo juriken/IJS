@@ -9,6 +9,17 @@
   Link: <https://cdn.tailwindcss.com>; rel=preconnect
   Link: <https://cdnjs.cloudflare.com>; rel=preconnect
 
+# Pre-rendered Idol Group Landing Pages
+/groups/*
+  Cache-Control: public, max-age=1800, s-maxage=86400
+  Content-Type: text/html; charset=utf-8
+
+# Merchant Promotions & Coupon Feed
+/promotions.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Content-Type: application/json; charset=utf-8
+
 # Lightweight catalog summary index (Cloudflare Edge Caching)
 /catalog-index.json
   Access-Control-Allow-Origin: *

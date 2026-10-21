@@ -40,6 +40,16 @@
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#e11d48">
 
+  <!-- Progressive Web App Registration -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.warn('SW registration failed:', err));
+      });
+    }
+  </script>
+
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idoljapan.store/">
@@ -183,7 +193,7 @@
         </div>
       </div>
 
-      <!-- Controls: Currency, Theme & Actions (Manual layout buttons removed) -->
+      <!-- Controls: Currency, Theme & Actions -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
         <button 
           onclick="toggleCalendarDrawer()" 
@@ -254,7 +264,7 @@
       </div>
     </div>
 
-    <!-- Mobile-Only Sticky Trigger Bar (Autodetected) -->
+    <!-- Mobile-Only Sticky Trigger Bar -->
     <div id="mobile-filter-bar" class="hidden bg-stone-100 dark:bg-slate-800 border-t border-rose-500/20 px-4 py-2 flex items-center justify-between gap-2 text-xs">
       <button onclick="toggleMobileFilterDrawer()" class="flex-1 bg-white dark:bg-slate-700 py-2 px-3 rounded-xl border border-stone-200 dark:border-slate-600 font-bold text-stone-800 dark:text-white shadow-xs flex items-center justify-center gap-2 cursor-pointer">
         <i class="fa-solid fa-sliders text-rose-600"></i>
@@ -877,7 +887,7 @@
     <i class="fa-solid fa-arrow-up text-sm"></i>
   </button>
 
-  <!-- Footer (Manual layout switch buttons removed) -->
+  <!-- Footer -->
   <footer class="bg-white dark:bg-slate-900 border-t border-stone-200 dark:border-slate-800 mt-auto py-10 transition-colors duration-200 pb-24 sm:pb-10">
     <div class="max-w-5xl mx-auto px-6 text-center space-y-5">
       
@@ -943,6 +953,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Telemetry Integration Engine -->
+  <script src="/analytics.js"></script>
 
   <script>
     let allProducts = [];
@@ -1095,6 +1108,7 @@
       player.play().then(() => {
         activeAudioButton = btnEl;
         if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-pause text-amber-600 dark:text-amber-400 animate-pulse"></i> <span>Pause Preview</span>`;
+        if (window.IdolAnalytics) window.IdolAnalytics.trackAudioSamplePlay(product);
       }).catch(err => {
         showToast("Audio sample preview unavailable for this item.", false);
       });
@@ -1106,6 +1120,8 @@
 
     function triggerOutboundAffiliate(product, subId = 'direct') {
       if (!product) return;
+      if (window.IdolAnalytics) window.IdolAnalytics.trackAffiliateClick(product, subId);
+      
       const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${product.id}?affi=A033398`;
       const sep = baseUrl.includes('?') ? '&' : '?';
       const finalUrl = `${baseUrl}${sep}sub_id=${encodeURIComponent(subId)}`;
@@ -1397,7 +1413,9 @@
       }
       let list = getWishlist();
       const idx = list.indexOf(productId);
-      if (idx > -1) {
+      const isAdded = (idx === -1);
+      
+      if (!isAdded) {
         list.splice(idx, 1);
         showToast("Removed from wishlist");
       } else {
@@ -1405,6 +1423,12 @@
         showToast("Saved to wishlist!");
       }
       saveWishlist(list);
+      
+      const p = allProducts.find(x => x.id === productId);
+      if (p && window.IdolAnalytics) {
+        window.IdolAnalytics.trackWishlistToggle(p, isAdded);
+      }
+      
       render();
     }
 
@@ -1648,7 +1672,6 @@
       updatePageTitle();
     }
 
-    // Cascading resilient catalog loader (handles local, subpath & root environments)
     async function loadCatalog() {
       const statsEl = document.getElementById('stats');
       let data = null;
@@ -2144,7 +2167,6 @@
         return `¥${jpyAmount.toLocaleString()}`;
       }
 
-      // Convert from base JPY to active currency
       const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.0);
       const targetRate = exchangeRates[currentCurrency] || 1.0;
       const convertedVal = jpyAmount * usdPerJpy * targetRate;
@@ -2452,6 +2474,10 @@
 
       modal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
+
+      if (window.IdolAnalytics) {
+        window.IdolAnalytics.trackProductView(p);
+      }
     }
 
     function navigateModalPrev() {

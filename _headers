@@ -17,10 +17,22 @@
   Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
   Content-Type: application/json; charset=utf-8
 
+# Currency rates cache
+/rates.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Content-Type: application/json; charset=utf-8
+
 # Search engine sitemap
 /sitemap.xml
   Cache-Control: public, max-age=1800, s-maxage=7200
   Content-Type: application/xml; charset=utf-8
+
+# RSS Community Release Feed
+/feed.xml
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=1800, s-maxage=3600
+  Content-Type: application/rss+xml; charset=utf-8
 
 # Static icons and assets
 /*.svg

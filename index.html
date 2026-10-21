@@ -736,43 +736,78 @@
 
   <!-- Crypto Donation Modal -->
   <div id="crypto-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeCryptoModalOnBackdrop(event)">
-    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
-      <div class="flex justify-between items-center mb-2">
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-1">
         <h3 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
           <i class="fa-brands fa-bitcoin text-amber-500"></i> Cryptocurrency
         </h3>
         <button onclick="toggleCryptoModal()" class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <p class="text-xs text-stone-600 dark:text-slate-400">Support our server costs directly via Web3. Tap to copy the address.</p>
+      <p class="text-xs text-stone-600 dark:text-slate-400">Support our server costs directly via Web3. Tap the copy button next to an address.</p>
       
-      <div class="space-y-3">
+      <div class="space-y-2.5">
         <!-- BTC -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
           <div class="overflow-hidden">
             <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Bitcoin (BTC)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">bc1q4xy3vhth0jgjce4h6vrsn8k87a8pp8hft839xt</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k</p>
           </div>
-          <button onclick="copyToClipboard('bc1q4xy3vhth0jgjce4h6vrsn8k87a8pp8hft839xt', 'BTC Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+          <button onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
             <i class="fa-regular fa-copy"></i>
           </button>
         </div>
-        <!-- ETH -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+
+        <!-- BCH -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
           <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Ethereum, Polygon, Arbitrum, or other EVM Chains (ERC-20)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0xa7f593C77299AE5Da093d6878E51e3cF529B2DFd</p>
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Bitcoin Cash (BCH)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq</p>
           </div>
-          <button onclick="copyToClipboard('0xa7f593C77299AE5Da093d6878E51e3cF529B2DFd', 'ETH Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+          <button onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
             <i class="fa-regular fa-copy"></i>
           </button>
         </div>
+
+        <!-- EVM -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">ETH / BSC / Polygon / Arbitrum / other EVM (ERC-20)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0xADF4947Ad75844143E814bD8DB78a1121Ac293E3</p>
+          </div>
+          <button onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+
         <!-- SOL -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
           <div class="overflow-hidden">
             <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Solana (SOL)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">BR2myaNz57vfULN9oAMWbDCq13fbirz8MxniBYbBbrRf</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL</p>
           </div>
-          <button onclick="copyToClipboard('BR2myaNz57vfULN9oAMWbDCq13fbirz8MxniBYbBbrRf', 'SOL Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+          <button onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+
+        <!-- APT -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Aptos (APT)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15</p>
+          </div>
+          <button onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+
+        <!-- SUI -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
+          <div class="overflow-hidden">
+            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Sui (SUI)</p>
+            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2</p>
+          </div>
+          <button onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
             <i class="fa-regular fa-copy"></i>
           </button>
         </div>

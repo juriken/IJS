@@ -38,7 +38,7 @@ export async function onRequest(context) {
   const userAgent = request.headers.get('user-agent') || '';
   const url = new URL(request.url);
 
-  // Allow standard human users to stream normal static assets directly
+  // Allow standard human visitors to load the SPA directly
   if (!isSocialBot(userAgent)) {
     return next();
   }
@@ -50,22 +50,28 @@ export async function onRequest(context) {
     if (pathMatch) productId = pathMatch[1];
   }
 
-  // If no specific product is targeted, return default response
+  // Return base response if no product is targeted
   if (!productId) {
     return next();
   }
 
-  // Retrieve origin response
   const response = await next();
 
-  // Load catalog data from deployment edge
+  // Load catalog dataset at the edge (prefers compact summary index)
   let product = null;
   try {
-    const catalogUrl = new URL('/products.json', url.origin);
-    const catalogRes = await env.ASSETS.fetch(catalogUrl.toString());
+    let catalogRes = await env.ASSETS.fetch(new URL('/catalog-index.json', url.origin).toString());
     if (catalogRes.ok) {
-      const catalogData = await catalogRes.json();
-      product = catalogData[productId] || null;
+      const indexData = await catalogRes.json();
+      product = indexData[productId] || null;
+    }
+
+    if (!product) {
+      catalogRes = await env.ASSETS.fetch(new URL('/products.json', url.origin).toString());
+      if (catalogRes.ok) {
+        const fullData = await catalogRes.json();
+        product = fullData[productId] || null;
+      }
     }
   } catch (err) {
     return response;
@@ -75,10 +81,10 @@ export async function onRequest(context) {
     return response;
   }
 
-  // Prepare dynamic tag payloads
+  // Build release metadata
   const title = escapeHtml(`${product.title} — ${product.artist}`);
   const description = escapeHtml(
-    `Official Japanese release by ${product.artist}. Format: ${product.id}. Retail: ${product.price || 'CDJapan Official Retail'}. Shipped directly from Tokyo by CDJapan.`
+    `Official Japanese release by ${product.artist}. Catalog ID: ${product.id}. CDJapan Price: ${product.price || 'Official Retail'}. Street Date: ${product.release_date || 'Available Now'}. Directly fulfilled from Tokyo with Oricon chart eligibility.`
   );
   const imageUrl = product.image || `${url.origin}/favicon.ico`;
   const canonicalUrl = `${url.origin}/?id=${encodeURIComponent(product.id)}`;

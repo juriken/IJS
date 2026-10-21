@@ -1,15 +1,29 @@
+# Global security and privacy headers
 /*
   X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: no-referrer-when-downgrade
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
 
-# Force immediate freshness for catalog and sitemap
-/products.json
-  Cache-Control: public, max-age=0, must-revalidate
+# Lightweight catalog summary index (Cloudflare Edge Caching)
+/catalog-index.json
   Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+  Content-Type: application/json; charset=utf-8
 
+# Full catalog fallback payload
+/products.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+  Content-Type: application/json; charset=utf-8
+
+# Search engine sitemap
 /sitemap.xml
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=1800, s-maxage=7200
+  Content-Type: application/xml; charset=utf-8
 
-/robots.txt
-  Cache-Control: public, max-age=3600, must-revalidate
+# Static icons and assets
+/*.svg
+  Cache-Control: public, max-age=604800, immutable
+/*.ico
+  Cache-Control: public, max-age=604800, immutable

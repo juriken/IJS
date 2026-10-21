@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHONUNBUFFERED: "1"
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -69,9 +70,13 @@ jobs:
         run: |
           python ping_search_engines.py
 
+      - name: Broadcast New Releases to Community Webhook
+        run: |
+          python notify_releases.py
+
       - name: Commit and Push Updated Catalog & Sitemap
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
           git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json search_aliases.json sw.js
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, aliases, sw & sitemap [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, schema, feed & state [skip ci]" && git push)

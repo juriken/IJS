@@ -1,6 +1,5 @@
 import json
 import os
-import random
 import re
 import time
 import urllib.parse
@@ -11,6 +10,7 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 INDEX_FILE = "catalog-index.json"
+STATE_FILE = "scraper_state.json"
 
 MONTH_MAP = {
     "jan": "01", "feb": "02", "mar": "03", "apr": "04",
@@ -49,7 +49,7 @@ NIAGO_AUTHENTIC_SIGNATURES = [
     "muda de ii", "yubiwa to aribai", "watashi, idol sengen"
 ]
 
-TARGET_GROUPS = [
+RAW_TARGET_GROUPS = [
     # Hello! Project — Groups & Active Units
     ("Hello! Project", "Morning Musume", "Morning Musume", [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
@@ -144,6 +144,9 @@ TARGET_GROUPS = [
     ("Babymetal", "BABYMETAL", "BABYMETAL", ["BABYMETAL"]),
 ]
 
+# Strict Alphabetical Ordering by Artist Name
+TARGET_GROUPS = sorted(RAW_TARGET_GROUPS, key=lambda x: x[1].lower())
+
 PAGES_PER_TARGET = 3
 BATCH_SIZE = 5
 
@@ -156,6 +159,29 @@ def load_catalog():
         except Exception:
             return {}
     return {}
+
+
+def get_alphabetical_batch():
+    total_targets = len(TARGET_GROUPS)
+    current_index = 0
+
+    if os.path.exists(STATE_FILE):
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                state = json.load(f)
+                current_index = state.get("next_index", 0) % total_targets
+        except Exception:
+            current_index = 0
+
+    batch = []
+    for i in range(BATCH_SIZE):
+        batch.append(TARGET_GROUPS[(current_index + i) % total_targets])
+
+    next_index = (current_index + BATCH_SIZE) % total_targets
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump({"next_index": next_index, "last_updated": datetime.utcnow().isoformat()}, f, indent=2)
+
+    return batch, current_index, total_targets
 
 
 def make_affiliate_link(product_key):
@@ -510,7 +536,8 @@ def main():
     initial_count = len(catalog)
     print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
-    batch = random.sample(TARGET_GROUPS, min(BATCH_SIZE, len(TARGET_GROUPS)))
+    batch, start_index, total_targets = get_alphabetical_batch()
+    print(f"Alphabetical Batch Window: targets {start_index + 1} to {start_index + len(batch)} of {total_targets}", flush=True)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -544,7 +571,7 @@ def main():
         updated_total = 0
 
         for idx, (cat, artist, query, keywords) in enumerate(batch, 1):
-            print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist}", flush=True)
+            print(f"\n[{idx}/{len(batch)}] Scraping Target: {artist} ({cat})", flush=True)
             target_page = context.new_page()
             try:
                 items = execute_artist_search(
@@ -584,11 +611,9 @@ def main():
 
         browser.close()
 
-    # Save full products.json
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    # Export compact summary index for rapid client hydration
     summary_index = {}
     for pid, it in catalog.items():
         summary_index[pid] = {

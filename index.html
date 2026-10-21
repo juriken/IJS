@@ -127,7 +127,7 @@
       animation: fadeIn 0.3s ease-in-out forwards;
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
+      from { opacity: 1; }
       to { opacity: 1; }
     }
     /* Fixed Virtual Desktop Width when in Desktop Mode */
@@ -736,80 +736,183 @@
 
   <!-- Crypto Donation Modal -->
   <div id="crypto-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeCryptoModalOnBackdrop(event)">
-    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-1">
-        <h3 class="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2">
-          <i class="fa-brands fa-bitcoin text-amber-500"></i> Cryptocurrency
-        </h3>
-        <button onclick="toggleCryptoModal()" class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <p class="text-xs text-stone-600 dark:text-slate-400">Support our server costs directly via Web3. Tap the copy button next to an address.</p>
-      
-      <div class="space-y-2.5">
-        <!-- BTC -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Bitcoin (BTC)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k</p>
+    <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-sm sm:max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-2 border-b border-stone-100 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+          <i class="fa-brands fa-bitcoin text-amber-500 text-lg"></i>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-stone-900 dark:text-white">Cryptocurrency Donations</h3>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400">Direct on-chain community upkeep</p>
           </div>
-          <button onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+        </div>
+        <button onclick="toggleCryptoModal()" class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer p-1">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] pt-1">
+        <span class="text-stone-600 dark:text-slate-400">Scan or copy address below:</span>
+        <button onclick="toggleAllQrs()" class="text-rose-600 dark:text-rose-400 font-bold hover:underline cursor-pointer flex items-center gap-1">
+          <i class="fa-solid fa-qrcode text-xs"></i>
+          <span id="toggle-all-qr-text">Show All QRs</span>
+        </button>
+      </div>
+      
+      <div class="space-y-3">
+        <!-- BTC -->
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-brands fa-btc text-amber-500"></i> Bitcoin (BTC)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('btc')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
+          </div>
+          <div id="qr-box-btc" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k" alt="Bitcoin QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
 
         <!-- BCH -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Bitcoin Cash (BCH)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq</p>
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-brands fa-btc text-emerald-500"></i> Bitcoin Cash (BCH)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('bch')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
           </div>
-          <button onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+          <div id="qr-box-bch" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq" alt="Bitcoin Cash QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
 
         <!-- EVM -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">ETH / BSC / Polygon / Arbitrum / other EVM (ERC-20)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0xADF4947Ad75844143E814bD8DB78a1121Ac293E3</p>
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-brands fa-ethereum text-sky-500"></i> ETH / BSC / Polygon / Arbitrum / other EVM (ERC-20)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">0xADF4947Ad75844143E814bD8DB78a1121Ac293E3</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('evm')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
           </div>
-          <button onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+          <div id="qr-box-evm" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0xADF4947Ad75844143E814bD8DB78a1121Ac293E3" alt="EVM Multi-Chain QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
 
         <!-- SOL -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Solana (SOL)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL</p>
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-bolt text-purple-500"></i> Solana (SOL)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('sol')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
           </div>
-          <button onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+          <div id="qr-box-sol" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL" alt="Solana QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
 
         <!-- APT -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Aptos (APT)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15</p>
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-cube text-emerald-500"></i> Aptos (APT)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('apt')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
           </div>
-          <button onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+          <div id="qr-box-apt" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15" alt="Aptos QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
 
         <!-- SUI -->
-        <div class="bg-stone-50 dark:bg-slate-800 p-2.5 rounded-xl border border-stone-200 dark:border-slate-700 flex justify-between items-center gap-2">
-          <div class="overflow-hidden">
-            <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase">Sui (SUI)</p>
-            <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate">0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2</p>
+        <div class="bg-stone-50 dark:bg-slate-800 p-3 rounded-xl border border-stone-200 dark:border-slate-700 space-y-2">
+          <div class="flex justify-between items-center gap-2">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-water text-sky-400"></i> Sui (SUI)
+              </p>
+              <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="toggleQr('sui')" title="Toggle QR Code" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-qrcode text-xs"></i>
+              </button>
+              <button onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" title="Copy Address" class="w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
+                <i class="fa-regular fa-copy text-xs"></i>
+              </button>
+            </div>
           </div>
-          <button onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" class="shrink-0 w-8 h-8 rounded-lg bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-rose-100 hover:text-rose-600 transition flex items-center justify-center cursor-pointer">
-            <i class="fa-regular fa-copy"></i>
-          </button>
+          <div id="qr-box-sui" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" title="Click to copy address">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2" alt="Sui QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-slate-400 font-mono mt-1">Tap QR or icon above to copy</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1009,6 +1112,25 @@
       navigator.clipboard.writeText(text).then(() => {
         showToast(successMessage);
       });
+    }
+
+    function toggleQr(coinKey) {
+      const el = document.getElementById(`qr-box-${coinKey}`);
+      if (!el) return;
+      el.classList.toggle('hidden');
+    }
+
+    function toggleAllQrs() {
+      const boxes = document.querySelectorAll('.crypto-qr-box');
+      const anyHidden = Array.from(boxes).some(b => b.classList.contains('hidden'));
+      boxes.forEach(b => {
+        if (anyHidden) b.classList.remove('hidden');
+        else b.classList.add('hidden');
+      });
+      const btnText = document.getElementById('toggle-all-qr-text');
+      if (btnText) {
+        btnText.innerText = anyHidden ? 'Hide All QRs' : 'Show All QRs';
+      }
     }
 
     function toggleCryptoModal() {

@@ -56071,5 +56071,18 @@
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/product/RECENT?affi=A033398",
     "updated_at": "2026-10-21"
+  },
+  "ORICON": {
+    "id": "ORICON",
+    "title": "oricon",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
+    "price": "Check CDJapan",
+    "price_num": 0,
+    "release_date": "Available Now",
+    "image": "https://st.cdjapan.co.jp/assets/img/oricon-cdj-2.png",
+    "availability": "instock",
+    "affiliate_url": "https://www.cdjapan.co.jp/product/ORICON?affi=A033398",
+    "updated_at": "2026-10-21"
   }
 }

@@ -31433,7 +31433,9 @@
     "release_date": "2006/05/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/07/HKBN-50067.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FHKBN-50067",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/HKBN-50067_01.mp3"
   },
   "HKBN-50062": {
     "id": "HKBN-50062",
@@ -33243,7 +33245,9 @@
     "release_date": "2020/01/02",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/45/NEODAI-69021.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-69021",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-69021_01.mp3"
   },
   "NEODAI-82838": {
     "id": "NEODAI-82838",
@@ -33255,11 +33259,13 @@
     "release_date": "2020/07/08",
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-82838.jpg",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-82838",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-82838_01.mp3"
   },
   "EPXE-5164": {
     "id": "EPXE-5164",
-    "title": "Blu-ray Kobushi Factory Live Tour 2019 Aki - Punching The Air! Special -",
+    "title": "Blu-ray Kobushi Factory Live Tour 2019 Aki - Punching The Air! Special",
     "artist": "Kobushi Factory",
     "category": "Hello! Project",
     "price": "6,000yen",
@@ -33267,11 +33273,13 @@
     "release_date": "2020/01/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/18/EPXE-5164.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5164",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPXE-5164_01.mp3"
   },
   "EPBE-5606": {
     "id": "EPBE-5606",
-    "title": "DVD Kobushi Factory Live Tour 2019 Aki - Punching The Air! Special -",
+    "title": "DVD Kobushi Factory Live Tour 2019 Aki - Punching The Air! Special",
     "artist": "Kobushi Factory",
     "category": "Hello! Project",
     "price": "4,500yen",
@@ -33279,7 +33287,9 @@
     "release_date": "2020/01/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/41/EPBE-5606.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5606",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5606_01.mp3"
   },
   "NEOEGA-108288": {
     "id": "NEOEGA-108288",
@@ -33291,7 +33301,9 @@
     "release_date": "2019/11/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEOEGA-108288.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOEGA-108288",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOEGA-108288_01.mp3"
   },
   "NEOEGA-108286": {
     "id": "NEOEGA-108286",
@@ -33303,7 +33315,9 @@
     "release_date": "2019/11/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/28/NEOEGA-108286.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOEGA-108286",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOEGA-108286_01.mp3"
   },
   "NEOEGA-108285": {
     "id": "NEOEGA-108285",
@@ -33315,7 +33329,9 @@
     "release_date": "2019/11/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/27/NEOEGA-108285.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOEGA-108285",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOEGA-108285_01.mp3"
   },
   "NEOBK-2342721": {
     "id": "NEOBK-2342721",
@@ -33327,7 +33343,9 @@
     "release_date": "2019/03/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/05/NEOBK-2342721.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2342721",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-2342721_01.mp3"
   },
   "EPCE-7435": {
     "id": "EPCE-7435",
@@ -33339,7 +33357,9 @@
     "release_date": "2018/09/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/20/EPCE-7435.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7435",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7435_01.mp3"
   },
   "NEOBK-1982009": {
     "id": "NEOBK-1982009",
@@ -33351,7 +33371,9 @@
     "release_date": "Available Now",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/26/NEOBK-1982009.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1982009",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOBK-1982009_01.mp3"
   },
   "UMCK-5814": {
     "id": "UMCK-5814",
@@ -36079,7 +36101,9 @@
     "release_date": "2025/07/30",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/26/EPXE-5268.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5268",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPXE-5268_01.mp3"
   },
   "NEODAI-58978": {
     "id": "NEODAI-58978",
@@ -36091,7 +36115,9 @@
     "release_date": "2003/12/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/25/NEODAI-58978.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-58978",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-58978_01.mp3"
   },
   "NEODAI-31910": {
     "id": "NEODAI-31910",
@@ -36103,7 +36129,9 @@
     "release_date": "2003/05/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/NEODAI-31910.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-31910",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-31910_01.mp3"
   },
   "EPBE-5384": {
     "id": "EPBE-5384",
@@ -36115,7 +36143,9 @@
     "release_date": "2010/07/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/43/EPBE-5384.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5384",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5384_01.mp3"
   },
   "EPBE-5246": {
     "id": "EPBE-5246",
@@ -36127,7 +36157,9 @@
     "release_date": "2007/05/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/33/EPBE-5246.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5246",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5246_01.mp3"
   },
   "EPBE-5241": {
     "id": "EPBE-5241",
@@ -36139,7 +36171,9 @@
     "release_date": "2007/03/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/28/EPBE-5241.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5241",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5241_01.mp3"
   },
   "EPBE-5194": {
     "id": "EPBE-5194",
@@ -36151,7 +36185,9 @@
     "release_date": "2006/03/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/37/EPBE-5194.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5194",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5194_01.mp3"
   },
   "EPBE-5152": {
     "id": "EPBE-5152",
@@ -36163,7 +36199,9 @@
     "release_date": "2004/11/26",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/27/EPBE-5152.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5152",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5152_01.mp3"
   },
   "EPBE-5110": {
     "id": "EPBE-5110",
@@ -36175,7 +36213,9 @@
     "release_date": "2004/02/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/17/EPBE-5110.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5110",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5110_01.mp3"
   },
   "EPBE-5098": {
     "id": "EPBE-5098",
@@ -36187,7 +36227,9 @@
     "release_date": "2003/12/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/37/EPBE-5098.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5098",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5098_01.mp3"
   },
   "EPBE-5075": {
     "id": "EPBE-5075",
@@ -36199,7 +36241,9 @@
     "release_date": "2003/05/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/30/EPBE-5075.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5075",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5075_01.mp3"
   },
   "EPBE-5054": {
     "id": "EPBE-5054",
@@ -36211,7 +36255,9 @@
     "release_date": "2002/11/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/25/EPBE-5054.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5054",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPBE-5054_01.mp3"
   },
   "PKCP-5006": {
     "id": "PKCP-5006",
@@ -36237,7 +36283,9 @@
     "release_date": "2010/04/21",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/07/EPCE-5702.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5702",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5702_01.mp3"
   },
   "EPCE-5692": {
     "id": "EPCE-5692",
@@ -36249,7 +36297,9 @@
     "release_date": "2010/02/17",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/21/EPCE-5692.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5692",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5692_01.mp3"
   },
   "EPCE-5600": {
     "id": "EPCE-5600",
@@ -36261,7 +36311,9 @@
     "release_date": "2008/12/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/01/EPCE-5600.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5600",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5600_01.mp3"
   },
   "EPCE-5548": {
     "id": "EPCE-5548",
@@ -36273,7 +36325,9 @@
     "release_date": "2008/03/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/13/EPCE-5548.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5548",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5548_01.mp3"
   },
   "EPCE-5526": {
     "id": "EPCE-5526",
@@ -36285,7 +36339,9 @@
     "release_date": "2007/12/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/07/EPCE-5526.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5526",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5526_01.mp3"
   },
   "EPCE-5496": {
     "id": "EPCE-5496",
@@ -36297,7 +36353,9 @@
     "release_date": "2007/09/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/17/EPCE-5496.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5496",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5496_01.mp3"
   },
   "PKBP-5072": {
     "id": "PKBP-5072",
@@ -36309,7 +36367,9 @@
     "release_date": "2007/04/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/07/PKBP-5072.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5072",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/PKBP-5072_01.mp3"
   },
   "EPCE-5461": {
     "id": "EPCE-5461",
@@ -36321,7 +36381,9 @@
     "release_date": "2007/03/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/06/EPCE-5461.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5461",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5461_01.mp3"
   },
   "EPCE-5439": {
     "id": "EPCE-5439",
@@ -36333,7 +36395,9 @@
     "release_date": "2006/12/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/08/EPCE-5439.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5439",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5439_01.mp3"
   },
   "EPCE-5351": {
     "id": "EPCE-5351",
@@ -36345,7 +36409,9 @@
     "release_date": "2005/02/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/00/EPCE-5351.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5351",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5351_01.mp3"
   },
   "EPCE-5342": {
     "id": "EPCE-5342",
@@ -36357,7 +36423,9 @@
     "release_date": "2004/12/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/48/EPCE-5342.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5342",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5342_01.mp3"
   },
   "EPCE-5334": {
     "id": "EPCE-5334",
@@ -36369,7 +36437,9 @@
     "release_date": "2004/10/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/48/EPCE-5334.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5334",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5334_01.mp3"
   },
   "EPCE-5282": {
     "id": "EPCE-5282",
@@ -36381,7 +36451,9 @@
     "release_date": "2004/06/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/03/EPCE-5282.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5282",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5282_01.mp3"
   },
   "EPCE-5250": {
     "id": "EPCE-5250",
@@ -36393,7 +36465,9 @@
     "release_date": "2003/12/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/44/EPCE-5250.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5250",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5250_01.mp3"
   },
   "EPCE-5234": {
     "id": "EPCE-5234",
@@ -36405,7 +36479,9 @@
     "release_date": "2003/09/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/44/EPCE-5234.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5234",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5234_01.mp3"
   },
   "EPCE-5213": {
     "id": "EPCE-5213",
@@ -36417,7 +36493,9 @@
     "release_date": "2003/05/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/39/EPCE-5213.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5213",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5213_01.mp3"
   },
   "EPCE-5205": {
     "id": "EPCE-5205",
@@ -36429,7 +36507,9 @@
     "release_date": "2003/03/12",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/39/EPCE-5205.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5205",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5205_01.mp3"
   },
   "EPCE-5194": {
     "id": "EPCE-5194",
@@ -36441,7 +36521,9 @@
     "release_date": "2003/01/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/03/EPCE-5194.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5194",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5194_01.mp3"
   },
   "EPCE-5180": {
     "id": "EPCE-5180",
@@ -36453,7 +36535,9 @@
     "release_date": "2002/10/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/46/EPCE-5180.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5180",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5180_01.mp3"
   },
   "EPCE-5161": {
     "id": "EPCE-5161",
@@ -36465,7 +36549,9 @@
     "release_date": "2002/06/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/43/EPCE-5161.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5161",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5161_01.mp3"
   },
   "EPCE-5142": {
     "id": "EPCE-5142",
@@ -36477,7 +36563,9 @@
     "release_date": "2002/02/14",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/40/EPCE-5142.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5142",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5142_01.mp3"
   },
   "EPCE-5120": {
     "id": "EPCE-5120",
@@ -36489,7 +36577,9 @@
     "release_date": "2001/10/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/34/EPCE-5120.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5120",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5120_01.mp3"
   },
   "EPCE-5077": {
     "id": "EPCE-5077",
@@ -36501,7 +36591,9 @@
     "release_date": "2001/03/07",
     "image": "https://st.cdjapan.co.jp/pictures/l/07/47/EPCE-5077.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5077",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-5077_01.mp3"
   },
   "EPDE-1078": {
     "id": "EPDE-1078",
@@ -36513,7 +36605,9 @@
     "release_date": "2000/06/28",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/31/EPDE-1078.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1078",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPDE-1078_01.mp3"
   },
   "EPDE-1068": {
     "id": "EPDE-1068",
@@ -36525,7 +36619,9 @@
     "release_date": "2000/02/19",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/29/EPDE-1068.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1068",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPDE-1068_01.mp3"
   },
   "NEOBK-965380": {
     "id": "NEOBK-965380",
@@ -41029,7 +41125,9 @@
     "release_date": "2014/11/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/10/DAKUFCW-1089.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1089",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/DAKUFCW-1089_01.mp3"
   },
   "DAKUFBW-1353": {
     "id": "DAKUFBW-1353",
@@ -41041,7 +41139,9 @@
     "release_date": "2014/04/23",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/44/DAKUFBW-1353.jpg?v=2",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1353",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/DAKUFBW-1353_01.mp3"
   },
   "EPCE-7117": {
     "id": "EPCE-7117",
@@ -41053,7 +41153,9 @@
     "release_date": "2015/07/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/06/EPCE-7117.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7117",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7117_01.mp3"
   },
   "EPCE-7358": {
     "id": "EPCE-7358",
@@ -41065,11 +41167,13 @@
     "release_date": "2017/09/06",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/23/EPCE-7358.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7358",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7358_01.mp3"
   },
   "DAKUFBW-1525": {
     "id": "DAKUFBW-1525",
-    "title": "DVD LoVendoR LIVE 2016 - CHALLENGER! -",
+    "title": "DVD LoVendoR LIVE 2016 - CHALLENGER!",
     "artist": "LoVendoR",
     "category": "Hello! Project",
     "price": "4,000yen",
@@ -41077,7 +41181,9 @@
     "release_date": "2017/01/18",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/DAKUFBW-1525.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1525",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/DAKUFBW-1525_01.mp3"
   },
   "EPCE-7197": {
     "id": "EPCE-7197",
@@ -41089,7 +41195,9 @@
     "release_date": "2016/02/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/22/EPCE-7197.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7197",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7197_01.mp3"
   },
   "EPCE-7196": {
     "id": "EPCE-7196",
@@ -41101,7 +41209,9 @@
     "release_date": "2016/02/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/21/EPCE-7196.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7196",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7196_01.mp3"
   },
   "EPCE-7194": {
     "id": "EPCE-7194",
@@ -41113,7 +41223,9 @@
     "release_date": "2016/02/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/19/EPCE-7194.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7194",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "instock",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7194_01.mp3"
   },
   "EPCE-7118": {
     "id": "EPCE-7118",
@@ -41125,7 +41237,9 @@
     "release_date": "2015/07/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/07/EPCE-7118.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7118",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7118_01.mp3"
   },
   "EPCE-7115": {
     "id": "EPCE-7115",
@@ -41137,7 +41251,9 @@
     "release_date": "2015/07/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/08/04/EPCE-7115.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7115",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/EPCE-7115_01.mp3"
   },
   "DAKUFCW-1062": {
     "id": "DAKUFCW-1062",
@@ -41149,7 +41265,9 @@
     "release_date": "2013/05/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/48/DAKUFCW-1062.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1062",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/DAKUFCW-1062_01.mp3"
   },
   "NEODAI-4824": {
     "id": "NEODAI-4824",
@@ -41161,7 +41279,9 @@
     "release_date": "2014/01/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/00/NEODAI-4824.jpg?v=1",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-4824",
-    "updated_at": "2026-10-20"
+    "updated_at": "2026-10-20",
+    "availability": "oop",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-4824_01.mp3"
   },
   "TPRB-5": {
     "id": "TPRB-5",
@@ -51209,6 +51329,1224 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-71246.jpg?v=1",
     "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-71246_01.mp3",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-71246",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90281": {
+    "id": "YRCS-90281",
+    "title": "CD Maxi Hanasaku Michi [Regular Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,273yen",
+    "price_num": 1273,
+    "release_date": "2026/08/05",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/45/YRCS-90281.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90281_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90281",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90280": {
+    "id": "YRCS-90280",
+    "title": "CD Maxi Hanasaku Michi [Limited Edition / Type B]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2026/08/05",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/44/YRCS-90280.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90280_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90280",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90279": {
+    "id": "YRCS-90279",
+    "title": "CD Maxi Hanasaku Michi [w/ DVD, Limited Edition / Type A]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,209yen",
+    "price_num": 1209,
+    "release_date": "2026/08/05",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/02/YRCS-90279.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90279_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90279",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90294": {
+    "id": "YRCS-90294",
+    "title": "Single CD Rock & Roll Pretty [Regular Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,273yen",
+    "price_num": 1273,
+    "release_date": "2026/12/02",
+    "availability": "preorder",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/01/YRCS-90294.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90294_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90294",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-95131": {
+    "id": "YRCS-95131",
+    "title": "CD Album WHO I AM [w/ DVD, Limited Edition / Type B]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,500yen",
+    "price_num": 3500,
+    "release_date": "2025/09/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/22/YRCS-95131.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-95131_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-95131",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90293": {
+    "id": "YRCS-90293",
+    "title": "Single CD Rock & Roll Pretty [Limited Edition / Type B]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2026/12/02",
+    "availability": "preorder",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/00/YRCS-90293.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90293_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90293",
+    "updated_at": "2026-10-21"
+  },
+  "NEOIKT-2073": {
+    "id": "NEOIKT-2073",
+    "title": "Single CD Hanasaku Michi [Bundled Set Special Bonus] [LTD Edition / Type B + REG Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2026/08/05",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/25/NEOIKT-2073.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOIKT-2073_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOIKT-2073",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-95132": {
+    "id": "YRCS-95132",
+    "title": "Album CD WHO I AM [Regular Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/09/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/23/YRCS-95132.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-95132_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-95132",
+    "updated_at": "2026-10-21"
+  },
+  "NEOIKT-2140": {
+    "id": "NEOIKT-2140",
+    "title": "Single CD Rock & Roll Pretty [Bundled Set Special Bonus] [w/ DVD, LTD Edition / Type A + REG Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2026/12/02",
+    "availability": "preorder",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/20/NEOIKT-2140.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOIKT-2140_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOIKT-2140",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90248": {
+    "id": "YRCS-90248",
+    "title": "Single CD Mirai [Regular Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,273yen",
+    "price_num": 1273,
+    "release_date": "2024/04/17",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/44/YRCS-90248.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90248_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90248",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257821": {
+    "id": "NEODAI-257821",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (SHIZUKU)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/46/NEODAI-257821.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257821_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257821",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90254": {
+    "id": "YRCS-90254",
+    "title": "Single CD Hi-Five [Regular Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,273yen",
+    "price_num": 1273,
+    "release_date": "2024/08/28",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/42/YRCS-90254.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90254_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90254",
+    "updated_at": "2026-10-21"
+  },
+  "NEOIKT-2141": {
+    "id": "NEOIKT-2141",
+    "title": "Single CD Rock & Roll Pretty [Bundled Set Special Bonus] [LTD Edition / Type B + REG Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2026/12/02",
+    "availability": "preorder",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEOIKT-2141.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOIKT-2141_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOIKT-2141",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257622": {
+    "id": "NEODAI-257622",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (KOKONA)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/39/NEODAI-257622.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257622_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257622",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90292": {
+    "id": "YRCS-90292",
+    "title": "Single CD Rock & Roll Pretty [w/ DVD, Limited Edition / Type A]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2026/12/02",
+    "availability": "preorder",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/48/YRCS-90292.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90292_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90292",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-95130": {
+    "id": "YRCS-95130",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,000yen",
+    "price_num": 4000,
+    "release_date": "2025/09/03",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/21/YRCS-95130.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-95130_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-95130",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90253": {
+    "id": "YRCS-90253",
+    "title": "Single CD Hi-Five [w/ DVD, Limited Edition / Type B]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2024/08/28",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/41/YRCS-90253.jpg?v=2",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90253_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90253",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90262": {
+    "id": "YRCS-90262",
+    "title": "Single CD Muse [w/ DVD, Limited Edition / Type A]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2025/04/16",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/42/YRCS-90262.jpg?v=3",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90262_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90262",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257788": {
+    "id": "NEODAI-257788",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (AYANE)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-257788.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257788_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257788",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90265": {
+    "id": "YRCS-90265",
+    "title": "CD Maxi Muse [Limited First Edition Anime Version]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,091yen",
+    "price_num": 1091,
+    "release_date": "2025/04/16",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/45/YRCS-90265.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90265_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90265",
+    "updated_at": "2026-10-21"
+  },
+  "YRCS-90247": {
+    "id": "YRCS-90247",
+    "title": "Single CD Mirai [w/ DVD, Limited Edition / Type B]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,727yen",
+    "price_num": 1727,
+    "release_date": "2024/04/17",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/43/YRCS-90247.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/YRCS-90247_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FYRCS-90247",
+    "updated_at": "2026-10-21"
+  },
+  "NEOIKT-2072": {
+    "id": "NEOIKT-2072",
+    "title": "Single CD Hanasaku Michi [Bundled Set Special Bonus] [w/ DVD, LTD Edition / Type A + REG Edition]",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2026/08/05",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/24/NEOIKT-2072.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEOIKT-2072_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOIKT-2072",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274784": {
+    "id": "NEODAI-274784",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) RA:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-274784.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274784_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274784",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274786": {
+    "id": "NEODAI-274786",
+    "title": "Collectible ME:I Can Badge Holder TU:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/18/NEODAI-274786.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274786_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274786",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274787": {
+    "id": "NEODAI-274787",
+    "title": "Collectible ME:I Multi Blanket CORON",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/19/NEODAI-274787.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274787_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274787",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274844": {
+    "id": "NEODAI-274844",
+    "title": "Collectible ME:I OFFICIAL LIGHT STICK",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/01/01",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-274844.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274844_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274844",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274845": {
+    "id": "NEODAI-274845",
+    "title": "Collectible ME:I Penlight Cover RA:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-274845.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274845_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274845",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274846": {
+    "id": "NEODAI-274846",
+    "title": "Collectible ME:I Penlight Cover KOKO:NYA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-274846.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274846_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274846",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274847": {
+    "id": "NEODAI-274847",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) CORON",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/15/NEODAI-274847.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274847_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274847",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274848": {
+    "id": "NEODAI-274848",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) ME:U",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-274848.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274848_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274848",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274849": {
+    "id": "NEODAI-274849",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) MO:NA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/17/NEODAI-274849.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274849_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274849",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274850": {
+    "id": "NEODAI-274850",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) TSUKI",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/10/NEODAI-274850.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274850_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274850",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274851": {
+    "id": "NEODAI-274851",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) K:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-274851.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274851_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274851",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274852": {
+    "id": "NEODAI-274852",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) KOKO:NYA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-274852.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274852_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274852",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274853": {
+    "id": "NEODAI-274853",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) TU:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-274853.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274853_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274853",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274854": {
+    "id": "NEODAI-274854",
+    "title": "Collectible ME:I Can Badge Holder CORON",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-274854.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274854_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274854",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274855": {
+    "id": "NEODAI-274855",
+    "title": "Collectible ME:I Can Badge Holder ME:U",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/15/NEODAI-274855.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274855_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274855",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274856": {
+    "id": "NEODAI-274856",
+    "title": "Collectible ME:I Can Badge Holder MO:NA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-274856.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274856_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274856",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274857": {
+    "id": "NEODAI-274857",
+    "title": "Collectible ME:I Can Badge Holder RA:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/17/NEODAI-274857.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274857_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274857",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274858": {
+    "id": "NEODAI-274858",
+    "title": "Collectible ME:I Can Badge Holder TSUKI",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/18/NEODAI-274858.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274858_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274858",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274859": {
+    "id": "NEODAI-274859",
+    "title": "Collectible ME:I Can Badge Holder K:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/19/NEODAI-274859.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274859_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274859",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274860": {
+    "id": "NEODAI-274860",
+    "title": "Collectible ME:I Can Badge Holder RI:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-274860.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274860_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274860",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274861": {
+    "id": "NEODAI-274861",
+    "title": "Collectible ME:I Can Badge Holder BE:LLE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-274861.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274861_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274861",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274880": {
+    "id": "NEODAI-274880",
+    "title": "Collectible ME:I Multi Blanket TSUKI",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEODAI-274880.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274880_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274880",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-274929": {
+    "id": "NEODAI-274929",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) ME:YANE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/17/NEODAI-274929.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-274929_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-274929",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275007": {
+    "id": "NEODAI-275007",
+    "title": "Collectible ME:I Multi Blanket RA:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/32/NEODAI-275007.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275007_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275007",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275028": {
+    "id": "NEODAI-275028",
+    "title": "Collectible ME:I Multi Blanket MO:NA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/37/NEODAI-275028.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275028_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275028",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275029": {
+    "id": "NEODAI-275029",
+    "title": "Collectible ME:I Multi Blanket K:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/38/NEODAI-275029.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275029_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275029",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275030": {
+    "id": "NEODAI-275030",
+    "title": "Collectible ME:I Multi Blanket TU:ME",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/31/NEODAI-275030.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275030_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275030",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275048": {
+    "id": "NEODAI-275048",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) BE:LLE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEODAI-275048.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275048_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275048",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275049": {
+    "id": "NEODAI-275049",
+    "title": "Collectible ME:I Can Badge Holder ME:YANE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/42/NEODAI-275049.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275049_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275049",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275051": {
+    "id": "NEODAI-275051",
+    "title": "Collectible ME:I Multi Blanket RI:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/36/NEODAI-275051.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275051_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275051",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275052": {
+    "id": "NEODAI-275052",
+    "title": "Collectible ME:I Multi Blanket BE:LLE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/37/NEODAI-275052.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275052_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275052",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275053": {
+    "id": "NEODAI-275053",
+    "title": "Collectible ME:I Can Badge Holder KOKO:NYA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "1,800yen",
+    "price_num": 1800,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/38/NEODAI-275053.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275053_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275053",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275054": {
+    "id": "NEODAI-275054",
+    "title": "Collectible ME:I Multi Blanket ME:U",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/39/NEODAI-275054.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275054_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275054",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275055": {
+    "id": "NEODAI-275055",
+    "title": "Collectible ME:I Multi Blanket ME:YANE",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-275055.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275055_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275055",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275056": {
+    "id": "NEODAI-275056",
+    "title": "Collectible ME:I Multi Blanket KOKO:NYA",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "6,000yen",
+    "price_num": 6000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEODAI-275056.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275056_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275056",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275058": {
+    "id": "NEODAI-275058",
+    "title": "Collectible ME:I Plushie Charm (Christmas Ver.) RI:NYAN",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,000yen",
+    "price_num": 3000,
+    "release_date": "2025/02/15",
+    "availability": "instock",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/43/NEODAI-275058.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275058_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275058",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-275059": {
+    "id": "NEODAI-275059",
+    "title": "Collectible ME:I Penlight Cover CORON",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "2,000yen",
+    "price_num": 2000,
+    "release_date": "2025/02/15",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/44/NEODAI-275059.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-275059_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-275059",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257666": {
+    "id": "NEODAI-257666",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (KEIKO)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/02/NEODAI-257666.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257666_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257666",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257718": {
+    "id": "NEODAI-257718",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (RAN)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/47/NEODAI-257718.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257718_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257718",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257789": {
+    "id": "NEODAI-257789",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (SUZU) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-257789.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257789_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257789",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257792": {
+    "id": "NEODAI-257792",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (MIU)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/08/NEODAI-257792.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257792_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257792",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257793": {
+    "id": "NEODAI-257793",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (MOMONA)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/09/NEODAI-257793.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257793_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257793",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257794": {
+    "id": "NEODAI-257794",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (RINON)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/10/NEODAI-257794.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257794_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257794",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257795": {
+    "id": "NEODAI-257795",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (SUZU)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-257795.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257795_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257795",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257796": {
+    "id": "NEODAI-257796",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (MIU) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/12/NEODAI-257796.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257796_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257796",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257797": {
+    "id": "NEODAI-257797",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (MOMONA) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/13/NEODAI-257797.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257797_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257797",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257798": {
+    "id": "NEODAI-257798",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (RAN) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/14/NEODAI-257798.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257798_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257798",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257799": {
+    "id": "NEODAI-257799",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (RINON) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/15/NEODAI-257799.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257799_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257799",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257827": {
+    "id": "NEODAI-257827",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (SHIZUKU) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/03/NEODAI-257827.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257827_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257827",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257828": {
+    "id": "NEODAI-257828",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (AYANE) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEODAI-257828.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257828_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257828",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257829": {
+    "id": "NEODAI-257829",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (KEIKO) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEODAI-257829.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257829_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257829",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257830": {
+    "id": "NEODAI-257830",
+    "title": "Album CD WHO I AM [Set of 3 Editions] w/ UNIVERSAL MUSIC STORE Set Bonus: CD Storage Box (KOKONA) in UNIVERSAL Original ME:I Logoed Monochrome Delivery Box *",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "11,550yen",
+    "price_num": 11550,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/47/NEODAI-257830.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257830_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257830",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257667": {
+    "id": "NEODAI-257667",
+    "title": "Album CD WHO I AM [Regular Edition] w/ Rakuten Books Bonus: Phone Tab (Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/03/NEODAI-257667.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257667_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257667",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257668": {
+    "id": "NEODAI-257668",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A] w/ LAPONE STORE Bonus Hologram Sticker (Randomly Selected from 4 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEODAI-257668.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257668_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257668",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257669": {
+    "id": "NEODAI-257669",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type B] w/ LAPONE STORE Bonus Hologram Sticker (Randomly Selected from 4 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,850yen",
+    "price_num": 3850,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEODAI-257669.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257669_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257669",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257671": {
+    "id": "NEODAI-257671",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A] w/ Rakuten Books Bonus: Phone Tab (Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/48/NEODAI-257671.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257671_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257671",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257672": {
+    "id": "NEODAI-257672",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type B] w/ Rakuten Books Bonus: Phone Tab (Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,850yen",
+    "price_num": 3850,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/00/NEODAI-257672.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257672_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257672",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257673": {
+    "id": "NEODAI-257673",
+    "title": "Album CD WHO I AM [Regular Edition] w/ LAPONE STORE Bonus Hologram Sticker (Randomly Selected from 4 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/01/NEODAI-257673.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257673_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257673",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257674": {
+    "id": "NEODAI-257674",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A] w/ Bonus Solo Trading Card (Amazon.co.jp Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/02/NEODAI-257674.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257674_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257674",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257692": {
+    "id": "NEODAI-257692",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A] w/ Bonus Solo Clear Trading Card (@Loppi/HMV &BOOKS Online Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/04/NEODAI-257692.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257692_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257692",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257709": {
+    "id": "NEODAI-257709",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type B] w/ Bonus Solo Clear Trading Card (@Loppi/HMV &BOOKS Online Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,850yen",
+    "price_num": 3850,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/46/NEODAI-257709.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257709_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257709",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257711": {
+    "id": "NEODAI-257711",
+    "title": "Album CD WHO I AM [Regular Edition] w/ Bonus Solo Clear Trading Card (@Loppi/HMV &BOOKS Online Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-257711.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257711_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257711",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257712": {
+    "id": "NEODAI-257712",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type A] w/ Bonus Solo Trading Card (Tower Records Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "4,400yen",
+    "price_num": 4400,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEODAI-257712.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257712_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257712",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257790": {
+    "id": "NEODAI-257790",
+    "title": "Album CD WHO I AM [w/ DVD, Limited Edition / Type B] w/ Bonus Solo Trading Card (Tower Records Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,850yen",
+    "price_num": 3850,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/06/NEODAI-257790.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257790_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257790",
+    "updated_at": "2026-10-21"
+  },
+  "NEODAI-257791": {
+    "id": "NEODAI-257791",
+    "title": "Album CD WHO I AM [Regular Edition] w/ Bonus Solo Trading Card (Tower Records Ver. / Randomly Selected from 9 Kinds)",
+    "artist": "ME:I",
+    "category": "Modern Idols",
+    "price": "3,300yen",
+    "price_num": 3300,
+    "release_date": "2025/09/03",
+    "availability": "oop",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/07/NEODAI-257791.jpg?v=1",
+    "sample_audio": "https://www.neowing.co.jp/audio/NEODAI-257791_01.mp3",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-257791",
     "updated_at": "2026-10-21"
   }
 }

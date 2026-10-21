@@ -2325,8 +2325,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-112733</loc>
     <lastmod>2021-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-112734</loc>
@@ -7449,8 +7449,8 @@
   <url>
     <loc>https://idoljapan.store/?id=KIZM-413</loc>
     <lastmod>2016-03-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=KIZM-263</loc>
@@ -7725,8 +7725,8 @@
   <url>
     <loc>https://idoljapan.store/?id=KIZM-393</loc>
     <lastmod>2015-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=KIZM-59</loc>
@@ -24539,5 +24539,95 @@
     <lastmod>2024-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZC-90741</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZC-90743</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZC-745</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-751</loc>
+    <lastmod>2022-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-765</loc>
+    <lastmod>2023-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-769</loc>
+    <lastmod>2023-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-767</loc>
+    <lastmod>2023-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-755</loc>
+    <lastmod>2022-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-753</loc>
+    <lastmod>2022-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-719</loc>
+    <lastmod>2022-02-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-717</loc>
+    <lastmod>2022-02-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-711</loc>
+    <lastmod>2021-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-709</loc>
+    <lastmod>2021-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-691</loc>
+    <lastmod>2021-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KIZM-689</loc>
+    <lastmod>2021-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

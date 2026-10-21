@@ -6,6 +6,7 @@ from xml.sax.saxutils import escape
 
 BASE_URL = "https://idoljapan.store"
 CATALOG_FILES = ["catalog-index.json", "products.json"]
+GROUPS_DIR = "groups"
 
 STATIC_PAGES = [
     {"loc": "/", "priority": "1.0", "changefreq": "daily"},
@@ -78,7 +79,18 @@ def generate_sitemap():
         xml_lines.append("    <priority>0.9</priority>")
         xml_lines.append("  </url>")
 
-    # 3. Product canonical deep links
+    # 3. Pre-rendered Group Landing Pages
+    if os.path.exists(GROUPS_DIR):
+        for fname in sorted(os.listdir(GROUPS_DIR)):
+            if fname.endswith(".html"):
+                xml_lines.append("  <url>")
+                xml_lines.append(f"    <loc>{escape(f'{BASE_URL}/groups/{fname}')}</loc>")
+                xml_lines.append(f"    <lastmod>{today_iso}</lastmod>")
+                xml_lines.append("    <changefreq>daily</changefreq>")
+                xml_lines.append("    <priority>0.9</priority>")
+                xml_lines.append("  </url>")
+
+    # 4. Product canonical deep links
     for pid, item in products.items():
         if not pid:
             continue

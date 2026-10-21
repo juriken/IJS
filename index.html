@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer">
 
-  <!-- Early Viewport & Layout Mode Detection (Defaults to 1280px Desktop Canvas on all devices) -->
+  <!-- Early Viewport & Layout Mode Detection (Autodetects Mobile vs Desktop) -->
   <script>
     (function() {
-      const savedLayout = localStorage.getItem('idoljapan_layout_mode') || 'desktop';
+      let savedLayout = localStorage.getItem('idoljapan_layout_mode');
+      if (!savedLayout) {
+        const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || 
+                               /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        savedLayout = isMobileDevice ? 'mobile' : 'desktop';
+      }
+
       const viewportMeta = document.createElement('meta');
       viewportMeta.name = 'viewport';
       viewportMeta.id = 'dynamic-viewport';
@@ -16,7 +22,7 @@
         viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
         document.documentElement.classList.add('layout-mobile');
       } else {
-        // Default Desktop Canvas Mode (1280px wide canvas, pinch-to-zoom allowed)
+        // Desktop Canvas Mode (1280px wide canvas, pinch-to-zoom allowed)
         viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
         document.documentElement.classList.add('layout-desktop');
       }
@@ -127,7 +133,7 @@
       animation: fadeIn 0.3s ease-in-out forwards;
     }
     @keyframes fadeIn {
-      from { opacity: 1; }
+      from { opacity: 0; }
       to { opacity: 1; }
     }
     /* Fixed Virtual Desktop Width when in Desktop Mode */
@@ -496,10 +502,10 @@
         <div class="flex items-center gap-1.5">
           <label for="per-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Per page:</label>
           <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500 cursor-pointer">
-            <option value="30">30</option>
-            <option value="50" selected>50</option>
-            <option value="100">100</option>
-            <option value="200">200</option>
+            <option value="24">24</option>
+            <option value="48" selected>48</option>
+            <option value="72">72</option>
+            <option value="96">96</option>
           </select>
         </div>
       </div>
@@ -508,7 +514,7 @@
 
   <!-- Product Container (Grid or Dense List) -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="product-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+    <div id="product-container" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-20 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
@@ -1016,7 +1022,8 @@
     let activeFormat = 'All';
     let activeAvailability = 'all';
     let viewMode = 'grid';
-    let layoutMode = 'desktop';
+    let layoutMode = localStorage.getItem('idoljapan_layout_mode') || 
+      ((window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop');
     let isClusteringEnabled = true;
     let maxPriceLimit = 20000;
     let searchQuery = '';
@@ -1029,7 +1036,7 @@
     let pendingRedirectSubId = 'direct';
 
     let currentPage = 1;
-    let itemsPerPage = 50;
+    let itemsPerPage = 48;
 
     const LAYOUT_MODE_KEY = 'idoljapan_layout_mode';
     const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
@@ -1877,7 +1884,7 @@
     }
 
     function changePerPage(countVal) {
-      itemsPerPage = parseInt(countVal, 10) || 50;
+      itemsPerPage = parseInt(countVal, 10) || 48;
       currentPage = 1;
       render();
     }
@@ -2734,11 +2741,11 @@
 
       updateStructuredData(paginatedEntities.map(e => e._primary));
 
-      // In Mobile Layout Mode, grid is always clean 2-column or 1-column list
+      // In Mobile Layout Mode: 2 columns; In Desktop Grid View: 4 columns
       if (layoutMode === 'mobile') {
         container.className = "grid grid-cols-2 gap-3";
       } else if (viewMode === 'grid') {
-        container.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4";
+        container.className = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
       } else {
         container.className = "flex flex-col space-y-2.5";
       }

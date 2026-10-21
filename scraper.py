@@ -1,7 +1,7 @@
 """
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
-Automated batch crawler with direct Person ID routing, multi-alias queries,
-robust multi-anchor grouping, and automatic item deduplication.
+Automated batch crawler with Playwright Chromium rendering, direct Person ID routing,
+archive EOA parameter support, and header/footer decomposition.
 """
 
 import os
@@ -14,6 +14,13 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
+# Try importing Playwright; fallback to requests if unavailable
+try:
+    from playwright.sync_api import sync_playwright
+    HAS_PLAYWRIGHT = True
+except ImportError:
+    HAS_PLAYWRIGHT = False
+
 # Global Configuration
 PRODUCTS_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
@@ -25,7 +32,7 @@ USER_AGENTS = [
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 ]
 
-# Targeted Franchise & Artist Master Registry
+# Master Registry
 ARTIST_REGISTRY = [
     # Hello! Project
     {
@@ -69,9 +76,8 @@ ARTIST_REGISTRY = [
         "category": "Hello! Project",
         "targets": [
             "Hello Pro Kenshusei",
-            "Hello Pro Kenshuusei",
             "ハロプロ研修生",
-            "Hello! Project Kenshusei"
+            "Hello Pro Kenshuusei"
         ]
     },
     {
@@ -126,7 +132,7 @@ ARTIST_REGISTRY = [
         "category": "Up-Front Alumni",
         "targets": ["Up Up Girls (Kari)", "アップアップガールズ(仮)"]
     },
-    # Up Up Girls (2)
+    # Up Up Girls (2) — Direct Person ID + Japanese Kanji/Katakana
     {
         "name": "Up Up Girls (2)",
         "category": "Up-Front Alumni",
@@ -293,23 +299,26 @@ def is_date_upcoming(date_str):
 
 def build_target_url(target, page=1):
     """
-    Directly routes person/series URLs or queries canonical /searches endpoint.
+    Constructs target search/person URLs including EOA (out of print) archives.
     """
     if target.startswith("http://") or target.startswith("https://"):
         sep = "&" if "?" in target else "?"
-        return f"{target}{sep}term.order=reldate_desc&page={page}"
+        return f"{target}{sep}page={page}&order=reldate_desc"
     else:
         encoded_q = urllib.parse.quote_plus(target)
-        return f"{BASE_URL}/searches?term.media_format=&q={encoded_q}&order=reldate_desc&page={page}"
+        return f"{BASE_URL}/searchuni?q={encoded_q}&order=reldate_desc&opt.include_eoa=1&page={page}"
 
 def extract_products_from_html(html_content, artist_name, category_name):
     soup = BeautifulSoup(html_content, "html.parser")
+    
+    # Decompose header, footer, nav, and sidebar widgets to avoid promo card leakage
+    for el in soup.select("header, footer, nav, aside, #header, #footer, .header, .footer, .global-nav, .cart-nav, .recommend_list, .ranking_list"):
+        el.decompose()
+
     extracted = []
     products_by_id = {}
 
-    # 1. Collect and group all product anchors on the page by SKU
     anchors = soup.select('a[href*="/product/"]')
-    
     for a in anchors:
         href = a.get("href", "")
         m = re.search(r'/product/([A-Za-z0-9\-]+)', href)
@@ -317,7 +326,6 @@ def extract_products_from_html(html_content, artist_name, category_name):
             continue
         pid = m.group(1).upper()
 
-        # Ignore internal utility links
         if pid in ["REVIEW", "CART", "SEARCH", "HELP", "RANKING", "INDEX"]:
             continue
 
@@ -327,21 +335,17 @@ def extract_products_from_html(html_content, artist_name, category_name):
                 "images": [],
                 "texts": []
             }
-
         products_by_id[pid]["anchors"].append(a)
 
-        # Check anchor text
         txt = clean_text(a.get_text())
-        if txt and len(txt) > 1 and txt.lower() not in ["buy", "order", "details", "pre-order", "view", "more", "add to cart", "cart"]:
+        if txt and len(txt) > 2 and txt.lower() not in ["buy", "order", "details", "pre-order", "view", "more", "add to cart", "cart", "next", "prev"]:
             products_by_id[pid]["texts"].append(txt)
 
-        # Check image alt attribute and image source inside anchor
         img = a.select_one("img")
         if img:
             alt = clean_text(img.get("alt", ""))
-            if alt and len(alt) > 1 and "cdjapan" not in alt.lower():
+            if alt and len(alt) > 2:
                 products_by_id[pid]["texts"].append(alt)
-
             src = img.get("data-original") or img.get("data-src") or img.get("src") or ""
             if src and "no_image" not in src:
                 if src.startswith("//"):
@@ -352,9 +356,7 @@ def extract_products_from_html(html_content, artist_name, category_name):
                     src.replace("/pictures/s/", "/pictures/l/").replace("/pictures/m/", "/pictures/l/")
                 )
 
-    # 2. Extract full details for each unique product ID
     for pid, data in products_by_id.items():
-        # Title: Select longest available title string
         title = ""
         if data["texts"]:
             title = max(data["texts"], key=len)
@@ -376,7 +378,6 @@ def extract_products_from_html(html_content, artist_name, category_name):
         if not title or len(title) < 2:
             continue
 
-        # Image
         image_url = ""
         if data["images"]:
             image_url = data["images"][0]
@@ -394,14 +395,12 @@ def extract_products_from_html(html_content, artist_name, category_name):
         if not image_url or "no_image" in image_url:
             image_url = f"https://www.cdjapan.co.jp/pictures/l/{pid}.jpg"
 
-        # Release Date
         release_date = "Available Now"
         card_text = card.get_text() if card else ""
         date_match = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', card_text)
         if date_match:
             release_date = f"{date_match.group(1)}/{date_match.group(2).zfill(2)}/{date_match.group(3).zfill(2)}"
 
-        # Price
         price_str = "Check CDJapan"
         price_match = re.search(r'([\d,]+)\s*(?:yen|JPY)', card_text, re.IGNORECASE)
         if price_match:
@@ -411,7 +410,6 @@ def extract_products_from_html(html_content, artist_name, category_name):
             if yen_match:
                 price_str = f"¥{yen_match.group(1)}"
 
-        # Availability
         card_text_lower = card_text.lower()
         if is_date_upcoming(release_date) or "pre-order" in card_text_lower:
             availability = "preorder"
@@ -438,34 +436,48 @@ def extract_products_from_html(html_content, artist_name, category_name):
 
     return extracted
 
-def scrape_artist_target(session, target, artist_name, category_name, max_pages=5):
+def fetch_html_content(url, playwright_page=None, requests_session=None):
+    """
+    Renders via Playwright Chromium if available; falls back to requests.Session.
+    """
+    if playwright_page:
+        for attempt in range(1, 4):
+            try:
+                playwright_page.goto(url, wait_until="domcontentloaded", timeout=40000)
+                try:
+                    playwright_page.wait_for_selector('a[href*="/product/"]', timeout=8000)
+                except Exception:
+                    pass
+                playwright_page.wait_for_timeout(1000)
+                return playwright_page.content()
+            except Exception as e:
+                time.sleep(attempt * 2.0)
+        return ""
+    elif requests_session:
+        for attempt in range(1, 4):
+            try:
+                resp = requests_session.get(url, headers=get_request_headers(), timeout=15)
+                if resp.status_code == 200:
+                    return resp.text
+            except Exception:
+                time.sleep(attempt * 2.0)
+        return ""
+    return ""
+
+def scrape_artist_target(target, artist_name, category_name, playwright_page=None, requests_session=None, max_pages=3):
     total_found = []
     seen_ids = set()
 
     for page in range(1, max_pages + 1):
         url = build_target_url(target, page=page)
-        success = False
-        items = []
-
-        for attempt in range(1, 4):
-            try:
-                resp = session.get(url, headers=get_request_headers(), timeout=15)
-                if resp.status_code == 200 and len(resp.text) > 1000:
-                    items = extract_products_from_html(resp.text, artist_name, category_name)
-                    success = True
-                    break
-                elif resp.status_code == 404:
-                    success = True
-                    break
-                else:
-                    time.sleep(attempt * 2.0)
-            except Exception:
-                time.sleep(attempt * 2.5)
-
-        if not success or not items:
+        html = fetch_html_content(url, playwright_page=playwright_page, requests_session=requests_session)
+        if not html:
             break
 
-        # Deduplicate across pages
+        items = extract_products_from_html(html, artist_name, category_name)
+        if not items:
+            break
+
         new_on_page = 0
         for it in items:
             if it["id"] not in seen_ids:
@@ -476,14 +488,11 @@ def scrape_artist_target(session, target, artist_name, category_name, max_pages=
         if new_on_page == 0:
             break
 
-        time.sleep(random.uniform(1.2, 2.4))
+        time.sleep(random.uniform(0.8, 1.6))
 
     return total_found
 
 def get_filtered_registry():
-    """
-    Filters ARTIST_REGISTRY if TARGET_ARTIST environment variable is set.
-    """
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
     if not raw_filter or raw_filter.lower() == "all groups":
         return ARTIST_REGISTRY
@@ -497,6 +506,7 @@ def get_filtered_registry():
 
 def run_catalog_sync():
     print(f"🚀 Starting IdolJapan Catalog Scraper Sync at {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}...")
+    print(f"⚙️ Engine Mode: {'Playwright Headless Chromium' if HAS_PLAYWRIGHT else 'Requests (Fallback)'}")
 
     active_registry = get_filtered_registry()
     print(f"📋 Active Filter: Running {len(active_registry)} artist group(s): {[a['name'] for a in active_registry]}")
@@ -510,45 +520,71 @@ def run_catalog_sync():
         except Exception as e:
             print(f"Warning: Could not read existing {PRODUCTS_FILE}: {e}")
 
-    session = requests.Session()
     total_new_or_updated = 0
 
-    for artist_cfg in active_registry:
-        canonical_name = artist_cfg["name"]
-        category = artist_cfg["category"]
-        targets = artist_cfg.get("targets", [canonical_name])
+    # Initialize crawler engine
+    playwright_instance = None
+    browser = None
+    playwright_page = None
+    requests_session = None
 
-        print(f"\nScanning: {canonical_name} ({category}) across {len(targets)} targets...")
-        artist_items_map = {}
+    if HAS_PLAYWRIGHT:
+        playwright_instance = sync_playwright().start()
+        browser = playwright_instance.chromium.launch(headless=True)
+        context = browser.new_context(
+            user_agent=random.choice(USER_AGENTS),
+            locale="en-US"
+        )
+        playwright_page = context.new_page()
+    else:
+        requests_session = requests.Session()
 
-        for target in targets:
-            found_items = scrape_artist_target(session, target, canonical_name, category)
-            print(f"  Target '{target}' -> Extracted {len(found_items)} items.")
+    try:
+        for artist_cfg in active_registry:
+            canonical_name = artist_cfg["name"]
+            category = artist_cfg["category"]
+            targets = artist_cfg.get("targets", [canonical_name])
 
-            for item in found_items:
-                pid = item["id"]
-                if pid not in artist_items_map:
-                    artist_items_map[pid] = item
-                else:
-                    if artist_items_map[pid]["price"] == "Check CDJapan" and item["price"] != "Check CDJapan":
-                        artist_items_map[pid]["price"] = item["price"]
-                        artist_items_map[pid]["price_num"] = item["price_num"]
+            print(f"\nScanning: {canonical_name} ({category}) across {len(targets)} targets...")
+            artist_items_map = {}
 
-        print(f"  ==> Total unique releases for {canonical_name}: {len(artist_items_map)}")
+            for target in targets:
+                found_items = scrape_artist_target(
+                    target, 
+                    canonical_name, 
+                    category, 
+                    playwright_page=playwright_page, 
+                    requests_session=requests_session
+                )
+                print(f"  Target '{target}' -> Extracted {len(found_items)} items.")
 
-        # Merge extracted items into main catalog
-        for pid, item in artist_items_map.items():
-            if pid not in existing_catalog or existing_catalog[pid] != item:
-                existing_catalog[pid] = item
-                total_new_or_updated += 1
+                for item in found_items:
+                    pid = item["id"]
+                    if pid not in artist_items_map:
+                        artist_items_map[pid] = item
+                    else:
+                        if artist_items_map[pid]["price"] == "Check CDJapan" and item["price"] != "Check CDJapan":
+                            artist_items_map[pid]["price"] = item["price"]
+                            artist_items_map[pid]["price_num"] = item["price_num"]
 
-        time.sleep(random.uniform(1.0, 2.0))
+            print(f"  ==> Total unique releases for {canonical_name}: {len(artist_items_map)}")
 
-    # Persist updated catalog
+            for pid, item in artist_items_map.items():
+                if pid not in existing_catalog or existing_catalog[pid] != item:
+                    existing_catalog[pid] = item
+                    total_new_or_updated += 1
+
+            time.sleep(random.uniform(0.5, 1.2))
+
+    finally:
+        if browser:
+            browser.close()
+        if playwright_instance:
+            playwright_instance.stop()
+
     with open(PRODUCTS_FILE, "w", encoding="utf-8") as f:
         json.dump(existing_catalog, f, ensure_ascii=False, indent=2)
 
-    # Persist scraper state
     state_data = {
         "last_sync": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
         "total_catalog_size": len(existing_catalog),

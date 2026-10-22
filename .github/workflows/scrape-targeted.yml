@@ -1,10 +1,19 @@
-name: Targeted Idol CDJapan Scraper
+name: Targeted Idol Scraper & Catalog Date Healer
 
 on:
   workflow_dispatch:
     inputs:
+      action_mode:
+        description: 'Action to execute:'
+        required: true
+        default: 'Scrape Targeted Artist'
+        type: choice
+        options:
+          - 'Scrape Targeted Artist'
+          - 'Heal Catalog Release Dates'
+          - 'Full Pipeline (Scrape + Heal Dates + Clean)'
       target_artist:
-        description: 'Choose group/soloist to deep scrape:'
+        description: 'Group/Soloist to scrape (if running Scrape):'
         required: true
         default: 'All Groups'
         type: choice
@@ -90,12 +99,19 @@ on:
           - 'BABYMETAL'
           - 'Sakura Gakuin'
       page_depth:
-        description: 'Pagination depth per query search (pages):'
+        description: 'Pagination depth per query (pages):'
         required: true
         default: '100'
+      heal_batch_size:
+        description: 'Number of dates to repair (if running Date Healer):'
+        required: true
+        default: '250'
+
+permissions:
+  contents: write
 
 jobs:
-  scrape-targeted:
+  run-pipeline:
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -109,21 +125,32 @@ jobs:
           python-version: '3.11'
 
       - name: Install System Dependencies for Playwright
+        if: ${{ github.event.inputs.action_mode == 'Scrape Targeted Artist' || github.event.inputs.action_mode == 'Full Pipeline (Scrape + Heal Dates + Clean)' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0
 
-      - name: Install Python Libraries & Browsers
+      - name: Install Python Libraries
         run: |
-          pip install playwright beautifulsoup4 requests
-          playwright install chromium
+          pip install requests beautifulsoup4 playwright
+          if [ "${{ github.event.inputs.action_mode }}" != "Heal Catalog Release Dates" ]; then
+            playwright install chromium
+          fi
 
       - name: Execute Targeted CDJapan Scraper
+        if: ${{ github.event.inputs.action_mode == 'Scrape Targeted Artist' || github.event.inputs.action_mode == 'Full Pipeline (Scrape + Heal Dates + Clean)' }}
         env:
           TARGET_ARTIST: ${{ github.event.inputs.target_artist }}
           PAGES_PER_TARGET: ${{ github.event.inputs.page_depth }}
         run: |
           python -u scraper.py
+
+      - name: Execute Catalog Date Healer
+        if: ${{ github.event.inputs.action_mode == 'Heal Catalog Release Dates' || github.event.inputs.action_mode == 'Full Pipeline (Scrape + Heal Dates + Clean)' }}
+        env:
+          BATCH_SIZE: ${{ github.event.inputs.heal_batch_size }}
+        run: |
+          python -u repair_catalog_dates.py
 
       - name: Re-align & Synchronize Catalog
         run: |
@@ -133,6 +160,6 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Auto Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json scraper_state.json pruned_items.txt search_aliases.json
-          git diff --staged --quiet || git commit -m "Targeted scrape & classification sync [${{ github.event.inputs.target_artist }}]"
+          git add products.json catalog-index.json repair_progress.json scraper_state.json pruned_items.txt search_aliases.json
+          git diff --staged --quiet || git commit -m "Automated catalog update [Mode: ${{ github.event.inputs.action_mode }}] [skip ci]"
           git push

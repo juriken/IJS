@@ -3,6 +3,7 @@ IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
 Deep pagination support with automatic early-exit and date preservation.
+Includes embedded false-positive and boyband negative filters.
 """
 
 import json
@@ -32,12 +33,35 @@ MONTH_MAP = {
     "october": 10, "november": 11, "december": 12
 }
 
+# Complete Hello! Project & Up-Front Catalog Code Prefixes
+ALL_UPFRONT_PREFIXES = (
+    "EPCE", "EPBE", "EPXE", "EPTE", "EPDE",
+    "PKCP", "PKBP",
+    "HKCN", "HKBN", "HKXN",
+    "UFBW", "UFXW",
+    "TGBS", "TGXF",
+    "DAKU", "DCFGDS", "NEOODY"
+)
+
 TANPOPO_AUTHENTIC_SIGNATURES = [
     "last kiss", "motto", "seinaru kane", "otome pasta",
     "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
     "tanpopo 1", "all of tanpopo", "single v clips"
 ]
-TANPOPO_VALID_PREFIXES = ("EPCE", "EPBE", "EPTE", "EPDE", "PKCP", "PKBP", "UFBW", "UFXW")
+
+COUNTRY_GIRLS_SIGNATURES = [
+    "country girls", "country musume", "カントリー・ガールズ", "カントリー娘",
+    "tsugunaga", "嗣永桃子",
+    "yamaki", "山木梨沙",
+    "inaba", "稲場愛香",
+    "morito", "森戸知沙希",
+    "ozeki", "小関舞",
+    "shimamura", "島村嬉唄",
+    "yanagawa", "梁川奈々美",
+    "funaki", "船木結",
+    "satoda", "里田まい",
+    "engeki joshi bu", "engeki jyoshi bu", "演劇女子部", "kizetsu suru", "気絶するほど"
+]
 
 NOIME_AUTHENTIC_SIGNATURES = [
     "≠me", "not equal me", "ノイミー", "noime",
@@ -53,6 +77,25 @@ NIAGO_AUTHENTIC_SIGNATURES = [
     "waratte flatte", "chou kodoku", "taiikukan disco", "shonichi",
     "kitto, aoi", "yuransen", "daisuki da", "hatsukoi sync", "kimi to watashi no uta",
     "muda de ii", "yubiwa to aribai", "watashi, idol sengen"
+]
+
+MALE_BOYBAND_PATTERNS = [
+    r"\bsnow man\b", r"\bsixtones\b", r"\bking & prince\b", r"\bnaniwa danshi\b",
+    r"\bhey! say! jump\b", r"\bsexy zone\b", r"\btimelesz\b", r"\btravis japan\b",
+    r"\bkis-my-ft2\b", r"\bkanjani\b", r"\bsuper eight\b", r"\bkat-tun\b",
+    r"\bwest\.\b", r"\barashi\b", r"\bexile\b", r"\bsandaime\b", r"\bgenerations\b",
+    r"\bthe rampage\b", r"\bfantastics\b", r"\bballistik boyz\b", r"\bjo1\b", r"\bini\b",
+    r"\bbe:first\b", r"\bmazzel\b", r"\b&team\b", r"\bstray kids\b",
+    r"\btomorrow x together\b", r"\btxt\b", r"\bseventeen\b", r"\bbts\b",
+    r"\benhypen\b", r"\bnct\b", r"\bateez\b", r"\bzerobaseone\b", r"\briize\b"
+]
+
+NON_IDOL_MEDIA_PATTERNS = [
+    r"\bkamen rider\b", r"\bgundam\b", r"\bdragon ball\b", r"\bone piece\b",
+    r"\bdetective conan\b", r"\bpokemon\b", r"\bdigimon\b", r"\byu-gi-oh\b",
+    r"\btouken ranbu\b", r"\bhypnosis mic\b", r"\bensemble stars\b",
+    r"\btwisted wonderland\b", r"\bjujutsu kaisen\b", r"\bdemon slayer\b",
+    r"\bclassical guitar\b", r"\bbluegrass\b", r"\bboard game\b"
 ]
 
 TARGET_GROUPS = [
@@ -87,9 +130,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
-    ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], [
-        "Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"
-    ]),
+    ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], COUNTRY_GIRLS_SIGNATURES),
     ("Hello! Project", "Kobushi Factory", [
         "Kobushi-Factory", "Kobushi Factory", "こぶしファクトリー"
     ], [
@@ -202,7 +243,7 @@ TARGET_GROUPS = [
     # Babymetal & Amuse Roots
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
     ("Babymetal", "Sakura Gakuin", ["Sakura Gakuin", "さくら学院"], ["Sakura Gakuin", "さくら学院", "BABYMETAL"]),
-    ("@onefive", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
+    ("Babymetal", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
 ]
 
 def load_catalog():
@@ -281,27 +322,96 @@ def is_date_upcoming(date_str):
     today_val = (now.year * 10000) + (now.month * 100) + now.day
     return val > today_val
 
+def is_upfront_affiliated(pid, title_lower):
+    pid_upper = pid.upper()
+    if any(pid_upper.startswith(pfx) for pfx in ALL_UPFRONT_PREFIXES):
+        return True
+    if any(h in title_lower for h in ["hello! project", "ハロー!プロジェクト", "ハロプロ", "e-lineup", "up-front", "アップフロント", "演劇女子部"]):
+        return True
+    return False
+
 def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_direct_person=False):
     if is_direct_person:
         return True
 
-    if not keywords:
-        return True
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    if canonical_artist == "Tanpopo":
-        if not any(pid_upper.startswith(pfx) for pfx in TANPOPO_VALID_PREFIXES):
-            return False
-        has_name = "tanpopo" in lower_text or "タンポポ" in card_text or "たんぽぽ" in card_text
-        if not has_name:
-            return False
-        return any(sig in lower_text or sig in pid_upper.lower() for sig in keywords)
+    # 1. Global Filter: Block Male Boyband Releases
+    for pat in MALE_BOYBAND_PATTERNS:
+        if re.search(pat, lower_text):
+            # Allow only if a known female idol is explicitly on the cover
+            has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
+            if not has_female_artist:
+                return False
 
-    if canonical_artist == "v-u-den":
-        if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
+    # 2. Global Filter: Block Non-Idol Media Leaks (Games, Anime, Western Folk)
+    for pat in NON_IDOL_MEDIA_PATTERNS:
+        if re.search(pat, lower_text):
+            has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
+            if not has_female_artist:
+                return False
+
+    # 3. Dedicated Guard: Country Girls
+    if canonical_artist == "Country Girls":
+        if is_upfront_affiliated(prod_key, lower_text):
             return True
+        if any(sig in lower_text for sig in COUNTRY_GIRLS_SIGNATURES):
+            return True
+        if any(w in lower_text for w in ["nashville", "bluegrass", "country & western", "country gold", "best of country"]):
+            return False
+        return False
 
+    # 4. Dedicated Guard: W (Double You)
+    if canonical_artist == "W":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        has_w_sig = any(w in lower_text for w in [
+            "ダブルユー", "double you", "w (double you)", "tsuji", "kago",
+            "辻希美", "加護亜依", "robo kiss", "koi no vacance", "ai no imi", "miss love"
+        ])
+        return has_w_sig
+
+    # 5. Dedicated Guard: Tanpopo
+    if canonical_artist == "Tanpopo":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        return any(sig in lower_text for sig in TANPOPO_AUTHENTIC_SIGNATURES)
+
+    # 6. Dedicated Guard: GAM
+    if canonical_artist == "GAM":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        return any(s in lower_text for s in ["matsuura", "fujimoto", "1st gam", "melodies", "lu lu lu", "ギャム"])
+
+    # 7. Dedicated Guard: IS:SUE (Avoid generic magazine issues)
+    if canonical_artist == "IS:SUE":
+        is_real_issue = (
+            "is:sue" in lower_text or
+            "イッシュ" in card_text or
+            "1st is:sue" in lower_text or
+            "connect" in lower_text or
+            "static" in lower_text or
+            pid_upper.startswith("UMCK") or
+            pid_upper.startswith("UPCH") or
+            any(m in lower_text for m in ["rin", "nanami", "yuuki", "rino"])
+        )
+        if not is_real_issue and ("issue" in lower_text or "february" in lower_text or "october" in lower_text):
+            return False
+        return is_real_issue
+
+    # 8. Dedicated Guard: Not yet
+    if canonical_artist == "Not yet":
+        has_notyet_sig = (
+            "ノットイェット" in card_text or
+            "not yet" in lower_text or
+            pid_upper.startswith("COCA") or pid_upper.startswith("COZA") or pid_upper.startswith("COBA") or
+            any(s in lower_text for s in ["shuumatsu", "naminori", "perapera", "suika baby", "hirihiri", "already"]) or
+            any(m in lower_text for m in ["oshima yuko", "sashihara", "kitahara", "yokoyama yui"])
+        )
+        return has_notyet_sig
+
+    # 9. Dedicated Guard: Up Up Girls Units
     if canonical_artist == "Up Up Girls (Kari)":
         if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text:
             return False
@@ -310,6 +420,7 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
         if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text or "up up girls 2" in lower_text:
             return True
 
+    # 10. Dedicated Guards: Sister Groups
     if canonical_artist == "≠ME":
         if "≠me" in lower_text or "ノイミー" in card_text or "not equal me" in lower_text or "noime" in lower_text:
             return True
@@ -320,9 +431,11 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             return True
         return any(sig in lower_text for sig in NIAGO_AUTHENTIC_SIGNATURES)
 
+    # Standard Keyword Verification
     for kw in keywords:
         kw_clean = kw.strip().lower()
         if len(kw_clean) <= 2:
+            # Single or two-letter queries like "w" must NOT match loose text
             if re.search(r"\b" + re.escape(kw_clean) + r"\b", lower_text):
                 return True
         else:
@@ -509,7 +622,11 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
     
     print(f"\n-> Querying: {canonical_artist} ('{sanitized_target}') [Max Depth: {max_pages} pages]", flush=True)
 
-    effective_keywords = list(set([k.lower() for k in keywords] + [target_query_or_url.lower(), sanitized_target.lower()]))
+    # Protect single-letter terms from becoming loose wildcard keywords
+    target_kws = [k.lower() for k in keywords]
+    if len(sanitized_target) > 2:
+        target_kws.extend([target_query_or_url.lower(), sanitized_target.lower()])
+    effective_keywords = list(set(target_kws))
 
     for p_num in range(1, max_pages + 1):
         if is_direct_person:

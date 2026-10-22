@@ -27,13 +27,29 @@ def load_catalog_data():
 
     return {}
 
+def is_calendar_valid(year, month, day):
+    try:
+        datetime(year, month, day)
+        return True
+    except (ValueError, OverflowError):
+        return False
+
 def parse_date_for_sorting(item):
     d_str = str(item.get("release_date", "")).strip()
-    if not d_str or d_str.lower() == "available now":
+    if not d_str or d_str.lower() in ["available now", "check cdjapan"]:
         return 0
     m = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', d_str)
     if m:
-        return (int(m.group(1)) * 10000) + (int(m.group(2)) * 100) + int(m.group(3))
+        y, mon, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if is_calendar_valid(y, mon, day):
+            return (y * 10000) + (mon * 100) + day
+    
+    m_ym = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})\b', d_str)
+    if m_ym:
+        y, mon = int(m_ym.group(1)), int(m_ym.group(2))
+        if 1 <= mon <= 12:
+            return (y * 10000) + (mon * 100) + 1
+            
     return 0
 
 def format_rfc822_date(date_num):

@@ -2,7 +2,8 @@
 IdolJapan.store — Intelligent Database Cleanser & Category Validator
 Safely re-aligns all soloists, subunits, and franchise categories across the 77-idol roster,
 extracts solo releases misfiled under parent groups, resolves legacy category strings,
-and strictly protects all authentic singles, albums, and DVDs from being pruned.
+strictly protects all authentic singles, albums, and DVDs from being pruned,
+and synchronizes both products.json AND catalog-index.json simultaneously.
 """
 
 import json
@@ -11,6 +12,7 @@ import re
 from datetime import datetime
 
 DATA_FILE = "products.json"
+INDEX_FILE = "catalog-index.json"
 STATE_FILE = "scraper_state.json"
 PRUNED_LOG_FILE = "pruned_items.txt"
 
@@ -157,7 +159,6 @@ def check_false_positive(item):
     artist = str(item.get("artist", "")).strip()
     pid = str(item.get("id", "")).upper()
 
-    # If it is not in our 77 recognized roster at all, discard
     if artist not in CANONICAL_ARTIST_MAP:
         return True, f"Artist '{artist}' not in recognized 77-idol roster"
 
@@ -179,7 +180,7 @@ def check_false_positive(item):
             if not has_our_idol:
                 return True, f"Unrelated anime/game leak: matches '{pat}'"
 
-    # Generic search leaks on word "you" (e.g. Tokuma Japan "Thank you" albums)
+    # Generic search leaks on word "you" (e.g. Tokuma Japan non-Kikkawa albums)
     if artist == "You Kikkawa":
         if pid.startswith("TKCA") and "kikkawa" not in title_lower and "吉川友" not in title:
             return True, "Non-Kikkawa album matching common English word 'you'"
@@ -330,8 +331,12 @@ def main():
 
         cleaned_catalog[pid] = item
 
-    # Save cleaned catalog
+    # 1. Save cleaned products.json
     with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
+
+    # 2. ALSO save directly to catalog-index.json so the website loads it immediately!
+    with open(INDEX_FILE, "w", encoding="utf-8") as f:
         json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
 
     # Save full pruned log
@@ -375,7 +380,7 @@ def main():
             print(f"[{idx}/{len(pruned_records)}] ❌ [{p_id}] {p_title} — Reason: {p_reason}")
 
     print("==========================================")
-    print("Catalog Audit Complete. All authentic idol releases preserved.")
+    print("Catalog Audit Complete. products.json and catalog-index.json are now synchronized.")
     print("==========================================")
 
 if __name__ == "__main__":

@@ -138,11 +138,15 @@ TARGET_GROUPS = [
     ("AKB48 Group", "STU48", ["STU48"], ["STU48"]),
     ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
 
-    # Sakamichi Series
+    # Sakamichi Series (Keyakizaka46 unified into Sakurazaka46)
     ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
-    ("Sakamichi Series", "Sakurazaka46", ["Sakurazaka46", "櫻坂46"], ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
+    ("Sakamichi Series", "Sakurazaka46", [
+        "Sakurazaka46", "櫻坂46", "Keyakizaka46", "欅坂46"
+    ], [
+        "Sakurazaka46", "Sakurazaka", "櫻坂46", "櫻坂",
+        "Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"
+    ]),
     ("Sakamichi Series", "Hinatazaka46", ["Hinatazaka46", "日向坂46"], ["Hinatazaka46", "Hinatazaka", "日向坂"]),
-    ("Sakamichi Series", "Keyakizaka46", ["Keyakizaka46", "欅坂46"], ["Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"]),
     ("Sakamichi Series", "22/7", ["22/7", "ナナブンノニジュウニ"], ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
 
     # Stardust Planet
@@ -541,6 +545,9 @@ def get_active_targets():
 
     if "angerme" in raw_filter.lower() or "s/mileage" in raw_filter.lower():
         return [g for g in TARGET_GROUPS if g[1] == "ANGERME"]
+
+    if "sakurazaka" in raw_filter.lower() or "keyakizaka" in raw_filter.lower():
+        return [g for g in TARGET_GROUPS if g[1] == "Sakurazaka46"]
 
     matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
     return matched if matched else TARGET_GROUPS

@@ -5,6 +5,17 @@ on:
     # Runs every Sunday at 03:15 UTC
     - cron: '15 3 * * 0'
   workflow_dispatch:
+    inputs:
+      reset_history:
+        description: 'Restart check from the beginning (clear history)?'
+        required: false
+        default: false
+        type: boolean
+      batch_size:
+        description: 'Number of items to audit in this run:'
+        required: false
+        default: '500'
+        type: string
 
 permissions:
   contents: write
@@ -14,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHONUNBUFFERED: "1"
+      HEALTHCHECK_BATCH_SIZE: ${{ github.event.inputs.batch_size || '500' }}
+      RESET_HEALTHCHECK: ${{ github.event.inputs.reset_history || 'false' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,27 +41,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Clean & Audit Catalog (Prune Non-Idols & Fix Categories)
+      - name: Step 1 - Clean & Audit Catalog (Prune Non-Idols & Fix Categories)
         run: |
           python clean_catalog.py
 
-      - name: Run URL & Availability Health Check
+      - name: Step 2 - Run URL & Availability Health Check
         run: |
           python healthcheck.py
 
-      - name: Rebuild Catalog Summary Index
+      - name: Step 3 - Rebuild Catalog Summary Index
         run: |
           python build_catalog.py || python build_summary.py
 
-      - name: Validate Catalog After Healthcheck
+      - name: Step 4 - Validate Catalog After Healthcheck
         run: |
           python validate_catalog.py
 
-      - name: Auto-Generate XML Sitemap
+      - name: Step 5 - Auto-Generate XML Sitemap
         run: |
           python generate_sitemap.py
 
-      - name: Commit and Push Healthcheck Updates
+      - name: Step 6 - Commit and Push Healthcheck Updates
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"

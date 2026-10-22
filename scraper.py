@@ -20,7 +20,6 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Deep Scraping Page Limits (100 pages for all query passes)
 DEFAULT_PAGES_ALL = 100
 DEFAULT_PAGES_TARGETED = 100
 
@@ -33,7 +32,6 @@ MONTH_MAP = {
     "october": 10, "november": 11, "december": 12
 }
 
-# Complete Hello! Project & Up-Front Catalog Code Prefixes
 ALL_UPFRONT_PREFIXES = (
     "EPCE", "EPBE", "EPXE", "EPTE", "EPDE",
     "PKCP", "PKBP",
@@ -51,15 +49,9 @@ TANPOPO_AUTHENTIC_SIGNATURES = [
 
 COUNTRY_GIRLS_SIGNATURES = [
     "country girls", "country musume", "カントリー・ガールズ", "カントリー娘",
-    "tsugunaga", "嗣永桃子",
-    "yamaki", "山木梨沙",
-    "inaba", "稲場愛香",
-    "morito", "森戸知沙希",
-    "ozeki", "小関舞",
-    "shimamura", "島村嬉唄",
-    "yanagawa", "梁川奈々美",
-    "funaki", "船木結",
-    "satoda", "里田まい",
+    "tsugunaga", "嗣永桃子", "yamaki", "山木梨沙", "inaba", "稲場愛香",
+    "morito", "森戸知沙希", "ozeki", "小関舞", "shimamura", "島村嬉唄",
+    "yanagawa", "梁川奈々美", "funaki", "船木結", "satoda", "里田まい",
     "engeki joshi bu", "engeki jyoshi bu", "演劇女子部", "kizetsu suru", "気絶するほど"
 ]
 
@@ -98,6 +90,13 @@ NON_IDOL_MEDIA_PATTERNS = [
     r"\bclassical guitar\b", r"\bbluegrass\b", r"\bboard game\b"
 ]
 
+PROTECTED_SUBUNITS = {
+    "Tanpopo", "Minimoni", "W", "v-u-den", "GAM",
+    "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa",
+    "Maki Goto", "Aya Matsuura", "Natsumi Abe", "Miki Fujimoto",
+    "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!"
+}
+
 TARGET_GROUPS = [
     # Hello! Project — Active Groups & Units
     ("Hello! Project", "Morning Musume", [
@@ -126,7 +125,7 @@ TARGET_GROUPS = [
     ]),
 
     # Hello! Project — Past Groups & Subunits
-    ("Hello! Project", "Minimoni", ["Minimoni", "ミニモニ"], ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
+    ("Hello! Project", "Minimoni", ["Minimoni", "ミニモニ", "ミニモニ。"], ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
     ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
@@ -138,8 +137,8 @@ TARGET_GROUPS = [
     ]),
     ("Hello! Project", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", ["Tanpopo", "タンポポ"], TANPOPO_AUTHENTIC_SIGNATURES),
-    ("Hello! Project", "v-u-den", ["Biyuden", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
-    ("Hello! Project", "W", ["W (Double You)", "ダブルユー"], ["W (Double You)", "ダブルユー", "Nozomi Tsuji", "Ai Kago"]),
+    ("Hello! Project", "v-u-den", ["Biyuden", "v-u-den", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
+    ("Hello! Project", "W", ["W (Double You)", "ダブルユー", "W [Double You]"], ["W (Double You)", "ダブルユー", "Nozomi Tsuji", "Ai Kago", "w [double you]"]),
     ("Hello! Project", "GAM", ["GAM", "ギャム"], ["GAM", "ギャム", "Aya Matsuura", "Miki Fujimoto"]),
     ("Hello! Project", "Taiyo to Ciscomoon", ["太陽とシスコムーン", "Taiyo to Ciscomoon"], ["太陽とシスコムーン", "Taiyo to Ciscomoon", "T&Cボンバー", "T&C Bomber"]),
 
@@ -157,7 +156,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
     ("Hello! Project", "Miki Fujimoto", ["Miki Fujimoto", "藤本美貴"], ["Miki Fujimoto", "Fujimoto Miki", "藤本美貴", "Mikitty"]),
-    ("Hello! Project", "Tsukishima Kirari", ["月島きらり", "Tsukishima Kirari"], ["月島きらり", "Tsukishima Kirari", "久住小春", "Koharu Kusumi"]),
+    ("Hello! Project", "Tsukishima Kirari", ["月島きらり", "Tsukishima Kirari", "きらりん☆レボリューション"], ["月島きらり", "Tsukishima Kirari", "久住小春", "Koharu Kusumi", "きらりん"]),
 
     # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
@@ -243,7 +242,7 @@ TARGET_GROUPS = [
     # Babymetal & Amuse Roots
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
     ("Babymetal", "Sakura Gakuin", ["Sakura Gakuin", "さくら学院"], ["Sakura Gakuin", "さくら学院", "BABYMETAL"]),
-    ("Babymetal", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
+    ("@onefive", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
 ]
 
 def load_catalog():
@@ -337,22 +336,18 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    # 1. Global Filter: Block Male Boyband Releases
     for pat in MALE_BOYBAND_PATTERNS:
         if re.search(pat, lower_text):
-            # Allow only if a known female idol is explicitly on the cover
             has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
             if not has_female_artist:
                 return False
 
-    # 2. Global Filter: Block Non-Idol Media Leaks (Games, Anime, Western Folk)
     for pat in NON_IDOL_MEDIA_PATTERNS:
         if re.search(pat, lower_text):
             has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
             if not has_female_artist:
                 return False
 
-    # 3. Dedicated Guard: Country Girls
     if canonical_artist == "Country Girls":
         if is_upfront_affiliated(prod_key, lower_text):
             return True
@@ -362,29 +357,46 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             return False
         return False
 
-    # 4. Dedicated Guard: W (Double You)
     if canonical_artist == "W":
         if is_upfront_affiliated(prod_key, lower_text):
             return True
         has_w_sig = any(w in lower_text for w in [
-            "ダブルユー", "double you", "w (double you)", "tsuji", "kago",
+            "ダブルユー", "double you", "w (double you)", "w [double you]", "tsuji", "kago",
             "辻希美", "加護亜依", "robo kiss", "koi no vacance", "ai no imi", "miss love"
         ])
         return has_w_sig
 
-    # 5. Dedicated Guard: Tanpopo
     if canonical_artist == "Tanpopo":
         if is_upfront_affiliated(prod_key, lower_text):
             return True
         return any(sig in lower_text for sig in TANPOPO_AUTHENTIC_SIGNATURES)
 
-    # 6. Dedicated Guard: GAM
     if canonical_artist == "GAM":
         if is_upfront_affiliated(prod_key, lower_text):
             return True
         return any(s in lower_text for s in ["matsuura", "fujimoto", "1st gam", "melodies", "lu lu lu", "ギャム"])
 
-    # 7. Dedicated Guard: IS:SUE (Avoid generic magazine issues)
+    if canonical_artist == "Minimoni":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        return any(s in lower_text for s in ["minimoni", "mini moni", "ミニモニ", "mini-moni"])
+
+    if canonical_artist == "v-u-den":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        return any(s in lower_text for s in ["v-u-den", "biyuden", "美勇伝", "ishikawa rika", "ajisai ai ai"])
+
+    if canonical_artist == "Tsukishima Kirari":
+        return any(s in lower_text for s in ["tsukishima kirari", "月島きらり", "kusumi koharu", "久住小春", "kirarin", "きらりん"])
+
+    if canonical_artist == "Taiyo to Ciscomoon":
+        if is_upfront_affiliated(prod_key, lower_text):
+            return True
+        return any(s in lower_text for s in ["taiyo to ciscomoon", "太陽とシスコムーン", "t&c bomber", "t&cボンバー"])
+
+    if canonical_artist == "You Kikkawa":
+        return any(s in lower_text for s in ["kikkawa you", "you kikkawa", "kikkawa yu", "吉川友"])
+
     if canonical_artist == "IS:SUE":
         is_real_issue = (
             "is:sue" in lower_text or
@@ -400,18 +412,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             return False
         return is_real_issue
 
-    # 8. Dedicated Guard: Not yet
-    if canonical_artist == "Not yet":
-        has_notyet_sig = (
-            "ノットイェット" in card_text or
-            "not yet" in lower_text or
-            pid_upper.startswith("COCA") or pid_upper.startswith("COZA") or pid_upper.startswith("COBA") or
-            any(s in lower_text for s in ["shuumatsu", "naminori", "perapera", "suika baby", "hirihiri", "already"]) or
-            any(m in lower_text for m in ["oshima yuko", "sashihara", "kitahara", "yokoyama yui"])
-        )
-        return has_notyet_sig
-
-    # 9. Dedicated Guard: Up Up Girls Units
     if canonical_artist == "Up Up Girls (Kari)":
         if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text:
             return False
@@ -420,22 +420,9 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
         if "(2)" in lower_text or "（2）" in card_text or "アプガ2" in card_text or "up up girls 2" in lower_text:
             return True
 
-    # 10. Dedicated Guards: Sister Groups
-    if canonical_artist == "≠ME":
-        if "≠me" in lower_text or "ノイミー" in card_text or "not equal me" in lower_text or "noime" in lower_text:
-            return True
-        return any(sig in lower_text for sig in NOIME_AUTHENTIC_SIGNATURES)
-
-    if canonical_artist == "≒JOY":
-        if "nearly equal" in lower_text or "≒joy" in lower_text or "ニアジョイ" in card_text:
-            return True
-        return any(sig in lower_text for sig in NIAGO_AUTHENTIC_SIGNATURES)
-
-    # Standard Keyword Verification
     for kw in keywords:
         kw_clean = kw.strip().lower()
         if len(kw_clean) <= 2:
-            # Single or two-letter queries like "w" must NOT match loose text
             if re.search(r"\b" + re.escape(kw_clean) + r"\b", lower_text):
                 return True
         else:
@@ -622,7 +609,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
     
     print(f"\n-> Querying: {canonical_artist} ('{sanitized_target}') [Max Depth: {max_pages} pages]", flush=True)
 
-    # Protect single-letter terms from becoming loose wildcard keywords
     target_kws = [k.lower() for k in keywords]
     if len(sanitized_target) > 2:
         target_kws.extend([target_query_or_url.lower(), sanitized_target.lower()])
@@ -792,10 +778,17 @@ def main():
                         new_total += 1
                         catalog[pid] = it
                     else:
+                        # Protect specific subunits from being overwritten by parent queries
+                        existing_artist = str(catalog[pid].get("artist", "")).strip()
+                        if existing_artist in PROTECTED_SUBUNITS and it["artist"] not in PROTECTED_SUBUNITS:
+                            # Preserve the subunit classification
+                            it["artist"] = existing_artist
+
                         existing_date = str(catalog[pid].get("release_date", "")).strip()
                         new_date = str(it.get("release_date", "")).strip()
                         if existing_date and existing_date != "Available Now" and (not new_date or new_date == "Available Now"):
                             it["release_date"] = existing_date
+
                         catalog[pid] = it
 
                 print(

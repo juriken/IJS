@@ -143,7 +143,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU)..." 
+            placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU, 宮本佳林)..." 
             class="w-full pl-10 pr-9 py-2 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-sm shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
           />
@@ -911,7 +911,7 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'all'; // Default to 'all' so legacy / OOP groups are never hidden
+    let activeAvailability = 'all'; // Default to 'all' so legacy and out-of-print groups are never hidden
     let viewMode = 'grid';
     let searchAliases = {};
 
@@ -956,7 +956,7 @@
         'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'W', 'GAM',
         'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.', 'Sayumi Michishige',
         'Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Erina Mano',
-        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari'
+        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto'
       ],
       'Up-Front Alumni': ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'],
       'AKB48 Group': [
@@ -976,7 +976,7 @@
       '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
       'KAWAII LAB.': ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET'],
       'Modern Idols': ['NiziU', 'ME:I', 'IS:SUE'],
-      'Babymetal': ['BABYMETAL', 'Sakura Gakuin', '@onefive']
+      'Babymetal': ['BABYMETAL', 'Sakura Gakuin']
     };
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";

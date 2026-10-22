@@ -11,8 +11,13 @@ import random
 import re
 import time
 from datetime import datetime
-from bs4 import BeautifulSoup
 import requests
+
+try:
+    from bs4 import BeautifulSoup
+    HAS_BS4 = True
+except ImportError:
+    HAS_BS4 = False
 
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
@@ -97,17 +102,23 @@ def check_item_url(session, pid):
                 continue
 
             if res.status_code == 200:
-                soup = BeautifulSoup(res.text, "html.parser")
-                
-                # Check for active Purchase / Cart buttons first
-                cart_btn = soup.select_one("button.cart-button, input[value*='Cart'], input[value*='Pre-order'], .btn-cart, #btn_cart")
-                cart_btn_text = cart_btn.get_text().lower() if cart_btn else ""
-                
-                # Scope check strictly to the availability specification element
-                avail_el = soup.select_one(".availability, .item_availability, td.availability, div.detail-availability, table.item-spec")
-                avail_text = avail_el.get_text().lower() if avail_el else ""
+                html_text = res.text
 
-                # Explicit out of print checks scoped to the item's purchase container
+                if HAS_BS4:
+                    soup = BeautifulSoup(html_text, "html.parser")
+                    cart_btn = soup.select_one("button.cart-button, input[value*='Cart'], input[value*='Pre-order'], .btn-cart, #btn_cart")
+                    cart_btn_text = cart_btn.get_text().lower() if cart_btn else ""
+                    
+                    avail_el = soup.select_one(".availability, .item_availability, td.availability, div.detail-availability, table.item-spec")
+                    avail_text = avail_el.get_text().lower() if avail_el else ""
+                else:
+                    # Pure regex fallback if bs4 is ever unavailable
+                    btn_match = re.search(r"(?:cart-button|btn-cart|btn_cart)[^>]*>([^<]*)", html_text, re.IGNORECASE)
+                    cart_btn_text = btn_match.group(1).lower() if btn_match else ("cart" if "btn-cart" in html_text else "")
+                    
+                    avail_match = re.search(r'<td[^>]*class="[^"]*availability[^"]*"[^>]*>(.*?)</td>', html_text, re.IGNORECASE | re.DOTALL)
+                    avail_text = avail_match.group(1).lower() if avail_match else ""
+
                 is_oop = (
                     "out of print" in avail_text or
                     "no longer available" in avail_text or
@@ -117,8 +128,7 @@ def check_item_url(session, pid):
                     "sold out" in avail_text
                 )
 
-                # If an active "Add to Cart" or "Pre-order" button exists, the item is NOT out of print
-                if cart_btn and not is_oop:
+                if cart_btn_text and not is_oop:
                     if "pre-order" in cart_btn_text or "pre-order" in avail_text or "予約" in avail_text:
                         return 200, False, True
                     return 200, False, False
@@ -199,7 +209,6 @@ def main():
             error_count += 1
             print(f"[{idx}/{len(target_pids)}] ⚠️ Warning: {pid} returned HTTP {status}")
 
-        # Safe, polite cadence between requests (1.1s - 1.8s) to avoid 429 WAF bans
         time.sleep(random.uniform(1.1, 1.8))
 
     save_json(DATA_FILE, catalog)

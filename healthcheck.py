@@ -2,6 +2,7 @@
 IdolJapan.store — Intelligent CDJapan Catalog Healthcheck Engine
 Audits URLs, verifies stock availability, checks street dates, and transitions
 pre-orders using an automated priority queue and rolling state ledger.
+Includes DOM-scoped availability detection and HTTP 429 exponential backoff.
 """
 
 import json
@@ -10,12 +11,12 @@ import random
 import re
 import time
 from datetime import datetime
+from bs4 import BeautifulSoup
 import requests
 
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Configurable batch size: 500 items takes ~5-7 minutes safely
 DEFAULT_BATCH_SIZE = 500
 
 HEADERS = {
@@ -55,28 +56,25 @@ def get_target_batch(catalog, state, batch_size):
     history = state.get("healthcheck_history", {})
     all_keys = list(catalog.keys())
 
-    # Priority 1: Active pre-orders or items whose street date has arrived
-    preorders = []
-    # Priority 2: In-stock items never checked or checked longest ago
+    # Priority 1: Items marked OOP (to heal false positives) or pre-orders due for release
+    urgent_queue = []
     normal_queue = []
 
     for pid in all_keys:
         item = catalog[pid]
         avail = item.get("availability", "instock")
         rel_date = item.get("release_date", "")
-
         last_checked = history.get(pid, 0)
 
-        if avail == "preorder" or is_date_passed(rel_date):
-            preorders.append((pid, last_checked))
+        if avail in ["preorder", "oop"] or is_date_passed(rel_date):
+            urgent_queue.append((pid, last_checked))
         else:
             normal_queue.append((pid, last_checked))
 
-    # Sort each tier by oldest checked first
-    preorders.sort(key=lambda x: x[1])
+    urgent_queue.sort(key=lambda x: x[1])
     normal_queue.sort(key=lambda x: x[1])
 
-    selected = [p[0] for p in preorders[:batch_size]]
+    selected = [p[0] for p in urgent_queue[:batch_size]]
     remaining_slots = batch_size - len(selected)
 
     if remaining_slots > 0:
@@ -86,23 +84,57 @@ def get_target_batch(catalog, state, batch_size):
 
 def check_item_url(session, pid):
     url = f"https://www.cdjapan.co.jp/product/{pid}"
-    try:
-        res = session.get(url, headers=HEADERS, timeout=12)
-        if res.status_code == 200:
-            text = res.text.lower()
-            is_oop = (
-                "out of print" in text or
-                "no longer available" in text or
-                "sold out" in text or
-                "廃盤" in text or
-                "取扱終了" in text or
-                "archive" in text
-            )
-            is_preorder = "pre-order" in text or "予約" in text
-            return 200, is_oop, is_preorder
-        return res.status_code, False, False
-    except requests.RequestException:
-        return 0, False, False
+    max_retries = 3
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            res = session.get(url, headers=HEADERS, timeout=15)
+            
+            if res.status_code == 429:
+                wait_time = attempt * 8 + random.uniform(1.0, 3.0)
+                print(f"      [429 Rate Limit] Backing off for {wait_time:.1f}s (Attempt {attempt}/{max_retries})...")
+                time.sleep(wait_time)
+                continue
+
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, "html.parser")
+                
+                # Check for active Purchase / Cart buttons first
+                cart_btn = soup.select_one("button.cart-button, input[value*='Cart'], input[value*='Pre-order'], .btn-cart, #btn_cart")
+                cart_btn_text = cart_btn.get_text().lower() if cart_btn else ""
+                
+                # Scope check strictly to the availability specification element
+                avail_el = soup.select_one(".availability, .item_availability, td.availability, div.detail-availability, table.item-spec")
+                avail_text = avail_el.get_text().lower() if avail_el else ""
+
+                # Explicit out of print checks scoped to the item's purchase container
+                is_oop = (
+                    "out of print" in avail_text or
+                    "no longer available" in avail_text or
+                    "discontinued" in avail_text or
+                    "廃盤" in avail_text or
+                    "取扱終了" in avail_text or
+                    "sold out" in avail_text
+                )
+
+                # If an active "Add to Cart" or "Pre-order" button exists, the item is NOT out of print
+                if cart_btn and not is_oop:
+                    if "pre-order" in cart_btn_text or "pre-order" in avail_text or "予約" in avail_text:
+                        return 200, False, True
+                    return 200, False, False
+
+                is_preorder = "pre-order" in avail_text or "予約" in avail_text
+                return 200, is_oop, is_preorder
+
+            return res.status_code, False, False
+
+        except requests.RequestException:
+            if attempt < max_retries:
+                time.sleep(2.0)
+                continue
+            return 0, False, False
+
+    return 429, False, False
 
 def main():
     print("==========================================")
@@ -128,14 +160,15 @@ def main():
 
     session = requests.Session()
     oop_count = 0
-    transition_count = 0
+    in_stock_recovered = 0
+    preorder_count = 0
     error_count = 0
     now_epoch = int(time.time())
 
     for idx, pid in enumerate(target_pids, 1):
         item = catalog[pid]
         current_avail = item.get("availability", "instock")
-        title = item.get("title", "")[:35]
+        title = item.get("title", "")[:32]
 
         status, is_oop, is_preorder = check_item_url(session, pid)
         state["healthcheck_history"][pid] = now_epoch
@@ -144,18 +177,20 @@ def main():
             if is_oop:
                 if current_avail != "oop":
                     item["availability"] = "oop"
-                    oop_count += 1
+                oop_count += 1
                 print(f"[{idx}/{len(target_pids)}] 📦 OOP: {pid} — {title}")
             elif is_preorder:
                 if current_avail != "preorder":
                     item["availability"] = "preorder"
-                    transition_count += 1
-                print(f"[{idx}/{len(target_pids)}] ⏳ Pre-Order Active: {pid}")
+                preorder_count += 1
+                print(f"[{idx}/{len(target_pids)}] ⏳ Pre-Order Active: {pid} — {title}")
             else:
                 if current_avail != "instock":
                     item["availability"] = "instock"
-                    transition_count += 1
-                print(f"[{idx}/{len(target_pids)}] ✅ In Stock: {pid} (Status: 200)")
+                    in_stock_recovered += 1
+                    print(f"[{idx}/{len(target_pids)}] 🔄 Restored to In-Stock: {pid} — {title}")
+                else:
+                    print(f"[{idx}/{len(target_pids)}] ✅ In Stock: {pid} (Status: 200)")
         elif status == 404:
             item["availability"] = "oop"
             oop_count += 1
@@ -164,15 +199,15 @@ def main():
             error_count += 1
             print(f"[{idx}/{len(target_pids)}] ⚠️ Warning: {pid} returned HTTP {status}")
 
-        # Gentle cadence to respect CDJapan edge rate-limits
-        time.sleep(random.uniform(0.4, 0.9))
+        # Safe, polite cadence between requests (1.1s - 1.8s) to avoid 429 WAF bans
+        time.sleep(random.uniform(1.1, 1.8))
 
     save_json(DATA_FILE, catalog)
     state["last_healthcheck"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     save_json(STATE_FILE, state)
 
     print("==========================================")
-    print(f"Audit Finished: {len(target_pids)} Checked | {oop_count} Marked OOP | {transition_count} Status Transitions | {error_count} Errors")
+    print(f"Audit Finished: {len(target_pids)} Checked | {oop_count} Confirmed OOP | {in_stock_recovered} Restored to In-Stock | {preorder_count} Active Pre-orders | {error_count} Errors")
     print("==========================================")
 
 if __name__ == "__main__":

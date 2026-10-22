@@ -44,11 +44,35 @@ def load_products():
     return {}
 
 def format_xml_date(date_str=None):
-    if date_str:
-        m = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', date_str)
-        if m:
-            y, month, day = m.group(1), m.group(2).zfill(2), m.group(3).zfill(2)
-            return f"{y}-{month}-{day}"
+    if not date_str:
+        return datetime.utcnow().strftime("%Y-%m-%d")
+
+    clean_str = str(date_str).strip()
+    if clean_str.lower() in ["available now", "check cdjapan", ""]:
+        return datetime.utcnow().strftime("%Y-%m-%d")
+
+    m = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b', clean_str)
+    if m:
+        try:
+            y = int(m.group(1))
+            month = int(m.group(2))
+            day = int(m.group(3))
+            valid_dt = datetime(y, month, day)
+            return valid_dt.strftime("%Y-%m-%d")
+        except (ValueError, OverflowError):
+            pass
+
+    m_ym = re.search(r'\b(19\d\d|20\d\d)[./-](\d{1,2})\b', clean_str)
+    if m_ym:
+        try:
+            y = int(m_ym.group(1))
+            month = int(m_ym.group(2))
+            if 1 <= month <= 12:
+                valid_dt = datetime(y, month, 1)
+                return valid_dt.strftime("%Y-%m-%d")
+        except (ValueError, OverflowError):
+            pass
+
     return datetime.utcnow().strftime("%Y-%m-%d")
 
 def generate_sitemap():
@@ -60,7 +84,6 @@ def generate_sitemap():
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
     ]
 
-    # 1. Core static pages
     for page in STATIC_PAGES:
         xml_lines.append("  <url>")
         xml_lines.append(f"    <loc>{escape(BASE_URL + page['loc'])}</loc>")
@@ -69,7 +92,6 @@ def generate_sitemap():
         xml_lines.append(f"    <priority>{page['priority']}</priority>")
         xml_lines.append("  </url>")
 
-    # 2. Franchise collection links
     for cat in FRANCHISE_CATEGORIES:
         encoded_cat = cat.replace(" ", "+")
         xml_lines.append("  <url>")
@@ -79,7 +101,6 @@ def generate_sitemap():
         xml_lines.append("    <priority>0.9</priority>")
         xml_lines.append("  </url>")
 
-    # 3. Pre-rendered Group Landing Pages
     if os.path.exists(GROUPS_DIR):
         for fname in sorted(os.listdir(GROUPS_DIR)):
             if fname.endswith(".html"):
@@ -90,7 +111,6 @@ def generate_sitemap():
                 xml_lines.append("    <priority>0.9</priority>")
                 xml_lines.append("  </url>")
 
-    # 4. Product canonical deep links
     for pid, item in products.items():
         if not pid:
             continue

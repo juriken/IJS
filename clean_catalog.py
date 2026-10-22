@@ -8,6 +8,7 @@ and prunes genuine non-idol false positives while protecting all authentic merch
 import json
 import os
 import re
+from datetime import datetime
 
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"

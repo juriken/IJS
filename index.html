@@ -952,18 +952,30 @@
         'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
         'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei',
         'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls', 'Kobushi Factory',
-        'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'LoVendoR',
-        'PINK CRES.', 'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto',
-        'Natsumi Abe', 'Erina Mano', 'Airi Suzuki'
+        'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'W', 'GAM',
+        'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.', 'Sayumi Michishige',
+        'Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Erina Mano',
+        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari'
       ],
       'Up-Front Alumni': ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'],
-      'AKB48 Group': ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48', 'Sayaka Yamamoto'],
-      'Sakamichi Series': ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', '22/7'],
-      'Stardust Planet': ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu'],
+      'AKB48 Group': [
+        'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',
+        'Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai',
+        'Sayaka Yamamoto', 'Atsuko Maeda', 'Yuko Oshima', 'Mayu Watanabe',
+        'Yuki Kashiwagi', 'Rino Sashihara', 'Tomomi Itano'
+      ],
+      'Sakamichi Series': [
+        'Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', '22/7', 'Boku ga Mitakatta Aozora',
+        'Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate'
+      ],
+      'Stardust Planet': [
+        'Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu',
+        'TEAM SHACHI', 'BATTEN GIRLS', 'ukka'
+      ],
       '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
-      'KAWAII LAB.': ['FRUITS ZIPPER', 'CUTIE STREET'],
-      'Modern Idols': ['NiziU', 'ME:I'],
-      'Babymetal': ['BABYMETAL']
+      'KAWAII LAB.': ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET'],
+      'Modern Idols': ['NiziU', 'ME:I', 'IS:SUE'],
+      'Babymetal': ['BABYMETAL', 'Sakura Gakuin', '@onefive']
     };
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
@@ -2982,11 +2994,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();
       applyLayoutModeToDom();
-      
-      // Load and render catalog immediately without blocking on network tasks
       loadCatalog();
-
-      // Run currency and search alias loaders in parallel background promises
       Promise.allSettled([
         initExchangeRates(),
         loadSearchAliases()

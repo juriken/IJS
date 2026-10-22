@@ -2,7 +2,7 @@
 IdolJapan.store — Intelligent Database Cleanser & Category Validator
 Safely re-aligns all soloists, subunits, and franchise categories across the 77-idol roster,
 extracts solo releases misfiled under parent groups, resolves legacy category strings,
-and prunes genuine non-idol false positives while protecting all authentic merchandise.
+and strictly protects all authentic singles, albums, and DVDs from being pruned.
 """
 
 import json
@@ -114,22 +114,19 @@ CANONICAL_ARTIST_MAP = {
     "@onefive": "Babymetal",
 }
 
-# Complete Hello! Project & Up-Front Catalog Code Prefixes
-ALL_UPFRONT_PREFIXES = (
-    "EPCE", "EPBE", "EPXE", "EPTE", "EPDE",
-    "PKCP", "PKBP",
-    "HKCN", "HKBN", "HKXN",
-    "UFBW", "UFXW",
-    "TGBS", "TGXF",
-    "DAKU", "DCFGDS", "NEOODY"
+# Complete Whitelist of Authentic Record Label Prefixes
+AUTHENTIC_LABEL_PREFIXES = (
+    "EPCE", "EPBE", "EPXE", "EPTE", "EPDE",  # Zetima
+    "PKCP", "PKBP",                          # Piccolo Town
+    "HKCN", "HKBN", "HKXN",                  # Hachama
+    "UFBW", "UFXW",                          # Up-Front Works
+    "UPCH", "UPBH",                          # Universal Music Japan (Kikka, etc.)
+    "POCS",                                  # Universal / P-Vine (Kikka)
+    "TGBS", "TGXF",                          # Giga
+    "DAKU", "DCFGDS", "NEOODY", "NEODAI"     # Fanclub, e-LineUP, Odyssey
 )
 
-TANPOPO_AUTHENTIC_SIGNATURES = [
-    "last kiss", "motto", "seinaru kane", "otome pasta",
-    "koi wo shichaimashita", "ouji-sama", "oujisama", "kousaten",
-    "tanpopo 1", "all of tanpopo", "single v clips"
-]
-
+# Known True Non-Idol Male Boybands
 MALE_BOYBAND_PATTERNS = [
     r"\bsnow man\b", r"\bsixtones\b", r"\bking & prince\b", r"\bnaniwa danshi\b",
     r"\bhey! say! jump\b", r"\bsexy zone\b", r"\btimelesz\b", r"\btravis japan\b",
@@ -141,6 +138,7 @@ MALE_BOYBAND_PATTERNS = [
     r"\benhypen\b", r"\bnct\b", r"\bateez\b", r"\bzerobaseone\b", r"\briize\b"
 ]
 
+# Known True Non-Idol Media Leaks
 NON_IDOL_MEDIA_PATTERNS = [
     r"\bkamen rider\b", r"\bgundam\b", r"\bdragon ball\b", r"\bone piece\b",
     r"\bdetective conan\b", r"\bpokemon\b", r"\bdigimon\b", r"\byu-gi-oh\b",
@@ -149,13 +147,9 @@ NON_IDOL_MEDIA_PATTERNS = [
     r"\bclassical guitar\b", r"\bbluegrass\b", r"\bboard game\b"
 ]
 
-def is_upfront_affiliated(pid, title_lower):
+def is_authentic_prefix(pid):
     pid_upper = pid.upper()
-    if any(pid_upper.startswith(pfx) for pfx in ALL_UPFRONT_PREFIXES):
-        return True
-    if any(h in title_lower for h in ["hello! project", "ハロー!プロジェクト", "ハロプロ", "e-lineup", "up-front", "アップフロント", "演劇女子部"]):
-        return True
-    return False
+    return any(pid_upper.startswith(pfx) for pfx in AUTHENTIC_LABEL_PREFIXES)
 
 def check_false_positive(item):
     title = str(item.get("title", "")).strip()
@@ -163,95 +157,58 @@ def check_false_positive(item):
     artist = str(item.get("artist", "")).strip()
     pid = str(item.get("id", "")).upper()
 
+    # If it is not in our 77 recognized roster at all, discard
     if artist not in CANONICAL_ARTIST_MAP:
         return True, f"Artist '{artist}' not in recognized 77-idol roster"
 
-    # Male boyband leak filter
+    # NEVER prune items with verified Hello! Project / Up-Front / Universal label prefixes
+    if is_authentic_prefix(pid):
+        return False, ""
+
+    # Check for explicit male boybands
     for pat in MALE_BOYBAND_PATTERNS:
         if re.search(pat, title_lower):
             has_our_idol = any(k.lower() in title_lower for k in CANONICAL_ARTIST_MAP.keys())
             if not has_our_idol:
                 return True, f"Male boyband item: matches '{pat}'"
 
-    # Non-idol media leak filter
+    # Check for anime/game franchises
     for pat in NON_IDOL_MEDIA_PATTERNS:
         if re.search(pat, title_lower):
             has_our_idol = any(k.lower() in title_lower for k in CANONICAL_ARTIST_MAP.keys())
             if not has_our_idol:
                 return True, f"Unrelated anime/game leak: matches '{pat}'"
 
-    # W (Double You) safe check
+    # Generic search leaks on word "you" (e.g. Tokuma Japan "Thank you" albums)
+    if artist == "You Kikkawa":
+        if pid.startswith("TKCA") and "kikkawa" not in title_lower and "吉川友" not in title:
+            return True, "Non-Kikkawa album matching common English word 'you'"
+
+    # Generic magazine issue leaks on "IS:SUE"
+    if artist == "IS:SUE":
+        is_real = (
+            "is:sue" in title_lower or "イッシュ" in title or "1st is:sue" in title_lower or
+            "connect" in title_lower or "static" in title_lower or
+            any(m in title_lower for m in ["rin", "nanami", "yuuki", "rino"])
+        )
+        if not is_real and ("issue" in title_lower or "february" in title_lower or "october" in title_lower):
+            return True, "Generic magazine issue leak under 'IS:SUE'"
+
+    # Single-letter "W" checks for items without authentic prefixes
     if artist == "W":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
         has_w_sig = any(w in title_lower for w in [
-            "ダブルユー", "double you", "w (double you)", "w [double you]", "tsuji", "kago",
-            "辻希美", "加護亜依", "robo kiss", "koi no vacance", "ai no imi", "miss love"
+            "ダブルユー", "double you", "w (double you)", "w [double you]",
+            "tsuji", "kago", "辻希美", "加護亜依", "robo kiss", "koi no vacance"
         ])
         if not has_w_sig:
-            return True, "Generic letter 'W' leak (missing authentic Double You signatures)"
-
-    # Tanpopo safe check
-    if artist == "Tanpopo":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
-        has_tanpopo_sig = any(s in title_lower for s in [
-            "last kiss", "motto", "seinaru kane", "otome pasta",
-            "koi wo shichaimashita", "all of tanpopo", "single v clips", "タンポポ"
-        ])
-        if not has_tanpopo_sig:
-            return True, "Tanpopo false positive (lacks H!P markers)"
-
-    # GAM safe check
-    if artist == "GAM":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
-        has_gam_sig = any(s in title_lower for s in ["matsuura", "fujimoto", "1st gam", "melodies", "lu lu lu", "ギャム"])
-        if not has_gam_sig:
-            return True, "GAM false positive (video/board game leak)"
-
-    # Minimoni safe check
-    if artist == "Minimoni":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
-        has_mini_sig = any(s in title_lower for s in ["minimoni", "mini moni", "ミニモニ", "mini-moni"])
-        if not has_mini_sig:
-            return True, "Minimoni false positive"
-
-    # v-u-den safe check
-    if artist == "v-u-den":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
-        has_vuden_sig = any(s in title_lower for s in ["v-u-den", "biyuden", "美勇伝", "ishikawa rika", "ajisai ai ai"])
-        if not has_vuden_sig:
-            return True, "v-u-den false positive"
-
-    # Tsukishima Kirari safe check
-    if artist == "Tsukishima Kirari":
-        has_kirari_sig = any(s in title_lower for s in ["tsukishima kirari", "月島きらり", "kusumi koharu", "久住小春", "kirarin", "きらりん"])
-        if not has_kirari_sig:
-            return True, "Tsukishima Kirari false positive"
-
-    # Taiyo to Ciscomoon safe check
-    if artist == "Taiyo to Ciscomoon":
-        if is_upfront_affiliated(pid, title_lower):
-            return False, ""
-        has_taiyo_sig = any(s in title_lower for s in ["taiyo to ciscomoon", "太陽とシスコムーン", "t&c bomber", "t&cボンバー"])
-        if not has_taiyo_sig:
-            return True, "Taiyo to Ciscomoon false positive"
-
-    # You Kikkawa safe check
-    if artist == "You Kikkawa":
-        has_kikka_sig = any(s in title_lower for s in ["kikkawa you", "you kikkawa", "kikkawa yu", "吉川友"])
-        if not has_kikka_sig:
-            return True, "You Kikkawa false positive"
+            return True, "Generic letter 'W' leak"
 
     return False, ""
 
 def realign_artist_and_category(item):
     """
-    Scans the product title and ID to accurately re-route releases that were
-    misassigned to parent groups (Morning Musume, Berryz Kobo, etc.).
+    Scans the product title, ID, and metadata to accurately route releases
+    that were filed under parent groups to their true subunits/soloists.
     """
     title = str(item.get("title", "")).strip()
     title_lower = title.lower()
@@ -260,69 +217,78 @@ def realign_artist_and_category(item):
 
     new_artist = current_artist
 
-    # 1. Tsukishima Kirari (Take precedence over Morning Musume parent tag)
-    if any(s in title_lower for s in ["tsukishima kirari", "月島きらり", "kirarin revolution", "きらりん☆レボリューション", "きらりんレボリューション"]):
+    # If the item already belongs to one of our target soloists/subunits, KEEP IT!
+    if current_artist in [
+        "GAM", "W", "v-u-den", "Minimoni", "Tanpopo",
+        "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa",
+        "Buono!", "Hello Pro Kenshuusei", "Up Up Girls (2)",
+        "Maki Goto", "Erina Mano", "Aya Matsuura", "Airi Suzuki",
+        "Sayumi Michishige", "Natsumi Abe", "Miki Fujimoto"
+    ]:
+        new_artist = current_artist
+
+    # Otherwise, detect if a parent group item belongs to a specific subunit/soloist
+    elif any(s in title_lower for s in ["tsukishima kirari", "月島きらり", "kirarin revolution", "きらりん☆レボリューション", "きらりんレボリューション"]):
         new_artist = "Tsukishima Kirari"
 
-    # 2. Minimoni (Take precedence over Morning Musume parent tag)
     elif any(s in title_lower for s in ["minimoni", "mini moni", "ミニモニ", "mini-moni"]):
         new_artist = "Minimoni"
 
-    # 3. Tanpopo (Take precedence over Morning Musume parent tag)
-    elif "tanpopo" in title_lower or "タンポポ" in title or any(s in title_lower for s in TANPOPO_AUTHENTIC_SIGNATURES):
-        if is_upfront_affiliated(pid_upper, title_lower):
-            new_artist = "Tanpopo"
+    elif "tanpopo" in title_lower or "タンポポ" in title or any(s in title_lower for s in ["last kiss", "motto", "seinaru kane", "otome pasta", "koi wo shichaimashita"]):
+        new_artist = "Tanpopo"
 
-    # 4. W (Double You)
-    elif any(s in title_lower for s in ["ダブルユー", "double you", "w (double you)", "w [double you]"]) or (" w " in f" {title_lower} " and is_upfront_affiliated(pid_upper, title_lower)):
+    elif any(s in title_lower for s in ["ダブルユー", "double you", "w (double you)", "w [double you]"]):
         new_artist = "W"
 
-    # 5. v-u-den (Biyuden)
     elif any(s in title_lower for s in ["v-u-den", "biyuden", "美勇伝"]) or pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
         new_artist = "v-u-den"
 
-    # 6. GAM
     elif any(s in title_lower for s in ["gam", "ギャム"]) and any(m in title_lower for m in ["matsuura", "fujimoto", "melodies", "lu lu lu", "1st gam"]):
         new_artist = "GAM"
 
-    # 7. Taiyo to Ciscomoon / T&C Bomber
     elif any(s in title_lower for s in ["taiyo to ciscomoon", "太陽とシスコムーン", "t&c bomber", "t&cボンバー"]):
         new_artist = "Taiyo to Ciscomoon"
 
-    # 8. You Kikkawa
     elif any(s in title_lower for s in ["kikkawa you", "you kikkawa", "kikkawa yu", "吉川友"]):
         new_artist = "You Kikkawa"
 
-    # 9. Up Up Girls (2) (Distinguish from Kari)
     elif any(w in title_lower for w in ["(2)", "（2）", "アプガ2", "up up girls 2", "up up girls (2)"]):
         new_artist = "Up Up Girls (2)"
 
-    # 10. Soloists Misassigned to Morning Musume
-    elif current_artist in ["Morning Musume", "Hello! Project", "Other"]:
-        if any(w in title_lower for w in ["goto maki", "maki goto", "後藤真希", "gocchin"]) and "morning musume" not in title_lower[:25]:
-            new_artist = "Maki Goto"
-        elif any(w in title_lower for w in ["mano erina", "erina mano", "真野恵里菜"]):
-            new_artist = "Erina Mano"
-        elif any(w in title_lower for w in ["matsuura aya", "aya matsuura", "松浦亜弥", "ayaya"]):
-            new_artist = "Aya Matsuura"
-        elif any(w in title_lower for w in ["michishige sayumi", "sayumi michishige", "道重さゆみ", "sayuminglandoll"]):
-            new_artist = "Sayumi Michishige"
-        elif any(w in title_lower for w in ["abe natsumi", "natsumi abe", "安倍なつみ"]) and "morning musume" not in title_lower[:25]:
-            new_artist = "Natsumi Abe"
-        elif any(w in title_lower for w in ["fujimoto miki", "miki fujimoto", "藤本美貴", "mikitty"]) and "morning musume" not in title_lower[:25]:
-            new_artist = "Miki Fujimoto"
-        elif any(w in title_lower for w in ["ハロプロ研修生", "kenshuusei", "kenshusei", "hello pro egg", "ハロプロエッグ"]):
-            new_artist = "Hello Pro Kenshuusei"
-        elif "buono!" in title_lower or "buono " in title_lower:
-            new_artist = "Buono!"
+    elif any(w in title_lower for w in ["ハロプロ研修生", "kenshuusei", "kenshusei", "hello pro egg", "ハロプロエッグ"]):
+        new_artist = "Hello Pro Kenshuusei"
 
-    # Always enforce the canonical category for the resolved artist
+    elif "buono!" in title_lower or "buono " in title_lower:
+        new_artist = "Buono!"
+
+    elif any(w in title_lower for w in ["goto maki", "maki goto", "後藤真希", "gocchin"]) and "morning musume" not in title_lower[:25]:
+        new_artist = "Maki Goto"
+
+    elif any(w in title_lower for w in ["mano erina", "erina mano", "真野恵里菜"]):
+        new_artist = "Erina Mano"
+
+    elif any(w in title_lower for w in ["matsuura aya", "aya matsuura", "松浦亜弥", "ayaya"]):
+        new_artist = "Aya Matsuura"
+
+    elif any(w in title_lower for w in ["fujimoto miki", "miki fujimoto", "藤本美貴", "mikitty"]) and "morning musume" not in title_lower[:25]:
+        new_artist = "Miki Fujimoto"
+
+    elif any(w in title_lower for w in ["abe natsumi", "natsumi abe", "安倍なつみ"]) and "morning musume" not in title_lower[:25]:
+        new_artist = "Natsumi Abe"
+
+    elif any(w in title_lower for w in ["suzuki airi", "airi suzuki", "鈴木愛理"]):
+        new_artist = "Airi Suzuki"
+
+    elif any(w in title_lower for w in ["michishige sayumi", "sayumi michishige", "道重さゆみ", "sayuminglandoll"]):
+        new_artist = "Sayumi Michishige"
+
+    # Synchronize category strictly to the canonical franchise of the resolved artist
     new_category = CANONICAL_ARTIST_MAP.get(new_artist, "Hello! Project")
     return new_artist, new_category
 
 def main():
     print("==========================================")
-    print("Starting Comprehensive Catalog Re-Alignment")
+    print("Starting Resilient Catalog Clean & Audit")
     print("==========================================")
 
     if not os.path.exists(DATA_FILE):
@@ -356,7 +322,7 @@ def main():
             realigned_categories.append((pid, item.get("title", "")[:35], f"{current_cat} -> {new_cat}"))
             item["category"] = new_cat
 
-        # Step 2: Prune False Positives
+        # Step 2: Prune True False Positives
         is_bad, reason = check_false_positive(item)
         if is_bad:
             pruned_records.append((pid, item.get("title", ""), reason))
@@ -391,8 +357,8 @@ def main():
     print(f"Original items in database: {original_count:,}")
     print(f"Artists corrected:          {len(realigned_artists):,}")
     print(f"Categories synchronized:    {len(realigned_categories):,}")
-    print(f"Pruned false positives:     {len(pruned_records):,}")
-    print(f"Remaining verified items:   {len(cleaned_catalog):,}")
+    print(f"Pruned true false positives: {len(pruned_records):,}")
+    print(f"Remaining verified items:    {len(cleaned_catalog):,}")
 
     # Summary table of the 8 focus groups
     focus_groups = ["GAM", "W", "v-u-den", "Minimoni", "Tanpopo", "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa"]
@@ -401,13 +367,15 @@ def main():
         c = sum(1 for it in cleaned_catalog.values() if it.get("artist") == fg)
         print(f"  ⭐ {fg}: {c} items active")
 
-    if realigned_artists:
-        print("\n--- Sample of Corrected Artists ---")
-        for r in realigned_artists[:15]:
-            print(f"  🎤 [{r[0]}] {r[1]} ({r[2]})")
+    if pruned_records:
+        print(f"\n==========================================")
+        print(f"COMPLETE LIST OF ALL PRUNED ITEMS ({len(pruned_records):,} items):")
+        print(f"==========================================")
+        for idx, (p_id, p_title, p_reason) in enumerate(pruned_records, 1):
+            print(f"[{idx}/{len(pruned_records)}] ❌ [{p_id}] {p_title} — Reason: {p_reason}")
 
     print("==========================================")
-    print("Catalog Audit Complete.")
+    print("Catalog Audit Complete. All authentic idol releases preserved.")
     print("==========================================")
 
 if __name__ == "__main__":

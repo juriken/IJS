@@ -1,6 +1,6 @@
 """
 IdolJapan.store — Intelligent Database Cleanser & Multi-Tier Category Sorter
-Differentiates all 78 Japanese idol groups, subunits, and soloists with strict
+Differentiates all 79 Japanese idol groups, subunits, and soloists with strict
 precedence rules, resolves parent-group misallocations, and synchronizes
 both products.json AND catalog-index.json simultaneously.
 """
@@ -15,9 +15,9 @@ INDEX_FILE = "catalog-index.json"
 STATE_FILE = "scraper_state.json"
 PRUNED_LOG_FILE = "pruned_items.txt"
 
-# Canonical Artist to Franchise Category Mapping (All 78 Supported Roster Items)
+# Canonical Artist to Franchise Category Mapping (All 79 Supported Roster Items)
 CANONICAL_ARTIST_MAP = {
-    # Hello! Project (30 Groups, Subunits & Soloists)
+    # Hello! Project (31 Groups, Subunits & Soloists)
     "Morning Musume": "Hello! Project",
     "ANGERME": "Hello! Project",
     "Juice=Juice": "Hello! Project",
@@ -48,6 +48,7 @@ CANONICAL_ARTIST_MAP = {
     "Airi Suzuki": "Hello! Project",
     "Miki Fujimoto": "Hello! Project",
     "Tsukishima Kirari": "Hello! Project",
+    "Karin Miyamoto": "Hello! Project",
 
     # Up-Front Alumni (3)
     "You Kikkawa": "Up-Front Alumni",
@@ -120,232 +121,257 @@ AUTHENTIC_LABEL_PREFIXES = (
     "PKCP", "PKBP",                          # Piccolo Town
     "HKCN", "HKBN", "HKXN",                  # Hachama
     "UFBW", "UFXW",                          # Up-Front Works
-    "UPCH", "UPBH",                          # Universal Music Japan (Kikka, etc.)
-    "POCS",                                  # Universal / P-Vine (Kikka)
+    "UPCH", "UPBH",                          # Universal Music Japan
+    "POCS",                                  # Universal / P-Vine
     "TGBS", "TGXF",                          # Giga
     "DAKU", "DCFGDS", "NEOODY", "NEODAI"     # Fanclub, e-LineUP, Odyssey
 )
 
-# Priority 1: High-Specificity Subunits, Soloists, and Sister Groups
-# Items are tested against these specific signatures FIRST before parent groups.
-PRIORITY_ARTIST_RULES = [
-    # Hello! Project Soloists & Subunits
-    ("Tsukishima Kirari", [
-        "tsukishima kirari", "月島きらり", "kusumi koharu", "久住小春",
-        "kirarin revolution", "きらりん☆レボリューション", "きらりんレボリューション", "balalaika", "koikana", "papancake"
-    ]),
-    ("W", [
-        "ダブルユー", "double you", "w (double you)", "w [double you]",
-        "robo kiss", "koi no vacance", "miss love tantei", "ai no imi wo oshiete"
-    ]),
-    ("Minimoni", [
-        "minimoni", "mini moni", "ミニモニ", "mini-moni",
-        "crazy about you", "minimoni telephone", "rock 'n' roll kenchouszaichou"
-    ]),
-    ("Tanpopo", [
-        "tanpopo", "タンポポ", "last kiss", "motto", "seinaru kane", "otome pasta", "koi wo shichaimashita"
-    ]),
-    ("v-u-den", [
-        "v-u-den", "biyuden", "美勇伝", "ajisai ai ai", "koi no nukegara", "kacchoii ze! japan"
-    ]),
-    ("GAM", [
-        "gam", "ギャム", "1st gam", "melodies", "lu lu lu", "daisuki rakuten eagles"
-    ]),
-    ("Buono!", [
-        "buono!", "buono ", "honto no jibun", "renai rider", "kiss! kiss! kiss!", "co-no-mi-chi"
-    ]),
-    ("Maki Goto", [
-        "goto maki", "maki goto", "後藤真希", "gocchin", "ai no bakadan", "te wo nigitte arukitai", "daite yo! please go on"
-    ]),
-    ("Erina Mano", [
-        "mano erina", "erina mano", "真野恵里菜", "otome no inori", "hajimete no keiken", "sekai wa summer party"
-    ]),
-    ("Aya Matsuura", [
-        "matsuura aya", "aya matsuura", "松浦亜弥", "ayaya", "dokidoki! love mail", "yeah! meccha holiday", "momoiro kataomoi"
-    ]),
-    ("Miki Fujimoto", [
-        "fujimoto miki", "miki fujimoto", "藤本美貴", "mikitty", "aenai nagai nichiyoubi", "boogie train '03", "roppongi toori"
-    ]),
-    ("Natsumi Abe", [
-        "abe natsumi", "natsumi abe", "安倍なつみ", "22sai no watashi", "datte ikitekanakya"
-    ]),
-    ("Airi Suzuki", [
-        "suzuki airi", "airi suzuki", "鈴木愛理", "do me a favor", "i mi shine"
-    ]),
-    ("Sayumi Michishige", [
-        "michishige sayumi", "sayumi michishige", "道重さゆみ", "sayuminglandoll"
-    ]),
-    ("Taiyo to Ciscomoon", [
-        "taiyo to ciscomoon", "太陽とシスコムーン", "t&c bomber", "t&cボンバー", "magic of love", "gatamekira"
-    ]),
-    ("LoVendoR", [
-        "lovendor", "lovendoя", "ラベンダー"
-    ]),
-    ("PINK CRES.", [
-        "pink cres", "ピンククレス"
-    ]),
-    ("Hello Pro Kenshuusei", [
-        "ハロプロ研修生", "hello pro kenshuusei", "hello pro kenshusei", "kenshuusei", "kenshusei", "hello pro egg", "ハロプロエッグ"
-    ]),
-
-    # Up-Front Alumni
-    ("You Kikkawa", [
-        "kikkawa you", "you kikkawa", "kikkawa yu", "吉川友", "kikkake wa you", "hapirapi", "konna watashi de yokattara"
-    ]),
-    ("Up Up Girls (2)", [
-        "up up girls (2)", "up up girls 2", "アップアップガールズ(2)", "アップアップガールズ（2）", "アプガ2"
-    ]),
-    ("Up Up Girls (Kari)", [
-        "up up girls (kari)", "アップアップガールズ(仮)", "アップアップガールズ（仮）", "アプガ(仮)"
-    ]),
-
-    # AKB48 Group Soloists & Subunits
-    ("Not yet", ["not yet", "ノットイェット", "shuumatsu not yet", "naminori kakigoori", "perapera peraoche"]),
-    ("no3b", ["no3b", "no sleeves", "ノースリーブス", "relax!", "tane", "lie"]),
-    ("French Kiss", ["french kiss", "フレンチ・キス", "zutto mae kara", "if", "kakko warui i love you"]),
-    ("Watarirouka Hashiritai", ["watarirouka hashiritai", "渡り廊下走り隊", "hatsukoi dash", "yaruki hanabi", "akKanbe bashi"]),
-    ("Sayaka Yamamoto", ["yamamoto sayaka", "sayaka yamamoto", "山本彩", "rainbow", "identity", "alpha"]),
-    ("Atsuko Maeda", ["maeda atsuko", "atsuko maeda", "前田敦子", "flower", "kimi wa boku da", "time machine nante iranai"]),
-    ("Yuko Oshima", ["oshima yuko", "yuko oshima", "大島優子"]),
-    ("Mayu Watanabe", ["watanabe mayu", "mayu watanabe", "渡辺麻友", "synchro tokimeki", "otona jelly beans", "hikaru monodachi"]),
-    ("Yuki Kashiwagi", ["kashiwagi yuki", "yuki kashiwagi", "柏木由紀", "shortcake", "birthday wedding"]),
-    ("Rino Sashihara", ["sashihara rino", "rino sashihara", "指原莉乃", "soredemo suki da yo", "ikuji nashi masquerade"]),
-    ("Tomomi Itano", ["itano tomomi", "tomomi itano", "板野友美", "dear j", "fui ni", "10nen go no kimi e"]),
-
-    # Sakamichi Series Soloists & Rival Group
-    ("Boku ga Mitakatta Aozora", ["boku ga mitakatta aozora", "僕が見たかった青空", "僕青", "aozora ni tsuite kangaeru"]),
-    ("Mai Shiraishi", ["shiraishi mai", "mai shiraishi", "白石麻衣", "passport"]),
-    ("Nanase Nishino", ["nishino nanase", "nanase nishino", "西野七瀬", "fudangi", "kaze wo kigaete"]),
-    ("Erika Ikuta", ["ikuta erika", "erika ikuta", "生田絵梨花", "tenchou", "intermission"]),
-    ("Asuka Saito", ["saito asuka", "asuka saito", "齋藤飛鳥", "shiosai"]),
-    ("Yurina Hirate", ["hirate yurina", "yurina平手友梨奈", "平手友梨奈", "dance no riyuu", "kakegae no nai sekai"]),
-
-    # Modern Idols & LAPONE Sister
-    ("IS:SUE", ["is:sue", "イッシュ", "1st is:sue", "connect", "static"]),
-
-    # Babymetal & Sakura Gakuin
-    ("Sakura Gakuin", ["sakura gakuin", "さくら学院"]),
-
-    # KAWAII LAB. Sister Groups
-    ("CANDY TUNE", ["candy tune", "キャンディートゥーン", "きゃんちゅー", "kiss me patissier"]),
-    ("SWEET STEADY", ["sweet steady", "スウィートステディ", "すいすて"]),
-    ("CUTIE STREET", ["cutie street", "キューティーストリート", "きゅーすと", "kawaii dake ja dame desu ka"]),
-    ("FRUITS ZIPPER", ["fruits zipper", "フルーツジッパー", "ふるっぱー", "watashi no ichiban kawaii tokoro"]),
-
-    # Stardust Planet Groups
-    ("TEAM SHACHI", ["team shachi", "team syachihoko", "チームしゃちほこ", "しゃち"]),
-    ("BATTEN GIRLS", ["batten girls", "batten showtai", "ばってん少女隊", "ばっしょー"]),
-    ("ukka", ["ukka", "sakura ebis", "桜エビ〜ず"]),
-    ("Chou Tokimeki Sendenbu", ["chou tokimeki sendenbu", "cho tokimeki sendenbu", "tokimeki sendenbu", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣", "suki!"]),
-    ("Shiritsu Ebisu Chugaku", ["shiritsu ebisu chugaku", "私立恵比寿中学", "エビ中", "ebichu"]),
-    ("Momoiro Clover Z", ["momoiro clover", "ももいろクローバー", "ももクロ", "momoclo"]),
-
-    # =LOVE & Sister Groups
-    ("≠ME", ["≠me", "ノイミー", "not equal me"]),
-    ("≒JOY", ["≒joy", "ニアジョイ", "nearly equal joy"]),
-    ("=LOVE", ["=love", "イコールラブ", "イコラブ"]),
-]
-
-# Priority 2: Primary Parent Groups (Evaluated ONLY if Priority 1 did not match)
-PARENT_GROUP_RULES = [
-    ("Morning Musume", ["morning musume", "モーニング娘"]),
-    ("ANGERME", ["angerme", "アンジュルム", "s/mileage", "スマイレージ", "s mileage"]),
-    ("Juice=Juice", ["juice=juice", "juicejuice", "ジュースジュース"]),
-    ("Tsubaki Factory", ["tsubaki factory", "つばきファクトリー"]),
-    ("BEYOOOOONDS", ["beyooooonds", "ビヨーンズ"]),
-    ("OCHA NORMA", ["ocha norma", "オチャノーマ"]),
-    ("Rosy Chronicle", ["rosy chronicle", "ロージークロニクル"]),
-    ("Berryz Kobo", ["berryz kobo", "berryz工房", "berryz"]),
-    ("℃-ute", ["c-ute", "cute", "℃-ute"]),
-    ("Country Girls", ["country girls", "country musume", "カントリー・ガールズ", "カントリー娘"]),
-    ("Kobushi Factory", ["kobushi factory", "こぶしファクトリー"]),
-    ("Melon Kinenbi", ["melon kinenbi", "メロン記念日"]),
-    ("AKB48", ["akb48", "akb-"]),
-    ("SKE48", ["ske48", "ske-"]),
-    ("NMB48", ["nmb48", "nmb-"]),
-    ("HKT48", ["hkt48", "hkt-"]),
-    ("NGT48", ["ngt48"]),
-    ("STU48", ["stu48"]),
-    ("Nogizaka46", ["nogizaka46", "乃木坂46", "乃木坂"]),
-    ("Sakurazaka46", ["sakurazaka46", "櫻坂46", "keyakizaka46", "欅坂46"]),
-    ("Hinatazaka46", ["hinatazaka46", "日向坂46"]),
-    ("22/7", ["22/7", "ナナブンノニジュウニ", "ナナニジ"]),
-    ("NiziU", ["niziu", "ニジュー"]),
-    ("ME:I", ["me:i", "ミーアイ"]),
-    ("BABYMETAL", ["babymetal", "ベビーメタル"]),
-]
+TANPOPO_SONGS = ["last kiss", "motto", "seinaru kane", "otome pasta", "koi wo shichaimashita", "ouji-sama", "tanpopo 1", "all of tanpopo"]
 
 def is_authentic_prefix(pid):
     pid_upper = pid.upper()
     return any(pid_upper.startswith(pfx) for pfx in AUTHENTIC_LABEL_PREFIXES)
 
-def classify_artist_and_category(item):
-    """
-    Classifies every release using a strict two-stage hierarchy:
-    Stage 1: Checks for specific subunits, soloists, and sister groups.
-    Stage 2: Checks for primary parent groups.
-    Stage 3: Strictly validates and synchronizes the franchise category.
-    """
-    title = str(item.get("title", "")).strip()
+def classify_by_title_and_id(title, pid, current_artist):
     title_lower = title.lower()
-    current_artist = str(item.get("artist", "")).strip()
-    pid_upper = str(item.get("id", "")).upper()
+    pid_upper = pid.upper()
 
-    searchable_text = f"{title_lower} {current_artist.lower()}"
+    # =========================================================================
+    # Step 1: Detect Explicit Subunits, Soloists & Special Units in Title
+    # =========================================================================
+    if "宮本佳林" in title or "miyamoto karin" in title_lower or "karin miyamoto" in title_lower or "hitorijime / shoujo c" in title_lower or "hyouon" in title_lower:
+        return "Karin Miyamoto"
 
-    # Stage 1: Priority Subunits & Soloists
-    for target_artist, signatures in PRIORITY_ARTIST_RULES:
-        for sig in signatures:
-            if len(sig) <= 3:
-                if re.search(r"\b" + re.escape(sig) + r"\b", searchable_text):
-                    return target_artist, CANONICAL_ARTIST_MAP[target_artist]
-            else:
-                if sig in searchable_text:
-                    return target_artist, CANONICAL_ARTIST_MAP[target_artist]
+    if "tsukishima kirari" in title_lower or "月島きらり" in title or "kusumi koharu" in title_lower or "久住小春" in title or "kirarin revolution" in title_lower or "きらりん☆レボリューション" in title or any(s in title_lower for s in ["balalaika", "koikana", "papancake", "hapi hapi sunday", "mitsuboshi", "kirari to fuyu"]):
+        return "Tsukishima Kirari"
 
-    # Special prefix mappings for Hello! Project subunits
-    if pid_upper.startswith("PKCP-50") or pid_upper.startswith("PKBP-50"):
-        return "v-u-den", "Hello! Project"
+    if "minimoni" in title_lower or "mini moni" in title_lower or "ミニモニ" in title or "mini-moni" in title_lower or any(s in title_lower for s in ["crazy about you", "minimoni telephone", "rock 'n' roll kenchouszaichou", "minihamuz"]):
+        return "Minimoni"
 
-    # Stage 2: Parent Groups
-    for parent_artist, signatures in PARENT_GROUP_RULES:
-        for sig in signatures:
-            if len(sig) <= 3:
-                if re.search(r"\b" + re.escape(sig) + r"\b", searchable_text):
-                    return parent_artist, CANONICAL_ARTIST_MAP[parent_artist]
-            else:
-                if sig in searchable_text:
-                    return parent_artist, CANONICAL_ARTIST_MAP[parent_artist]
+    if "ダブルユー" in title or "double you" in title_lower or "w (double you)" in title_lower or "w [double you]" in title_lower or any(s in title_lower for s in ["robo kiss", "koi no vacance", "miss love tantei", "ai no imi wo oshiete"]):
+        return "W"
 
-    # Stage 3: If current artist is already recognized in our roster, keep it
+    if "v-u-den" in title_lower or "biyuden" in title_lower or "美勇伝" in title or any(s in title_lower for s in ["ajisai ai ai", "koi no nukegara", "kacchoii ze! japan", "ai~sweet heart~", "aisucream to my purin", "yui okada"]):
+        return "v-u-den"
+
+    if ("gam" in title_lower or "ギャム" in title) and any(m in title_lower for m in ["matsuura", "fujimoto", "1st gam", "melodies", "lu lu lu"]):
+        return "GAM"
+
+    if "buono!" in title_lower or "buono " in title_lower or any(s in title_lower for s in ["honto no jibun", "renai rider", "kiss! kiss! kiss!", "gachinko de ikou", "rottara rottara", "co-no-mi-chi", "take it easy!", "bravo☆bravo", "our songs", "we are buono!"]):
+        return "Buono!"
+
+    # Tanpopo must NOT contain other group names (prevents AKB, HKT, C-ute matches)
+    if ("tanpopo" in title_lower or "タンポポ" in title or any(s in title_lower for s in TANPOPO_SONGS)) and not any(other in title_lower for other in ["akb48", "hkt48", "ske48", "nmb48", "c-ute", "℃-ute", "berryz", "kashiwagi", "angerme"]):
+        return "Tanpopo"
+
+    if "taiyo to ciscomoon" in title_lower or "太陽とシスコムーン" in title or "t&c bomber" in title_lower or "t&cボンバー" in title or "magic of love" in title_lower or "gatamekira" in title_lower:
+        return "Taiyo to Ciscomoon"
+
+    if "kikkawa you" in title_lower or "you kikkawa" in title_lower or "kikkawa yu" in title_lower or "吉川友" in title or any(s in title_lower for s in ["kikkake wa you", "hapirapi", "konna watashi de yokattara", "kokokara hajimarunda", "two you", "one for you", "best of you!"]):
+        return "You Kikkawa"
+
+    # Up Up Girls: Must have explicit "up up girls" or "アプガ" before testing for (2)
+    if any(u in title_lower for u in ["up up girls", "アップアップガールズ", "アプガ", "upupgirls"]):
+        if any(w in title_lower for w in ["(2)", "（2）", "2"]):
+            return "Up Up Girls (2)"
+        return "Up Up Girls (Kari)"
+
+    # Soloists
+    if "goto maki" in title_lower or "maki goto" in title_lower or "後藤真希" in title or "gocchin" in title_lower or any(s in title_lower for s in ["ai no bakadan", "te wo nigitte arukitai", "daite yo! please go on"]):
+        return "Maki Goto"
+
+    if "mano erina" in title_lower or "erina mano" in title_lower or "真野恵里菜" in title or any(s in title_lower for s in ["otome no inori", "hajimete no keiken", "sekai wa summer party"]):
+        return "Erina Mano"
+
+    if "matsuura aya" in title_lower or "aya matsuura" in title_lower or "松浦亜弥" in title or "ayaya" in title_lower or any(s in title_lower for s in ["dokidoki! love mail", "tropical koishiteiru", "yeah! meccha holiday", "momoiro kataomoi"]):
+        return "Aya Matsuura"
+
+    if "fujimoto miki" in title_lower or "miki fujimoto" in title_lower or "藤本美貴" in title or "mikitty" in title_lower or any(s in title_lower for s in ["aenai nagai nichiyoubi", "soba ni iru dake de", "roppongi toori", "romantic ukare mode"]):
+        return "Miki Fujimoto"
+
+    if "abe natsumi" in title_lower or "natsumi abe" in title_lower or "安倍なつみ" in title or any(s in title_lower for s in ["22sai no watashi", "datte ikitekanakya"]):
+        return "Natsumi Abe"
+
+    if "suzuki airi" in title_lower or "airi suzuki" in title_lower or "鈴木愛理" in title or "do me a favor" in title_lower or "i mi shine" in title_lower:
+        return "Airi Suzuki"
+
+    if "michishige sayumi" in title_lower or "sayumi michishige" in title_lower or "道重さゆみ" in title or "sayuminglandoll" in title_lower:
+        return "Sayumi Michishige"
+
+    if "ハロプロ研修生" in title or "hello pro kenshuusei" in title_lower or "hello pro kenshusei" in title_lower or "kenshuusei" in title_lower or "kenshusei" in title_lower or "hello pro egg" in title_lower:
+        return "Hello Pro Kenshuusei"
+
+    # AKB48 Group Soloists & Subunits
+    if "kashiwagi yuki" in title_lower or "yuki kashiwagi" in title_lower or "柏木由紀" in title or "yukirin" in title_lower:
+        return "Yuki Kashiwagi"
+
+    if "maeda atsuko" in title_lower or "atsuko maeda" in title_lower or "前田敦子" in title or "time machine nante iranai" in title_lower or "kimi wa boku da" in title_lower:
+        return "Atsuko Maeda"
+
+    if "yamamoto sayaka" in title_lower or "sayaka yamamoto" in title_lower or "山本彩" in title or "sayanee" in title_lower:
+        return "Sayaka Yamamoto"
+
+    if "watanabe mayu" in title_lower or "mayu watanabe" in title_lower or "渡辺麻友" in title or "mayuyu" in title_lower or "synchro tokimeki" in title_lower or "otona jelly beans" in title_lower:
+        return "Mayu Watanabe"
+
+    if "sashihara rino" in title_lower or "rino sashihara" in title_lower or "指原莉乃" in title or "soredemo suki da yo" in title_lower:
+        return "Rino Sashihara"
+
+    if "itano tomomi" in title_lower or "tomomi itano" in title_lower or "板野友美" in title or "tomochin" in title_lower:
+        return "Tomomi Itano"
+
+    if "oshima yuko" in title_lower or "yuko oshima" in title_lower or "大島優子" in title:
+        return "Yuko Oshima"
+
+    if "not yet" in title_lower or "ノットイェット" in title or any(s in title_lower for s in ["shuumatsu not yet", "naminori kakigoori", "perapera peraoche", "suika baby"]):
+        return "Not yet"
+
+    if "no3b" in title_lower or "no sleeves" in title_lower or "ノースリーブス" in title:
+        return "no3b"
+
+    if "french kiss" in title_lower or "フレンチ・キス" in title or "フレンチキス" in title:
+        return "French Kiss"
+
+    if "watarirouka hashiritai" in title_lower or "渡り廊下走り隊" in title:
+        return "Watarirouka Hashiritai"
+
+    # Sakamichi Soloists & Rival
+    if "shiraishi mai" in title_lower or "mai shiraishi" in title_lower or "白石麻衣" in title or "maiyan" in title_lower:
+        return "Mai Shiraishi"
+
+    if "nishino nanase" in title_lower or "nanase nishino" in title_lower or "西野七瀬" in title or "naachan" in title_lower:
+        return "Nanase Nishino"
+
+    if "ikuta erika" in title_lower or "erika ikuta" in title_lower or "生田絵梨花" in title or "ikuchan" in title_lower:
+        return "Erika Ikuta"
+
+    if "saito asuka" in title_lower or "asuka saito" in title_lower or "齋藤飛鳥" in title or "ashurin" in title_lower:
+        return "Asuka Saito"
+
+    if "hirate yurina" in title_lower or "yurina hirate" in title_lower or "平手友梨奈" in title or "dance no riyuu" in title_lower:
+        return "Yurina Hirate"
+
+    if "boku ga mitakatta aozora" in title_lower or "僕が見たかった青空" in title or "僕青" in title:
+        return "Boku ga Mitakatta Aozora"
+
+    # Sister Groups
+    if "candy tune" in title_lower or "キャンディートゥーン" in title or "きゃんちゅー" in title:
+        return "CANDY TUNE"
+    if "sweet steady" in title_lower or "スウィートステディ" in title or "すいすて" in title:
+        return "SWEET STEADY"
+    if "cutie street" in title_lower or "キューティーストリート" in title or "きゅーすと" in title:
+        return "CUTIE STREET"
+    if "fruits zipper" in title_lower or "フルーツジッパー" in title or "ふるっぱー" in title:
+        return "FRUITS ZIPPER"
+
+    if "is:sue" in title_lower or "イッシュ" in title or "1st is:sue" in title_lower or (pid_upper.startswith("UMCK") and "issue" in title_lower):
+        return "IS:SUE"
+
+    if "sakura gakuin" in title_lower or "さくら学院" in title:
+        return "Sakura Gakuin"
+    if "team shachi" in title_lower or "team syachihoko" in title_lower or "チームしゃちほこ" in title:
+        return "TEAM SHACHI"
+    if "batten girls" in title_lower or "batten showtai" in title_lower or "ばってん少女隊" in title:
+        return "BATTEN GIRLS"
+    if "ukka" in title_lower or "sakura ebis" in title_lower or "桜エビ〜ず" in title:
+        return "ukka"
+    if "≠me" in title_lower or "ノイミー" in title or "not equal me" in title_lower:
+        return "≠ME"
+    if "≒joy" in title_lower or "ニアジョイ" in title or "nearly equal joy" in title_lower:
+        return "≒JOY"
+    if "=love" in title_lower or "イコールラブ" in title or "イコラブ" in title:
+        return "=LOVE"
+
+    # =========================================================================
+    # Step 2: Detect Primary Parent Groups in Title
+    # =========================================================================
+    if "akb48" in title_lower or "akb-" in title_lower or "akb gekijo" in title_lower:
+        return "AKB48"
+    if "ske48" in title_lower or "ske-" in title_lower:
+        return "SKE48"
+    if "nmb48" in title_lower or "nmb-" in title_lower:
+        return "NMB48"
+    if "hkt48" in title_lower or "hkt-" in title_lower:
+        return "HKT48"
+    if "ngt48" in title_lower:
+        return "NGT48"
+    if "stu48" in title_lower:
+        return "STU48"
+
+    if "nogizaka46" in title_lower or "乃木坂46" in title or "乃木坂" in title:
+        return "Nogizaka46"
+    if "sakurazaka46" in title_lower or "櫻坂46" in title or "keyakizaka46" in title_lower or "欅坂46" in title:
+        return "Sakurazaka46"
+    if "hinatazaka46" in title_lower or "日向坂46" in title:
+        return "Hinatazaka46"
+    if "22/7" in title_lower or "ナナブンノニジュウニ" in title or "ナナニジ" in title:
+        return "22/7"
+
+    if "morning musume" in title_lower or "モーニング娘" in title:
+        return "Morning Musume"
+    if "angerme" in title_lower or "アンジュルム" in title or "s/mileage" in title_lower or "スマイレージ" in title or "s mileage" in title_lower:
+        return "ANGERME"
+    if "juice=juice" in title_lower or "juicejuice" in title_lower or "ジュースジュース" in title:
+        return "Juice=Juice"
+    if "tsubaki factory" in title_lower or "つばきファクトリー" in title:
+        return "Tsubaki Factory"
+    if "beyooooonds" in title_lower or "ビヨーンズ" in title:
+        return "BEYOOOOONDS"
+    if "ocha norma" in title_lower or "オチャノーマ" in title:
+        return "OCHA NORMA"
+    if "rosy chronicle" in title_lower or "ロージークロニクル" in title:
+        return "Rosy Chronicle"
+    if "berryz kobo" in title_lower or "berryz工房" in title or "berryz" in title_lower:
+        return "Berryz Kobo"
+    if "℃-ute" in title or "c-ute" in title_lower or "cute concert" in title_lower:
+        return "℃-ute"
+    if "country girls" in title_lower or "カントリー・ガールズ" in title or "country musume" in title_lower or "カントリー娘" in title:
+        return "Country Girls"
+    if "kobushi factory" in title_lower or "こぶしファクトリー" in title:
+        return "Kobushi Factory"
+    if "melon kinenbi" in title_lower or "メロン記念日" in title:
+        return "Melon Kinenbi"
+
+    if "momoiro clover" in title_lower or "ももいろクローバー" in title or "ももクロ" in title or "momoclo" in title_lower:
+        return "Momoiro Clover Z"
+    if "shiritsu ebisu chugaku" in title_lower or "私立恵比寿中学" in title or "エビ中" in title or "ebichu" in title_lower:
+        return "Shiritsu Ebisu Chugaku"
+    if "chou tokimeki" in title_lower or "tokimeki sendenbu" in title_lower or "ときめき♡宣伝部" in title or "とき宣" in title:
+        return "Chou Tokimeki Sendenbu"
+
+    if "niziu" in title_lower or "ニジュー" in title:
+        return "NiziU"
+    if "me:i" in title_lower or "ミーアイ" in title:
+        return "ME:I"
+    if "babymetal" in title_lower or "ベビーメタル" in title:
+        return "BABYMETAL"
+
+    # =========================================================================
+    # Step 3: Fallback - If title does not name a group, trust current_artist
+    # =========================================================================
     if current_artist in CANONICAL_ARTIST_MAP:
-        return current_artist, CANONICAL_ARTIST_MAP[current_artist]
+        return current_artist
 
-    # Fallback to current artist with Hello! Project default
-    return current_artist, CANONICAL_ARTIST_MAP.get(current_artist, "Hello! Project")
+    return "Morning Musume"
 
 def check_true_false_positive(item):
-    """Prunes strictly non-idol items (boybands, anime/gaming goods, non-Kikka albums)."""
     title_lower = str(item.get("title", "")).lower()
     artist = str(item.get("artist", "")).strip()
     pid_upper = str(item.get("id", "")).upper()
 
-    # Protected label prefixes are never false positives
     if is_authentic_prefix(pid_upper):
         return False, ""
 
-    # Check for male boybands
     for pat in [r"\bsnow man\b", r"\bsixtones\b", r"\bking & prince\b", r"\btimelesz\b", r"\btravis japan\b", r"\bexile\b", r"\bjo1\b", r"\bini\b", r"\bbts\b", r"\bseventeen\b"]:
         if re.search(pat, title_lower):
             has_our_idol = any(k.lower() in title_lower for k in CANONICAL_ARTIST_MAP.keys())
             if not has_our_idol:
                 return True, f"Male boyband item: matches '{pat}'"
 
-    # Tokuma common word 'you' leak
     if artist == "You Kikkawa" and pid_upper.startswith("TKCA") and "kikkawa" not in title_lower and "吉川友" not in title_lower:
         return True, "Non-Kikkawa album matching common word 'you'"
 
-    # Generic magazine issue leak under IS:SUE
     if artist == "IS:SUE":
         is_real = ("is:sue" in title_lower or "イッシュ" in title_lower or "connect" in title_lower or "static" in title_lower or pid_upper.startswith("UMCK"))
         if not is_real and ("issue" in title_lower or "magazine" in title_lower):
@@ -355,7 +381,7 @@ def check_true_false_positive(item):
 
 def main():
     print("==========================================")
-    print("Starting Comprehensive 78-Group Catalog Sorter")
+    print("Starting Comprehensive 79-Group Catalog Sorter")
     print("==========================================")
 
     if not os.path.exists(DATA_FILE):
@@ -375,24 +401,26 @@ def main():
         if not isinstance(item, dict):
             continue
 
+        raw_title = item.get("title", "")
         orig_art = item.get("artist", "").strip()
         orig_cat = item.get("category", "").strip()
 
-        # Step 1: Execute Hierarchical Classification
-        resolved_art, resolved_cat = classify_artist_and_category(item)
+        # Step 1: Detect True Artist from Title & ID
+        resolved_art = classify_by_title_and_id(raw_title, pid, orig_art)
+        resolved_cat = CANONICAL_ARTIST_MAP[resolved_art]
 
         if resolved_art != orig_art:
-            realigned_artists.append((pid, item.get("title", "")[:32], f"{orig_art} -> {resolved_art}"))
+            realigned_artists.append((pid, raw_title[:32], f"{orig_art} -> {resolved_art}"))
             item["artist"] = resolved_art
 
         if resolved_cat != orig_cat:
-            realigned_categories.append((pid, item.get("title", "")[:32], f"{orig_cat} -> {resolved_cat}"))
+            realigned_categories.append((pid, raw_title[:32], f"{orig_cat} -> {resolved_cat}"))
             item["category"] = resolved_cat
 
-        # Step 2: Prune False Positives
+        # Step 2: Prune True False Positives
         is_bad, reason = check_true_false_positive(item)
         if is_bad:
-            pruned_records.append((pid, item.get("title", ""), reason))
+            pruned_records.append((pid, raw_title, reason))
             continue
 
         cleaned_catalog[pid] = item
@@ -401,7 +429,7 @@ def main():
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
 
-    # Save directly to catalog-index.json so Cloudflare serves the exact same state
+    # Save directly to catalog-index.json so the website updates instantly
     with open(INDEX_FILE, "w", encoding="utf-8") as f:
         json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
 
@@ -424,16 +452,16 @@ def main():
     print(f"Pruned false positives:     {len(pruned_records):,}")
     print(f"Total live catalog items:   {len(cleaned_catalog):,}")
 
-    # Display live breakdown for previously zero-count and solo groups
-    sample_targets = [
+    # Display live breakdown for focus groups
+    focus_targets = [
         "Maki Goto", "Erina Mano", "Aya Matsuura", "Buono!",
         "Hello Pro Kenshuusei", "Up Up Girls (2)", "GAM", "W",
         "v-u-den", "Minimoni", "Tanpopo", "Tsukishima Kirari",
-        "Taiyo to Ciscomoon", "You Kikkawa", "IS:SUE", "Sakura Gakuin",
-        "CANDY TUNE", "SWEET STEADY"
+        "Taiyo to Ciscomoon", "You Kikkawa", "Karin Miyamoto",
+        "Atsuko Maeda", "Yuki Kashiwagi", "Berryz Kobo", "℃-ute"
     ]
     print("\n--- Live Distribution Across Focus Groups ---")
-    for st in sample_targets:
+    for st in focus_targets:
         c = sum(1 for it in cleaned_catalog.values() if it.get("artist") == st)
         franchise = CANONICAL_ARTIST_MAP.get(st, "Unknown")
         print(f"  ⭐ {st.ljust(22)}: {str(c).rjust(4)} items [{franchise}]")

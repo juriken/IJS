@@ -38,26 +38,22 @@ export async function onRequest(context) {
   const userAgent = request.headers.get('user-agent') || '';
   const url = new URL(request.url);
 
-  // Allow standard human visitors to load the SPA directly
   if (!isSocialBot(userAgent)) {
     return next();
   }
 
-  // Extract Product ID from ?id=SKU or /product/SKU
   let productId = url.searchParams.get('id');
   if (!productId) {
-    const pathMatch = url.pathname.match(/\/product\/([A-Za-z0-9\-]+)/);
+    const pathMatch = url.pathname.match(/\/product\/([A-Za-z0-9_\-\.]+)/);
     if (pathMatch) productId = pathMatch[1];
   }
 
-  // Return base response if no product is targeted
   if (!productId) {
     return next();
   }
 
   const response = await next();
 
-  // Load catalog dataset at the edge (prefers compact summary index)
   let product = null;
   try {
     let catalogRes = await env.ASSETS.fetch(new URL('/catalog-index.json', url.origin).toString());
@@ -81,7 +77,6 @@ export async function onRequest(context) {
     return response;
   }
 
-  // Build release metadata
   const title = escapeHtml(`${product.title} — ${product.artist}`);
   const description = escapeHtml(
     `Official Japanese release by ${product.artist}. Catalog ID: ${product.id}. CDJapan Price: ${product.price || 'Official Retail'}. Street Date: ${product.release_date || 'Available Now'}. Directly fulfilled from Tokyo with Oricon chart eligibility.`
@@ -89,7 +84,6 @@ export async function onRequest(context) {
   const imageUrl = product.image || `${url.origin}/favicon.ico`;
   const canonicalUrl = `${url.origin}/?id=${encodeURIComponent(product.id)}`;
 
-  // Rewrite meta headers dynamically using Cloudflare HTMLRewriter
   return new HTMLRewriter()
     .on('title', {
       element(e) {

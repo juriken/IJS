@@ -1,6 +1,6 @@
 {
   "last_sync": "2026-10-22 13:02:19 UTC",
-  "total_catalog_size": 19969,
+  "total_catalog_size": 19875,
   "items_added_this_pass": 15147,
   "active_groups": [
     "Morning Musume",
@@ -87,8 +87,9 @@
   "healthcheck_history": {
     "EPCE-5277": 1792688048,
     "EPXE-5288": 1792692458,
-    "EPXE-5010": 1792694852
+    "EPXE-5010": 1792694852,
+    "NEOBK-3130235": 1792696979
   },
-  "last_healthcheck": "2026-10-22 18:47:35 UTC",
-  "last_catalog_clean": "2026-10-22 18:47:32 UTC"
+  "last_healthcheck": "2026-10-22 19:23:01 UTC",
+  "last_catalog_clean": "2026-10-22 19:22:58 UTC"
 }

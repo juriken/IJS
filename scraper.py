@@ -1,7 +1,7 @@
 """
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
-direct Person ID routing, and multi-query aliasing.
+direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
 """
 
 import json
@@ -20,12 +20,12 @@ STATE_FILE = "scraper_state.json"
 PAGES_PER_TARGET = 3
 
 MONTH_MAP = {
-    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
-    "may": "05", "jun": "06", "jul": "07", "aug": "08",
-    "sep": "09", "oct": "10", "nov": "11", "dec": "12",
-    "january": "01", "february": "02", "march": "03", "april": "04",
-    "june": "06", "july": "07", "august": "08", "september": "09",
-    "october": "10", "november": "11", "december": "12"
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4,
+    "may": 5, "jun": 6, "jul": 7, "aug": 8,
+    "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "june": 6, "july": 7, "august": 8, "september": 9,
+    "october": 10, "november": 11, "december": 12
 }
 
 TANPOPO_AUTHENTIC_SIGNATURES = [
@@ -52,7 +52,6 @@ NIAGO_AUTHENTIC_SIGNATURES = [
 ]
 
 TARGET_GROUPS = [
-    # Hello! Project — Active Groups & Units
     ("Hello! Project", "Morning Musume", ["Morning Musume", "モーニング娘"], [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
@@ -63,42 +62,27 @@ TARGET_GROUPS = [
     ("Hello! Project", "BEYOOOOONDS", ["BEYOOOOONDS", "ビヨーンズ"], ["BEYOOOOONDS"]),
     ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "Rosy"]),
-
-    # Hello Pro Kenshuusei
     ("Hello! Project", "Hello Pro Kenshuusei", [
-        "Hello Pro Kenshusei",
-        "ハロプロ研修生",
-        "Hello Pro Kenshuusei"
+        "Hello Pro Kenshusei", "ハロプロ研修生", "Hello Pro Kenshuusei"
     ], [
         "Hello Pro Kenshuusei", "Hello Pro Kenshusei", "Hello! Pro Kenshuusei",
         "ハロプロ研修生", "Kenshuusei", "Kenshusei", "Hello Pro Egg", "ハロプロエッグ"
     ]),
-
-    # Hello! Project — Past Groups & Subunits
     ("Hello! Project", "Minimoni", ["Minimoni", "ミニモニ"], ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
     ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
     ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
-
-    # Kobushi Factory
     ("Hello! Project", "Kobushi Factory", [
-        "Kobushi-Factory",
-        "Kobushi Factory",
-        "こぶしファクトリー"
+        "Kobushi-Factory", "Kobushi Factory", "こぶしファクトリー"
     ], [
         "Kobushi Factory", "Kobushi-Factory", "こぶしファクトリー", "こぶし"
     ]),
-
     ("Hello! Project", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", ["Tanpopo", "タンポポ"], TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "v-u-den", ["Biyuden", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
-
-    # Hello! Project — OG Post-Graduation Units
     ("Hello! Project", "LoVendoR", ["LoVendoR", "ラベンダー"], ["LoVendoR", "LoVendoЯ", "ラベンダー", "Reina Tanaka"]),
     ("Hello! Project", "PINK CRES.", ["PINK CRES."], ["PINK CRES.", "PINK CRES", "ピンククレス", "Miyabi Natsuyaki"]),
-
-    # Hello! Project — Soloists & OGs
     ("Hello! Project", "Sayumi Michishige", ["Sayumi Michishige", "道重さゆみ"], [
         "Sayumi Michishige", "Michishige Sayumi", "道重さゆみ", "SAYUMINGLANDOLL", "SAYUMING"
     ]),
@@ -107,8 +91,6 @@ TARGET_GROUPS = [
     ("Hello! Project", "Natsumi Abe", ["Natsumi Abe", "安倍なつみ"], ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
-
-    # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
         "You Kikkawa", "Kikkawa You", "Kikkawa Yu", "吉川友", "Kikkawa"
     ]),
@@ -116,18 +98,12 @@ TARGET_GROUPS = [
         "Up Up Girls (Kari)", "Up Up Girls (kari)", "アップアップガールズ(仮)", "アプガ(仮)",
         "アップアップガールズ（仮）", "UpUpGirls(Kari)"
     ]),
-
-    # Up Up Girls (2) — Japanese Kana & Space Normalized Queries
     ("Up-Front Alumni", "Up Up Girls (2)", [
-        "アップアップガールズ(2)",
-        "Up Up Girls 2",
-        "アップアップガールズ（2）"
+        "アップアップガールズ(2)", "Up Up Girls 2", "アップアップガールズ（2）"
     ], [
         "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
         "UpUpGirls(2)", "Up Up Girls 2"
     ]),
-
-    # AKB48 Group
     ("AKB48 Group", "AKB48", ["AKB48"], ["AKB48"]),
     ("AKB48 Group", "SKE48", ["SKE48"], ["SKE48"]),
     ("AKB48 Group", "NMB48", ["NMB48"], ["NMB48"]),
@@ -135,38 +111,25 @@ TARGET_GROUPS = [
     ("AKB48 Group", "NGT48", ["NGT48"], ["NGT48"]),
     ("AKB48 Group", "STU48", ["STU48"], ["STU48"]),
     ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
-
-    # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
     ("Sakamichi Series", "Sakurazaka46", ["Sakurazaka46", "櫻坂46"], ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
     ("Sakamichi Series", "Hinatazaka46", ["Hinatazaka46", "日向坂46"], ["Hinatazaka46", "Hinatazaka", "日向坂"]),
     ("Sakamichi Series", "Keyakizaka46", ["Keyakizaka46", "欅坂46"], ["Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"]),
     ("Sakamichi Series", "22/7", ["22/7", "ナナブンノニジュウニ"], ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
-
-    # Stardust Planet
     ("Stardust Planet", "Momoiro Clover Z", ["Momoiro Clover Z", "ももいろクローバーZ"], ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
     ("Stardust Planet", "Shiritsu Ebisu Chugaku", ["Shiritsu Ebisu Chugaku", "私立恵比寿中学"], ["Shiritsu Ebisu Chugaku", "Ebichu", "私立恵比寿中学", "エビ中"]),
     ("Stardust Planet", "Chou Tokimeki Sendenbu", ["Cho Tokimeki Sendenbu", "超ときめき♡宣伝部"], [
         "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
     ]),
-
-    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", ["=LOVE", "イコールラブ"], ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", ["ノイミー", "≠ME"], NOIME_AUTHENTIC_SIGNATURES),
     ("=LOVE / Sister Groups", "≒JOY", ["Nearly Equal Joy", "≒JOY"], NIAGO_AUTHENTIC_SIGNATURES),
-
-    # KAWAII LAB.
     ("KAWAII LAB.", "FRUITS ZIPPER", ["FRUITS ZIPPER", "フルーツジッパー"], ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
     ("KAWAII LAB.", "CUTIE STREET", ["CUTIE STREET", "キューティーストリート"], ["CUTIE STREET", "Cutie Street", "きゅーすと", "KAWAII LAB."]),
-
-    # Modern Idols
     ("Modern Idols", "NiziU", ["NiziU", "ニジュー"], ["NiziU", "ニジュー"]),
     ("Modern Idols", "ME:I", ["ME:I", "ミーアイ"], ["ME:I", "ミーアイ", "Produce 101"]),
-
-    # Babymetal
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
 ]
-
 
 def load_catalog():
     if os.path.exists(DATA_FILE):
@@ -177,16 +140,20 @@ def load_catalog():
             return {}
     return {}
 
-
 def make_affiliate_link(product_key):
     raw_path = f"product/{product_key}"
     encoded_path = urllib.parse.quote(raw_path, safe="")
     return f"https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/{AFFILIATE_ID}/{encoded_path}"
 
-
 def clean_text(text):
     return re.sub(r"\s+", " ", text).strip() if text else ""
 
+def is_calendar_valid(year, month, day):
+    try:
+        datetime(year, month, day)
+        return True
+    except (ValueError, OverflowError):
+        return False
 
 def parse_normalized_date(date_raw_str):
     if not date_raw_str:
@@ -195,39 +162,39 @@ def parse_normalized_date(date_raw_str):
 
     m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
     if m1:
-        y, m, d = m1.group(1), m1.group(2).zfill(2), m1.group(3).zfill(2)
-        return f"{y}/{m}/{d}"
+        y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
     match_jp = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
     if match_jp:
-        y, m, d = match_jp.group(1), match_jp.group(2).zfill(2), match_jp.group(3).zfill(2)
-        return f"{y}/{m}/{d}"
+        y, m, d = int(match_jp.group(1)), int(match_jp.group(2)), int(match_jp.group(3))
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
     match_en = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
     if match_en:
         mon_str = match_en.group(1).lower()
         if mon_str in MONTH_MAP:
-            m = MONTH_MAP[mon_str]
-            d = match_en.group(2).zfill(2)
-            y = match_en.group(3)
-            return f"{y}/{m}/{d}"
+            y, m, d = int(match_en.group(3)), MONTH_MAP[mon_str], int(match_en.group(2))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
     match_en_rev = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
     if match_en_rev:
         mon_str = match_en_rev.group(2).lower()
         if mon_str in MONTH_MAP:
-            d = match_en_rev.group(1).zfill(2)
-            m = MONTH_MAP[mon_str]
-            y = match_en_rev.group(3)
-            return f"{y}/{m}/{d}"
+            y, m, d = int(match_en_rev.group(3)), MONTH_MAP[mon_str], int(match_en_rev.group(1))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
     match_ym = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
     if match_ym:
-        y, m = match_ym.group(1), match_ym.group(2).zfill(2)
-        return f"{y}/{m}/01"
+        y, m = int(match_ym.group(1)), int(match_ym.group(2))
+        if 1 <= m <= 12:
+            return f"{y}/{str(m).zfill(2)}/01"
 
     return ""
-
 
 def is_date_upcoming(date_str):
     if not date_str:
@@ -239,7 +206,6 @@ def is_date_upcoming(date_str):
     now = datetime.utcnow()
     today_val = (now.year * 10000) + (now.month * 100) + now.day
     return val > today_val
-
 
 def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_direct_person=False):
     if is_direct_person:
@@ -289,7 +255,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             if kw_clean in lower_text:
                 return True
     return False
-
 
 def extract_verified_products(html, category, canonical_artist, keywords, is_direct_person=False):
     soup = BeautifulSoup(html, "html.parser")
@@ -440,7 +405,6 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
 
     return list(items_dict.values())
 
-
 def dismiss_popups(page):
     try:
         page.keyboard.press("Escape")
@@ -452,7 +416,6 @@ def dismiss_popups(page):
             time.sleep(0.2)
     except Exception:
         pass
-
 
 def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
     results = []
@@ -522,7 +485,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
 
     return results
 
-
 def get_active_targets():
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
     if not raw_filter or raw_filter.lower() == "all groups":
@@ -534,7 +496,6 @@ def get_active_targets():
 
     matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
     return matched if matched else TARGET_GROUPS
-
 
 def main():
     catalog = load_catalog()
@@ -627,7 +588,6 @@ def main():
     print(f"Sync Complete! Added {new_total} new releases.", flush=True)
     print(f"Total live catalog items: {final_count}", flush=True)
     print(f"==========================================", flush=True)
-
 
 if __name__ == "__main__":
     main()

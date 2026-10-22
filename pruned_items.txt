@@ -1,4 +1,2 @@
-Total Pruned Items: 2
+Total Pruned Items: 0
 ============================================================
-[1/2] [TKCA-72710] Album CD 20th Anniversary Self Cover Best Album "Thank you" [Limited Release] (Reason: Non-Kikkawa album matching common English word 'you')
-[2/2] [TKCA-72715] Album CD 20th Anniversary Self Cover Best Album "Thank you" [Regular Edition] (Reason: Non-Kikkawa album matching common English word 'you')

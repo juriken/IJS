@@ -89,8 +89,9 @@
     "EPXE-5288": 1792692458,
     "EPXE-5010": 1792694852,
     "NEOBK-3130235": 1792696979,
-    "NEODAI-328736": 1792697620
+    "NEODAI-328736": 1792697620,
+    "NEOODY-98": 1792698503
   },
-  "last_healthcheck": "2026-10-22 19:33:43 UTC",
-  "last_catalog_clean": "2026-10-22 19:33:39 UTC"
+  "last_healthcheck": "2026-10-22 19:48:27 UTC",
+  "last_catalog_clean": "2026-10-22 19:48:23 UTC"
 }

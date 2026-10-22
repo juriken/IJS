@@ -318,7 +318,7 @@
       </div>
     </div>
 
-    <!-- Tier 2 Navigation: Format Filter Bar & 4-Tier Availability Filter -->
+    <!-- Tier 2 Navigation: Format Filter Bar & 5-Tier Availability Filter (Defaults to All Releases) -->
     <div id="desktop-nav-tier2" class="bg-stone-100/90 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-semibold flex-1" id="format-filter-bar">
@@ -372,9 +372,10 @@
             <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-11 text-right">Any</span>
           </div>
 
-          <!-- 4-Tier Stock & Archive Availability System -->
+          <!-- 5-Tier Stock & Archive Availability System -->
           <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[11px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-            <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">Active</button>
+            <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">All</button>
+            <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">Active</button>
             <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
               <i class="fa-solid fa-clock text-[9px]"></i> Pre-Orders
             </button>
@@ -910,7 +911,7 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'active';
+    let activeAvailability = 'all'; // Default to 'all' so legacy / OOP groups are never hidden
     let viewMode = 'grid';
     let searchAliases = {};
 
@@ -1555,7 +1556,7 @@
       if (activeArtist !== 'All') params.set('artist', activeArtist);
       if (activeYear !== 'All') params.set('year', activeYear);
       if (activeFormat !== 'All') params.set('fmt', activeFormat);
-      if (activeAvailability !== 'active') params.set('status', activeAvailability);
+      if (activeAvailability !== 'all') params.set('status', activeAvailability);
       if (searchQuery) params.set('q', searchQuery);
       if (currentSort !== 'newest') params.set('sort', currentSort);
       if (currentPage > 1) params.set('page', currentPage);
@@ -1647,7 +1648,7 @@
         console.warn('IndexedDB initial retrieval bypassed:', err);
       }
 
-      // Layer 2: Network load from local endpoints with safe parsing
+      // Layer 2: Network load from local endpoints with safe parsing (reads catalog-index.json and products.json)
       const cacheBuster = Date.now();
       const candidatePaths = [
         `catalog-index.json?v=${cacheBuster}`,
@@ -1960,6 +1961,17 @@
       activeArtist = artist;
       activeYear = 'All';
       currentPage = 1;
+
+      // Smart Fallback: If artist has 0 in-stock/pre-order items, automatically show all releases
+      if (artist !== 'All' && activeAvailability === 'active') {
+        const inStockCount = allProducts.filter(p => p.artist === artist && !isOutOfPrint(p)).length;
+        if (inStockCount === 0) {
+          activeAvailability = 'all';
+          updateAvailabilityUI();
+          showToast(`Showing complete archive for ${artist}`);
+        }
+      }
+
       updateArtistSubBar();
       updateYearJumpBar();
       updateMobileDrawerContent();
@@ -1985,15 +1997,17 @@
     }
 
     function updateAvailabilityUI() {
+      const allBtn = document.getElementById('avail-all');
       const actBtn = document.getElementById('avail-active');
       const preBtn = document.getElementById('avail-preorder');
       const stockBtn = document.getElementById('avail-instock');
       const oopBtn = document.getElementById('avail-oop');
-      if (!actBtn || !preBtn || !stockBtn || !oopBtn) return;
+      if (!allBtn || !actBtn || !preBtn || !stockBtn || !oopBtn) return;
 
       const activeClasses = "px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs font-bold cursor-pointer";
       const inactiveClasses = "px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer";
 
+      allBtn.className = activeAvailability === 'all' ? activeClasses : inactiveClasses;
       actBtn.className = activeAvailability === 'active' ? activeClasses : inactiveClasses;
       preBtn.className = activeAvailability === 'preorder' ? activeClasses : inactiveClasses;
       stockBtn.className = activeAvailability === 'instock' ? activeClasses : inactiveClasses;
@@ -2120,7 +2134,7 @@
       activeArtist = 'All';
       activeYear = 'All';
       activeFormat = 'All';
-      activeAvailability = 'active';
+      activeAvailability = 'all';
       maxPriceLimit = 20000;
       searchQuery = '';
       isWishlistView = false;
@@ -2676,6 +2690,7 @@
         const oop = isOutOfPrint(item);
         const inStock = isInStock(item);
 
+        // When availability is 'all', all items match regardless of stock status
         if (activeAvailability === 'active' && oop) return false;
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && !inStock) return false;
@@ -2994,6 +3009,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();
       applyLayoutModeToDom();
+      updateAvailabilityUI();
       loadCatalog();
       Promise.allSettled([
         initExchangeRates(),

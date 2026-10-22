@@ -86,7 +86,7 @@
     "price_num": 3630,
     "release_date": "2026/10/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/41/NEODAI-328736.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-328736",
     "updated_at": "2026-10-22"
   },
@@ -132,7 +132,7 @@
   "EPBE-5629": {
     "id": "EPBE-5629",
     "title": "DVD Morning Musume. '24 Concert Tour Haru -Motto Morning Musume.- Final",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥4,500",
     "price_num": 4500,
@@ -535,7 +535,7 @@
   "NEODAI-199081": {
     "id": "NEODAI-199081",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo Scarf Towel [Sakurai Rio]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -691,7 +691,7 @@
   "NEODAI-199080": {
     "id": "NEODAI-199080",
     "title": "APPAREL Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo T-Shirt [Sakurai Rio] (Size: M)",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -3993,8 +3993,8 @@
   "HKT-D0010": {
     "id": "HKT-D0010",
     "title": "Blu-ray HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "HKT48",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥11,000",
     "price_num": 11000,
     "release_date": "2014/11/12",
@@ -4318,8 +4318,8 @@
   "NEODAI-33949": {
     "id": "NEODAI-33949",
     "title": "Blu-ray HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "HKT48",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥9,703",
     "price_num": 9703,
     "release_date": "2014/11/12",
@@ -10935,8 +10935,8 @@
   "UPCH-80587": {
     "id": "UPCH-80587",
     "title": "Single CD Kimi wa Motto Dekiru [CD+DVD / Type B]",
-    "artist": "HKT48",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥1,524",
     "price_num": 1524,
     "release_date": "2023/02/08",
@@ -11117,8 +11117,8 @@
   "UPCH-80586": {
     "id": "UPCH-80586",
     "title": "Single CD Kimi wa Motto Dekiru [CD+DVD / Type A]",
-    "artist": "HKT48",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥1,524",
     "price_num": 1524,
     "release_date": "2023/02/08",
@@ -21179,8 +21179,8 @@
   "NEOBK-2813374": {
     "id": "NEOBK-2813374",
     "title": "BOOK Momo Kuro Gettaman Taiso Meneki Ryoku Motto Takamero! Zenshin Diet",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥1,800",
     "price_num": 1800,
     "release_date": "2022/12/01",
@@ -31084,7 +31084,7 @@
   "PKBP-5099": {
     "id": "PKBP-5099",
     "title": "DVD Berryz Kobo & Cute Nakayoshi Battle Concert Tour 2008 Haru - Berryz Kamen vs Cutie Ranger - with Berryz Kobo Tracks",
-    "artist": "℃-ute",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -31110,7 +31110,7 @@
   "PKBP-5092": {
     "id": "PKBP-5092",
     "title": "DVD Berryz Kobo Single V Clips 3",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -31123,7 +31123,7 @@
   "PKBP-5091": {
     "id": "PKBP-5091",
     "title": "DVD Berryz Kobo Concert Tour 2007 Natsu -Welcome! Berryz Kyuden-",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -31136,7 +31136,7 @@
   "PKBP-5075": {
     "id": "PKBP-5075",
     "title": "DVD 2007 Sakura Mankai Berryz Kobo Live - Kono Kando wa Nido to Nai Shunkan de Aru!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -36453,8 +36453,8 @@
   "NEODAI-62111": {
     "id": "NEODAI-62111",
     "title": "BOOK Kawaiku Nareru Hair to Make No Renshu Cho [Cover] Shiraishi Mai (Nogizaka46) & Suzuki Airi (C-ute) (Shufu No Tomo Seikatsu Series)",
-    "artist": "Mai Shiraishi",
-    "category": "Sakamichi Series",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥1,408",
     "price_num": 1408,
     "release_date": "2017/05/04",
@@ -47981,32 +47981,6 @@
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-9629",
     "updated_at": "2026-10-22"
   },
-  "TKCA-72710": {
-    "id": "TKCA-72710",
-    "title": "Album CD 20th Anniversary Self Cover Best Album \"Thank you\" [Limited Release]",
-    "artist": "You Kikkawa",
-    "category": "Up-Front Alumni",
-    "price": "¥4,286",
-    "price_num": 4286,
-    "release_date": "2004/09/08",
-    "image": "https://st.cdjapan.co.jp/pictures/l/06/18/TKCA-72710.jpg?v=1",
-    "availability": "oop",
-    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTKCA-72710",
-    "updated_at": "2026-10-22"
-  },
-  "TKCA-72715": {
-    "id": "TKCA-72715",
-    "title": "Album CD 20th Anniversary Self Cover Best Album \"Thank you\" [Regular Edition]",
-    "artist": "You Kikkawa",
-    "category": "Up-Front Alumni",
-    "price": "¥3,333",
-    "price_num": 3333,
-    "release_date": "2004/09/08",
-    "image": "https://st.cdjapan.co.jp/pictures/l/06/23/TKCA-72715.jpg?v=1",
-    "availability": "oop",
-    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FTKCA-72715",
-    "updated_at": "2026-10-22"
-  },
   "KIZC-90240": {
     "id": "KIZC-90240",
     "title": "Album CD Tsugi no Ashiato [w/ 2CD+DVD, Limited Edition / Type A]",
@@ -55316,8 +55290,8 @@
   "NEOBK-2380053": {
     "id": "NEOBK-2380053",
     "title": "BOOK Young Gangan August 2, 2019 Issue [Cover & Poster] SKE48 Members [Feature] Niikura Ami (Up Up Girls 2)",
-    "artist": "SKE48",
-    "category": "AKB48 Group",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥306",
     "price_num": 306,
     "release_date": "2019/08/02",
@@ -56863,7 +56837,7 @@
   "PKCP-5241": {
     "id": "PKCP-5241",
     "title": "Single CD Motto Zutto Issho ni Itakatta / ROCK Erotic [w/ DVD, Limited Edition / Type A]",
-    "artist": "Berryz Kobo",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -56876,7 +56850,7 @@
   "PKCP-5243": {
     "id": "PKCP-5243",
     "title": "Single CD Motto Zutto Issho ni Itakatta / ROCK Erotic [w/ DVD, Limited Edition / Type B]",
-    "artist": "Berryz Kobo",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -56889,7 +56863,7 @@
   "PKCP-5245": {
     "id": "PKCP-5245",
     "title": "Single CD Motto Zutto Issho ni Itakatta / ROCK Erotic [w/ DVD, Limited Edition / Type C]",
-    "artist": "Berryz Kobo",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -56902,7 +56876,7 @@
   "PKCP-5247": {
     "id": "PKCP-5247",
     "title": "Single CD Motto Zutto Issho ni Itakatta / ROCK Erotic [Limited Edition / Type D]",
-    "artist": "Berryz Kobo",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -56915,7 +56889,7 @@
   "PKCP-5248": {
     "id": "PKCP-5248",
     "title": "Single CD Motto Zutto Issho ni Itakatta / ROCK Erotic [Regular Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -57305,8 +57279,8 @@
   "NEODAI-62588": {
     "id": "NEODAI-62588",
     "title": "Album CD Used [Second Hang](2)mini - Ikiru to Iu Chikara [Regular Edition]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥300",
     "price_num": 300,
     "release_date": "2007/04/18",
@@ -61452,8 +61426,8 @@
   "NEODAI-103494": {
     "id": "NEODAI-103494",
     "title": "Album CD Used [Secondhand] Motto Hashire!!",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥300",
     "price_num": 300,
     "release_date": "2011/10/05",
@@ -62947,8 +62921,8 @@
   "DAKUFBW-1267": {
     "id": "DAKUFBW-1267",
     "title": "DVD S/mileage 2nd Original Album \"(2) Smile Sensation\" Hatsubai Kinen Event",
-    "artist": "ANGERME",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,429",
     "price_num": 3429,
     "release_date": "2013/11/20",
@@ -63025,8 +62999,8 @@
   "HKCN-50288": {
     "id": "HKCN-50288",
     "title": "Album CD (2) Smile Sensation [w/ DVD, Limited Edition]",
-    "artist": "ANGERME",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,600",
     "price_num": 3600,
     "release_date": "2013/05/22",
@@ -68303,7 +68277,7 @@
   "EPXE-5256": {
     "id": "EPXE-5256",
     "title": "Blu-ray Morning Musume. '24 Concert Tour Haru -Motto Morning Musume.- Final",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥6,500",
     "price_num": 6500,
@@ -68381,7 +68355,7 @@
   "NEODAI-209484": {
     "id": "NEODAI-209484",
     "title": "DVD Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME.FINAL MORNING MUSUME.'24 DVD MAGAZINE Vol.150",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -68446,7 +68420,7 @@
   "NEODAI-206377": {
     "id": "NEODAI-206377",
     "title": "Collectible [Deadline: May 17 / 9:00 (Japan Time)] [Shipping Estimate: Usually in 3-4 Weeks] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. May 4 Solo A5 Wide Size Photo [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68459,7 +68433,7 @@
   "NEODAI-206434": {
     "id": "NEODAI-206434",
     "title": "DVD Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. MORNING MUSUME.'24 DVD MAGAZINE Vol.149",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -68511,7 +68485,7 @@
   "NEODAI-199319": {
     "id": "NEODAI-199319",
     "title": "Collectible [Shipping Estimate: Usually in 3-4 Weeks] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. 3/17 Solo A5 Wide Size Photo [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68524,7 +68498,7 @@
   "NEODAI-199322": {
     "id": "NEODAI-199322",
     "title": "Collectible [Shipping Estimate: Usually in 3-4 Weeks] [Limited Time Make-to-Order] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. 3/16 Solo A5 Wide Size Photo [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68537,7 +68511,7 @@
   "NEODAI-199323": {
     "id": "NEODAI-199323",
     "title": "Collectible [Shipping Estimate: Usually in 3-4 Weeks] [Limited Time Make-to-Order] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. 3/16 Solo A5 Wide Size Photo [Nonaka MIki]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68550,7 +68524,7 @@
   "NEODAI-199325": {
     "id": "NEODAI-199325",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo 2L-Sized Photo Set of 2 B [Nonaka Miki]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68563,7 +68537,7 @@
   "NEODAI-199327": {
     "id": "NEODAI-199327",
     "title": "Collectible [Shipping Estimate: Usually in 3-4 Weeks] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. 3/17 Solo A5 Wide Size Photo [Nonaka MIki]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68576,7 +68550,7 @@
   "NEODAI-199328": {
     "id": "NEODAI-199328",
     "title": "Collectible [Shipping Estimate: Usually in 3-4 Weeks] Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. 3/24 Solo A5 Wide Size Photo [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68589,7 +68563,7 @@
   "NEODAI-199375": {
     "id": "NEODAI-199375",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo Acrylic Stand Keychain [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,800",
     "price_num": 1800,
@@ -68602,7 +68576,7 @@
   "NEODAI-199378": {
     "id": "NEODAI-199378",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo Acrylic Stand Keychain [Nonaka Miki]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,800",
     "price_num": 1800,
@@ -68615,7 +68589,7 @@
   "NEODAI-199379": {
     "id": "NEODAI-199379",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo 2L-Sized Photo Set of 2 A [Ikuta Erina]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68628,7 +68602,7 @@
   "NEODAI-199380": {
     "id": "NEODAI-199380",
     "title": "Collectible Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Solo 2L-Sized Photo Set of 2 A [Nonaka Miki]",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥600",
     "price_num": 600,
@@ -68641,7 +68615,7 @@
   "NEODAI-199383": {
     "id": "NEODAI-199383",
     "title": "DVD Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. MORNING MUSUME. '24 DVD MAGAZINE Vol.147",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -68654,7 +68628,7 @@
   "NEODAI-199385": {
     "id": "NEODAI-199385",
     "title": "DVD Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. MORNING MUSUME. '24 DVD MAGAZINE Vol.148",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -68667,7 +68641,7 @@
   "NEODAI-199386": {
     "id": "NEODAI-199386",
     "title": "BOOK Morning Musume. '24 Concert Tour Spring MOTTO MORNING MUSUME. Visual Book",
-    "artist": "Morning Musume",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥2,500",
     "price_num": 2500,
@@ -89909,7 +89883,7 @@
   "PKBP-5041": {
     "id": "PKBP-5041",
     "title": "DVD Berryz Kobo Concert Tour 2005 Aki Switch ON!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91261,7 +91235,7 @@
   "PKBP-5098": {
     "id": "PKBP-5098",
     "title": "DVD Single V: Ike Ike Monkey Dance",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91300,7 +91274,7 @@
   "PKBP-5096": {
     "id": "PKBP-5096",
     "title": "DVD Single V: Dschinghis Khan",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91339,7 +91313,7 @@
   "PKBP-5094": {
     "id": "PKBP-5094",
     "title": "DVD Reverse! Watashi no Karada Doko Desu ka?",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91378,7 +91352,7 @@
   "PKCP-5091": {
     "id": "PKCP-5091",
     "title": "Album CD 4th Ai no Nanchara Shisu [w/ DVD, Limited Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,600",
     "price_num": 3600,
@@ -91391,7 +91365,7 @@
   "PKCP-5093": {
     "id": "PKCP-5093",
     "title": "Album CD 4th Ai no Nanchara Shisu [Regular Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -91404,7 +91378,7 @@
   "PKBP-5082": {
     "id": "PKBP-5082",
     "title": "DVD Single V: Kokuhaku no Funsui Hiroba",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91417,7 +91391,7 @@
   "PKCP-5088": {
     "id": "PKCP-5088",
     "title": "Single CD Kokuhaku no Funsui Hiroba [w/ DVD, Limited Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -91430,7 +91404,7 @@
   "PKCP-5090": {
     "id": "PKCP-5090",
     "title": "Single CD Kokuhaku no Funsui Hiroba [Regular Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91443,7 +91417,7 @@
   "PKBP-5068": {
     "id": "PKBP-5068",
     "title": "DVD Single V: Very Beauty",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91456,7 +91430,7 @@
   "PKCP-5078": {
     "id": "PKCP-5078",
     "title": "Single CD Very Beauty [w/ DVD, Limited Edition / Type A]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -91469,7 +91443,7 @@
   "PKCP-5080": {
     "id": "PKCP-5080",
     "title": "Single CD Very Beauty [Limited Edition / Type B]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,200",
     "price_num": 1200,
@@ -91482,7 +91456,7 @@
   "PKCP-5081": {
     "id": "PKCP-5081",
     "title": "Single CD Very Beauty [Regular Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91495,7 +91469,7 @@
   "PKBP-5058": {
     "id": "PKBP-5058",
     "title": "DVD Single V: Munasawagi Scarlet",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91508,7 +91482,7 @@
   "PKCP-5074": {
     "id": "PKCP-5074",
     "title": "Single CD Munasawagi Scarlet",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91521,7 +91495,7 @@
   "PKBP-5056": {
     "id": "PKBP-5056",
     "title": "DVD Berryz Koubou Summer Concert Tour 2006 - Manatsu! Anata wo Suki ni Naru Sangensoku",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91534,7 +91508,7 @@
   "PKBP-5053": {
     "id": "PKBP-5053",
     "title": "DVD Single V: Waracchaoyo Boyfriend",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91547,7 +91521,7 @@
   "PKCP-5069": {
     "id": "PKCP-5069",
     "title": "Single CD Waracchaoyo Boyfriend",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91560,7 +91534,7 @@
   "PKBP-5052": {
     "id": "PKBP-5052",
     "title": "DVD Berryz Koubou Concert Tour 2006 Haru - Nyoki Nyoki Champion",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91573,7 +91547,7 @@
   "PKCP-5067": {
     "id": "PKCP-5067",
     "title": "Album CD 3 Natsu Natsu Mini Berryz [Limited Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91586,7 +91560,7 @@
   "PKCP-5068": {
     "id": "PKCP-5068",
     "title": "Album CD 3 Natsu Natsu Mini Berryz [Regular Edition]",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,000",
     "price_num": 2000,
@@ -91599,7 +91573,7 @@
   "PKBP-5048": {
     "id": "PKBP-5048",
     "title": "DVD Single V: Jiriri Kiteru",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91612,7 +91586,7 @@
   "PKCP-5065": {
     "id": "PKCP-5065",
     "title": "Single CD Jiriri Kiteru",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91625,7 +91599,7 @@
   "PKBP-5043": {
     "id": "PKBP-5043",
     "title": "DVD Berryz Kounbou Single Video Clips 2",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -91638,7 +91612,7 @@
   "PKBP-5038": {
     "id": "PKBP-5038",
     "title": "DVD Single V: Gyagu 100kai bun Aishite Kudasai",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91651,7 +91625,7 @@
   "PKCP-5062": {
     "id": "PKCP-5062",
     "title": "Album CD Special! Best Mini - 2, 5 maime no Kare",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,000",
     "price_num": 2000,
@@ -91664,7 +91638,7 @@
   "PKCP-5058": {
     "id": "PKCP-5058",
     "title": "Single CD Gyagu 100kai bun Aishite Kudasai",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91677,7 +91651,7 @@
   "PKCP-5061": {
     "id": "PKCP-5061",
     "title": "Album CD Dai (2) Seicho Ki",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -91690,7 +91664,7 @@
   "PKBP-5039": {
     "id": "PKBP-5039",
     "title": "DVD Berryz Koubou Live Tour 2005 Shoka Hatsu Tandoku - Marugoto",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91703,7 +91677,7 @@
   "PKBP-5035": {
     "id": "PKBP-5035",
     "title": "DVD Single V: 21ji made no Cinderella",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91716,7 +91690,7 @@
   "PKCP-5056": {
     "id": "PKCP-5056",
     "title": "Single CD 21ji made no Cinderella",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91729,7 +91703,7 @@
   "PKBP-5031": {
     "id": "PKBP-5031",
     "title": "DVD Single V: Nanchu Koi wo Yateru You Know?",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91742,7 +91716,7 @@
   "PKCP-5053": {
     "id": "PKCP-5053",
     "title": "Single CD Nanchu Koi wo Yatteru You Know?",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91755,7 +91729,7 @@
   "PKBP-5029": {
     "id": "PKBP-5029",
     "title": "DVD Single V: Special Generation",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91768,7 +91742,7 @@
   "PKCP-5051": {
     "id": "PKCP-5051",
     "title": "Single CD Special Generation",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91781,7 +91755,7 @@
   "PKBP-5026": {
     "id": "PKBP-5026",
     "title": "DVD Berryz Kounbou Single Video Clips 1",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -91794,7 +91768,7 @@
   "PKCP-5045": {
     "id": "PKCP-5045",
     "title": "Single CD Koi no Jubaku",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91807,7 +91781,7 @@
   "PKBP-5022": {
     "id": "PKBP-5022",
     "title": "DVD Single V: Happiness - Kofuku Kangei!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91820,7 +91794,7 @@
   "PKCP-5044": {
     "id": "PKCP-5044",
     "title": "Single CD Happiness - Kofuku Kangei!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91833,7 +91807,7 @@
   "PKCP-5043": {
     "id": "PKCP-5043",
     "title": "Album CD 1st. Cho Berrys",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -91846,7 +91820,7 @@
   "PKBP-5019": {
     "id": "PKBP-5019",
     "title": "DVD Single V: Piriri to ikou!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91859,7 +91833,7 @@
   "PKCP-5040": {
     "id": "PKCP-5040",
     "title": "Single CD Piriri to ikou!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91872,7 +91846,7 @@
   "PKBP-5017": {
     "id": "PKBP-5017",
     "title": "DVD Single V: Finghting Pose wa Datejanai!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91885,7 +91859,7 @@
   "PKCP-5037": {
     "id": "PKCP-5037",
     "title": "Single CD Fighting Pose ha Date Janai!",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -91898,7 +91872,7 @@
   "PKBP-5016": {
     "id": "PKBP-5016",
     "title": "DVD Single V: Can't Live Without You",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
@@ -91911,7 +91885,7 @@
   "PKCP-5036": {
     "id": "PKCP-5036",
     "title": "Single CD CAN'T LIVE WITHOUT YOU",
-    "artist": "Berryz Kobo",
+    "artist": "v-u-den",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -92873,8 +92847,8 @@
   "NEODAI-27596": {
     "id": "NEODAI-27596",
     "title": "BOOK Used Second Hand UP to boy Vol.200 December 2010 Issue [Cover & Feature] Airi Suzuki (C-ute) & Mayu Watanabe (AKB48)",
-    "artist": "Mayu Watanabe",
-    "category": "AKB48 Group",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥916",
     "price_num": 916,
     "release_date": "2010/10/23",
@@ -92990,8 +92964,8 @@
   "NEOBK-2089337": {
     "id": "NEOBK-2089337",
     "title": "BOOK Kawaiku Nareru Hair to Make No Renshu Cho [Cover] Shiraishi Mai (Nogizaka46) & Suzuki Airi (C-ute) (Shufu No Tomo Seikatsu Series)",
-    "artist": "Mai Shiraishi",
-    "category": "Sakamichi Series",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥1,280",
     "price_num": 1280,
     "release_date": "2017/05/10",
@@ -94225,8 +94199,8 @@
   "NEOBK-859531": {
     "id": "NEOBK-859531",
     "title": "BOOK UP to boy Vol.200 December 2010 Issue [Cover & Feature] Airi Suzuki (C-ute) & Mayu Watanabe (AKB48)",
-    "artist": "Mayu Watanabe",
-    "category": "AKB48 Group",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥1,143",
     "price_num": 1143,
     "release_date": "2010/10/23",
@@ -94485,7 +94459,7 @@
   "EPCE-7001": {
     "id": "EPCE-7001",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [w/ DVD, Limited Edition/Type-A]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -94498,7 +94472,7 @@
   "EPCE-7003": {
     "id": "EPCE-7003",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [w/ DVD, Limited Edition/Type-B]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -94511,7 +94485,7 @@
   "EPCE-7005": {
     "id": "EPCE-7005",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [w/ DVD, Limited Edition/Type-C]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,600",
     "price_num": 1600,
@@ -94524,7 +94498,7 @@
   "EPCE-7007": {
     "id": "EPCE-7007",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [Limited Edition/Type-D]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -94537,7 +94511,7 @@
   "EPCE-7008": {
     "id": "EPCE-7008",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [Regular Edition / Type-A]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -94550,7 +94524,7 @@
   "EPCE-7009": {
     "id": "EPCE-7009",
     "title": "Single CD Tokai no Hitori Gurashi / Aitte Motto Zanshin [Regular Edition / Type-B]",
-    "artist": "℃-ute",
+    "artist": "Tanpopo",
     "category": "Hello! Project",
     "price": "¥1,000",
     "price_num": 1000,
@@ -94758,8 +94732,8 @@
   "EPCE-5915": {
     "id": "EPCE-5915",
     "title": "Album CD (2) Cute Shinsei naru Best Album [w/ DVD, Limited Edition/Type-A]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,619",
     "price_num": 3619,
     "release_date": "2012/11/21",
@@ -94771,8 +94745,8 @@
   "EPCE-5917": {
     "id": "EPCE-5917",
     "title": "Album CD (2) Cute Shinsei naru Best Album [w/ DVD, Limited Edition/Type-B]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,429",
     "price_num": 3429,
     "release_date": "2012/11/21",
@@ -94784,8 +94758,8 @@
   "EPCE-5919": {
     "id": "EPCE-5919",
     "title": "Album CD (2) Cute Shinsei naru Best Album [Regular Edition]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,000",
     "price_num": 3000,
     "release_date": "2012/11/21",
@@ -95629,8 +95603,8 @@
   "EPBE-5328": {
     "id": "EPBE-5328",
     "title": "DVD Music V Tokushu (2) Cutie Visual",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,000",
     "price_num": 3000,
     "release_date": "2009/06/24",
@@ -96084,8 +96058,8 @@
   "EPCE-5462": {
     "id": "EPCE-5462",
     "title": "Album CD (2)mini - Ikiru to Iu Chikara [w/ DVD, Limited Edition]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥2,667",
     "price_num": 2667,
     "release_date": "2007/04/18",
@@ -96097,8 +96071,8 @@
   "EPCE-5464": {
     "id": "EPCE-5464",
     "title": "Album CD (2)mini - Ikiru to Iu Chikara [Regular Edition]",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥2,000",
     "price_num": 2000,
     "release_date": "2007/04/18",
@@ -98229,8 +98203,8 @@
   "NEOBK-2158217": {
     "id": "NEOBK-2158217",
     "title": "BOOK Ray June 2018 Issue [Cover] Keyakizaka46 Suzuki Airi & Kato Nana & Watanabe Rika",
-    "artist": "Sakurazaka46",
-    "category": "Sakamichi Series",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥620",
     "price_num": 620,
     "release_date": "2018/04/23",
@@ -98294,8 +98268,8 @@
   "NEOBK-1870075": {
     "id": "NEOBK-1870075",
     "title": "BOOK Young Gangan April 15, 2016 Issue [Cover] Oba Mina (SKE48) [Supplement] calendar, Suzuki Airi sticker",
-    "artist": "SKE48",
-    "category": "AKB48 Group",
+    "artist": "Airi Suzuki",
+    "category": "Hello! Project",
     "price": "¥324",
     "price_num": 324,
     "release_date": "2016/04/15",
@@ -137580,8 +137554,8 @@
   "HKT-D0009": {
     "id": "HKT-D0009",
     "title": "DVD HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "HKT48",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥9,000",
     "price_num": 9000,
     "release_date": "2014/11/12",
@@ -143950,8 +143924,8 @@
   "AVXD-92298": {
     "id": "AVXD-92298",
     "title": "Blu-ray French Kiss Live -Last Kiss- [Shipping Within Japan Only]",
-    "artist": "French Kiss",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥5,980",
     "price_num": 5980,
     "release_date": "2016/04/20",
@@ -143963,8 +143937,8 @@
   "AVBD-92296": {
     "id": "AVBD-92296",
     "title": "DVD French Kiss Live -Last Kiss- [Shipping Within Japan Only]",
-    "artist": "French Kiss",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥4,980",
     "price_num": 4980,
     "release_date": "2016/04/20",
@@ -150125,8 +150099,8 @@
   "AVXA-74316": {
     "id": "AVXA-74316",
     "title": "Blu-ray Kashiwagi Yuki 3rd Solo Live Nete mo Samete mo Yukirin World - Motto Muchu ni Sasechauzo -",
-    "artist": "Yuki Kashiwagi",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥5,705",
     "price_num": 5705,
     "release_date": "2014/03/19",
@@ -150580,8 +150554,8 @@
   "AVBA-74314": {
     "id": "AVBA-74314",
     "title": "DVD Kashiwagi Yuki 3rd Solo Live Nete mo Samete mo Yukirin World - Motto Muchu ni Sasechauzo -",
-    "artist": "Yuki Kashiwagi",
-    "category": "AKB48 Group",
+    "artist": "Tanpopo",
+    "category": "Hello! Project",
     "price": "¥4,752",
     "price_num": 4752,
     "release_date": "2014/03/19",
@@ -216282,8 +216256,8 @@
   "ANSB-56272": {
     "id": "ANSB-56272",
     "title": "DVD Gekijo Sujinashi in Nagoya Dai Ni Ya (2) Momota Kanako (Momoiro Clover Z) Kanzen Hozon Ban",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥2,800",
     "price_num": 2800,
     "release_date": "2015/03/25",
@@ -220091,8 +220065,8 @@
   "KIXM-90181": {
     "id": "KIXM-90181",
     "title": "Blu-ray Momoiro Yobanashi Dai Ichi Ya (1) \"Hakushu\" & Dai Ni Ya (2) \"Gento\" Blu-ray Box [Limited Edition]",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥8,800",
     "price_num": 8800,
     "release_date": "2014/11/26",
@@ -220104,8 +220078,8 @@
   "KIXM-182": {
     "id": "KIXM-182",
     "title": "Blu-ray Momoiro Yobanashi Dai Ni Ya (2) \"Gento\" [Regular Edition]",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥4,400",
     "price_num": 4400,
     "release_date": "2014/11/26",
@@ -220130,8 +220104,8 @@
   "KIBM-90477": {
     "id": "KIBM-90477",
     "title": "DVD Momoiro Yobanashi Dai Ichi Ya (1) \"Hakushu\" & Dai Ni Ya (2) \"Gento\" DVD Box [Limited Edition]",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥7,800",
     "price_num": 7800,
     "release_date": "2014/11/26",
@@ -220143,8 +220117,8 @@
   "KIBM-479": {
     "id": "KIBM-479",
     "title": "DVD Momoiro Yobanashi Dai Ni Ya (2) \"Gento\" [Regular Edition]",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Up Up Girls (2)",
+    "category": "Up-Front Alumni",
     "price": "¥3,900",
     "price_num": 3900,
     "release_date": "2014/11/26",

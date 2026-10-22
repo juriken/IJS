@@ -164,7 +164,7 @@
     "price_num": 7500,
     "release_date": "2026/12/09",
     "image": "https://www.cdjapan.co.jp/pictures/l/EPXE-5296.jpg",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5296",
     "updated_at": "2026-10-22"
   },
@@ -340,7 +340,7 @@
   "NEOBK-2454183": {
     "id": "NEOBK-2454183",
     "title": "BOOK MORNING MUSUME.'20 Akane Haga First Photo Book \"Akane\"",
-    "artist": "Aya Matsuura",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥2,819",
     "price_num": 2819,
@@ -405,7 +405,7 @@
   "EPCE-5167": {
     "id": "EPCE-5167",
     "title": "Album CD Hawaiian de Kiku Morning Musume. Single Collection",
-    "artist": "Miki Fujimoto",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -509,8 +509,8 @@
   "NEOBK-2720586": {
     "id": "NEOBK-2720586",
     "title": "BOOK UteenB NO.01 [Cover F/B] Nogizaka46: Tsutsui Ayame / Morning Musume'22: Rio Kitagawa (Wani Mook Series 251)",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,364",
     "price_num": 1364,
     "release_date": "Available Now",
@@ -3993,8 +3993,8 @@
   "HKT-D0010": {
     "id": "HKT-D0010",
     "title": "Blu-ray HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "Tanpopo",
-    "category": "Hello! Project",
+    "artist": "HKT48",
+    "category": "AKB48 Group",
     "price": "¥11,000",
     "price_num": 11000,
     "release_date": "2014/11/12",
@@ -4318,8 +4318,8 @@
   "NEODAI-33949": {
     "id": "NEODAI-33949",
     "title": "Blu-ray HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "Tanpopo",
-    "category": "Hello! Project",
+    "artist": "HKT48",
+    "category": "AKB48 Group",
     "price": "¥9,703",
     "price_num": 9703,
     "release_date": "2014/11/12",
@@ -4942,8 +4942,8 @@
   "NEOBK-2647668": {
     "id": "NEOBK-2647668",
     "title": "BOOK BRODY Another Cover Edition October 2021 Issue [Cover] =LOVE: Sasaki Maika [Poster] Sasaki Maika & Momoiro Clover Z",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "=LOVE",
+    "category": "=LOVE / Sister Groups",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "2021/08/23",
@@ -5488,8 +5488,8 @@
   "NEOBK-2562630": {
     "id": "NEOBK-2562630",
     "title": "BOOK BRODY October 2021 Issue [Cover] Momoiro Clover Z [Poster] Momoiro Clover Z & =LOVE: Sasaki Maika",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "=LOVE",
+    "category": "=LOVE / Sister Groups",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "2021/08/23",
@@ -5553,8 +5553,8 @@
   "NEOBK-2592884": {
     "id": "NEOBK-2592884",
     "title": "BOOK LARME May 2021 Issue [Cover] Momoiro Clover Z: Sasaki Ayaka & =LOVE: Saito Nagisa",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "=LOVE",
+    "category": "=LOVE / Sister Groups",
     "price": "¥727",
     "price_num": 727,
     "release_date": "2021/03/17",
@@ -5917,8 +5917,8 @@
   "NEOBK-1982376": {
     "id": "NEOBK-1982376",
     "title": "BOOK Catch me if you can by BABYMETAL (BAND SCORE PIECE1852)",
-    "artist": "French Kiss",
-    "category": "AKB48 Group",
+    "artist": "BABYMETAL",
+    "category": "Babymetal",
     "price": "¥750",
     "price_num": 750,
     "release_date": "Available Now",
@@ -8660,8 +8660,8 @@
   "NEOBK-3179279": {
     "id": "NEOBK-3179279",
     "title": "BOOK IDOL and READ Yomu Idol Magazine 045 [Cover F/B] Sato Neo (Sakurazaka46) / Nakamura Yuna (Shiritsu Ebisu Chugaku)",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,400",
     "price_num": 1400,
     "release_date": "Available Now",
@@ -13561,8 +13561,8 @@
   "NEODAI-86318": {
     "id": "NEODAI-86318",
     "title": "BOOK BRODY Momoiro Clover Z Ver. October 2020 Issue [Cover] Momoiro Clover Z [Poster] Momoiro Clover Z, Nogizaka46: Sato Ruka",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,700",
     "price_num": 1700,
     "release_date": "2020/08/21",
@@ -13600,8 +13600,8 @@
   "NEOBK-2521861": {
     "id": "NEOBK-2521861",
     "title": "BOOK BRODY Momoiro Clover Z Ver. October 2020 Issue [Cover] Momoiro Clover Z [Poster] Momoiro Clover Z, Nogizaka46: Sato Ruka",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "2020/08/21",
@@ -13613,8 +13613,8 @@
   "NEOBK-2391958": {
     "id": "NEOBK-2391958",
     "title": "BOOK BRODY October 2020 Issue [Poster] Momoiro Clover Z, Nogizaka46: Sato Ruka",
-    "artist": "Momoiro Clover Z",
-    "category": "Stardust Planet",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "2020/08/21",
@@ -18930,8 +18930,8 @@
   "NEODAI-175933": {
     "id": "NEODAI-175933",
     "title": "APPAREL Nmb48 13th Anniversary Passport Case NEODAI-175933",
-    "artist": "Mai Shiraishi",
-    "category": "Sakamichi Series",
+    "artist": "NMB48",
+    "category": "AKB48 Group",
     "price": "¥3,500",
     "price_num": 3500,
     "release_date": "2023/11/15",
@@ -31084,7 +31084,7 @@
   "PKBP-5099": {
     "id": "PKBP-5099",
     "title": "DVD Berryz Kobo & Cute Nakayoshi Battle Concert Tour 2008 Haru - Berryz Kamen vs Cutie Ranger - with Berryz Kobo Tracks",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -31110,7 +31110,7 @@
   "PKBP-5092": {
     "id": "PKBP-5092",
     "title": "DVD Berryz Kobo Single V Clips 3",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -31123,7 +31123,7 @@
   "PKBP-5091": {
     "id": "PKBP-5091",
     "title": "DVD Berryz Kobo Concert Tour 2007 Natsu -Welcome! Berryz Kyuden-",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -31136,7 +31136,7 @@
   "PKBP-5075": {
     "id": "PKBP-5075",
     "title": "DVD 2007 Sakura Mankai Berryz Kobo Live - Kono Kando wa Nido to Nai Shunkan de Aru!",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -32228,7 +32228,7 @@
   "EPBE-5117": {
     "id": "EPBE-5117",
     "title": "DVD Morning Musume Sotsugyo Memorial",
-    "artist": "Natsumi Abe",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -33567,8 +33567,8 @@
   "NEOBK-2035523": {
     "id": "NEOBK-2035523",
     "title": "BOOK Top Yell March 2017 Issue [Feature] Hello! Project [Supplement] Keyakizaka46 / Country Girls & Tsubaki Factory Poster",
-    "artist": "Tsubaki Factory",
-    "category": "Hello! Project",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,111",
     "price_num": 1111,
     "release_date": "2017/02/06",
@@ -33931,8 +33931,8 @@
   "NEOBK-1982009": {
     "id": "NEOBK-1982009",
     "title": "BOOK G the Television (Gravure The Television) Vol.46 [Double Cover] Kitano Hinako (Nogizaka46) / Hamaura Ayano (Kobushi Factory)",
-    "artist": "Kobushi Factory",
-    "category": "Hello! Project",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,100",
     "price_num": 1100,
     "release_date": "Available Now",
@@ -36115,7 +36115,7 @@
   "NEOBK-2798366": {
     "id": "NEOBK-2798366",
     "title": "BOOK UP to boy May 2023 [Cover] Airi Suzuki, Yuki Sato and Karin Miyamoto",
-    "artist": "Airi Suzuki",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥1,182",
     "price_num": 1182,
@@ -39196,7 +39196,7 @@
   "TPRD-12": {
     "id": "TPRD-12",
     "title": "DVD Up Up Girls (Kari) Zenkoku 47 Todofuken Tour 2015 -Run! Apuga Run! Dash-",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥3,500",
     "price_num": 3500,
@@ -41601,7 +41601,7 @@
   "NEOBK-1932216": {
     "id": "NEOBK-1932216",
     "title": "BOOK CD Journal April 2016 Issue [Cover] Up Up Girls (Kari) [Back Cover] Underworld",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥815",
     "price_num": 815,
@@ -41640,7 +41640,7 @@
   "NEOBK-1876999": {
     "id": "NEOBK-1876999",
     "title": "BOOK Big Comic Spirits November 16, 2015 Issue [Cover] Arai Manami from Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥324",
     "price_num": 324,
@@ -41653,7 +41653,7 @@
   "NEOBK-1807661": {
     "id": "NEOBK-1807661",
     "title": "BOOK Young Gangan June 5, 2015 Issue [Cover] Arai Manami (Up Up Girls (Kari)) [Supplement] DVD feat. J-Pop idoles (Region 2)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥324",
     "price_num": 324,
@@ -41666,7 +41666,7 @@
   "NEOBK-1799445": {
     "id": "NEOBK-1799445",
     "title": "BOOK Photo Technique Digital May 2015 Issue [Cover] Arai Manami from Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥925",
     "price_num": 925,
@@ -41692,7 +41692,7 @@
   "NEODAI-6801": {
     "id": "NEODAI-6801",
     "title": "Collectible Up Up Girls (Kari) - 2015 Calendar",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥2,852",
     "price_num": 2852,
@@ -41705,7 +41705,7 @@
   "NEODAI-6457": {
     "id": "NEODAI-6457",
     "title": "APPAREL Up Up Girls (Kari) - 2014 Summer Live Tour Hot! Hot! Hot! T-shirt [Black][sizeM] NEODAI-6457",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥3,056",
     "price_num": 3056,
@@ -41731,7 +41731,7 @@
   "NEOBK-1676445": {
     "id": "NEOBK-1676445",
     "title": "BOOK CD Journal 2014 July Issue [Cover] Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥743",
     "price_num": 743,
@@ -41757,7 +41757,7 @@
   "NEODAI-5844": {
     "id": "NEODAI-5844",
     "title": "Collectible Up Up Girls (Kari) - 1st National Tour 2nd Chapter B2 Poster",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥815",
     "price_num": 815,
@@ -41770,7 +41770,7 @@
   "NEODAI-5843": {
     "id": "NEODAI-5843",
     "title": "Collectible Up Up Girls (Kari) - 1st National Tour 2nd Chapter T-Shirt [Size M]",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥3,056",
     "price_num": 3056,
@@ -41796,7 +41796,7 @@
   "NEOBK-1640882": {
     "id": "NEOBK-1640882",
     "title": "BOOK ARMS MAGAZINE 2014 May Issue [Cover] Sengoku Minami from Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥1,048",
     "price_num": 1048,
@@ -41835,7 +41835,7 @@
   "NEOBK-1551911": {
     "id": "NEOBK-1551911",
     "title": "BOOK Photo Technique Digital 2013 October Issue [Cover & Photo] Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥1,048",
     "price_num": 1048,
@@ -41874,7 +41874,7 @@
   "TPRD-3": {
     "id": "TPRD-3",
     "title": "DVD Up Up Girls (Kari) 2nd Live Roppongi Kessen (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥5,714",
     "price_num": 5714,
@@ -41887,7 +41887,7 @@
   "NEOBK-1456068": {
     "id": "NEOBK-1456068",
     "title": "BOOK Monthly De-View 2013 April Issue [Cover] Up Up Girls (Kari)",
-    "artist": "Up Up Girls (Kari)",
+    "artist": "Up Up Girls (2)",
     "category": "Up-Front Alumni",
     "price": "¥476",
     "price_num": 476,
@@ -43174,8 +43174,8 @@
   "NEOBK-2844204": {
     "id": "NEOBK-2844204",
     "title": "BOOK IDOL AND READ 034 [Cover F/B] Shiritsu Ebisu Chugaku: Kaho Kobayashi / Hinatazaka46: Haruka Yamashita",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,300",
     "price_num": 1300,
     "release_date": "Available Now",
@@ -43226,8 +43226,8 @@
   "NEOBK-2712892": {
     "id": "NEOBK-2712892",
     "title": "BOOK IDOL AND READ 030 [Cover F/B] Shiritsu Ebisu Chugaku: Yasumoto Ayaka) / Hinatazaka46: Takahashi Mikuni",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,300",
     "price_num": 1300,
     "release_date": "Available Now",
@@ -43291,8 +43291,8 @@
   "NEOBK-2648266": {
     "id": "NEOBK-2648266",
     "title": "BOOK IDOL AND READ 028 [Cover F/B] Shiritsu Ebisu Chugaku: Mirei Hoshino / Hinatazaka46: Haruyo Yamaguchi",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,300",
     "price_num": 1300,
     "release_date": "Available Now",
@@ -43408,8 +43408,8 @@
   "NEOBK-2340158": {
     "id": "NEOBK-2340158",
     "title": "BOOK IDOL AND READ 018 [Cover (F/B)] Nakayama Riko (Shiritsu Ebisu Chugaku) / Iguchi Mao (Hinatazaka46)",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,200",
     "price_num": 1200,
     "release_date": "Available Now",
@@ -43421,8 +43421,8 @@
   "NEOBK-2277316": {
     "id": "NEOBK-2277316",
     "title": "BOOK B.L.T. April 2019 Issue [Cover & Poster] Shiritsu Ebisu Chugaku [Booklet] Keyakizaka46 2nd Generation",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "¥639",
     "price_num": 639,
     "release_date": "2019/02/23",
@@ -44058,8 +44058,8 @@
   "NEOBK-2952881": {
     "id": "NEOBK-2952881",
     "title": "BOOK MARQUEE Vol.153 [Cover F/B] Hinatazaka46: Rio Shimizu and Haruka Yamashita / Cho Tokimeki Sendenbu",
-    "artist": "Chou Tokimeki Sendenbu",
-    "category": "Stardust Planet",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,250",
     "price_num": 1250,
     "release_date": "Available Now",
@@ -45878,7 +45878,7 @@
   "NEODAI-24396": {
     "id": "NEODAI-24396",
     "title": "BOOK Used [Second Hand] FLASH Special Gravure BEST 2014 Summer Issue w/ poster feat. Kashiwagi Yuki x Sayaka Yamamoto / Miyawaki Sakura x Kodama Haruka",
-    "artist": "Sayaka Yamamoto",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥750",
     "price_num": 750,
@@ -47113,8 +47113,8 @@
   "SRXL-357": {
     "id": "SRXL-357",
     "title": "Blu-ray 22/7 5th Birthday Live 2021 - Colors Of Flowers - [Regular Edition]",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "22/7",
+    "category": "Sakamichi Series",
     "price": "¥5,636",
     "price_num": 5636,
     "release_date": "2022/05/04",
@@ -47126,8 +47126,8 @@
   "SRXL-355": {
     "id": "SRXL-355",
     "title": "Blu-ray 22/7 5th Birthday Live 2021 - Colors Of Flowers - [Limited Edition]",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "22/7",
+    "category": "Sakamichi Series",
     "price": "¥6,818",
     "price_num": 6818,
     "release_date": "2022/05/04",
@@ -47139,8 +47139,8 @@
   "SRBL-2058": {
     "id": "SRBL-2058",
     "title": "DVD 22/7 5th Birthday Live 2021 - Colors Of Flowers - [Regular Edition]",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "22/7",
+    "category": "Sakamichi Series",
     "price": "¥4,727",
     "price_num": 4727,
     "release_date": "2022/05/04",
@@ -48062,7 +48062,7 @@
   "NEODAI-247785": {
     "id": "NEODAI-247785",
     "title": "Album CD Hawaiian de Kiku Morning Musume. Single Collection",
-    "artist": "Miki Fujimoto",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥850",
     "price_num": 850,
@@ -57877,7 +57877,7 @@
   "NEOBK-1660845": {
     "id": "NEOBK-1660845",
     "title": "BOOK Morning Musume. '14 Photobook \"Michishige Camera '13-'14\"",
-    "artist": "Sayumi Michishige",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥2,200",
     "price_num": 2200,
@@ -60230,8 +60230,8 @@
   "SRBL-2055": {
     "id": "SRBL-2055",
     "title": "DVD 22/7 5th Birthday Live 2021 - Colors Of Flowers - [Limited Edition]",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "22/7",
+    "category": "Sakamichi Series",
     "price": "¥5,909",
     "price_num": 5909,
     "release_date": "2022/05/04",
@@ -62921,8 +62921,8 @@
   "DAKUFBW-1267": {
     "id": "DAKUFBW-1267",
     "title": "DVD S/mileage 2nd Original Album \"(2) Smile Sensation\" Hatsubai Kinen Event",
-    "artist": "Up Up Girls (2)",
-    "category": "Up-Front Alumni",
+    "artist": "ANGERME",
+    "category": "Hello! Project",
     "price": "¥3,429",
     "price_num": 3429,
     "release_date": "2013/11/20",
@@ -67432,8 +67432,8 @@
   "NEOBK-1901345": {
     "id": "NEOBK-1901345",
     "title": "BOOK G the Television (Gravure The Television) Vol.43 [Double Cover] Matsuoka Natsumi (NMB48) / Sayashi Riho & Ishida Ayumi (Morning Musume '15)",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "NMB48",
+    "category": "AKB48 Group",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "Available Now",
@@ -73451,8 +73451,8 @@
   "EPXE-3014": {
     "id": "EPXE-3014",
     "title": "Blu-ray Morning Musume. Concert Tour 2006 Haru - Rainbow Seven -",
-    "artist": "Sayaka Yamamoto",
-    "category": "AKB48 Group",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
     "release_date": "2013/11/06",
@@ -75622,8 +75622,8 @@
   "EPBE-5200": {
     "id": "EPBE-5200",
     "title": "DVD Morning Musume Concert Tour 2006 Haru - Rainbow Seven",
-    "artist": "Sayaka Yamamoto",
-    "category": "AKB48 Group",
+    "artist": "Morning Musume",
+    "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
     "release_date": "2006/07/19",
@@ -77715,8 +77715,8 @@
   "NEOBK-2235896": {
     "id": "NEOBK-2235896",
     "title": "BOOK Young Magazine June 18 2018 Issue [Cover] Makino Maria (Morning Musume '18) [Photo Feature] Sugai Yuuka (Keyakizaka46)",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "¥343",
     "price_num": 343,
     "release_date": "2018/06/18",
@@ -79444,7 +79444,7 @@
   "NEOBK-1872920": {
     "id": "NEOBK-1872920",
     "title": "BOOK UTB+ Vol.31 May 2016 Issue [Cover & Top Feature] Kudo Haruka (MORNING MUSUME.) X MIYAMOTO KARIN (Juice=Juice)",
-    "artist": "Morning Musume",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥917",
     "price_num": 917,
@@ -80497,8 +80497,8 @@
   "NEOBK-1889395": {
     "id": "NEOBK-1889395",
     "title": "BOOK GiRLPOP 2016 WINTER [Double Cover Morning Musume. '15. / Nogizaka46 (M-ON! ANNEX)",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,140",
     "price_num": 1140,
     "release_date": "Available Now",
@@ -80757,7 +80757,7 @@
   "NEOBK-1772205": {
     "id": "NEOBK-1772205",
     "title": "BOOK Morning Musume.'14 Photobook \"Michishige Camera 2 - '14graduation -\"",
-    "artist": "Sayumi Michishige",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥1,852",
     "price_num": 1852,
@@ -81043,8 +81043,8 @@
   "NEOBK-1593266": {
     "id": "NEOBK-1593266",
     "title": "BOOK Top Yell 2014 January Issue w/ A2 Double-Sided Poster (Front: SKE48 / Back: Morning Musume.)",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "SKE48",
+    "category": "AKB48 Group",
     "price": "¥933",
     "price_num": 933,
     "release_date": "2013/12/06",
@@ -81134,8 +81134,8 @@
   "NEOBK-1479781": {
     "id": "NEOBK-1479781",
     "title": "BOOK Anikan R Yanyan!! Vol.5 2013 April Issue [Cover] Morning Musume. w/ Extra Issue HKT48 Song Book",
-    "artist": "Morning Musume",
-    "category": "Hello! Project",
+    "artist": "HKT48",
+    "category": "AKB48 Group",
     "price": "¥1,238",
     "price_num": 1238,
     "release_date": "2013/04/11",
@@ -81719,7 +81719,7 @@
   "EPBE-5083": {
     "id": "EPBE-5083",
     "title": "DVD Haroharo! Morning Musume 6ki Member DVD",
-    "artist": "Sayumi Michishige",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -81849,7 +81849,7 @@
   "EPBE-5040": {
     "id": "EPBE-5040",
     "title": "DVD Single V: Morning Musume. Single Medley - Hawaiian-",
-    "artist": "Miki Fujimoto",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥1,200",
     "price_num": 1200,
@@ -81888,7 +81888,7 @@
   "EPCE-5166": {
     "id": "EPCE-5166",
     "title": "Single CD Morning Musume single medley",
-    "artist": "Miki Fujimoto",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥971",
     "price_num": 971,
@@ -85359,7 +85359,7 @@
   "HKXN-50097": {
     "id": "HKXN-50097",
     "title": "Blu-ray Juice=Juice Concert 2020 - Tsuzuiteiku STORY - Miyamoto Karin Sotsugyo Special",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥8,000",
     "price_num": 8000,
@@ -85372,7 +85372,7 @@
   "HKBN-50249": {
     "id": "HKBN-50249",
     "title": "DVD Juice=Juice Concert 2020 - Tsuzuiteiku STORY - Miyamoto Karin Sotsugyo Special",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥4,500",
     "price_num": 4500,
@@ -85528,7 +85528,7 @@
   "NEODAI-71806": {
     "id": "NEODAI-71806",
     "title": "APPAREL Solo T-Shirt [Miyamoto Karin / XL] (\"Juice=Juice CONCERT TOUR 2020 -Pop Juice Journey-\")",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥3,000",
     "price_num": 3000,
@@ -86464,7 +86464,7 @@
   "DCFGDS-942260": {
     "id": "DCFGDS-942260",
     "title": "Collectible Karin Miyamoto Photo Set: 4 Photos (Size: 2L) (A) [Juice=Juice \"First Squeeze!\" Release Event Special Live]",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥926",
     "price_num": 926,
@@ -87322,8 +87322,8 @@
   "NEODAI-73639": {
     "id": "NEODAI-73639",
     "title": "BOOK Juice=Juice Miyamoto Karin Photo Book \"Sunflower\"",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "Karin Miyamoto",
+    "category": "Hello! Project",
     "price": "¥3,056",
     "price_num": 3056,
     "release_date": "2016/10/22",
@@ -87348,7 +87348,7 @@
   "NEOBK-2492446": {
     "id": "NEOBK-2492446",
     "title": "BOOK Juice=Juice Karin Miyamoto Photobook: RIN",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥2,818",
     "price_num": 2818,
@@ -87426,7 +87426,7 @@
   "NEOBK-2327872": {
     "id": "NEOBK-2327872",
     "title": "BOOK Shonen Champion March 7, 2019 Issue [Cover] Juice=Juice Inaba Manaka & Miyamoto Karin [Postcard] Yowamushi Pedal",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥278",
     "price_num": 278,
@@ -87452,7 +87452,7 @@
   "NEODAI-47018": {
     "id": "NEODAI-47018",
     "title": "BOOK UTB+ vol.20 2014 July Issue [Cover & Top gravure] Miyamoto Karin \"Juice=Juice\"",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥1,273",
     "price_num": 1273,
@@ -87465,7 +87465,7 @@
   "NEOBK-2282807": {
     "id": "NEOBK-2282807",
     "title": "BOOK Juice=Juice Miyamoto Karin Nijyussai Kinen Photo Book",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥2,778",
     "price_num": 2778,
@@ -87491,8 +87491,8 @@
   "NEOBK-2245215": {
     "id": "NEOBK-2245215",
     "title": "BOOK Young Magazine July 16, 2018 Issue [Cover] Uemura Akari (Juice=Juice) [Feature] Keyakizaka46 Ushio Sarina, Kato Shiho, Sasaki Kumi",
-    "artist": "Juice=Juice",
-    "category": "Hello! Project",
+    "artist": "Sakurazaka46",
+    "category": "Sakamichi Series",
     "price": "¥343",
     "price_num": 343,
     "release_date": "2018/07/16",
@@ -87530,7 +87530,7 @@
   "NEOEGA-101934": {
     "id": "NEOEGA-101934",
     "title": "Collectible Karin Miyamoto (Juice=Juice) Heart-shaped Cushion",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥3,686",
     "price_num": 3686,
@@ -87569,7 +87569,7 @@
   "NEOBK-2087748": {
     "id": "NEOBK-2087748",
     "title": "BOOK Shonen Champion June 1, 2017 Issue [Cover & Poster] MIYAMOTO KARIN (Juice=Juice)",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥259",
     "price_num": 259,
@@ -87582,7 +87582,7 @@
   "NEOEGA-26553": {
     "id": "NEOEGA-26553",
     "title": "Collectible Vertically Long Cushion: Karin Miyamoto (Juice=Juice) Ver.",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥4,630",
     "price_num": 4630,
@@ -87660,8 +87660,8 @@
   "NEOBK-2014365": {
     "id": "NEOBK-2014365",
     "title": "BOOK Juice=Juice Miyamoto Karin Photo Book \"Sunflower\"",
-    "artist": "Atsuko Maeda",
-    "category": "AKB48 Group",
+    "artist": "Karin Miyamoto",
+    "category": "Hello! Project",
     "price": "¥2,778",
     "price_num": 2778,
     "release_date": "Available Now",
@@ -87699,7 +87699,7 @@
   "NEOEGA-23459": {
     "id": "NEOEGA-23459",
     "title": "Collectible Life-size Tapestry: Juice=Juice Karin Miyamoto",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥4,630",
     "price_num": 4630,
@@ -87829,7 +87829,7 @@
   "NEOBK-1830619": {
     "id": "NEOBK-1830619",
     "title": "BOOK IDOL AND READ Yomu Idol Magazine 004 [Cover] Miyamoto Karin (Juice=Juice)",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥1,200",
     "price_num": 1200,
@@ -87894,7 +87894,7 @@
   "NEOBK-1666853": {
     "id": "NEOBK-1666853",
     "title": "BOOK Baseball Game Magazine Vol.12 2014 June Issue [Cover] Miyamoto Karin (Juice=Juice)",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥926",
     "price_num": 926,
@@ -87907,7 +87907,7 @@
   "NEOBK-1610900": {
     "id": "NEOBK-1610900",
     "title": "BOOK UTB+ vol.20 2014 July Issue [Cover & Top gravure] Miyamoto Karin \"Juice=Juice\"",
-    "artist": "Juice=Juice",
+    "artist": "Karin Miyamoto",
     "category": "Hello! Project",
     "price": "¥1,157",
     "price_num": 1157,
@@ -87920,8 +87920,8 @@
   "NEOBK-1633121": {
     "id": "NEOBK-1633121",
     "title": "BOOK Anikan R Yanyan!! Vol.15 2014 April Issue [Cover & Feature] HKT48 w/ Booklet featuing Juice=Juice",
-    "artist": "Juice=Juice",
-    "category": "Hello! Project",
+    "artist": "HKT48",
+    "category": "AKB48 Group",
     "price": "¥1,238",
     "price_num": 1238,
     "release_date": "2014/03/12",
@@ -89883,7 +89883,7 @@
   "PKBP-5041": {
     "id": "PKBP-5041",
     "title": "DVD Berryz Kobo Concert Tour 2005 Aki Switch ON!",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91495,7 +91495,7 @@
   "PKBP-5056": {
     "id": "PKBP-5056",
     "title": "DVD Berryz Koubou Summer Concert Tour 2006 - Manatsu! Anata wo Suki ni Naru Sangensoku",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91534,7 +91534,7 @@
   "PKBP-5052": {
     "id": "PKBP-5052",
     "title": "DVD Berryz Koubou Concert Tour 2006 Haru - Nyoki Nyoki Champion",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91547,7 +91547,7 @@
   "PKCP-5067": {
     "id": "PKCP-5067",
     "title": "Album CD 3 Natsu Natsu Mini Berryz [Limited Edition]",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91560,7 +91560,7 @@
   "PKCP-5068": {
     "id": "PKCP-5068",
     "title": "Album CD 3 Natsu Natsu Mini Berryz [Regular Edition]",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥2,000",
     "price_num": 2000,
@@ -91599,7 +91599,7 @@
   "PKBP-5043": {
     "id": "PKBP-5043",
     "title": "DVD Berryz Kounbou Single Video Clips 2",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -91664,7 +91664,7 @@
   "PKBP-5039": {
     "id": "PKBP-5039",
     "title": "DVD Berryz Koubou Live Tour 2005 Shoka Hatsu Tandoku - Marugoto",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -91755,7 +91755,7 @@
   "PKBP-5026": {
     "id": "PKBP-5026",
     "title": "DVD Berryz Kounbou Single Video Clips 1",
-    "artist": "v-u-den",
+    "artist": "Berryz Kobo",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -100842,7 +100842,7 @@
   "NEODAI-125897": {
     "id": "NEODAI-125897",
     "title": "Collectible Used [Secondhand] Photo / AKB48 Oshima Yuko / Watanabe Mayu / CD \"Mae Shika Mukane\" HMV / LAWSON Bonus)",
-    "artist": "Yuko Oshima",
+    "artist": "Mayu Watanabe",
     "category": "AKB48 Group",
     "price": "¥160",
     "price_num": 160,
@@ -110254,7 +110254,7 @@
   "NEODAI-155182": {
     "id": "NEODAI-155182",
     "title": "BOOK Used [Secondhand w/ Supplement (Clear Folder)] Weekly Playboy 2014 5/19 Issue [Cover] Watanabe Mayu & Kashiwagi Yuki (AKB48) [Supplement] Oshima Yuko & Haruna Kojima Clear Folder",
-    "artist": "Yuko Oshima",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥1,500",
     "price_num": 1500,
@@ -110319,7 +110319,7 @@
   "NEOBK-1008713": {
     "id": "NEOBK-1008713",
     "title": "BOOK G the Television (Gravure The Television) Vol.19 [Cover] Yuki Kashiwagi, Mayu Watanabe, Rino Sashihara, Yui Yokoyama (AKB48) (Kadokawa Mook)",
-    "artist": "Mayu Watanabe",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥933",
     "price_num": 933,
@@ -113712,8 +113712,8 @@
   "NEOBK-2273136": {
     "id": "NEOBK-2273136",
     "title": "BOOK Young Jump September 27 2018 Issue [Cover] Yurina Hirate (Keyakizaka46) [Feature] Moeka Yahagi (AKB48)",
-    "artist": "AKB48",
-    "category": "AKB48 Group",
+    "artist": "Yurina Hirate",
+    "category": "Sakamichi Series",
     "price": "¥315",
     "price_num": 315,
     "release_date": "2018/09/27",
@@ -113790,7 +113790,7 @@
   "SSXX-27": {
     "id": "SSXX-27",
     "title": "Blu-ray Yokoyama Yui (AKB48) ga Hannari Meguru Kyoto Irodori Nikki Vol.4 \"Oishiimono wo Yobaremasho\" Hen",
-    "artist": "Sayaka Yamamoto",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "¥4,900",
     "price_num": 4900,
@@ -113803,7 +113803,7 @@
   "SSBX-2387": {
     "id": "SSBX-2387",
     "title": "DVD Yokoyama Yui (AKB48) ga Hannari Meguru Kyoto Irodori Nikki Vol.4 \"Oishiimono wo Yobaremasho\" Hen",
-    "artist": "Sayaka Yamamoto",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "¥3,900",
     "price_num": 3900,
@@ -113907,7 +113907,7 @@
   "NEOBK-2244618": {
     "id": "NEOBK-2244618",
     "title": "BOOK Idol Tanjo! Konna Watashi ga AKB48 ni!? (Shogakukan Junior Bunko)",
-    "artist": "Yuki Kashiwagi",
+    "artist": "AKB48",
     "category": "AKB48 Group",
     "price": "¥700",
     "price_num": 700,
@@ -114414,7 +114414,7 @@
   "NEOBK-2039074": {
     "id": "NEOBK-2039074",
     "title": "BOOK BOMB! December 2017 Issue [Cover & Top Feature] AKB48 Watanabe Mayu, Sashihara Rino and Kashiwagi Yuki",
-    "artist": "Mayu Watanabe",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥852",
     "price_num": 852,
@@ -115493,7 +115493,7 @@
   "NEOBK-2084165": {
     "id": "NEOBK-2084165",
     "title": "BOOK TV Bros Aprol 22, 2017 Issue [Cover] AKB48 Watanabe Mayu & Kashiwagi Yuki",
-    "artist": "Mayu Watanabe",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥306",
     "price_num": 306,
@@ -117196,8 +117196,8 @@
   "NEOBK-1872907": {
     "id": "NEOBK-1872907",
     "title": "BOOK Top Yell March 2016 Issue [Photo Sheet & Poster] Shiritsu Ebisu Chugaku [Novel Book Cover] AKB48",
-    "artist": "Shiritsu Ebisu Chugaku",
-    "category": "Stardust Planet",
+    "artist": "AKB48",
+    "category": "AKB48 Group",
     "price": "¥1,111",
     "price_num": 1111,
     "release_date": "2016/02/05",
@@ -126296,7 +126296,7 @@
   "NEOBK-1502457": {
     "id": "NEOBK-1502457",
     "title": "BOOK Weekly Playboy 2013 6/10 Issue w/ AKB Oshima Yuko & Watanabe Mayu /Kito Momona (SKE48) Poster",
-    "artist": "Yuko Oshima",
+    "artist": "Mayu Watanabe",
     "category": "AKB48 Group",
     "price": "¥362",
     "price_num": 362,
@@ -135643,7 +135643,7 @@
   "NEOBK-1732598": {
     "id": "NEOBK-1732598",
     "title": "BOOK Weekly Playboy 2014 November 17 Issue w/ NMB48 Kashiwagi Yuki x Yamamoto Sayaka x Watanabe Miyuki mousepad",
-    "artist": "Sayaka Yamamoto",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥389",
     "price_num": 389,
@@ -135669,7 +135669,7 @@
   "NEOBK-1729226": {
     "id": "NEOBK-1729226",
     "title": "BOOK Weekly Playboy 2014 December Issue [Cover] Kashiwagi Yuki & Yamamoto Sayaka & Watanabe Miyuki (NMB48) w/ Large Poster featuring AKB48 members",
-    "artist": "Sayaka Yamamoto",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥389",
     "price_num": 389,
@@ -137554,8 +137554,8 @@
   "HKT-D0009": {
     "id": "HKT-D0009",
     "title": "DVD HKT48 Arena Tour - Kawaii Ko ni wa Motto Tabi wo Saseyo - Umi no Nakamichi Kaihin Koen",
-    "artist": "Tanpopo",
-    "category": "Hello! Project",
+    "artist": "HKT48",
+    "category": "AKB48 Group",
     "price": "¥9,000",
     "price_num": 9000,
     "release_date": "2014/11/12",
@@ -142988,7 +142988,7 @@
   "COZA-655": {
     "id": "COZA-655",
     "title": "Single CD Suika Baby [CD+DVD / Type-B]",
-    "artist": "Rino Sashihara",
+    "artist": "Not yet",
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
@@ -143001,7 +143001,7 @@
   "COZA-653": {
     "id": "COZA-653",
     "title": "Single CD Suika Baby [CD+DVD / Type-A]",
-    "artist": "Rino Sashihara",
+    "artist": "Not yet",
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
@@ -143014,7 +143014,7 @@
   "COCA-16616": {
     "id": "COCA-16616",
     "title": "Single CD Suika Baby [Type-D]",
-    "artist": "Rino Sashihara",
+    "artist": "Not yet",
     "category": "AKB48 Group",
     "price": "¥952",
     "price_num": 952,
@@ -143118,7 +143118,7 @@
   "COZA-657": {
     "id": "COZA-657",
     "title": "Single CD Suika Baby [CD+DVD / Type-C]",
-    "artist": "Rino Sashihara",
+    "artist": "Not yet",
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
@@ -144574,7 +144574,7 @@
   "NEOBK-1679173": {
     "id": "NEOBK-1679173",
     "title": "BOOK FLASH Special Gravure BEST 2014 Summer Issue w/ poster feat. Kashiwagi Yuki x Sayaka Yamamoto / Miyawaki Sakura x Kodama Haruka",
-    "artist": "Sayaka Yamamoto",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥556",
     "price_num": 556,
@@ -147499,7 +147499,7 @@
   "NEOBK-1656678": {
     "id": "NEOBK-1656678",
     "title": "BOOK Weekly Playboy 2014 5/19 Issue [Cover] Watanabe Mayu & Kashiwagi Yuki (AKB48) [Supplement] Oshima Yuko & Haruna Kojima Clear Folder",
-    "artist": "Yuko Oshima",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥389",
     "price_num": 389,
@@ -147746,7 +147746,7 @@
   "NEOBK-1545183": {
     "id": "NEOBK-1545183",
     "title": "BOOK Weekly Playboy 2013 9/2 Issue [Cover] Large Poster featuring Rino Sashihara x Yuko Oshima x Mayu Watanabe (AKB48)",
-    "artist": "Yuko Oshima",
+    "artist": "Mayu Watanabe",
     "category": "AKB48 Group",
     "price": "¥362",
     "price_num": 362,
@@ -147759,7 +147759,7 @@
   "NEOBK-1499143": {
     "id": "NEOBK-1499143",
     "title": "BOOK Weekly Playboy 2013 6/3 Issue w/ AKB48 Oshima Yuko & Watanabe Mayu large reversible poster",
-    "artist": "Yuko Oshima",
+    "artist": "Mayu Watanabe",
     "category": "AKB48 Group",
     "price": "¥362",
     "price_num": 362,
@@ -147785,7 +147785,7 @@
   "NEOBK-1456110": {
     "id": "NEOBK-1456110",
     "title": "BOOK FRIDAY 2013 3/15 Issue w/ AKB48 Oshima Yuko x Watanabe Mayu Reversible Poster",
-    "artist": "Yuko Oshima",
+    "artist": "Mayu Watanabe",
     "category": "AKB48 Group",
     "price": "¥400",
     "price_num": 400,
@@ -147876,7 +147876,7 @@
   "NEOBK-1335279": {
     "id": "NEOBK-1335279",
     "title": "BOOK Weekly Playboy 2012 September 3 Issue [Cover] Yuko Oshima & Mayu Watanabe & Yuki Kashiwagi (AKB48)",
-    "artist": "Yuko Oshima",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥343",
     "price_num": 343,
@@ -147889,7 +147889,7 @@
   "NEOBK-1035361": {
     "id": "NEOBK-1035361",
     "title": "BOOK BOMB! 2012 September Issue [Cover] AKB48 (Yuko Oshima, Mayu Watanabe, Yuki Kashiwagi)",
-    "artist": "Yuko Oshima",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥838",
     "price_num": 838,
@@ -147902,7 +147902,7 @@
   "NEOBK-1266052": {
     "id": "NEOBK-1266052",
     "title": "BOOK FRIDAY 2012 7/6 Issue [Cover] Yuko Oshima, Mayu Watanabe, Yuki Kashiwagi (AKB48)",
-    "artist": "Yuko Oshima",
+    "artist": "Yuki Kashiwagi",
     "category": "AKB48 Group",
     "price": "¥371",
     "price_num": 371,
@@ -150099,8 +150099,8 @@
   "AVXA-74316": {
     "id": "AVXA-74316",
     "title": "Blu-ray Kashiwagi Yuki 3rd Solo Live Nete mo Samete mo Yukirin World - Motto Muchu ni Sasechauzo -",
-    "artist": "Tanpopo",
-    "category": "Hello! Project",
+    "artist": "Yuki Kashiwagi",
+    "category": "AKB48 Group",
     "price": "¥5,705",
     "price_num": 5705,
     "release_date": "2014/03/19",
@@ -150554,8 +150554,8 @@
   "AVBA-74314": {
     "id": "AVBA-74314",
     "title": "DVD Kashiwagi Yuki 3rd Solo Live Nete mo Samete mo Yukirin World - Motto Muchu ni Sasechauzo -",
-    "artist": "Tanpopo",
-    "category": "Hello! Project",
+    "artist": "Yuki Kashiwagi",
+    "category": "AKB48 Group",
     "price": "¥4,752",
     "price_num": 4752,
     "release_date": "2014/03/19",
@@ -158068,8 +158068,8 @@
   "NEODAI-121692": {
     "id": "NEODAI-121692",
     "title": "Collectible \"Nogizaka46\" Electrostatic Poster / Time flies [Akimoto Manatsu]",
-    "artist": "IS:SUE",
-    "category": "Modern Idols",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥800",
     "price_num": 800,
     "release_date": "2022/02/15",
@@ -158081,8 +158081,8 @@
   "NEODAI-121707": {
     "id": "NEODAI-121707",
     "title": "Collectible \"Nogizaka46\" Electrostatic Poster / Time flies [Sakaguchi Tamami]",
-    "artist": "IS:SUE",
-    "category": "Modern Idols",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥800",
     "price_num": 800,
     "release_date": "2022/02/15",
@@ -158094,8 +158094,8 @@
   "NEODAI-121709": {
     "id": "NEODAI-121709",
     "title": "Collectible \"Nogizaka46\" Electrostatic Poster / Time flies [Kitano Hinako]",
-    "artist": "IS:SUE",
-    "category": "Modern Idols",
+    "artist": "Nogizaka46",
+    "category": "Sakamichi Series",
     "price": "¥800",
     "price_num": 800,
     "release_date": "2022/02/15",
@@ -184172,7 +184172,7 @@
   "NEOBK-2467156": {
     "id": "NEOBK-2467156",
     "title": "BOOK Keyakizaka46 Photo Report: Yurina Hirate, \"Dattai\"",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥1,000",
     "price_num": 1000,
@@ -185511,7 +185511,7 @@
   "NEODAI-49201": {
     "id": "NEODAI-49201",
     "title": "Collectible Keyakizaka46 Yurina Hirate Acryl Key Chain 2018",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥2,547",
     "price_num": 2547,
@@ -185524,7 +185524,7 @@
   "NEODAI-49206": {
     "id": "NEODAI-49206",
     "title": "Collectible Keyakizaka46 Yurina Hirate Movie \"HIBIKI\" Shitajiki",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥1,915",
     "price_num": 1915,
@@ -185706,7 +185706,7 @@
   "NEOBK-2277555": {
     "id": "NEOBK-2277555",
     "title": "BOOK Sunday Mainichi October 7, 2018 Issue [Cover] Yurina HIrate (Keyakizaka46)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥389",
     "price_num": 389,
@@ -185966,7 +185966,7 @@
   "NEOBK-2265231": {
     "id": "NEOBK-2265231",
     "title": "BOOK SWITCH Vol.36 No.9 [Cover] Yurina Hirate (Keyakizaka46)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥900",
     "price_num": 900,
@@ -186603,7 +186603,7 @@
   "NEODAI-40625": {
     "id": "NEODAI-40625",
     "title": "Collectible Keyakizaka46 Official Photo Keyaki Sengen 2016 June Set of 4 Yurina Hirate -360006",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥16,093",
     "price_num": 16093,
@@ -186655,7 +186655,7 @@
   "NEODAI-40477": {
     "id": "NEODAI-40477",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate Fukyo Waon (ASIN: B0788VCVD2)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥7,435",
     "price_num": 7435,
@@ -186668,7 +186668,7 @@
   "NEODAI-40478": {
     "id": "NEODAI-40478",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate 3rd Single Jacket Costume (ASIN: B06XYLGVR8)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥4,023",
     "price_num": 4023,
@@ -186681,7 +186681,7 @@
   "NEODAI-40479": {
     "id": "NEODAI-40479",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate Silent Majority (ASIN: B01DW9NF66)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥13,221",
     "price_num": 13221,
@@ -186694,7 +186694,7 @@
   "NEODAI-40480": {
     "id": "NEODAI-40480",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate w-keyakizaka no Uta (ASIN: B075C7LD8K)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥22,723",
     "price_num": 22723,
@@ -186707,7 +186707,7 @@
   "NEODAI-40481": {
     "id": "NEODAI-40481",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate Kaze ni Fukaretemo (ASIN: B0788VCVD2)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥5,398",
     "price_num": 5398,
@@ -186720,7 +186720,7 @@
   "NEODAI-40482": {
     "id": "NEODAI-40482",
     "title": "Collectible Keyakizaka46 Photo Yurina Hirate 2016 SUMMER 2nd Single Jacket Costume (ASIN: B07B7NGWZR)",
-    "artist": "Sakurazaka46",
+    "artist": "Yurina Hirate",
     "category": "Sakamichi Series",
     "price": "¥7,571",
     "price_num": 7571,
@@ -190581,8 +190581,8 @@
   "NEODAI-218417": {
     "id": "NEODAI-218417",
     "title": "Collectible Hinatazaka46 Kimi wa Honeydew Connectable Acrylic Keychain",
-    "artist": "IS:SUE",
-    "category": "Modern Idols",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,400",
     "price_num": 1400,
     "release_date": "2024/06/30",
@@ -201410,8 +201410,8 @@
   "NEOBK-2573062": {
     "id": "NEOBK-2573062",
     "title": "BOOK Hinatazaka46 Nao Kosaka Photo Report: CUTE & COOL",
-    "artist": "℃-ute",
-    "category": "Hello! Project",
+    "artist": "Hinatazaka46",
+    "category": "Sakamichi Series",
     "price": "¥1,000",
     "price_num": 1000,
     "release_date": "Available Now",
@@ -206961,8 +206961,8 @@
   "NEOBK-2278377": {
     "id": "NEOBK-2278377",
     "title": "BOOK MAQUIA February 2019 Issue [Cover] Nogizaka46 Mai Shiraishi [Supplement] pouch, L'OCCITANE hand creams",
-    "artist": "no3b",
-    "category": "AKB48 Group",
+    "artist": "Mai Shiraishi",
+    "category": "Sakamichi Series",
     "price": "¥630",
     "price_num": 630,
     "release_date": "2018/12/20",
@@ -216256,8 +216256,8 @@
   "ANSB-56272": {
     "id": "ANSB-56272",
     "title": "DVD Gekijo Sujinashi in Nagoya Dai Ni Ya (2) Momota Kanako (Momoiro Clover Z) Kanzen Hozon Ban",
-    "artist": "Up Up Girls (2)",
-    "category": "Up-Front Alumni",
+    "artist": "Momoiro Clover Z",
+    "category": "Stardust Planet",
     "price": "¥2,800",
     "price_num": 2800,
     "release_date": "2015/03/25",
@@ -236081,7 +236081,7 @@
   "NEODAI-281633": {
     "id": "NEODAI-281633",
     "title": "Collectible [NiziU x ESTHER BUNNY x Village Vanguard Collaboration] Connectable Mini Character Stand (Esther Bunny) (Complete Set / 9 Kinds in Total)",
-    "artist": "IS:SUE",
+    "artist": "NiziU",
     "category": "Modern Idols",
     "price": "¥10,800",
     "price_num": 10800,
@@ -236848,7 +236848,7 @@
   "NEODAI-281752": {
     "id": "NEODAI-281752",
     "title": "Collectible [NiziU x ESTHER BUNNY x Village Vanguard Collaboration] Connectable Mini Character Stand (Esther Bunny) (Randomly Selected from 9 Kinds)",
-    "artist": "IS:SUE",
+    "artist": "NiziU",
     "category": "Modern Idols",
     "price": "¥1,200",
     "price_num": 1200,
@@ -247508,8 +247508,8 @@
   "NEODAI-229625": {
     "id": "NEODAI-229625",
     "title": "Collectible PASSPORT CASE - Produced by MAKO / \"NiziU Live with U 2024-2025\"",
-    "artist": "Mai Shiraishi",
-    "category": "Sakamichi Series",
+    "artist": "NiziU",
+    "category": "Modern Idols",
     "price": "¥2,800",
     "price_num": 2800,
     "release_date": "2024/12/31",
@@ -259416,7 +259416,7 @@
   "GTCG-766": {
     "id": "GTCG-766",
     "title": "Album CD 1518 [Regular Edition]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥2,700",
     "price_num": 2700,
@@ -259429,7 +259429,7 @@
   "AVCD-61319": {
     "id": "AVCD-61319",
     "title": "Single CD Chance x Change [CD+Blu-ray]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥5,000",
     "price_num": 5000,
@@ -259442,7 +259442,7 @@
   "AVCD-63568": {
     "id": "AVCD-63568",
     "title": "Album CD Classy Crush",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥3,500",
     "price_num": 3500,
@@ -259455,7 +259455,7 @@
   "AVCD-61361": {
     "id": "AVCD-61361",
     "title": "Single CD Justice Day",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥1,273",
     "price_num": 1273,
@@ -259468,7 +259468,7 @@
   "AVCD-61360": {
     "id": "AVCD-61360",
     "title": "Single CD Justice Day [CD+Blu-ray]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥4,545",
     "price_num": 4545,
@@ -259481,7 +259481,7 @@
   "AVCD-63567": {
     "id": "AVCD-63567",
     "title": "Album CD Classy Crush [CD + Blu-ray]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥7,500",
     "price_num": 7500,
@@ -259494,7 +259494,7 @@
   "AVCD-61320": {
     "id": "AVCD-61320",
     "title": "Single CD Chance x Change",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥1,364",
     "price_num": 1364,
@@ -259507,7 +259507,7 @@
   "GTCG-775": {
     "id": "GTCG-775",
     "title": "Blu-ray @onefive 1st LIVE -1518- at Shibuya Club Quattro [Regular Edition]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥3,636",
     "price_num": 3636,
@@ -259520,7 +259520,7 @@
   "GTCG-774": {
     "id": "GTCG-774",
     "title": "Blu-ray @onefive 1st LIVE -1518- at Shibuya Club Quattro [Special Edition]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥6,182",
     "price_num": 6182,
@@ -259533,7 +259533,7 @@
   "GTCG-765": {
     "id": "GTCG-765",
     "title": "Album CD 1518 [Special Edition w/ Blu-ray]",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥5,500",
     "price_num": 5500,
@@ -259546,7 +259546,7 @@
   "GTCG-755": {
     "id": "GTCG-755",
     "title": "DVD @onefive 2020 -Hajimari no Online Live-",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥3,818",
     "price_num": 3818,
@@ -259559,7 +259559,7 @@
   "GTCG-754": {
     "id": "GTCG-754",
     "title": "Blu-ray @onefive 2020 -Hajimari no Online Live-",
-    "artist": "@onefive",
+    "artist": "Morning Musume",
     "category": "Hello! Project",
     "price": "¥5,000",
     "price_num": 5000,

@@ -259,6 +259,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/karin-miyamoto.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/keyakizaka46.html</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -645,8 +651,8 @@
   <url>
     <loc>https://idoljapan.store/?id=EPXE-5296</loc>
     <lastmod>2026-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPXE-3005</loc>

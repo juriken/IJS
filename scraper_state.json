@@ -93,8 +93,9 @@
     "NEOODY-98": 1792698503,
     "NEODAI-325366": 1792698990,
     "EPBE-5629": 1792700586,
-    "EPCE-7772": 1792701581
+    "EPCE-7772": 1792701581,
+    "EPXE-5296": 1792705714
   },
-  "last_healthcheck": "2026-10-22 20:39:44 UTC",
-  "last_catalog_clean": "2026-10-22 20:39:41 UTC"
+  "last_healthcheck": "2026-10-22 21:48:38 UTC",
+  "last_catalog_clean": "2026-10-22 21:48:34 UTC"
 }

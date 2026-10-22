@@ -2,7 +2,7 @@
 IdolJapan.store — Intelligent CDJapan Catalog Healthcheck Engine
 Audits URLs, verifies stock availability, checks street dates, and transitions
 pre-orders using an automated priority queue and rolling state ledger.
-Includes DOM-scoped availability detection and HTTP 429 exponential backoff.
+Includes DOM-scoped availability detection, HTTP 429 backoff, and history resets.
 """
 
 import json
@@ -61,7 +61,6 @@ def get_target_batch(catalog, state, batch_size):
     history = state.get("healthcheck_history", {})
     all_keys = list(catalog.keys())
 
-    # Priority 1: Items marked OOP (to heal false positives) or pre-orders due for release
     urgent_queue = []
     normal_queue = []
 
@@ -112,7 +111,6 @@ def check_item_url(session, pid):
                     avail_el = soup.select_one(".availability, .item_availability, td.availability, div.detail-availability, table.item-spec")
                     avail_text = avail_el.get_text().lower() if avail_el else ""
                 else:
-                    # Pure regex fallback if bs4 is ever unavailable
                     btn_match = re.search(r"(?:cart-button|btn-cart|btn_cart)[^>]*>([^<]*)", html_text, re.IGNORECASE)
                     cart_btn_text = btn_match.group(1).lower() if btn_match else ("cart" if "btn-cart" in html_text else "")
                     
@@ -157,7 +155,11 @@ def main():
         return
 
     state = load_json(STATE_FILE)
-    if "healthcheck_history" not in state:
+    
+    # Check for reset trigger via environment variable
+    reset_requested = os.environ.get("RESET_HEALTHCHECK", "false").lower() in ["true", "1", "yes"]
+    if reset_requested or "healthcheck_history" not in state:
+        print("[Notice] Resetting healthcheck history ledger. Checking from the beginning...")
         state["healthcheck_history"] = {}
 
     env_batch = os.environ.get("HEALTHCHECK_BATCH_SIZE", "").strip()

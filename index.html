@@ -1448,55 +1448,50 @@
     }
 
     async function initExchangeRates() {
-      const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY) || (window.IdolGeo ? window.IdolGeo.applyAutoCurrency() : 'USD');
-      currentCurrency = savedCurrency;
-
-      const selectEl = document.getElementById('currency-select');
-      if (selectEl) selectEl.value = currentCurrency;
-
       try {
-        const localRes = await fetch('/rates.json');
-        if (localRes.ok) {
-          const localData = await localRes.json();
+        const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY) || (window.IdolGeo ? window.IdolGeo.applyAutoCurrency() : 'USD');
+        currentCurrency = savedCurrency;
+
+        const selectEl = document.getElementById('currency-select');
+        if (selectEl) selectEl.value = currentCurrency;
+
+        const localRes = await fetch('/rates.json').catch(() => null);
+        if (localRes && localRes.ok) {
+          const localData = await localRes.json().catch(() => null);
           if (localData && localData.rates) {
             exchangeRates = localData.rates;
             populateCurrencyOptions(exchangeRates);
           }
         }
-      } catch (e) {}
 
-      const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
-      const cachedTime = localStorage.getItem(RATES_TIME_KEY);
-      const now = Date.now();
+        const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
+        const cachedTime = localStorage.getItem(RATES_TIME_KEY);
+        const now = Date.now();
 
-      if (cachedRates && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
-        try {
+        if (cachedRates && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
           exchangeRates = JSON.parse(cachedRates);
           populateCurrencyOptions(exchangeRates);
           return;
-        } catch (e) {}
-      }
+        }
 
-      try {
-        const res = await fetch('https://open.er-api.com/v6/latest/USD');
-        if (res.ok) {
-          const data = await res.json();
+        const res = await fetch('https://open.er-api.com/v6/latest/USD').catch(() => null);
+        if (res && res.ok) {
+          const data = await res.json().catch(() => null);
           if (data && data.rates) {
             exchangeRates = data.rates;
             localStorage.setItem(RATES_STORAGE_KEY, JSON.stringify(exchangeRates));
             localStorage.setItem(RATES_TIME_KEY, now.toString());
             populateCurrencyOptions(exchangeRates);
-            render();
           }
         }
       } catch (err) {
-        console.warn('Currency API fallback retained:', err);
+        console.warn('Currency init completed with baseline fallback:', err);
       }
     }
 
     function populateCurrencyOptions(rates) {
       const optGroup = document.getElementById('all-currencies-group');
-      if (!optGroup) return;
+      if (!optGroup || !rates) return;
 
       const popular = ['USD', 'JPY', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
       const allCodes = Object.keys(rates).sort();
@@ -1605,32 +1600,45 @@
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      if (window.IdolDB) {
-        const cachedDb = await window.IdolDB.loadCatalog();
-        if (cachedDb && cachedDb.length > 0) {
-          allProducts = cachedDb.map((item, idx) => ({ ...item, _catalogIndex: idx }));
-          if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (Instant DB)`;
-          readUrlParams();
-          buildClusteredEntities();
-          updateDynamicCounts();
-          updateArtistSubBar();
-          updateYearJumpBar();
-          updateFilterButtonsUI();
-          updateAvailabilityUI();
-          updateWishlistBadge();
-          applyLayoutModeToDom();
-          render();
+      // Layer 1: Instant load from IndexedDB cache if available
+      try {
+        if (window.IdolDB) {
+          const cachedDb = await window.IdolDB.loadCatalog().catch(() => null);
+          if (cachedDb && Array.isArray(cachedDb) && cachedDb.length > 0) {
+            allProducts = cachedDb.map((item, idx) => ({
+              ...item,
+              id: String(item.id || `sku-${idx}`),
+              title: String(item.title || 'Untitled Release'),
+              artist: String(item.artist || 'Idol Artist'),
+              category: String(item.category || 'Hello! Project'),
+              price: String(item.price || 'Check CDJapan'),
+              _catalogIndex: idx
+            }));
+            
+            if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (IndexedDB)`;
+            readUrlParams();
+            buildClusteredEntities();
+            updateDynamicCounts();
+            updateArtistSubBar();
+            updateYearJumpBar();
+            updateFilterButtonsUI();
+            updateAvailabilityUI();
+            updateWishlistBadge();
+            applyLayoutModeToDom();
+            render();
+          }
         }
+      } catch (err) {
+        console.warn('IndexedDB initial retrieval bypassed:', err);
       }
 
+      // Layer 2: Network load with sequential fallback paths
       const cacheBuster = Date.now();
       const candidatePaths = [
-        `catalog-index.json?v=${cacheBuster}`,
-        `./catalog-index.json?v=${cacheBuster}`,
         `/catalog-index.json?v=${cacheBuster}`,
-        `products.json?v=${cacheBuster}`,
-        `./products.json?v=${cacheBuster}`,
-        `/products.json?v=${cacheBuster}`
+        `catalog-index.json?v=${cacheBuster}`,
+        `/products.json?v=${cacheBuster}`,
+        `products.json?v=${cacheBuster}`
       ];
 
       for (const p of candidatePaths) {
@@ -1649,37 +1657,48 @@
       if (data && typeof data === 'object') {
         const parsedItems = Object.values(data)
           .filter(item => item && (item.id || item.title))
-          .map((item, idx) => ({
-            ...item,
-            id: String(item.id || `sku-${idx}`),
-            title: String(item.title || 'Untitled Release'),
-            artist: String(item.artist || 'Idol Artist'),
-            category: String(item.category || 'Hello! Project'),
-            price: String(item.price || 'Check CDJapan'),
-            _catalogIndex: idx
-          }));
+          .map((item, idx) => {
+            let art = String(item.artist || 'Idol Artist');
+            if (art === 'Keyakizaka46' || art === '欅坂46') {
+              art = 'Sakurazaka46';
+            }
+            return {
+              ...item,
+              id: String(item.id || `sku-${idx}`),
+              title: String(item.title || 'Untitled Release'),
+              artist: art,
+              category: String(item.category || 'Hello! Project'),
+              price: String(item.price || 'Check CDJapan'),
+              _catalogIndex: idx
+            };
+          });
 
-        allProducts = parsedItems;
-        if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
-        
-        if (window.IdolDB) {
-          window.IdolDB.saveCatalog(parsedItems);
+        if (parsedItems.length > 0) {
+          allProducts = parsedItems;
+          if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
+          
+          if (window.IdolDB) {
+            window.IdolDB.saveCatalog(parsedItems).catch(() => {});
+          }
         }
-      } else if (!allProducts.length) {
-        allProducts = [];
-        if (statsEl) statsEl.innerText = "Syncing catalog...";
       }
 
-      readUrlParams();
-      buildClusteredEntities();
-      updateDynamicCounts();
-      updateArtistSubBar();
-      updateYearJumpBar();
-      updateFilterButtonsUI();
-      updateAvailabilityUI();
-      updateWishlistBadge();
-      applyLayoutModeToDom();
-      render();
+      // Layer 3: Ensure state is always initialized and rendered
+      try {
+        readUrlParams();
+        buildClusteredEntities();
+        updateDynamicCounts();
+        updateArtistSubBar();
+        updateYearJumpBar();
+        updateFilterButtonsUI();
+        updateAvailabilityUI();
+        updateWishlistBadge();
+        applyLayoutModeToDom();
+      } catch (prepErr) {
+        console.error('Error preparing catalog state:', prepErr);
+      } finally {
+        render();
+      }
     }
 
     function getCleanBaseTitle(title) {
@@ -1840,499 +1859,286 @@
       return 'Other';
     }
 
-    function matchesFuzzyQuery(text, query) {
-      if (!text || !query) return false;
-      const t = text.toLowerCase();
-      const q = query.toLowerCase();
-      if (t.includes(q)) return true;
+    function updateDynamicCounts() {
+      const catCounts = {
+        'All': allProducts.length,
+        'Hello! Project': 0,
+        'Up-Front Alumni': 0,
+        'AKB48 Group': 0,
+        'Sakamichi Series': 0,
+        'Stardust Planet': 0,
+        '=LOVE / Sister Groups': 0,
+        'KAWAII LAB.': 0,
+        'Modern Idols': 0,
+        'Babymetal': 0
+      };
 
-      for (const [canonical, aliases] of Object.entries(searchAliases)) {
-        if (aliases.some(a => a.toLowerCase() === q)) {
-          if (t.includes(canonical)) return true;
+      const fmtCounts = {
+        'All': allProducts.length,
+        'CD': 0,
+        'Blu-ray': 0,
+        'DVD': 0,
+        'Book': 0,
+        'Collectable': 0
+      };
+
+      allProducts.forEach(item => {
+        if (catCounts[item.category] !== undefined) {
+          catCounts[item.category]++;
+        } else if (item.category === 'Momoiro Clover Z') {
+          catCounts['Stardust Planet']++;
         }
-      }
-
-      const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-      const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-      return normT.includes(normQ);
-    }
-
-    function updateAutocomplete(val) {
-      const box = document.getElementById('search-autocomplete-box');
-      if (!box) return;
-      if (!val || val.length < 2) {
-        box.classList.add('hidden');
-        box.innerHTML = '';
-        return;
-      }
-
-      const matches = allProducts.filter(p => {
-        return matchesFuzzyQuery(p.title, val) || matchesFuzzyQuery(p.artist, val) || (p.id && p.id.toLowerCase().includes(val));
-      }).slice(0, 5);
-
-      if (!matches.length) {
-        box.classList.add('hidden');
-        box.innerHTML = '';
-        return;
-      }
-
-      box.innerHTML = '';
-      matches.forEach(item => {
-        const row = document.createElement('div');
-        row.className = "p-2.5 hover:bg-stone-50 dark:hover:bg-slate-800/80 cursor-pointer flex items-center gap-3 transition";
-        row.onclick = () => {
-          openModal(item.id);
-          closeAutocomplete();
-        };
-
-        row.innerHTML = `
-          <img src="${getThumbnailUrl(item.image)}" class="w-8 h-8 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
-          <div class="flex-1 min-w-0 text-left">
-            <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(item.title)}</p>
-            <p class="text-[10px] text-stone-400 dark:text-slate-400 truncate">${escapeHtml(item.artist)} • ${formatDisplayPrice(item.price, item)}</p>
-          </div>
-          <i class="fa-solid fa-chevron-right text-[10px] text-stone-300 dark:text-slate-600"></i>
-        `;
-        box.appendChild(row);
+        const fmt = getItemFormatCategory(item);
+        if (fmtCounts[fmt] !== undefined) fmtCounts[fmt]++;
       });
 
-      box.classList.remove('hidden');
-    }
+      Object.entries(catCounts).forEach(([cat, count]) => {
+        const badge = document.getElementById(`badge-cat-${cat}`);
+        if (badge) badge.innerText = count.toLocaleString();
+      });
 
-    function closeAutocomplete() {
-      const box = document.getElementById('search-autocomplete-box');
-      if (box) box.classList.add('hidden');
-    }
-
-    document.addEventListener('click', (e) => {
-      const searchBox = document.getElementById('search-autocomplete-box');
-      const searchInput = document.getElementById('search-input');
-      if (searchBox && searchInput && !searchBox.contains(e.target) && e.target !== searchInput) {
-        closeAutocomplete();
-      }
-    });
-
-    let searchDebounceTimeout = null;
-    const searchInput = document.getElementById('search-input');
-    const searchClearBtn = document.getElementById('search-clear-btn');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchDebounceTimeout);
-        const val = e.target.value.trim();
-        if (searchClearBtn) {
-          if (val) searchClearBtn.classList.remove('hidden');
-          else searchClearBtn.classList.add('hidden');
-        }
-
-        updateAutocomplete(val.toLowerCase());
-
-        searchDebounceTimeout = setTimeout(() => {
-          searchQuery = val.toLowerCase();
-          currentPage = 1;
-          syncUrlParams();
-          render();
-        }, 250);
+      Object.entries(fmtCounts).forEach(([fmt, count]) => {
+        const badge = document.getElementById(`badge-fmt-${fmt}`);
+        if (badge) badge.innerText = `(${count.toLocaleString()})`;
       });
     }
 
-    function parseNumericPrice(priceStr, item) {
-      if (item && item.price_num) return item.price_num;
-      if (!priceStr) return 0;
-      const clean = String(priceStr).replace(/[^0-9]/g, '');
-      return parseInt(clean, 10) || 0;
+    function changeSort(sortVal) {
+      currentSort = sortVal;
+      const dSelect = document.getElementById('sort-select');
+      if (dSelect) dSelect.value = sortVal;
+      currentPage = 1;
+      syncUrlParams();
+      render();
     }
 
-    function formatDisplayPrice(priceStr, item) {
-      const jpyAmount = parseNumericPrice(priceStr, item);
-      if (jpyAmount === 0) return 'Check CDJapan';
-
-      if (currentCurrency === 'JPY') {
-        return `¥${jpyAmount.toLocaleString()}`;
-      }
-
-      const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.4);
-      const targetRate = exchangeRates[currentCurrency] || 1.0;
-      const convertedVal = jpyAmount * usdPerJpy * targetRate;
-
-      const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
-      const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
-
-      let formattedConverted = '';
-      try {
-        formattedConverted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: currentCurrency,
-          minimumFractionDigits: fractionDigits,
-          maximumFractionDigits: fractionDigits
-        }).format(convertedVal);
-      } catch (e) {
-        formattedConverted = `${currentCurrency} ${convertedVal.toFixed(fractionDigits)}`;
-      }
-
-      return `${formattedConverted} <span class="text-[10px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
+    function changePerPage(countVal) {
+      itemsPerPage = parseInt(countVal, 10) || 48;
+      currentPage = 1;
+      render();
     }
 
-    function getItemDateValue(item) {
-      if (!item) return 0;
-      const dStr = String(item.release_date || '').trim();
-      if (!dStr || dStr.toLowerCase().includes('available now')) return 0;
-
-      const m = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b/);
-      if (m) {
-        const y = parseInt(m[1], 10);
-        const mon = parseInt(m[2], 10);
-        const day = parseInt(m[3], 10);
-        if (day <= 31 && mon <= 12) return (y * 10000) + (mon * 100) + day;
-      }
-
-      const en = dStr.match(/\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b/);
-      if (en) {
-        const monKey = en[1].toLowerCase();
-        if (EN_MONTHS[monKey]) {
-          const mon = EN_MONTHS[monKey];
-          const day = parseInt(en[2], 10);
-          const y = parseInt(en[3], 10);
-          return (y * 10000) + (mon * 100) + day;
-        }
-      }
-
-      const ym = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})\b/);
-      if (ym) {
-        const y = parseInt(ym[1], 10);
-        const mon = parseInt(ym[2], 10);
-        return (y * 10000) + (mon * 100) + 1;
-      }
-
-      return 0;
+    function goToPage(pageNumber) {
+      currentPage = pageNumber;
+      syncUrlParams();
+      render();
+      const anchor = document.getElementById('pagination-top-anchor');
+      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function getClusterEffectiveDateValue(cluster) {
-      if (!cluster) return 0;
-      const variants = cluster._activeVariants || cluster.variants || (cluster._primary ? [cluster._primary] : []);
-      if (!variants.length) return 0;
-      let maxVal = 0;
-      for (const v of variants) {
-        const val = getItemDateValue(v);
-        if (val > maxVal) maxVal = val;
-      }
-      return maxVal;
+    function setFilter(cat) {
+      activeFilter = cat;
+      activeArtist = 'All';
+      activeYear = 'All';
+      currentPage = 1;
+      updateFilterButtonsUI();
+      updateArtistSubBar();
+      updateYearJumpBar();
+      updateMobileDrawerContent();
+      syncUrlParams();
+      render();
     }
 
-    function getItemYear(item) {
-      const val = getItemDateValue(item);
-      if (val === 0) return 0;
-      return Math.floor(val / 10000);
+    function setSubArtist(artist) {
+      activeArtist = artist;
+      activeYear = 'All';
+      currentPage = 1;
+      updateArtistSubBar();
+      updateYearJumpBar();
+      updateMobileDrawerContent();
+      syncUrlParams();
+      render();
     }
 
-    function isOutOfPrint(item) {
-      if (!item) return false;
-      if (item.availability === 'oop') return true;
-      const priceStr = String(item.price || '').toLowerCase();
-      const titleStr = String(item.title || '').toLowerCase();
-      return (
-        priceStr.includes('no longer available') ||
-        priceStr.includes('out of print') ||
-        priceStr.includes('discontinued') ||
-        priceStr.includes('sold out') ||
-        priceStr.includes('廃盤') ||
-        priceStr.includes('取扱終了') ||
-        titleStr.includes('secondhand') ||
-        titleStr.includes('used [') ||
-        (item.price_num === 0 && !priceStr.includes('check cdjapan'))
-      );
+    function setAvailability(status) {
+      activeAvailability = status;
+      currentPage = 1;
+      updateAvailabilityUI();
+      syncUrlParams();
+      render();
     }
 
-    function isPreOrder(item) {
-      if (!item || isOutOfPrint(item)) return false;
-      if (item.availability === 'preorder') return true;
-      const val = getItemDateValue(item);
-      if (val === 0) return false;
+    function updateAvailabilityUI() {
+      const actBtn = document.getElementById('avail-active');
+      const preBtn = document.getElementById('avail-preorder');
+      const stockBtn = document.getElementById('avail-instock');
+      const oopBtn = document.getElementById('avail-oop');
+      if (!actBtn || !preBtn || !stockBtn || !oopBtn) return;
 
-      const today = new Date();
-      const todayVal = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
-      return val > todayVal;
+      const activeClasses = "px-2.5 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs font-bold cursor-pointer";
+      const inactiveClasses = "px-2.5 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer";
+
+      actBtn.className = activeAvailability === 'active' ? activeClasses : inactiveClasses;
+      preBtn.className = activeAvailability === 'preorder' ? activeClasses : inactiveClasses;
+      stockBtn.className = activeAvailability === 'instock' ? activeClasses : inactiveClasses;
+      oopBtn.className = activeAvailability === 'oop' ? activeClasses : inactiveClasses;
     }
 
-    function isInStock(item) {
-      return !isOutOfPrint(item) && !isPreOrder(item);
-    }
-
-    function updateDirectPageDropdown(totalPages) {
-      const select = document.getElementById('direct-page-select');
-      if (!select) return;
-      select.innerHTML = '';
-      for (let i = 1; i <= totalPages; i++) {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.innerText = i;
-        if (i === currentPage) opt.selected = true;
-        select.appendChild(opt);
-      }
-    }
-
-    function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
-      const rangeEl = document.getElementById('page-range-info');
-      const navEl = document.getElementById('pagination-bottom');
-      if (!rangeEl || !navEl) return;
-
-      updateDirectPageDropdown(totalPages);
-
-      if (totalItems === 0) {
-        rangeEl.innerText = "0 releases found";
-        navEl.innerHTML = '';
-        return;
-      }
-
-      rangeEl.innerHTML = `Showing <strong class="text-rose-600 dark:text-rose-400 font-bold">${startIndex + 1}–${Math.min(endIndex, totalItems)}</strong> of <strong>${totalItems.toLocaleString()}</strong> releases (Page <strong>${currentPage}</strong> of <strong>${totalPages}</strong>)`;
-
-      if (totalPages <= 1) {
-        navEl.innerHTML = '';
-        return;
-      }
-
-      let navHtml = '';
-      const prevDisabled = currentPage === 1;
-      navHtml += `
-        <button onclick="goToPage(1)" ${prevDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">« First</button>
-        <button onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">‹ Prev</button>
-      `;
-
-      let startP = Math.max(1, currentPage - 2);
-      let endP = Math.min(totalPages, currentPage + 2);
-      if (currentPage <= 3) endP = Math.min(totalPages, 5);
-      else if (currentPage >= totalPages - 2) startP = Math.max(1, totalPages - 4);
-
-      if (startP > 1) navHtml += `<span class="px-2 text-stone-400 dark:text-slate-500">...</span>`;
-
-      for (let p = startP; p <= endP; p++) {
-        if (p === currentPage) {
-          navHtml += `<button class="px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold shadow-sm cursor-default">${p}</button>`;
+    function updateFilterButtonsUI() {
+      document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
+        if (btn.dataset.cat === activeFilter) {
+          btn.className = "tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-sm flex items-center gap-1.5 cursor-pointer";
         } else {
-          navHtml += `<button onclick="goToPage(${p})" class="px-3.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">${p}</button>`;
+          btn.className = "tab-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center gap-1.5 cursor-pointer";
         }
-      }
+      });
 
-      if (endP < totalPages) navHtml += `<span class="px-2 text-stone-400 dark:text-slate-500">...</span>`;
-
-      const nextDisabled = currentPage === totalPages;
-      navHtml += `
-        <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Next ›</button>
-        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Last »</button>
-      `;
-
-      navEl.innerHTML = navHtml;
+      document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
+        if (btn.dataset.fmt === activeFormat) {
+          btn.className = "fmt-btn px-2.5 py-1 rounded-md transition bg-rose-600 text-white font-bold shadow-sm cursor-pointer";
+        } else {
+          btn.className = "fmt-btn px-2.5 py-1 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer";
+        }
+      });
     }
 
-    function toggleCalendarDrawer() {
-      const drawer = document.getElementById('calendar-drawer');
-      if (!drawer) return;
-      const isHidden = drawer.classList.contains('hidden');
+    function updateArtistSubBar() {
+      const container = document.getElementById('artist-subbar');
+      const wrapper = document.getElementById('artist-subbar-container');
+      if (!container || !wrapper) return;
 
-      if (isHidden) {
-        populateCalendarDrawer();
-        drawer.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        drawer.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closeCalendarOnBackdrop(e) {
-      if (e.target.id === 'calendar-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
-        toggleCalendarDrawer();
-      }
-    }
-
-    function populateCalendarDrawer() {
-      const container = document.getElementById('calendar-drawer-list');
-      if (!container) return;
-
-      const preOrders = allProducts.filter(p => isPreOrder(p));
-      preOrders.sort((a, b) => getItemDateValue(a) - getItemDateValue(b));
-
-      if (!preOrders.length) {
-        container.innerHTML = `
-          <div class="text-center py-10 text-stone-400">
-            <i class="fa-regular fa-calendar-xmark text-3xl mb-2"></i>
-            <p>No scheduled pre-orders found in active catalog.</p>
-          </div>
-        `;
+      const artists = FRANCHISE_ARTISTS[activeFilter];
+      if (!artists || artists.length <= 1) {
+        wrapper.classList.add('hidden');
+        container.innerHTML = '';
         return;
       }
 
-      const grouped = {};
-      preOrders.forEach(p => {
-        const d = p.release_date || 'Upcoming Street Date';
-        if (!grouped[d]) grouped[d] = [];
-        grouped[d].push(p);
-      });
+      if (layoutMode !== 'mobile') {
+        wrapper.classList.remove('hidden');
+      }
 
-      let html = '';
-      Object.entries(grouped).forEach(([dateStr, items]) => {
+      let html = `
+        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 shrink-0 select-none">
+          <i class="fa-solid fa-users"></i> Units:
+        </span>
+        <button onclick="setSubArtist('All')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${activeArtist === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
+      `;
+
+      artists.forEach(art => {
+        const isSelected = activeArtist === art;
+        const isDigitalUnit = (activeFilter === 'Sakamichi Series' && art === '22/7');
+        const badgeLabel = isDigitalUnit ? `${escapeHtml(art)} (Digital Idol)` : escapeHtml(art);
+        
         html += `
-          <div>
-            <div class="sticky top-0 bg-stone-100 dark:bg-slate-800 py-1 px-2.5 rounded-md font-bold text-rose-600 dark:text-rose-400 flex items-center justify-between mb-2">
-              <span><i class="fa-regular fa-clock mr-1"></i> ${dateStr}</span>
-              <span class="text-[10px] text-stone-500 font-normal">${items.length} release${items.length > 1 ? 's' : ''}</span>
-            </div>
-            <div class="space-y-2">
+          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${badgeLabel}</button>
         `;
-        items.forEach(it => {
-          html += `
-            <div class="flex items-center gap-3 p-2 rounded-xl border border-stone-100 dark:border-slate-800 hover:bg-stone-50 dark:hover:bg-slate-800/50 transition">
-              <img src="${getThumbnailUrl(it.image)}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
-              <div class="flex-1 min-w-0">
-                <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${escapeHtml(it.title)}</p>
-                <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
-              </div>
-              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
-                Pre-Order
-              </button>
-            </div>
-          `;
-        });
-        html += `</div></div>`;
       });
 
       container.innerHTML = html;
     }
 
-    function openModal(productId, e) {
-      if (e) e.preventDefault();
-      const p = allProducts.find(item => item.id === productId);
-      if (!p) return;
-      currentModalProduct = p;
+    function updateYearJumpBar() {
+      const wrapper = document.getElementById('year-jump-bar-container');
+      const pillsContainer = document.getElementById('year-jump-pills');
+      if (!wrapper || !pillsContainer) return;
 
-      const params = new URLSearchParams(window.location.search);
-      params.set('id', p.id);
-      window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-      
-      document.title = `${p.title} — ${p.artist} | IdolJapan.store`;
-
-      const modal = document.getElementById('product-modal');
-      const img = document.getElementById('modal-img');
-      const title = document.getElementById('modal-title');
-      const artist = document.getElementById('modal-artist-badge');
-      const cat = document.getElementById('modal-category');
-      const cid = document.getElementById('modal-catalog-id');
-      const relDate = document.getElementById('modal-release-date');
-      const price = document.getElementById('modal-price');
-      const fmt = document.getElementById('modal-format-badge');
-      const preorder = document.getElementById('modal-preorder-badge');
-      const oopBadge = document.getElementById('modal-oop-badge');
-      const buyText = document.getElementById('modal-buy-btn-text');
-      const editionBox = document.getElementById('modal-edition-tags');
-
-      img.src = p.image || PLACEHOLDER_IMG;
-      title.innerText = p.title || '';
-      artist.innerText = p.artist || '';
-      cat.innerText = p.category || '';
-      cid.innerText = p.id || '';
-      relDate.innerText = p.release_date || 'Available Now';
-      price.innerHTML = formatDisplayPrice(p.price, p);
-      fmt.innerText = getItemFormatCategory(p);
-
-      if (editionBox) {
-        editionBox.innerHTML = '';
-        const tags = extractEditionTags(p.title);
-        tags.forEach(t => {
-          const pill = document.createElement('span');
-          pill.className = `${t.color} text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-xs`;
-          pill.innerText = t.name;
-          editionBox.appendChild(pill);
-        });
+      if (activeArtist === 'All' && activeFilter === 'All') {
+        wrapper.classList.add('hidden');
+        pillsContainer.innerHTML = '';
+        return;
       }
 
-      const upcoming = isPreOrder(p);
-      const oop = isOutOfPrint(p);
+      const relevantItems = allProducts.filter(item => {
+        let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
+        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        return matchesArtist && matchesCat;
+      });
 
-      if (upcoming) {
-        preorder.classList.remove('hidden');
-        oopBadge.classList.add('hidden');
-        if (buyText) buyText.innerText = "Pre-Order on CDJapan";
-      } else if (oop) {
-        oopBadge.classList.remove('hidden');
-        preorder.classList.add('hidden');
-        if (buyText) buyText.innerText = "Check Archive Status on CDJapan";
-      } else {
-        preorder.classList.add('hidden');
-        oopBadge.classList.add('hidden');
-        if (buyText) buyText.innerText = "Order Securely on CDJapan";
+      const yearsSet = new Set();
+      relevantItems.forEach(it => {
+        const yr = getItemYear(it);
+        if (yr > 1990 && yr <= 2030) yearsSet.add(yr);
+      });
+
+      const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
+
+      if (sortedYears.length <= 1) {
+        wrapper.classList.add('hidden');
+        pillsContainer.innerHTML = '';
+        return;
       }
 
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-
-      if (window.IdolAnalytics) {
-        window.IdolAnalytics.trackProductView(p);
+      if (layoutMode !== 'mobile') {
+        wrapper.classList.remove('hidden');
       }
+
+      let pillsHtml = `
+        <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition cursor-pointer ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All Years</button>
+      `;
+
+      sortedYears.forEach(y => {
+        const isSelected = String(activeYear) === String(y);
+        pillsHtml += `
+          <button onclick="setYearFilter('${y}')" class="px-2 py-0.5 rounded text-[10px] font-bold transition cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${y}</button>
+        `;
+      });
+
+      pillsContainer.innerHTML = pillsHtml;
     }
 
-    function navigateModalPrev() {
-      if (!currentModalProduct || !activeFilteredList.length) return;
-      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
-      const prevIdx = idx > 0 ? idx - 1 : activeFilteredList.length - 1;
-      openModal(activeFilteredList[prevIdx].id);
+    function updateYearJumpBarUI() {
+      document.querySelectorAll('#year-jump-pills button').forEach(btn => {
+        const text = btn.innerText.trim();
+        const isMatch = (text === 'All Years' && activeYear === 'All') || (text === String(activeYear));
+        if (isMatch) {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition bg-rose-600 text-white shadow-xs cursor-pointer";
+        } else {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer";
+        }
+      });
     }
 
-    function navigateModalNext() {
-      if (!currentModalProduct || !activeFilteredList.length) return;
-      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
-      const nextIdx = idx < activeFilteredList.length - 1 ? idx + 1 : 0;
-      openModal(activeFilteredList[nextIdx].id);
+    function setFormat(fmt) {
+      activeFormat = fmt;
+      currentPage = 1;
+      updateFilterButtonsUI();
+      updateMobileDrawerContent();
+      syncUrlParams();
+      render();
     }
 
-    function closeModal() {
-      const modal = document.getElementById('product-modal');
-      if (modal) modal.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      currentModalProduct = null;
+    function resetAllFilters() {
+      activeFilter = 'All';
+      activeArtist = 'All';
+      activeYear = 'All';
+      activeFormat = 'All';
+      activeAvailability = 'active';
+      maxPriceLimit = 20000;
+      searchQuery = '';
+      isWishlistView = false;
 
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('id')) {
-        params.delete('id');
-        const rest = params.toString();
-        window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
-      }
-      updatePageTitle();
+      const pRange = document.getElementById('price-range');
+      if (pRange) pRange.value = 20000;
+      const pLabel = document.getElementById('price-range-label');
+      if (pLabel) pLabel.innerText = 'Any';
+
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      closeAutocomplete();
+
+      updateFilterButtonsUI();
+      updateAvailabilityUI();
+      updateArtistSubBar();
+      updateYearJumpBar();
+      updateWishlistBadge();
+      updateMobileDrawerContent();
+      syncUrlParams();
+      render();
     }
 
-    function closeModalOnBackdrop(e) {
-      if (e.target.id === 'product-modal') {
-        closeModal();
-      }
-    }
-
-    function switchClusteredEdition(clusterIndex, newProductId, event) {
-      if (event) event.stopPropagation();
-      const variant = allProducts.find(x => x.id === newProductId);
-      if (!variant) return;
-
-      const card = document.getElementById(`cluster-card-${clusterIndex}`);
-      if (!card) return;
-
-      const imgEl = card.querySelector('.cluster-img');
-      const titleEl = card.querySelector('.cluster-title');
-      const priceEl = card.querySelector('.cluster-price');
-      const dateEl = card.querySelector('.cluster-date');
-      const buyBtn = card.querySelector('.cluster-buy-btn');
-
-      if (imgEl) imgEl.src = getThumbnailUrl(variant.image);
-      if (titleEl) {
-        titleEl.innerText = variant.title;
-        titleEl.setAttribute('title', variant.title);
-      }
-      if (priceEl) priceEl.innerHTML = formatDisplayPrice(variant.price, variant);
-      if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar text-[10px]"></i> ${variant.release_date || 'Available Now'}`;
-      if (buyBtn) {
-        const upcoming = isPreOrder(variant);
-        const oop = isOutOfPrint(variant);
-        buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>`;
-        buyBtn.onclick = (e) => {
-          e.stopPropagation();
-          triggerOutboundAffiliate(variant, 'grid_cluster_btn');
-        };
+    function clearSearch() {
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.value = '';
+        searchQuery = '';
+        document.getElementById('search-clear-btn').classList.add('hidden');
+        closeAutocomplete();
+        currentPage = 1;
+        syncUrlParams();
+        render();
       }
     }
 
@@ -2340,12 +2146,14 @@
       const container = document.getElementById('product-container');
       const empty = document.getElementById('empty-state');
       const emptyMsg = document.getElementById('empty-state-message');
+      const rangeEl = document.getElementById('page-range-info');
       if (!container) return;
       container.innerHTML = '';
 
       const wishlistIds = getWishlist();
 
       const filterItem = (item) => {
+        if (!item) return false;
         if (isWishlistView && !wishlistIds.includes(item.id)) return false;
 
         const priceNum = parseNumericPrice(item.price, item);
@@ -2385,7 +2193,7 @@
 
       if (isClusteringEnabled) {
         displayEntities = clusteredEntities.filter(cluster => {
-          const matchingVariants = cluster.variants.filter(filterItem);
+          const matchingVariants = (cluster.variants || []).filter(filterItem);
           if (!matchingVariants.length) return false;
           cluster._activeVariants = matchingVariants;
           cluster._primary = matchingVariants[0];
@@ -2400,8 +2208,8 @@
       }
 
       displayEntities.sort((entA, entB) => {
-        const a = entA._primary;
-        const b = entB._primary;
+        const a = entA._primary || {};
+        const b = entB._primary || {};
         const dateA = isClusteringEnabled ? getClusterEffectiveDateValue(entA) : getItemDateValue(a);
         const dateB = isClusteringEnabled ? getClusterEffectiveDateValue(entB) : getItemDateValue(b);
 
@@ -2442,6 +2250,7 @@
               : "No idol releases match this filter selection.";
           }
         }
+        if (rangeEl) rangeEl.innerText = "0 releases found";
         renderPaginationControls(0, 0, 0, 0);
         return;
       }
@@ -2460,7 +2269,7 @@
       }
 
       paginatedEntities.forEach((entity, idx) => {
-        const p = entity._primary;
+        const p = entity._primary || {};
         const variants = entity._activeVariants || [p];
         const displayImg = getThumbnailUrl(p.image);
         const upcoming = isPreOrder(p);
@@ -2669,11 +2478,11 @@
       }
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       updateThemeIcon();
-      initExchangeRates();
-      loadSearchAliases();
-      loadCatalog();
+      await initExchangeRates();
+      await loadSearchAliases();
+      await loadCatalog();
     });
   </script>
 </body>

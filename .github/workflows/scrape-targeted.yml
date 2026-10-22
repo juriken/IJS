@@ -1,14 +1,15 @@
-name: Targeted Idol Scraper (Manual Test)
+name: Targeted Idol CDJapan Scraper
 
 on:
   workflow_dispatch:
     inputs:
-      target_group:
-        description: 'Select the idol group(s) to test and scrape:'
+      target_artist:
+        description: 'Choose group/soloist to deep scrape:'
         required: true
-        default: 'Morning Musume'
+        default: 'All Groups'
         type: choice
         options:
+          - 'All Groups'
           - 'Morning Musume'
           - 'ANGERME'
           - 'Juice=Juice'
@@ -17,32 +18,32 @@ on:
           - 'OCHA NORMA'
           - 'Rosy Chronicle'
           - 'Hello Pro Kenshuusei'
-          - 'Kobushi Factory'
-          - 'Country Girls'
+          - 'Minimoni'
           - 'Berryz Kobo'
           - '℃-ute'
           - 'Buono!'
-          - 'Minimoni'
+          - 'Country Girls'
+          - 'Kobushi Factory'
+          - 'Melon Kinenbi'
           - 'Tanpopo'
           - 'v-u-den'
           - 'W'
           - 'GAM'
           - 'Taiyo to Ciscomoon'
-          - 'Melon Kinenbi'
           - 'LoVendoR'
           - 'PINK CRES.'
           - 'Sayumi Michishige'
-          - 'Airi Suzuki'
           - 'Aya Matsuura'
           - 'Maki Goto'
           - 'Natsumi Abe'
           - 'Erina Mano'
+          - 'Airi Suzuki'
           - 'Miki Fujimoto'
           - 'Tsukishima Kirari'
-          - 'Up Up Girls (2)'
-          - 'Up Up Girls (Kari)'
+          - 'Karin Miyamoto'
           - 'You Kikkawa'
-          - 'Updated 3 Groups (Up Up Girls (2), Hello Pro Kenshuusei, Kobushi Factory)'
+          - 'Up Up Girls (Kari)'
+          - 'Up Up Girls (2)'
           - 'AKB48'
           - 'SKE48'
           - 'NMB48'
@@ -79,29 +80,25 @@ on:
           - '=LOVE'
           - '≠ME'
           - '≒JOY'
-          - 'KAWAII LAB.'
           - 'FRUITS ZIPPER'
           - 'CANDY TUNE'
           - 'SWEET STEADY'
           - 'CUTIE STREET'
-          - 'Modern Idols'
           - 'NiziU'
           - 'ME:I'
           - 'IS:SUE'
           - 'BABYMETAL'
           - 'Sakura Gakuin'
-          - '@onefive'
-          - 'All Groups'
-
-permissions:
-  contents: write
+      page_depth:
+        description: 'Pagination depth per query search (pages):'
+        required: true
+        default: '100'
 
 jobs:
-  test-scrape:
+  scrape-targeted:
     runs-on: ubuntu-latest
-    env:
-      PYTHONUNBUFFERED: "1"
-      TARGET_ARTIST: ${{ github.event.inputs.target_group }}
+    timeout-minutes: 360
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -111,30 +108,31 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Python Dependencies
+      - name: Install System Dependencies for Playwright
         run: |
-          python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 playwright
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0
 
-      - name: Install Playwright Chromium Only
+      - name: Install Python Libraries & Browsers
         run: |
-          playwright install --with-deps chromium
+          pip install playwright beautifulsoup4 requests
+          playwright install chromium
 
-      - name: Run Targeted Scraper
+      - name: Execute Targeted CDJapan Scraper
+        env:
+          TARGET_ARTIST: ${{ github.event.inputs.target_artist }}
+          PAGES_PER_TARGET: ${{ github.event.inputs.page_depth }}
         run: |
           python -u scraper.py
 
-      - name: Rebuild Catalog Summary Index
+      - name: Re-align & Synchronize Catalog
         run: |
-          python build_summary.py
+          python -u clean_catalog.py
 
-      - name: Validate Scraped Integrity
+      - name: Commit & Deploy Synchronized Catalog
         run: |
-          python validate_catalog.py
-
-      - name: Commit and Push Verified Changes
-        run: |
-          git config --global user.name "IdolJapan Bot"
+          git config --global user.name "IdolJapan Auto Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json scraper_state.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Test scrape: ${{ github.event.inputs.target_group }}" && git push)
+          git add products.json catalog-index.json scraper_state.json pruned_items.txt search_aliases.json
+          git diff --staged --quiet || git commit -m "Targeted scrape & classification sync [${{ github.event.inputs.target_artist }}]"
+          git push

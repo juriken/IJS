@@ -3,21 +3,22 @@ import os
 import random
 import re
 import time
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
 
 DATA_FILE = "products.json"
 PROGRESS_FILE = "repair_progress.json"
-BATCH_SIZE = 150  # Safe volume per session to avoid CDJapan WAF throttling
+BATCH_SIZE = 150
 
 MONTH_MAP = {
-    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
-    "may": "05", "jun": "06", "jul": "07", "aug": "08",
-    "sep": "09", "oct": "10", "nov": "11", "dec": "12",
-    "january": "01", "february": "02", "march": "03", "april": "04",
-    "june": "06", "july": "07", "august": "08", "september": "09",
-    "october": "10", "november": "11", "december": "12"
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4,
+    "may": 5, "jun": 6, "jul": 7, "aug": 8,
+    "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "june": 6, "july": 7, "august": 8, "september": 9,
+    "october": 10, "november": 11, "december": 12
 }
 
 HEADERS = {
@@ -29,43 +30,53 @@ HEADERS = {
     "Referer": "https://www.cdjapan.co.jp/"
 }
 
+def is_calendar_valid(year, month, day):
+    try:
+        datetime(year, month, day)
+        return True
+    except (ValueError, OverflowError):
+        return False
 
 def parse_cdjapan_date(raw_text):
     if not raw_text:
         return ""
     text = re.sub(r"\s+", " ", str(raw_text)).strip()
 
-    # 1. YYYY/MM/DD or YYYY-MM-DD
     m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
     if m1:
-        return f"{m1.group(1)}/{m1.group(2).zfill(2)}/{m1.group(3).zfill(2)}"
+        y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # 2. Japanese format: YYYY年MM月DD日
     m2 = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
     if m2:
-        return f"{m2.group(1)}/{m2.group(2).zfill(2)}/{m2.group(3).zfill(2)}"
+        y, m, d = int(m2.group(1)), int(m2.group(2)), int(m2.group(3))
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # 3. English format: Month DD, YYYY
     m3 = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
     if m3:
-        mon = m3.group(1).lower()
-        if mon in MONTH_MAP:
-            return f"{m3.group(3)}/{MONTH_MAP[mon]}/{m3.group(2).zfill(2)}"
+        mon_str = m3.group(1).lower()
+        if mon_str in MONTH_MAP:
+            y, m, d = int(m3.group(3)), MONTH_MAP[mon_str], int(m3.group(2))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # 4. English format: DD Month YYYY
     m4 = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
     if m4:
-        mon = m4.group(2).lower()
-        if mon in MONTH_MAP:
-            return f"{m4.group(3)}/{MONTH_MAP[mon]}/{m4.group(1).zfill(2)}"
+        mon_str = m4.group(2).lower()
+        if mon_str in MONTH_MAP:
+            y, m, d = int(m4.group(3)), MONTH_MAP[mon_str], int(m4.group(1))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # 5. YYYY/MM
     m5 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
     if m5:
-        return f"{m5.group(1)}/{m5.group(2).zfill(2)}/01"
+        y, m = int(m5.group(1)), int(m5.group(2))
+        if 1 <= m <= 12:
+            return f"{y}/{str(m).zfill(2)}/01"
 
     return ""
-
 
 def fetch_official_date(pid):
     url = f"https://www.cdjapan.co.jp/product/{pid}"
@@ -75,7 +86,6 @@ def fetch_official_date(pid):
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
 
-            # Check explicit release date table row
             date_th = soup.find(lambda el: el.name in ["th", "td", "span", "dt"] and "release date" in el.get_text().lower())
             if date_th:
                 sibling = date_th.find_next_sibling(["td", "dd", "span"])
@@ -84,24 +94,20 @@ def fetch_official_date(pid):
                     if d:
                         return pid, d
 
-            # Check schema meta tags
             meta_date = soup.find("meta", {"itemprop": "releaseDate"}) or soup.find("meta", {"property": "product:release_date"})
             if meta_date and meta_date.get("content"):
                 d = parse_cdjapan_date(meta_date["content"])
                 if d:
                     return pid, d
 
-            # General page text fallback
             body_match = re.search(r"Release Date\s*[:：]?\s*([^\n\r<]+)", res.text, re.IGNORECASE)
             if body_match:
                 d = parse_cdjapan_date(body_match.group(1))
                 if d:
                     return pid, d
-
     except Exception:
         pass
     return pid, None
-
 
 def load_progress():
     if os.path.exists(PROGRESS_FILE):
@@ -112,11 +118,29 @@ def load_progress():
             return set()
     return set()
 
-
 def save_progress(processed_set):
     with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
         json.dump(list(processed_set), f, indent=2)
 
+def is_date_corrupted_or_suspect(d_str):
+    if not d_str or d_str.strip() == "Available Now":
+        return True
+    
+    clean_str = d_str.strip().replace("-", "/")
+    parts = clean_str.split("/")
+    if len(parts) == 3:
+        try:
+            y, m, d = int(parts[0]), int(parts[1]), int(parts[2])
+            if not is_calendar_valid(y, m, d):
+                return True
+            if m == 1 and d == 1:
+                return True
+        except ValueError:
+            return True
+    else:
+        return True
+
+    return False
 
 def main():
     if not os.path.exists(DATA_FILE):
@@ -128,14 +152,23 @@ def main():
 
     processed_keys = load_progress()
 
-    # Identify suspect items not yet checked
     suspect_items = []
     for pid, it in catalog.items():
-        if pid in processed_keys:
-            continue
         d = str(it.get("release_date", "")).strip()
-        if not d or d == "Available Now" or d.endswith("/01/01") or d.endswith("-01-01"):
-            suspect_items.append(pid)
+        if is_date_corrupted_or_suspect(d):
+            if pid in processed_keys:
+                clean_d = d.replace("-", "/")
+                parts = clean_d.split("/")
+                if len(parts) == 3:
+                    try:
+                        y, m, day_val = int(parts[0]), int(parts[1]), int(parts[2])
+                        if not is_calendar_valid(y, m, day_val):
+                            processed_keys.discard(pid)
+                    except ValueError:
+                        processed_keys.discard(pid)
+
+            if pid not in processed_keys:
+                suspect_items.append(pid)
 
     total_remaining = len(suspect_items)
     print(f"Total catalog size: {len(catalog)} items.")
@@ -160,8 +193,11 @@ def main():
                 catalog[pid]["release_date"] = confirmed_date
                 updated_count += 1
                 print(f"   ✓ [{pid}] => {confirmed_date}", flush=True)
+            else:
+                curr_d = str(catalog[pid].get("release_date", "")).strip()
+                if is_date_corrupted_or_suspect(curr_d):
+                    catalog[pid]["release_date"] = "Available Now"
 
-    # Save progress and updated database
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
@@ -171,7 +207,6 @@ def main():
     print(f"Batch Complete! Updated {updated_count} release dates.")
     print(f"Remaining suspect items in catalog: {max(0, total_remaining - len(current_batch))}.")
     print("==========================================")
-
 
 if __name__ == "__main__":
     main()

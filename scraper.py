@@ -52,37 +52,55 @@ NIAGO_AUTHENTIC_SIGNATURES = [
 ]
 
 TARGET_GROUPS = [
+    # Hello! Project — Active Groups & Units
     ("Hello! Project", "Morning Musume", ["Morning Musume", "モーニング娘"], [
         "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
         "Chokotto Love", "Baby! Koi ni Knock Out"
     ]),
-    ("Hello! Project", "ANGERME", ["ANGERME", "アンジュルム"], ["ANGERME", "Smileage", "S/mileage"]),
+    ("Hello! Project", "ANGERME", ["ANGERME", "アンジュルム", "S/mileage", "スマイレージ", "Smileage"], [
+        "ANGERME", "アンジュルム", "Smileage", "S/mileage", "スマイレージ"
+    ]),
     ("Hello! Project", "Juice=Juice", ["Juice=Juice"], ["Juice=Juice"]),
     ("Hello! Project", "Tsubaki Factory", ["Tsubaki Factory", "つばきファクトリー"], ["Tsubaki Factory"]),
     ("Hello! Project", "BEYOOOOONDS", ["BEYOOOOONDS", "ビヨーンズ"], ["BEYOOOOONDS"]),
     ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "OCHA"]),
     ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "Rosy"]),
+
+    # Hello Pro Kenshuusei
     ("Hello! Project", "Hello Pro Kenshuusei", [
-        "Hello Pro Kenshusei", "ハロプロ研修生", "Hello Pro Kenshuusei"
+        "Hello Pro Kenshusei",
+        "ハロプロ研修生",
+        "Hello Pro Kenshuusei"
     ], [
         "Hello Pro Kenshuusei", "Hello Pro Kenshusei", "Hello! Pro Kenshuusei",
         "ハロプロ研修生", "Kenshuusei", "Kenshusei", "Hello Pro Egg", "ハロプロエッグ"
     ]),
+
+    # Hello! Project — Past Groups & Subunits
     ("Hello! Project", "Minimoni", ["Minimoni", "ミニモニ"], ["Minimoni", "Mini Moni", "Mini-Moni", "ミニモニ", "ミニモニ。"]),
     ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
     ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
+
+    # Kobushi Factory
     ("Hello! Project", "Kobushi Factory", [
-        "Kobushi-Factory", "Kobushi Factory", "こぶしファクトリー"
+        "Kobushi-Factory",
+        "Kobushi Factory",
+        "こぶしファクトリー"
     ], [
         "Kobushi Factory", "Kobushi-Factory", "こぶしファクトリー", "こぶし"
     ]),
+
     ("Hello! Project", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", ["Tanpopo", "タンポポ"], TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "v-u-den", ["Biyuden", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
+
+    # Hello! Project — OG Post-Graduation Units
     ("Hello! Project", "LoVendoR", ["LoVendoR", "ラベンダー"], ["LoVendoR", "LoVendoЯ", "ラベンダー", "Reina Tanaka"]),
     ("Hello! Project", "PINK CRES.", ["PINK CRES."], ["PINK CRES.", "PINK CRES", "ピンククレス", "Miyabi Natsuyaki"]),
+
+    # Hello! Project — Soloists & OGs
     ("Hello! Project", "Sayumi Michishige", ["Sayumi Michishige", "道重さゆみ"], [
         "Sayumi Michishige", "Michishige Sayumi", "道重さゆみ", "SAYUMINGLANDOLL", "SAYUMING"
     ]),
@@ -91,6 +109,8 @@ TARGET_GROUPS = [
     ("Hello! Project", "Natsumi Abe", ["Natsumi Abe", "安倍なつみ"], ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
+
+    # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
         "You Kikkawa", "Kikkawa You", "Kikkawa Yu", "吉川友", "Kikkawa"
     ]),
@@ -98,12 +118,18 @@ TARGET_GROUPS = [
         "Up Up Girls (Kari)", "Up Up Girls (kari)", "アップアップガールズ(仮)", "アプガ(仮)",
         "アップアップガールズ（仮）", "UpUpGirls(Kari)"
     ]),
+
+    # Up Up Girls (2)
     ("Up-Front Alumni", "Up Up Girls (2)", [
-        "アップアップガールズ(2)", "Up Up Girls 2", "アップアップガールズ（2）"
+        "アップアップガールズ(2)",
+        "Up Up Girls 2",
+        "アップアップガールズ（2）"
     ], [
         "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
         "UpUpGirls(2)", "Up Up Girls 2"
     ]),
+
+    # AKB48 Group
     ("AKB48 Group", "AKB48", ["AKB48"], ["AKB48"]),
     ("AKB48 Group", "SKE48", ["SKE48"], ["SKE48"]),
     ("AKB48 Group", "NMB48", ["NMB48"], ["NMB48"]),
@@ -111,23 +137,35 @@ TARGET_GROUPS = [
     ("AKB48 Group", "NGT48", ["NGT48"], ["NGT48"]),
     ("AKB48 Group", "STU48", ["STU48"], ["STU48"]),
     ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
+
+    # Sakamichi Series
     ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
     ("Sakamichi Series", "Sakurazaka46", ["Sakurazaka46", "櫻坂46"], ["Sakurazaka46", "Sakurazaka", "櫻坂"]),
     ("Sakamichi Series", "Hinatazaka46", ["Hinatazaka46", "日向坂46"], ["Hinatazaka46", "Hinatazaka", "日向坂"]),
     ("Sakamichi Series", "Keyakizaka46", ["Keyakizaka46", "欅坂46"], ["Keyakizaka46", "Keyakizaka", "欅坂46", "欅坂"]),
     ("Sakamichi Series", "22/7", ["22/7", "ナナブンノニジュウニ"], ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
+
+    # Stardust Planet
     ("Stardust Planet", "Momoiro Clover Z", ["Momoiro Clover Z", "ももいろクローバーZ"], ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
     ("Stardust Planet", "Shiritsu Ebisu Chugaku", ["Shiritsu Ebisu Chugaku", "私立恵比寿中学"], ["Shiritsu Ebisu Chugaku", "Ebichu", "私立恵比寿中学", "エビ中"]),
     ("Stardust Planet", "Chou Tokimeki Sendenbu", ["Cho Tokimeki Sendenbu", "超ときめき♡宣伝部"], [
         "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
     ]),
+
+    # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", ["=LOVE", "イコールラブ"], ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", ["ノイミー", "≠ME"], NOIME_AUTHENTIC_SIGNATURES),
     ("=LOVE / Sister Groups", "≒JOY", ["Nearly Equal Joy", "≒JOY"], NIAGO_AUTHENTIC_SIGNATURES),
+
+    # KAWAII LAB.
     ("KAWAII LAB.", "FRUITS ZIPPER", ["FRUITS ZIPPER", "フルーツジッパー"], ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
     ("KAWAII LAB.", "CUTIE STREET", ["CUTIE STREET", "キューティーストリート"], ["CUTIE STREET", "Cutie Street", "きゅーすと", "KAWAII LAB."]),
+
+    # Modern Idols
     ("Modern Idols", "NiziU", ["NiziU", "ニジュー"], ["NiziU", "ニジュー"]),
     ("Modern Idols", "ME:I", ["ME:I", "ミーアイ"], ["ME:I", "ミーアイ", "Produce 101"]),
+
+    # Babymetal
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
 ]
 
@@ -378,10 +416,17 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
             rel_date = "Available Now"
 
         card_text_lower = card.get_text().lower()
-        if is_date_upcoming(rel_date) or "pre-order" in card_text_lower:
-            availability = "preorder"
-        elif "out of print" in card_text_lower or "sold out" in card_text_lower or "archive" in card_text_lower:
+        if (
+            "out of print" in card_text_lower or
+            "sold out" in card_text_lower or
+            "no longer available" in card_text_lower or
+            "archive" in card_text_lower or
+            "廃盤" in card_text_lower or
+            "取扱終了" in card_text_lower
+        ):
             availability = "oop"
+        elif is_date_upcoming(rel_date) or "pre-order" in card_text_lower or "予約" in card_text_lower:
+            availability = "preorder"
         else:
             availability = "instock"
 
@@ -493,6 +538,9 @@ def get_active_targets():
     if "updated 3 groups" in raw_filter.lower():
         target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
         return [g for g in TARGET_GROUPS if g[1] in target_names]
+
+    if "angerme" in raw_filter.lower() or "s/mileage" in raw_filter.lower():
+        return [g for g in TARGET_GROUPS if g[1] == "ANGERME"]
 
     matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
     return matched if matched else TARGET_GROUPS

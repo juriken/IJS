@@ -6,9 +6,10 @@ on:
       target_group:
         description: 'Select the idol group(s) to test and scrape:'
         required: true
-        default: 'Updated 3 Groups (Up Up Girls (2), Hello Pro Kenshuusei, Kobushi Factory)'
+        default: 'ANGERME / S/mileage'
         type: choice
         options:
+          - 'ANGERME / S/mileage'
           - 'Updated 3 Groups (Up Up Girls (2), Hello Pro Kenshuusei, Kobushi Factory)'
           - 'Up Up Girls (2)'
           - 'Hello Pro Kenshuusei'

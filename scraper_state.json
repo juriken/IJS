@@ -91,8 +91,9 @@
     "NEOBK-3130235": 1792696979,
     "NEODAI-328736": 1792697620,
     "NEOODY-98": 1792698503,
-    "NEODAI-325366": 1792698990
+    "NEODAI-325366": 1792698990,
+    "EPBE-5629": 1792700586
   },
-  "last_healthcheck": "2026-10-22 19:56:32 UTC",
-  "last_catalog_clean": "2026-10-22 19:56:29 UTC"
+  "last_healthcheck": "2026-10-22 20:23:09 UTC",
+  "last_catalog_clean": "2026-10-22 20:23:05 UTC"
 }

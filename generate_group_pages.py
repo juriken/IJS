@@ -32,6 +32,11 @@ def generate_static_group_pages():
     grouped_catalog = {}
     for pid, item in catalog.items():
         artist = item.get("artist", "Other")
+        # Canonicalize Keyakizaka46 into Sakurazaka46
+        if artist in ["Keyakizaka46", "欅坂46"]:
+            artist = "Sakurazaka46"
+            item["artist"] = "Sakurazaka46"
+
         if artist not in grouped_catalog:
             grouped_catalog[artist] = []
         grouped_catalog[artist].append(item)

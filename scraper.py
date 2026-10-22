@@ -2,6 +2,7 @@
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
+Deep pagination support with automatic early-exit and date preservation.
 """
 
 import json
@@ -17,7 +18,10 @@ from playwright.sync_api import sync_playwright
 AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
-PAGES_PER_TARGET = 3
+
+# Deep Scraping Page Limits
+DEFAULT_PAGES_ALL = 20
+DEFAULT_PAGES_TARGETED = 40
 
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -53,24 +57,26 @@ NIAGO_AUTHENTIC_SIGNATURES = [
 
 TARGET_GROUPS = [
     # Hello! Project — Active Groups & Units
-    ("Hello! Project", "Morning Musume", ["Morning Musume", "モーニング娘"], [
-        "Morning Musume", "Morning Musume.", "Petitmoni", "Pucchimoni", "プッチモニ",
-        "Chokotto Love", "Baby! Koi ni Knock Out"
+    ("Hello! Project", "Morning Musume", [
+        "Morning Musume", "モーニング娘", "モーニング娘。"
+    ], [
+        "Morning Musume", "Morning Musume.", "モーニング娘", "モーニング娘。",
+        "Petitmoni", "Pucchimoni", "プッチモニ", "Chokotto Love", "Baby! Koi ni Knock Out"
     ]),
-    ("Hello! Project", "ANGERME", ["ANGERME", "アンジュルム", "S/mileage", "スマイレージ", "Smileage"], [
-        "ANGERME", "アンジュルム", "Smileage", "S/mileage", "スマイレージ"
+    ("Hello! Project", "ANGERME", [
+        "ANGERME", "アンジュルム", "S/mileage", "スマイレージ", "Smileage"
+    ], [
+        "ANGERME", "アンジュルム", "Smileage", "S/mileage", "スマイレージ", "s / mileage", "s・mileage"
     ]),
-    ("Hello! Project", "Juice=Juice", ["Juice=Juice"], ["Juice=Juice"]),
-    ("Hello! Project", "Tsubaki Factory", ["Tsubaki Factory", "つばきファクトリー"], ["Tsubaki Factory"]),
-    ("Hello! Project", "BEYOOOOONDS", ["BEYOOOOONDS", "ビヨーンズ"], ["BEYOOOOONDS"]),
-    ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "OCHA"]),
-    ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "Rosy"]),
+    ("Hello! Project", "Juice=Juice", ["Juice=Juice", "ジュースジュース"], ["Juice=Juice", "ジュースジュース"]),
+    ("Hello! Project", "Tsubaki Factory", ["Tsubaki Factory", "つばきファクトリー"], ["Tsubaki Factory", "つばきファクトリー"]),
+    ("Hello! Project", "BEYOOOOONDS", ["BEYOOOOONDS", "ビヨーンズ"], ["BEYOOOOONDS", "ビヨーンズ"]),
+    ("Hello! Project", "OCHA NORMA", ["OCHA NORMA", "オチャノーマ"], ["OCHA NORMA", "オチャノーマ", "OCHA"]),
+    ("Hello! Project", "Rosy Chronicle", ["Rosy Chronicle", "ロージークロニクル"], ["Rosy Chronicle", "ロージークロニクル", "Rosy"]),
 
     # Hello Pro Kenshuusei
     ("Hello! Project", "Hello Pro Kenshuusei", [
-        "Hello Pro Kenshusei",
-        "ハロプロ研修生",
-        "Hello Pro Kenshuusei"
+        "Hello Pro Kenshusei", "ハロプロ研修生", "Hello Pro Kenshuusei"
     ], [
         "Hello Pro Kenshuusei", "Hello Pro Kenshusei", "Hello! Pro Kenshuusei",
         "ハロプロ研修生", "Kenshuusei", "Kenshusei", "Hello Pro Egg", "ハロプロエッグ"
@@ -81,13 +87,13 @@ TARGET_GROUPS = [
     ("Hello! Project", "Berryz Kobo", ["Berryz Kobo", "Berryz工房"], ["Berryz Kobo", "Berryz", "Berryz工房"]),
     ("Hello! Project", "℃-ute", ["C-ute", "℃-ute"], ["℃-ute", "C-ute", "Cute"]),
     ("Hello! Project", "Buono!", ["Buono!"], ["Buono!"]),
-    ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], ["Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"]),
+    ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], [
+        "Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"
+    ]),
 
     # Kobushi Factory
     ("Hello! Project", "Kobushi Factory", [
-        "Kobushi-Factory",
-        "Kobushi Factory",
-        "こぶしファクトリー"
+        "Kobushi-Factory", "Kobushi Factory", "こぶしファクトリー"
     ], [
         "Kobushi Factory", "Kobushi-Factory", "こぶしファクトリー", "こぶし"
     ]),
@@ -121,9 +127,7 @@ TARGET_GROUPS = [
 
     # Up Up Girls (2)
     ("Up-Front Alumni", "Up Up Girls (2)", [
-        "アップアップガールズ(2)",
-        "Up Up Girls 2",
-        "アップアップガールズ（2）"
+        "アップアップガールズ(2)", "Up Up Girls 2", "アップアップガールズ（2）"
     ], [
         "Up Up Girls (2)", "アップアップガールズ(2)", "アプガ2", "アップアップガールズ（2）",
         "UpUpGirls(2)", "Up Up Girls 2"
@@ -460,16 +464,20 @@ def dismiss_popups(page):
         close_btn = page.locator(
             "button.modal-close, .modal-close, button:has-text('Close'), button:has-text('Save'), .popup-close, #btn_close"
         ).first
-        if close_btn.is_visible(timeout=300):
+        if close_btn.is_visible(timeout=200):
             close_btn.click(force=True)
-            time.sleep(0.2)
+            time.sleep(0.1)
     except Exception:
         pass
 
 def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
     results = []
+    seen_query_pids = set()
     is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
-    print(f"\n-> Querying: {canonical_artist} ('{target_query_or_url}')", flush=True)
+    print(f"\n-> Querying: {canonical_artist} ('{target_query_or_url}') [Max Depth: {max_pages} pages]", flush=True)
+
+    # Automatically blend targets into keywords for full Japanese/English coverage
+    effective_keywords = list(set([k.lower() for k in keywords] + [target_query_or_url.lower()]))
 
     for p_num in range(1, max_pages + 1):
         if is_direct_person:
@@ -488,49 +496,67 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                     "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
                 })
 
-                response = page.goto(target_url, wait_until="domcontentloaded", timeout=30000)
+                response = page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
                 dismiss_popups(page)
 
                 current_title = page.title().strip()
                 if not current_title or (response and response.status in [429, 403, 503]):
                     print(f"   [Notice] Backing off on attempt {attempt}...", flush=True)
-                    time.sleep(3.0)
+                    time.sleep(2.0)
                     continue
+
+                # Quick check if CDJapan returned an empty search result
+                page_text_quick = page.locator("body").inner_text(timeout=4000).lower()
+                if "no item found" in page_text_quick or "見つかりませんでした" in page_text_quick:
+                    extracted_on_page = []
+                    break
 
                 try:
                     page.wait_for_selector(
                         ".item-detail, .n-item, div.item, tr.item, div.search-result-item, .item_list",
-                        timeout=7000
+                        timeout=5000
                     )
                 except Exception:
                     pass
 
-                page.evaluate("window.scrollBy(0, 750)")
-                time.sleep(0.5)
-                page.evaluate("window.scrollBy(0, 850)")
-                time.sleep(0.8)
+                # Quick lazy-scroll
+                page.evaluate("window.scrollBy(0, 800)")
+                time.sleep(0.2)
+                page.evaluate("window.scrollBy(0, 900)")
+                time.sleep(0.2)
 
                 html = page.content()
                 extracted_on_page = extract_verified_products(
-                    html, category, canonical_artist, keywords, is_direct_person=is_direct_person
+                    html, category, canonical_artist, effective_keywords, is_direct_person=is_direct_person
                 )
 
                 if len(extracted_on_page) == 0 and attempt == 1:
-                    time.sleep(2.0)
+                    time.sleep(1.0)
                     continue
 
-                print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
-                results.extend(extracted_on_page)
                 break
 
             except Exception as e:
                 print(f"   Attempt {attempt} notice on Page {p_num}: {e}", flush=True)
-                time.sleep(2.5)
+                time.sleep(1.5)
 
-        if p_num == 1 and len(extracted_on_page) == 0:
+        # Early termination: stop pagination as soon as results run out
+        if len(extracted_on_page) == 0:
+            print(f"   [Notice] Reached end of catalog results at page {p_num}.", flush=True)
             break
 
-        time.sleep(random.uniform(1.5, 2.5))
+        # Duplicate page loop defense
+        current_pids = set(it["id"] for it in extracted_on_page)
+        if current_pids.issubset(seen_query_pids):
+            print(f"   [Notice] Page {p_num} contains duplicate results. Stopping query.", flush=True)
+            break
+
+        seen_query_pids.update(current_pids)
+        print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
+        results.extend(extracted_on_page)
+
+        # Gentle cadence between pages
+        time.sleep(random.uniform(0.8, 1.4))
 
     return results
 
@@ -552,13 +578,23 @@ def get_active_targets():
     matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
     return matched if matched else TARGET_GROUPS
 
+def get_target_page_depth(is_targeted_run):
+    env_depth = os.environ.get("PAGES_PER_TARGET", "").strip()
+    if env_depth.isdigit() and int(env_depth) > 0:
+        return int(env_depth)
+    return DEFAULT_PAGES_TARGETED if is_targeted_run else DEFAULT_PAGES_ALL
+
 def main():
     catalog = load_catalog()
     initial_count = len(catalog)
-    print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
+    print(f"Starting Deep Catalog Sync. Current active items: {initial_count}", flush=True)
 
     active_groups = get_active_targets()
-    print(f"Active Filter: Running {len(active_groups)} artist group(s): {[g[1] for g in active_groups]}", flush=True)
+    raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
+    is_targeted = bool(raw_filter and raw_filter.lower() != "all groups")
+    page_depth = get_target_page_depth(is_targeted)
+
+    print(f"Active Filter: Running {len(active_groups)} group(s) with depth limit of {page_depth} pages per query.", flush=True)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -580,9 +616,9 @@ def main():
         print("Initializing session on CDJapan...", flush=True)
         warmup_page = context.new_page()
         try:
-            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=25000)
+            warmup_page.goto("https://www.cdjapan.co.jp/", wait_until="domcontentloaded", timeout=20000)
             dismiss_popups(warmup_page)
-            time.sleep(1.5)
+            time.sleep(1.0)
         except Exception as e_warm:
             print(f"Warmup notice: {e_warm}", flush=True)
         finally:
@@ -598,7 +634,7 @@ def main():
             try:
                 for target_q in targets:
                     items = execute_artist_search(
-                        target_page, cat, artist, target_q, keywords, max_pages=PAGES_PER_TARGET
+                        target_page, cat, artist, target_q, keywords, max_pages=page_depth
                     )
                     for it in items:
                         pid = it["id"]
@@ -610,7 +646,14 @@ def main():
                     if pid not in catalog:
                         added_for_artist += 1
                         new_total += 1
-                    catalog[pid] = it
+                        catalog[pid] = it
+                    else:
+                        # Preserve existing verified dates when newly scraped date is generic
+                        existing_date = str(catalog[pid].get("release_date", "")).strip()
+                        new_date = str(it.get("release_date", "")).strip()
+                        if existing_date and existing_date != "Available Now" and (not new_date or new_date == "Available Now"):
+                            it["release_date"] = existing_date
+                        catalog[pid] = it
 
                 print(
                     f"   => {artist}: Extracted {len(artist_items_map)} unique releases"
@@ -622,7 +665,7 @@ def main():
             finally:
                 target_page.close()
 
-            time.sleep(random.uniform(2.0, 4.0))
+            time.sleep(random.uniform(1.0, 2.0))
 
         browser.close()
 
@@ -633,14 +676,15 @@ def main():
         "last_sync": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
         "total_catalog_size": len(catalog),
         "items_added_this_pass": new_total,
-        "active_groups": [g[1] for g in active_groups]
+        "active_groups": [g[1] for g in active_groups],
+        "depth_setting": page_depth
     }
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state_data, f, indent=2, ensure_ascii=False)
 
     final_count = len(catalog)
     print(f"\n==========================================", flush=True)
-    print(f"Sync Complete! Added {new_total} new releases.", flush=True)
+    print(f"Deep Sync Complete! Added {new_total} new releases.", flush=True)
     print(f"Total live catalog items: {final_count}", flush=True)
     print(f"==========================================", flush=True)
 

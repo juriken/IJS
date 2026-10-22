@@ -1,8 +1,9 @@
 {
-  "last_sync": "2026-10-22 04:32:21 UTC",
-  "total_catalog_size": 4902,
-  "items_added_this_pass": 0,
+  "last_sync": "2026-10-22 07:30:46 UTC",
+  "total_catalog_size": 5178,
+  "items_added_this_pass": 276,
   "active_groups": [
     "ANGERME"
-  ]
+  ],
+  "depth_setting": 40
 }

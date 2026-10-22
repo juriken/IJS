@@ -19,9 +19,9 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Deep Scraping Page Limits
-DEFAULT_PAGES_ALL = 20
-DEFAULT_PAGES_TARGETED = 40
+# Deep Scraping Page Limits (Expanded to 100 pages for deep back-catalogs)
+DEFAULT_PAGES_ALL = 60
+DEFAULT_PAGES_TARGETED = 100
 
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -64,9 +64,9 @@ TARGET_GROUPS = [
         "Petitmoni", "Pucchimoni", "プッチモニ", "Chokotto Love", "Baby! Koi ni Knock Out"
     ]),
     ("Hello! Project", "ANGERME", [
-        "ANGERME", "アンジュルム", "S/mileage", "スマイレージ", "Smileage"
+        "ANGERME", "アンジュルム", "S mileage", "スマイレージ", "Smileage"
     ], [
-        "ANGERME", "アンジュルム", "Smileage", "S/mileage", "スマイレージ", "s / mileage", "s・mileage"
+        "ANGERME", "アンジュルム", "Smileage", "S/mileage", "S mileage", "スマイレージ", "s / mileage", "s・mileage"
     ]),
     ("Hello! Project", "Juice=Juice", ["Juice=Juice", "ジュースジュース"], ["Juice=Juice", "ジュースジュース"]),
     ("Hello! Project", "Tsubaki Factory", ["Tsubaki Factory", "つばきファクトリー"], ["Tsubaki Factory", "つばきファクトリー"]),
@@ -470,21 +470,26 @@ def dismiss_popups(page):
     except Exception:
         pass
 
+def sanitize_query_for_cdjapan(query_str):
+    # CDJapan search fails when slash is passed as a query param
+    return query_str.replace("/", " ").strip()
+
 def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
     results = []
     seen_query_pids = set()
     is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
-    print(f"\n-> Querying: {canonical_artist} ('{target_query_or_url}') [Max Depth: {max_pages} pages]", flush=True)
+    sanitized_target = target_query_or_url if is_direct_person else sanitize_query_for_cdjapan(target_query_or_url)
+    
+    print(f"\n-> Querying: {canonical_artist} ('{sanitized_target}') [Max Depth: {max_pages} pages]", flush=True)
 
-    # Automatically blend targets into keywords for full Japanese/English coverage
-    effective_keywords = list(set([k.lower() for k in keywords] + [target_query_or_url.lower()]))
+    effective_keywords = list(set([k.lower() for k in keywords] + [target_query_or_url.lower(), sanitized_target.lower()]))
 
     for p_num in range(1, max_pages + 1):
         if is_direct_person:
             sep = "&" if "?" in target_query_or_url else "?"
             target_url = f"{target_query_or_url}{sep}page={p_num}&order=reldate_desc"
         else:
-            encoded_q = urllib.parse.quote_plus(target_query_or_url)
+            encoded_q = urllib.parse.quote_plus(sanitized_target)
             target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&opt.include_eoa=1&order=reldate_desc&page={p_num}"
 
         extracted_on_page = []
@@ -505,7 +510,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                     time.sleep(2.0)
                     continue
 
-                # Quick check if CDJapan returned an empty search result
                 page_text_quick = page.locator("body").inner_text(timeout=4000).lower()
                 if "no item found" in page_text_quick or "見つかりませんでした" in page_text_quick:
                     extracted_on_page = []
@@ -519,7 +523,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                 except Exception:
                     pass
 
-                # Quick lazy-scroll
                 page.evaluate("window.scrollBy(0, 800)")
                 time.sleep(0.2)
                 page.evaluate("window.scrollBy(0, 900)")
@@ -540,12 +543,10 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                 print(f"   Attempt {attempt} notice on Page {p_num}: {e}", flush=True)
                 time.sleep(1.5)
 
-        # Early termination: stop pagination as soon as results run out
         if len(extracted_on_page) == 0:
             print(f"   [Notice] Reached end of catalog results at page {p_num}.", flush=True)
             break
 
-        # Duplicate page loop defense
         current_pids = set(it["id"] for it in extracted_on_page)
         if current_pids.issubset(seen_query_pids):
             print(f"   [Notice] Page {p_num} contains duplicate results. Stopping query.", flush=True)
@@ -555,7 +556,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
         results.extend(extracted_on_page)
 
-        # Gentle cadence between pages
         time.sleep(random.uniform(0.8, 1.4))
 
     return results
@@ -648,7 +648,6 @@ def main():
                         new_total += 1
                         catalog[pid] = it
                     else:
-                        # Preserve existing verified dates when newly scraped date is generic
                         existing_date = str(catalog[pid].get("release_date", "")).strip()
                         new_date = str(it.get("release_date", "")).strip()
                         if existing_date and existing_date != "Available Now" and (not new_date or new_date == "Available Now"):

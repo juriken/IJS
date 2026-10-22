@@ -1,12 +1,13 @@
 """
 IdolJapan.store — Unified Catalog Build Pipeline
-Executes summary generation, group landing pages, sitemap, feeds, schema, and cache versioning.
+Executes image normalization, summary generation, group landing pages, sitemap, feeds, schema, and cache versioning.
 """
 
 import subprocess
 import sys
 
 STEPS = [
+    ("Jacket Image Normalization", ["python", "fix_images.py"]),
     ("Summary Index", ["python", "build_summary.py"]),
     ("Group Landing Pages", ["python", "generate_group_pages.py"]),
     ("Validation Audit", ["python", "validate_catalog.py"]),

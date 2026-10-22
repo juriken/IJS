@@ -19,7 +19,7 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Deep Scraping Page Limits (Expanded to 100 pages for deep back-catalogs)
+# Deep Scraping Page Limits
 DEFAULT_PAGES_ALL = 60
 DEFAULT_PAGES_TARGETED = 100
 
@@ -90,17 +90,17 @@ TARGET_GROUPS = [
     ("Hello! Project", "Country Girls", ["Country Girls", "カントリー・ガールズ"], [
         "Country Girls", "Country Musume", "カントリー・ガールズ", "カントリー娘", "Country"
     ]),
-
-    # Kobushi Factory
     ("Hello! Project", "Kobushi Factory", [
         "Kobushi-Factory", "Kobushi Factory", "こぶしファクトリー"
     ], [
         "Kobushi Factory", "Kobushi-Factory", "こぶしファクトリー", "こぶし"
     ]),
-
     ("Hello! Project", "Melon Kinenbi", ["Melon Kinenbi", "メロン記念日"], ["Melon Kinenbi", "メロン記念日", "メロン"]),
     ("Hello! Project", "Tanpopo", ["Tanpopo", "タンポポ"], TANPOPO_AUTHENTIC_SIGNATURES),
     ("Hello! Project", "v-u-den", ["Biyuden", "美勇伝"], ["Biyuden", "v-u-den", "V-u-den", "美勇伝", "ajisai ai ai", "koi no nukegara"]),
+    ("Hello! Project", "W", ["W (Double You)", "ダブルユー"], ["W (Double You)", "ダブルユー", "Nozomi Tsuji", "Ai Kago"]),
+    ("Hello! Project", "GAM", ["GAM", "ギャム"], ["GAM", "ギャム", "Aya Matsuura", "Miki Fujimoto"]),
+    ("Hello! Project", "Taiyo to Ciscomoon", ["太陽とシスコムーン", "Taiyo to Ciscomoon"], ["太陽とシスコムーン", "Taiyo to Ciscomoon", "T&Cボンバー", "T&C Bomber"]),
 
     # Hello! Project — OG Post-Graduation Units
     ("Hello! Project", "LoVendoR", ["LoVendoR", "ラベンダー"], ["LoVendoR", "LoVendoЯ", "ラベンダー", "Reina Tanaka"]),
@@ -115,6 +115,8 @@ TARGET_GROUPS = [
     ("Hello! Project", "Natsumi Abe", ["Natsumi Abe", "安倍なつみ"], ["Natsumi Abe", "Abe Natsumi", "安倍なつみ"]),
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
+    ("Hello! Project", "Miki Fujimoto", ["Miki Fujimoto", "藤本美貴"], ["Miki Fujimoto", "Fujimoto Miki", "藤本美貴", "Mikitty"]),
+    ("Hello! Project", "Tsukishima Kirari", ["月島きらり", "Tsukishima Kirari"], ["月島きらり", "Tsukishima Kirari", "久住小春", "Koharu Kusumi"]),
 
     # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
@@ -124,8 +126,6 @@ TARGET_GROUPS = [
         "Up Up Girls (Kari)", "Up Up Girls (kari)", "アップアップガールズ(仮)", "アプガ(仮)",
         "アップアップガールズ（仮）", "UpUpGirls(Kari)"
     ]),
-
-    # Up Up Girls (2)
     ("Up-Front Alumni", "Up Up Girls (2)", [
         "アップアップガールズ(2)", "Up Up Girls 2", "アップアップガールズ（2）"
     ], [
@@ -133,16 +133,28 @@ TARGET_GROUPS = [
         "UpUpGirls(2)", "Up Up Girls 2"
     ]),
 
-    # AKB48 Group
+    # AKB48 Group — Main Groups & Subunits
     ("AKB48 Group", "AKB48", ["AKB48"], ["AKB48"]),
     ("AKB48 Group", "SKE48", ["SKE48"], ["SKE48"]),
     ("AKB48 Group", "NMB48", ["NMB48"], ["NMB48"]),
     ("AKB48 Group", "HKT48", ["HKT48"], ["HKT48"]),
     ("AKB48 Group", "NGT48", ["NGT48"], ["NGT48"]),
     ("AKB48 Group", "STU48", ["STU48"], ["STU48"]),
-    ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
+    ("AKB48 Group", "Not yet", ["Not yet", "ノットイェット"], ["Not yet", "ノットイェット", "Oshima Yuko", "Sashihara Rino"]),
+    ("AKB48 Group", "no3b", ["no3b", "ノースリーブス"], ["no3b", "No Sleeves", "ノースリーブス"]),
+    ("AKB48 Group", "French Kiss", ["French Kiss", "フレンチ・キス"], ["French Kiss", "フレンチ・キス", "Kashiwagi Yuki"]),
+    ("AKB48 Group", "Watarirouka Hashiritai", ["渡り廊下走り隊", "Watarirouka Hashiritai"], ["渡り廊下走り隊", "Watarirouka Hashiritai", "Watarirouka Hashiritai 7", "Watanabe Mayu"]),
 
-    # Sakamichi Series (Keyakizaka46 unified into Sakurazaka46)
+    # AKB48 Group — Legendary Soloists & Graduates
+    ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
+    ("AKB48 Group", "Atsuko Maeda", ["Atsuko Maeda", "前田敦子"], ["Atsuko Maeda", "Maeda Atsuko", "前田敦子"]),
+    ("AKB48 Group", "Yuko Oshima", ["Yuko Oshima", "大島優子"], ["Yuko Oshima", "Oshima Yuko", "大島優子"]),
+    ("AKB48 Group", "Mayu Watanabe", ["Mayu Watanabe", "渡辺麻友"], ["Mayu Watanabe", "Watanabe Mayu", "渡辺麻友", "Mayuyu"]),
+    ("AKB48 Group", "Yuki Kashiwagi", ["Yuki Kashiwagi", "柏木由紀"], ["Yuki Kashiwagi", "Kashiwagi Yuki", "柏木由紀", "Yukirin"]),
+    ("AKB48 Group", "Rino Sashihara", ["Rino Sashihara", "指原莉乃"], ["Rino Sashihara", "Sashihara Rino", "指原莉乃", "Sashiko"]),
+    ("AKB48 Group", "Tomomi Itano", ["Tomomi Itano", "板野友美"], ["Tomomi Itano", "Itano Tomomi", "板野友美", "Tomochin"]),
+
+    # Sakamichi Series & Rivals
     ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
     ("Sakamichi Series", "Sakurazaka46", [
         "Sakurazaka46", "櫻坂46", "Keyakizaka46", "欅坂46"
@@ -152,6 +164,14 @@ TARGET_GROUPS = [
     ]),
     ("Sakamichi Series", "Hinatazaka46", ["Hinatazaka46", "日向坂46"], ["Hinatazaka46", "Hinatazaka", "日向坂"]),
     ("Sakamichi Series", "22/7", ["22/7", "ナナブンノニジュウニ"], ["22/7", "Nanabun no Nijuuni", "ナナブンノニジュウニ", "ナナニジ"]),
+    ("Sakamichi Series", "Boku ga Mitakatta Aozora", ["僕が見たかった青空", "Boku ga Mitakatta Aozora"], ["僕が見たかった青空", "Boku ga Mitakatta Aozora", "僕青"]),
+
+    # Sakamichi Series — Solo Graduates
+    ("Sakamichi Series", "Mai Shiraishi", ["Mai Shiraishi", "白石麻衣"], ["Mai Shiraishi", "Shiraishi Mai", "白石麻衣", "Passport"]),
+    ("Sakamichi Series", "Nanase Nishino", ["Nanase Nishino", "西野七瀬"], ["Nanase Nishino", "Nishino Nanase", "西野七瀬"]),
+    ("Sakamichi Series", "Erika Ikuta", ["Erika Ikuta", "生田絵梨花"], ["Erika Ikuta", "Ikuta Erika", "生田絵梨花"]),
+    ("Sakamichi Series", "Asuka Saito", ["Asuka Saito", "齋藤飛鳥"], ["Asuka Saito", "Saito Asuka", "齋藤飛鳥"]),
+    ("Sakamichi Series", "Yurina Hirate", ["Yurina Hirate", "平手友梨奈"], ["Yurina Hirate", "Hirate Yurina", "平手友梨奈"]),
 
     # Stardust Planet
     ("Stardust Planet", "Momoiro Clover Z", ["Momoiro Clover Z", "ももいろクローバーZ"], ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
@@ -159,22 +179,30 @@ TARGET_GROUPS = [
     ("Stardust Planet", "Chou Tokimeki Sendenbu", ["Cho Tokimeki Sendenbu", "超ときめき♡宣伝部"], [
         "Cho Tokimeki Sendenbu", "Chou Tokimeki Sendenbu", "Tokimeki Sendenbu", "Tokisen", "超ときめき♡宣伝部", "ときめき♡宣伝部", "とき宣"
     ]),
+    ("Stardust Planet", "TEAM SHACHI", ["TEAM SHACHI", "チームしゃちほこ"], ["TEAM SHACHI", "Team Syachihoko", "チームしゃちほこ", "しゃち"]),
+    ("Stardust Planet", "BATTEN GIRLS", ["BATTEN GIRLS", "ばってん少女隊"], ["BATTEN GIRLS", "Batten Showtai", "ばってん少女隊", "ばっしょー"]),
+    ("Stardust Planet", "ukka", ["ukka", "桜エビ〜ず"], ["ukka", "Sakura Ebis", "桜エビ〜ず"]),
 
     # =LOVE & Sister Groups
     ("=LOVE / Sister Groups", "=LOVE", ["=LOVE", "イコールラブ"], ["=LOVE", "Equal Love", "イコラブ"]),
     ("=LOVE / Sister Groups", "≠ME", ["ノイミー", "≠ME"], NOIME_AUTHENTIC_SIGNATURES),
     ("=LOVE / Sister Groups", "≒JOY", ["Nearly Equal Joy", "≒JOY"], NIAGO_AUTHENTIC_SIGNATURES),
 
-    # KAWAII LAB.
+    # KAWAII LAB. — Complete 4 Sister Groups
     ("KAWAII LAB.", "FRUITS ZIPPER", ["FRUITS ZIPPER", "フルーツジッパー"], ["FRUITS ZIPPER", "Fruits Zipper", "ふるっぱー", "KAWAII LAB."]),
+    ("KAWAII LAB.", "CANDY TUNE", ["CANDY TUNE", "キャンディートゥーン"], ["CANDY TUNE", "Candy Tune", "きゃんちゅー", "KAWAII LAB."]),
+    ("KAWAII LAB.", "SWEET STEADY", ["SWEET STEADY", "スウィートステディ"], ["SWEET STEADY", "Sweet Steady", "すいすて", "KAWAII LAB."]),
     ("KAWAII LAB.", "CUTIE STREET", ["CUTIE STREET", "キューティーストリート"], ["CUTIE STREET", "Cutie Street", "きゅーすと", "KAWAII LAB."]),
 
-    # Modern Idols
+    # Modern Idols — NiziU & LAPONE Sisters
     ("Modern Idols", "NiziU", ["NiziU", "ニジュー"], ["NiziU", "ニジュー"]),
     ("Modern Idols", "ME:I", ["ME:I", "ミーアイ"], ["ME:I", "ミーアイ", "Produce 101"]),
+    ("Modern Idols", "IS:SUE", ["IS:SUE", "イッシュ"], ["IS:SUE", "イッシュ", "1st IS:SUE"]),
 
-    # Babymetal
+    # Babymetal & Amuse Roots
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
+    ("Babymetal", "Sakura Gakuin", ["Sakura Gakuin", "さくら学院"], ["Sakura Gakuin", "さくら学院", "BABYMETAL"]),
+    ("Babymetal", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
 ]
 
 def load_catalog():
@@ -471,7 +499,6 @@ def dismiss_popups(page):
         pass
 
 def sanitize_query_for_cdjapan(query_str):
-    # CDJapan search fails when slash is passed as a query param
     return query_str.replace("/", " ").strip()
 
 def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):

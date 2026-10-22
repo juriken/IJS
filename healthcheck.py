@@ -44,11 +44,9 @@ def run_health_check():
             continue
 
         try:
-            # Use HTTP GET with stream=True to check status and terminal redirect
             resp = session.get(target_url, timeout=12, allow_redirects=True, stream=True)
             status_code = resp.status_code
 
-            # CDJapan redirects dead items to / or returns 404
             is_dead_redirect = resp.url.strip("/").endswith("cdjapan.co.jp")
             
             if status_code in [404, 410] or is_dead_redirect:
@@ -71,7 +69,6 @@ def run_health_check():
         with open(PRODUCTS_FILE, "w", encoding="utf-8") as f:
             json.dump(products, f, ensure_ascii=False, indent=2)
 
-        # Re-export compact summary index
         summary_index = {}
         for pid, it in products.items():
             summary_index[pid] = {
@@ -83,8 +80,7 @@ def run_health_check():
                 "price": it.get("price", ""),
                 "release_date": it.get("release_date", ""),
                 "availability": it.get("availability", "instock"),
-                "image": it.get("image", ""),
-                "sample_audio": it.get("sample_audio")
+                "image": it.get("image", "")
             }
 
         with open(INDEX_FILE, "w", encoding="utf-8") as f:

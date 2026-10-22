@@ -870,7 +870,7 @@
         </div>
       </div>
 
-      <!-- Affiliate Disclosure (Updated without Affiliate ID) -->
+      <!-- Affiliate Disclosure -->
       <div class="p-4 bg-stone-50 dark:bg-slate-950 rounded-xl border border-stone-200 dark:border-slate-800 text-stone-700 dark:text-slate-300 text-sm leading-relaxed text-left sm:text-center">
         <p class="font-semibold text-stone-900 dark:text-white mb-1 flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Retailer & Operating Disclosure
@@ -1456,7 +1456,7 @@
         const selectEl = document.getElementById('currency-select');
         if (selectEl) selectEl.value = currentCurrency;
 
-        const localRes = await fetch('/rates.json', { signal: AbortSignal.timeout(3000) }).catch(() => null);
+        const localRes = await fetch('/rates.json').catch(() => null);
         if (localRes && localRes.ok) {
           const localData = await localRes.json().catch(() => null);
           if (localData && localData.rates) {
@@ -1475,7 +1475,7 @@
           return;
         }
 
-        const res = await fetch('https://open.er-api.com/v6/latest/USD', { signal: AbortSignal.timeout(3000) }).catch(() => null);
+        const res = await fetch('https://open.er-api.com/v6/latest/USD').catch(() => null);
         if (res && res.ok) {
           const data = await res.json().catch(() => null);
           if (data && data.rates) {
@@ -1486,7 +1486,7 @@
           }
         }
       } catch (err) {
-        console.warn('Currency init completed with baseline fallback:', err);
+        console.warn('Currency init completed with fallback:', err);
       }
     }
 
@@ -1590,7 +1590,7 @@
 
     async function loadSearchAliases() {
       try {
-        const res = await fetch('/search_aliases.json', { signal: AbortSignal.timeout(3000) }).catch(() => null);
+        const res = await fetch('/search_aliases.json').catch(() => null);
         if (res && res.ok) {
           searchAliases = await res.json().catch(() => ({}));
         }
@@ -1601,7 +1601,7 @@
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      // Layer 1: Instant retrieval from IndexedDB cache
+      // Layer 1: Instant load from IndexedDB cache if populated
       try {
         if (window.IdolDB) {
           const cachedDb = await window.IdolDB.loadCatalog().catch(() => null);
@@ -1616,34 +1616,39 @@
               _catalogIndex: idx
             }));
             
-            if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (IndexedDB)`;
-            readUrlParams();
-            buildClusteredEntities();
-            updateDynamicCounts();
-            updateArtistSubBar();
-            updateYearJumpBar();
-            updateFilterButtonsUI();
-            updateAvailabilityUI();
-            updateWishlistBadge();
+            if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (Instant DB)`;
+            try {
+              readUrlParams();
+              buildClusteredEntities();
+              updateDynamicCounts();
+              updateArtistSubBar();
+              updateYearJumpBar();
+              updateFilterButtonsUI();
+              updateAvailabilityUI();
+              updateWishlistBadge();
+              applyLayoutModeToDom();
+            } catch (err) {}
             render();
           }
         }
       } catch (err) {
-        console.warn('IndexedDB initial cache bypassed:', err);
+        console.warn('IndexedDB initial retrieval bypassed:', err);
       }
 
-      // Layer 2: Network fetch with timeout safety
+      // Layer 2: Network load from local endpoints with safe parsing
       const cacheBuster = Date.now();
       const candidatePaths = [
-        `/catalog-index.json?v=${cacheBuster}`,
         `catalog-index.json?v=${cacheBuster}`,
-        `/products.json?v=${cacheBuster}`,
-        `products.json?v=${cacheBuster}`
+        `./catalog-index.json?v=${cacheBuster}`,
+        `/catalog-index.json?v=${cacheBuster}`,
+        `products.json?v=${cacheBuster}`,
+        `./products.json?v=${cacheBuster}`,
+        `/products.json?v=${cacheBuster}`
       ];
 
       for (const p of candidatePaths) {
         try {
-          const res = await fetch(p, { signal: AbortSignal.timeout(3500) });
+          const res = await fetch(p);
           if (res && res.ok) {
             const parsed = await res.json();
             if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
@@ -1683,7 +1688,7 @@
         }
       }
 
-      // Layer 3: Unconditional initialization and rendering
+      // Layer 3: Guaranteed DOM release
       try {
         readUrlParams();
         buildClusteredEntities();
@@ -1693,6 +1698,7 @@
         updateFilterButtonsUI();
         updateAvailabilityUI();
         updateWishlistBadge();
+        applyLayoutModeToDom();
       } catch (prepErr) {
         console.error('Error preparing catalog state:', prepErr);
       } finally {
@@ -1867,7 +1873,7 @@
         'Sakamichi Series': 0,
         'Stardust Planet': 0,
         '=LOVE / Sister Groups': 0,
-        'KAWAII LAB.',: 0,
+        'KAWAII LAB.': 0,
         'Modern Idols': 0,
         'Babymetal': 0
       };

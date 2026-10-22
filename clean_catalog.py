@@ -2,7 +2,7 @@
 IdolJapan.store — Intelligent Database Cleanser & Category Validator
 Safely prunes TRUE non-idol false positives (male boybands, unrelated anime/gaming goods,
 generic magazine issue leaks), protects all Hello! Project/Up-Front fanclub releases,
-and strictly protects soloists and multi-idol magazine features.
+strictly protects soloists, and outputs the complete list of all pruned items.
 """
 
 import json
@@ -11,6 +11,7 @@ import re
 
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
+PRUNED_LOG_FILE = "pruned_items.txt"
 
 # Canonical Artist to Franchise Category Mapping (All 77 Supported Roster Items)
 CANONICAL_ARTIST_MAP = {
@@ -112,15 +113,6 @@ CANONICAL_ARTIST_MAP = {
     "@onefive": "Babymetal",
 }
 
-# Dedicated Soloists: MUST NEVER be re-aligned back to groups
-DEDICATED_SOLOISTS = {
-    "Atsuko Maeda", "Yuko Oshima", "Mayu Watanabe", "Yuki Kashiwagi",
-    "Rino Sashihara", "Tomomi Itano", "Sayaka Yamamoto", "Mai Shiraishi",
-    "Nanase Nishino", "Erika Ikuta", "Asuka Saito", "Yurina Hirate",
-    "Sayumi Michishige", "Aya Matsuura", "Maki Goto", "Natsumi Abe",
-    "Erina Mano", "Airi Suzuki", "Miki Fujimoto", "Tsukishima Kirari", "You Kikkawa"
-}
-
 # Complete Hello! Project & Up-Front Catalog Code Prefixes
 ALL_UPFRONT_PREFIXES = (
     "EPCE", "EPBE", "EPXE", "EPTE", "EPDE",
@@ -131,7 +123,7 @@ ALL_UPFRONT_PREFIXES = (
     "DAKU", "DCFGDS", "NEOODY"
 )
 
-# Complete Country Girls & Country Musume Members
+# Complete Country Girls & Country Musume Member Signatures
 COUNTRY_GIRLS_SIGNATURES = [
     "country girls", "country musume", "カントリー・ガールズ", "カントリー娘",
     "tsugunaga", "嗣永桃子",
@@ -181,14 +173,13 @@ def check_false_positive(item):
     artist = str(item.get("artist", "")).strip()
     pid = str(item.get("id", "")).upper()
 
-    # 1. Reject anything not in our 77 recognized idol roster
+    # 1. Reject items not in our 77 recognized idol roster
     if artist not in CANONICAL_ARTIST_MAP:
         return True, f"Artist '{artist}' not in official idol roster"
 
     # 2. Male Boyband Leaks
     for pat in MALE_BOYBAND_PATTERNS:
         if re.search(pat, title_lower):
-            # Check if one of our female idols is also featured on the cover
             has_our_idol = any(k.lower() in title_lower for k in CANONICAL_ARTIST_MAP.keys())
             if not has_our_idol:
                 return True, f"Male boyband item: matches '{pat}'"
@@ -202,16 +193,12 @@ def check_false_positive(item):
 
     # 4. Safe "Country Girls" Filtering
     if artist == "Country Girls":
-        # If it has any Up-Front / H!P prefix, it is 100% genuine
         if is_upfront_affiliated(pid, title_lower):
             return False, ""
-        # If it names any Country Girls member, it is 100% genuine
         if any(sig in title_lower for sig in COUNTRY_GIRLS_SIGNATURES):
             return False, ""
-        # Otherwise, check for true American country music
         if any(w in title_lower for w in ["nashville", "bluegrass", "country & western", "country gold", "best of country"]):
             return True, "American country/western music leak"
-        # If it has no H!P prefix and no member name, prune it
         return True, "Country Girls false positive (missing H!P affiliation & member name)"
 
     # 5. Safe "W" (Double You) Filtering
@@ -282,16 +269,14 @@ def main():
         if not isinstance(item, dict):
             continue
 
-        # 1. Prune ONLY true false positives
         is_bad, reason = check_false_positive(item)
         if is_bad:
-            pruned_records.append((pid, item.get("title", "")[:40], reason))
+            pruned_records.append((pid, item.get("title", ""), reason))
             continue
 
         artist = item.get("artist", "").strip()
 
-        # 2. Enforce Authentic Category Alignment
-        # Strictly synchronize category to canonical franchise, preserving soloist identities
+        # Strictly synchronize category to canonical franchise
         canonical_category = CANONICAL_ARTIST_MAP[artist]
         if item.get("category") != canonical_category:
             item["category"] = canonical_category
@@ -299,11 +284,18 @@ def main():
 
         cleaned_catalog[pid] = item
 
-    # Save verified database
+    # Save cleaned catalog
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
 
-    # Sync state file
+    # Save complete pruned log to disk
+    with open(PRUNED_LOG_FILE, "w", encoding="utf-8") as f:
+        f.write(f"Total Pruned Items: {len(pruned_records)}\n")
+        f.write("=" * 60 + "\n")
+        for idx, (p_id, p_title, p_reason) in enumerate(pruned_records, 1):
+            f.write(f"[{idx}/{len(pruned_records)}] [{p_id}] {p_title} (Reason: {p_reason})\n")
+
+    # Update state file
     if os.path.exists(STATE_FILE):
         state = {}
         try:
@@ -317,16 +309,20 @@ def main():
             json.dump(state, f, indent=2, ensure_ascii=False)
 
     print(f"Original items in database: {original_count:,}")
-    print(f"Pruned true false positives: {len(pruned_records):,}")
+    print(f"Pruned false positives:     {len(pruned_records):,}")
     print(f"Re-aligned wrong categories: {category_corrected_count:,}")
     print(f"Remaining verified items:    {len(cleaned_catalog):,}")
 
     if pruned_records:
-        print("\n--- Sample of Pruned Items ---")
-        for p in pruned_records[:10]:
-            print(f"  ❌ [{p[0]}] {p[1]} (Reason: {p[2]})")
+        print(f"\n==========================================")
+        print(f"COMPLETE LIST OF ALL PRUNED ITEMS ({len(pruned_records):,} items):")
+        print(f"==========================================")
+        for idx, (p_id, p_title, p_reason) in enumerate(pruned_records, 1):
+            print(f"[{idx}/{len(pruned_records)}] ❌ [{p_id}] {p_title} — Reason: {p_reason}")
+        print(f"==========================================")
+        print(f"Full log also saved to: {PRUNED_LOG_FILE}")
+        print(f"==========================================")
 
-    print("==========================================")
     print("Catalog Audit Complete. 100% of authentic idol items preserved.")
     print("==========================================")
 

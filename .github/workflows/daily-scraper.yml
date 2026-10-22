@@ -2,19 +2,19 @@ name: Daily Idol Product Sync
 
 on:
   schedule:
-    # Runs daily at 03:00 UTC (12:00 PM JST)
-    - cron: '0 3 * * *'
+    # Runs daily at 00:00 JST (15:00 UTC)
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  sync-catalog:
+  scrape-and-update:
     runs-on: ubuntu-latest
     env:
       PYTHONUNBUFFERED: "1"
-      TARGET_ARTIST: "All Groups"
+      DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -33,21 +33,25 @@ jobs:
         run: |
           playwright install --with-deps chromium
 
-      - name: Run Scraper
+      - name: Run Idol Catalog Scraper
         run: |
           python -u scraper.py
 
-      - name: Rebuild Catalog Summary Index
+      - name: Run Unified Build Pipeline
         run: |
-          python build_summary.py
+          python build_catalog.py
 
-      - name: Validate Catalog Integrity
+      - name: Ping Search Engines for Rapid Indexing
         run: |
-          python validate_catalog.py
+          python ping_search_engines.py
 
-      - name: Commit and Push Verified Changes
+      - name: Broadcast New Releases to Community Webhook
+        run: |
+          python notify_releases.py
+
+      - name: Commit and Push Updated Catalog & Sitemap
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json scraper_state.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated Daily Product Sync" && git push)
+          git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json search_aliases.json sw.js promotions.json groups/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, landing pages & sitemap" && git push)

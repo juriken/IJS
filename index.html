@@ -123,9 +123,6 @@
 </head>
 <body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- Global Audio Player Engine -->
-  <audio id="global-audio-player" class="hidden" preload="none"></audio>
-
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 dark:bg-rose-950/95 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-white/10 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
     <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
@@ -160,17 +157,8 @@
         </div>
       </div>
 
-      <!-- Controls: Jukebox, Calendar, Wishlist, Currency, Theme -->
+      <!-- Controls: Calendar, Wishlist, Currency, Theme -->
       <div class="flex items-center gap-2 order-2 sm:order-3">
-        <button 
-          onclick="window.IdolJukebox && window.IdolJukebox.start()" 
-          title="Play Random Idol Audio Samples"
-          class="desktop-only-header-btn bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-sm text-rose-100 dark:text-rose-400 cursor-pointer"
-        >
-          <i class="fa-solid fa-headphones text-amber-300"></i>
-          <span class="hidden lg:inline">Jukebox</span>
-        </button>
-
         <button 
           onclick="toggleCalendarDrawer()" 
           title="Pre-Order Shipping Calendar"
@@ -303,8 +291,8 @@
           <div class="flex items-center gap-1.5">
             <label for="sort-select" class="text-stone-500 dark:text-slate-400">Sort:</label>
             <select id="sort-select" onchange="changeSort(this.value)" class="bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-1 px-2.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400 dark:focus:ring-rose-500 cursor-pointer">
-              <option value="newest">Newest Release Date</option>
-              <option value="oldest">Oldest Release Date</option>
+              <option value="newest">Newest Street Date</option>
+              <option value="oldest">Oldest Street Date</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
             </select>
@@ -477,31 +465,6 @@
     <nav id="pagination-bottom" class="mt-10 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
 
-  <!-- Floating Ambient Audio Jukebox Player Dock -->
-  <div id="jukebox-bar" class="hidden fixed bottom-16 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-40 bg-stone-900/95 dark:bg-slate-900/95 backdrop-blur-md border border-stone-700/80 dark:border-slate-700 rounded-2xl p-2.5 shadow-2xl text-white flex items-center justify-between gap-3">
-    <div class="flex items-center gap-2.5 min-w-0">
-      <img id="jukebox-img" src="" class="w-10 h-10 object-cover rounded-lg shrink-0 bg-stone-800" onerror="onImgLoadError(this)" />
-      <div class="truncate">
-        <span class="text-[9px] uppercase tracking-wider text-rose-400 font-bold block flex items-center gap-1">
-          <i class="fa-solid fa-radio animate-pulse text-[8px]"></i> Ambient Preview
-        </span>
-        <p id="jukebox-title" class="text-xs font-bold truncate">Release Title</p>
-        <p id="jukebox-artist" class="text-[10px] text-stone-400 truncate">Artist</p>
-      </div>
-    </div>
-    <div class="flex items-center gap-1.5 shrink-0">
-      <button id="jukebox-play-btn" onclick="window.IdolJukebox.toggle()" class="w-8 h-8 rounded-full bg-rose-600 hover:bg-rose-700 flex items-center justify-center text-xs transition cursor-pointer">
-        <i class="fa-solid fa-play"></i>
-      </button>
-      <button onclick="window.IdolJukebox.next()" title="Next Sample" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center text-xs transition cursor-pointer">
-        <i class="fa-solid fa-forward-step"></i>
-      </button>
-      <button onclick="window.IdolJukebox.close()" title="Dismiss Jukebox" class="w-7 h-7 rounded-full text-stone-400 hover:text-white flex items-center justify-center text-xs transition cursor-pointer">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-  </div>
-
   <!-- Mobile Off-Canvas Filter Drawer -->
   <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
@@ -574,11 +537,6 @@
       <span>Search</span>
     </button>
 
-    <button onclick="window.IdolJukebox && window.IdolJukebox.start()" class="flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
-      <i class="fa-solid fa-headphones text-sm mb-0.5 text-amber-500"></i>
-      <span>Jukebox</span>
-    </button>
-
     <button onclick="toggleWishlistView()" class="relative flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
       <i class="fa-solid fa-heart text-sm mb-0.5 text-rose-500"></i>
       <span>Wishlist</span>
@@ -622,7 +580,7 @@
     </div>
   </div>
 
-  <!-- Quick View Modal with Audio Preview & Arrow Navigation -->
+  <!-- Quick View Modal with Arrow Navigation -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden transition-opacity duration-200" onclick="closeModalOnBackdrop(event)">
     <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative flex flex-col sm:flex-row gap-5 max-h-[90vh] overflow-y-auto">
       
@@ -656,14 +614,6 @@
           <h3 id="modal-title" class="text-base font-bold text-stone-900 dark:text-white leading-snug">Product Title</h3>
           
           <div id="modal-edition-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
-
-          <!-- HTML5 Sample Audio Player Widget -->
-          <div id="modal-audio-preview-box" class="hidden pt-2">
-            <button id="modal-audio-btn" onclick="toggleAudioPreview(currentModalProduct, this)" class="w-full py-1.5 px-3 bg-amber-50 dark:bg-amber-950/60 hover:bg-amber-100 border border-amber-300 dark:border-amber-800 rounded-xl text-amber-900 dark:text-amber-200 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer">
-              <i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i>
-              <span>Listen to Official 30s Audio Sample</span>
-            </button>
-          </div>
 
           <div class="pt-2 text-xs text-stone-600 dark:text-slate-300 space-y-1.5 border-t border-stone-100 dark:border-slate-800">
             <p><strong class="text-stone-800 dark:text-stone-200">Release Date:</strong> <span id="modal-release-date">Available Now</span></p>
@@ -928,7 +878,7 @@
         <p class="text-xs sm:text-sm text-stone-600 dark:text-slate-400">
           <strong>IdolJapan.store</strong> is an independent discography catalog. We do not collect payments, hold inventory, or process international freight.
           All purchases and shipments are fulfilled directly by 
-          <a href="https://www.cdjapan.co.jp" class="underline font-bold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300" target="_blank" rel="noopener">CDJapan</a>.
+          <a href="https://www.cdjapan.co.jp" class="underline font-bold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300" target="_blank" rel="noopener">CDJapan</a>. Affiliate ID: <strong>A033398</strong>.
         </p>
       </div>
 
@@ -947,11 +897,10 @@
     </div>
   </footer>
 
-  <!-- Telemetry, IndexedDB, Geolocation & Audio Jukebox Engines -->
+  <!-- Telemetry, IndexedDB & Geolocation Engines -->
   <script src="/analytics.js"></script>
   <script src="/db.js"></script>
   <script src="/geo_currency.js"></script>
-  <script src="/jukebox.js"></script>
 
   <script>
     let allProducts = [];
@@ -979,7 +928,6 @@
     let isWishlistView = false;
     let exchangeRates = { USD: 1.0, JPY: 152.4, EUR: 0.92, GBP: 0.79, CAD: 1.38, AUD: 1.51, TWD: 32.1, HKD: 7.78, KRW: 1375.0, SGD: 1.32 };
     let currentModalProduct = null;
-    let activeAudioButton = null;
 
     let currentPage = 1;
     let itemsPerPage = 48;
@@ -1083,36 +1031,6 @@
 
     function closeCryptoModalOnBackdrop(e) {
       if (e.target.id === 'crypto-modal') toggleCryptoModal();
-    }
-
-    function toggleAudioPreview(product, btnEl) {
-      const player = document.getElementById('global-audio-player');
-      if (!player || !product) return;
-
-      const sampleUrl = product.sample_audio || `https://www.neowing.co.jp/audio/${product.id}_01.mp3`;
-
-      if (player.src === sampleUrl && !player.paused) {
-        player.pause();
-        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
-        return;
-      }
-
-      if (activeAudioButton && activeAudioButton !== btnEl) {
-        activeAudioButton.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
-      }
-
-      player.src = sampleUrl;
-      player.play().then(() => {
-        activeAudioButton = btnEl;
-        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-pause text-amber-600 dark:text-amber-400 animate-pulse"></i> <span>Pause Preview</span>`;
-        if (window.IdolAnalytics) window.IdolAnalytics.trackAudioSamplePlay(product);
-      }).catch(err => {
-        showToast("Audio sample preview unavailable for this item.", false);
-      });
-
-      player.onended = () => {
-        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-play text-amber-600 dark:text-amber-400"></i> <span>Play 30s Audio Sample</span>`;
-      };
     }
 
     function triggerOutboundAffiliate(product, subId = 'direct') {
@@ -1500,12 +1418,6 @@
       render();
     }
 
-    function pickRandomProduct() {
-      if (!allProducts.length) return;
-      const rnd = allProducts[Math.floor(Math.random() * allProducts.length)];
-      openModal(rnd.id);
-    }
-
     function onImgLoadError(imgEl) {
       imgEl.onerror = null;
       imgEl.src = PLACEHOLDER_IMG;
@@ -1693,7 +1605,6 @@
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      // 1. Instant loading from client-side IndexedDB
       if (window.IdolDB) {
         const cachedDb = await window.IdolDB.loadCatalog();
         if (cachedDb && cachedDb.length > 0) {
@@ -1712,7 +1623,6 @@
         }
       }
 
-      // 2. Cascade network sweep
       const cacheBuster = Date.now();
       const candidatePaths = [
         `catalog-index.json?v=${cacheBuster}`,
@@ -1752,7 +1662,6 @@
         allProducts = parsedItems;
         if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
         
-        // Save to IndexedDB for next session
         if (window.IdolDB) {
           window.IdolDB.saveCatalog(parsedItems);
         }
@@ -1799,6 +1708,136 @@
         }
       });
       clusteredEntities = Object.values(clusters);
+    }
+
+    function getItemFormatCategory(item) {
+      if (!item) return 'Other';
+      const pid = String(item.id || '').toUpperCase();
+      const title = String(item.title || '').toLowerCase();
+
+      // 1. Books / Photobooks / Magazines
+      if (
+        pid.startsWith('NEOBK-') ||
+        title.includes('photobook') ||
+        title.includes('photo book') ||
+        title.includes('visual book') ||
+        title.includes('magazine') ||
+        title.includes('official book') ||
+        title.includes('book') ||
+        title.includes('mook') ||
+        title.includes('score') ||
+        title.includes('写真集') ||
+        title.includes('ムック')
+      ) {
+        return 'Book';
+      }
+
+      // 2. Apparel & Collectibles (Towels, Keychains, Acrylics, T-Shirts, Badges)
+      if (
+        pid.startsWith('NEODAI-') ||
+        pid.startsWith('NEOODY-') ||
+        pid.startsWith('NEOGDS-') ||
+        pid.startsWith('DCFGDS-') ||
+        pid.startsWith('DAKUFBW-') ||
+        pid.includes('CL-') ||
+        pid.endsWith('-A') ||
+        title.includes('apparel') ||
+        title.includes('collectible') ||
+        title.includes('t-shirt') ||
+        title.includes('shirt') ||
+        title.includes('uniform') ||
+        title.includes('calendar') ||
+        title.includes('acrylic') ||
+        title.includes('keychain') ||
+        title.includes('figure') ||
+        title.includes('stand') ||
+        title.includes('goods') ||
+        title.includes('towel') ||
+        title.includes('badge') ||
+        title.includes('sticker') ||
+        title.includes('pouch') ||
+        title.includes('tapestry') ||
+        title.includes('strap') ||
+        title.includes('penlight') ||
+        title.includes('cushion') ||
+        title.includes('photo set') ||
+        title.includes('photos') ||
+        title.includes('clear folder') ||
+        title.includes('fan') ||
+        title.includes('グッズ') ||
+        title.includes('キーホルダー') ||
+        title.includes('生写真')
+      ) {
+        return 'Collectable';
+      }
+
+      // 3. Blu-rays
+      if (
+        pid.startsWith('SRXL') ||
+        pid.startsWith('SRXW') ||
+        pid.startsWith('EPXE') ||
+        pid.startsWith('KIXM') ||
+        pid.startsWith('TFXQ') ||
+        pid.startsWith('UMXK') ||
+        pid.startsWith('VVXL') ||
+        pid.startsWith('HKXN') ||
+        pid.startsWith('AVXD') ||
+        pid.startsWith('VPXF') ||
+        pid.startsWith('UFXW') ||
+        pid.startsWith('TGXF') ||
+        title.includes('blu-ray') ||
+        title.includes('[bd') ||
+        title.includes('bd]')
+      ) {
+        return 'Blu-ray';
+      }
+
+      // 4. DVDs
+      if (
+        pid.startsWith('SRBL') ||
+        pid.startsWith('EPBE') ||
+        pid.startsWith('KIBM') ||
+        pid.startsWith('TFBQ') ||
+        pid.startsWith('UMBK') ||
+        pid.startsWith('VVBL') ||
+        pid.startsWith('HKBN') ||
+        pid.startsWith('AVBD') ||
+        pid.startsWith('VPBF') ||
+        pid.startsWith('PKBP') ||
+        pid.startsWith('UFBW') ||
+        pid.startsWith('TGBS') ||
+        pid.includes('-D') ||
+        title.includes('dvd')
+      ) {
+        return 'DVD';
+      }
+
+      // 5. CDs (Singles, Albums)
+      if (
+        pid.startsWith('SRCL') ||
+        pid.startsWith('EPCE') ||
+        pid.startsWith('HKCN') ||
+        pid.startsWith('UPCH') ||
+        pid.startsWith('KICS') ||
+        pid.startsWith('KIZM') ||
+        pid.startsWith('KIZC') ||
+        pid.startsWith('AVCD') ||
+        pid.startsWith('TFCC') ||
+        pid.startsWith('VVCL') ||
+        pid.startsWith('YRCS') ||
+        pid.startsWith('UMCK') ||
+        pid.startsWith('DFCL') ||
+        pid.startsWith('PKCP') ||
+        pid.startsWith('AICL') ||
+        pid.startsWith('XSCL') ||
+        title.includes('cd') ||
+        title.includes('single') ||
+        title.includes('album')
+      ) {
+        return 'CD';
+      }
+
+      return 'Other';
     }
 
     function updateDynamicCounts() {
@@ -2084,43 +2123,18 @@
       }
     }
 
-    function getItemFormatCategory(item) {
-      if (!item) return 'Other';
-      const pid = String(item.id || '').toUpperCase();
-      const title = String(item.title || '').toLowerCase();
-
-      if (pid.startsWith('NEOBK-') || title.includes('photobook') || title.includes('magazine') || title.includes('book') || title.includes('写真集')) {
-        return 'Book';
-      }
-      if (pid.startsWith('NEODAI-') || pid.startsWith('NEOODY-') || pid.startsWith('NEOGDS-') || pid.includes('CL-') || pid.endsWith('-A') || title.includes('t-shirt') || title.includes('calendar') || title.includes('acrylic') || title.includes('goods') || title.includes('stand')) {
-        return 'Collectable';
-      }
-      if (pid.startsWith('SRXL') || pid.startsWith('SRXW') || pid.startsWith('EPXE') || pid.startsWith('KIXM') || pid.startsWith('TFXQ') || pid.startsWith('UMXK') || pid.startsWith('VVXL') || pid.startsWith('HKXN') || pid.startsWith('AVXD') || pid.startsWith('VPXF') || pid.startsWith('UFXW') || pid.startsWith('TGXF') || title.includes('blu-ray') || title.includes('bd')) {
-        return 'Blu-ray';
-      }
-      if (pid.startsWith('SRBL') || pid.startsWith('EPBE') || pid.startsWith('KIBM') || pid.startsWith('TFBQ') || pid.startsWith('UMBK') || pid.startsWith('VVBL') || pid.startsWith('HKBN') || pid.startsWith('AVBD') || pid.startsWith('VPBF') || pid.startsWith('PKBP') || pid.startsWith('UFBW') || pid.startsWith('TGBS') || pid.includes('-D') || title.includes('dvd')) {
-        return 'DVD';
-      }
-      if (pid.startsWith('SRCL') || pid.startsWith('EPCE') || pid.startsWith('HKCN') || pid.startsWith('UPCH') || pid.startsWith('KICS') || pid.startsWith('KIZM') || pid.startsWith('KIZC') || pid.startsWith('AVCD') || pid.startsWith('TFCC') || pid.startsWith('VVCL') || pid.startsWith('YRCS') || pid.startsWith('UMCK') || pid.startsWith('DFCL') || pid.startsWith('PKCP') || title.includes('cd') || title.includes('single') || title.includes('album')) {
-        return 'CD';
-      }
-      return 'Other';
-    }
-
     function matchesFuzzyQuery(text, query) {
       if (!text || !query) return false;
       const t = text.toLowerCase();
       const q = query.toLowerCase();
       if (t.includes(q)) return true;
 
-      // 1. Japanese Alias Table Lookup
       for (const [canonical, aliases] of Object.entries(searchAliases)) {
         if (aliases.some(a => a.toLowerCase() === q)) {
           if (t.includes(canonical)) return true;
         }
       }
 
-      // 2. Japanese Romaji Vowel Flattening
       const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
       const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
       return normT.includes(normQ);
@@ -2293,8 +2307,26 @@
       return Math.floor(val / 10000);
     }
 
-    function isPreOrder(item) {
+    function isOutOfPrint(item) {
       if (!item) return false;
+      if (item.availability === 'oop') return true;
+      const priceStr = String(item.price || '').toLowerCase();
+      const titleStr = String(item.title || '').toLowerCase();
+      return (
+        priceStr.includes('no longer available') ||
+        priceStr.includes('out of print') ||
+        priceStr.includes('discontinued') ||
+        priceStr.includes('sold out') ||
+        priceStr.includes('廃盤') ||
+        priceStr.includes('取扱終了') ||
+        titleStr.includes('secondhand') ||
+        titleStr.includes('used [') ||
+        (item.price_num === 0 && !priceStr.includes('check cdjapan'))
+      );
+    }
+
+    function isPreOrder(item) {
+      if (!item || isOutOfPrint(item)) return false;
       if (item.availability === 'preorder') return true;
       const val = getItemDateValue(item);
       if (val === 0) return false;
@@ -2304,11 +2336,8 @@
       return val > todayVal;
     }
 
-    function isOutOfPrint(item) {
-      if (!item) return false;
-      if (item.availability === 'oop') return true;
-      const priceStr = String(item.price || '').toLowerCase();
-      return /no longer available|out of print|discontinued|sold out|廃盤|取扱終了/i.test(priceStr);
+    function isInStock(item) {
+      return !isOutOfPrint(item) && !isPreOrder(item);
     }
 
     function updateDirectPageDropdown(totalPages) {
@@ -2477,7 +2506,6 @@
       const oopBadge = document.getElementById('modal-oop-badge');
       const buyText = document.getElementById('modal-buy-btn-text');
       const editionBox = document.getElementById('modal-edition-tags');
-      const audioBox = document.getElementById('modal-audio-preview-box');
 
       img.src = p.image || PLACEHOLDER_IMG;
       title.innerText = p.title || '';
@@ -2497,14 +2525,6 @@
           pill.innerText = t.name;
           editionBox.appendChild(pill);
         });
-      }
-
-      if (audioBox) {
-        if (p.sample_audio || getItemFormatCategory(p) === 'CD') {
-          audioBox.classList.remove('hidden');
-        } else {
-          audioBox.classList.add('hidden');
-        }
       }
 
       const upcoming = isPreOrder(p);
@@ -2551,9 +2571,6 @@
       if (modal) modal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
       currentModalProduct = null;
-
-      const player = document.getElementById('global-audio-player');
-      if (player) player.pause();
 
       const params = new URLSearchParams(window.location.search);
       if (params.has('id')) {
@@ -2619,10 +2636,11 @@
 
         const upcoming = isPreOrder(item);
         const oop = isOutOfPrint(item);
+        const inStock = isInStock(item);
 
         if (activeAvailability === 'active' && oop) return false;
         if (activeAvailability === 'preorder' && !upcoming) return false;
-        if (activeAvailability === 'instock' && (upcoming || oop)) return false;
+        if (activeAvailability === 'instock' && !inStock) return false;
         if (activeAvailability === 'oop' && !oop) return false;
 
         if (activeYear !== 'All') {
@@ -2780,17 +2798,6 @@
                 </span>
 
                 <div class="absolute bottom-2 right-2 flex items-center gap-1.5">
-                  ${p.sample_audio || itemFmt === 'CD' ? `
-                    <button 
-                      onclick="event.stopPropagation(); toggleAudioPreview(allProducts.find(x => x.id === '${p.id}'), this)"
-                      aria-label="Preview Audio Sample"
-                      title="Play 30s Audio Sample"
-                      class="w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-amber-500/80 hover:bg-amber-500 text-slate-950 backdrop-blur-md flex items-center justify-center transition shadow-sm cursor-pointer"
-                    >
-                      <i class="fa-solid fa-play text-[10px]"></i>
-                    </button>
-                  ` : ''}
-                  
                   <button 
                     onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
                     aria-label="Share Link"

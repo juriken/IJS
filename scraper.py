@@ -19,8 +19,8 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Deep Scraping Page Limits
-DEFAULT_PAGES_ALL = 60
+# Deep Scraping Page Limits (100 pages for all query passes)
+DEFAULT_PAGES_ALL = 100
 DEFAULT_PAGES_TARGETED = 100
 
 MONTH_MAP = {
@@ -202,7 +202,7 @@ TARGET_GROUPS = [
     # Babymetal & Amuse Roots
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
     ("Babymetal", "Sakura Gakuin", ["Sakura Gakuin", "さくら学院"], ["Sakura Gakuin", "さくら学院", "BABYMETAL"]),
-    ("Babymetal", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
+    ("@onefive", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
 ]
 
 def load_catalog():

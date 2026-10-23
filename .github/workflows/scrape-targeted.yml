@@ -144,4 +144,4 @@ jobs:
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
           git add products.json catalog-index.json scraper_state.json pruned_items.txt search_aliases.json
-          git diff --staged --quiet || (git commit -m "Targeted scrape update [${{ github.event.inputs.target_artist }}] [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "Targeted scrape update [${{ github.event.inputs.target_artist }}]" && git push)

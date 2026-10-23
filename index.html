@@ -119,7 +119,6 @@
       content-visibility: auto;
       contain-intrinsic-size: 300px 400px;
     }
-    /* Hide scrollbars for single-line horizontal tracks */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -242,9 +241,9 @@
   </header>
 
   <!-- NON-STICKY NAVIGATION SECTION (Scrolls away naturally) -->
-  <div class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800">
+  <div class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30">
     
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar (Single-line horizontal track) -->
+    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
     <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80">
       <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar whitespace-nowrap" id="filter-bar">
         <button onclick="setFilter('All')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="All">
@@ -290,21 +289,82 @@
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Artist/Unit Sub-Filter Bar (Horizontal Single-Line Scroll) -->
+    <!-- Tier 1.5 Navigation: Mega-Menu Trigger Bar & Year Quick Jumps -->
     <div id="artist-subbar-container" class="hidden bg-stone-50 dark:bg-slate-900/60 border-b border-stone-100 dark:border-slate-800/80">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar whitespace-nowrap" id="artist-subbar">
-      </div>
-    </div>
+      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+        
+        <!-- Left: Interactive Mega-Menu Trigger Button -->
+        <div class="flex items-center gap-2">
+          <button 
+            id="mega-menu-trigger-btn"
+            onclick="toggleMegaMenu()" 
+            class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 font-bold text-stone-700 dark:text-stone-200 flex items-center gap-1.5 shadow-2xs transition cursor-pointer"
+          >
+            <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-xs"></i>
+            <span id="mega-menu-trigger-label">Units &amp; Soloists: All</span>
+            <i id="mega-menu-chevron" class="fa-solid fa-chevron-down text-[10px] text-stone-400 transition-transform duration-200"></i>
+          </button>
 
-    <!-- Tier 1.75 Navigation: Artist Release Year Jump Bar (Horizontal Single-Line Scroll) -->
-    <div id="year-jump-bar-container" class="hidden bg-stone-100/60 dark:bg-slate-900/80 border-b border-stone-200/50 dark:border-slate-800/50">
-      <div class="max-w-7xl mx-auto px-4 py-1 flex items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap">
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1 select-none">
-          <i class="fa-solid fa-calendar text-[9px]"></i> Year:
-        </span>
-        <div id="year-jump-pills" class="flex items-center gap-1 shrink-0">
+          <!-- Quick Clear Tag if an artist is currently filtered -->
+          <div id="active-artist-clear-box" class="hidden items-center">
+            <button 
+              onclick="setSubArtist('All')" 
+              class="px-2 py-0.5 rounded-full bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 hover:bg-rose-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer"
+              title="Reset to all units in this franchise"
+            >
+              <span>Reset to All</span>
+              <i class="fa-solid fa-xmark text-[9px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Release Year Quick Strip (Desktop) -->
+        <div id="year-jump-bar-container" class="hidden items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap">
+          <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1 select-none">
+            <i class="fa-solid fa-calendar text-[9px]"></i> Year:
+          </span>
+          <div id="year-jump-pills" class="flex items-center gap-1 shrink-0">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MEGA-MENU FLYOUT TRAY (Grouped multi-column desktop dropdown) -->
+      <div 
+        id="mega-menu-flyout" 
+        class="hidden absolute left-0 right-0 top-full bg-white dark:bg-slate-900 shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50"
+      >
+        <div class="max-w-7xl mx-auto px-4 py-4">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-stone-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-slate-400" id="mega-menu-franchise-title">
+                Hello! Project Discography
+              </span>
+              <span class="text-[11px] text-stone-400">• Click an idol group or soloist to inspect releases</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button 
+                onclick="setSubArtist('All'); toggleMegaMenu(false);" 
+                class="px-3 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 font-bold text-xs transition cursor-pointer"
+              >
+                All Releases
+              </button>
+              <button 
+                onclick="toggleMegaMenu(false)" 
+                class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer"
+                title="Close tray (Esc)"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Columns Container -->
+          <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 text-xs">
+          </div>
         </div>
       </div>
+
     </div>
 
     <!-- Tier 2 Navigation: Format, Availability, Controls & Sort -->
@@ -930,6 +990,7 @@
     let activeAvailability = 'all'; // Default to 'all' so legacy and out-of-print groups are never hidden
     let viewMode = 'grid';
     let searchAliases = {};
+    let isMegaMenuOpen = false;
 
     function detectDeviceLayout() {
       return (window.matchMedia('(max-width: 768px)').matches || 
@@ -993,6 +1054,61 @@
       'KAWAII LAB.': ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET'],
       'Modern Idols': ['NiziU', 'ME:I', 'IS:SUE'],
       'Babymetal': ['BABYMETAL', 'Sakura Gakuin']
+    };
+
+    // Granular Groupings for Mega-Menu Multi-Column Layout
+    const MEGA_MENU_CATEGORIES = {
+      'Hello! Project': [
+        {
+          title: "Active Groups",
+          icon: "fa-fire text-rose-500",
+          units: ['Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei']
+        },
+        {
+          title: "Legendary Subunits",
+          icon: "fa-star text-amber-500",
+          units: ['Minimoni', 'Tanpopo', 'Buono!', 'W', 'v-u-den', 'GAM']
+        },
+        {
+          title: "Past Groups & Roots",
+          icon: "fa-clock-rotate-left text-sky-500",
+          units: ['Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon']
+        },
+        {
+          title: "Soloists & Alumni",
+          icon: "fa-microphone text-purple-500",
+          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Natsumi Abe', 'Erina Mano', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
+        }
+      ],
+      'AKB48 Group': [
+        {
+          title: "Main Theater Groups",
+          icon: "fa-landmark text-rose-500",
+          units: ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48']
+        },
+        {
+          title: "Official Subunits",
+          icon: "fa-star text-amber-500",
+          units: ['Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai']
+        },
+        {
+          title: "Soloists & Graduates",
+          icon: "fa-crown text-purple-500",
+          units: ['Sayaka Yamamoto', 'Atsuko Maeda', 'Yuko Oshima', 'Mayu Watanabe', 'Yuki Kashiwagi', 'Rino Sashihara', 'Tomomi Itano']
+        }
+      ],
+      'Sakamichi Series': [
+        {
+          title: "Sakamichi & Digital Groups",
+          icon: "fa-mountain text-sky-500",
+          units: ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', '22/7', 'Boku ga Mitakatta Aozora']
+        },
+        {
+          title: "Solo Graduates",
+          icon: "fa-feather text-rose-500",
+          units: ['Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate']
+        }
+      ]
     };
 
     const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
@@ -1971,6 +2087,7 @@
       activeArtist = 'All';
       activeYear = 'All';
       currentPage = 1;
+      toggleMegaMenu(false);
       updateFilterButtonsUI();
       updateArtistSubBar();
       updateYearJumpBar();
@@ -2054,15 +2171,36 @@
       });
     }
 
+    // MEGA-MENU INTERACTION CONTROLLERS
+    function toggleMegaMenu(forceState) {
+      const flyout = document.getElementById('mega-menu-flyout');
+      const chevron = document.getElementById('mega-menu-chevron');
+      if (!flyout) return;
+
+      isMegaMenuOpen = (typeof forceState === 'boolean') ? forceState : !isMegaMenuOpen;
+
+      if (isMegaMenuOpen) {
+        flyout.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-180');
+      } else {
+        flyout.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
     function updateArtistSubBar() {
-      const container = document.getElementById('artist-subbar');
       const wrapper = document.getElementById('artist-subbar-container');
-      if (!container || !wrapper) return;
+      const triggerLabel = document.getElementById('mega-menu-trigger-label');
+      const clearBox = document.getElementById('active-artist-clear-box');
+      const franchiseTitle = document.getElementById('mega-menu-franchise-title');
+      const columnsContainer = document.getElementById('mega-menu-columns-container');
+
+      if (!wrapper || !triggerLabel) return;
 
       const artists = FRANCHISE_ARTISTS[activeFilter];
       if (!artists || artists.length <= 1) {
         wrapper.classList.add('hidden');
-        container.innerHTML = '';
+        toggleMegaMenu(false);
         return;
       }
 
@@ -2070,24 +2208,77 @@
         wrapper.classList.remove('hidden');
       }
 
-      let html = `
-        <span class="text-stone-400 dark:text-slate-500 text-[10px] uppercase font-bold mr-1 flex items-center gap-1 shrink-0 select-none">
-          <i class="fa-solid fa-users"></i> Units:
-        </span>
-        <button onclick="setSubArtist('All')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${activeArtist === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
-      `;
+      // Update trigger label and clear button state
+      if (activeArtist === 'All') {
+        triggerLabel.innerHTML = `Units &amp; Soloists: <span class="text-stone-500 font-normal">All (${artists.length})</span>`;
+        if (clearBox) clearBox.classList.add('hidden');
+      } else {
+        triggerLabel.innerHTML = `Unit: <span class="text-rose-600 dark:text-rose-400 font-black">${escapeHtml(activeArtist)}</span>`;
+        if (clearBox) clearBox.classList.remove('hidden');
+      }
 
-      artists.forEach(art => {
-        const isSelected = activeArtist === art;
-        const isDigitalUnit = (activeFilter === 'Sakamichi Series' && art === '22/7');
-        const badgeLabel = isDigitalUnit ? `${escapeHtml(art)} (Digital Idol)` : escapeHtml(art);
-        
-        html += `
-          <button onclick="setSubArtist('${art}')" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold transition shrink-0 cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${badgeLabel}</button>
-        `;
-      });
+      if (franchiseTitle) {
+        franchiseTitle.innerText = `${activeFilter} Roster &amp; Subunits`;
+      }
 
-      container.innerHTML = html;
+      // Build Multi-Column Mega-Menu Content
+      if (columnsContainer) {
+        const categories = MEGA_MENU_CATEGORIES[activeFilter];
+
+        if (categories && categories.length > 0) {
+          // Categorized Layout (e.g. Hello! Project, AKB48 Group, Sakamichi)
+          columnsContainer.className = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${categories.length} gap-4 text-xs`;
+          let html = '';
+
+          categories.forEach(cat => {
+            html += `
+              <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3 rounded-xl border border-stone-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i class="fa-solid ${cat.icon}"></i> ${escapeHtml(cat.title)}
+                </h4>
+                <div class="space-y-1">
+            `;
+
+            cat.units.forEach(u => {
+              const isSelected = activeArtist === u;
+              const count = allProducts.filter(p => p.artist === u).length;
+              html += `
+                <button 
+                  onclick="setSubArtist('${u}'); toggleMegaMenu(false);" 
+                  class="w-full text-left px-2 py-1 rounded-md transition flex items-center justify-between text-xs cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold shadow-2xs' : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
+                >
+                  <span class="truncate">${escapeHtml(u)}</span>
+                  <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1">${count}</span>
+                </button>
+              `;
+            });
+
+            html += `</div></div>`;
+          });
+
+          columnsContainer.innerHTML = html;
+        } else {
+          // Fallback Standard Grid for franchises with fewer subunits
+          columnsContainer.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs";
+          let html = '';
+
+          artists.forEach(u => {
+            const isSelected = activeArtist === u;
+            const count = allProducts.filter(p => p.artist === u).length;
+            html += `
+              <button 
+                onclick="setSubArtist('${u}'); toggleMegaMenu(false);" 
+                class="px-2.5 py-1.5 rounded-lg border text-left transition flex items-center justify-between cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold border-rose-600 shadow-2xs' : 'bg-stone-50 dark:bg-slate-800 border-stone-200 dark:border-slate-700 text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
+              >
+                <span class="truncate">${escapeHtml(u)}</span>
+                <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1">${count}</span>
+              </button>
+            `;
+          });
+
+          columnsContainer.innerHTML = html;
+        }
+      }
     }
 
     function updateYearJumpBar() {
@@ -2097,6 +2288,7 @@
 
       if (activeArtist === 'All' && activeFilter === 'All') {
         wrapper.classList.add('hidden');
+        wrapper.classList.remove('flex');
         pillsContainer.innerHTML = '';
         return;
       }
@@ -2117,16 +2309,18 @@
 
       if (sortedYears.length <= 1) {
         wrapper.classList.add('hidden');
+        wrapper.classList.remove('flex');
         pillsContainer.innerHTML = '';
         return;
       }
 
       if (layoutMode !== 'mobile') {
         wrapper.classList.remove('hidden');
+        wrapper.classList.add('flex');
       }
 
       let pillsHtml = `
-        <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 cursor-pointer ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All Years</button>
+        <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 cursor-pointer ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
       `;
 
       sortedYears.forEach(y => {
@@ -2142,7 +2336,7 @@
     function updateYearJumpBarUI() {
       document.querySelectorAll('#year-jump-pills button').forEach(btn => {
         const text = btn.innerText.trim();
-        const isMatch = (text === 'All Years' && activeYear === 'All') || (text === String(activeYear));
+        const isMatch = (text === 'All' && activeYear === 'All') || (text === String(activeYear));
         if (isMatch) {
           btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 bg-rose-600 text-white shadow-2xs cursor-pointer";
         } else {
@@ -2172,6 +2366,7 @@
       if (clearBtn) clearBtn.classList.add('hidden');
       closeAutocomplete();
 
+      toggleMegaMenu(false);
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateArtistSubBar();
@@ -2259,11 +2454,20 @@
       if (box) box.classList.add('hidden');
     }
 
+    // Dismiss Mega-Menu or Autocomplete when clicking outside
     document.addEventListener('click', (e) => {
       const searchBox = document.getElementById('search-autocomplete-box');
       const searchInput = document.getElementById('search-input');
       if (searchBox && searchInput && !searchBox.contains(e.target) && e.target !== searchInput) {
         closeAutocomplete();
+      }
+
+      const megaFlyout = document.getElementById('mega-menu-flyout');
+      const megaTrigger = document.getElementById('mega-menu-trigger-btn');
+      if (isMegaMenuOpen && megaFlyout && megaTrigger) {
+        if (!megaFlyout.contains(e.target) && !megaTrigger.contains(e.target)) {
+          toggleMegaMenu(false);
+        }
       }
     });
 
@@ -3014,6 +3218,7 @@
       const isModalOpen = modal && !modal.classList.contains('hidden');
 
       if (e.key === 'Escape') {
+        if (isMegaMenuOpen) toggleMegaMenu(false);
         closeModal();
         closeAutocomplete();
         if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();

@@ -1,0 +1,108 @@
+name: Clean & Classify 79 Idol Groups + SKU URL & Availability Health Check + Catalog Date Healer
+
+on:
+  schedule:
+    # Automated weekly maintenance run every Sunday at 03:15 UTC
+    - cron: '15 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      run_clean:
+        description: 'Run Clean & Classify 79 Idol Groups?'
+        required: false
+        default: true
+        type: boolean
+      run_date_healer:
+        description: 'Run Catalog Date Healer?'
+        required: false
+        default: true
+        type: boolean
+      heal_batch_size:
+        description: 'Number of dates to repair in Date Healer:'
+        required: false
+        default: '250'
+      run_healthcheck:
+        description: 'Run SKU URL & Availability Health Check?'
+        required: false
+        default: true
+        type: boolean
+      healthcheck_batch_size:
+        description: 'Number of items to audit in Healthcheck:'
+        required: false
+        default: '500'
+      reset_healthcheck_history:
+        description: 'Restart Healthcheck audit from cycle beginning?'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  catalog-maintenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      PYTHONUNBUFFERED: "1"
+      BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
+      HEALTHCHECK_BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
+      RESET_HEALTHCHECK: ${{ github.event.inputs.reset_healthcheck_history || 'false' }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Step 1 - Clean & Classify 79 Idol Groups
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.run_clean == 'true' }}
+        run: |
+          python -u clean_catalog.py
+
+      - name: Step 2 - Execute Catalog Date Healer
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.run_date_healer == 'true' }}
+        env:
+          BATCH_SIZE: ${{ github.event.inputs.heal_batch_size || '250' }}
+        run: |
+          python -u repair_catalog_dates.py
+
+      - name: Step 3 - Run SKU URL & Availability Health Check
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.run_healthcheck == 'true' }}
+        env:
+          BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
+        run: |
+          if [ "${{ github.event.inputs.reset_healthcheck_history }}" = "true" ]; then
+            rm -f healthcheck_state.json
+          fi
+          python -u healthcheck.py
+
+      - name: Step 4 - Rebuild Catalog Summary Index
+        run: |
+          python build_catalog.py || python build_summary.py || true
+
+      - name: Step 5 - Validate Catalog Integrity
+        run: |
+          if [ -f validate_catalog.py ]; then
+            python validate_catalog.py
+          fi
+
+      - name: Step 6 - Auto-Generate XML Sitemap
+        run: |
+          if [ -f generate_sitemap.py ]; then
+            python generate_sitemap.py
+          fi
+
+      - name: Step 7 - Commit & Deploy Maintenance Updates
+        run: |
+          git config --global user.name "IdolJapan Bot"
+          git config --global user.email "bot@idoljapan.store"
+          git add products.json catalog-index.json healthcheck_state.json repair_progress.json scraper_state.json pruned_items.txt search_aliases.json sitemap.xml healthcheck_log.txt
+          git diff --staged --quiet || (git commit -m "Automated catalog maintenance & healthcheck [skip ci]" && git push)

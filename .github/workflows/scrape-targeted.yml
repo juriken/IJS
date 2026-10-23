@@ -1,23 +1,10 @@
-name: IdolJapan CDJapan All-in-One Pipeline
+name: Targeted CDJapan Scraper
 
 on:
-  schedule:
-    # Automated weekly catalog healthcheck every Sunday at 03:15 UTC
-    - cron: '15 3 * * 0'
   workflow_dispatch:
     inputs:
-      action_mode:
-        description: 'Operation to execute:'
-        required: true
-        default: 'Weekly Healthcheck & Maintenance'
-        type: choice
-        options:
-          - 'Weekly Healthcheck & Maintenance'
-          - 'Scrape Targeted Artist'
-          - 'Heal Catalog Release Dates'
-          - 'Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)'
       target_artist:
-        description: 'Group/Soloist to scrape (if running Scrape or Master Run):'
+        description: 'Choose group/soloist to scrape:'
         required: true
         default: 'All Groups'
         type: choice
@@ -103,35 +90,19 @@ on:
           - 'BABYMETAL'
           - 'Sakura Gakuin'
       page_depth:
-        description: 'Scraper pagination depth per query (pages):'
+        description: 'Pagination depth per query search (pages):'
         required: true
         default: '100'
-      healthcheck_batch_size:
-        description: 'Number of SKUs to audit in Healthcheck:'
-        required: false
-        default: '500'
-      reset_healthcheck_history:
-        description: 'Restart Healthcheck audit from cycle beginning?'
-        required: false
-        default: false
-        type: boolean
-      heal_batch_size:
-        description: 'Number of dates to repair (if running Date Healer):'
-        required: false
-        default: '250'
 
 permissions:
   contents: write
 
 jobs:
-  all-in-one-pipeline:
+  scrape-targeted:
     runs-on: ubuntu-latest
     timeout-minutes: 360
     env:
       PYTHONUNBUFFERED: "1"
-      BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
-      HEALTHCHECK_BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
-      RESET_HEALTHCHECK: ${{ github.event.inputs.reset_healthcheck_history || 'false' }}
 
     steps:
       - name: Checkout Repository
@@ -142,68 +113,35 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install System Dependencies for Playwright (if scraping)
-        if: ${{ github.event_name == 'workflow_dispatch' && (github.event.inputs.action_mode == 'Scrape Targeted Artist' || github.event.inputs.action_mode == 'Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)') }}
+      - name: Install System Dependencies for Playwright
         run: |
           sudo apt-get update
           sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0
 
-      - name: Install Python Dependencies
+      - name: Install Python Dependencies & Browsers
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.action_mode }}" = "Scrape Targeted Artist" -o "${{ github.event.inputs.action_mode }}" = "Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)" ]; then
-            playwright install chromium
-          fi
+          playwright install chromium
 
       - name: Step 1 - Execute Targeted CDJapan Scraper
-        if: ${{ github.event_name == 'workflow_dispatch' && (github.event.inputs.action_mode == 'Scrape Targeted Artist' || github.event.inputs.action_mode == 'Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)') }}
         env:
           TARGET_ARTIST: ${{ github.event.inputs.target_artist }}
           PAGES_PER_TARGET: ${{ github.event.inputs.page_depth }}
         run: |
           python -u scraper.py
 
-      - name: Step 2 - Execute Catalog Date Healer
-        if: ${{ github.event_name == 'workflow_dispatch' && (github.event.inputs.action_mode == 'Heal Catalog Release Dates' || github.event.inputs.action_mode == 'Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)') }}
-        env:
-          BATCH_SIZE: ${{ github.event.inputs.heal_batch_size || '250' }}
-        run: |
-          python -u repair_catalog_dates.py
-
-      - name: Step 3 - Clean & Classify 79 Idol Groups
+      - name: Step 2 - Re-align & Synchronize Catalog
         run: |
           python -u clean_catalog.py
 
-      - name: Step 4 - Run SKU URL & Availability Health Check
-        if: ${{ github.event_name == 'schedule' || github.event.inputs.action_mode == 'Weekly Healthcheck & Maintenance' || github.event.inputs.action_mode == 'Full Master Run (Scrape + Heal Dates + Healthcheck + Clean)' }}
-        env:
-          BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
-        run: |
-          if [ "${{ github.event.inputs.reset_healthcheck_history }}" = "true" ]; then
-            rm -f healthcheck_state.json
-          fi
-          python -u healthcheck.py
-
-      - name: Step 5 - Rebuild Catalog Summary Index
+      - name: Step 3 - Rebuild Catalog Summary Index
         run: |
           python build_catalog.py || python build_summary.py || true
 
-      - name: Step 6 - Validate Catalog Integrity
-        run: |
-          if [ -f validate_catalog.py ]; then
-            python validate_catalog.py
-          fi
-
-      - name: Step 7 - Auto-Generate XML Sitemap
-        run: |
-          if [ -f generate_sitemap.py ]; then
-            python generate_sitemap.py
-          fi
-
-      - name: Step 8 - Commit & Push All Updates
+      - name: Step 4 - Commit & Deploy Scraped Releases
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json healthcheck_state.json repair_progress.json scraper_state.json pruned_items.txt search_aliases.json sitemap.xml healthcheck_log.txt
-          git diff --staged --quiet || (git commit -m "Automated catalog sync [Mode: ${{ github.event.inputs.action_mode || 'Weekly Sunday Healthcheck' }}] [skip ci]" && git push)
+          git add products.json catalog-index.json scraper_state.json pruned_items.txt search_aliases.json
+          git diff --staged --quiet || (git commit -m "Targeted scrape update [${{ github.event.inputs.target_artist }}] [skip ci]" && git push)

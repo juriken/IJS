@@ -20,8 +20,8 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-DEFAULT_PAGES_ALL = 100
-DEFAULT_PAGES_TARGETED = 100
+DEFAULT_PAGES_ALL = 200
+DEFAULT_PAGES_TARGETED = 200
 
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -94,7 +94,8 @@ PROTECTED_SUBUNITS = {
     "Tanpopo", "Minimoni", "W", "v-u-den", "GAM",
     "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa",
     "Maki Goto", "Aya Matsuura", "Natsumi Abe", "Miki Fujimoto",
-    "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!"
+    "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!",
+    "Karin Miyamoto"
 }
 
 TARGET_GROUPS = [
@@ -157,6 +158,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
     ("Hello! Project", "Miki Fujimoto", ["Miki Fujimoto", "藤本美貴"], ["Miki Fujimoto", "Fujimoto Miki", "藤本美貴", "Mikitty"]),
     ("Hello! Project", "Tsukishima Kirari", ["月島きらり", "Tsukishima Kirari", "きらりん☆レボリューション"], ["月島きらり", "Tsukishima Kirari", "久住小春", "Koharu Kusumi", "きらりん"]),
+    ("Hello! Project", "Karin Miyamoto", ["Karin Miyamoto", "宮本佳林"], ["Karin Miyamoto", "Miyamoto Karin", "宮本佳林"]),
 
     # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
@@ -388,6 +390,9 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
 
     if canonical_artist == "Tsukishima Kirari":
         return any(s in lower_text for s in ["tsukishima kirari", "月島きらり", "kusumi koharu", "久住小春", "kirarin", "きらりん"])
+
+    if canonical_artist == "Karin Miyamoto":
+        return any(s in lower_text for s in ["karin miyamoto", "miyamoto karin", "宮本佳林", "hitorijime", "hyouon"])
 
     if canonical_artist == "Taiyo to Ciscomoon":
         if is_upfront_affiliated(prod_key, lower_text):
@@ -781,7 +786,6 @@ def main():
                         # Protect specific subunits from being overwritten by parent queries
                         existing_artist = str(catalog[pid].get("artist", "")).strip()
                         if existing_artist in PROTECTED_SUBUNITS and it["artist"] not in PROTECTED_SUBUNITS:
-                            # Preserve the subunit classification
                             it["artist"] = existing_artist
 
                         existing_date = str(catalog[pid].get("release_date", "")).strip()

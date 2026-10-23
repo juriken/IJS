@@ -240,124 +240,103 @@
     </div>
   </header>
 
-  <!-- TOP-LEVEL MULTIROW NAVIGATION & HOVER-LAUNCHED LOCAL MEGA-MENU -->
+  <!-- TOP-LEVEL CONSOLIDATED SINGLE-ROW NAVIGATION (Exactly 8 Tabs on Desktop) -->
   <div 
     class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30"
     onmouseleave="handleTopNavLeave()"
   >
-    <!-- Tier 1 Navigation: Multirow Grid, Exactly 7 Items per Row on Desktop -->
     <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80">
-      <div class="max-w-7xl mx-auto px-4 py-2.5">
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5 sm:gap-2" id="filter-bar">
+      <div class="max-w-7xl mx-auto px-4 py-2">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5" id="filter-bar">
           
-          <!-- Item 1 -->
+          <!-- Tab 1: All Groups -->
           <button 
             onclick="setFilter('All')" 
             onmouseenter="handleTopNavHover('All')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" 
             data-cat="All"
           >
             <span class="truncate">All Groups</span>
             <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 2 -->
+          <!-- Tab 2: Hello! Project & Up-Front (Merged) -->
           <button 
-            onclick="setFilter('Hello! Project')" 
-            onmouseenter="handleTopNavHover('Hello! Project')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Hello! Project"
+            onclick="setFilter('Hello! Project & Up-Front')" 
+            onmouseenter="handleTopNavHover('Hello! Project & Up-Front')"
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Hello! Project & Up-Front"
           >
-            <span class="truncate">Hello! Project</span>
-            <span id="badge-cat-Hello! Project" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+            <span class="truncate hidden xl:inline">H!P &amp; Up-Front</span>
+            <span class="truncate xl:hidden">H!P / Up-Front</span>
+            <span id="badge-cat-Hello! Project & Up-Front" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 3 -->
-          <button 
-            onclick="setFilter('Up-Front Alumni')" 
-            onmouseenter="handleTopNavHover('Up-Front Alumni')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Up-Front Alumni"
-          >
-            <span class="truncate">Up-Front Alumni</span>
-            <span id="badge-cat-Up-Front Alumni" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
-          </button>
-
-          <!-- Item 4 -->
+          <!-- Tab 3: AKB48 Group -->
           <button 
             onclick="setFilter('AKB48 Group')" 
             onmouseenter="handleTopNavHover('AKB48 Group')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
             data-cat="AKB48 Group"
           >
             <span class="truncate">AKB48 Groups</span>
             <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 5 -->
+          <!-- Tab 4: Sakamichi Series & Rivals -->
           <button 
             onclick="setFilter('Sakamichi Series')" 
             onmouseenter="handleTopNavHover('Sakamichi Series')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
             data-cat="Sakamichi Series"
           >
-            <span class="truncate">Sakamichi &amp; 22/7</span>
+            <span class="truncate">Sakamichi 46</span>
             <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 6 -->
+          <!-- Tab 5: Stardust Planet -->
           <button 
             onclick="setFilter('Stardust Planet')" 
             onmouseenter="handleTopNavHover('Stardust Planet')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
             data-cat="Stardust Planet"
           >
             <span class="truncate">Stardust Planet</span>
             <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 7 (End of Row 1) -->
+          <!-- Tab 6: =LOVE & Sisters -->
           <button 
             onclick="setFilter('=LOVE / Sister Groups')" 
             onmouseenter="handleTopNavHover('=LOVE / Sister Groups')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
             data-cat="=LOVE / Sister Groups"
           >
             <span class="truncate">=LOVE &amp; Sisters</span>
             <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 8 (Start of Row 2) -->
+          <!-- Tab 7: KAWAII LAB. -->
           <button 
             onclick="setFilter('KAWAII LAB.')" 
             onmouseenter="handleTopNavHover('KAWAII LAB.')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
             data-cat="KAWAII LAB."
           >
             <span class="truncate">KAWAII LAB.</span>
             <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Item 9 -->
+          <!-- Tab 8: Modern & Alternative (Merged Modern Idols + Babymetal/Amuse) -->
           <button 
-            onclick="setFilter('Modern Idols')" 
-            onmouseenter="handleTopNavHover('Modern Idols')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Modern Idols"
+            onclick="setFilter('Modern & Alternative')" 
+            onmouseenter="handleTopNavHover('Modern & Alternative')"
+            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Modern & Alternative"
           >
-            <span class="truncate">Modern Idols</span>
-            <span id="badge-cat-Modern Idols" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
-          </button>
-
-          <!-- Item 10 -->
-          <button 
-            onclick="setFilter('Babymetal')" 
-            onmouseenter="handleTopNavHover('Babymetal')"
-            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Babymetal"
-          >
-            <span class="truncate">Babymetal</span>
-            <span id="badge-cat-Babymetal" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+            <span class="truncate hidden xl:inline">Modern &amp; Alt</span>
+            <span class="truncate xl:hidden">Modern/Babymetal</span>
+            <span id="badge-cat-Modern & Alternative" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
         </div>
@@ -371,7 +350,7 @@
           <span class="text-stone-400 dark:text-slate-500 font-semibold text-[11px]">Filtered Artist:</span>
           <span id="active-artist-label" class="bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5">
             <span>Morning Musume</span>
-            <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer">
+            <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
               <i class="fa-solid fa-xmark text-[10px]"></i>
             </button>
           </span>
@@ -385,7 +364,7 @@
       </div>
     </div>
 
-    <!-- HOVER-LAUNCHED LOCAL-LEVEL MEGA-MENU FLYOUT (Absolute Over-the-Top Tray) -->
+    <!-- HOVER-LAUNCHED LOCAL-LEVEL MEGA-MENU FLYOUT -->
     <div 
       id="mega-menu-flyout" 
       class="hidden absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50"
@@ -397,9 +376,9 @@
           <div class="flex items-center gap-2.5">
             <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-sm"></i>
             <span class="text-xs font-black uppercase tracking-wider text-stone-800 dark:text-white" id="mega-menu-franchise-title">
-              Hello! Project Roster
+              Hello! Project &amp; Up-Front Discography
             </span>
-            <span class="text-[11px] text-stone-400 dark:text-slate-500">• Select a group or soloist to inspect releases</span>
+            <span class="text-[11px] text-stone-400 dark:text-slate-500">• Select a group, soloist, or subunit to filter releases</span>
           </div>
           <div class="flex items-center gap-2">
             <button 
@@ -420,7 +399,7 @@
         </div>
 
         <!-- Dynamic Multi-Column Grid -->
-        <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 text-xs">
+        <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs">
         </div>
       </div>
     </div>
@@ -533,7 +512,7 @@
   </aside>
 
   <!-- COMPACT HERO & LIVE CATALOG STATS BAR -->
-  <section class="max-w-7xl mx-auto px-4 mt-2.5">
+  <section class="max-w-7xl mx-auto px-4 mt-2">
     <div class="bg-gradient-to-r from-rose-600 via-rose-700 to-rose-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-white px-3.5 py-1.5 rounded-xl shadow-xs border border-rose-500/30 dark:border-slate-800 flex items-center justify-between gap-3 text-xs">
       <div class="flex items-center gap-2">
         <h1 class="font-extrabold text-xs sm:text-sm tracking-tight flex items-center gap-1.5">
@@ -1085,17 +1064,18 @@
       october: 10, november: 11, december: 12
     };
 
+    // Consolidated Franchises with Subunits
     const FRANCHISE_ARTISTS = {
-      'Hello! Project': [
+      'Hello! Project & Up-Front': [
         'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
         'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei',
         'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls', 'Kobushi Factory',
         'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'W', 'GAM',
         'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.', 'Sayumi Michishige',
         'Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Erina Mano',
-        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto'
+        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto',
+        'You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'
       ],
-      'Up-Front Alumni': ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'],
       'AKB48 Group': [
         'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',
         'Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai',
@@ -1112,13 +1092,15 @@
       ],
       '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
       'KAWAII LAB.': ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET'],
-      'Modern Idols': ['NiziU', 'ME:I', 'IS:SUE'],
-      'Babymetal': ['BABYMETAL', 'Sakura Gakuin']
+      'Modern & Alternative': [
+        'NiziU', 'ME:I', 'IS:SUE',
+        'BABYMETAL', 'Sakura Gakuin'
+      ]
     };
 
     // Granular Groupings for Mega-Menu Multi-Column Layout
     const MEGA_MENU_CATEGORIES = {
-      'Hello! Project': [
+      'Hello! Project & Up-Front': [
         {
           title: "Active Groups",
           icon: "fa-fire text-rose-500",
@@ -1135,14 +1117,14 @@
           units: ['Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon']
         },
         {
-          title: "Soloists & Alumni (A–M)",
+          title: "Soloists & OGs",
           icon: "fa-microphone text-purple-500",
-          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Erina Mano']
+          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Natsumi Abe', 'Erina Mano', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
         },
         {
-          title: "Soloists & Alumni (N–Z)",
-          icon: "fa-crown text-pink-500",
-          units: ['Natsumi Abe', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
+          title: "Up-Front Alumni",
+          icon: "fa-compact-disc text-emerald-500",
+          units: ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)']
         }
       ],
       'AKB48 Group': [
@@ -1164,9 +1146,14 @@
       ],
       'Sakamichi Series': [
         {
-          title: "Sakamichi & Digital Groups",
+          title: "Sakamichi 46 Groups",
           icon: "fa-mountain text-sky-500",
-          units: ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', '22/7', 'Boku ga Mitakatta Aozora']
+          units: ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46']
+        },
+        {
+          title: "Digital Idols & Rivals",
+          icon: "fa-robot text-purple-500",
+          units: ['22/7', 'Boku ga Mitakatta Aozora']
         },
         {
           title: "Solo Graduates",
@@ -1174,23 +1161,21 @@
           units: ['Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate']
         }
       ],
-      'Up-Front Alumni': [
-        {
-          title: "Up-Front Artists & Groups",
-          icon: "fa-compact-disc text-rose-500",
-          units: ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)']
-        }
-      ],
       'Stardust Planet': [
         {
-          title: "Stardust Planet Idol Roster",
+          title: "Flagship Groups",
           icon: "fa-star text-amber-500",
-          units: ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu', 'TEAM SHACHI', 'BATTEN GIRLS', 'ukka']
+          units: ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu']
+        },
+        {
+          title: "Branch & Regional Units",
+          icon: "fa-compass text-teal-500",
+          units: ['TEAM SHACHI', 'BATTEN GIRLS', 'ukka']
         }
       ],
       '=LOVE / Sister Groups': [
         {
-          title: "Sashihara Rino Produced Groups",
+          title: "=LOVE Sister Franchise",
           icon: "fa-heart text-pink-500",
           units: ['=LOVE', '≠ME', '≒JOY']
         }
@@ -1202,16 +1187,14 @@
           units: ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET']
         }
       ],
-      'Modern Idols': [
+      'Modern & Alternative': [
         {
-          title: "Contemporary Global & Produce Units",
+          title: "Modern Global Idols",
           icon: "fa-bolt text-emerald-500",
           units: ['NiziU', 'ME:I', 'IS:SUE']
-        }
-      ],
-      'Babymetal': [
+        },
         {
-          title: "Babymetal & Sakura Gakuin",
+          title: "Babymetal & Amuse Roots",
           icon: "fa-guitar text-stone-800 dark:text-stone-200",
           units: ['BABYMETAL', 'Sakura Gakuin']
         }
@@ -1493,7 +1476,7 @@
       }
 
       if (fBox) {
-        const cats = ['All', 'Hello! Project', 'Up-Front Alumni', 'AKB48 Group', 'Sakamichi Series', 'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern Idols', 'Babymetal'];
+        const cats = ['All', 'Hello! Project & Up-Front', 'AKB48 Group', 'Sakamichi Series', 'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern & Alternative'];
         fBox.innerHTML = cats.map(c => {
           const isAct = (activeFilter === c);
           return `<button onclick="setFilter('${c}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white shadow-xs' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${c}</button>`;
@@ -2122,15 +2105,13 @@
     function updateDynamicCounts() {
       const catCounts = {
         'All': allProducts.length,
-        'Hello! Project': 0,
-        'Up-Front Alumni': 0,
+        'Hello! Project & Up-Front': 0,
         'AKB48 Group': 0,
         'Sakamichi Series': 0,
         'Stardust Planet': 0,
         '=LOVE / Sister Groups': 0,
         'KAWAII LAB.': 0,
-        'Modern Idols': 0,
-        'Babymetal': 0
+        'Modern & Alternative': 0
       };
 
       const fmtCounts = {
@@ -2143,17 +2124,29 @@
       };
 
       allProducts.forEach(item => {
-        if (catCounts[item.category] !== undefined) {
-          catCounts[item.category]++;
-        } else if (item.category === 'Momoiro Clover Z') {
+        const cat = item.category || '';
+        if (cat === 'Hello! Project' || cat === 'Up-Front Alumni') {
+          catCounts['Hello! Project & Up-Front']++;
+        } else if (cat === 'AKB48 Group') {
+          catCounts['AKB48 Group']++;
+        } else if (cat === 'Sakamichi Series') {
+          catCounts['Sakamichi Series']++;
+        } else if (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z') {
           catCounts['Stardust Planet']++;
+        } else if (cat === '=LOVE / Sister Groups') {
+          catCounts['=LOVE / Sister Groups']++;
+        } else if (cat === 'KAWAII LAB.') {
+          catCounts['KAWAII LAB.']++;
+        } else if (cat === 'Modern Idols' || cat === 'Babymetal') {
+          catCounts['Modern & Alternative']++;
         }
+
         const fmt = getItemFormatCategory(item);
         if (fmtCounts[fmt] !== undefined) fmtCounts[fmt]++;
       });
 
-      Object.entries(catCounts).forEach(([cat, count]) => {
-        const badge = document.getElementById(`badge-cat-${cat}`);
+      Object.entries(catCounts).forEach(([catKey, count]) => {
+        const badge = document.getElementById(`badge-cat-${catKey}`);
         if (badge) badge.innerText = count.toLocaleString();
       });
 
@@ -2260,9 +2253,9 @@
     function updateFilterButtonsUI() {
       document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer";
+          btn.className = "tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer";
         } else {
-          btn.className = "tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50";
+          btn.className = "tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50";
         }
       });
 
@@ -2435,7 +2428,15 @@
 
       const relevantItems = allProducts.filter(item => {
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
+        const cat = item.category || '';
+        let matchesCat = (activeFilter === 'All');
+        if (activeFilter === 'Hello! Project & Up-Front') {
+          matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
+        } else if (activeFilter === 'Modern & Alternative') {
+          matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');
+        } else {
+          matchesCat = (cat === activeFilter);
+        }
         return matchesArtist && matchesCat;
       });
 
@@ -3053,18 +3054,28 @@
         const oop = isOutOfPrint(item);
         const inStock = isInStock(item);
 
-        // When availability is 'all', all items match regardless of stock status
         if (activeAvailability === 'active' && oop) return false;
         if (activeAvailability === 'preorder' && !upcoming) return false;
         if (activeAvailability === 'instock' && !inStock) return false;
         if (activeAvailability === 'oop' && !oop) return false;
+
+        const cat = item.category || '';
+        let matchesCat = (activeFilter === 'All');
+        if (activeFilter === 'Hello! Project & Up-Front') {
+          matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
+        } else if (activeFilter === 'Modern & Alternative') {
+          matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');
+        } else if (activeFilter === 'Stardust Planet') {
+          matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z');
+        } else {
+          matchesCat = (cat === activeFilter);
+        }
 
         if (activeYear !== 'All') {
           const yr = getItemYear(item);
           if (String(yr) !== String(activeYear)) return false;
         }
 
-        const matchesCat = (activeFilter === 'All' || item.category === activeFilter);
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
 
         const itemFmt = getItemFormatCategory(item);

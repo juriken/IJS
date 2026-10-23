@@ -240,7 +240,7 @@
     </div>
   </header>
 
-  <!-- TOP-LEVEL CONSOLIDATED SINGLE-ROW NAVIGATION (Exactly 8 Tabs on Desktop) -->
+  <!-- TOP-LEVEL CONSOLIDATED SINGLE-ROW NAVIGATION (8 Tabs) -->
   <div 
     class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30"
     onmouseleave="handleTopNavLeave()"
@@ -327,7 +327,7 @@
             <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 8: Modern & Alternative (Merged Modern Idols + Babymetal/Amuse) -->
+          <!-- Tab 8: Modern & Alternative -->
           <button 
             onclick="setFilter('Modern & Alternative')" 
             onmouseenter="handleTopNavHover('Modern & Alternative')"
@@ -343,24 +343,16 @@
       </div>
     </nav>
 
-    <!-- Active Unit Breadcrumb Banner (Appears when specific unit is chosen) -->
+    <!-- Active Filters Breadcrumb Banner (Shows active artist or active year chips) -->
     <div id="active-artist-banner" class="hidden bg-stone-50 dark:bg-slate-900/80 border-b border-stone-100 dark:border-slate-800/80 py-1.5 px-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
         <div class="flex items-center gap-2">
-          <span class="text-stone-400 dark:text-slate-500 font-semibold text-[11px]">Filtered Artist:</span>
-          <span id="active-artist-label" class="bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5">
-            <span>Morning Musume</span>
-            <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
-              <i class="fa-solid fa-xmark text-[10px]"></i>
-            </button>
-          </span>
+          <span class="text-stone-400 dark:text-slate-500 font-semibold text-[11px]">Active Filters:</span>
+          <div id="active-artist-label" class="flex flex-wrap items-center gap-1.5"></div>
         </div>
-        <div id="year-jump-bar-container" class="hidden items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap">
-          <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1 select-none">
-            <i class="fa-solid fa-calendar text-[9px]"></i> Year:
-          </span>
-          <div id="year-jump-pills" class="flex items-center gap-1 shrink-0"></div>
-        </div>
+        <button onclick="resetAllFilters()" class="text-[11px] text-stone-400 hover:text-rose-600 dark:hover:text-rose-400 font-semibold transition cursor-pointer">
+          Reset All Filters
+        </button>
       </div>
     </div>
 
@@ -406,7 +398,7 @@
 
   </div>
 
-  <!-- Tier 2 Navigation: Format, Availability, Controls & Sort -->
+  <!-- Tier 2 Navigation: Format, Availability, Controls, Year Dropdown & Sort -->
   <div id="desktop-nav-tier2" class="bg-stone-50/70 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2.5">
       
@@ -438,7 +430,7 @@
         </button>
       </div>
 
-      <!-- Controls: Clustering, Price Slider, Availability, Sort, View Modes -->
+      <!-- Controls: Group Editions, Max Price, Availability, Year Dropdown, Sort & View Modes -->
       <div class="flex items-center gap-2 text-xs font-semibold shrink-0">
         <label class="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
           <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
@@ -469,6 +461,18 @@
           </button>
           <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
           <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP</button>
+        </div>
+
+        <!-- COMPACT YEAR DROPDOWN (Replaces long button train) -->
+        <div id="year-jump-bar-container" class="hidden items-center gap-1 text-[11px] font-semibold shrink-0">
+          <label for="year-select" class="text-stone-500 dark:text-slate-400">Year:</label>
+          <select 
+            id="year-select" 
+            onchange="setYearFilter(this.value)" 
+            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
+          >
+            <option value="All">All Years</option>
+          </select>
         </div>
 
         <!-- Sort Select -->
@@ -1025,7 +1029,7 @@
     let activeArtist = 'All';
     let activeYear = 'All';
     let activeFormat = 'All';
-    let activeAvailability = 'all'; // Default to 'all' so legacy and out-of-print groups are never hidden
+    let activeAvailability = 'all';
     let viewMode = 'grid';
     let searchAliases = {};
     let currentHoverCat = null;
@@ -1770,7 +1774,9 @@
     function setYearFilter(yr) {
       activeYear = yr;
       currentPage = 1;
-      updateYearJumpBarUI();
+      const select = document.getElementById('year-select');
+      if (select) select.value = yr;
+      updateActiveArtistBanner();
       syncUrlParams();
       render();
     }
@@ -2400,14 +2406,33 @@
       const label = document.getElementById('active-artist-label');
       if (!banner || !label) return;
 
-      if (activeArtist !== 'All') {
-        const count = allProducts.filter(p => p.artist === activeArtist).length;
-        label.innerHTML = `
-          <span>${escapeHtml(activeArtist)} (${count.toLocaleString()})</span>
-          <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
-            <i class="fa-solid fa-xmark text-[10px]"></i>
-          </button>
-        `;
+      const hasArtist = (activeArtist !== 'All');
+      const hasYear = (activeYear !== 'All');
+
+      if (hasArtist || hasYear) {
+        let html = '';
+        if (hasArtist) {
+          const count = allProducts.filter(p => p.artist === activeArtist).length;
+          html += `
+            <span class="bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-2xs">
+              <span>${escapeHtml(activeArtist)} (${count.toLocaleString()})</span>
+              <button onclick="setSubArtist('All')" title="Clear artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
+                <i class="fa-solid fa-xmark text-[10px]"></i>
+              </button>
+            </span>
+          `;
+        }
+        if (hasYear) {
+          html += `
+            <span class="bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-2xs">
+              <span>Year: ${escapeHtml(activeYear)}</span>
+              <button onclick="setYearFilter('All')" title="Clear year filter" class="hover:text-amber-950 dark:hover:text-white cursor-pointer ml-1">
+                <i class="fa-solid fa-xmark text-[10px]"></i>
+              </button>
+            </span>
+          `;
+        }
+        label.innerHTML = html;
         banner.classList.remove('hidden');
       } else {
         banner.classList.add('hidden');
@@ -2416,24 +2441,28 @@
 
     function updateYearJumpBar() {
       const wrapper = document.getElementById('year-jump-bar-container');
-      const pillsContainer = document.getElementById('year-jump-pills');
-      if (!wrapper || !pillsContainer) return;
+      const select = document.getElementById('year-select');
+      if (!wrapper || !select) return;
 
       if (activeArtist === 'All' && activeFilter === 'All') {
         wrapper.classList.add('hidden');
         wrapper.classList.remove('flex');
-        pillsContainer.innerHTML = '';
+        select.innerHTML = '<option value="All">All Years</option>';
         return;
       }
 
       const relevantItems = allProducts.filter(item => {
         let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
         const cat = item.category || '';
-        let matchesCat = (activeFilter === 'All');
-        if (activeFilter === 'Hello! Project & Up-Front') {
+        let matchesCat = false;
+        if (activeFilter === 'All') {
+          matchesCat = true;
+        } else if (activeFilter === 'Hello! Project & Up-Front') {
           matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
         } else if (activeFilter === 'Modern & Alternative') {
           matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');
+        } else if (activeFilter === 'Stardust Planet') {
+          matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z');
         } else {
           matchesCat = (cat === activeFilter);
         }
@@ -2451,7 +2480,7 @@
       if (sortedYears.length <= 1) {
         wrapper.classList.add('hidden');
         wrapper.classList.remove('flex');
-        pillsContainer.innerHTML = '';
+        select.innerHTML = '<option value="All">All Years</option>';
         return;
       }
 
@@ -2460,30 +2489,14 @@
         wrapper.classList.add('flex');
       }
 
-      let pillsHtml = `
-        <button onclick="setYearFilter('All')" class="px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 cursor-pointer ${activeYear === 'All' ? 'bg-stone-800 dark:bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 border border-stone-200 dark:border-slate-700'}">All</button>
-      `;
-
+      let optionsHtml = '<option value="All">All Years</option>';
       sortedYears.forEach(y => {
         const isSelected = String(activeYear) === String(y);
-        pillsHtml += `
-          <button onclick="setYearFilter('${y}')" class="px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 cursor-pointer ${isSelected ? 'bg-rose-600 text-white shadow-2xs' : 'bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700'}">${y}</button>
-        `;
+        optionsHtml += `<option value="${y}" ${isSelected ? 'selected' : ''}>${y}</option>`;
       });
 
-      pillsContainer.innerHTML = pillsHtml;
-    }
-
-    function updateYearJumpBarUI() {
-      document.querySelectorAll('#year-jump-pills button').forEach(btn => {
-        const text = btn.innerText.trim();
-        const isMatch = (text === 'All' && activeYear === 'All') || (text === String(activeYear));
-        if (isMatch) {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 bg-rose-600 text-white shadow-2xs cursor-pointer";
-        } else {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold transition shrink-0 bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 cursor-pointer";
-        }
-      });
+      select.innerHTML = optionsHtml;
+      select.value = activeYear;
     }
 
     function resetAllFilters() {
@@ -2500,6 +2513,9 @@
       if (pRange) pRange.value = 20000;
       const pLabel = document.getElementById('price-range-label');
       if (pLabel) pLabel.innerText = 'Any';
+
+      const yrSelect = document.getElementById('year-select');
+      if (yrSelect) yrSelect.value = 'All';
 
       const input = document.getElementById('search-input');
       if (input) input.value = '';
@@ -3059,9 +3075,12 @@
         if (activeAvailability === 'instock' && !inStock) return false;
         if (activeAvailability === 'oop' && !oop) return false;
 
+        // Franchise matching logic
         const cat = item.category || '';
-        let matchesCat = (activeFilter === 'All');
-        if (activeFilter === 'Hello! Project & Up-Front') {
+        let matchesCat = false;
+        if (activeFilter === 'All') {
+          matchesCat = true;
+        } else if (activeFilter === 'Hello! Project & Up-Front') {
           matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
         } else if (activeFilter === 'Modern & Alternative') {
           matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');

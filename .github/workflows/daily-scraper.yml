@@ -6,6 +6,10 @@ on:
     - cron: '0 15 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: catalog-pipeline-lock
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -15,6 +19,7 @@ jobs:
     env:
       PYTHONUNBUFFERED: "1"
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -54,4 +59,4 @@ jobs:
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
           git add products.json catalog-index.json schema-catalog.json sitemap.xml feed.xml scraper_state.json rates.json search_aliases.json sw.js promotions.json groups/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update idol catalog, landing pages & sitemap" && git push)
+          git diff --staged --quiet || (git commit -m "Auto-update idol catalog, landing pages & sitemap" && git pull --rebase && git push)

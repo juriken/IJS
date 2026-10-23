@@ -1,11 +1,12 @@
 """
 IdolJapan.store — Resilient CDJapan Catalog Release Date Healer
-Audits and resolves missing or malformed release dates, extracts canonical
-street dates directly from CDJapan product pages and schema tags, and guarantees
-simultaneous synchronization of products.json and catalog-index.json.
+Audits and verifies release dates across ALL catalog releases (including existing dates),
+extracts canonical street dates directly from CDJapan product pages and schema tags,
+and guarantees simultaneous synchronization of products.json and catalog-index.json.
 """
 
 import json
+import math
 import os
 import random
 import re
@@ -153,7 +154,6 @@ def fetch_official_date(session, pid):
                     return pid, parsed
 
         elif res.status_code == 404:
-            # Item is unlisted on CDJapan -> Keep as Available Now
             return pid, "Available Now"
 
     except Exception:
@@ -162,6 +162,11 @@ def fetch_official_date(session, pid):
     return pid, None
 
 def load_progress():
+    # Supports manual restart via environment variable or missing file
+    if os.environ.get("RESET_PROGRESS", "").lower() in ["true", "1", "yes"]:
+        print("[Notice] RESET_PROGRESS detected. Restarting audit from item 1.")
+        return set()
+
     if os.path.exists(PROGRESS_FILE):
         try:
             with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
@@ -174,33 +179,24 @@ def save_progress(processed_set):
     with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
         json.dump(sorted(list(processed_set)), f, indent=2)
 
-def is_date_suspect(d_str):
+def is_valid_date_format(d_str):
     if not d_str:
-        return True
-    
+        return False
     clean = str(d_str).strip()
-    if clean in ["Available Now", "Unknown", "TBD", ""]:
-        return True
-
-    # Standard verified format check: YYYY/MM/DD
     m = re.match(r"^(\d{4})/(\d{2})/(\d{2})$", clean)
     if not m:
-        # Malformed or unpadded date
-        return True
-
+        return False
     y, mon, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
-    if not is_calendar_valid(y, mon, d):
-        return True
+    return is_calendar_valid(y, mon, d) and (1990 <= y <= 2035)
 
-    # Pre-1990 is invalid for our contemporary idol roster
-    if y < 1990 or y > 2035:
-        return True
-
-    return False
+def get_progress_bar(percentage, width=24):
+    filled = int(width * (percentage / 100))
+    bar = "=" * filled + "-" * (width - filled)
+    return f"[{bar}] {percentage:.1f}%"
 
 def main():
     print("==========================================================")
-    print("IdolJapan.store — CDJapan Catalog Release Date Healer")
+    print("IdolJapan.store — Full-Catalog CDJapan Release Date Healer")
     print("==========================================================")
 
     if not os.path.exists(DATA_FILE):
@@ -213,31 +209,35 @@ def main():
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
-    # Identify releases needing verification
-    suspect_items = []
-    for pid, it in catalog.items():
-        curr_d = str(it.get("release_date", "")).strip()
-        if is_date_suspect(curr_d) and pid not in processed_keys:
-            suspect_items.append(pid)
+    # TOTAL RESTART: Queues ALL releases in catalog that haven't been audited in current cycle
+    pending_items = [pid for pid in catalog.keys() if pid not in processed_keys]
 
-    total_suspect = len(suspect_items)
+    total_pending = len(pending_items)
+    audited_count = len(processed_keys)
+    progress_pct = (audited_count / total_catalog * 100) if total_catalog > 0 else 0
+
     print(f"Total Catalog Database:    {total_catalog:,} releases")
-    print(f"Already Audited & Logged:  {len(processed_keys):,} releases")
-    print(f"Pending Date Verification: {total_suspect:,} releases", flush=True)
+    print(f"Already Audited in Cycle:  {audited_count:,} releases ({progress_pct:.1f}%)")
+    print(f"Pending Verification:      {total_pending:,} releases")
+    print(f"Cycle Progress:            {get_progress_bar(progress_pct)}", flush=True)
 
-    if total_suspect == 0:
-        print("\nAll catalog items possess verified release dates.")
+    if total_pending == 0:
+        print("\nAll 100% of catalog releases have been verified against CDJapan!")
+        print("To restart the entire cycle again, delete repair_progress.json.")
         return
 
     batch_size = int(os.environ.get("BATCH_SIZE", DEFAULT_BATCH_SIZE))
-    batch_size = min(batch_size, total_suspect)
+    batch_size = min(batch_size, total_pending)
     max_workers = int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS))
+    batches_remaining = math.ceil(total_pending / batch_size) if batch_size > 0 else 0
 
-    current_batch = suspect_items[:batch_size]
-    print(f"Targeting Batch Size:      {batch_size:,} items (using {max_workers} worker threads)\n", flush=True)
+    current_batch = pending_items[:batch_size]
+    print(f"Targeting Batch Size:      {batch_size:,} items (~{batches_remaining} batch runs remaining)")
+    print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
     session = build_http_session()
     updated_count = 0
+    preserved_count = 0
     start_time = time.time()
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -249,14 +249,21 @@ def main():
         for idx, future in enumerate(as_completed(future_to_pid), 1):
             pid, confirmed_date = future.result()
             processed_keys.add(pid)
+            old_date = str(catalog[pid].get("release_date", "")).strip()
 
             if confirmed_date and confirmed_date != "Available Now":
-                catalog[pid]["release_date"] = confirmed_date
-                updated_count += 1
-                print(f"   [{idx}/{batch_size}] ✓ [{pid}] {catalog[pid].get('title', '')[:30]} => {confirmed_date}", flush=True)
+                if confirmed_date != old_date:
+                    catalog[pid]["release_date"] = confirmed_date
+                    updated_count += 1
+                    print(f"   [{idx}/{batch_size}] ✓ [{pid}] {old_date} -> {confirmed_date}", flush=True)
+                else:
+                    preserved_count += 1
             else:
-                # Mark as resolved with Available Now fallback
-                catalog[pid]["release_date"] = "Available Now"
+                # If CDJapan didn't return a date, protect pre-existing valid date
+                if is_valid_date_format(old_date):
+                    preserved_count += 1
+                else:
+                    catalog[pid]["release_date"] = "Available Now"
 
             if idx % 50 == 0 or idx == batch_size:
                 elapsed = time.time() - start_time
@@ -273,14 +280,19 @@ def main():
     # Save progress tracking
     save_progress(processed_keys)
 
-    remaining_suspect = total_suspect - len(current_batch)
+    new_audited = len(processed_keys)
+    remaining_pending = total_catalog - new_audited
+    new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0
+    new_batches_left = math.ceil(remaining_pending / batch_size) if batch_size > 0 and remaining_pending > 0 else 0
 
     print("\n==========================================================")
     print("Batch Complete!")
     print("==========================================================")
-    print(f"Releases Repaired:         {updated_count:,} dates successfully added")
-    print(f"Total Audited to Date:     {len(processed_keys):,} releases")
-    print(f"Remaining Suspect Items:   {remaining_suspect:,} releases left to heal")
+    print(f"Dates Corrected / Updated: {updated_count:,} releases")
+    print(f"Valid Dates Verified:      {preserved_count:,} releases")
+    print(f"Total Audited in Cycle:    {new_audited:,} / {total_catalog:,} ({new_progress_pct:.1f}%)")
+    print(f"Remaining to Audit:        {remaining_pending:,} releases (~{new_batches_left} batches left)")
+    print(f"New Progress:              {get_progress_bar(new_progress_pct)}")
     print("Synchronized:              products.json & catalog-index.json")
     print("==========================================================")
 

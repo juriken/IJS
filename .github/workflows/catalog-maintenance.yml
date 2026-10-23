@@ -108,5 +108,9 @@ jobs:
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"
-          git add products.json catalog-index.json healthcheck_state.json repair_progress.json scraper_state.json pruned_items.txt search_aliases.json sitemap.xml healthcheck_log.txt
-          git diff --staged --quiet || (git commit -m "Automated catalog maintenance & healthcheck update" && git pull --rebase && git push)
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "Automated catalog maintenance & healthcheck update"
+            git pull --rebase --autostash
+            git push
+          fi

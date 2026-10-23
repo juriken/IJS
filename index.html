@@ -136,7 +136,7 @@
     <span id="toast-message">Notification</span>
   </div>
 
-  <!-- STICKY TOP BRAND & SEARCH BAR (Compact 52px height) -->
+  <!-- STICKY TOP BRAND & SEARCH BAR -->
   <header class="sticky top-0 z-40 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2.5">
       <div class="flex items-center space-x-2">
@@ -240,220 +240,279 @@
     </div>
   </header>
 
-  <!-- NON-STICKY NAVIGATION SECTION (Scrolls away naturally) -->
-  <div class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30">
-    
-    <!-- Tier 1 Navigation: Primary Franchise Filter Bar -->
+  <!-- TOP-LEVEL MULTIROW NAVIGATION & HOVER-LAUNCHED LOCAL MEGA-MENU -->
+  <div 
+    class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30"
+    onmouseleave="handleTopNavLeave()"
+  >
+    <!-- Tier 1 Navigation: Multirow Grid, Exactly 7 Items per Row on Desktop -->
     <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar whitespace-nowrap" id="filter-bar">
-        <button onclick="setFilter('All')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="All">
-          <span>All Groups</span>
-          <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Hello! Project')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Hello! Project">
-          <span>Hello! Project</span>
-          <span id="badge-cat-Hello! Project" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Up-Front Alumni')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Up-Front Alumni">
-          <span>Up-Front Alumni</span>
-          <span id="badge-cat-Up-Front Alumni" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('AKB48 Group')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="AKB48 Group">
-          <span>AKB48 Groups</span>
-          <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Sakamichi Series')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Sakamichi Series">
-          <span>Sakamichi &amp; 22/7</span>
-          <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Stardust Planet')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Stardust Planet">
-          <span>Stardust Planet</span>
-          <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('=LOVE / Sister Groups')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="=LOVE / Sister Groups">
-          <span>=LOVE &amp; Sisters</span>
-          <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('KAWAII LAB.')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="KAWAII LAB.">
-          <span>KAWAII LAB.</span>
-          <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Modern Idols')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Modern Idols">
-          <span>Modern Idols</span>
-          <span id="badge-cat-Modern Idols" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
-        <button onclick="setFilter('Babymetal')" class="tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer" data-cat="Babymetal">
-          <span>Babymetal</span>
-          <span id="badge-cat-Babymetal" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full">0</span>
-        </button>
+      <div class="max-w-7xl mx-auto px-4 py-2.5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5 sm:gap-2" id="filter-bar">
+          
+          <!-- Item 1 -->
+          <button 
+            onclick="setFilter('All')" 
+            onmouseenter="handleTopNavHover('All')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" 
+            data-cat="All"
+          >
+            <span class="truncate">All Groups</span>
+            <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 2 -->
+          <button 
+            onclick="setFilter('Hello! Project')" 
+            onmouseenter="handleTopNavHover('Hello! Project')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Hello! Project"
+          >
+            <span class="truncate">Hello! Project</span>
+            <span id="badge-cat-Hello! Project" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 3 -->
+          <button 
+            onclick="setFilter('Up-Front Alumni')" 
+            onmouseenter="handleTopNavHover('Up-Front Alumni')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Up-Front Alumni"
+          >
+            <span class="truncate">Up-Front Alumni</span>
+            <span id="badge-cat-Up-Front Alumni" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 4 -->
+          <button 
+            onclick="setFilter('AKB48 Group')" 
+            onmouseenter="handleTopNavHover('AKB48 Group')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="AKB48 Group"
+          >
+            <span class="truncate">AKB48 Groups</span>
+            <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 5 -->
+          <button 
+            onclick="setFilter('Sakamichi Series')" 
+            onmouseenter="handleTopNavHover('Sakamichi Series')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Sakamichi Series"
+          >
+            <span class="truncate">Sakamichi &amp; 22/7</span>
+            <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 6 -->
+          <button 
+            onclick="setFilter('Stardust Planet')" 
+            onmouseenter="handleTopNavHover('Stardust Planet')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Stardust Planet"
+          >
+            <span class="truncate">Stardust Planet</span>
+            <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 7 (End of Row 1) -->
+          <button 
+            onclick="setFilter('=LOVE / Sister Groups')" 
+            onmouseenter="handleTopNavHover('=LOVE / Sister Groups')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="=LOVE / Sister Groups"
+          >
+            <span class="truncate">=LOVE &amp; Sisters</span>
+            <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 8 (Start of Row 2) -->
+          <button 
+            onclick="setFilter('KAWAII LAB.')" 
+            onmouseenter="handleTopNavHover('KAWAII LAB.')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="KAWAII LAB."
+          >
+            <span class="truncate">KAWAII LAB.</span>
+            <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 9 -->
+          <button 
+            onclick="setFilter('Modern Idols')" 
+            onmouseenter="handleTopNavHover('Modern Idols')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Modern Idols"
+          >
+            <span class="truncate">Modern Idols</span>
+            <span id="badge-cat-Modern Idols" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+          <!-- Item 10 -->
+          <button 
+            onclick="setFilter('Babymetal')" 
+            onmouseenter="handleTopNavHover('Babymetal')"
+            class="tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
+            data-cat="Babymetal"
+          >
+            <span class="truncate">Babymetal</span>
+            <span id="badge-cat-Babymetal" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+          </button>
+
+        </div>
       </div>
     </nav>
 
-    <!-- Tier 1.5 Navigation: Mega-Menu Trigger Bar & Year Quick Jumps -->
-    <div id="artist-subbar-container" class="hidden bg-stone-50 dark:bg-slate-900/60 border-b border-stone-100 dark:border-slate-800/80">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
-        
-        <!-- Left: Interactive Mega-Menu Trigger Button -->
+    <!-- Active Unit Breadcrumb Banner (Appears when specific unit is chosen) -->
+    <div id="active-artist-banner" class="hidden bg-stone-50 dark:bg-slate-900/80 border-b border-stone-100 dark:border-slate-800/80 py-1.5 px-4">
+      <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
         <div class="flex items-center gap-2">
-          <button 
-            id="mega-menu-trigger-btn"
-            onclick="toggleMegaMenu()" 
-            class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 font-bold text-stone-700 dark:text-stone-200 flex items-center gap-1.5 shadow-2xs transition cursor-pointer"
-          >
-            <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-xs"></i>
-            <span id="mega-menu-trigger-label">Units &amp; Soloists: All</span>
-            <i id="mega-menu-chevron" class="fa-solid fa-chevron-down text-[10px] text-stone-400 transition-transform duration-200"></i>
-          </button>
-
-          <!-- Quick Clear Tag if an artist is currently filtered -->
-          <div id="active-artist-clear-box" class="hidden items-center">
-            <button 
-              onclick="setSubArtist('All')" 
-              class="px-2 py-0.5 rounded-full bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 hover:bg-rose-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer"
-              title="Reset to all units in this franchise"
-            >
-              <span>Reset to All</span>
-              <i class="fa-solid fa-xmark text-[9px]"></i>
+          <span class="text-stone-400 dark:text-slate-500 font-semibold text-[11px]">Filtered Artist:</span>
+          <span id="active-artist-label" class="bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5">
+            <span>Morning Musume</span>
+            <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer">
+              <i class="fa-solid fa-xmark text-[10px]"></i>
             </button>
-          </div>
+          </span>
         </div>
-
-        <!-- Right: Release Year Quick Strip (Desktop) -->
         <div id="year-jump-bar-container" class="hidden items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap">
           <span class="text-stone-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1 select-none">
             <i class="fa-solid fa-calendar text-[9px]"></i> Year:
           </span>
-          <div id="year-jump-pills" class="flex items-center gap-1 shrink-0">
-          </div>
-        </div>
-
-      </div>
-
-      <!-- MEGA-MENU FLYOUT TRAY (Grouped multi-column desktop dropdown) -->
-      <div 
-        id="mega-menu-flyout" 
-        class="hidden absolute left-0 right-0 top-full bg-white dark:bg-slate-900 shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50"
-      >
-        <div class="max-w-7xl mx-auto px-4 py-4">
-          <div class="flex items-center justify-between pb-3 mb-3 border-b border-stone-100 dark:border-slate-800">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-slate-400" id="mega-menu-franchise-title">
-                Hello! Project Discography
-              </span>
-              <span class="text-[11px] text-stone-400">• Click an idol group or soloist to inspect releases</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button 
-                onclick="setSubArtist('All'); toggleMegaMenu(false);" 
-                class="px-3 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 font-bold text-xs transition cursor-pointer"
-              >
-                All Releases
-              </button>
-              <button 
-                onclick="toggleMegaMenu(false)" 
-                class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer"
-                title="Close tray (Esc)"
-              >
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Dynamic Columns Container -->
-          <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 text-xs">
-          </div>
+          <div id="year-jump-pills" class="flex items-center gap-1 shrink-0"></div>
         </div>
       </div>
-
     </div>
 
-    <!-- Tier 2 Navigation: Format, Availability, Controls & Sort -->
-    <div id="desktop-nav-tier2" class="bg-stone-50/70 dark:bg-slate-900/90">
-      <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2.5">
-        
-        <!-- Media Formats -->
-        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap text-[11px] font-semibold" id="format-filter-bar">
-          <button onclick="setFormat('All')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-rose-600 text-white font-bold shadow-2xs shrink-0 cursor-pointer" data-fmt="All">
-            <span>All Formats</span>
-            <span id="badge-fmt-All" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-          <button onclick="setFormat('CD')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="CD">
-            <i class="fa-solid fa-compact-disc text-rose-500 mr-1 text-[10px]"></i>CDs
-            <span id="badge-fmt-CD" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-          <button onclick="setFormat('Blu-ray')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Blu-ray">
-            <i class="fa-solid fa-film text-sky-500 mr-1 text-[10px]"></i>Blu-rays
-            <span id="badge-fmt-Blu-ray" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-          <button onclick="setFormat('DVD')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="DVD">
-            <i class="fa-solid fa-video text-amber-500 mr-1 text-[10px]"></i>DVDs
-            <span id="badge-fmt-DVD" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-          <button onclick="setFormat('Book')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Book">
-            <i class="fa-solid fa-book-open text-emerald-500 mr-1 text-[10px]"></i>Books
-            <span id="badge-fmt-Book" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-          <button onclick="setFormat('Collectable')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Collectable">
-            <i class="fa-solid fa-gift text-purple-500 mr-1 text-[10px]"></i>Merch
-            <span id="badge-fmt-Collectable" class="ml-0.5 text-[9px] opacity-75"></span>
-          </button>
-        </div>
-
-        <!-- Controls: Clustering, Price Slider, Availability, Sort, View Modes -->
-        <div class="flex items-center gap-2 text-xs font-semibold shrink-0">
-          <label class="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
-            <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
-            <span>Group Editions</span>
-          </label>
-
-          <div class="hidden lg:flex items-center gap-1 text-[11px] text-stone-500 dark:text-slate-400">
-            <label for="price-range">Max:</label>
-            <input 
-              id="price-range" 
-              type="range" 
-              min="1000" 
-              max="20000" 
-              step="500" 
-              value="20000" 
-              oninput="onMaxPriceChange(this.value)"
-              class="w-14 accent-rose-600 cursor-pointer"
-            />
-            <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-9 text-right text-[10px]">Any</span>
+    <!-- HOVER-LAUNCHED LOCAL-LEVEL MEGA-MENU FLYOUT (Absolute Over-the-Top Tray) -->
+    <div 
+      id="mega-menu-flyout" 
+      class="hidden absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50"
+      onmouseenter="handleMegaMenuEnter()"
+      onmouseleave="handleMegaMenuLeave()"
+    >
+      <div class="max-w-7xl mx-auto px-6 py-5">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-stone-100 dark:border-slate-800">
+          <div class="flex items-center gap-2.5">
+            <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-sm"></i>
+            <span class="text-xs font-black uppercase tracking-wider text-stone-800 dark:text-white" id="mega-menu-franchise-title">
+              Hello! Project Roster
+            </span>
+            <span class="text-[11px] text-stone-400 dark:text-slate-500">• Select a group or soloist to inspect releases</span>
           </div>
-
-          <!-- Availability Segmented Control -->
-          <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-            <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">All</button>
-            <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">Active</button>
-            <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
-              <i class="fa-solid fa-clock text-[8px]"></i> Pre-Orders
+          <div class="flex items-center gap-2">
+            <button 
+              id="mega-menu-view-all-btn"
+              onclick="setFilter(currentHoverCat); closeMegaMenu();" 
+              class="px-3 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 font-bold text-xs transition cursor-pointer"
+            >
+              View All Franchise Releases
             </button>
-            <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
-            <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP</button>
-          </div>
-
-          <!-- Sort Select -->
-          <div class="hidden sm:flex items-center gap-1">
-            <select id="sort-select" onchange="changeSort(this.value)" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer">
-              <option value="newest">Newest Date</option>
-              <option value="oldest">Oldest Date</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-            </select>
-          </div>
-
-          <!-- Grid / List Toggle -->
-          <div class="hidden sm:flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5">
-            <button id="view-mode-grid" onclick="setViewMode('grid')" title="Grid View" class="px-1.5 py-0.5 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs cursor-pointer">
-              <i class="fa-solid fa-table-cells-large text-[11px]"></i>
-            </button>
-            <button id="view-mode-list" onclick="setViewMode('list')" title="List View" class="px-1.5 py-0.5 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer">
-              <i class="fa-solid fa-list-ul text-[11px]"></i>
+            <button 
+              onclick="closeMegaMenu()" 
+              class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer"
+              title="Close menu (Esc)"
+            >
+              <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
         </div>
 
+        <!-- Dynamic Multi-Column Grid -->
+        <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 text-xs">
+        </div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- Tier 2 Navigation: Format, Availability, Controls & Sort -->
+  <div id="desktop-nav-tier2" class="bg-stone-50/70 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2.5">
+      
+      <!-- Media Formats -->
+      <div class="flex items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap text-[11px] font-semibold" id="format-filter-bar">
+        <button onclick="setFormat('All')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-rose-600 text-white font-bold shadow-2xs shrink-0 cursor-pointer" data-fmt="All">
+          <span>All Formats</span>
+          <span id="badge-fmt-All" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('CD')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="CD">
+          <i class="fa-solid fa-compact-disc text-rose-500 mr-1 text-[10px]"></i>CDs
+          <span id="badge-fmt-CD" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('Blu-ray')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Blu-ray">
+          <i class="fa-solid fa-film text-sky-500 mr-1 text-[10px]"></i>Blu-rays
+          <span id="badge-fmt-Blu-ray" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('DVD')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="DVD">
+          <i class="fa-solid fa-video text-amber-500 mr-1 text-[10px]"></i>DVDs
+          <span id="badge-fmt-DVD" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('Book')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Book">
+          <i class="fa-solid fa-book-open text-emerald-500 mr-1 text-[10px]"></i>Books
+          <span id="badge-fmt-Book" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('Collectable')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Collectable">
+          <i class="fa-solid fa-gift text-purple-500 mr-1 text-[10px]"></i>Merch
+          <span id="badge-fmt-Collectable" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+      </div>
+
+      <!-- Controls: Clustering, Price Slider, Availability, Sort, View Modes -->
+      <div class="flex items-center gap-2 text-xs font-semibold shrink-0">
+        <label class="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
+          <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
+          <span>Group Editions</span>
+        </label>
+
+        <div class="hidden lg:flex items-center gap-1 text-[11px] text-stone-500 dark:text-slate-400">
+          <label for="price-range">Max:</label>
+          <input 
+            id="price-range" 
+            type="range" 
+            min="1000" 
+            max="20000" 
+            step="500" 
+            value="20000" 
+            oninput="onMaxPriceChange(this.value)"
+            class="w-14 accent-rose-600 cursor-pointer"
+          />
+          <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-9 text-right text-[10px]">Any</span>
+        </div>
+
+        <!-- Availability Segmented Control -->
+        <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
+          <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">All</button>
+          <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">Active</button>
+          <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-clock text-[8px]"></i> Pre-Orders
+          </button>
+          <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
+          <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP</button>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="hidden sm:flex items-center gap-1">
+          <select id="sort-select" onchange="changeSort(this.value)" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer">
+            <option value="newest">Newest Date</option>
+            <option value="oldest">Oldest Date</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- Grid / List Toggle -->
+        <div class="hidden sm:flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5">
+          <button id="view-mode-grid" onclick="setViewMode('grid')" title="Grid View" class="px-1.5 py-0.5 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs cursor-pointer">
+            <i class="fa-solid fa-table-cells-large text-[11px]"></i>
+          </button>
+          <button id="view-mode-list" onclick="setViewMode('list')" title="List View" class="px-1.5 py-0.5 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer">
+            <i class="fa-solid fa-list-ul text-[11px]"></i>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -939,7 +998,7 @@
             href="https://ko-fi.com/idoljapanstore" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-xl transition shadow flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+            class="bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-slate-900 text-xs font-black px-3.5 py-1.5 rounded-xl transition shadow flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
           >
             <i class="fa-solid fa-heart text-rose-600"></i>
             <span>Support on Ko-fi</span>
@@ -990,7 +1049,8 @@
     let activeAvailability = 'all'; // Default to 'all' so legacy and out-of-print groups are never hidden
     let viewMode = 'grid';
     let searchAliases = {};
-    let isMegaMenuOpen = false;
+    let currentHoverCat = null;
+    let megaMenuTimer = null;
 
     function detectDeviceLayout() {
       return (window.matchMedia('(max-width: 768px)').matches || 
@@ -1075,9 +1135,14 @@
           units: ['Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon']
         },
         {
-          title: "Soloists & Alumni",
+          title: "Soloists & Alumni (A–M)",
           icon: "fa-microphone text-purple-500",
-          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Natsumi Abe', 'Erina Mano', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
+          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Erina Mano']
+        },
+        {
+          title: "Soloists & Alumni (N–Z)",
+          icon: "fa-crown text-pink-500",
+          units: ['Natsumi Abe', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
         }
       ],
       'AKB48 Group': [
@@ -1092,7 +1157,7 @@
           units: ['Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai']
         },
         {
-          title: "Soloists & Graduates",
+          title: "Legendary Soloists & Graduates",
           icon: "fa-crown text-purple-500",
           units: ['Sayaka Yamamoto', 'Atsuko Maeda', 'Yuko Oshima', 'Mayu Watanabe', 'Yuki Kashiwagi', 'Rino Sashihara', 'Tomomi Itano']
         }
@@ -1107,6 +1172,48 @@
           title: "Solo Graduates",
           icon: "fa-feather text-rose-500",
           units: ['Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate']
+        }
+      ],
+      'Up-Front Alumni': [
+        {
+          title: "Up-Front Artists & Groups",
+          icon: "fa-compact-disc text-rose-500",
+          units: ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)']
+        }
+      ],
+      'Stardust Planet': [
+        {
+          title: "Stardust Planet Idol Roster",
+          icon: "fa-star text-amber-500",
+          units: ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu', 'TEAM SHACHI', 'BATTEN GIRLS', 'ukka']
+        }
+      ],
+      '=LOVE / Sister Groups': [
+        {
+          title: "Sashihara Rino Produced Groups",
+          icon: "fa-heart text-pink-500",
+          units: ['=LOVE', '≠ME', '≒JOY']
+        }
+      ],
+      'KAWAII LAB.': [
+        {
+          title: "KAWAII LAB. Sister Units",
+          icon: "fa-wand-magic-sparkles text-purple-500",
+          units: ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET']
+        }
+      ],
+      'Modern Idols': [
+        {
+          title: "Contemporary Global & Produce Units",
+          icon: "fa-bolt text-emerald-500",
+          units: ['NiziU', 'ME:I', 'IS:SUE']
+        }
+      ],
+      'Babymetal': [
+        {
+          title: "Babymetal & Sakura Gakuin",
+          icon: "fa-guitar text-stone-800 dark:text-stone-200",
+          units: ['BABYMETAL', 'Sakura Gakuin']
         }
       ]
     };
@@ -1328,7 +1435,6 @@
       const mobileNav = document.getElementById('mobile-bottom-nav');
       const desktopTier1 = document.getElementById('desktop-nav-tier1');
       const desktopTier2 = document.getElementById('desktop-nav-tier2');
-      const artistContainer = document.getElementById('artist-subbar-container');
       const yearContainer = document.getElementById('year-jump-bar-container');
 
       if (isMobile) {
@@ -1340,7 +1446,6 @@
         if (mobileNav) mobileNav.classList.remove('hidden');
         if (desktopTier1) desktopTier1.classList.add('hidden');
         if (desktopTier2) desktopTier2.classList.add('hidden');
-        if (artistContainer) artistContainer.classList.add('hidden');
         if (yearContainer) yearContainer.classList.add('hidden');
       } else {
         if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
@@ -1351,7 +1456,6 @@
         if (mobileNav) mobileNav.classList.add('hidden');
         if (desktopTier1) desktopTier1.classList.remove('hidden');
         if (desktopTier2) desktopTier2.classList.remove('hidden');
-        if (artistContainer && activeFilter !== 'All') artistContainer.classList.remove('hidden');
       }
 
       updateMobileDrawerContent();
@@ -1772,7 +1876,7 @@
               readUrlParams();
               buildClusteredEntities();
               updateDynamicCounts();
-              updateArtistSubBar();
+              updateActiveArtistBanner();
               updateYearJumpBar();
               updateFilterButtonsUI();
               updateAvailabilityUI();
@@ -1844,7 +1948,7 @@
         readUrlParams();
         buildClusteredEntities();
         updateDynamicCounts();
-        updateArtistSubBar();
+        updateActiveArtistBanner();
         updateYearJumpBar();
         updateFilterButtonsUI();
         updateAvailabilityUI();
@@ -2087,9 +2191,9 @@
       activeArtist = 'All';
       activeYear = 'All';
       currentPage = 1;
-      toggleMegaMenu(false);
+      closeMegaMenu();
       updateFilterButtonsUI();
-      updateArtistSubBar();
+      updateActiveArtistBanner();
       updateYearJumpBar();
       updateMobileDrawerContent();
       syncUrlParams();
@@ -2111,7 +2215,7 @@
         }
       }
 
-      updateArtistSubBar();
+      updateActiveArtistBanner();
       updateYearJumpBar();
       updateMobileDrawerContent();
       syncUrlParams();
@@ -2156,9 +2260,9 @@
     function updateFilterButtonsUI() {
       document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
         if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-rose-600 text-white shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer";
+          btn.className = "tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer";
         } else {
-          btn.className = "tab-btn px-3 py-1 rounded-full text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 shrink-0 flex items-center gap-1.5 cursor-pointer";
+          btn.className = "tab-btn px-2.5 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50";
         }
       });
 
@@ -2171,113 +2275,149 @@
       });
     }
 
-    // MEGA-MENU INTERACTION CONTROLLERS
-    function toggleMegaMenu(forceState) {
-      const flyout = document.getElementById('mega-menu-flyout');
-      const chevron = document.getElementById('mega-menu-chevron');
-      if (!flyout) return;
+    // ==========================================
+    // HOVER-DRIVEN MEGA-MENU LOGIC
+    // ==========================================
+    function handleTopNavHover(cat) {
+      if (megaMenuTimer) {
+        clearTimeout(megaMenuTimer);
+        megaMenuTimer = null;
+      }
+      if (cat === 'All' || !FRANCHISE_ARTISTS[cat] || FRANCHISE_ARTISTS[cat].length <= 1) {
+        closeMegaMenu();
+        return;
+      }
+      currentHoverCat = cat;
+      renderMegaMenu(cat);
+      openMegaMenu();
+    }
 
-      isMegaMenuOpen = (typeof forceState === 'boolean') ? forceState : !isMegaMenuOpen;
+    function handleTopNavLeave() {
+      if (megaMenuTimer) clearTimeout(megaMenuTimer);
+      megaMenuTimer = setTimeout(() => {
+        closeMegaMenu();
+      }, 220);
+    }
 
-      if (isMegaMenuOpen) {
-        flyout.classList.remove('hidden');
-        if (chevron) chevron.classList.add('rotate-180');
-      } else {
-        flyout.classList.add('hidden');
-        if (chevron) chevron.classList.remove('rotate-180');
+    function handleMegaMenuEnter() {
+      if (megaMenuTimer) {
+        clearTimeout(megaMenuTimer);
+        megaMenuTimer = null;
       }
     }
 
-    function updateArtistSubBar() {
-      const wrapper = document.getElementById('artist-subbar-container');
-      const triggerLabel = document.getElementById('mega-menu-trigger-label');
-      const clearBox = document.getElementById('active-artist-clear-box');
+    function handleMegaMenuLeave() {
+      if (megaMenuTimer) clearTimeout(megaMenuTimer);
+      megaMenuTimer = setTimeout(() => {
+        closeMegaMenu();
+      }, 220);
+    }
+
+    function openMegaMenu() {
+      const flyout = document.getElementById('mega-menu-flyout');
+      if (flyout) flyout.classList.remove('hidden');
+    }
+
+    function closeMegaMenu() {
+      const flyout = document.getElementById('mega-menu-flyout');
+      if (flyout) flyout.classList.add('hidden');
+      currentHoverCat = null;
+    }
+
+    function selectSubArtistFromMegaMenu(cat, unit) {
+      activeFilter = cat;
+      setSubArtist(unit);
+      updateFilterButtonsUI();
+      closeMegaMenu();
+    }
+
+    function renderMegaMenu(cat) {
       const franchiseTitle = document.getElementById('mega-menu-franchise-title');
       const columnsContainer = document.getElementById('mega-menu-columns-container');
+      const viewAllBtn = document.getElementById('mega-menu-view-all-btn');
 
-      if (!wrapper || !triggerLabel) return;
+      if (!columnsContainer || !franchiseTitle) return;
 
-      const artists = FRANCHISE_ARTISTS[activeFilter];
-      if (!artists || artists.length <= 1) {
-        wrapper.classList.add('hidden');
-        toggleMegaMenu(false);
-        return;
+      franchiseTitle.innerText = `${cat} Discography & Units`;
+      if (viewAllBtn) {
+        viewAllBtn.onclick = () => {
+          setFilter(cat);
+          closeMegaMenu();
+        };
       }
 
-      if (layoutMode !== 'mobile') {
-        wrapper.classList.remove('hidden');
-      }
+      const categories = MEGA_MENU_CATEGORIES[cat];
+      const allUnits = FRANCHISE_ARTISTS[cat] || [];
 
-      // Update trigger label and clear button state
-      if (activeArtist === 'All') {
-        triggerLabel.innerHTML = `Units &amp; Soloists: <span class="text-stone-500 font-normal">All (${artists.length})</span>`;
-        if (clearBox) clearBox.classList.add('hidden');
-      } else {
-        triggerLabel.innerHTML = `Unit: <span class="text-rose-600 dark:text-rose-400 font-black">${escapeHtml(activeArtist)}</span>`;
-        if (clearBox) clearBox.classList.remove('hidden');
-      }
+      if (categories && categories.length > 0) {
+        columnsContainer.className = `grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${categories.length} gap-4 text-xs`;
+        let html = '';
 
-      if (franchiseTitle) {
-        franchiseTitle.innerText = `${activeFilter} Roster &amp; Subunits`;
-      }
+        categories.forEach(sec => {
+          html += `
+            <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col">
+              <h4 class="font-black text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2.5 pb-1 border-b border-stone-200/40 dark:border-slate-700/50 flex items-center gap-1.5">
+                <i class="fa-solid ${sec.icon}"></i> ${escapeHtml(sec.title)}
+              </h4>
+              <div class="space-y-1">
+          `;
 
-      // Build Multi-Column Mega-Menu Content
-      if (columnsContainer) {
-        const categories = MEGA_MENU_CATEGORIES[activeFilter];
-
-        if (categories && categories.length > 0) {
-          // Categorized Layout (e.g. Hello! Project, AKB48 Group, Sakamichi)
-          columnsContainer.className = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${categories.length} gap-4 text-xs`;
-          let html = '';
-
-          categories.forEach(cat => {
-            html += `
-              <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3 rounded-xl border border-stone-200/60 dark:border-slate-800">
-                <h4 class="font-bold text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <i class="fa-solid ${cat.icon}"></i> ${escapeHtml(cat.title)}
-                </h4>
-                <div class="space-y-1">
-            `;
-
-            cat.units.forEach(u => {
-              const isSelected = activeArtist === u;
-              const count = allProducts.filter(p => p.artist === u).length;
-              html += `
-                <button 
-                  onclick="setSubArtist('${u}'); toggleMegaMenu(false);" 
-                  class="w-full text-left px-2 py-1 rounded-md transition flex items-center justify-between text-xs cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold shadow-2xs' : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
-                >
-                  <span class="truncate">${escapeHtml(u)}</span>
-                  <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1">${count}</span>
-                </button>
-              `;
-            });
-
-            html += `</div></div>`;
-          });
-
-          columnsContainer.innerHTML = html;
-        } else {
-          // Fallback Standard Grid for franchises with fewer subunits
-          columnsContainer.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs";
-          let html = '';
-
-          artists.forEach(u => {
-            const isSelected = activeArtist === u;
+          sec.units.forEach(u => {
+            const isSelected = (activeArtist === u);
             const count = allProducts.filter(p => p.artist === u).length;
             html += `
               <button 
-                onclick="setSubArtist('${u}'); toggleMegaMenu(false);" 
-                class="px-2.5 py-1.5 rounded-lg border text-left transition flex items-center justify-between cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold border-rose-600 shadow-2xs' : 'bg-stone-50 dark:bg-slate-800 border-stone-200 dark:border-slate-700 text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
+                onclick="selectSubArtistFromMegaMenu('${cat}', '${u}')" 
+                class="w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center justify-between text-xs cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold shadow-2xs' : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600'}"
               >
                 <span class="truncate">${escapeHtml(u)}</span>
-                <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1">${count}</span>
+                <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1 font-mono">${count}</span>
               </button>
             `;
           });
 
-          columnsContainer.innerHTML = html;
-        }
+          html += `</div></div>`;
+        });
+
+        columnsContainer.innerHTML = html;
+      } else {
+        columnsContainer.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs";
+        let html = '';
+
+        allUnits.forEach(u => {
+          const isSelected = (activeArtist === u);
+          const count = allProducts.filter(p => p.artist === u).length;
+          html += `
+            <button 
+              onclick="selectSubArtistFromMegaMenu('${cat}', '${u}')" 
+              class="px-3 py-2 rounded-xl border text-left transition flex items-center justify-between cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold border-rose-600 shadow-2xs' : 'bg-stone-50 dark:bg-slate-800 border-stone-200 dark:border-slate-700 text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
+            >
+              <span class="truncate">${escapeHtml(u)}</span>
+              <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1 font-mono">${count}</span>
+            </button>
+          `;
+        });
+
+        columnsContainer.innerHTML = html;
+      }
+    }
+
+    function updateActiveArtistBanner() {
+      const banner = document.getElementById('active-artist-banner');
+      const label = document.getElementById('active-artist-label');
+      if (!banner || !label) return;
+
+      if (activeArtist !== 'All') {
+        const count = allProducts.filter(p => p.artist === activeArtist).length;
+        label.innerHTML = `
+          <span>${escapeHtml(activeArtist)} (${count.toLocaleString()})</span>
+          <button onclick="setSubArtist('All')" title="Clear sub-artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
+            <i class="fa-solid fa-xmark text-[10px]"></i>
+          </button>
+        `;
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
       }
     }
 
@@ -2366,10 +2506,10 @@
       if (clearBtn) clearBtn.classList.add('hidden');
       closeAutocomplete();
 
-      toggleMegaMenu(false);
+      closeMegaMenu();
       updateFilterButtonsUI();
       updateAvailabilityUI();
-      updateArtistSubBar();
+      updateActiveArtistBanner();
       updateYearJumpBar();
       updateWishlistBadge();
       updateMobileDrawerContent();
@@ -2463,11 +2603,8 @@
       }
 
       const megaFlyout = document.getElementById('mega-menu-flyout');
-      const megaTrigger = document.getElementById('mega-menu-trigger-btn');
-      if (isMegaMenuOpen && megaFlyout && megaTrigger) {
-        if (!megaFlyout.contains(e.target) && !megaTrigger.contains(e.target)) {
-          toggleMegaMenu(false);
-        }
+      if (megaFlyout && !megaFlyout.classList.contains('hidden') && !megaFlyout.contains(e.target)) {
+        closeMegaMenu();
       }
     });
 
@@ -2676,7 +2813,7 @@
       const nextDisabled = currentPage === totalPages;
       navHtml += `
         <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Next ›</button>
-        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Last »</button>
+        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Last »</button>
       `;
 
       navEl.innerHTML = navHtml;
@@ -3218,7 +3355,7 @@
       const isModalOpen = modal && !modal.classList.contains('hidden');
 
       if (e.key === 'Escape') {
-        if (isMegaMenuOpen) toggleMegaMenu(false);
+        closeMegaMenu();
         closeModal();
         closeAutocomplete();
         if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();

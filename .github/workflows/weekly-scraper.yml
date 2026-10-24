@@ -30,24 +30,29 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
 
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 playwright
+          pip install -r requirements.txt
 
       - name: Cache Playwright Chromium Binaries
         uses: actions/cache@v4
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-chromium-
+          key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('requirements.txt') }}
 
-      - name: Install Playwright Chromium with OS Dependencies
+      - name: Install Playwright Chromium with OS Dependencies (Cache Miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
           playwright install --with-deps chromium
+
+      - name: Install Playwright OS Dependencies (Cache Hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: |
+          playwright install-deps chromium
 
       - name: Run Idol Catalog Scraper
         run: |

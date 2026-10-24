@@ -4,6 +4,7 @@ Combines Playwright session warmup, lazy-scroll rendering, authentic group signa
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
 Deep pagination support with automatic early-exit and date preservation.
 Includes embedded false-positive and boyband negative filters.
+Optimized with incremental early-stopping to conserve GitHub Actions runner minutes.
 """
 
 import json
@@ -20,8 +21,13 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-DEFAULT_PAGES_ALL = 200
+# Automated weekly runs check the newest 5 pages (captures ~100 newest items/pre-orders per query).
+# Targeted manual runs default to deep sweeps of 200 pages.
+DEFAULT_PAGES_ALL = 5
 DEFAULT_PAGES_TARGETED = 200
+
+# Number of consecutive known, non-preorder items to encounter before stopping query paging
+CONSECUTIVE_EXISTING_STOP_THRESHOLD = 15
 
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -96,6 +102,15 @@ PROTECTED_SUBUNITS = {
     "Maki Goto", "Aya Matsuura", "Natsumi Abe", "Miki Fujimoto",
     "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!",
     "Karin Miyamoto"
+}
+
+# Legacy/disbanded groups that produce no new material.
+# Skipped during weekly automated runs unless targeted manually.
+LEGACY_ROSTER_GROUPS = {
+    "Tanpopo", "Minimoni", "W", "v-u-den", "GAM", "Taiyo to Ciscomoon",
+    "Melon Kinenbi", "Berryz Kobo", "℃-ute", "Buono!", "Country Girls",
+    "Kobushi Factory", "LoVendoR", "PINK CRES.", "Tsukishima Kirari",
+    "Not yet", "no3b", "French Kiss", "Watarirouka Hashiritai"
 }
 
 TARGET_GROUPS = [
@@ -244,7 +259,6 @@ TARGET_GROUPS = [
     # Babymetal & Amuse Roots
     ("Babymetal", "BABYMETAL", ["BABYMETAL"], ["BABYMETAL"]),
     ("Babymetal", "Sakura Gakuin", ["Sakura Gakuin", "さくら学院"], ["Sakura Gakuin", "さくら学院", "BABYMETAL"]),
-    ("@onefive", "@onefive", ["@onefive", "ワンファイブ"], ["@onefive", "onefive", "ワンファイブ"]),
 ]
 
 def load_catalog():
@@ -606,9 +620,10 @@ def dismiss_popups(page):
 def sanitize_query_for_cdjapan(query_str):
     return query_str.replace("/", " ").strip()
 
-def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
+def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages, catalog_ref):
     results = []
     seen_query_pids = set()
+    consecutive_known_count = 0
     is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
     sanitized_target = target_query_or_url if is_direct_person else sanitize_query_for_cdjapan(target_query_or_url)
     
@@ -691,27 +706,47 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
         results.extend(extracted_on_page)
 
+        # Smart Incremental Early-Stopping Logic
+        # CDJapan queries are ordered by newest release date first (reldate_desc).
+        # If we see 15 consecutive known, non-preorder releases, all subsequent items
+        # on deeper pages are older catalog releases already verified in our database.
+        for it in extracted_on_page:
+            pid = it["id"]
+            if pid in catalog_ref and catalog_ref[pid].get("availability") != "preorder":
+                consecutive_known_count += 1
+            else:
+                consecutive_known_count = 0
+
+        if consecutive_known_count >= CONSECUTIVE_EXISTING_STOP_THRESHOLD:
+            print(f"   ⚡ [Early-Stop] Encountered {consecutive_known_count} consecutive known releases. Catalog up to date.", flush=True)
+            break
+
         time.sleep(random.uniform(0.8, 1.4))
 
     return results
 
-def get_active_targets():
+def get_active_targets(is_targeted_run):
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
-    if not raw_filter or raw_filter.lower() == "all groups":
-        return TARGET_GROUPS
 
-    if "updated 3 groups" in raw_filter.lower():
-        target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
-        return [g for g in TARGET_GROUPS if g[1] in target_names]
+    if raw_filter and raw_filter.lower() != "all groups":
+        if "updated 3 groups" in raw_filter.lower():
+            target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
+            return [g for g in TARGET_GROUPS if g[1] in target_names]
 
-    if "angerme" in raw_filter.lower() or "s/mileage" in raw_filter.lower():
-        return [g for g in TARGET_GROUPS if g[1] == "ANGERME"]
+        if "angerme" in raw_filter.lower() or "s/mileage" in raw_filter.lower():
+            return [g for g in TARGET_GROUPS if g[1] == "ANGERME"]
 
-    if "sakurazaka" in raw_filter.lower() or "keyakizaka" in raw_filter.lower():
-        return [g for g in TARGET_GROUPS if g[1] == "Sakurazaka46"]
+        if "sakurazaka" in raw_filter.lower() or "keyakizaka" in raw_filter.lower():
+            return [g for g in TARGET_GROUPS if g[1] == "Sakurazaka46"]
 
-    matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
-    return matched if matched else TARGET_GROUPS
+        matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
+        return matched if matched else TARGET_GROUPS
+
+    # If running an automated sweep without specific target, skip inactive/disbanded groups
+    if not is_targeted_run:
+        return [g for g in TARGET_GROUPS if g[1] not in LEGACY_ROSTER_GROUPS]
+
+    return TARGET_GROUPS
 
 def get_target_page_depth(is_targeted_run):
     env_depth = os.environ.get("PAGES_PER_TARGET", "").strip()
@@ -722,14 +757,15 @@ def get_target_page_depth(is_targeted_run):
 def main():
     catalog = load_catalog()
     initial_count = len(catalog)
-    print(f"Starting Deep Catalog Sync. Current active items: {initial_count}", flush=True)
+    print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
-    active_groups = get_active_targets()
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
     is_targeted = bool(raw_filter and raw_filter.lower() != "all groups")
+    active_groups = get_active_targets(is_targeted)
     page_depth = get_target_page_depth(is_targeted)
 
-    print(f"Active Filter: Running {len(active_groups)} group(s) with depth limit of {page_depth} pages per query.", flush=True)
+    run_mode = "Targeted Manual Deep Scrape" if is_targeted else "Automated Incremental Sweep"
+    print(f"Run Mode: [{run_mode}] | Groups: {len(active_groups)} | Max Depth: {page_depth} pages/query", flush=True)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -769,7 +805,7 @@ def main():
             try:
                 for target_q in targets:
                     items = execute_artist_search(
-                        target_page, cat, artist, target_q, keywords, max_pages=page_depth
+                        target_page, cat, artist, target_q, keywords, max_pages=page_depth, catalog_ref=catalog
                     )
                     for it in items:
                         pid = it["id"]
@@ -783,7 +819,6 @@ def main():
                         new_total += 1
                         catalog[pid] = it
                     else:
-                        # Protect specific subunits from being overwritten by parent queries
                         existing_artist = str(catalog[pid].get("artist", "")).strip()
                         if existing_artist in PROTECTED_SUBUNITS and it["artist"] not in PROTECTED_SUBUNITS:
                             it["artist"] = existing_artist
@@ -805,7 +840,7 @@ def main():
             finally:
                 target_page.close()
 
-            time.sleep(random.uniform(1.0, 2.0))
+            time.sleep(random.uniform(0.8, 1.6))
 
         browser.close()
 
@@ -824,7 +859,7 @@ def main():
 
     final_count = len(catalog)
     print(f"\n==========================================", flush=True)
-    print(f"Deep Sync Complete! Added {new_total} new releases.", flush=True)
+    print(f"Sync Complete! Added {new_total} new releases.", flush=True)
     print(f"Total live catalog items: {final_count}", flush=True)
     print(f"==========================================", flush=True)
 

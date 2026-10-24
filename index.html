@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth layout-desktop dark">
 <head>
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer">
@@ -34,8 +34,8 @@
     })();
   </script>
 
-  <title>IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory</title>
-  <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography & CDJapan Partner Directory">
+  <title>IdolJapan.store — Official Japanese Idol Discography &amp; CDJapan Partner Directory</title>
+  <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography &amp; CDJapan Partner Directory">
   <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. Filter by CDs, DVDs, Blu-rays, Photobooks, and Collectibles.">
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#e11d48">
@@ -53,7 +53,7 @@
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idoljapan.store/">
-  <meta property="og:title" content="IdolJapan.store — Japanese Idol Discography & Release Guide">
+  <meta property="og:title" content="IdolJapan.store — Japanese Idol Discography &amp; Release Guide">
   <meta property="og:description" content="Independent Japanese female idol discography index. All purchases securely fulfilled directly by official retailer CDJapan (Tokyo).">
   <meta property="og:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
 
@@ -179,7 +179,7 @@
         <button 
           id="wishlist-toggle-btn"
           onclick="toggleHaulDrawer()" 
-          title="Open Saved Wishlist & Haul Shipping Calculator" 
+          title="Open Saved Wishlist &amp; Haul Shipping Calculator" 
           class="desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-2.5 py-1 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-xs text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i id="wishlist-btn-icon" class="fa-regular fa-heart text-amber-300 text-xs"></i>
@@ -212,7 +212,7 @@
         </div>
 
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-7 h-7 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-xs cursor-pointer">
-          <i id="theme-icon" class="fa-solid fa-moon text-rose-100 dark:text-rose-400 text-xs"></i>
+          <i id="theme-icon" class="fa-solid fa-sun text-amber-200 text-xs"></i>
         </button>
 
         <a 
@@ -220,7 +220,7 @@
           target="_blank" 
           rel="noopener noreferrer" 
           aria-label="Follow IdolJapan.store on X" 
-          title="Official X Profile: @IdolJapanStore"
+          title="Official X Profile: @IdolJapanStore" 
           class="desktop-only-header-btn bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold w-7 h-7 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center justify-center shadow-xs text-rose-100 dark:text-rose-400 hover:text-white"
         >
           <i class="fa-brands fa-x-twitter text-xs"></i>
@@ -243,93 +243,53 @@
 
   <!-- TOP-LEVEL CONSOLIDATED SINGLE-ROW NAVIGATION (8 Tabs) -->
   <div 
-    class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30"
+    class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30" 
     onmouseleave="handleTopNavLeave()"
   >
     <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80">
       <div class="max-w-7xl mx-auto px-4 py-2">
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5" id="filter-bar">
           
-          <button 
-            onclick="setFilter('All')" 
-            onmouseenter="handleTopNavHover('All')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" 
-            data-cat="All"
-          >
+          <button onclick="setFilter('All')" onmouseenter="handleTopNavHover('All')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" data-cat="All">
             <span class="truncate">All Groups</span>
             <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('Hello! Project & Up-Front')" 
-            onmouseenter="handleTopNavHover('Hello! Project & Up-Front')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Hello! Project & Up-Front"
-          >
+          <button onclick="setFilter('Hello! Project &amp; Up-Front')" onmouseenter="handleTopNavHover('Hello! Project &amp; Up-Front')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Hello! Project &amp; Up-Front">
             <span class="truncate hidden xl:inline">H!P &amp; Up-Front</span>
             <span class="truncate xl:hidden">H!P / Up-Front</span>
-            <span id="badge-cat-Hello! Project & Up-Front" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+            <span id="badge-cat-Hello! Project &amp; Up-Front" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('AKB48 Group')" 
-            onmouseenter="handleTopNavHover('AKB48 Group')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="AKB48 Group"
-          >
+          <button onclick="setFilter('AKB48 Group')" onmouseenter="handleTopNavHover('AKB48 Group')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="AKB48 Group">
             <span class="truncate">AKB48 Groups</span>
             <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('Sakamichi Series')" 
-            onmouseenter="handleTopNavHover('Sakamichi Series')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Sakamichi Series"
-          >
+          <button onclick="setFilter('Sakamichi Series')" onmouseenter="handleTopNavHover('Sakamichi Series')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Sakamichi Series">
             <span class="truncate">Sakamichi 46</span>
             <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('Stardust Planet')" 
-            onmouseenter="handleTopNavHover('Stardust Planet')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Stardust Planet"
-          >
+          <button onclick="setFilter('Stardust Planet')" onmouseenter="handleTopNavHover('Stardust Planet')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Stardust Planet">
             <span class="truncate">Stardust Planet</span>
             <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('=LOVE / Sister Groups')" 
-            onmouseenter="handleTopNavHover('=LOVE / Sister Groups')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="=LOVE / Sister Groups"
-          >
+          <button onclick="setFilter('=LOVE / Sister Groups')" onmouseenter="handleTopNavHover('=LOVE / Sister Groups')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="=LOVE / Sister Groups">
             <span class="truncate">=LOVE &amp; Sisters</span>
             <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('KAWAII LAB.')" 
-            onmouseenter="handleTopNavHover('KAWAII LAB.')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="KAWAII LAB."
-          >
+          <button onclick="setFilter('KAWAII LAB.')" onmouseenter="handleTopNavHover('KAWAII LAB.')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="KAWAII LAB.">
             <span class="truncate">KAWAII LAB.</span>
             <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button 
-            onclick="setFilter('Modern & Alternative')" 
-            onmouseenter="handleTopNavHover('Modern & Alternative')"
-            class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" 
-            data-cat="Modern & Alternative"
-          >
+          <button onclick="setFilter('Modern &amp; Alternative')" onmouseenter="handleTopNavHover('Modern &amp; Alternative')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Modern &amp; Alternative">
             <span class="truncate hidden xl:inline">Modern &amp; Alt</span>
             <span class="truncate xl:hidden">Modern/Babymetal</span>
-            <span id="badge-cat-Modern & Alternative" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
+            <span id="badge-cat-Modern &amp; Alternative" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
         </div>
@@ -352,8 +312,8 @@
     <!-- HOVER-LAUNCHED LOCAL-LEVEL MEGA-MENU FLYOUT -->
     <div 
       id="mega-menu-flyout" 
-      class="hidden absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50"
-      onmouseenter="handleMegaMenuEnter()"
+      class="absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50 hidden" 
+      onmouseenter="handleMegaMenuEnter()" 
       onmouseleave="handleMegaMenuLeave()"
     >
       <div class="max-w-7xl mx-auto px-6 py-5">
@@ -361,30 +321,25 @@
           <div class="flex items-center gap-2.5">
             <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-sm"></i>
             <span class="text-xs font-black uppercase tracking-wider text-stone-800 dark:text-white" id="mega-menu-franchise-title">
-              Hello! Project &amp; Up-Front Discography
+              Franchise Units &amp; Soloists
             </span>
             <span class="text-[11px] text-stone-400 dark:text-slate-500">• Select a group, soloist, or subunit to filter releases</span>
           </div>
           <div class="flex items-center gap-2">
             <button 
-              id="mega-menu-view-all-btn"
+              id="mega-menu-view-all-btn" 
               onclick="setFilter(currentHoverCat); closeMegaMenu();" 
               class="px-3 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 font-bold text-xs transition cursor-pointer"
             >
               View All Franchise Releases
             </button>
-            <button 
-              onclick="closeMegaMenu()" 
-              class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer"
-              title="Close menu (Esc)"
-            >
+            <button onclick="closeMegaMenu()" class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer" title="Close menu (Esc)">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
         </div>
 
-        <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs">
-        </div>
+        <div id="mega-menu-columns-container"></div>
       </div>
     </div>
 
@@ -438,7 +393,7 @@
             max="20000" 
             step="500" 
             value="20000" 
-            oninput="onMaxPriceChange(this.value)"
+            oninput="onMaxPriceChange(this.value)" 
             class="w-14 accent-rose-600 cursor-pointer"
           />
           <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-9 text-right text-[10px]">Any</span>
@@ -446,13 +401,13 @@
 
         <!-- Availability Segmented Control -->
         <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-          <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-xs cursor-pointer">All</button>
-          <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items & Active Pre-orders" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">Active</button>
-          <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white flex items-center gap-1 cursor-pointer">
+          <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs font-bold cursor-pointer">All</button>
+          <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items &amp; Active Pre-orders" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">Active</button>
+          <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">
             <i class="fa-solid fa-clock text-[8px]"></i> Pre-Orders
           </button>
-          <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">In Stock</button>
-          <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP</button>
+          <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">In Stock</button>
+          <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">OOP</button>
         </div>
 
         <!-- GLOBAL YEAR DROPDOWN -->
@@ -469,7 +424,11 @@
 
         <!-- Sort Select -->
         <div class="hidden sm:flex items-center gap-1">
-          <select id="sort-select" onchange="changeSort(this.value)" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer">
+          <select 
+            id="sort-select" 
+            onchange="changeSort(this.value)" 
+            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
+          >
             <option value="newest">Newest Date</option>
             <option value="oldest">Oldest Date</option>
             <option value="price-asc">Price: Low to High</option>
@@ -541,7 +500,6 @@
             id="direct-page-input" 
             type="number" 
             min="1" 
-            max="1" 
             value="1" 
             onchange="goToPage(parseInt(this.value, 10))" 
             onkeydown="if(event.key==='Enter') goToPage(parseInt(this.value, 10))"
@@ -569,7 +527,7 @@
     
     <div id="empty-state" class="hidden text-center py-16 text-stone-400 dark:text-slate-500">
       <i class="fa-regular fa-face-frown text-4xl mb-3 text-rose-400"></i>
-      <p class="text-base font-semibold" id="empty-state-message">No idol releases match this filter selection.</p>
+      <p class="text-base font-semibold" id="empty-state-message">No idol releases match your specific combination of filters.</p>
       <div id="empty-state-buttons" class="mt-4 flex flex-wrap items-center justify-center gap-2">
         <button onclick="resetAllFilters()" class="px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
       </div>
@@ -685,7 +643,7 @@
               max="20000" 
               step="500" 
               value="20000" 
-              oninput="onMaxPriceChange(this.value); document.getElementById('mobile-drawer-price-label').innerText = this.value >= 20000 ? 'Any' : '≤ ¥' + parseInt(this.value, 10).toLocaleString();"
+              oninput="onMaxPriceChange(this.value); document.getElementById('mobile-drawer-price-label').innerText = this.value >= 20000 ? 'Any' : '≤ ¥' + parseInt(this.value, 10).toLocaleString();" 
               class="w-full accent-rose-600 cursor-pointer"
             />
           </div>
@@ -729,7 +687,7 @@
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
       <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl border-l border-stone-200 dark:border-slate-800 flex flex-col">
         <div class="p-4 bg-rose-600 text-white flex items-center justify-between shadow">
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2.5">
             <i class="fa-solid fa-calendar-check text-amber-300 text-lg"></i>
             <div>
               <h3 class="font-black text-sm">Tokyo Pre-Order Street Dates</h3>
@@ -861,7 +819,7 @@
           </div>
           <div id="qr-box-btc" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k" alt="Bitcoin QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k" alt="Bitcoin QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -886,7 +844,7 @@
           </div>
           <div id="qr-box-bch" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq" alt="Bitcoin Cash QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq" alt="Bitcoin Cash QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -911,7 +869,7 @@
           </div>
           <div id="qr-box-evm" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0xADF4947Ad75844143E814bD8DB78a1121Ac293E3" alt="EVM Multi-Chain QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0xADF4947Ad75844143E814bD8DB78a1121Ac293E3" alt="EVM Multi-Chain QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -936,7 +894,7 @@
           </div>
           <div id="qr-box-sol" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL" alt="Solana QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL" alt="Solana QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -961,7 +919,7 @@
           </div>
           <div id="qr-box-apt" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15" alt="Aptos QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15" alt="Aptos QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -986,7 +944,7 @@
           </div>
           <div id="qr-box-sui" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
             <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" title="Click to copy address">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2" alt="Sui QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2" alt="Sui QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy">
             </div>
           </div>
         </div>
@@ -1101,7 +1059,6 @@
     let searchQuery = '';
     let currentSort = 'newest';
     let currentCurrency = 'USD';
-    let isWishlistView = false;
     let exchangeRates = { USD: 1.0, JPY: 152.4, EUR: 0.92, GBP: 0.79, CAD: 1.38, AUD: 1.51, TWD: 32.1, HKD: 7.78, KRW: 1375.0, SGD: 1.32 };
     let currentModalProduct = null;
 
@@ -1343,7 +1300,6 @@
       window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
-    // Strip redundant leading media keywords from display titles
     function stripTitlePrefixes(rawTitle) {
       if (!rawTitle) return '';
       return String(rawTitle)
@@ -1351,19 +1307,16 @@
         .trim();
     }
 
-    // Extract clean variant label for edition select
     function extractVariantLabel(vTitle, baseTitle) {
       if (!vTitle) return 'Standard Edition';
       const cleanV = stripTitlePrefixes(vTitle);
       const cleanBase = stripTitlePrefixes(baseTitle);
 
-      // Check bracketed edition specifications
       const bracketMatches = cleanV.match(/\[(.*?)\]|\((.*?)\)|【(.*?)】/g);
       if (bracketMatches && bracketMatches.length > 0) {
         return bracketMatches.join(' ');
       }
 
-      // If no brackets, strip base title prefix
       if (cleanBase && cleanV.toLowerCase().startsWith(cleanBase.toLowerCase())) {
         const diff = cleanV.slice(cleanBase.length).trim();
         if (diff) return diff;
@@ -1469,7 +1422,6 @@
       return { count: items.length, weight: totalWeightGrams, jpy: totalJpy, bracket, progressPct, items };
     }
 
-    // Toggle Slide-over Haul Drawer
     function toggleHaulDrawer() {
       const drawer = document.getElementById('haul-drawer');
       if (!drawer) return;
@@ -2082,13 +2034,16 @@
       }
     }
 
+    // High-precision base title clustering for multi-edition bundling
     function getCleanBaseTitle(title) {
       if (!title) return '';
       return stripTitlePrefixes(title)
-        .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
-        .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+)\)/gi, '')
+        .replace(/\[(?:Limited|Regular|Complete|Special|First Press|Cardboard Sleeve|w\/|CD|DVD|Blu-ray).*?\]/gi, '')
+        .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+|Bundled Set.*?)\)/gi, '')
         .replace(/【.*?】/g, '')
+        .replace(/(?:DAY\s*\d+|Version\s*[A-Z]|Type\s*[A-Z])/gi, '')
         .replace(/(?:\s*[\(\[【]?\s*(?:¥\s*[\d,]+|[\d,]+\s*(?:yen|JPY))\s*(?:\([^)]*\)|（[^）]*）|tax\s*(?:incl|included|\.|\s*in)?|税込)?\s*[\)\]】]?)+$/gi, '')
+        .replace(/\s+/g, ' ')
         .trim();
     }
 
@@ -2459,6 +2414,7 @@
       closeMegaMenu();
     }
 
+    // Dynamic grid layout for balanced Mega-Menu columns
     function renderMegaMenu(cat) {
       const franchiseTitle = document.getElementById('mega-menu-franchise-title');
       const columnsContainer = document.getElementById('mega-menu-columns-container');
@@ -2477,8 +2433,14 @@
       const categories = MEGA_MENU_CATEGORIES[cat];
       const allUnits = FRANCHISE_ARTISTS[cat] || [];
 
+      // Determine proportional grid layout
+      let gridClass = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs";
       if (categories && categories.length > 0) {
-        columnsContainer.className = `grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${categories.length} gap-4 text-xs`;
+        if (categories.length === 5) gridClass = "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs";
+        else if (categories.length === 3) gridClass = "grid grid-cols-1 md:grid-cols-3 gap-4 text-xs";
+        else if (categories.length <= 2) gridClass = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs";
+        
+        columnsContainer.className = gridClass;
         let html = '';
 
         categories.forEach(sec => {
@@ -2568,7 +2530,6 @@
       }
     }
 
-    // Unlocked Global Year Filter
     function updateYearJumpBar() {
       const select = document.getElementById('year-select');
       if (!select) return;
@@ -2576,7 +2537,8 @@
       const yearsSet = new Set();
       allProducts.forEach(it => {
         const yr = getItemYear(it);
-        if (yr >= 1998 && yr <= 2030) yearsSet.add(yr);
+        // Valid contemporary idol discography window
+        if (yr >= 1998 && yr <= 2027) yearsSet.add(yr);
       });
 
       const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
@@ -2668,7 +2630,7 @@
               <button onclick="quickSearch('Sakurazaka46')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">⚡ Sakurazaka46</button>
               <button onclick="quickSearch('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💖 FRUITS ZIPPER</button>
               <button onclick="quickSearch('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🦊 BABYMETAL</button>
-              <button onclick="setAvailability('preorder')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 font-bold transition">💿 Pre-Orders 2026/2027</button>
+              <button onclick="setAvailability('preorder')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 font-bold transition">💿 Pre-Orders</button>
             </div>
           </div>
         `;
@@ -3138,7 +3100,6 @@
       }
     }
 
-    // Fully Synchronized Clustered Edition Switcher
     function switchClusteredEdition(clusterIndex, newProductId, event) {
       if (event) event.stopPropagation();
       const variant = allProducts.find(x => x.id === newProductId);
@@ -3238,7 +3199,7 @@
         const cleanT = stripTitlePrefixes(item.title);
         const matchesSearch = !searchQuery || 
           matchesFuzzyQuery(item.title, searchQuery) || 
-          matchesFuzzyQuery(cleanT, searchQuery) ||
+          matchesFuzzyQuery(cleanT, searchQuery) || 
           matchesFuzzyQuery(item.artist, searchQuery) ||
           (item.id && String(item.id).toLowerCase().includes(searchQuery));
 
@@ -3308,10 +3269,10 @@
           if (emptyButtons) {
             let btnsHtml = `<button onclick="resetAllFilters()" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>`;
             if (activeFormat !== 'All') {
-              btnsHtml += `<button onclick="setFormat('All')" class="px-3 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Format (${activeFormat})</button>`;
+              btnsHtml += `<button onclick="setFormat('All')" class="px-3.5 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Format (${activeFormat})</button>`;
             }
             if (activeYear !== 'All') {
-              btnsHtml += `<button onclick="setYearFilter('All')" class="px-3 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Year (${activeYear})</button>`;
+              btnsHtml += `<button onclick="setYearFilter('All')" class="px-3.5 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Year (${activeYear})</button>`;
             }
             emptyButtons.innerHTML = btnsHtml;
           }
@@ -3353,7 +3314,6 @@
         else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
-        // Uncropped visual presentation for tall items
         const isVerticalItem = (itemFmt === 'Book' || itemFmt === 'Collectable');
         const imgFitClass = isVerticalItem ? 'object-contain p-1.5' : 'object-cover';
 

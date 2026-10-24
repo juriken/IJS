@@ -153,6 +153,7 @@
             placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU, 宮本佳林)..." 
             class="w-full pl-9 pr-8 py-1.5 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-xs shadow-inner border border-transparent dark:border-slate-700"
             autocomplete="off"
+            onfocus="showSearchSuggestions()"
           />
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-stone-400 dark:text-slate-400 text-xs"></i>
           <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-2.5 top-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 text-xs cursor-pointer">
@@ -164,7 +165,7 @@
         </div>
       </div>
 
-      <!-- Controls: Calendar, Wishlist, Currency, Theme -->
+      <!-- Controls: Calendar, Wishlist & Haul Drawer, Currency, Theme -->
       <div class="flex items-center gap-1.5 order-2 sm:order-3">
         <button 
           onclick="toggleCalendarDrawer()" 
@@ -177,12 +178,12 @@
 
         <button 
           id="wishlist-toggle-btn"
-          onclick="toggleWishlistView()" 
-          title="View Saved Wishlist & Haul Calculator" 
+          onclick="toggleHaulDrawer()" 
+          title="Open Saved Wishlist & Haul Shipping Calculator" 
           class="desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-2.5 py-1 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-xs text-rose-100 dark:text-rose-400 cursor-pointer"
         >
           <i id="wishlist-btn-icon" class="fa-regular fa-heart text-amber-300 text-xs"></i>
-          <span class="hidden md:inline text-[11px]">Wishlist</span>
+          <span class="hidden md:inline text-[11px]">Haul</span>
           <span id="wishlist-count-badge" class="bg-white text-rose-700 dark:bg-rose-600 dark:text-white rounded-full px-1.5 py-0.2 text-[9px] font-black">0</span>
         </button>
 
@@ -249,7 +250,6 @@
       <div class="max-w-7xl mx-auto px-4 py-2">
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5" id="filter-bar">
           
-          <!-- Tab 1: All Groups -->
           <button 
             onclick="setFilter('All')" 
             onmouseenter="handleTopNavHover('All')"
@@ -260,7 +260,6 @@
             <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 2: Hello! Project & Up-Front (Merged) -->
           <button 
             onclick="setFilter('Hello! Project & Up-Front')" 
             onmouseenter="handleTopNavHover('Hello! Project & Up-Front')"
@@ -272,7 +271,6 @@
             <span id="badge-cat-Hello! Project & Up-Front" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 3: AKB48 Group -->
           <button 
             onclick="setFilter('AKB48 Group')" 
             onmouseenter="handleTopNavHover('AKB48 Group')"
@@ -283,7 +281,6 @@
             <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 4: Sakamichi Series & Rivals -->
           <button 
             onclick="setFilter('Sakamichi Series')" 
             onmouseenter="handleTopNavHover('Sakamichi Series')"
@@ -294,7 +291,6 @@
             <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 5: Stardust Planet -->
           <button 
             onclick="setFilter('Stardust Planet')" 
             onmouseenter="handleTopNavHover('Stardust Planet')"
@@ -305,7 +301,6 @@
             <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 6: =LOVE & Sisters -->
           <button 
             onclick="setFilter('=LOVE / Sister Groups')" 
             onmouseenter="handleTopNavHover('=LOVE / Sister Groups')"
@@ -316,7 +311,6 @@
             <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 7: KAWAII LAB. -->
           <button 
             onclick="setFilter('KAWAII LAB.')" 
             onmouseenter="handleTopNavHover('KAWAII LAB.')"
@@ -327,7 +321,6 @@
             <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <!-- Tab 8: Modern & Alternative -->
           <button 
             onclick="setFilter('Modern & Alternative')" 
             onmouseenter="handleTopNavHover('Modern & Alternative')"
@@ -343,7 +336,7 @@
       </div>
     </nav>
 
-    <!-- Active Filters Breadcrumb Banner (Shows active artist or active year chips) -->
+    <!-- Active Filters Breadcrumb Banner -->
     <div id="active-artist-banner" class="hidden bg-stone-50 dark:bg-slate-900/80 border-b border-stone-100 dark:border-slate-800/80 py-1.5 px-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
         <div class="flex items-center gap-2">
@@ -390,7 +383,6 @@
           </div>
         </div>
 
-        <!-- Dynamic Multi-Column Grid -->
         <div id="mega-menu-columns-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs">
         </div>
       </div>
@@ -398,7 +390,7 @@
 
   </div>
 
-  <!-- Tier 2 Navigation: Format, Availability, Controls, Year Dropdown & Sort -->
+  <!-- Tier 2 Navigation: Format, Availability, Controls, Global Year Dropdown & Sort -->
   <div id="desktop-nav-tier2" class="bg-stone-50/70 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2.5">
       
@@ -463,8 +455,8 @@
           <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer">OOP</button>
         </div>
 
-        <!-- COMPACT YEAR DROPDOWN (Replaces long button train) -->
-        <div id="year-jump-bar-container" class="hidden items-center gap-1 text-[11px] font-semibold shrink-0">
+        <!-- GLOBAL YEAR DROPDOWN -->
+        <div id="year-jump-bar-container" class="flex items-center gap-1 text-[11px] font-semibold shrink-0">
           <label for="year-select" class="text-stone-500 dark:text-slate-400">Year:</label>
           <select 
             id="year-select" 
@@ -504,7 +496,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 text-[11px]">
       <div class="flex items-center gap-2 truncate">
         <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400 text-xs shrink-0"></i>
-        <span class="truncate"><strong>Official Retailer Notice:</strong> Catalog index only. Orders fulfilled directly by <strong>CDJapan (Tokyo)</strong> with official chart reporting.</span>
+        <span class="truncate"><strong>Official Retailer Notice:</strong> Direct discography index. Orders fulfilled directly by <strong>CDJapan (Tokyo)</strong> with official chart reporting.</span>
       </div>
       <div class="flex items-center gap-3 shrink-0">
         <a href="./about.html" class="underline font-bold text-amber-800 dark:text-amber-300 hover:text-rose-600 text-[10px] whitespace-nowrap">Learn More →</a>
@@ -539,22 +531,23 @@
         <div class="font-medium text-[11px]" id="page-range-info">
           Loading catalog releases...
         </div>
-        <div id="wishlist-actions-group" class="hidden items-center gap-1.5">
-          <button onclick="shareWishlistUrl()" title="Copy Shareable Wishlist Link" class="px-2 py-0.5 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 text-[10px] cursor-pointer">
-            <i class="fa-solid fa-link text-rose-600"></i> Share Link
-          </button>
-          <button id="wishlist-export-btn" onclick="exportWishlistHaul()" title="Export Haul to Text File" class="px-2 py-0.5 rounded-md bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 font-bold border border-stone-200 dark:border-slate-700 transition flex items-center gap-1 text-[10px] cursor-pointer">
-            <i class="fa-solid fa-file-arrow-down text-rose-600"></i> Export Text
-          </button>
-        </div>
       </div>
 
       <div class="flex items-center gap-2.5 ml-auto text-[11px]">
-        <div class="flex items-center gap-1">
-          <label for="direct-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Page:</label>
-          <select id="direct-page-select" onchange="goToPage(parseInt(this.value, 10))" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-md text-[11px] font-semibold focus:outline-none cursor-pointer">
-            <option value="1">1</option>
-          </select>
+        <!-- Direct Numeric Page Jump -->
+        <div class="flex items-center gap-1.5">
+          <label for="direct-page-input" class="text-stone-500 dark:text-slate-400 font-semibold">Page:</label>
+          <input 
+            id="direct-page-input" 
+            type="number" 
+            min="1" 
+            max="1" 
+            value="1" 
+            onchange="goToPage(parseInt(this.value, 10))" 
+            onkeydown="if(event.key==='Enter') goToPage(parseInt(this.value, 10))"
+            class="w-12 py-0.5 px-1.5 rounded-md border border-stone-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-stone-800 dark:text-slate-100 font-bold text-center text-[11px] focus:outline-none focus:ring-1 focus:ring-rose-500 cursor-pointer"
+          />
+          <span id="direct-page-total-label" class="text-stone-400 dark:text-slate-500 font-medium">of 1</span>
         </div>
 
         <div class="flex items-center gap-1">
@@ -575,14 +568,76 @@
     <div id="product-container" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     
     <div id="empty-state" class="hidden text-center py-16 text-stone-400 dark:text-slate-500">
-      <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
-      <p class="text-base font-semibold" id="empty-state-message">No idol merchandise found matching this filter criteria.</p>
-      <button onclick="resetAllFilters()" class="mt-3 px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
+      <i class="fa-regular fa-face-frown text-4xl mb-3 text-rose-400"></i>
+      <p class="text-base font-semibold" id="empty-state-message">No idol releases match this filter selection.</p>
+      <div id="empty-state-buttons" class="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <button onclick="resetAllFilters()" class="px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>
+      </div>
     </div>
 
     <!-- Bottom Pagination -->
     <nav id="pagination-bottom" class="mt-8 flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-xs font-semibold" aria-label="Catalog Page Navigation"></nav>
   </main>
+
+  <!-- Interactive Slide-Over Wishlist & Haul Calculator Drawer -->
+  <div id="haul-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeHaulDrawerOnBackdrop(event)">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl border-l border-stone-200 dark:border-slate-800 flex flex-col">
+        <div class="p-4 bg-gradient-to-r from-rose-600 to-rose-700 text-white flex items-center justify-between shadow">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+              <i class="fa-solid fa-box-open text-amber-300 text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-sm">Wishlist &amp; Haul Calculator</h3>
+              <p class="text-[11px] text-rose-100">Estimated Tokyo courier weights &amp; consolidation</p>
+            </div>
+          </div>
+          <button onclick="toggleHaulDrawer()" class="text-white hover:text-amber-200 text-lg p-1 cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Shipping Weight & Bracket Metric Box -->
+        <div class="p-3.5 bg-stone-50 dark:bg-slate-800/80 border-b border-stone-200 dark:border-slate-700 space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-stone-500 dark:text-slate-400 font-semibold">Total Saved Items:</span>
+            <span id="haul-items-count" class="font-black text-stone-900 dark:text-white">0</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-stone-500 dark:text-slate-400 font-semibold">Est. Parcel Weight:</span>
+            <span id="haul-weight-total" class="font-black text-rose-600 dark:text-rose-400 font-mono">0g</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-stone-500 dark:text-slate-400 font-semibold">Freight Tier (DHL/EMS):</span>
+            <span id="haul-bracket-tier" class="font-bold text-amber-600 dark:text-amber-400">≤ 500g</span>
+          </div>
+
+          <!-- Progress Bar to Next Freight Bracket -->
+          <div class="w-full bg-stone-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mt-1">
+            <div id="haul-weight-progress" class="bg-rose-600 h-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Haul Item List -->
+        <div id="haul-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs divide-y divide-stone-100 dark:divide-slate-800">
+        </div>
+
+        <!-- Bottom Action Bar -->
+        <div class="p-3 bg-stone-100 dark:bg-slate-800 border-t border-stone-200 dark:border-slate-700 flex flex-wrap gap-2">
+          <button onclick="shareWishlistUrl()" class="flex-1 py-2 px-3 rounded-xl bg-white dark:bg-slate-700 font-bold border border-stone-300 dark:border-slate-600 text-stone-700 dark:text-white hover:bg-stone-50 flex items-center justify-center gap-1.5 transition cursor-pointer">
+            <i class="fa-solid fa-share-nodes text-rose-600 text-xs"></i>
+            <span>Share Link</span>
+          </button>
+          <button onclick="exportWishlistHaul()" class="flex-1 py-2 px-3 rounded-xl bg-white dark:bg-slate-700 font-bold border border-stone-300 dark:border-slate-600 text-stone-700 dark:text-white hover:bg-stone-50 flex items-center justify-center gap-1.5 transition cursor-pointer">
+            <i class="fa-solid fa-file-arrow-down text-rose-600 text-xs"></i>
+            <span>Export .TXT</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Mobile Off-Canvas Filter Drawer -->
   <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
@@ -656,9 +711,9 @@
       <span>Search</span>
     </button>
 
-    <button onclick="toggleWishlistView()" class="relative flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
+    <button onclick="toggleHaulDrawer()" class="relative flex flex-col items-center text-stone-600 dark:text-slate-400 hover:text-rose-600 text-[10px] font-bold cursor-pointer">
       <i class="fa-solid fa-heart text-sm mb-0.5 text-rose-500"></i>
-      <span>Wishlist</span>
+      <span>Haul</span>
       <span id="mobile-bottom-wishlist-badge" class="absolute -top-1 right-2 bg-rose-600 text-white rounded-full px-1.5 py-0.2 text-[8px] font-black">0</span>
     </button>
 
@@ -716,8 +771,8 @@
         </button>
       </div>
 
-      <div class="w-full sm:w-1/2 aspect-square bg-stone-100 dark:bg-slate-800 rounded-xl overflow-hidden relative shrink-0">
-        <img id="modal-img" src="" alt="" class="w-full h-full object-cover" onerror="onImgLoadError(this)" />
+      <div class="w-full sm:w-1/2 aspect-square bg-stone-100 dark:bg-slate-800 rounded-xl overflow-hidden relative shrink-0 flex items-center justify-center p-2">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-contain" onerror="onImgLoadError(this)" />
         <span id="modal-format-badge" class="absolute bottom-2.5 left-2.5 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CD</span>
         <span id="modal-preorder-badge" class="hidden absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded shadow flex items-center gap-1">
           <i class="fa-solid fa-clock"></i> PRE-ORDER
@@ -743,7 +798,7 @@
 
         <div class="space-y-3 pt-3 border-t border-stone-100 dark:border-slate-800">
           <div>
-            <span class="block text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-wider">CDJapan Tokyo Price</span>
+            <span class="block text-[10px] text-stone-400 dark:text-slate-500 uppercase tracking-wider">CDJapan Tokyo Retail (Oricon Reported)</span>
             <div id="modal-price" class="text-lg font-black text-rose-600 dark:text-rose-400">¥0</div>
           </div>
 
@@ -992,12 +1047,12 @@
       <!-- Affiliate Disclosure -->
       <div class="p-3 bg-stone-50 dark:bg-slate-950 rounded-xl border border-stone-200 dark:border-slate-800 text-stone-700 dark:text-slate-300 text-xs leading-relaxed text-left sm:text-center">
         <p class="font-semibold text-stone-900 dark:text-white mb-0.5 flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Retailer & Operating Disclosure
+          <i class="fa-solid fa-circle-info text-rose-600 dark:text-rose-400"></i> Official Retailer &amp; Operating Disclosure
         </p>
         <p class="text-[11px] text-stone-600 dark:text-slate-400">
           <strong>IdolJapan.store</strong> is an independent discography catalog. We do not collect payments, hold inventory, or process international freight.
           All purchases and shipments are fulfilled directly by 
-          <a href="https://www.cdjapan.co.jp" class="underline font-bold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300" target="_blank" rel="noopener">CDJapan</a>.
+          <a href="https://www.cdjapan.co.jp/" class="underline font-bold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300" target="_blank" rel="noopener">CDJapan</a>.
         </p>
       </div>
 
@@ -1068,7 +1123,6 @@
       october: 10, november: 11, december: 12
     };
 
-    // Consolidated Franchises with Subunits
     const FRANCHISE_ARTISTS = {
       'Hello! Project & Up-Front': [
         'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
@@ -1102,7 +1156,6 @@
       ]
     };
 
-    // Granular Groupings for Mega-Menu Multi-Column Layout
     const MEGA_MENU_CATEGORIES = {
       'Hello! Project & Up-Front': [
         {
@@ -1290,6 +1343,35 @@
       window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
+    // Strip redundant leading media keywords from display titles
+    function stripTitlePrefixes(rawTitle) {
+      if (!rawTitle) return '';
+      return String(rawTitle)
+        .replace(/^(?:Album\s+CD|Single\s+CD|Collectible|Blu-ray|DVD|BOOK|Album|Single)\s+/i, '')
+        .trim();
+    }
+
+    // Extract clean variant label for edition select
+    function extractVariantLabel(vTitle, baseTitle) {
+      if (!vTitle) return 'Standard Edition';
+      const cleanV = stripTitlePrefixes(vTitle);
+      const cleanBase = stripTitlePrefixes(baseTitle);
+
+      // Check bracketed edition specifications
+      const bracketMatches = cleanV.match(/\[(.*?)\]|\((.*?)\)|【(.*?)】/g);
+      if (bracketMatches && bracketMatches.length > 0) {
+        return bracketMatches.join(' ');
+      }
+
+      // If no brackets, strip base title prefix
+      if (cleanBase && cleanV.toLowerCase().startsWith(cleanBase.toLowerCase())) {
+        const diff = cleanV.slice(cleanBase.length).trim();
+        if (diff) return diff;
+      }
+
+      return cleanV.length > 38 ? cleanV.slice(0, 38) + '...' : cleanV;
+    }
+
     function extractEditionTags(title) {
       if (!title) return [];
       const tags = [];
@@ -1338,7 +1420,7 @@
           ics += `UID:${p.id}@idoljapan.store\n`;
           ics += `DTSTAMP:${dateStr}T090000Z\n`;
           ics += `DTSTART;VALUE=DATE:${dateStr}\n`;
-          ics += `SUMMARY:[Release] ${p.artist} - ${p.title}\n`;
+          ics += `SUMMARY:[Release] ${p.artist} - ${stripTitlePrefixes(p.title)}\n`;
           ics += `DESCRIPTION:Official Tokyo Street Date for ${p.title} (${p.id}). CDJapan Order: ${p.affiliate_url || ''}\n`;
           ics += `URL:https://idoljapan.store/?id=${p.id}\n`;
           ics += "END:VEVENT\n";
@@ -1371,32 +1453,119 @@
       });
 
       let bracket = "≤ 500g (Minimum Tier)";
-      if (totalWeightGrams > 2000) bracket = "> 2,000g (Heavy Freight Tier)";
-      else if (totalWeightGrams > 1000) bracket = "1,001g – 2,000g Tier";
-      else if (totalWeightGrams > 500) bracket = "501g – 1,000g Tier";
+      let progressPct = Math.min(100, (totalWeightGrams / 500) * 100);
 
-      return { count: items.length, weight: totalWeightGrams, jpy: totalJpy, bracket };
+      if (totalWeightGrams > 2000) {
+        bracket = "> 2,000g (Heavy Tier)";
+        progressPct = 100;
+      } else if (totalWeightGrams > 1000) {
+        bracket = "1,001g – 2,000g Tier";
+        progressPct = Math.min(100, ((totalWeightGrams - 1000) / 1000) * 100);
+      } else if (totalWeightGrams > 500) {
+        bracket = "501g – 1,000g Tier";
+        progressPct = Math.min(100, ((totalWeightGrams - 500) / 500) * 100);
+      }
+
+      return { count: items.length, weight: totalWeightGrams, jpy: totalJpy, bracket, progressPct, items };
+    }
+
+    // Toggle Slide-over Haul Drawer
+    function toggleHaulDrawer() {
+      const drawer = document.getElementById('haul-drawer');
+      if (!drawer) return;
+      const isHidden = drawer.classList.contains('hidden');
+
+      if (isHidden) {
+        populateHaulDrawer();
+        drawer.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        drawer.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function closeHaulDrawerOnBackdrop(e) {
+      if (e.target.id === 'haul-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+        toggleHaulDrawer();
+      }
+    }
+
+    function populateHaulDrawer() {
+      const container = document.getElementById('haul-drawer-list');
+      const countEl = document.getElementById('haul-items-count');
+      const weightEl = document.getElementById('haul-weight-total');
+      const tierEl = document.getElementById('haul-bracket-tier');
+      const progressEl = document.getElementById('haul-weight-progress');
+
+      if (!container) return;
+      const metrics = calculateWishlistHaulMetrics();
+
+      if (countEl) countEl.innerText = `${metrics.count} releases`;
+      if (weightEl) weightEl.innerText = `~${metrics.weight.toLocaleString()}g`;
+      if (tierEl) tierEl.innerText = metrics.bracket;
+      if (progressEl) progressEl.style.width = `${metrics.progressPct}%`;
+
+      if (metrics.count === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-stone-400 dark:text-slate-500 space-y-2">
+            <i class="fa-regular fa-heart text-4xl mb-1 text-rose-400/60"></i>
+            <p class="font-bold text-sm text-stone-700 dark:text-stone-300">Your Wishlist is Empty</p>
+            <p class="text-[11px]">Click the heart icon on any release to calculate consolidated shipping.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      metrics.items.forEach(it => {
+        const fmt = getItemFormatCategory(it);
+        const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
+        const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
+
+        html += `
+          <div class="pt-3 first:pt-0 flex items-center gap-3">
+            <img src="${getThumbnailUrl(it.image)}" class="w-11 h-11 object-cover rounded-lg shrink-0 border border-stone-200 dark:border-slate-800" onerror="onImgLoadError(this)" />
+            <div class="flex-1 min-w-0">
+              <h4 class="font-bold text-stone-900 dark:text-white truncate text-xs" title="${cleanTitle}">${cleanTitle}</h4>
+              <p class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${escapeHtml(it.artist)} • ${fmt} (~${weight}g)</p>
+              <div class="text-[11px] font-black text-rose-600 dark:text-rose-400 mt-0.5">${formatDisplayPrice(it.price, it)}</div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'haul_drawer_buy')" title="Order on CDJapan" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[10px] transition cursor-pointer">
+                Order
+              </button>
+              <button onclick="toggleWishlist('${it.id}'); populateHaulDrawer();" title="Remove" class="w-7 h-7 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-stone-100 dark:hover:bg-slate-800 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-trash-can text-[11px]"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
     }
 
     function exportWishlistHaul() {
       const listIds = getWishlist();
-      if (!listIds.length) return;
+      if (!listIds.length) {
+        showToast("Wishlist is empty!", false);
+        return;
+      }
 
       const metrics = calculateWishlistHaulMetrics();
-      const items = allProducts.filter(p => listIds.includes(p.id));
-
       let content = "========================================\n";
       content += "IDOLJAPAN.STORE — SAVED CDJAPAN HAUL\n";
       content += "Generated: " + new Date().toLocaleDateString() + "\n";
       content += `Total Items: ${metrics.count} | Est. Weight: ~${metrics.weight}g\n`;
       content += `Courier Shipping Bracket: ${metrics.bracket}\n`;
-      content += `Estimated Merchandise Value: ¥${metrics.jpy.toLocaleString()}\n`;
+      content += `Estimated Value: ¥${metrics.jpy.toLocaleString()}\n`;
       content += "========================================\n\n";
 
-      items.forEach((it, idx) => {
+      metrics.items.forEach((it, idx) => {
         const fmt = getItemFormatCategory(it);
         const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
-        content += `${idx + 1}. [${it.artist}] ${it.title}\n`;
+        content += `${idx + 1}. [${it.artist}] ${stripTitlePrefixes(it.title)}\n`;
         content += `   Catalog ID: ${it.id} | Format: ${fmt} (~${weight}g)\n`;
         content += `   Price: ${it.price}\n`;
         content += `   Direct Link: https://idoljapan.store/?id=${it.id}\n\n`;
@@ -1409,7 +1578,7 @@
       a.download = `idoljapan_haul_${Date.now()}.txt`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast("Wishlist haul exported with weight calculations!");
+      showToast("Wishlist haul exported!");
     }
 
     function applyLayoutModeToDom() {
@@ -1422,7 +1591,6 @@
       const mobileNav = document.getElementById('mobile-bottom-nav');
       const desktopTier1 = document.getElementById('desktop-nav-tier1');
       const desktopTier2 = document.getElementById('desktop-nav-tier2');
-      const yearContainer = document.getElementById('year-jump-bar-container');
 
       if (isMobile) {
         if (viewportMeta) viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
@@ -1433,7 +1601,6 @@
         if (mobileNav) mobileNav.classList.remove('hidden');
         if (desktopTier1) desktopTier1.classList.add('hidden');
         if (desktopTier2) desktopTier2.classList.add('hidden');
-        if (yearContainer) yearContainer.classList.add('hidden');
       } else {
         if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
         htmlEl.classList.add('layout-desktop');
@@ -1533,8 +1700,8 @@
 
       const directUrl = `${window.location.origin}/?id=${encodeURIComponent(product.id)}`;
       const shareData = {
-        title: `${product.title} — ${product.artist}`,
-        text: `Check out ${product.title} on IdolJapan.store:`,
+        title: `${stripTitlePrefixes(product.title)} — ${product.artist}`,
+        text: `Check out ${stripTitlePrefixes(product.title)} on IdolJapan.store:`,
         url: directUrl
       };
 
@@ -1596,17 +1763,6 @@
       const mobileBadge = document.getElementById('mobile-bottom-wishlist-badge');
       if (badge) badge.innerText = list.length;
       if (mobileBadge) mobileBadge.innerText = list.length;
-
-      const group = document.getElementById('wishlist-actions-group');
-      if (group) {
-        if (isWishlistView && list.length > 0) {
-          group.classList.remove('hidden');
-          group.classList.add('flex');
-        } else {
-          group.classList.add('hidden');
-          group.classList.remove('flex');
-        }
-      }
     }
 
     function shareWishlistUrl() {
@@ -1617,23 +1773,6 @@
       }
       const shareUrl = `${window.location.origin}/?wishlist=${listIds.join(',')}`;
       copyToClipboard(shareUrl, "Wishlist share link copied!");
-    }
-
-    function toggleWishlistView() {
-      isWishlistView = !isWishlistView;
-      currentPage = 1;
-      const btn = document.getElementById('wishlist-toggle-btn');
-      const icon = document.getElementById('wishlist-btn-icon');
-      if (isWishlistView) {
-        if (btn) btn.className = "desktop-only-header-btn relative bg-amber-400 hover:bg-amber-500 text-slate-900 text-xs font-black px-2.5 py-1 rounded-full border border-amber-300 transition flex items-center gap-1.5 shadow-xs cursor-pointer";
-        if (icon) icon.className = "fa-solid fa-heart text-rose-600 text-xs";
-      } else {
-        if (btn) btn.className = "desktop-only-header-btn relative bg-rose-700 dark:bg-slate-800 hover:bg-rose-800 dark:hover:bg-slate-700 text-xs font-bold px-2.5 py-1 rounded-full border border-rose-400/30 dark:border-slate-700 transition flex items-center gap-1.5 shadow-xs text-rose-100 dark:text-rose-400 cursor-pointer";
-        if (icon) icon.className = "fa-regular fa-heart text-amber-300 text-xs";
-      }
-      updateWishlistBadge();
-      syncUrlParams();
-      render();
     }
 
     function setViewMode(mode) {
@@ -1791,7 +1930,6 @@
       if (searchQuery) params.set('q', searchQuery);
       if (currentSort !== 'newest') params.set('sort', currentSort);
       if (currentPage > 1) params.set('page', currentPage);
-      if (isWishlistView) params.set('view', 'wishlist');
 
       const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState({}, '', newUrl);
@@ -1823,7 +1961,6 @@
       }
       if (params.has('sort')) currentSort = params.get('sort');
       if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
-      if (params.get('view') === 'wishlist') isWishlistView = true;
 
       if (params.has('id')) {
         const targetId = params.get('id');
@@ -1845,7 +1982,6 @@
       const statsEl = document.getElementById('stats');
       let data = null;
 
-      // Layer 1: Instant load from IndexedDB cache if populated
       try {
         if (window.IdolDB) {
           const cachedDb = await window.IdolDB.loadCatalog().catch(() => null);
@@ -1876,18 +2012,15 @@
           }
         }
       } catch (err) {
-        console.warn('IndexedDB initial retrieval bypassed:', err);
+        console.warn('IndexedDB retrieval bypassed:', err);
       }
 
-      // Layer 2: Network load from local endpoints with safe parsing (reads catalog-index.json and products.json)
       const cacheBuster = Date.now();
       const candidatePaths = [
         `catalog-index.json?v=${cacheBuster}`,
         `./catalog-index.json?v=${cacheBuster}`,
         `/catalog-index.json?v=${cacheBuster}`,
-        `products.json?v=${cacheBuster}`,
-        `./products.json?v=${cacheBuster}`,
-        `/products.json?v=${cacheBuster}`
+        `products.json?v=${cacheBuster}`
       ];
 
       for (const p of candidatePaths) {
@@ -1932,7 +2065,6 @@
         }
       }
 
-      // Layer 3: Guaranteed DOM release
       try {
         readUrlParams();
         buildClusteredEntities();
@@ -1952,7 +2084,7 @@
 
     function getCleanBaseTitle(title) {
       if (!title) return '';
-      return String(title)
+      return stripTitlePrefixes(title)
         .replace(/\[(?:Limited|Regular|Complete|Special|First Press).*?\]/gi, '')
         .replace(/\((?:Type [A-Z0-9]+|w\/ [A-Za-z0-9 ]+)\)/gi, '')
         .replace(/【.*?】/g, '')
@@ -1983,7 +2115,6 @@
       const pid = String(item.id || '').toUpperCase();
       const title = String(item.title || '').toLowerCase();
 
-      // 1. Books / Photobooks / Magazines
       if (
         pid.startsWith('NEOBK-') ||
         title.includes('photobook') ||
@@ -2000,7 +2131,6 @@
         return 'Book';
       }
 
-      // 2. Apparel & Collectibles (Towels, Keychains, Acrylics, T-Shirts, Badges)
       if (
         pid.startsWith('NEODAI-') ||
         pid.startsWith('NEOODY-') ||
@@ -2039,7 +2169,6 @@
         return 'Collectable';
       }
 
-      // 3. Blu-rays
       if (
         pid.startsWith('SRXL') ||
         pid.startsWith('SRXW') ||
@@ -2060,7 +2189,6 @@
         return 'Blu-ray';
       }
 
-      // 4. DVDs
       if (
         pid.startsWith('SRBL') ||
         pid.startsWith('EPBE') ||
@@ -2080,7 +2208,6 @@
         return 'DVD';
       }
 
-      // 5. CDs (Singles, Albums)
       if (
         pid.startsWith('SRCL') ||
         pid.startsWith('EPCE') ||
@@ -2178,7 +2305,13 @@
     }
 
     function goToPage(pageNumber) {
-      currentPage = pageNumber;
+      const totalPages = Math.max(1, Math.ceil(activeFilteredList.length / itemsPerPage));
+      const targetPage = Math.max(1, Math.min(pageNumber || 1, totalPages));
+      currentPage = targetPage;
+
+      const pageInput = document.getElementById('direct-page-input');
+      if (pageInput) pageInput.value = currentPage;
+
       syncUrlParams();
       render();
       const anchor = document.getElementById('pagination-top-anchor');
@@ -2204,7 +2337,6 @@
       activeYear = 'All';
       currentPage = 1;
 
-      // Smart Fallback: If artist has 0 in-stock/pre-order items, automatically show all releases
       if (artist !== 'All' && activeAvailability === 'active') {
         const inStockCount = allProducts.filter(p => p.artist === artist && !isOutOfPrint(p)).length;
         if (inStockCount === 0) {
@@ -2274,9 +2406,6 @@
       });
     }
 
-    // ==========================================
-    // HOVER-DRIVEN MEGA-MENU LOGIC
-    // ==========================================
     function handleTopNavHover(cat) {
       if (megaMenuTimer) {
         clearTimeout(megaMenuTimer);
@@ -2439,56 +2568,18 @@
       }
     }
 
+    // Unlocked Global Year Filter
     function updateYearJumpBar() {
-      const wrapper = document.getElementById('year-jump-bar-container');
       const select = document.getElementById('year-select');
-      if (!wrapper || !select) return;
-
-      if (activeArtist === 'All' && activeFilter === 'All') {
-        wrapper.classList.add('hidden');
-        wrapper.classList.remove('flex');
-        select.innerHTML = '<option value="All">All Years</option>';
-        return;
-      }
-
-      const relevantItems = allProducts.filter(item => {
-        let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
-        const cat = item.category || '';
-        let matchesCat = false;
-        if (activeFilter === 'All') {
-          matchesCat = true;
-        } else if (activeFilter === 'Hello! Project & Up-Front') {
-          matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
-        } else if (activeFilter === 'Modern & Alternative') {
-          matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');
-        } else if (activeFilter === 'Stardust Planet') {
-          matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z');
-        } else {
-          matchesCat = (cat === activeFilter);
-        }
-        return matchesArtist && matchesCat;
-      });
+      if (!select) return;
 
       const yearsSet = new Set();
-      relevantItems.forEach(it => {
+      allProducts.forEach(it => {
         const yr = getItemYear(it);
-        if (yr > 1990 && yr <= 2030) yearsSet.add(yr);
+        if (yr >= 1998 && yr <= 2030) yearsSet.add(yr);
       });
 
       const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
-
-      if (sortedYears.length <= 1) {
-        wrapper.classList.add('hidden');
-        wrapper.classList.remove('flex');
-        select.innerHTML = '<option value="All">All Years</option>';
-        return;
-      }
-
-      if (layoutMode !== 'mobile') {
-        wrapper.classList.remove('hidden');
-        wrapper.classList.add('flex');
-      }
-
       let optionsHtml = '<option value="All">All Years</option>';
       sortedYears.forEach(y => {
         const isSelected = String(activeYear) === String(y);
@@ -2507,7 +2598,7 @@
       activeAvailability = 'all';
       maxPriceLimit = 20000;
       searchQuery = '';
-      isWishlistView = false;
+      currentPage = 1;
 
       const pRange = document.getElementById('price-range');
       if (pRange) pRange.value = 20000;
@@ -2527,7 +2618,6 @@
       updateFilterButtonsUI();
       updateAvailabilityUI();
       updateActiveArtistBanner();
-      updateYearJumpBar();
       updateWishlistBadge();
       updateMobileDrawerContent();
       syncUrlParams();
@@ -2564,12 +2654,46 @@
       return normT.includes(normQ);
     }
 
+    function showSearchSuggestions() {
+      const box = document.getElementById('search-autocomplete-box');
+      const input = document.getElementById('search-input');
+      if (!box || !input) return;
+
+      if (!input.value.trim()) {
+        box.innerHTML = `
+          <div class="p-3 text-xs text-stone-500 dark:text-slate-400">
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-2">Trending Searches:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickSearch('Morning Musume')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🌸 Morning Musume</button>
+              <button onclick="quickSearch('Sakurazaka46')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">⚡ Sakurazaka46</button>
+              <button onclick="quickSearch('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💖 FRUITS ZIPPER</button>
+              <button onclick="quickSearch('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🦊 BABYMETAL</button>
+              <button onclick="setAvailability('preorder')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 font-bold transition">💿 Pre-Orders 2026/2027</button>
+            </div>
+          </div>
+        `;
+        box.classList.remove('hidden');
+      }
+    }
+
+    function quickSearch(val) {
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.value = val;
+        searchQuery = val.toLowerCase();
+        document.getElementById('search-clear-btn').classList.remove('hidden');
+        closeAutocomplete();
+        currentPage = 1;
+        syncUrlParams();
+        render();
+      }
+    }
+
     function updateAutocomplete(val) {
       const box = document.getElementById('search-autocomplete-box');
       if (!box) return;
       if (!val || val.length < 2) {
-        box.classList.add('hidden');
-        box.innerHTML = '';
+        showSearchSuggestions();
         return;
       }
 
@@ -2592,10 +2716,11 @@
           closeAutocomplete();
         };
 
+        const cleanT = stripTitlePrefixes(item.title);
         row.innerHTML = `
           <img src="${getThumbnailUrl(item.image)}" class="w-7 h-7 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
           <div class="flex-1 min-w-0 text-left">
-            <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(item.title)}</p>
+            <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(cleanT)}</p>
             <p class="text-[10px] text-stone-400 dark:text-slate-400 truncate">${escapeHtml(item.artist)} • ${formatDisplayPrice(item.price, item)}</p>
           </div>
           <i class="fa-solid fa-chevron-right text-[9px] text-stone-300 dark:text-slate-600"></i>
@@ -2611,7 +2736,6 @@
       if (box) box.classList.add('hidden');
     }
 
-    // Dismiss Mega-Menu or Autocomplete when clicking outside
     document.addEventListener('click', (e) => {
       const searchBox = document.getElementById('search-autocomplete-box');
       const searchInput = document.getElementById('search-input');
@@ -2770,25 +2894,20 @@
       return !isOutOfPrint(item) && !isPreOrder(item);
     }
 
-    function updateDirectPageDropdown(totalPages) {
-      const select = document.getElementById('direct-page-select');
-      if (!select) return;
-      select.innerHTML = '';
-      for (let i = 1; i <= totalPages; i++) {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.innerText = i;
-        if (i === currentPage) opt.selected = true;
-        select.appendChild(opt);
-      }
-    }
-
     function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
       const rangeEl = document.getElementById('page-range-info');
       const navEl = document.getElementById('pagination-bottom');
+      const pageInput = document.getElementById('direct-page-input');
+      const totalLabel = document.getElementById('direct-page-total-label');
       if (!rangeEl || !navEl) return;
 
-      updateDirectPageDropdown(totalPages);
+      if (pageInput) {
+        pageInput.max = totalPages;
+        pageInput.value = currentPage;
+      }
+      if (totalLabel) {
+        totalLabel.innerText = `of ${totalPages}`;
+      }
 
       if (totalItems === 0) {
         rangeEl.innerText = "0 releases found";
@@ -2892,11 +3011,12 @@
             <div class="space-y-2">
         `;
         items.forEach(it => {
+          const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
           html += `
             <div class="flex items-center gap-3 p-2 rounded-xl border border-stone-100 dark:border-slate-800 hover:bg-stone-50 dark:hover:bg-slate-800/50 transition">
               <img src="${getThumbnailUrl(it.image)}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
               <div class="flex-1 min-w-0">
-                <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${escapeHtml(it.title)}</p>
+                <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${cleanTitle}</p>
                 <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
               </div>
               <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
@@ -2921,7 +3041,8 @@
       params.set('id', p.id);
       window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
       
-      document.title = `${p.title} — ${p.artist} | IdolJapan.store`;
+      const cleanTitle = stripTitlePrefixes(p.title);
+      document.title = `${cleanTitle} — ${p.artist} | IdolJapan.store`;
 
       const modal = document.getElementById('product-modal');
       const img = document.getElementById('modal-img');
@@ -2938,7 +3059,7 @@
       const editionBox = document.getElementById('modal-edition-tags');
 
       img.src = p.image || PLACEHOLDER_IMG;
-      title.innerText = p.title || '';
+      title.innerText = cleanTitle;
       artist.innerText = p.artist || '';
       cat.innerText = p.category || '';
       cid.innerText = p.id || '';
@@ -3017,6 +3138,7 @@
       }
     }
 
+    // Fully Synchronized Clustered Edition Switcher
     function switchClusteredEdition(clusterIndex, newProductId, event) {
       if (event) event.stopPropagation();
       const variant = allProducts.find(x => x.id === newProductId);
@@ -3026,26 +3148,40 @@
       if (!card) return;
 
       const imgEl = card.querySelector('.cluster-img');
+      const imgContainer = card.querySelector('.cluster-img-container');
       const titleEl = card.querySelector('.cluster-title');
       const priceEl = card.querySelector('.cluster-price');
       const dateEl = card.querySelector('.cluster-date');
       const buyBtn = card.querySelector('.cluster-buy-btn');
+      const favBtn = card.querySelector('.cluster-fav-btn');
+      const shareBtn = card.querySelector('.cluster-share-btn');
 
+      const cleanTitle = stripTitlePrefixes(variant.title);
       if (imgEl) imgEl.src = getThumbnailUrl(variant.image);
+      if (imgContainer) imgContainer.setAttribute('onclick', `openModal('${variant.id}', event)`);
       if (titleEl) {
-        titleEl.innerText = variant.title;
-        titleEl.setAttribute('title', variant.title);
+        titleEl.innerText = cleanTitle;
+        titleEl.setAttribute('title', cleanTitle);
+        titleEl.setAttribute('onclick', `openModal('${variant.id}', event)`);
       }
       if (priceEl) priceEl.innerHTML = formatDisplayPrice(variant.price, variant);
       if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar text-[10px]"></i> ${variant.release_date || 'Available Now'}`;
+      
+      const isFav = getWishlist().includes(variant.id);
+      if (favBtn) {
+        favBtn.setAttribute('onclick', `toggleWishlist('${variant.id}', event)`);
+        favBtn.setAttribute('title', isFav ? 'Remove from Wishlist' : 'Add to Wishlist');
+        favBtn.className = `w-7 h-7 sm:w-6 sm:h-6 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer cluster-fav-btn`;
+        favBtn.innerHTML = `<i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>`;
+      }
+      if (shareBtn) {
+        shareBtn.setAttribute('onclick', `shareProduct(allProducts.find(x => x.id === '${variant.id}'), event)`);
+      }
       if (buyBtn) {
         const upcoming = isPreOrder(variant);
         const oop = isOutOfPrint(variant);
         buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>`;
-        buyBtn.onclick = (e) => {
-          e.stopPropagation();
-          triggerOutboundAffiliate(variant, 'grid_cluster_btn');
-        };
+        buyBtn.setAttribute('onclick', `triggerOutboundAffiliate(allProducts.find(x => x.id === '${variant.id}'), 'grid_cluster_btn')`);
       }
     }
 
@@ -3053,6 +3189,7 @@
       const container = document.getElementById('product-container');
       const empty = document.getElementById('empty-state');
       const emptyMsg = document.getElementById('empty-state-message');
+      const emptyButtons = document.getElementById('empty-state-buttons');
       const rangeEl = document.getElementById('page-range-info');
       if (!container) return;
       container.innerHTML = '';
@@ -3061,7 +3198,6 @@
 
       const filterItem = (item) => {
         if (!item) return false;
-        if (isWishlistView && !wishlistIds.includes(item.id)) return false;
 
         const priceNum = parseNumericPrice(item.price, item);
         if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) return false;
@@ -3075,7 +3211,6 @@
         if (activeAvailability === 'instock' && !inStock) return false;
         if (activeAvailability === 'oop' && !oop) return false;
 
-        // Franchise matching logic
         const cat = item.category || '';
         let matchesCat = false;
         if (activeFilter === 'All') {
@@ -3100,8 +3235,10 @@
         const itemFmt = getItemFormatCategory(item);
         const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
 
+        const cleanT = stripTitlePrefixes(item.title);
         const matchesSearch = !searchQuery || 
           matchesFuzzyQuery(item.title, searchQuery) || 
+          matchesFuzzyQuery(cleanT, searchQuery) ||
           matchesFuzzyQuery(item.artist, searchQuery) ||
           (item.id && String(item.id).toLowerCase().includes(searchQuery));
 
@@ -3166,9 +3303,17 @@
         if (empty) {
           empty.classList.remove('hidden');
           if (emptyMsg) {
-            emptyMsg.innerText = isWishlistView 
-              ? "Your wishlist is empty. Tap the heart on any release to track it here!"
-              : "No idol releases match this filter selection.";
+            emptyMsg.innerText = "No idol releases match your specific combination of filters.";
+          }
+          if (emptyButtons) {
+            let btnsHtml = `<button onclick="resetAllFilters()" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>`;
+            if (activeFormat !== 'All') {
+              btnsHtml += `<button onclick="setFormat('All')" class="px-3 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Format (${activeFormat})</button>`;
+            }
+            if (activeYear !== 'All') {
+              btnsHtml += `<button onclick="setYearFilter('All')" class="px-3 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Year (${activeYear})</button>`;
+            }
+            emptyButtons.innerHTML = btnsHtml;
           }
         }
         if (rangeEl) rangeEl.innerText = "0 releases found";
@@ -3196,7 +3341,8 @@
         const upcoming = isPreOrder(p);
         const oop = isOutOfPrint(p);
         const itemFmt = getItemFormatCategory(p);
-        const safeTitle = escapeHtml(p.title);
+        const cleanTitle = stripTitlePrefixes(p.title);
+        const safeTitle = escapeHtml(cleanTitle);
         const safeArtist = escapeHtml(p.artist);
         const isFav = wishlistIds.includes(p.id);
 
@@ -3207,15 +3353,18 @@
         else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
         else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
 
+        // Uncropped visual presentation for tall items
+        const isVerticalItem = (itemFmt === 'Book' || itemFmt === 'Collectable');
+        const imgFitClass = isVerticalItem ? 'object-contain p-1.5' : 'object-cover';
+
         let editionSelectorHtml = '';
         if (variants.length > 1) {
           editionSelectorHtml = `
             <div class="mt-1" onclick="event.stopPropagation()">
               <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-1.5 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
                 ${variants.map(v => {
-                  const titleStr = String(v.title || 'Edition');
-                  const shortLbl = titleStr.length > 28 ? titleStr.slice(0, 28) + '...' : titleStr;
-                  return `<option value="${escapeHtml(v.id)}">${escapeHtml(shortLbl)} — ${escapeHtml(v.price || '')}</option>`;
+                  const variantLabel = extractVariantLabel(v.title, p.title);
+                  return `<option value="${escapeHtml(v.id)}">${escapeHtml(variantLabel)} — ${escapeHtml(v.price || '')}</option>`;
                 }).join('')}
               </select>
             </div>
@@ -3229,7 +3378,7 @@
         if (layoutMode === 'mobile' || viewMode === 'grid') {
           card.innerHTML = `
             <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition flex flex-col group relative h-full">
-              <div class="aspect-square bg-stone-200 dark:bg-slate-800 relative overflow-hidden cursor-pointer" onclick="openModal('${p.id}', event)">
+              <div class="cluster-img-container aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden cursor-pointer flex items-center justify-center" onclick="openModal('${p.id}', event)">
                 <img 
                   src="${displayImg}" 
                   alt="${safeTitle}" 
@@ -3237,7 +3386,7 @@
                   referrerpolicy="no-referrer"
                   onload="this.classList.add('img-fade-in')"
                   onerror="onImgLoadError(this)"
-                  class="cluster-img w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  class="cluster-img w-full h-full ${imgFitClass} group-hover:scale-105 transition duration-300"
                 />
                 
                 <span class="absolute top-1.5 left-1.5 bg-stone-900/75 backdrop-blur-md text-white text-[9px] font-semibold px-1.5 py-0.2 rounded">
@@ -3249,7 +3398,7 @@
                     onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)"
                     aria-label="Share Link"
                     title="Share link"
-                    class="w-7 h-7 sm:w-6 sm:h-6 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
+                    class="cluster-share-btn w-7 h-7 sm:w-6 sm:h-6 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
                   >
                     <i class="fa-solid fa-share-nodes text-[10px]"></i>
                   </button>
@@ -3258,7 +3407,7 @@
                     onclick="toggleWishlist('${p.id}', event)"
                     aria-label="Save to Wishlist"
                     title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}"
-                    class="w-7 h-7 sm:w-6 sm:h-6 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
+                    class="cluster-fav-btn w-7 h-7 sm:w-6 sm:h-6 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
                   >
                     <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>
                   </button>
@@ -3295,7 +3444,7 @@
                     <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
                       ${formatDisplayPrice(p.price, p)}
                     </span>
-                    <span class="block text-[8px] text-stone-400 dark:text-slate-500">Tokyo Price</span>
+                    <span class="block text-[8px] text-stone-400 dark:text-slate-500 font-medium">CDJapan Tokyo Direct</span>
                   </div>
                   <button 
                     onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')"
@@ -3311,8 +3460,8 @@
         } else {
           card.innerHTML = `
             <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl p-2.5 shadow-2xs hover:shadow-xs transition flex flex-col sm:flex-row items-center gap-3 group">
-              <div class="w-12 h-12 bg-stone-200 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative" onclick="openModal('${p.id}', event)">
-                <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full object-cover" onerror="onImgLoadError(this)" />
+              <div class="cluster-img-container w-12 h-12 bg-stone-100 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative flex items-center justify-center" onclick="openModal('${p.id}', event)">
+                <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full ${imgFitClass}" onerror="onImgLoadError(this)" />
                 <span class="absolute bottom-0.5 left-0.5 ${fmtBadgeBg} text-white text-[8px] font-bold px-1 rounded">${itemFmt}</span>
               </div>
 
@@ -3339,10 +3488,10 @@
                 </div>
 
                 <div class="flex items-center gap-1">
-                  <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
+                  <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="cluster-share-btn w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
                     <i class="fa-solid fa-share-nodes text-[10px]"></i>
                   </button>
-                  <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="w-7 h-7 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
+                  <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="cluster-fav-btn w-7 h-7 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
                     <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>
                   </button>
                   <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'list_btn')" class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-lg transition flex items-center gap-1 shadow-2xs cursor-pointer whitespace-nowrap">
@@ -3382,6 +3531,7 @@
     window.addEventListener('keydown', (e) => {
       const modal = document.getElementById('product-modal');
       const cryptoModal = document.getElementById('crypto-modal');
+      const haulDrawer = document.getElementById('haul-drawer');
       const isModalOpen = modal && !modal.classList.contains('hidden');
 
       if (e.key === 'Escape') {
@@ -3391,6 +3541,7 @@
         if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();
         const drawer = document.getElementById('calendar-drawer');
         if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
+        if (haulDrawer && !haulDrawer.classList.contains('hidden')) toggleHaulDrawer();
         const mobileDrawer = document.getElementById('mobile-filter-drawer');
         if (mobileDrawer && !mobileDrawer.classList.contains('hidden')) toggleMobileFilterDrawer();
       } else if (isModalOpen && e.key === 'ArrowLeft') {

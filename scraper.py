@@ -21,9 +21,9 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Automated weekly runs check the newest 5 pages (captures ~100 newest items/pre-orders per query).
+# Automated runs check the newest 10 pages (~200 newest items/pre-orders per query).
 # Targeted manual runs default to deep sweeps of 200 pages.
-DEFAULT_PAGES_ALL = 5
+DEFAULT_PAGES_ALL = 10
 DEFAULT_PAGES_TARGETED = 200
 
 # Number of consecutive known, non-preorder items to encounter before stopping query paging
@@ -707,9 +707,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         results.extend(extracted_on_page)
 
         # Smart Incremental Early-Stopping Logic
-        # CDJapan queries are ordered by newest release date first (reldate_desc).
-        # If we see 15 consecutive known, non-preorder releases, all subsequent items
-        # on deeper pages are older catalog releases already verified in our database.
         for it in extracted_on_page:
             pid = it["id"]
             if pid in catalog_ref and catalog_ref[pid].get("availability") != "preorder":
@@ -742,7 +739,6 @@ def get_active_targets(is_targeted_run):
         matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
         return matched if matched else TARGET_GROUPS
 
-    # If running an automated sweep without specific target, skip inactive/disbanded groups
     if not is_targeted_run:
         return [g for g in TARGET_GROUPS if g[1] not in LEGACY_ROSTER_GROUPS]
 

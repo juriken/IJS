@@ -2,8 +2,8 @@
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
-Deep pagination support with date preservation and full exhaustive pagination.
-Includes embedded false-positive and boyband negative filters.
+Deep pagination support with exponential jitter backoff, resilient retry ladders,
+and negative boyband/media filters.
 """
 
 import json
@@ -20,8 +20,6 @@ AFFILIATE_ID = "A033398"
 DATA_FILE = "products.json"
 STATE_FILE = "scraper_state.json"
 
-# Automated runs check the newest 10 pages (~200 newest items/pre-orders per query).
-# Targeted manual runs default to deep sweeps of 200 pages.
 DEFAULT_PAGES_ALL = 10
 DEFAULT_PAGES_TARGETED = 200
 
@@ -100,8 +98,6 @@ PROTECTED_SUBUNITS = {
     "Karin Miyamoto"
 }
 
-# Legacy/disbanded groups that produce no new material.
-# Skipped during automated regular runs unless targeted manually.
 LEGACY_ROSTER_GROUPS = {
     "Tanpopo", "Minimoni", "W", "v-u-den", "GAM", "Taiyo to Ciscomoon",
     "Melon Kinenbi", "Berryz Kobo", "℃-ute", "Buono!", "Country Girls",
@@ -619,6 +615,7 @@ def sanitize_query_for_cdjapan(query_str):
 def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
     results = []
     seen_query_pids = set()
+    consecutive_empty_pages = 0
     is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
     sanitized_target = target_query_or_url if is_direct_person else sanitize_query_for_cdjapan(target_query_or_url)
     
@@ -638,59 +635,79 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
             target_url = f"https://www.cdjapan.co.jp/searchuni?q={encoded_q}&opt.include_eoa=1&order=reldate_desc&page={p_num}"
 
         extracted_on_page = []
+        page_successful = False
 
-        for attempt in range(1, 3):
+        # Enhanced Retry Ladder with Exponential Jitter Backoff (5 attempts)
+        for attempt in range(1, 6):
             try:
                 page.set_extra_http_headers({
                     "Referer": "https://www.cdjapan.co.jp/",
                     "Accept-Language": "en-US,en;q=0.9,ja;q=0.8"
                 })
 
-                response = page.goto(target_url, wait_until="domcontentloaded", timeout=25000)
+                response = page.goto(target_url, wait_until="domcontentloaded", timeout=30000)
                 dismiss_popups(page)
 
                 current_title = page.title().strip()
-                if not current_title or (response and response.status in [429, 403, 503]):
-                    print(f"   [Notice] Backing off on attempt {attempt}...", flush=True)
-                    time.sleep(2.0)
+                status_code = response.status if response else 0
+
+                # Check if rate-limited or blocked
+                if not current_title or status_code in [429, 403, 500, 502, 503, 504]:
+                    sleep_time = (attempt * 4) + random.uniform(1.0, 3.5)
+                    print(f"   [Notice] Rate-limit / HTTP {status_code} on Page {p_num}. Backing off {sleep_time:.1f}s (attempt {attempt}/5)...", flush=True)
+                    time.sleep(sleep_time)
                     continue
 
                 page_text_quick = page.locator("body").inner_text(timeout=4000).lower()
                 if "no item found" in page_text_quick or "見つかりませんでした" in page_text_quick:
                     extracted_on_page = []
+                    page_successful = True
                     break
 
                 try:
                     page.wait_for_selector(
                         ".item-detail, .n-item, div.item, tr.item, div.search-result-item, .item_list",
-                        timeout=5000
+                        timeout=6000
                     )
                 except Exception:
                     pass
 
                 page.evaluate("window.scrollBy(0, 800)")
-                time.sleep(0.2)
+                time.sleep(0.3)
                 page.evaluate("window.scrollBy(0, 900)")
-                time.sleep(0.2)
+                time.sleep(0.3)
 
                 html = page.content()
                 extracted_on_page = extract_verified_products(
                     html, category, canonical_artist, effective_keywords, is_direct_person=is_direct_person
                 )
 
-                if len(extracted_on_page) == 0 and attempt == 1:
-                    time.sleep(1.0)
+                if len(extracted_on_page) == 0 and attempt < 3:
+                    time.sleep(2.0)
                     continue
 
+                page_successful = True
                 break
 
             except Exception as e:
-                print(f"   Attempt {attempt} notice on Page {p_num}: {e}", flush=True)
-                time.sleep(1.5)
+                sleep_time = (attempt * 3) + random.uniform(1.0, 2.5)
+                print(f"   Attempt {attempt}/5 notice on Page {p_num}: {e}. Retrying in {sleep_time:.1f}s...", flush=True)
+                time.sleep(sleep_time)
+
+        # Do not quit the entire search on a single temporary page failure
+        if not page_successful:
+            print(f"   [Warning] Page {p_num} could not be retrieved after 5 attempts. Skipping to page {p_num + 1}...", flush=True)
+            continue
 
         if len(extracted_on_page) == 0:
-            print(f"   [Notice] Reached end of catalog results at page {p_num}.", flush=True)
-            break
+            consecutive_empty_pages += 1
+            if consecutive_empty_pages >= 2:
+                print(f"   [Notice] Reached verified end of catalog results at page {p_num}.", flush=True)
+                break
+            else:
+                continue
+        else:
+            consecutive_empty_pages = 0
 
         current_pids = set(it["id"] for it in extracted_on_page)
         if current_pids.issubset(seen_query_pids):
@@ -701,7 +718,8 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
         results.extend(extracted_on_page)
 
-        time.sleep(random.uniform(0.8, 1.4))
+        # Safe rate-limiting delay between pages
+        time.sleep(random.uniform(1.5, 2.8))
 
     return results
 
@@ -819,7 +837,7 @@ def main():
             finally:
                 target_page.close()
 
-            time.sleep(random.uniform(0.8, 1.6))
+            time.sleep(random.uniform(1.2, 2.2))
 
         browser.close()
 

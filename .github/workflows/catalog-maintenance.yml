@@ -20,6 +20,11 @@ on:
         description: 'Number of dates to repair in Date Healer:'
         required: false
         default: '250'
+      reset_healer_history:
+        description: 'Restart Date Healer audit from cycle beginning (Item 1)?'
+        required: false
+        default: false
+        type: boolean
       run_healthcheck:
         description: 'Run SKU URL & Availability Health Check?'
         required: false
@@ -30,7 +35,7 @@ on:
         required: false
         default: '500'
       reset_healthcheck_history:
-        description: 'Restart Healthcheck audit from cycle beginning?'
+        description: 'Restart Healthcheck audit from cycle beginning (Item 1)?'
         required: false
         default: false
         type: boolean
@@ -51,6 +56,7 @@ jobs:
       BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
       HEALTHCHECK_BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
       RESET_HEALTHCHECK: ${{ github.event.inputs.reset_healthcheck_history || 'false' }}
+      RESET_DATE_HEALER: ${{ github.event.inputs.reset_healer_history || 'false' }}
 
     steps:
       - name: Checkout Repository
@@ -77,7 +83,12 @@ jobs:
         if: ${{ github.event_name == 'schedule' || github.event.inputs.run_date_healer == 'true' }}
         env:
           BATCH_SIZE: ${{ github.event.inputs.heal_batch_size || '250' }}
+          RESET_PROGRESS: ${{ github.event.inputs.reset_healer_history || 'false' }}
         run: |
+          if [ "${{ github.event.inputs.reset_healer_history }}" = "true" ]; then
+            echo "Purging repair_progress.json to restart Date Healer from beginning..."
+            rm -f repair_progress.json
+          fi
           python -u repair_catalog_dates.py
 
       - name: Step 3 - Run SKU URL & Availability Health Check
@@ -86,6 +97,7 @@ jobs:
           BATCH_SIZE: ${{ github.event.inputs.healthcheck_batch_size || '500' }}
         run: |
           if [ "${{ github.event.inputs.reset_healthcheck_history }}" = "true" ]; then
+            echo "Purging healthcheck_state.json to restart Health Check from beginning..."
             rm -f healthcheck_state.json
           fi
           python -u healthcheck.py

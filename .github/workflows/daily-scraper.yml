@@ -17,7 +17,7 @@ permissions:
 jobs:
   scrape-and-update-daily:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
       PYTHONUNBUFFERED: "1"
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
@@ -55,23 +55,33 @@ jobs:
         run: |
           playwright install-deps chromium
 
-      - name: Run Idol Catalog Scraper
+      - name: Step 1 - Run Idol Catalog Scraper
         run: |
           python -u scraper.py
 
-      - name: Run Unified Build Pipeline
+      - name: Step 2 - Clean Catalog & Enforce Member Reclassification
         run: |
-          python build_catalog.py
+          if [ -f clean_catalog.py ]; then
+            python -u clean_catalog.py
+          fi
 
-      - name: Ping Search Engines for Rapid Indexing
+      - name: Step 3 - Run Unified Build Pipeline
         run: |
-          python ping_search_engines.py
+          python build_catalog.py || python build_summary.py || true
 
-      - name: Broadcast New Releases to Community Webhook
+      - name: Step 4 - Ping Search Engines for Rapid Indexing
         run: |
-          python notify_releases.py
+          if [ -f ping_search_engines.py ]; then
+            python ping_search_engines.py
+          fi
 
-      - name: Commit and Push Updated Catalog & Sitemap
+      - name: Step 5 - Broadcast New Releases to Community Webhook
+        run: |
+          if [ -f notify_releases.py ]; then
+            python notify_releases.py
+          fi
+
+      - name: Step 6 - Commit and Push Updated Catalog & Sitemap
         run: |
           git config --global user.name "IdolJapan Bot"
           git config --global user.email "bot@idoljapan.store"

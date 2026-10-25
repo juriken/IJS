@@ -4,6 +4,7 @@ Combines Playwright session warmup, lazy-scroll rendering, authentic group signa
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
 Deep pagination support with exponential jitter backoff, resilient retry ladders,
 and negative boyband/media filters.
+Includes strict feature verification for Tsukishima Kirari / Koharu Kusumi releases.
 """
 
 import json
@@ -95,7 +96,17 @@ PROTECTED_SUBUNITS = {
     "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa",
     "Maki Goto", "Aya Matsuura", "Natsumi Abe", "Miki Fujimoto",
     "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!",
-    "Karin Miyamoto"
+    "Karin Miyamoto", "Maria Makino", "Yuko Nakazawa", "Kaori Iida",
+    "Reina Tanaka", "Ai Takahashi", "Risa Niigaki", "Maimi Yajima",
+    "Masaki Sato", "Riho Sayashi", "Manaka Inaba", "Mizuki Fukumura",
+    "Momoko Tsugunaga", "Miyabi Natsuyaki", "Risako Sugaya", "Yurina Kumai",
+    "Ayaka Wada", "Meimi Tamura", "Kanon Fukuda", "Tomoko Kanazawa",
+    "Yumeno Kishimoto", "Sayaka Kitahara", "Nozomi Tsuji", "Ai Kago",
+    "Rika Ishikawa", "Haruka Kudo", "Haruna Iikubo", "Erina Ikuta",
+    "Akane Haga", "Rikako Sasaki", "Mizuki Murota", "Yuka Miyazaki",
+    "Akari Uemura", "Chisaki Morito", "Mai Satoda", "Ayumi Ishida",
+    "Ruru Dambara", "Yuhane Yamazaki", "Ayano Hamaura", "Ayano Kawamura",
+    "Momona Kasahara", "Mao Akiyama", "Nanami Yanagawa"
 }
 
 LEGACY_ROSTER_GROUPS = {
@@ -154,7 +165,7 @@ TARGET_GROUPS = [
     ("Hello! Project", "LoVendoR", ["LoVendoR", "ラベンダー"], ["LoVendoR", "LoVendoЯ", "ラベンダー", "Reina Tanaka"]),
     ("Hello! Project", "PINK CRES.", ["PINK CRES."], ["PINK CRES.", "PINK CRES", "ピンククレス", "Miyabi Natsuyaki"]),
 
-    # Hello! Project — Soloists & OGs
+    # Hello! Project — Soloists & Graduated Members
     ("Hello! Project", "Sayumi Michishige", ["Sayumi Michishige", "道重さゆみ"], [
         "Sayumi Michishige", "Michishige Sayumi", "道重さゆみ", "SAYUMINGLANDOLL", "SAYUMING"
     ]),
@@ -164,8 +175,54 @@ TARGET_GROUPS = [
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
     ("Hello! Project", "Miki Fujimoto", ["Miki Fujimoto", "藤本美貴"], ["Miki Fujimoto", "Fujimoto Miki", "藤本美貴", "Mikitty"]),
-    ("Hello! Project", "Tsukishima Kirari", ["月島きらり", "Tsukishima Kirari", "きらりん☆レボリューション"], ["月島きらり", "Tsukishima Kirari", "久住小春", "Koharu Kusumi", "きらりん"]),
+    ("Hello! Project", "Tsukishima Kirari", ["月島きらり starring 久住小春", "久住小春", "Tsukishima Kirari"], [
+        "久住小春", "Kusumi Koharu", "Koharu Kusumi", "月島きらり starring 久住小春", "Tsukishima Kirari starring Koharu Kusumi"
+    ]),
     ("Hello! Project", "Karin Miyamoto", ["Karin Miyamoto", "宮本佳林"], ["Karin Miyamoto", "Miyamoto Karin", "宮本佳林"]),
+
+    # Hello! Project — 43 Specific Former & Graduate Soloists
+    ("Hello! Project", "Maria Makino", ["Maria Makino", "牧野真莉愛"], ["Maria Makino", "Makino Maria", "牧野真莉愛"]),
+    ("Hello! Project", "Yuko Nakazawa", ["Yuko Nakazawa", "中澤裕子"], ["Yuko Nakazawa", "Nakazawa Yuko", "中澤裕子"]),
+    ("Hello! Project", "Kaori Iida", ["Kaori Iida", "飯田圭織"], ["Kaori Iida", "Iida Kaori", "飯田圭織"]),
+    ("Hello! Project", "Reina Tanaka", ["Reina Tanaka", "田中れいな"], ["Reina Tanaka", "Tanaka Reina", "田中れいな"]),
+    ("Hello! Project", "Ai Takahashi", ["Ai Takahashi", "高橋愛"], ["Ai Takahashi", "Takahashi Ai", "高橋愛"]),
+    ("Hello! Project", "Risa Niigaki", ["Risa Niigaki", "新垣里沙"], ["Risa Niigaki", "Niigaki Risa", "新垣里沙"]),
+    ("Hello! Project", "Maimi Yajima", ["Maimi Yajima", "矢島舞美"], ["Maimi Yajima", "Yajima Maimi", "矢島舞美"]),
+    ("Hello! Project", "Masaki Sato", ["Masaki Sato", "佐藤優樹"], ["Masaki Sato", "Sato Masaki", "佐藤優樹", "Ding Dong", "ロマンティックなんてガラじゃない"]),
+    ("Hello! Project", "Riho Sayashi", ["Riho Sayashi", "鞘師里保"], ["Riho Sayashi", "Sayashi Riho", "鞘師里保", "Reflection", "UNISON"]),
+    ("Hello! Project", "Manaka Inaba", ["Manaka Inaba", "稲場愛香"], ["Manaka Inaba", "Inaba Manaka", "稲場愛香", "圧倒的LVE", "Pink Vampire"]),
+    ("Hello! Project", "Mizuki Fukumura", ["Mizuki Fukumura", "譜久村聖"], ["Mizuki Fukumura", "Fukumura Mizuki", "譜久村聖"]),
+    ("Hello! Project", "Momoko Tsugunaga", ["Momoko Tsugunaga", "嗣永桃子"], ["Momoko Tsugunaga", "Tsugunaga Momoko", "嗣永桃子", "ももち"]),
+    ("Hello! Project", "Miyabi Natsuyaki", ["Miyabi Natsuyaki", "夏焼雅"], ["Miyabi Natsuyaki", "Natsuyaki Miyabi", "夏焼雅"]),
+    ("Hello! Project", "Risako Sugaya", ["Risako Sugaya", "菅谷梨沙子"], ["Risako Sugaya", "Sugaya Risako", "菅谷梨沙子"]),
+    ("Hello! Project", "Yurina Kumai", ["Yurina Kumai", "熊井友理奈"], ["Yurina Kumai", "Kumai Yurina", "熊井友理奈"]),
+    ("Hello! Project", "Ayaka Wada", ["Ayaka Wada", "和田彩花"], ["Ayaka Wada", "Wada Ayaka", "和田彩花"]),
+    ("Hello! Project", "Meimi Tamura", ["Meimi Tamura", "田村芽実"], ["Meimi Tamura", "Tamura Meimi", "田村芽実"]),
+    ("Hello! Project", "Kanon Fukuda", ["Kanon Fukuda", "福田花音", "巫まろ"], ["Kanon Fukuda", "Fukuda Kanon", "福田花音", "巫まろ", "Maro Kanna"]),
+    ("Hello! Project", "Tomoko Kanazawa", ["Tomoko Kanazawa", "金澤朋子"], ["Tomoko Kanazawa", "Kanazawa Tomoko", "金澤朋子"]),
+    ("Hello! Project", "Yumeno Kishimoto", ["Yumeno Kishimoto", "岸本ゆめの"], ["Yumeno Kishimoto", "Kishimoto Yumeno", "岸本ゆめの"]),
+    ("Hello! Project", "Sayaka Kitahara", ["Sayaka Kitahara", "北原沙弥香"], ["Sayaka Kitahara", "Kitahara Sayaka", "北原沙弥香"]),
+    ("Hello! Project", "Nozomi Tsuji", ["Nozomi Tsuji", "辻希美"], ["Nozomi Tsuji", "Tsuji Nozomi", "辻希美", "のんピース"]),
+    ("Hello! Project", "Ai Kago", ["Ai Kago", "加護亜依"], ["Ai Kago", "Kago Ai", "加護亜依"]),
+    ("Hello! Project", "Rika Ishikawa", ["Rika Ishikawa", "石川梨華"], ["Rika Ishikawa", "Ishikawa Rika", "石川梨華"]),
+    ("Hello! Project", "Haruka Kudo", ["Haruka Kudo", "工藤遥"], ["Haruka Kudo", "Kudo Haruka", "工藤遥"]),
+    ("Hello! Project", "Haruna Iikubo", ["Haruna Iikubo", "飯窪春菜"], ["Haruna Iikubo", "Iikubo Haruna", "飯窪春菜"]),
+    ("Hello! Project", "Erina Ikuta", ["Erina Ikuta", "生田衣梨奈"], ["Erina Ikuta", "Ikuta Erina", "生田衣梨奈"]),
+    ("Hello! Project", "Akane Haga", ["Akane Haga", "羽賀朱音"], ["Akane Haga", "Haga Akane", "羽賀朱音"]),
+    ("Hello! Project", "Rikako Sasaki", ["Rikako Sasaki", "佐々木莉佳子"], ["Rikako Sasaki", "Sasaki Rikako", "佐々木莉佳子"]),
+    ("Hello! Project", "Mizuki Murota", ["Mizuki Murota", "室田瑞希"], ["Mizuki Murota", "Murota Mizuki", "室田瑞希"]),
+    ("Hello! Project", "Yuka Miyazaki", ["Yuka Miyazaki", "宮崎由加"], ["Yuka Miyazaki", "Miyazaki Yuka", "宮崎由加"]),
+    ("Hello! Project", "Akari Uemura", ["Akari Uemura", "植村あかり"], ["Akari Uemura", "Uemura Akari", "植村あかり"]),
+    ("Hello! Project", "Chisaki Morito", ["Chisaki Morito", "森戸知沙希"], ["Chisaki Morito", "Morito Chisaki", "森戸知沙希"]),
+    ("Hello! Project", "Mai Satoda", ["Mai Satoda", "里田まい"], ["Mai Satoda", "Satoda Mai", "里田まい"]),
+    ("Hello! Project", "Ayumi Ishida", ["Ayumi Ishida", "石田亜佑美"], ["Ayumi Ishida", "Ishida Ayumi", "石田亜佑美"]),
+    ("Hello! Project", "Ruru Dambara", ["Ruru Dambara", "段原瑠々"], ["Ruru Dambara", "Dambara Ruru", "段原瑠々"]),
+    ("Hello! Project", "Yuhane Yamazaki", ["Yuhane Yamazaki", "山﨑夢羽"], ["Yuhane Yamazaki", "Yamazaki Yuhane", "山﨑夢羽"]),
+    ("Hello! Project", "Ayano Hamaura", ["Ayano Hamaura", "浜浦彩乃"], ["Ayano Hamaura", "Hamaura Ayano", "浜浦彩乃"]),
+    ("Hello! Project", "Ayano Kawamura", ["Ayano Kawamura", "川村文乃"], ["Ayano Kawamura", "Kawamura Ayano", "川村文乃"]),
+    ("Hello! Project", "Momona Kasahara", ["Momona Kasahara", "笠原桃奈"], ["Momona Kasahara", "Kasahara Momona", "笠原桃奈"]),
+    ("Hello! Project", "Mao Akiyama", ["Mao Akiyama", "秋山眞緒"], ["Mao Akiyama", "Akiyama Mao", "秋山眞緒"]),
+    ("Hello! Project", "Nanami Yanagawa", ["Nanami Yanagawa", "梁川奈々美"], ["Nanami Yanagawa", "Yanagawa Nanami", "梁川奈々美"]),
 
     # Up-Front / H!P Alumni
     ("Up-Front Alumni", "You Kikkawa", ["You Kikkawa", "吉川友"], [
@@ -356,6 +413,16 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             if not has_female_artist:
                 return False
 
+    # STRICT KOHARU KUSUMI REQUIREMENT FOR TSUKISHIMA KIRARI
+    if canonical_artist == "Tsukishima Kirari":
+        has_kusumi = any(sig in lower_text for sig in [
+            "kusumi koharu", "koharu kusumi", "久住小春", "starring 久住小春",
+            "starring koharu kusumi", "月島きらり starring 久住小春"
+        ])
+        if not has_kusumi:
+            return False
+        return True
+
     if canonical_artist == "Country Girls":
         if is_upfront_affiliated(prod_key, lower_text):
             return True
@@ -393,9 +460,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
         if is_upfront_affiliated(prod_key, lower_text):
             return True
         return any(s in lower_text for s in ["v-u-den", "biyuden", "美勇伝", "ishikawa rika", "ajisai ai ai"])
-
-    if canonical_artist == "Tsukishima Kirari":
-        return any(s in lower_text for s in ["tsukishima kirari", "月島きらり", "kusumi koharu", "久住小春", "kirarin", "きらりん"])
 
     if canonical_artist == "Karin Miyamoto":
         return any(s in lower_text for s in ["karin miyamoto", "miyamoto karin", "宮本佳林", "hitorijime", "hyouon"])
@@ -637,7 +701,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         extracted_on_page = []
         page_successful = False
 
-        # Enhanced Retry Ladder with Exponential Jitter Backoff (5 attempts)
         for attempt in range(1, 6):
             try:
                 page.set_extra_http_headers({
@@ -651,7 +714,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                 current_title = page.title().strip()
                 status_code = response.status if response else 0
 
-                # Check if rate-limited or blocked
                 if not current_title or status_code in [429, 403, 500, 502, 503, 504]:
                     sleep_time = (attempt * 4) + random.uniform(1.0, 3.5)
                     print(f"   [Notice] Rate-limit / HTTP {status_code} on Page {p_num}. Backing off {sleep_time:.1f}s (attempt {attempt}/5)...", flush=True)
@@ -694,7 +756,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                 print(f"   Attempt {attempt}/5 notice on Page {p_num}: {e}. Retrying in {sleep_time:.1f}s...", flush=True)
                 time.sleep(sleep_time)
 
-        # Do not quit the entire search on a single temporary page failure
         if not page_successful:
             print(f"   [Warning] Page {p_num} could not be retrieved after 5 attempts. Skipping to page {p_num + 1}...", flush=True)
             continue
@@ -718,7 +779,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
         results.extend(extracted_on_page)
 
-        # Safe rate-limiting delay between pages
         time.sleep(random.uniform(1.5, 2.8))
 
     return results

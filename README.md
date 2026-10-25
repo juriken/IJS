@@ -1,2 +1,0 @@
-# idoljapan-store
-idoljapan-store

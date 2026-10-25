@@ -590,10 +590,9 @@
     "price_num": 7619,
     "release_date": "2012/08/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/04/EPXE-5030.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5030",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "EPBE-5645": {
     "id": "EPBE-5645",
@@ -78924,10 +78923,9 @@
     "price_num": 4762,
     "release_date": "2012/08/29",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/38/EPBE-5443.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5443",
-    "updated_at": "2026-10-22",
-    "last_healthcheck": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "EPBE-5438": {
     "id": "EPBE-5438",
@@ -79122,8 +79120,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/08/22/EPCE-5861.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5861",
-    "updated_at": "2026-10-22",
-    "last_healthcheck": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "EPBE-5429": {
     "id": "EPBE-5429",
@@ -86665,10 +86662,9 @@
     "price_num": 2857,
     "release_date": "2012/08/22",
     "image": "https://st.cdjapan.co.jp/pictures/l/13/43/NEOBK-1328333.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1328333",
-    "updated_at": "2026-10-22",
-    "last_healthcheck": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-2137": {
     "id": "NEODAI-2137",
@@ -86681,8 +86677,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/10/NEODAI-2137.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-2137",
-    "updated_at": "2026-10-22",
-    "last_healthcheck": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-2141": {
     "id": "NEODAI-2141",
@@ -288258,6 +288253,162 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/14/EPXE-5128.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5128",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-37950": {
+    "id": "NEODAI-37950",
+    "title": "Collectible Risa Niigaki Solo Live 2018 GAKI Pouch / 2110672-A",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥2,547",
+    "price_num": 2547,
+    "release_date": "2017/12/31",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/22/NEODAI-37950.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-37950",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-18301": {
+    "id": "NEODAI-18301",
+    "title": "Single CD Renai Hunter [Limited Edition / Type E / Risa Niigaki Sotsugyo Kinen Ban]",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥713",
+    "price_num": 713,
+    "release_date": "2012/04/11",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/14/NEODAI-18301.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-18301",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1237376": {
+    "id": "NEOBK-1237376",
+    "title": "BOOK Hello! Channel Hello! Project Official Mook Vol.8 [Cover] Risa Niigaki (KADOKAWA MOOK)",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥1,905",
+    "price_num": 1905,
+    "release_date": "2012/04/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/30/NEOBK-1237376.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1237376",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-1869": {
+    "id": "NEODAI-1869",
+    "title": "APPAREL Morning Musume Solo TShirt Set (Niigaki Risa) [Size L]",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,565",
+    "price_num": 3565,
+    "release_date": "2012/03/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/38/NEODAI-1869.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-1869",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-481044": {
+    "id": "NEOBK-481044",
+    "title": "BOOK Risa Niigaki Photo Book - Happy Girl",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥2,800",
+    "price_num": 2800,
+    "release_date": "2008/05/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/04/NEOBK-481044.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-481044",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-135291": {
+    "id": "NEODAI-135291",
+    "title": "DVD Alo-Hello! 2 Risa Aragaki DVD",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥1,350",
+    "price_num": 1350,
+    "release_date": "2009/01/21",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/05/NEODAI-135291.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-135291",
+    "updated_at": "2026-10-25"
+  },
+  "DAKUFCW-1029": {
+    "id": "DAKUFCW-1029",
+    "title": "Album CD Harokaba",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥2,857",
+    "price_num": 2857,
+    "release_date": "2012/09/05",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/47/DAKUFCW-1029.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1029",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5434": {
+    "id": "EPBE-5434",
+    "title": "DVD as it is",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2012/05/16",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/37/EPBE-5434.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5434",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1219755": {
+    "id": "NEOBK-1219755",
+    "title": "BOOK ASCENSION Nigaki Risa Photobook",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,000",
+    "price_num": 3000,
+    "release_date": "2012/04/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/25/NEOBK-1219755.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1219755",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5382": {
+    "id": "EPBE-5382",
+    "title": "DVD Alo-Hello! 3 Risa Aragaki DVD",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2010/07/14",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/41/EPBE-5382.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5382",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5316": {
+    "id": "EPBE-5316",
+    "title": "DVD Alo-Hello! 2 Risa Aragaki DVD",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2009/01/21",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/31/EPBE-5316.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5316",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5249": {
+    "id": "EPBE-5249",
+    "title": "DVD Alo-Hello! Risa Aragaki DVD",
+    "artist": "Risa Niigaki",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2007/06/13",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/36/EPBE-5249.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5249",
     "updated_at": "2026-10-25"
   }
 }

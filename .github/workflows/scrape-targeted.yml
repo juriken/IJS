@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - 'All Groups'
+          # Hello! Project — Active Groups & Subunits
           - 'Morning Musume'
           - 'ANGERME'
           - 'Juice=Juice'
@@ -32,6 +33,7 @@ on:
           - 'Taiyo to Ciscomoon'
           - 'LoVendoR'
           - 'PINK CRES.'
+          # Hello! Project — OG Flagships & Soloists
           - 'Sayumi Michishige'
           - 'Aya Matsuura'
           - 'Maki Goto'
@@ -41,9 +43,54 @@ on:
           - 'Miki Fujimoto'
           - 'Tsukishima Kirari'
           - 'Karin Miyamoto'
+          # Hello! Project — 43 Former / Graduate Members
+          - 'Maria Makino'
+          - 'Yuko Nakazawa'
+          - 'Kaori Iida'
+          - 'Reina Tanaka'
+          - 'Ai Takahashi'
+          - 'Risa Niigaki'
+          - 'Maimi Yajima'
+          - 'Masaki Sato'
+          - 'Riho Sayashi'
+          - 'Manaka Inaba'
+          - 'Mizuki Fukumura'
+          - 'Momoko Tsugunaga'
+          - 'Miyabi Natsuyaki'
+          - 'Risako Sugaya'
+          - 'Yurina Kumai'
+          - 'Ayaka Wada'
+          - 'Meimi Tamura'
+          - 'Kanon Fukuda'
+          - 'Tomoko Kanazawa'
+          - 'Yumeno Kishimoto'
+          - 'Sayaka Kitahara'
+          - 'Nozomi Tsuji'
+          - 'Ai Kago'
+          - 'Rika Ishikawa'
+          - 'Haruka Kudo'
+          - 'Haruna Iikubo'
+          - 'Erina Ikuta'
+          - 'Akane Haga'
+          - 'Rikako Sasaki'
+          - 'Mizuki Murota'
+          - 'Yuka Miyazaki'
+          - 'Akari Uemura'
+          - 'Chisaki Morito'
+          - 'Mai Satoda'
+          - 'Ayumi Ishida'
+          - 'Ruru Dambara'
+          - 'Yuhane Yamazaki'
+          - 'Ayano Hamaura'
+          - 'Ayano Kawamura'
+          - 'Momona Kasahara'
+          - 'Mao Akiyama'
+          - 'Nanami Yanagawa'
+          # Up-Front Alumni
           - 'You Kikkawa'
           - 'Up Up Girls (Kari)'
           - 'Up Up Girls (2)'
+          # AKB48 Group
           - 'AKB48'
           - 'SKE48'
           - 'NMB48'
@@ -61,6 +108,7 @@ on:
           - 'Yuki Kashiwagi'
           - 'Rino Sashihara'
           - 'Tomomi Itano'
+          # Sakamichi Series
           - 'Nogizaka46'
           - 'Sakurazaka46'
           - 'Hinatazaka46'
@@ -71,19 +119,23 @@ on:
           - 'Erika Ikuta'
           - 'Asuka Saito'
           - 'Yurina Hirate'
+          # Stardust Planet
           - 'Momoiro Clover Z'
           - 'Shiritsu Ebisu Chugaku'
           - 'Chou Tokimeki Sendenbu'
           - 'TEAM SHACHI'
           - 'BATTEN GIRLS'
           - 'ukka'
+          # =LOVE / Sister Groups
           - '=LOVE'
           - '≠ME'
           - '≒JOY'
+          # KAWAII LAB.
           - 'FRUITS ZIPPER'
           - 'CANDY TUNE'
           - 'SWEET STEADY'
           - 'CUTIE STREET'
+          # Modern & Alternative
           - 'NiziU'
           - 'ME:I'
           - 'IS:SUE'
@@ -150,7 +202,9 @@ jobs:
 
       - name: Step 2 - Re-align & Synchronize Catalog
         run: |
-          python -u clean_catalog.py
+          if [ -f clean_catalog.py ]; then
+            python -u clean_catalog.py
+          fi
 
       - name: Step 3 - Rebuild Catalog Summary Index
         run: |

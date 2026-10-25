@@ -2,9 +2,8 @@
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
-Deep pagination support with automatic early-exit and date preservation.
+Deep pagination support with date preservation and full exhaustive pagination.
 Includes embedded false-positive and boyband negative filters.
-Optimized with incremental early-stopping to conserve GitHub Actions runner minutes.
 """
 
 import json
@@ -25,9 +24,6 @@ STATE_FILE = "scraper_state.json"
 # Targeted manual runs default to deep sweeps of 200 pages.
 DEFAULT_PAGES_ALL = 10
 DEFAULT_PAGES_TARGETED = 200
-
-# Number of consecutive known, non-preorder items to encounter before stopping query paging
-CONSECUTIVE_EXISTING_STOP_THRESHOLD = 15
 
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -105,7 +101,7 @@ PROTECTED_SUBUNITS = {
 }
 
 # Legacy/disbanded groups that produce no new material.
-# Skipped during weekly automated runs unless targeted manually.
+# Skipped during automated regular runs unless targeted manually.
 LEGACY_ROSTER_GROUPS = {
     "Tanpopo", "Minimoni", "W", "v-u-den", "GAM", "Taiyo to Ciscomoon",
     "Melon Kinenbi", "Berryz Kobo", "℃-ute", "Buono!", "Country Girls",
@@ -620,10 +616,9 @@ def dismiss_popups(page):
 def sanitize_query_for_cdjapan(query_str):
     return query_str.replace("/", " ").strip()
 
-def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages, catalog_ref):
+def execute_artist_search(page, category, canonical_artist, target_query_or_url, keywords, max_pages):
     results = []
     seen_query_pids = set()
-    consecutive_known_count = 0
     is_direct_person = target_query_or_url.startswith("http://") or target_query_or_url.startswith("https://")
     sanitized_target = target_query_or_url if is_direct_person else sanitize_query_for_cdjapan(target_query_or_url)
     
@@ -706,18 +701,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
         print(f"   [Page {p_num}] Extracted {len(extracted_on_page)} verified items", flush=True)
         results.extend(extracted_on_page)
 
-        # Smart Incremental Early-Stopping Logic
-        for it in extracted_on_page:
-            pid = it["id"]
-            if pid in catalog_ref and catalog_ref[pid].get("availability") != "preorder":
-                consecutive_known_count += 1
-            else:
-                consecutive_known_count = 0
-
-        if consecutive_known_count >= CONSECUTIVE_EXISTING_STOP_THRESHOLD:
-            print(f"   ⚡ [Early-Stop] Encountered {consecutive_known_count} consecutive known releases. Catalog up to date.", flush=True)
-            break
-
         time.sleep(random.uniform(0.8, 1.4))
 
     return results
@@ -760,7 +743,7 @@ def main():
     active_groups = get_active_targets(is_targeted)
     page_depth = get_target_page_depth(is_targeted)
 
-    run_mode = "Targeted Manual Deep Scrape" if is_targeted else "Automated Incremental Sweep"
+    run_mode = "Targeted Manual Deep Scrape" if is_targeted else "Automated Exhaustive Sweep"
     print(f"Run Mode: [{run_mode}] | Groups: {len(active_groups)} | Max Depth: {page_depth} pages/query", flush=True)
 
     with sync_playwright() as p:
@@ -801,7 +784,7 @@ def main():
             try:
                 for target_q in targets:
                     items = execute_artist_search(
-                        target_page, cat, artist, target_q, keywords, max_pages=page_depth, catalog_ref=catalog
+                        target_page, cat, artist, target_q, keywords, max_pages=page_depth
                     )
                     for it in items:
                         pid = it["id"]

@@ -1,8 +1,9 @@
 """
 IdolJapan.store — Resilient CDJapan Catalog Release Date Healer
-Audits and verifies release dates across ALL catalog releases (including existing dates),
-extracts canonical street dates directly from CDJapan product pages and schema tags,
+Audits and verifies release dates across ALL catalog releases,
+extracts canonical street dates directly from CDJapan product pages, JSON-LD, and schema tags,
 and guarantees simultaneous synchronization of products.json and catalog-index.json.
+Supports on-demand cycle restart via environment variable or manual workflow trigger.
 """
 
 import json
@@ -123,31 +124,54 @@ def fetch_official_date(session, pid):
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
 
-            # 1. Check table cells and description lists for Release Date
-            date_nodes = soup.find_all(
-                lambda el: el.name in ["th", "td", "span", "dt", "p", "div"]
-                and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
-            )
-            for node in date_nodes:
-                sibling = node.find_next_sibling(["td", "dd", "span", "div"])
-                candidate_text = sibling.get_text() if sibling else node.get_text()
-                parsed = parse_cdjapan_date(candidate_text)
-                if parsed:
-                    return pid, parsed
+            # 1. Parse JSON-LD structured data (highest precision on CDJapan)
+            for script in soup.find_all("script", type="application/ld+json"):
+                try:
+                    js_data = json.loads(script.string or "{}")
+                    candidates = js_data if isinstance(js_data, list) else [js_data]
+                    for item in candidates:
+                        if isinstance(item, dict):
+                            for key in ["releaseDate", "datePublished", "startDate"]:
+                                if key in item and item[key]:
+                                    parsed = parse_cdjapan_date(item[key])
+                                    if parsed:
+                                        return pid, parsed
+                except Exception:
+                    pass
 
-            # 2. Check Schema.org / OpenGraph structured meta tags
+            # 2. Check Definition Lists (<dt>Release Date</dt><dd>...</dd>)
+            dt_nodes = soup.find_all(
+                lambda el: el.name in ["dt", "th"] and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
+            )
+            for dt in dt_nodes:
+                dd = dt.find_next_sibling(["dd", "td"])
+                if dd:
+                    parsed = parse_cdjapan_date(dd.get_text())
+                    if parsed:
+                        return pid, parsed
+
+            # 3. Check Table Rows and General Cells
+            for tr in soup.find_all("tr"):
+                row_text = tr.get_text().lower()
+                if "release date" in row_text or "発売日" in row_text:
+                    parsed = parse_cdjapan_date(tr.get_text())
+                    if parsed:
+                        return pid, parsed
+
+            # 4. Check OpenGraph / Microdata Meta Tags
             meta_date = (
                 soup.find("meta", {"itemprop": "releaseDate"})
                 or soup.find("meta", {"property": "product:release_date"})
                 or soup.find("meta", {"name": "release_date"})
+                or soup.find("meta", {"property": "og:release_date"})
             )
             if meta_date and meta_date.get("content"):
                 parsed = parse_cdjapan_date(meta_date["content"])
                 if parsed:
                     return pid, parsed
 
-            # 3. Direct regex match on raw page text
-            body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r<]+)", res.text, re.IGNORECASE)
+            # 5. Direct Regex Match on full page body text
+            body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r<]{6,40})", res.text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -162,9 +186,16 @@ def fetch_official_date(session, pid):
     return pid, None
 
 def load_progress():
-    # Supports manual restart via environment variable or missing file
-    if os.environ.get("RESET_PROGRESS", "").lower() in ["true", "1", "yes"]:
-        print("[Notice] RESET_PROGRESS detected. Restarting audit from item 1.")
+    reset_requested = os.environ.get("RESET_PROGRESS", "").lower() in ["true", "1", "yes"] or \
+                      os.environ.get("RESET_DATE_HEALER", "").lower() in ["true", "1", "yes"]
+
+    if reset_requested:
+        print("[Notice] RESET detected. Restarting audit from item 1.")
+        if os.path.exists(PROGRESS_FILE):
+            try:
+                os.remove(PROGRESS_FILE)
+            except Exception:
+                pass
         return set()
 
     if os.path.exists(PROGRESS_FILE):
@@ -209,7 +240,6 @@ def main():
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
-    # TOTAL RESTART: Queues ALL releases in catalog that haven't been audited in current cycle
     pending_items = [pid for pid in catalog.keys() if pid not in processed_keys]
 
     total_pending = len(pending_items)
@@ -223,7 +253,7 @@ def main():
 
     if total_pending == 0:
         print("\nAll 100% of catalog releases have been verified against CDJapan!")
-        print("To restart the entire cycle again, delete repair_progress.json.")
+        print("To restart the entire cycle again, pass RESET_DATE_HEALER=true or delete repair_progress.json.")
         return
 
     batch_size = int(os.environ.get("BATCH_SIZE", DEFAULT_BATCH_SIZE))
@@ -259,7 +289,6 @@ def main():
                 else:
                     preserved_count += 1
             else:
-                # If CDJapan didn't return a date, protect pre-existing valid date
                 if is_valid_date_format(old_date):
                     preserved_count += 1
                 else:
@@ -273,11 +302,10 @@ def main():
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    # 2. ALSO save updated catalog-index.json so live website is updated immediately
+    # 2. Synchronize catalog-index.json for immediate deployment
     with open(INDEX_FILE, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    # Save progress tracking
     save_progress(processed_keys)
 
     new_audited = len(processed_keys)

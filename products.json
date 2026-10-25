@@ -548,10 +548,9 @@
     "price_num": 5000,
     "release_date": "2013/09/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/06/EPXE-5040.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5040",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-199081": {
     "id": "NEODAI-199081",
@@ -988,10 +987,9 @@
     "price_num": 3048,
     "release_date": "2013/08/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/21/NEOBK-1526857.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1526857",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "HKXN-50140": {
     "id": "HKXN-50140",
@@ -42111,16 +42109,15 @@
   "DAKUFBW-1663": {
     "id": "DAKUFBW-1663",
     "title": "DVD M-line Special 2021-Make a Wish!- on 20th June",
-    "artist": "Karin Miyamoto",
+    "artist": "Reina Tanaka",
     "category": "Hello! Project",
     "price": "¥4,000",
     "price_num": 4000,
     "release_date": "2021/11/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/DAKUFBW-1663.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1663",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "DAKUFBW-1657": {
     "id": "DAKUFBW-1657",
@@ -43029,8 +43026,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEOBK-1483022.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1483022",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-1475230": {
     "id": "NEOBK-1475230",
@@ -43043,8 +43039,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/26/NEOBK-1475230.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1475230",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-1441469": {
     "id": "NEOBK-1441469",
@@ -43127,8 +43122,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/04/07/NEOBK-884034.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-884034",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-742961": {
     "id": "NEOBK-742961",
@@ -43239,8 +43233,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/28/NEOBK-245562.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-245562",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-159983": {
     "id": "NEODAI-159983",
@@ -78338,7 +78331,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/41/EPBE-5470.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5470",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "EPCE-5993": {
     "id": "EPCE-5993",
@@ -87083,7 +87076,7 @@
   "EPBE-5083": {
     "id": "EPBE-5083",
     "title": "DVD Haroharo! Morning Musume 6ki Member DVD",
-    "artist": "Morning Musume",
+    "artist": "Reina Tanaka",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -87091,7 +87084,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/30/EPBE-5083.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5083",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "HKBN-50032": {
     "id": "HKBN-50032",
@@ -101430,7 +101423,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/13/NEOBK-1508985.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1508985",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-1456173": {
     "id": "NEOBK-1456173",
@@ -288833,6 +288826,279 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/07/09/EPCE-2015.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-2015",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-516829": {
+    "id": "NEOBK-516829",
+    "title": "BOOK Reina Tanaka Newest Photobook Very Reina",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,800",
+    "price_num": 2800,
+    "release_date": "2008/11/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/46/NEOBK-516829.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-516829",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-196696": {
+    "id": "NEODAI-196696",
+    "title": "DVD Used [Secondhand] Tanaka Reina Attracted Tanaka Reina DVD 1068",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥1,600",
+    "price_num": 1600,
+    "release_date": "2024/01/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/32/NEODAI-196696.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-196696",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-2946121": {
+    "id": "NEOBK-2946121",
+    "title": "BOOK Karada Ni I Koto April 2024 Issue [Cover] Tanaka Reina",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥691",
+    "price_num": 691,
+    "release_date": "2024/02/16",
+    "image": "https://st.cdjapan.co.jp/pictures/l/02/09/NEOBK-2946121.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2946121",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-64115": {
+    "id": "NEODAI-64115",
+    "title": "BOOK Used [Second Hand] Tanaka Reina Photobook",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥30",
+    "price_num": 30,
+    "release_date": "2004/11/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/11/NEODAI-64115.jpg?v=2",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-64115",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-2375924": {
+    "id": "NEOBK-2375924",
+    "title": "BOOK Fujin Koron July 23, 2019 Issue [Cover] Tanaka Reina [Supplement] Panda No Shanshan Post Card & Shiori",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥556",
+    "price_num": 556,
+    "release_date": "2019/07/23",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/39/NEOBK-2375924.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2375924",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-2125840": {
+    "id": "NEOBK-2125840",
+    "title": "BOOK Cameraman September 2017 Issue [Cover] Tanaka Reina [Booklet] Sports Satsuei Pocket Guide",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥741",
+    "price_num": 741,
+    "release_date": "2017/08/19",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/38/NEOBK-2125840.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2125840",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1245941": {
+    "id": "NEOBK-1245941",
+    "title": "BOOK Reina Tanaka Photobook \"Kira Kira\"",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,857",
+    "price_num": 2857,
+    "release_date": "2012/05/11",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/43/NEOBK-1245941.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1245941",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-1998": {
+    "id": "NEODAI-1998",
+    "title": "Collectible Tanaka Reina photobook Kira Kira",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,056",
+    "price_num": 3056,
+    "release_date": "2012/05/09",
+    "image": "https://st.cdjapan.co.jp/pictures/l/16/47/NEODAI-1998.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-1998",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1222839": {
+    "id": "NEOBK-1222839",
+    "title": "BOOK Goo Bike Kansai Ban 2012 5/13 Issue [Cover] Reina Tanaka",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥238",
+    "price_num": 238,
+    "release_date": "2012/04/13",
+    "image": "https://st.cdjapan.co.jp/pictures/l/12/38/NEOBK-1222839.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1222839",
+    "updated_at": "2026-10-25"
+  },
+  "NEODAI-2030": {
+    "id": "NEODAI-2030",
+    "title": "BOOK Tanaka Reina Photo Book Kira Kira",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,056",
+    "price_num": 3056,
+    "release_date": "2012/04/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/15/48/NEODAI-2030.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-2030",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-467054": {
+    "id": "NEOBK-467054",
+    "title": "BOOK Re: Tanaka Reina Photobook Zenshu",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,500",
+    "price_num": 3500,
+    "release_date": "2008/03/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/22/NEOBK-467054.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-467054",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-439542": {
+    "id": "NEOBK-439542",
+    "title": "BOOK GIRL Tanaka Reina Photobook",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,800",
+    "price_num": 2800,
+    "release_date": "2007/10/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/01/06/NEOBK-439542.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-439542",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5230": {
+    "id": "EPBE-5230",
+    "title": "DVD Alo-Hello! Reina Tanaka",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2007/02/14",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/25/EPBE-5230.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5230",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-362778": {
+    "id": "NEOBK-362778",
+    "title": "BOOK Shojo R Tanaka Reina Photobook",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,800",
+    "price_num": 2800,
+    "release_date": "2006/05/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/35/NEOBK-362778.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-362778",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-334946": {
+    "id": "NEOBK-334946",
+    "title": "BOOK Reina Tanaka Reina Photobook",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,700",
+    "price_num": 2700,
+    "release_date": "2005/11/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/03/NEOBK-334946.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-334946",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-293539": {
+    "id": "NEOBK-293539",
+    "title": "BOOK Tanaka Reina Photobook",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,500",
+    "price_num": 2500,
+    "release_date": "2004/11/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/00/44/NEOBK-293539.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-293539",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-7674": {
+    "id": "EPCE-7674",
+    "title": "Album CD Laugh And Peace [CD+DVD]",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,500",
+    "price_num": 3500,
+    "release_date": "2022/04/27",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/35/EPCE-7674.jpg?v=1",
+    "availability": "instock",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-7674",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1501068": {
+    "id": "NEOBK-1501068",
+    "title": "BOOK Tanaka Mesen",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥2,381",
+    "price_num": 2381,
+    "release_date": "2013/05/23",
+    "image": "https://st.cdjapan.co.jp/pictures/l/13/18/NEOBK-1501068.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1501068",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1264363": {
+    "id": "NEOBK-1264363",
+    "title": "BOOK To Shitsu off Ryori De Oishiku Kirei Ni Diet Niku Mo Gyokai Mo OK! 1 Hin to Shitsu 10 G Ika No Kantan Shumatsu Recipe",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥1,300",
+    "price_num": 1300,
+    "release_date": "2012/06/15",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/00/NEOBK-1264363.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1264363",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-791884": {
+    "id": "NEOBK-791884",
+    "title": "BOOK Kaito Reinya Official Guide Book Marugoto Reinya!",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥1,600",
+    "price_num": 1600,
+    "release_date": "2010/06/26",
+    "image": "https://st.cdjapan.co.jp/pictures/l/04/09/NEOBK-791884.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-791884",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5306": {
+    "id": "EPBE-5306",
+    "title": "DVD Real Challenge!!",
+    "artist": "Reina Tanaka",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2008/10/29",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/29/EPBE-5306.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5306",
     "updated_at": "2026-10-25"
   }
 }

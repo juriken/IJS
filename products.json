@@ -3886,10 +3886,9 @@
     "price_num": 4800,
     "release_date": "2026/12/16",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/29/NEODAI-331155.jpg?v=1",
-    "availability": "oop",
+    "availability": "preorder",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-331155",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3151712": {
     "id": "NEOBK-3151712",
@@ -3900,10 +3899,9 @@
     "price_num": 3000,
     "release_date": "2018/05/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/NEOBK-3151712.jpg?v=3",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3151712",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-285970": {
     "id": "NEODAI-285970",
@@ -3914,10 +3912,9 @@
     "price_num": 3300,
     "release_date": "2025/12/17",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/42/NEODAI-285970.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-285970",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "UPCH-29489": {
     "id": "UPCH-29489",
@@ -3928,10 +3925,9 @@
     "price_num": 3500,
     "release_date": "2024/12/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/40/UPCH-29489.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-29489",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3164483": {
     "id": "NEOBK-3164483",
@@ -3942,10 +3938,9 @@
     "price_num": 3000,
     "release_date": "2018/05/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/06/NEOBK-3164483.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3164483",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "AKB-D2151": {
     "id": "AKB-D2151",
@@ -3956,10 +3951,9 @@
     "price_num": 6648,
     "release_date": "2013/03/27",
     "image": "https://st.cdjapan.co.jp/pictures/l/14/45/AKB-D2151.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAKB-D2151",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "UPCH-20687": {
     "id": "UPCH-20687",
@@ -3970,10 +3964,9 @@
     "price_num": 2273,
     "release_date": "2024/12/25",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/23/UPCH-20687.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-20687",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "AKB-D2291": {
     "id": "AKB-D2291",
@@ -3984,10 +3977,9 @@
     "price_num": 6700,
     "release_date": "2014/12/10",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/08/AKB-D2291.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAKB-D2291",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-2626601": {
     "id": "NEOBK-2626601",
@@ -14992,7 +14984,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/UPCH-89635.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89635",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89637": {
     "id": "UPCH-89637",
@@ -15005,7 +14997,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/34/UPCH-89637.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89637",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80635": {
     "id": "UPCH-80635",
@@ -15018,7 +15010,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/UPCH-80635.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80635",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89636": {
     "id": "UPCH-89636",
@@ -15031,7 +15023,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/33/UPCH-89636.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89636",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89651": {
     "id": "UPCH-89651",
@@ -16292,7 +16284,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/13/UPCH-80639.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80639",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-37063": {
     "id": "NEODAI-37063",
@@ -16305,7 +16297,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/40/NEODAI-37063.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-37063",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80607": {
     "id": "UPCH-80607",
@@ -16318,7 +16310,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/05/UPCH-80607.jpg?v=3",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80607",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-455": {
     "id": "KIZM-455",
@@ -16331,7 +16323,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/24/KIZM-455.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-455",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89604": {
     "id": "UPCH-89604",
@@ -16344,7 +16336,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/25/UPCH-89604.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89604",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-473": {
     "id": "KIZM-473",
@@ -16357,7 +16349,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-473.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-473",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KICS-3675": {
     "id": "KICS-3675",
@@ -16370,7 +16362,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/13/14/KICS-3675.jpg?v=3",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKICS-3675",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-167": {
     "id": "KIZM-167",
@@ -16383,7 +16375,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-167.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-167",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80601": {
     "id": "UPCH-80601",
@@ -16396,7 +16388,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/48/UPCH-80601.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80601",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80610": {
     "id": "UPCH-80610",
@@ -16409,7 +16401,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/00/UPCH-80610.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80610",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-327": {
     "id": "KIZM-327",
@@ -16422,7 +16414,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-327.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-327",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-69": {
     "id": "KIZM-69",
@@ -16431,11 +16423,11 @@
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
-    "release_date": "2011/03/14",
+    "release_date": "2010/12/08",
     "image": "https://st.cdjapan.co.jp/pictures/l/09/34/KIZM-69.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-69",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-413": {
     "id": "KIZM-413",
@@ -16444,11 +16436,11 @@
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
-    "release_date": "2018/10/02",
+    "release_date": "2016/03/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-413.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-413",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-263": {
     "id": "KIZM-263",
@@ -16461,7 +16453,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-263.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-263",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-443": {
     "id": "KIZM-443",
@@ -16470,11 +16462,11 @@
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
-    "release_date": "2016/06/18",
+    "release_date": "2016/08/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-443.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-443",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-441": {
     "id": "KIZM-441",
@@ -16483,11 +16475,11 @@
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
-    "release_date": "2017/11/16",
+    "release_date": "2016/08/31",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/18/KIZM-441.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-441",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89605": {
     "id": "UPCH-89605",
@@ -16500,7 +16492,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/UPCH-89605.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89605",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-477": {
     "id": "KIZM-477",
@@ -16513,7 +16505,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/30/KIZM-477.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-477",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-275": {
     "id": "KIZM-275",
@@ -16526,7 +16518,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-275.jpg?v=5",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-275",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-415": {
     "id": "KIZM-415",
@@ -16539,7 +16531,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-415.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-415",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-405": {
     "id": "KIZM-405",
@@ -16552,7 +16544,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-405.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-405",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80591": {
     "id": "UPCH-80591",
@@ -16574,11 +16566,11 @@
     "category": "AKB48 Group",
     "price": "¥2,857",
     "price_num": 2857,
-    "release_date": "2007/03/07",
+    "release_date": "2013/01/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/05/DFCL-1865.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFCL-1865",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-143": {
     "id": "KIZM-143",
@@ -16587,11 +16579,11 @@
     "category": "AKB48 Group",
     "price": "¥1,524",
     "price_num": 1524,
-    "release_date": "2019/12/14",
+    "release_date": "2012/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/02/08/KIZM-143.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-143",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80629": {
     "id": "UPCH-80629",
@@ -16600,11 +16592,11 @@
     "category": "AKB48 Group",
     "price": "¥1,091",
     "price_num": 1091,
-    "release_date": "2016/03/09",
+    "release_date": "2025/08/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/01/11/UPCH-80629.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80629",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-83": {
     "id": "KIZM-83",
@@ -16617,7 +16609,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/09/32/KIZM-83.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-83",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-235": {
     "id": "KIZM-235",
@@ -16630,7 +16622,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/12/KIZM-235.jpg?v=2",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-235",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-617": {
     "id": "KIZM-617",
@@ -16643,7 +16635,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-617.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-617",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-80621": {
     "id": "UPCH-80621",
@@ -16656,7 +16648,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/03/UPCH-80621.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-80621",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89564": {
     "id": "UPCH-89564",
@@ -16669,7 +16661,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/33/UPCH-89564.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89564",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "UPCH-89527": {
     "id": "UPCH-89527",
@@ -16682,7 +16674,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/28/UPCH-89527.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89527",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-743": {
     "id": "KIZM-743",
@@ -16695,7 +16687,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/KIZM-743.jpg?v=2",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-743",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-90699": {
     "id": "KIZM-90699",
@@ -16721,7 +16713,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/29/NEODAI-95318.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-95318",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-325": {
     "id": "KIZM-325",
@@ -16734,7 +16726,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/14/KIZM-325.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-325",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-303": {
     "id": "KIZM-303",
@@ -16747,7 +16739,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/08/KIZM-303.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-303",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-297": {
     "id": "KIZM-297",
@@ -16760,7 +16752,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/26/KIZM-297.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-297",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-191": {
     "id": "KIZM-191",
@@ -16773,7 +16765,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/16/KIZM-191.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-191",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "DFXL-5": {
     "id": "DFXL-5",
@@ -16786,7 +16778,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/30/DFXL-5.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDFXL-5",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-195": {
     "id": "KIZM-195",
@@ -16799,7 +16791,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-195.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-195",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-259": {
     "id": "KIZM-259",
@@ -16812,7 +16804,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/20/KIZM-259.jpg?v=2",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FKIZM-259",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3106786": {
     "id": "NEOBK-3106786",
@@ -16825,7 +16817,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/39/NEOBK-3106786.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3106786",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3180736": {
     "id": "NEOBK-3180736",
@@ -16838,7 +16830,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/11/NEOBK-3180736.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3180736",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3130233": {
     "id": "NEOBK-3130233",
@@ -16851,7 +16843,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/06/NEOBK-3130233.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3130233",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3058271": {
     "id": "NEOBK-3058271",
@@ -16864,7 +16856,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/27/NEOBK-3058271.jpg?v=3",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3058271",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "SSBX-2383": {
     "id": "SSBX-2383",
@@ -16977,11 +16969,11 @@
     "category": "AKB48 Group",
     "price": "¥1,818",
     "price_num": 1818,
-    "release_date": "2027/02/22",
+    "release_date": "2027/02/24",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89653.jpg",
     "availability": "preorder",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89653",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-90399": {
     "id": "KIZM-90399",
@@ -17029,11 +17021,11 @@
     "category": "AKB48 Group",
     "price": "¥1,818",
     "price_num": 1818,
-    "release_date": "2027/02/22",
+    "release_date": "2027/02/24",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89654.jpg",
     "availability": "preorder",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89654",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "KIZM-393": {
     "id": "KIZM-393",
@@ -17133,11 +17125,11 @@
     "category": "AKB48 Group",
     "price": "¥1,818",
     "price_num": 1818,
-    "release_date": "2027/02/22",
+    "release_date": "2027/02/24",
     "image": "https://www.cdjapan.co.jp/pictures/l/UPCH-89655.jpg",
     "availability": "preorder",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FUPCH-89655",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEODAI-32947": {
     "id": "NEODAI-32947",

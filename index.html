@@ -146,7 +146,7 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU, 宮本佳林)..." 
+            placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU, 宮本佳林, 佐藤優樹)..." 
             class="w-full pl-9 pr-8 py-1.5 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-xs shadow-inner border border-transparent dark:border-slate-700" 
             autocomplete="off" 
             onfocus="showSearchSuggestions()"
@@ -1095,13 +1095,27 @@
 
     const FRANCHISE_ARTISTS = {
       'Hello! Project & Up-Front': [
+        // Active Flagship Groups
         'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
         'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei',
-        'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls', 'Kobushi Factory',
-        'Melon Kinenbi', 'Minimoni', 'Tanpopo', 'v-u-den', 'W', 'GAM',
-        'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.', 'Sayumi Michishige',
-        'Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Erina Mano',
-        'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto',
+        // Legendary Subunits & Past Groups
+        'Minimoni', 'Tanpopo', 'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls',
+        'Kobushi Factory', 'Melon Kinenbi', 'v-u-den', 'W', 'GAM', 'Taiyo to Ciscomoon',
+        'LoVendoR', 'PINK CRES.',
+        // OG Flagships & Soloists
+        'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto', 'Natsumi Abe',
+        'Erina Mano', 'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto',
+        // 43 Former / Graduate Members
+        'Maria Makino', 'Yuko Nakazawa', 'Kaori Iida', 'Reina Tanaka', 'Ai Takahashi',
+        'Risa Niigaki', 'Maimi Yajima', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba',
+        'Mizuki Fukumura', 'Momoko Tsugunaga', 'Miyabi Natsuyaki', 'Risako Sugaya',
+        'Yurina Kumai', 'Ayaka Wada', 'Meimi Tamura', 'Kanon Fukuda', 'Tomoko Kanazawa',
+        'Yumeno Kishimoto', 'Sayaka Kitahara', 'Nozomi Tsuji', 'Ai Kago', 'Rika Ishikawa',
+        'Haruka Kudo', 'Haruna Iikubo', 'Erina Ikuta', 'Akane Haga', 'Rikako Sasaki',
+        'Mizuki Murota', 'Yuka Miyazaki', 'Akari Uemura', 'Chisaki Morito', 'Mai Satoda',
+        'Ayumi Ishida', 'Ruru Dambara', 'Yuhane Yamazaki', 'Ayano Hamaura', 'Ayano Kawamura',
+        'Momona Kasahara', 'Mao Akiyama', 'Nanami Yanagawa',
+        // Up-Front Alumni
         'You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'
       ],
       'AKB48 Group': [
@@ -1129,29 +1143,38 @@
     const MEGA_MENU_CATEGORIES = {
       'Hello! Project & Up-Front': [
         {
-          title: "Active Groups",
+          title: "Active Groups & Units",
           icon: "fa-fire text-rose-500",
           units: ['Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei']
         },
         {
-          title: "Legendary Subunits",
+          title: "Subunits & Roots",
           icon: "fa-star text-amber-500",
-          units: ['Minimoni', 'Tanpopo', 'Buono!', 'W', 'v-u-den', 'GAM']
+          units: ['Minimoni', 'Tanpopo', 'Buono!', 'W', 'v-u-den', 'GAM', 'Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.']
         },
         {
-          title: "Past Groups & Roots",
-          icon: "fa-clock-rotate-left text-sky-500",
-          units: ['Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon']
-        },
-        {
-          title: "Soloists & OGs",
+          title: "OG Soloists & Legends",
           icon: "fa-microphone text-purple-500",
-          units: ['Karin Miyamoto', 'Sayumi Michishige', 'Maki Goto', 'Aya Matsuura', 'Airi Suzuki', 'Natsumi Abe', 'Erina Mano', 'Miki Fujimoto', 'Tsukishima Kirari', 'LoVendoR', 'PINK CRES.']
+          units: [
+            'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto', 'Natsumi Abe',
+            'Erina Mano', 'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari',
+            'Karin Miyamoto', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba',
+            'Mizuki Fukumura', 'Momoko Tsugunaga', 'Reina Tanaka', 'Ai Takahashi'
+          ]
         },
         {
-          title: "Up-Front Alumni",
-          icon: "fa-compact-disc text-emerald-500",
-          units: ['You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)']
+          title: "Graduates & Alumni",
+          icon: "fa-award text-emerald-500",
+          units: [
+            'Maria Makino', 'Yuko Nakazawa', 'Kaori Iida', 'Risa Niigaki', 'Maimi Yajima',
+            'Miyabi Natsuyaki', 'Risako Sugaya', 'Yurina Kumai', 'Ayaka Wada', 'Meimi Tamura',
+            'Kanon Fukuda', 'Tomoko Kanazawa', 'Yumeno Kishimoto', 'Sayaka Kitahara',
+            'Nozomi Tsuji', 'Ai Kago', 'Rika Ishikawa', 'Haruka Kudo', 'Haruna Iikubo',
+            'Erina Ikuta', 'Akane Haga', 'Rikako Sasaki', 'Mizuki Murota', 'Yuka Miyazaki',
+            'Akari Uemura', 'Chisaki Morito', 'Mai Satoda', 'Ayumi Ishida', 'Ruru Dambara',
+            'Yuhane Yamazaki', 'Ayano Hamaura', 'Ayano Kawamura', 'Momona Kasahara',
+            'Mao Akiyama', 'Nanami Yanagawa', 'You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'
+          ]
         }
       ],
       'AKB48 Group': [
@@ -1363,7 +1386,6 @@
       return cleanV.length > 38 ? cleanV.slice(0, 38) + '...' : cleanV;
     }
 
-    // Sort order for editions: Limited Edition (A -> B -> C...) -> Regular Edition -> Bundled/Bonuses
     function getVariantSortScore(variant) {
       const title = String(variant.title || '').toLowerCase();
       let rank = 50;
@@ -2092,7 +2114,6 @@
       }
     }
 
-    // High-precision base title clustering for multi-edition bundling
     function getCleanBaseTitle(title) {
       if (!title) return '';
       let clean = stripTitlePrefixes(title);
@@ -2127,13 +2148,11 @@
       clusteredEntities = Object.values(clusters);
     }
 
-    // Reclassified CD audio vs Blu-ray video vs Merch
     function getItemFormatCategory(item) {
       if (!item) return 'Other';
       const pid = String(item.id || '').toUpperCase();
       const title = String(item.title || '').toLowerCase();
 
-      // 1. Books / Photobooks / Magazines
       if (
         pid.startsWith('NEOBK-') ||
         title.includes('photobook') ||
@@ -2149,7 +2168,6 @@
         return 'Book';
       }
 
-      // 2. CD Singles & Albums (Even if packaged with bonus Blu-ray/DVD)
       if (
         title.startsWith('single cd') ||
         title.startsWith('album cd') ||
@@ -2179,7 +2197,6 @@
         return 'CD';
       }
 
-      // 3. Standalone Blu-ray Video (Concerts, Live Tours, Video Box Sets)
       if (
         pid.startsWith('SRXL') ||
         pid.startsWith('SRXW') ||
@@ -2200,7 +2217,6 @@
         return 'Blu-ray';
       }
 
-      // 4. Standalone DVD Video (Concerts, Theatre, Documentaries)
       if (
         pid.startsWith('SRBL') ||
         pid.startsWith('EPBE') ||
@@ -2220,7 +2236,6 @@
         return 'DVD';
       }
 
-      // 5. Official Merch & Collectables
       if (
         pid.startsWith('NEODAI-') ||
         pid.startsWith('NEOODY-') ||
@@ -2250,7 +2265,6 @@
       return 'Other';
     }
 
-    // Specific sub-classification for Merchandise
     function getMerchSubgroupType(item) {
       const title = String(item.title || '').toLowerCase();
       if (title.includes('acrylic') || title.includes('stand') || title.includes('アクスタ') || title.includes('アクリル')) return 'acrylic';
@@ -2537,8 +2551,8 @@
 
         categories.forEach(sec => {
           html += `
-            <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col">
-              <h4 class="font-black text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2.5 pb-1 border-b border-stone-200/40 dark:border-slate-700/50 flex items-center gap-1.5">
+            <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col max-h-96 overflow-y-auto no-scrollbar">
+              <h4 class="font-black text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2.5 pb-1 border-b border-stone-200/40 dark:border-slate-700/50 flex items-center gap-1.5 sticky top-0 bg-stone-50/95 dark:bg-slate-800/95 backdrop-blur-xs z-10">
                 <i class="fa-solid ${sec.icon}"></i> ${escapeHtml(sec.title)}
               </h4>
               <div class="space-y-1">
@@ -2722,6 +2736,7 @@
             <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-2">Trending Searches:</span>
             <div class="flex flex-wrap gap-1.5">
               <button onclick="quickSearch('Morning Musume')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🌸 Morning Musume</button>
+              <button onclick="quickSearch('Masaki Sato')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💚 Masaki Sato</button>
               <button onclick="quickSearch('Sakurazaka46')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">⚡ Sakurazaka46</button>
               <button onclick="quickSearch('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💖 FRUITS ZIPPER</button>
               <button onclick="quickSearch('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🦊 BABYMETAL</button>
@@ -3255,6 +3270,13 @@
       const filterItem = (item) => {
         if (!item) return false;
 
+        // STRICT TSUKISHIMA KIRARI FILTERING (Must feature Koharu Kusumi)
+        if (item.artist === 'Tsukishima Kirari' || (item.title && item.title.toLowerCase().includes('tsukishima kirari'))) {
+          const tLower = (item.title || '').toLowerCase();
+          const hasKusumi = tLower.includes('kusumi koharu') || tLower.includes('koharu kusumi') || tLower.includes('久住小春');
+          if (!hasKusumi) return false;
+        }
+
         const priceNum = parseNumericPrice(item.price, item);
         if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) return false;
 
@@ -3315,7 +3337,6 @@
           const matchingVariants = (cluster.variants || []).filter(filterItem);
           if (!matchingVariants.length) return false;
           
-          // Sort variants inside cluster: Limited Edition -> Regular Edition -> Bundled Set
           matchingVariants.sort((a, b) => {
             const scoreA = getVariantSortScore(a);
             const scoreB = getVariantSortScore(b);

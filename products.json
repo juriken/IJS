@@ -30078,7 +30078,7 @@
   "NEODAI-234125": {
     "id": "NEODAI-234125",
     "title": "Album CD Used [Secondhand] Folk Songs 3",
-    "artist": "Miki Fujimoto",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥605",
     "price_num": 605,
@@ -30086,13 +30086,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/15/NEODAI-234125.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-234125",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "PKCP-5010": {
     "id": "PKCP-5010",
     "title": "Album CD Folk Songs 3",
-    "artist": "Miki Fujimoto",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -30100,8 +30099,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/08/08/PKCP-5010.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5010",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-3139791": {
     "id": "NEOBK-3139791",
@@ -39471,7 +39469,7 @@
   "PKCP-5006": {
     "id": "PKCP-5006",
     "title": "Album CD FOLK SONGS 2",
-    "artist": "Aya Matsuura",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -39479,8 +39477,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/08/12/PKCP-5006.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5006",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "EPCE-5702": {
     "id": "EPCE-5702",
@@ -41682,7 +41679,7 @@
   "PKCP-5035": {
     "id": "PKCP-5035",
     "title": "Album CD FS - Sotsugyo",
-    "artist": "Natsumi Abe",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥2,913",
     "price_num": 2913,
@@ -41690,8 +41687,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/08/17/PKCP-5035.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5035",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "ZMHH-1689": {
     "id": "ZMHH-1689",
@@ -41808,7 +41804,7 @@
   "EPBE-5087": {
     "id": "EPBE-5087",
     "title": "DVD Hello Land",
-    "artist": "Aya Matsuura",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -41816,8 +41812,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/34/EPBE-5087.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5087",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-10-25"
   },
   "EPBE-5079": {
     "id": "EPBE-5079",
@@ -103143,7 +103138,7 @@
   "PKBP-5004": {
     "id": "PKBP-5004",
     "title": "DVD FS3 Concert Kanzenban",
-    "artist": "Miki Fujimoto",
+    "artist": "Yuko Nakazawa",
     "category": "Hello! Project",
     "price": "¥3,800",
     "price_num": 3800,
@@ -103151,7 +103146,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/44/PKBP-5004.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5004",
-    "updated_at": "2026-10-23"
+    "updated_at": "2026-10-25"
   },
   "NEOBK-224649": {
     "id": "NEOBK-224649",
@@ -288409,6 +288404,266 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/EPBE-5249.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5249",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5010": {
+    "id": "EPCE-5010",
+    "title": "Album CD Yuko Nakazawa Dai issho",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥2,913",
+    "price_num": 2913,
+    "release_date": "1998/12/12",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/28/EPCE-5010.jpg?v=1",
+    "availability": "instock",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5010",
+    "updated_at": "2026-10-25"
+  },
+  "PKCP-5002": {
+    "id": "PKCP-5002",
+    "title": "Album CD FOLK SONGS",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥2,913",
+    "price_num": 2913,
+    "release_date": "2001/11/29",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/08/PKCP-5002.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKCP-5002",
+    "updated_at": "2026-10-25"
+  },
+  "NEOBK-1513352": {
+    "id": "NEOBK-1513352",
+    "title": "BOOK Nakazawa Hiroko Essay \"Musume. kara Haha e\"",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,300",
+    "price_num": 1300,
+    "release_date": "2013/06/19",
+    "image": "https://st.cdjapan.co.jp/pictures/l/14/05/NEOBK-1513352.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1513352",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5591": {
+    "id": "EPCE-5591",
+    "title": "Album CD Legend [CD+DVD]",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥3,333",
+    "price_num": 3333,
+    "release_date": "2008/12/10",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/16/EPCE-5591.jpg?v=1",
+    "availability": "instock",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5591",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5264": {
+    "id": "EPBE-5264",
+    "title": "DVD TYPE-Y 2007BIRTHDAY LIVE Maho no Pressure Kotoshi mo Yarimasu Special Live Go, Yotei wo Irenaide Kudasai",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥4,762",
+    "price_num": 4762,
+    "release_date": "2007/10/10",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/35/EPBE-5264.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5264",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5500": {
+    "id": "EPCE-5500",
+    "title": "Single CD Danna sama",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,000",
+    "price_num": 1000,
+    "release_date": "2007/10/10",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/46/EPCE-5500.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5500",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5423": {
+    "id": "EPCE-5423",
+    "title": "Album CD Urara",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,000",
+    "price_num": 1000,
+    "release_date": "2006/09/27",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/00/EPCE-5423.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5423",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5305": {
+    "id": "EPCE-5305",
+    "title": "Album CD Dai 2 Sho - Tsuyokagari",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥2,913",
+    "price_num": 2913,
+    "release_date": "2004/07/22",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/43/EPCE-5305.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5305",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5270": {
+    "id": "EPCE-5270",
+    "title": "Single CD DO MY BEST",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,000",
+    "price_num": 1000,
+    "release_date": "2004/05/26",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/48/EPCE-5270.jpg?v=2",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5270",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5264": {
+    "id": "EPCE-5264",
+    "title": "Single CD Genki no nai komoriuta / Nagaragawa no hare",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,000",
+    "price_num": 1000,
+    "release_date": "2004/02/11",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/01/EPCE-5264.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5264",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5211": {
+    "id": "EPCE-5211",
+    "title": "Single CD GET ALONG WITH YOU",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,000",
+    "price_num": 1000,
+    "release_date": "2003/05/21",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/37/EPCE-5211.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5211",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5060": {
+    "id": "EPBE-5060",
+    "title": "DVD Shinshi wa mini ga osuki! -at studio DREAM MAKER",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2003/01/22",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/23/EPBE-5060.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5060",
+    "updated_at": "2026-10-25"
+  },
+  "EPBE-5053": {
+    "id": "EPBE-5053",
+    "title": "DVD Nakazawa Single M Clips 1",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥3,000",
+    "price_num": 3000,
+    "release_date": "2002/11/27",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/24/EPBE-5053.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5053",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5175": {
+    "id": "EPCE-5175",
+    "title": "Single CD TOKYO BIJIN",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥971",
+    "price_num": 971,
+    "release_date": "2002/08/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/00/EPCE-5175.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5175",
+    "updated_at": "2026-10-25"
+  },
+  "PKBP-5001": {
+    "id": "PKBP-5001",
+    "title": "DVD FOLK DAYS",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥3,800",
+    "price_num": 3800,
+    "release_date": "2002/02/28",
+    "image": "https://st.cdjapan.co.jp/pictures/l/06/41/PKBP-5001.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FPKBP-5001",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5115": {
+    "id": "EPCE-5115",
+    "title": "Album CD Futari gurashi",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥971",
+    "price_num": 971,
+    "release_date": "2001/08/01",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/37/EPCE-5115.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5115",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5092": {
+    "id": "EPCE-5092",
+    "title": "Album CD Kuyashinamida porori",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥971",
+    "price_num": 971,
+    "release_date": "2001/02/15",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/46/EPCE-5092.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5092",
+    "updated_at": "2026-10-25"
+  },
+  "EPCE-5066": {
+    "id": "EPCE-5066",
+    "title": "Album CD Shanghai no kaze",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥971",
+    "price_num": 971,
+    "release_date": "2000/07/12",
+    "image": "https://st.cdjapan.co.jp/pictures/l/07/44/EPCE-5066.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPCE-5066",
+    "updated_at": "2026-10-25"
+  },
+  "EPDE-1031": {
+    "id": "EPDE-1031",
+    "title": "8cm CD Junshin March",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,068",
+    "price_num": 1068,
+    "release_date": "1999/06/09",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/16/EPDE-1031.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1031",
+    "updated_at": "2026-10-25"
+  },
+  "EPDE-1006": {
+    "id": "EPDE-1006",
+    "title": "8cm CD Wife for Crow",
+    "artist": "Yuko Nakazawa",
+    "category": "Hello! Project",
+    "price": "¥1,068",
+    "price_num": 1068,
+    "release_date": "1998/08/05",
+    "image": "https://st.cdjapan.co.jp/pictures/l/08/15/EPDE-1006.jpg?v=1",
+    "availability": "oop",
+    "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPDE-1006",
     "updated_at": "2026-10-25"
   }
 }

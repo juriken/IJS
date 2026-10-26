@@ -968,11 +968,17 @@ function render() {
       if (activeEra === 'vintage' && !(yr >= 1998 && yr <= 2009)) return false;
     }
 
+   /* File: js/app.js | Approx. Lines: 430-445 | Block/Target: filterItem Artist Matching Fallback */
     let matchesArtist = true;
     if (activeMobileArtists.length > 0) {
       matchesArtist = activeMobileArtists.includes(item.artist);
     } else if (activeArtist !== 'All') {
       matchesArtist = (item.artist === activeArtist);
+      // Fallback: If filtering by parent group, also match known member releases containing the group name
+      if (!matchesArtist && typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS[activeFilter]) {
+        const isMemberOfGroup = (item.title || '').toLowerCase().includes(activeArtist.toLowerCase());
+        if (isMemberOfGroup) matchesArtist = true;
+      }
     }
 
     const itemFmt = getItemFormatCategory(item);

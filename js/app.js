@@ -219,6 +219,28 @@ function getItemFormatCategory(item) {
   }
 
   if (
+    title.startsWith('album cd') ||
+    title.startsWith('cd album') ||
+    title.includes('album [') ||
+    title.includes('best album') ||
+    title.includes('original album') ||
+    title.includes('mini album') ||
+    title.includes('アルバム')
+  ) {
+    return 'Album';
+  }
+
+  if (
+    title.startsWith('single cd') ||
+    title.startsWith('cd single') ||
+    title.includes('single [') ||
+    title.includes('maxi single') ||
+    title.includes('シングル')
+  ) {
+    return 'Single';
+  }
+
+  if (
     pid.startsWith('NEODAI-') ||
     pid.startsWith('NEOODY-') ||
     pid.startsWith('NEOGDS-') ||
@@ -242,26 +264,6 @@ function getItemFormatCategory(item) {
     title.includes('pouch')
   ) {
     return 'Collectable';
-  }
-
-  if (
-    title.startsWith('album cd') ||
-    title.includes('album [') ||
-    title.includes('best album') ||
-    title.includes('original album') ||
-    title.includes('mini album') ||
-    title.includes('アルバム')
-  ) {
-    return 'Album';
-  }
-
-  if (
-    title.startsWith('single cd') ||
-    title.includes('single [') ||
-    title.includes('maxi single') ||
-    title.includes('シングル')
-  ) {
-    return 'Single';
   }
 
   if (

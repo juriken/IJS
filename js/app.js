@@ -950,9 +950,9 @@ function render() {
       matchesCat = true;
     } else if (activeFilter === 'Hello! Project & Up-Front') {
       matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
-    } else if (activeFilter === 'Modern & Alternative') {
+   } else if (activeFilter === 'Modern & Alternative') {
       matchesCat = (
-        cat === 'Modern Idols' || cat === 'Babymetal' ||
+        cat === 'Modern & Alternative' || cat === 'Modern Idols' || cat === 'Babymetal' ||
         art === 'BABYMETAL' || art === 'Sakura Gakuin' ||
         art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE'
       );

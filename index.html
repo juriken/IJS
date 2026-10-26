@@ -36,7 +36,7 @@
 
   <title>IdolJapan.store — Official Japanese Idol Discography</title>
   <meta name="title" content="IdolJapan.store — Official Japanese Idol Discography &amp; CDJapan Partner Directory">
-  <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. Filter by CDs, DVDs, Blu-rays, Photobooks, and Collectibles.">
+  <meta name="description" content="Official discography directory and affiliate release guide for Japanese female idols. Filter by CDs, Singles, Albums, DVDs, Blu-rays, Photobooks, and Collectibles.">
   <link rel="canonical" href="https://idoljapan.store/">
   <meta name="theme-color" content="#e11d48">
 
@@ -95,34 +95,8 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
-  <style>
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .img-fade-in {
-      animation: fadeIn 0.25s ease-in-out forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    html.layout-desktop body {
-      min-width: 1280px;
-    }
-    html.layout-mobile body {
-      min-width: 100%;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
+  <!-- Custom Modular Stylesheet -->
+  <link rel="stylesheet" href="css/custom.css">
 </head>
 <body id="page-body" class="bg-stone-50 dark:bg-slate-950 text-stone-800 dark:text-stone-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
@@ -131,6 +105,13 @@
     <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
     <span id="toast-message">Notification</span>
   </div>
+
+  <!-- Mega-Menu Backdrop Scrim -->
+  <div 
+    id="mega-menu-backdrop" 
+    class="fixed inset-0 bg-black/40 backdrop-blur-xs z-30 hidden transition-opacity duration-200" 
+    onclick="dismissMegaMenu()"
+  ></div>
 
   <!-- STICKY TOP BRAND & SEARCH BAR -->
   <header class="sticky top-0 z-40 bg-rose-600 dark:bg-slate-900 text-white shadow-md border-b border-rose-500/30 dark:border-slate-800">
@@ -146,9 +127,10 @@
           <input 
             id="search-input" 
             type="text" 
-            placeholder="Search in English or Japanese (モー娘, 乃木坂, NiziU, 宮本佳林, 佐藤優樹)..." 
+            placeholder="Search titles, artists, or SKUs (モー娘, 乃木坂, NiziU, EPCE-8141)..." 
             class="w-full pl-9 pr-8 py-1.5 rounded-full text-stone-800 dark:text-stone-100 bg-white/95 dark:bg-slate-800 placeholder-stone-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:focus:ring-rose-500 text-xs shadow-inner border border-transparent dark:border-slate-700" 
             autocomplete="off" 
+            spellcheck="false"
             onfocus="showSearchSuggestions()"
           />
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-stone-400 dark:text-slate-400 text-xs"></i>
@@ -157,8 +139,7 @@
           </button>
         </div>
 
-        <div id="search-autocomplete-box" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-stone-200 dark:border-slate-800 overflow-hidden z-50 divide-y divide-stone-100 dark:divide-slate-800/60 max-h-80 overflow-y-auto">
-        </div>
+        <div id="search-autocomplete-box" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-stone-200 dark:border-slate-800 overflow-hidden z-50 divide-y divide-stone-100 dark:divide-slate-800/60 max-h-80 overflow-y-auto" role="listbox"></div>
       </div>
 
       <!-- Controls: Calendar, Wishlist & Haul Drawer, Currency, Theme -->
@@ -242,47 +223,47 @@
     class="bg-white dark:bg-slate-900 border-b border-stone-200 dark:border-slate-800 relative z-30" 
     onmouseleave="handleTopNavLeave()"
   >
-    <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80">
+    <nav id="desktop-nav-tier1" class="border-b border-stone-100 dark:border-slate-800/80" role="menubar">
       <div class="max-w-7xl mx-auto px-4 py-2">
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5" id="filter-bar">
           
-          <button onclick="setFilter('All')" onmouseenter="handleTopNavHover('All')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer" data-cat="All">
+          <button onclick="onTier1Click('All')" onmouseenter="handleTopNavHover('All')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="All" role="menuitem" aria-haspopup="false">
             <span class="truncate">All Groups</span>
             <span id="badge-cat-All" class="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('Hello! Project &amp; Up-Front')" onmouseenter="handleTopNavHover('Hello! Project &amp; Up-Front')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Hello! Project &amp; Up-Front">
+          <button onclick="onTier1Click('Hello! Project &amp; Up-Front')" onmouseenter="handleTopNavHover('Hello! Project &amp; Up-Front')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="Hello! Project &amp; Up-Front" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate hidden xl:inline">H!P &amp; Up-Front</span>
             <span class="truncate xl:hidden">H!P / Up-Front</span>
             <span id="badge-cat-Hello! Project &amp; Up-Front" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('AKB48 Group')" onmouseenter="handleTopNavHover('AKB48 Group')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="AKB48 Group">
+          <button onclick="onTier1Click('AKB48 Group')" onmouseenter="handleTopNavHover('AKB48 Group')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="AKB48 Group" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate">AKB48 Groups</span>
             <span id="badge-cat-AKB48 Group" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('Sakamichi Series')" onmouseenter="handleTopNavHover('Sakamichi Series')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Sakamichi Series">
+          <button onclick="onTier1Click('Sakamichi Series')" onmouseenter="handleTopNavHover('Sakamichi Series')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="Sakamichi Series" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate">Sakamichi 46</span>
             <span id="badge-cat-Sakamichi Series" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('Stardust Planet')" onmouseenter="handleTopNavHover('Stardust Planet')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Stardust Planet">
+          <button onclick="onTier1Click('Stardust Planet')" onmouseenter="handleTopNavHover('Stardust Planet')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="Stardust Planet" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate">Stardust Planet</span>
             <span id="badge-cat-Stardust Planet" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('=LOVE / Sister Groups')" onmouseenter="handleTopNavHover('=LOVE / Sister Groups')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="=LOVE / Sister Groups">
+          <button onclick="onTier1Click('=LOVE / Sister Groups')" onmouseenter="handleTopNavHover('=LOVE / Sister Groups')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="=LOVE / Sister Groups" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate">=LOVE &amp; Sisters</span>
             <span id="badge-cat-=LOVE / Sister Groups" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('KAWAII LAB.')" onmouseenter="handleTopNavHover('KAWAII LAB.')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="KAWAII LAB.">
+          <button onclick="onTier1Click('KAWAII LAB.')" onmouseenter="handleTopNavHover('KAWAII LAB.')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="KAWAII LAB." role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate">KAWAII LAB.</span>
             <span id="badge-cat-KAWAII LAB." class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
           </button>
 
-          <button onclick="setFilter('Modern &amp; Alternative')" onmouseenter="handleTopNavHover('Modern &amp; Alternative')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50" data-cat="Modern &amp; Alternative">
+          <button onclick="onTier1Click('Modern &amp; Alternative')" onmouseenter="handleTopNavHover('Modern &amp; Alternative')" class="tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50 focus-visible:ring-2 focus-visible:ring-rose-400" data-cat="Modern &amp; Alternative" role="menuitem" aria-haspopup="true" aria-expanded="false">
             <span class="truncate hidden xl:inline">Modern &amp; Alt</span>
             <span class="truncate xl:hidden">Modern/Babymetal</span>
             <span id="badge-cat-Modern &amp; Alternative" class="text-[9px] bg-black/10 dark:bg-white/10 px-1.5 py-0.2 rounded-full shrink-0 ml-1">0</span>
@@ -305,31 +286,48 @@
       </div>
     </div>
 
-    <!-- HOVER-LAUNCHED LOCAL-LEVEL MEGA-MENU FLYOUT -->
+    <!-- HOVER-LAUNCHED & CLICK-TO-PIN MEGA-MENU FLYOUT -->
     <div 
       id="mega-menu-flyout" 
-      class="absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-50 hidden" 
+      class="absolute left-0 right-0 top-full bg-white/98 dark:bg-slate-900/98 backdrop-blur-md shadow-2xl border-b border-stone-200 dark:border-slate-800 transition-all duration-200 z-40 hidden" 
       onmouseenter="handleMegaMenuEnter()" 
       onmouseleave="handleMegaMenuLeave()"
     >
-      <div class="max-w-7xl mx-auto px-6 py-5">
-        <div class="flex items-center justify-between pb-3 mb-4 border-b border-stone-100 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        
+        <!-- Flyout Utility Header: Title, Search, Pin Indicator & Close -->
+        <div class="flex flex-wrap items-center justify-between pb-3 mb-3 border-b border-stone-100 dark:border-slate-800 gap-2.5">
           <div class="flex items-center gap-2.5">
             <i class="fa-solid fa-layer-group text-rose-600 dark:text-rose-400 text-sm"></i>
             <span class="text-xs font-black uppercase tracking-wider text-stone-800 dark:text-white" id="mega-menu-franchise-title">
               Franchise Units &amp; Soloists
             </span>
-            <span class="text-[11px] text-stone-400 dark:text-slate-500">• Select a group, soloist, or subunit to filter releases</span>
+            <span id="mega-menu-pinned-tag" class="hidden text-[10px] bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 font-bold px-2 py-0.5 rounded-full border border-rose-300/40">
+              <i class="fa-solid fa-thumbtack text-[9px] mr-1"></i>Pinned
+            </span>
           </div>
+
+          <!-- In-Flyout Quick Search Filter -->
+          <div class="relative w-64 max-w-full">
+            <input 
+              id="mega-menu-filter-input" 
+              type="text" 
+              placeholder="Quick find group or member..." 
+              oninput="filterMegaMenuLinks(this.value)" 
+              class="w-full pl-7 pr-3 py-1 bg-stone-100 dark:bg-slate-800 text-stone-800 dark:text-white text-[11px] rounded-lg border border-stone-200 dark:border-slate-700 focus:outline-none focus:ring-1 focus:ring-rose-500"
+            />
+            <i class="fa-solid fa-filter absolute left-2.5 top-2 text-stone-400 text-[10px]"></i>
+          </div>
+
           <div class="flex items-center gap-2">
             <button 
               id="mega-menu-view-all-btn" 
-              onclick="setFilter(currentHoverCat); closeMegaMenu();" 
+              onclick="setFilter(currentHoverCat); dismissMegaMenu();" 
               class="px-3 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 font-bold text-xs transition cursor-pointer"
             >
               View All Franchise Releases
             </button>
-            <button onclick="closeMegaMenu()" class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer" title="Close menu (Esc)">
+            <button onclick="dismissMegaMenu()" class="w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-100 text-stone-500 hover:text-rose-600 flex items-center justify-center text-xs transition cursor-pointer" title="Close menu (Esc)">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
@@ -341,19 +339,23 @@
 
   </div>
 
-  <!-- Tier 2 Navigation: Format, Merch Subgroups, Controls, Year & Sort -->
+  <!-- Tier 2 Navigation: Format Pills, Availability Multi-Select, Eras & Merch -->
   <div id="desktop-nav-tier2" class="bg-stone-50/70 dark:bg-slate-900/90 border-b border-stone-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2.5">
       
-      <!-- Media Formats -->
+      <!-- Media Formats: Split Singles vs Albums -->
       <div class="flex items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap text-[11px] font-semibold" id="format-filter-bar">
         <button onclick="setFormat('All')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-rose-600 text-white font-bold shadow-2xs shrink-0 cursor-pointer" data-fmt="All">
           <span>All Formats</span>
           <span id="badge-fmt-All" class="ml-0.5 text-[9px] opacity-75"></span>
         </button>
-        <button onclick="setFormat('CD')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="CD">
-          <i class="fa-solid fa-compact-disc text-rose-500 mr-1 text-[10px]"></i>CDs
-          <span id="badge-fmt-CD" class="ml-0.5 text-[9px] opacity-75"></span>
+        <button onclick="setFormat('Single')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Single">
+          <i class="fa-solid fa-music text-rose-500 mr-1 text-[10px]"></i>Singles
+          <span id="badge-fmt-Single" class="ml-0.5 text-[9px] opacity-75"></span>
+        </button>
+        <button onclick="setFormat('Album')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Album">
+          <i class="fa-solid fa-record-vinyl text-rose-600 mr-1 text-[10px]"></i>Albums
+          <span id="badge-fmt-Album" class="ml-0.5 text-[9px] opacity-75"></span>
         </button>
         <button onclick="setFormat('Blu-ray')" class="fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer" data-fmt="Blu-ray">
           <i class="fa-solid fa-film text-sky-500 mr-1 text-[10px]"></i>Blu-rays
@@ -373,12 +375,40 @@
         </button>
       </div>
 
-      <!-- Controls: Group Editions, Max Price, Availability, Year Dropdown, Sort & View Modes -->
+      <!-- Controls: Multi-Select Availability, Compact Eras, Max Price -->
       <div class="flex items-center gap-2 text-xs font-semibold shrink-0">
-        <label class="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
-          <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded">
-          <span>Group Editions</span>
-        </label>
+        
+        <!-- Multi-Select Availability Pills -->
+        <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold text-stone-600 dark:text-slate-300 shrink-0 gap-0.5">
+          <button onclick="toggleAvailabilityMode('all')" id="avail-pill-all" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs font-bold cursor-pointer">
+            All
+          </button>
+          <button onclick="toggleAvailabilityMode('instock')" id="avail-pill-instock" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> In Stock
+          </button>
+          <button onclick="toggleAvailabilityMode('preorder')" id="avail-pill-preorder" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span> Pre-Orders
+          </button>
+          <button onclick="toggleAvailabilityMode('oop')" id="avail-pill-oop" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white cursor-pointer flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span> OOP
+          </button>
+        </div>
+
+        <!-- COMPACT ERA SELECTOR (Grouped Ranges) -->
+        <div id="era-jump-bar-container" class="flex items-center gap-1 text-[11px] font-semibold shrink-0">
+          <label for="era-select" class="text-stone-500 dark:text-slate-400">Era:</label>
+          <select 
+            id="era-select" 
+            onchange="setEraFilter(this.value)" 
+            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
+          >
+            <option value="All">All Eras</option>
+            <option value="upcoming">2026–2027 Upcoming</option>
+            <option value="modern">2020–2025 Modern</option>
+            <option value="expansion">2010–2019 Expansion</option>
+            <option value="vintage">1998–2009 Vintage</option>
+          </select>
+        </div>
 
         <div class="hidden lg:flex items-center gap-1 text-[11px] text-stone-500 dark:text-slate-400">
           <label for="price-range">Max:</label>
@@ -395,52 +425,6 @@
           <span id="price-range-label" class="font-bold text-stone-700 dark:text-slate-200 w-9 text-right text-[10px]">Any</span>
         </div>
 
-        <!-- Availability Segmented Control -->
-        <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold text-stone-600 dark:text-slate-300 shrink-0">
-          <button onclick="setAvailability('all')" id="avail-all" title="Show all discography releases" class="px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs font-bold cursor-pointer">All</button>
-          <button onclick="setAvailability('active')" id="avail-active" title="In-Stock items &amp; Active Pre-orders" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">Active</button>
-          <button onclick="setAvailability('preorder')" id="avail-preorder" title="Upcoming Street Dates" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">
-            <i class="fa-solid fa-clock text-[8px]"></i> Pre-Orders
-          </button>
-          <button onclick="setAvailability('instock')" id="avail-instock" title="Immediate Tokyo Dispatch" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">In Stock</button>
-          <button onclick="setAvailability('oop')" id="avail-oop" title="Out-of-print, discontinued, and sold-out releases" class="px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer">OOP</button>
-        </div>
-
-        <!-- GLOBAL YEAR DROPDOWN -->
-        <div id="year-jump-bar-container" class="flex items-center gap-1 text-[11px] font-semibold shrink-0">
-          <label for="year-select" class="text-stone-500 dark:text-slate-400">Year:</label>
-          <select 
-            id="year-select" 
-            onchange="setYearFilter(this.value)" 
-            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
-          >
-            <option value="All">All Years</option>
-          </select>
-        </div>
-
-        <!-- Sort Select -->
-        <div class="hidden sm:flex items-center gap-1">
-          <select 
-            id="sort-select" 
-            onchange="changeSort(this.value)" 
-            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
-          >
-            <option value="newest">Newest Date</option>
-            <option value="oldest">Oldest Date</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
-        </div>
-
-        <!-- Grid / List Toggle -->
-        <div class="hidden sm:flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5">
-          <button id="view-mode-grid" onclick="setViewMode('grid')" title="Grid View" class="px-1.5 py-0.5 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs cursor-pointer">
-            <i class="fa-solid fa-table-cells-large text-[11px]"></i>
-          </button>
-          <button id="view-mode-list" onclick="setViewMode('list')" title="List View" class="px-1.5 py-0.5 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer">
-            <i class="fa-solid fa-list-ul text-[11px]"></i>
-          </button>
-        </div>
       </div>
 
     </div>
@@ -495,19 +479,52 @@
     </div>
   </section>
 
-  <!-- FLUSH ACTION BAR (Page range & top pagination) -->
+  <!-- CATALOG SUB-HEADER & DISPLAY PREFERENCES BAR -->
   <section class="max-w-7xl mx-auto px-4 mt-2" id="pagination-top-anchor">
-    <div class="flex flex-wrap items-center justify-between gap-2 text-xs py-1 text-stone-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center justify-between gap-2.5 text-xs py-1.5 text-stone-600 dark:text-slate-300 border-b border-stone-200/60 dark:border-slate-800">
+      
+      <!-- Range Info -->
       <div class="flex items-center gap-2">
         <div class="font-medium text-[11px]" id="page-range-info">
           Loading catalog releases...
         </div>
       </div>
 
-      <div class="flex items-center gap-2.5 ml-auto text-[11px]">
-        <!-- Direct Numeric Page Jump -->
+      <!-- Decoupled UI Display Settings: Group Editions, Sort By, Grid/List -->
+      <div class="flex items-center gap-3 ml-auto text-[11px]">
+        
+        <label class="hidden md:flex items-center gap-1.5 font-semibold text-stone-600 dark:text-slate-300 cursor-pointer">
+          <input type="checkbox" id="cluster-toggle" onchange="toggleClustering(this.checked)" checked class="accent-rose-600 rounded cursor-pointer">
+          <span>Group Editions</span>
+        </label>
+
+        <!-- Sort Select -->
+        <div class="flex items-center gap-1">
+          <label for="sort-select" class="text-stone-400 dark:text-slate-500 font-semibold hidden sm:inline">Sort:</label>
+          <select 
+            id="sort-select" 
+            onchange="changeSort(this.value)" 
+            class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-2 rounded-lg text-[11px] font-semibold focus:outline-none cursor-pointer"
+          >
+            <option value="newest">Newest Date</option>
+            <option value="oldest">Oldest Date</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- Grid / List Toggle -->
+        <div class="flex items-center bg-stone-200/80 dark:bg-slate-800 rounded-lg p-0.5">
+          <button id="view-mode-grid" onclick="setViewMode('grid')" title="Grid View" class="px-1.5 py-0.5 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs cursor-pointer">
+            <i class="fa-solid fa-table-cells-large text-[11px]"></i>
+          </button>
+          <button id="view-mode-list" onclick="setViewMode('list')" title="List View" class="px-1.5 py-0.5 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer">
+            <i class="fa-solid fa-list-ul text-[11px]"></i>
+          </button>
+        </div>
+
+        <!-- Page Jump & Per Page -->
         <div class="flex items-center gap-1.5">
-          <label for="direct-page-input" class="text-stone-500 dark:text-slate-400 font-semibold">Page:</label>
           <input 
             id="direct-page-input" 
             type="number" 
@@ -515,20 +532,18 @@
             value="1" 
             onchange="goToPage(parseInt(this.value, 10))" 
             onkeydown="if(event.key==='Enter') goToPage(parseInt(this.value, 10))" 
-            class="w-12 py-0.5 px-1.5 rounded-md border border-stone-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-stone-800 dark:text-slate-100 font-bold text-center text-[11px] focus:outline-none focus:ring-1 focus:ring-rose-500 cursor-pointer" 
+            class="w-11 py-0.5 px-1 rounded-md border border-stone-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-stone-800 dark:text-slate-100 font-bold text-center text-[11px] focus:outline-none focus:ring-1 focus:ring-rose-500" 
           />
           <span id="direct-page-total-label" class="text-stone-400 dark:text-slate-500 font-medium">of 1</span>
         </div>
 
-        <div class="flex items-center gap-1">
-          <label for="per-page-select" class="text-stone-500 dark:text-slate-400 font-semibold">Per page:</label>
-          <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-md text-[11px] font-bold focus:outline-none cursor-pointer">
-            <option value="24">24</option>
-            <option value="48" selected>48</option>
-            <option value="72">72</option>
-            <option value="96">96</option>
-          </select>
-        </div>
+        <select id="per-page-select" onchange="changePerPage(this.value)" class="bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-700 text-stone-700 dark:text-slate-200 py-0.5 px-1.5 rounded-md text-[11px] font-bold focus:outline-none cursor-pointer">
+          <option value="24">24</option>
+          <option value="48" selected>48</option>
+          <option value="72">72</option>
+          <option value="96">96</option>
+        </select>
+
       </div>
     </div>
   </section>
@@ -584,17 +599,13 @@
             <span id="haul-bracket-tier" class="font-bold text-amber-600 dark:text-amber-400">≤ 500g (Minimum Tier)</span>
           </div>
 
-          <!-- Progress Bar to Next Freight Bracket -->
           <div class="w-full bg-stone-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mt-1">
             <div id="haul-weight-progress" class="bg-rose-600 h-full transition-all duration-300" style="width: 0%"></div>
           </div>
         </div>
 
-        <!-- Haul Item List -->
-        <div id="haul-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs divide-y divide-stone-100 dark:divide-slate-800">
-        </div>
+        <div id="haul-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs divide-y divide-stone-100 dark:divide-slate-800"></div>
 
-        <!-- Bottom Action Bar -->
         <div class="p-3 bg-stone-100 dark:bg-slate-800 border-t border-stone-200 dark:border-slate-700 flex flex-wrap gap-2">
           <button onclick="shareWishlistUrl()" class="flex-1 py-2 px-3 rounded-xl bg-white dark:bg-slate-700 font-bold border border-stone-300 dark:border-slate-600 text-stone-700 dark:text-white hover:bg-stone-50 flex items-center justify-center gap-1.5 transition cursor-pointer">
             <i class="fa-solid fa-share-nodes text-rose-600 text-xs"></i>
@@ -609,7 +620,7 @@
     </div>
   </div>
 
-  <!-- Mobile Off-Canvas Filter Drawer -->
+  <!-- Mobile Off-Canvas Filter Drawer (Nested Accordions & Multi-Select) -->
   <div id="mobile-filter-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" onclick="closeMobileFilterDrawerOnBackdrop(event)">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
@@ -619,7 +630,7 @@
             <i class="fa-solid fa-sliders text-amber-300 text-lg"></i>
             <div>
               <h3 class="font-black text-sm">Filter Idol Discography</h3>
-              <p class="text-[11px] text-rose-100">Select franchises, sub-units &amp; formats</p>
+              <p class="text-[11px] text-rose-100">Multi-select groups, units &amp; formats</p>
             </div>
           </div>
           <button onclick="toggleMobileFilterDrawer()" class="text-white hover:text-amber-200 text-lg p-1 cursor-pointer">
@@ -627,17 +638,32 @@
           </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+        <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+          
+          <!-- Quick Filter Pills for High-Traffic Groups -->
           <div>
-            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Franchise Group</h4>
-            <div id="mobile-drawer-franchises" class="flex flex-wrap gap-1.5"></div>
+            <h4 class="font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider text-[10px] mb-1.5">Quick Select Flags</h4>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="mobileQuickSelect('Morning Musume')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-300 font-bold border border-rose-200 dark:border-rose-900">🌸 Morning Musume</button>
+              <button onclick="mobileQuickSelect('Nogizaka46')" class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 font-bold border border-purple-200 dark:border-purple-900">💜 Nogizaka46</button>
+              <button onclick="mobileQuickSelect('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 font-bold border border-pink-200 dark:border-pink-900">💖 FRUITS ZIPPER</button>
+              <button onclick="mobileQuickSelect('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-200 font-bold border border-stone-300 dark:border-slate-700">🦊 BABYMETAL</button>
+            </div>
           </div>
 
-          <div id="mobile-drawer-units-box" class="hidden">
-            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Idol Unit / Sub-Group</h4>
-            <div id="mobile-drawer-units" class="flex flex-wrap gap-1.5"></div>
+          <!-- Multi-Group Selection Status -->
+          <div id="mobile-selected-groups-bar" class="p-2 bg-stone-50 dark:bg-slate-800 rounded-lg flex items-center justify-between text-[11px]">
+            <span class="font-semibold text-stone-600 dark:text-slate-300">Selected Groups: <strong id="mobile-selected-count" class="text-rose-600">All</strong></span>
+            <button onclick="clearMobileSelectedArtists()" class="text-stone-400 hover:text-rose-600 text-[10px] font-bold">Clear All</button>
           </div>
 
+          <!-- Nested Accordion Franchise Hierarchy -->
+          <div>
+            <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Franchises &amp; Units</h4>
+            <div id="mobile-drawer-accordions" class="space-y-1.5"></div>
+          </div>
+
+          <!-- Media Formats -->
           <div>
             <h4 class="font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider text-[11px] mb-2">Media Format</h4>
             <div id="mobile-drawer-formats" class="flex flex-wrap gap-1.5"></div>
@@ -718,8 +744,7 @@
           </button>
         </div>
 
-        <div id="calendar-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
-        </div>
+        <div id="calendar-drawer-list" class="flex-1 overflow-y-auto p-4 space-y-4 text-xs"></div>
       </div>
     </div>
   </div>
@@ -830,7 +855,7 @@
             </div>
           </div>
           <div id="qr-box-btc" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k', 'Bitcoin Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=bc1qsz9vurwv567lsdpaxutucwgu2dsm39l5zggv4k" alt="Bitcoin QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -855,7 +880,7 @@
             </div>
           </div>
           <div id="qr-box-bch" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq', 'Bitcoin Cash Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=qq38ek580vrjtwpc90kzn9pvc4c0p3fmayx95jpyfq" alt="Bitcoin Cash QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -866,7 +891,7 @@
           <div class="flex justify-between items-center gap-2">
             <div class="overflow-hidden">
               <p class="text-[10px] font-bold text-stone-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-brands fa-ethereum text-sky-500"></i> ETH / BSC / Polygon / Arbitrum / other EVM (ERC-20)
+                <i class="fa-brands fa-ethereum text-sky-500"></i> ETH / Polygon / BSC / Arbitrum
               </p>
               <p class="text-xs font-mono text-stone-800 dark:text-stone-200 truncate select-all">0xADF4947Ad75844143E814bD8DB78a1121Ac293E3</p>
             </div>
@@ -880,7 +905,7 @@
             </div>
           </div>
           <div id="qr-box-evm" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0xADF4947Ad75844143E814bD8DB78a1121Ac293E3', 'EVM Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0xADF4947Ad75844143E814bD8DB78a1121Ac293E3" alt="EVM Multi-Chain QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -905,7 +930,7 @@
             </div>
           </div>
           <div id="qr-box-sol" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL', 'Solana Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=Gb82z9wbn8rCuCPSnDah2LbAP29sXTrW7cVTfQsHLFpL" alt="Solana QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -930,7 +955,7 @@
             </div>
           </div>
           <div id="qr-box-apt" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15', 'Aptos Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x4fe546cd77cae4e456bd9a3e2b8f2e37aa846213d2484ca2b2b4d600f0be6f15" alt="Aptos QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -955,7 +980,7 @@
             </div>
           </div>
           <div id="qr-box-sui" class="crypto-qr-box hidden pt-2 border-t border-stone-200/70 dark:border-slate-700/80 text-center">
-            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')" title="Click to copy address">
+            <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200 inline-block cursor-pointer" onclick="copyToClipboard('0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2', 'Sui Address Copied!')">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=0x5d30feea3bb49e86be5dbcf64fd57645e8cdaed9229fca404574c99c463304d2" alt="Sui QR Code" class="w-36 h-36 mx-auto object-contain" loading="lazy" />
             </div>
           </div>
@@ -1046,2626 +1071,11 @@
   <script src="./IdolJapan.store — Official Japanese Idol Discography_files/db.js.download"></script>
   <script src="./IdolJapan.store — Official Japanese Idol Discography_files/geo_currency.js.download"></script>
 
-  <script>
-    let allProducts = [];
-    let clusteredEntities = [];
-    let activeFilteredList = [];
-    let activeFilter = 'All';
-    let activeArtist = 'All';
-    let activeYear = 'All';
-    let activeFormat = 'All';
-    let activeMerchSubgroup = 'All';
-    let activeAvailability = 'all';
-    let viewMode = 'grid';
-    let searchAliases = {};
-    let currentHoverCat = null;
-    let megaMenuTimer = null;
-
-    function detectDeviceLayout() {
-      return (window.matchMedia('(max-width: 768px)').matches || 
-              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
-    }
-    let layoutMode = detectDeviceLayout();
-
-    let isClusteringEnabled = true;
-    let maxPriceLimit = 20000;
-    let searchQuery = '';
-    let currentSort = 'newest';
-    let currentCurrency = 'USD';
-    let exchangeRates = { USD: 1.0, JPY: 152.4, EUR: 0.92, GBP: 0.79, CAD: 1.38, AUD: 1.51, TWD: 32.1, HKD: 7.78, KRW: 1375.0, SGD: 1.32 };
-    let currentModalProduct = null;
-
-    let currentPage = 1;
-    let itemsPerPage = 48;
-
-    const CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
-    const RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
-    const RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
-    const WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
-    const VIEW_MODE_KEY = 'idoljapan_view_mode';
-    const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
-
-    const EN_MONTHS = {
-      jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
-      jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
-      january: 1, february: 2, march: 3, april: 4,
-      june: 6, july: 7, august: 8, september: 9,
-      october: 10, november: 11, december: 12
-    };
-
-    const FRANCHISE_ARTISTS = {
-      'Hello! Project & Up-Front': [
-        // Active Flagship Groups
-        'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory',
-        'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei',
-        // Legendary Subunits & Past Groups
-        'Minimoni', 'Tanpopo', 'Berryz Kobo', '℃-ute', 'Buono!', 'Country Girls',
-        'Kobushi Factory', 'Melon Kinenbi', 'v-u-den', 'W', 'GAM', 'Taiyo to Ciscomoon',
-        'LoVendoR', 'PINK CRES.',
-        // OG Flagships & Soloists
-        'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto', 'Natsumi Abe',
-        'Erina Mano', 'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari', 'Karin Miyamoto',
-        // 43 Former / Graduate Members
-        'Maria Makino', 'Yuko Nakazawa', 'Kaori Iida', 'Reina Tanaka', 'Ai Takahashi',
-        'Risa Niigaki', 'Maimi Yajima', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba',
-        'Mizuki Fukumura', 'Momoko Tsugunaga', 'Miyabi Natsuyaki', 'Risako Sugaya',
-        'Yurina Kumai', 'Ayaka Wada', 'Meimi Tamura', 'Kanon Fukuda', 'Tomoko Kanazawa',
-        'Yumeno Kishimoto', 'Sayaka Kitahara', 'Nozomi Tsuji', 'Ai Kago', 'Rika Ishikawa',
-        'Haruka Kudo', 'Haruna Iikubo', 'Erina Ikuta', 'Akane Haga', 'Rikako Sasaki',
-        'Mizuki Murota', 'Yuka Miyazaki', 'Akari Uemura', 'Chisaki Morito', 'Mai Satoda',
-        'Ayumi Ishida', 'Ruru Dambara', 'Yuhane Yamazaki', 'Ayano Hamaura', 'Ayano Kawamura',
-        'Momona Kasahara', 'Mao Akiyama', 'Nanami Yanagawa',
-        // Up-Front Alumni
-        'You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'
-      ],
-      'AKB48 Group': [
-        'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',
-        'Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai',
-        'Sayaka Yamamoto', 'Atsuko Maeda', 'Yuko Oshima', 'Mayu Watanabe',
-        'Yuki Kashiwagi', 'Rino Sashihara', 'Tomomi Itano'
-      ],
-      'Sakamichi Series': [
-        'Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', '22/7', 'Boku ga Mitakatta Aozora',
-        'Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate'
-      ],
-      'Stardust Planet': [
-        'Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu',
-        'TEAM SHACHI', 'BATTEN GIRLS', 'ukka'
-      ],
-      '=LOVE / Sister Groups': ['=LOVE', '≠ME', '≒JOY'],
-      'KAWAII LAB.': ['FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET'],
-      'Modern & Alternative': [
-        'NiziU', 'ME:I', 'IS:SUE',
-        'BABYMETAL', 'Sakura Gakuin'
-      ]
-    };
-
-    const MEGA_MENU_CATEGORIES = {
-      'Hello! Project & Up-Front': [
-        {
-          title: "Active Groups & Units",
-          icon: "fa-fire text-rose-500",
-          units: ['Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei']
-        },
-        {
-          title: "Subunits & Roots",
-          icon: "fa-star text-amber-500",
-          units: ['Minimoni', 'Tanpopo', 'Buono!', 'W', 'v-u-den', 'GAM', 'Berryz Kobo', '℃-ute', 'Country Girls', 'Kobushi Factory', 'Melon Kinenbi', 'Taiyo to Ciscomoon', 'LoVendoR', 'PINK CRES.']
-        },
-        {
-          title: "OG Soloists & Legends",
-          icon: "fa-microphone text-purple-500",
-          units: [
-            'Sayumi Michishige', 'Aya Matsuura', 'Maki Goto', 'Natsumi Abe',
-            'Erina Mano', 'Airi Suzuki', 'Miki Fujimoto', 'Tsukishima Kirari',
-            'Karin Miyamoto', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba',
-            'Mizuki Fukumura', 'Momoko Tsugunaga', 'Reina Tanaka', 'Ai Takahashi'
-          ]
-        },
-        {
-          title: "Graduates & Alumni",
-          icon: "fa-award text-emerald-500",
-          units: [
-            'Maria Makino', 'Yuko Nakazawa', 'Kaori Iida', 'Risa Niigaki', 'Maimi Yajima',
-            'Miyabi Natsuyaki', 'Risako Sugaya', 'Yurina Kumai', 'Ayaka Wada', 'Meimi Tamura',
-            'Kanon Fukuda', 'Tomoko Kanazawa', 'Yumeno Kishimoto', 'Sayaka Kitahara',
-            'Nozomi Tsuji', 'Ai Kago', 'Rika Ishikawa', 'Haruka Kudo', 'Haruna Iikubo',
-            'Erina Ikuta', 'Akane Haga', 'Rikako Sasaki', 'Mizuki Murota', 'Yuka Miyazaki',
-            'Akari Uemura', 'Chisaki Morito', 'Mai Satoda', 'Ayumi Ishida', 'Ruru Dambara',
-            'Yuhane Yamazaki', 'Ayano Hamaura', 'Ayano Kawamura', 'Momona Kasahara',
-            'Mao Akiyama', 'Nanami Yanagawa', 'You Kikkawa', 'Up Up Girls (Kari)', 'Up Up Girls (2)'
-          ]
-        }
-      ],
-      'AKB48 Group': [
-        {
-          title: "Main Theater Groups",
-          icon: "fa-landmark text-rose-500",
-          units: ['AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48']
-        },
-        {
-          title: "Official Subunits",
-          icon: "fa-star text-amber-500",
-          units: ['Not yet', 'no3b', 'French Kiss', 'Watarirouka Hashiritai']
-        },
-        {
-          title: "Legendary Soloists & Graduates",
-          icon: "fa-crown text-purple-500",
-          units: ['Sayaka Yamamoto', 'Atsuko Maeda', 'Yuko Oshima', 'Mayu Watanabe', 'Yuki Kashiwagi', 'Rino Sashihara', 'Tomomi Itano']
-        }
-      ],
-      'Sakamichi Series': [
-        {
-          title: "Sakamichi 46 Groups",
-          icon: "fa-mountain text-sky-500",
-          units: ['Nogizaka46', 'Sakurazaka46', 'Hinatazaka46']
-        },
-        {
-          title: "Digital Idols & Rivals",
-          icon: "fa-robot text-purple-500",
-          units: ['22/7', 'Boku ga Mitakatta Aozora']
-        },
-        {
-          title: "Solo Graduates",
-          icon: "fa-feather text-rose-500",
-          units: ['Mai Shiraishi', 'Nanase Nishino', 'Erika Ikuta', 'Asuka Saito', 'Yurina Hirate']
-        }
-      ],
-      'Stardust Planet': [
-        {
-          title: "Flagship Groups",
-          icon: "fa-star text-amber-500",
-          units: ['Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu']
-        },
-        {
-          title: "Branch & Regional Units",
-          icon: "fa-compass text-teal-500",
-          units: ['TEAM SHACHI', 'BATTEN GIRLS', 'ukka']
-        }
-      ],
-      '=LOVE / Sister Groups': [
-        {
-          title: "=LOVE (Flagship)",
-          icon: "fa-heart text-pink-500",
-          units: ['=LOVE']
-        },
-        {
-          title: "≠ME (Noime)",
-          icon: "fa-sparkles text-sky-400",
-          units: ['≠ME']
-        },
-        {
-          title: "≒JOY (Niago)",
-          icon: "fa-wand-magic-sparkles text-amber-400",
-          units: ['≒JOY']
-        }
-      ],
-      'KAWAII LAB.': [
-        {
-          title: "FRUITS ZIPPER",
-          icon: "fa-heart text-pink-500",
-          units: ['FRUITS ZIPPER']
-        },
-        {
-          title: "CANDY TUNE",
-          icon: "fa-candy-cane text-amber-500",
-          units: ['CANDY TUNE']
-        },
-        {
-          title: "SWEET STEADY",
-          icon: "fa-gem text-purple-400",
-          units: ['SWEET STEADY']
-        },
-        {
-          title: "CUTIE STREET",
-          icon: "fa-ribbon text-rose-400",
-          units: ['CUTIE STREET']
-        }
-      ],
-      'Modern & Alternative': [
-        {
-          title: "Modern Produce & Global",
-          icon: "fa-bolt text-emerald-500",
-          units: ['NiziU', 'ME:I', 'IS:SUE']
-        },
-        {
-          title: "Babymetal & Amuse Roots",
-          icon: "fa-guitar text-stone-800 dark:text-stone-200",
-          units: ['BABYMETAL', 'Sakura Gakuin']
-        }
-      ]
-    };
-
-    const PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f5f4'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23e7e5e4'/%3E%3Ccircle cx='150' cy='150' r='25' fill='%23f5f5f4'/%3E%3Ctext x='150' y='270' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23a8a29e' text-anchor='middle'%3ECDJapan Release%3C/text%3E%3C/svg%3E";
-
-    const MEDIA_WEIGHTS_GRAMS = {
-      'CD': 110,
-      'Blu-ray': 180,
-      'DVD': 140,
-      'Book': 480,
-      'Collectable': 160,
-      'Other': 140
-    };
-
-    function showToast(message, isSuccess = true) {
-      const toast = document.getElementById('toast');
-      const text = document.getElementById('toast-message');
-      const icon = document.getElementById('toast-icon');
-      if (!toast || !text) return;
-      text.innerText = message;
-      if (icon) {
-        icon.className = isSuccess ? 'fa-solid fa-circle-check text-emerald-400' : 'fa-solid fa-circle-exclamation text-amber-400';
-      }
-      toast.classList.remove('opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'pointer-events-none');
-      }, 2600);
-    }
-
-    function copyToClipboard(text, successMessage) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast(successMessage);
-      });
-    }
-
-    function dismissTrustNotice() {
-      const banner = document.getElementById('trust-notice-banner');
-      if (banner) banner.classList.add('hidden');
-      localStorage.setItem('idoljapan_dismiss_trust', 'true');
-    }
-
-    function toggleQr(coinKey) {
-      const el = document.getElementById(`qr-box-${coinKey}`);
-      if (!el) return;
-      el.classList.toggle('hidden');
-    }
-
-    function toggleAllQrs() {
-      const boxes = document.querySelectorAll('.crypto-qr-box');
-      const anyHidden = Array.from(boxes).some(b => b.classList.contains('hidden'));
-      boxes.forEach(b => {
-        if (anyHidden) b.classList.remove('hidden');
-        else b.classList.add('hidden');
-      });
-      const btnText = document.getElementById('toggle-all-qr-text');
-      if (btnText) {
-        btnText.innerText = anyHidden ? 'Hide All QRs' : 'Show All QRs';
-      }
-    }
-
-    function toggleCryptoModal() {
-      const modal = document.getElementById('crypto-modal');
-      if (!modal) return;
-      if (modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closeCryptoModalOnBackdrop(e) {
-      if (e.target.id === 'crypto-modal') toggleCryptoModal();
-    }
-
-    function triggerOutboundAffiliate(product, subId = 'direct') {
-      if (!product) return;
-      if (window.IdolAnalytics) window.IdolAnalytics.trackAffiliateClick(product, subId);
-      
-      const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${product.id}?affi=A033398`;
-      const sep = baseUrl.includes('?') ? '&' : '?';
-      const finalUrl = `${baseUrl}${sep}sub_id=${encodeURIComponent(subId)}`;
-
-      showToast("Redirecting to official retailer CDJapan (Tokyo)...");
-      window.open(finalUrl, '_blank', 'noopener,noreferrer');
-    }
-
-    function stripTitlePrefixes(rawTitle) {
-      if (!rawTitle) return '';
-      return String(rawTitle)
-        .replace(/^(?:Album\s+CD|Single\s+CD|Collectible|Blu-ray|DVD|BOOK|Album|Single|APPAREL)\s+/i, '')
-        .trim();
-    }
-
-    function extractVariantLabel(vTitle, baseTitle) {
-      if (!vTitle) return 'Standard Edition';
-      const cleanV = stripTitlePrefixes(vTitle);
-      const cleanBase = stripTitlePrefixes(baseTitle);
-
-      const bracketMatches = cleanV.match(/\[(.*?)\]|\((.*?)\)|【(.*?)】/g);
-      if (bracketMatches && bracketMatches.length > 0) {
-        return bracketMatches.join(' ');
-      }
-
-      if (cleanBase && cleanV.toLowerCase().startsWith(cleanBase.toLowerCase())) {
-        const diff = cleanV.slice(cleanBase.length).trim();
-        if (diff) return diff;
-      }
-
-      return cleanV.length > 38 ? cleanV.slice(0, 38) + '...' : cleanV;
-    }
-
-    function getVariantSortScore(variant) {
-      const title = String(variant.title || '').toLowerCase();
-      let rank = 50;
-
-      if (title.includes('limited') || title.includes('初回') || title.includes('ltd')) {
-        rank = 10;
-        const typeMatch = title.match(/type[\s-]*([a-z0-9]+)/i);
-        if (typeMatch) {
-          rank += (typeMatch[1].toUpperCase().charCodeAt(0) - 64) * 0.1;
-        }
-      } else if (title.includes('regular') || title.includes('通常')) {
-        rank = 30;
-      } else if (title.includes('bundle') || title.includes('bonus') || title.includes('set')) {
-        rank = 70;
-      }
-
-      return rank;
-    }
-
-    function extractEditionTags(title) {
-      if (!title) return [];
-      const tags = [];
-      const lower = String(title).toLowerCase();
-      
-      if (/limited edition|初回生産限定盤|初回限定盤/i.test(lower)) {
-        tags.push({ name: 'Limited', color: 'bg-amber-600' });
-      }
-      if (/regular edition|通常盤/i.test(lower)) {
-        tags.push({ name: 'Regular', color: 'bg-stone-600' });
-      }
-      const typeMatch = String(title).match(/Type\s*([A-Za-z0-9]+)/i);
-      if (typeMatch) {
-        tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
-      }
-      if (/w\/\s*blu-ray|blu-ray disc付|\+bd/i.test(lower)) {
-        tags.push({ name: 'CD+BD', color: 'bg-sky-600' });
-      }
-      if (/w\/\s*dvd|dvd付/i.test(lower)) {
-        tags.push({ name: 'CD+DVD', color: 'bg-purple-600' });
-      }
-      if (/tokuten|bonus|外付け特典/i.test(lower)) {
-        tags.push({ name: 'Bonus Included', color: 'bg-emerald-600' });
-      }
-      return tags;
-    }
-
-    function exportAllPreOrdersIcs() {
-      const preOrders = allProducts.filter(p => isPreOrder(p));
-      if (!preOrders.length) {
-        showToast("No active pre-orders to export.", false);
-        return;
-      }
-
-      let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//IdolJapan.store//Tokyo Street Dates//EN\n";
-
-      preOrders.forEach(p => {
-        const dVal = getItemDateValue(p);
-        if (dVal > 0) {
-          const y = Math.floor(dVal / 10000);
-          const m = String(Math.floor((dVal % 10000) / 100)).padStart(2, '0');
-          const d = String(dVal % 100).padStart(2, '0');
-          const dateStr = `${y}${m}${d}`;
-
-          ics += "BEGIN:VEVENT\n";
-          ics += `UID:${p.id}@idoljapan.store\n`;
-          ics += `DTSTAMP:${dateStr}T090000Z\n`;
-          ics += `DTSTART;VALUE=DATE:${dateStr}\n`;
-          ics += `SUMMARY:[Release] ${p.artist} - ${stripTitlePrefixes(p.title)}\n`;
-          ics += `DESCRIPTION:Official Tokyo Street Date for ${p.title} (${p.id}). CDJapan Order: ${p.affiliate_url || ''}\n`;
-          ics += `URL:https://idoljapan.store/?id=${p.id}\n`;
-          ics += "END:VEVENT\n";
-        }
-      });
-
-      ics += "END:VCALENDAR";
-
-      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `idoljapan_preorders_${Date.now()}.ics`;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast("Pre-Order .ICS calendar exported!");
-    }
-
-    function calculateWishlistHaulMetrics() {
-      const listIds = getWishlist();
-      const items = allProducts.filter(p => listIds.includes(p.id));
-
-      let totalWeightGrams = 0;
-      let totalJpy = 0;
-
-      items.forEach(it => {
-        const fmt = getItemFormatCategory(it);
-        totalWeightGrams += MEDIA_WEIGHTS_GRAMS[fmt] || 140;
-        totalJpy += parseNumericPrice(it.price, it);
-      });
-
-      let bracket = "≤ 500g (Minimum Tier)";
-      let progressPct = Math.min(100, (totalWeightGrams / 500) * 100);
-
-      if (totalWeightGrams > 2000) {
-        bracket = "> 2,000g (Heavy Tier)";
-        progressPct = 100;
-      } else if (totalWeightGrams > 1000) {
-        bracket = "1,001g – 2,000g Tier";
-        progressPct = Math.min(100, ((totalWeightGrams - 1000) / 1000) * 100);
-      } else if (totalWeightGrams > 500) {
-        bracket = "501g – 1,000g Tier";
-        progressPct = Math.min(100, ((totalWeightGrams - 500) / 500) * 100);
-      }
-
-      return { count: items.length, weight: totalWeightGrams, jpy: totalJpy, bracket, progressPct, items };
-    }
-
-    function toggleHaulDrawer() {
-      const drawer = document.getElementById('haul-drawer');
-      if (!drawer) return;
-      const isHidden = drawer.classList.contains('hidden');
-
-      if (isHidden) {
-        populateHaulDrawer();
-        drawer.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        drawer.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closeHaulDrawerOnBackdrop(e) {
-      if (e.target.id === 'haul-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
-        toggleHaulDrawer();
-      }
-    }
-
-    function populateHaulDrawer() {
-      const container = document.getElementById('haul-drawer-list');
-      const countEl = document.getElementById('haul-items-count');
-      const weightEl = document.getElementById('haul-weight-total');
-      const tierEl = document.getElementById('haul-bracket-tier');
-      const progressEl = document.getElementById('haul-weight-progress');
-
-      if (!container) return;
-      const metrics = calculateWishlistHaulMetrics();
-
-      if (countEl) countEl.innerText = `${metrics.count} releases`;
-      if (weightEl) weightEl.innerText = `~${metrics.weight.toLocaleString()}g`;
-      if (tierEl) tierEl.innerText = metrics.bracket;
-      if (progressEl) progressEl.style.width = `${metrics.progressPct}%`;
-
-      if (metrics.count === 0) {
-        container.innerHTML = `
-          <div class="text-center py-12 text-stone-400 dark:text-slate-500 space-y-2">
-            <i class="fa-regular fa-heart text-4xl mb-1 text-rose-400/60"></i>
-            <p class="font-bold text-sm text-stone-700 dark:text-stone-300">Your Wishlist is Empty</p>
-            <p class="text-[11px]">Click the heart icon on any release to calculate consolidated shipping.</p>
-          </div>
-        `;
-        return;
-      }
-
-      let html = '';
-      metrics.items.forEach(it => {
-        const fmt = getItemFormatCategory(it);
-        const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
-        const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
-
-        html += `
-          <div class="pt-3 first:pt-0 flex items-center gap-3">
-            <img src="${getThumbnailUrl(it.image)}" class="w-11 h-11 object-cover rounded-lg shrink-0 border border-stone-200 dark:border-slate-800" onerror="onImgLoadError(this)" />
-            <div class="flex-1 min-w-0">
-              <h4 class="font-bold text-stone-900 dark:text-white truncate text-xs" title="${cleanTitle}">${cleanTitle}</h4>
-              <p class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${escapeHtml(it.artist)} • ${fmt} (~${weight}g)</p>
-              <div class="text-[11px] font-black text-rose-600 dark:text-rose-400 mt-0.5">${formatDisplayPrice(it.price, it)}</div>
-            </div>
-            <div class="flex items-center gap-1.5 shrink-0">
-              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'haul_drawer_buy')" title="Order on CDJapan" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[10px] transition cursor-pointer">
-                Order
-              </button>
-              <button onclick="toggleWishlist('${it.id}'); populateHaulDrawer();" title="Remove" class="w-7 h-7 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-stone-100 dark:hover:bg-slate-800 flex items-center justify-center transition cursor-pointer">
-                <i class="fa-solid fa-trash-can text-[11px]"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function exportWishlistHaul() {
-      const listIds = getWishlist();
-      if (!listIds.length) {
-        showToast("Wishlist is empty!", false);
-        return;
-      }
-
-      const metrics = calculateWishlistHaulMetrics();
-      let content = "========================================\n";
-      content += "IDOLJAPAN.STORE — SAVED CDJAPAN HAUL\n";
-      content += "Generated: " + new Date().toLocaleDateString() + "\n";
-      content += `Total Items: ${metrics.count} | Est. Weight: ~${metrics.weight}g\n`;
-      content += `Courier Shipping Bracket: ${metrics.bracket}\n`;
-      content += `Estimated Value: ¥${metrics.jpy.toLocaleString()}\n`;
-      content += "========================================\n\n";
-
-      metrics.items.forEach((it, idx) => {
-        const fmt = getItemFormatCategory(it);
-        const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
-        content += `${idx + 1}. [${it.artist}] ${stripTitlePrefixes(it.title)}\n`;
-        content += `   Catalog ID: ${it.id} | Format: ${fmt} (~${weight}g)\n`;
-        content += `   Price: ${it.price}\n`;
-        content += `   Direct Link: https://idoljapan.store/?id=${it.id}\n\n`;
-      });
-
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `idoljapan_haul_${Date.now()}.txt`;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast("Wishlist haul exported!");
-    }
-
-    function applyLayoutModeToDom() {
-      layoutMode = detectDeviceLayout();
-      const isMobile = (layoutMode === 'mobile');
-      const viewportMeta = document.getElementById('dynamic-viewport');
-      const htmlEl = document.documentElement;
-
-      const mobileBar = document.getElementById('mobile-filter-bar');
-      const mobileNav = document.getElementById('mobile-bottom-nav');
-      const desktopTier1 = document.getElementById('desktop-nav-tier1');
-      const desktopTier2 = document.getElementById('desktop-nav-tier2');
-
-      if (isMobile) {
-        if (viewportMeta) viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
-        htmlEl.classList.remove('layout-desktop');
-        htmlEl.classList.add('layout-mobile');
-
-        if (mobileBar) mobileBar.classList.remove('hidden');
-        if (mobileNav) mobileNav.classList.remove('hidden');
-        if (desktopTier1) desktopTier1.classList.add('hidden');
-        if (desktopTier2) desktopTier2.classList.add('hidden');
-      } else {
-        if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
-        htmlEl.classList.add('layout-desktop');
-        htmlEl.classList.remove('layout-mobile');
-
-        if (mobileBar) mobileBar.classList.add('hidden');
-        if (mobileNav) mobileNav.classList.add('hidden');
-        if (desktopTier1) desktopTier1.classList.remove('hidden');
-        if (desktopTier2) desktopTier2.classList.remove('hidden');
-      }
-
-      updateMobileDrawerContent();
-    }
-
-    function toggleMobileFilterDrawer() {
-      const drawer = document.getElementById('mobile-filter-drawer');
-      if (!drawer) return;
-      const isHidden = drawer.classList.contains('hidden');
-      if (isHidden) {
-        updateMobileDrawerContent();
-        drawer.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        drawer.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closeMobileFilterDrawerOnBackdrop(e) {
-      if (e.target.id === 'mobile-filter-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
-        toggleMobileFilterDrawer();
-      }
-    }
-
-    function updateMobileDrawerContent() {
-      const fBox = document.getElementById('mobile-drawer-franchises');
-      const uBox = document.getElementById('mobile-drawer-units');
-      const fmtBox = document.getElementById('mobile-drawer-formats');
-      const uBoxWrapper = document.getElementById('mobile-drawer-units-box');
-      const filterBadge = document.getElementById('mobile-filter-count-badge');
-
-      if (filterBadge) {
-        filterBadge.innerText = (activeArtist !== 'All' ? activeArtist : activeFilter);
-      }
-
-      if (fBox) {
-        const cats = ['All', 'Hello! Project & Up-Front', 'AKB48 Group', 'Sakamichi Series', 'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern & Alternative'];
-        fBox.innerHTML = cats.map(c => {
-          const isAct = (activeFilter === c);
-          return `<button onclick="setFilter('${c}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white shadow-xs' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${c}</button>`;
-        }).join('');
-      }
-
-      if (uBox) {
-        const units = FRANCHISE_ARTISTS[activeFilter];
-        if (!units || units.length <= 1) {
-          if (uBoxWrapper) uBoxWrapper.classList.add('hidden');
-          uBox.innerHTML = '';
-        } else {
-          if (uBoxWrapper) uBoxWrapper.classList.remove('hidden');
-          let uHtml = `<button onclick="setSubArtist('All')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${activeArtist === 'All' ? 'bg-stone-800 text-white dark:bg-rose-600' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">All</button>`;
-          units.forEach(u => {
-            const isAct = (activeArtist === u);
-            uHtml += `<button onclick="setSubArtist('${u}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${u}</button>`;
-          });
-          uBox.innerHTML = uHtml;
-        }
-      }
-
-      if (fmtBox) {
-        const fmts = ['All', 'CD', 'Blu-ray', 'DVD', 'Book', 'Collectable'];
-        fmtBox.innerHTML = fmts.map(f => {
-          const isAct = (activeFormat === f);
-          return `<button onclick="setFormat('${f}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${f}</button>`;
-        }).join('');
-      }
-    }
-
-    function openSortMenuMobile() {
-      const order = ['newest', 'oldest', 'price-asc', 'price-desc'];
-      const nextSort = order[(order.indexOf(currentSort) + 1) % order.length];
-      changeSort(nextSort);
-      showToast(`Sorted: ${nextSort.replace('-', ' ')}`);
-    }
-
-    function getThumbnailUrl(rawUrl) {
-      if (!rawUrl || rawUrl.startsWith('data:')) return PLACEHOLDER_IMG;
-      return rawUrl.replace('/pictures/l/', '/pictures/m/');
-    }
-
-    async function shareProduct(product, e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      if (!product) return;
-
-      const directUrl = `${window.location.origin}/?id=${encodeURIComponent(product.id)}`;
-      const shareData = {
-        title: `${stripTitlePrefixes(product.title)} — ${product.artist}`,
-        text: `Check out ${stripTitlePrefixes(product.title)} on IdolJapan.store:`,
-        url: directUrl
-      };
-
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-          return;
-        } catch (err) {
-          if (err.name !== 'AbortError') console.warn('Native share failed:', err);
-        }
-      }
-
-      copyToClipboard(directUrl, "Product link copied to clipboard!");
-    }
-
-    function getWishlist() {
-      try {
-        const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveWishlist(list) {
-      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(list));
-      updateWishlistBadge();
-    }
-
-    function toggleWishlist(productId, e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      let list = getWishlist();
-      const idx = list.indexOf(productId);
-      const isAdded = (idx === -1);
-      
-      if (!isAdded) {
-        list.splice(idx, 1);
-        showToast("Removed from wishlist");
-      } else {
-        list.push(productId);
-        showToast("Saved to wishlist!");
-      }
-      saveWishlist(list);
-      
-      const p = allProducts.find(x => x.id === productId);
-      if (p && window.IdolAnalytics) {
-        window.IdolAnalytics.trackWishlistToggle(p, isAdded);
-      }
-      
-      render();
-    }
-
-    function updateWishlistBadge() {
-      const list = getWishlist();
-      const badge = document.getElementById('wishlist-count-badge');
-      const mobileBadge = document.getElementById('mobile-bottom-wishlist-badge');
-      if (badge) badge.innerText = list.length;
-      if (mobileBadge) mobileBadge.innerText = list.length;
-    }
-
-    function shareWishlistUrl() {
-      const listIds = getWishlist();
-      if (!listIds.length) {
-        showToast("Wishlist is empty!", false);
-        return;
-      }
-      const shareUrl = `${window.location.origin}/?wishlist=${listIds.join(',')}`;
-      copyToClipboard(shareUrl, "Wishlist share link copied!");
-    }
-
-    function setViewMode(mode) {
-      viewMode = mode;
-      localStorage.setItem(VIEW_MODE_KEY, mode);
-      updateViewModeUI();
-      render();
-    }
-
-    function updateViewModeUI() {
-      const gBtn = document.getElementById('view-mode-grid');
-      const lBtn = document.getElementById('view-mode-list');
-      const activeClass = "px-1.5 py-0.5 rounded-md transition text-xs bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs cursor-pointer";
-      const inactiveClass = "px-1.5 py-0.5 rounded-md transition text-xs text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer";
-
-      if (gBtn && lBtn) {
-        gBtn.className = viewMode === 'grid' ? activeClass : inactiveClass;
-        lBtn.className = viewMode === 'list' ? activeClass : inactiveClass;
-      }
-    }
-
-    function toggleClustering(checked) {
-      isClusteringEnabled = checked;
-      currentPage = 1;
-      render();
-    }
-
-    function onImgLoadError(imgEl) {
-      imgEl.onerror = null;
-      imgEl.src = PLACEHOLDER_IMG;
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-    }
-
-    function updateThemeIcon() {
-      const isDark = document.documentElement.classList.contains('dark');
-      const icon = document.getElementById('theme-icon');
-      if (icon) {
-        icon.className = isDark ? 'fa-solid fa-sun text-amber-200 text-xs' : 'fa-solid fa-moon text-rose-100 text-xs';
-      }
-    }
-
-    function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-      updateThemeIcon();
-    }
-
-    async function initExchangeRates() {
-      try {
-        const savedCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY) || (window.IdolGeo ? window.IdolGeo.applyAutoCurrency() : 'USD');
-        currentCurrency = savedCurrency;
-
-        const selectEl = document.getElementById('currency-select');
-        if (selectEl) selectEl.value = currentCurrency;
-
-        const localRes = await fetch('/rates.json').catch(() => null);
-        if (localRes && localRes.ok) {
-          const localData = await localRes.json().catch(() => null);
-          if (localData && localData.rates) {
-            exchangeRates = localData.rates;
-            populateCurrencyOptions(exchangeRates);
-          }
-        }
-
-        const cachedRates = localStorage.getItem(RATES_STORAGE_KEY);
-        const cachedTime = localStorage.getItem(RATES_TIME_KEY);
-        const now = Date.now();
-
-        if (cachedRates && cachedTime && (now - parseInt(cachedTime, 10) < TWENTY_FOUR_HOURS_MS)) {
-          exchangeRates = JSON.parse(cachedRates);
-          populateCurrencyOptions(exchangeRates);
-          return;
-        }
-
-        const res = await fetch('https://open.er-api.com/v6/latest/USD').catch(() => null);
-        if (res && res.ok) {
-          const data = await res.json().catch(() => null);
-          if (data && data.rates) {
-            exchangeRates = data.rates;
-            localStorage.setItem(RATES_STORAGE_KEY, JSON.stringify(exchangeRates));
-            localStorage.setItem(RATES_TIME_KEY, now.toString());
-            populateCurrencyOptions(exchangeRates);
-          }
-        }
-      } catch (err) {
-        console.warn('Currency init completed with fallback:', err);
-      }
-    }
-
-    function populateCurrencyOptions(rates) {
-      const optGroup = document.getElementById('all-currencies-group');
-      if (!optGroup || !rates) return;
-
-      const popular = ['USD', 'JPY', 'EUR', 'GBP', 'CAD', 'AUD', 'TWD', 'HKD', 'KRW', 'SGD'];
-      const allCodes = Object.keys(rates).sort();
-
-      optGroup.innerHTML = '';
-      allCodes.forEach(code => {
-        if (!popular.includes(code)) {
-          const opt = document.createElement('option');
-          opt.value = code;
-          opt.innerText = code;
-          opt.className = 'text-slate-900 bg-white';
-          optGroup.appendChild(opt);
-        }
-      });
-
-      const selectEl = document.getElementById('currency-select');
-      if (selectEl) selectEl.value = currentCurrency;
-    }
-
-    function onCurrencyChange(selectedCode) {
-      currentCurrency = selectedCode;
-      localStorage.setItem(CURRENCY_STORAGE_KEY, selectedCode);
-      render();
-    }
-
-    function onMaxPriceChange(val) {
-      const num = parseInt(val, 10);
-      maxPriceLimit = num;
-      const label = document.getElementById('price-range-label');
-      if (label) {
-        label.innerText = num >= 20000 ? 'Any' : `≤ ¥${num.toLocaleString()}`;
-      }
-      currentPage = 1;
-      render();
-    }
-
-    function setYearFilter(yr) {
-      activeYear = yr;
-      currentPage = 1;
-      const select = document.getElementById('year-select');
-      if (select) select.value = yr;
-      updateActiveArtistBanner();
-      syncUrlParams();
-      render();
-    }
-
-    function syncUrlParams() {
-      const params = new URLSearchParams();
-      if (activeFilter !== 'All') params.set('cat', activeFilter);
-      if (activeArtist !== 'All') params.set('artist', activeArtist);
-      if (activeYear !== 'All') params.set('year', activeYear);
-      if (activeFormat !== 'All') params.set('fmt', activeFormat);
-      if (activeAvailability !== 'all') params.set('status', activeAvailability);
-      if (searchQuery) params.set('q', searchQuery);
-      if (currentSort !== 'newest') params.set('sort', currentSort);
-      if (currentPage > 1) params.set('page', currentPage);
-
-      const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
-      window.history.replaceState({}, '', newUrl);
-      updatePageTitle();
-    }
-
-    function updatePageTitle() {
-      let baseTitle = "IdolJapan.store — Official Japanese Idol Discography";
-      if (activeFilter !== 'All') {
-        baseTitle = `${activeFilter} Discography — IdolJapan.store`;
-      }
-      if (activeArtist !== 'All') {
-        baseTitle = `${activeArtist} CDJapan Releases — IdolJapan.store`;
-      }
-      document.title = baseTitle;
-    }
-
-    function readUrlParams() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('cat')) activeFilter = params.get('cat');
-      if (params.has('artist')) activeArtist = params.get('artist');
-      if (params.has('year')) activeYear = params.get('year');
-      if (params.has('fmt')) activeFormat = params.get('fmt');
-      if (params.has('status')) activeAvailability = params.get('status');
-      if (params.has('q')) {
-        searchQuery = params.get('q').toLowerCase();
-        const input = document.getElementById('search-input');
-        if (input) input.value = params.get('q');
-      }
-      if (params.has('sort')) currentSort = params.get('sort');
-      if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
-
-      if (params.has('id')) {
-        const targetId = params.get('id');
-        setTimeout(() => openModal(targetId), 250);
-      }
-      updatePageTitle();
-    }
-
-    async function loadSearchAliases() {
-      try {
-        const res = await fetch('/search_aliases.json').catch(() => null);
-        if (res && res.ok) {
-          searchAliases = await res.json().catch(() => ({}));
-        }
-      } catch (e) {}
-    }
-
-    async function loadCatalog() {
-      const statsEl = document.getElementById('stats');
-      let data = null;
-
-      try {
-        if (window.IdolDB) {
-          const cachedDb = await window.IdolDB.loadCatalog().catch(() => null);
-          if (cachedDb && Array.isArray(cachedDb) && cachedDb.length > 0) {
-            allProducts = cachedDb.map((item, idx) => ({
-              ...item,
-              id: String(item.id || `sku-${idx}`),
-              title: String(item.title || 'Untitled Release'),
-              artist: (item.artist === 'Keyakizaka46' || item.artist === '欅坂46') ? 'Sakurazaka46' : String(item.artist || 'Idol Artist'),
-              category: String(item.category || 'Hello! Project'),
-              price: String(item.price || 'Check CDJapan'),
-              _catalogIndex: idx
-            }));
-            
-            if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live (Instant DB)`;
-            try {
-              readUrlParams();
-              buildClusteredEntities();
-              updateDynamicCounts();
-              updateActiveArtistBanner();
-              updateYearJumpBar();
-              updateFilterButtonsUI();
-              updateAvailabilityUI();
-              updateWishlistBadge();
-              applyLayoutModeToDom();
-            } catch (err) {}
-            render();
-          }
-        }
-      } catch (err) {
-        console.warn('IndexedDB retrieval bypassed:', err);
-      }
-
-      const cacheBuster = Date.now();
-      const candidatePaths = [
-        `catalog-index.json?v=${cacheBuster}`,
-        `./catalog-index.json?v=${cacheBuster}`,
-        `/catalog-index.json?v=${cacheBuster}`,
-        `products.json?v=${cacheBuster}`
-      ];
-
-      for (const p of candidatePaths) {
-        try {
-          const res = await fetch(p);
-          if (res && res.ok) {
-            const parsed = await res.json();
-            if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
-              data = parsed;
-              break;
-            }
-          }
-        } catch (e) {}
-      }
-
-      if (data && typeof data === 'object') {
-        const parsedItems = Object.values(data)
-          .filter(item => item && (item.id || item.title))
-          .map((item, idx) => {
-            let art = String(item.artist || 'Idol Artist');
-            if (art === 'Keyakizaka46' || art === '欅坂46') {
-              art = 'Sakurazaka46';
-            }
-            return {
-              ...item,
-              id: String(item.id || `sku-${idx}`),
-              title: String(item.title || 'Untitled Release'),
-              artist: art,
-              category: String(item.category || 'Hello! Project'),
-              price: String(item.price || 'Check CDJapan'),
-              _catalogIndex: idx
-            };
-          });
-
-        if (parsedItems.length > 0) {
-          allProducts = parsedItems;
-          if (statsEl) statsEl.innerText = `${allProducts.length.toLocaleString()} Items Live`;
-          
-          if (window.IdolDB) {
-            window.IdolDB.saveCatalog(parsedItems).catch(() => {});
-          }
-        }
-      }
-
-      try {
-        readUrlParams();
-        buildClusteredEntities();
-        updateDynamicCounts();
-        updateActiveArtistBanner();
-        updateYearJumpBar();
-        updateFilterButtonsUI();
-        updateAvailabilityUI();
-        updateWishlistBadge();
-        applyLayoutModeToDom();
-      } catch (prepErr) {
-        console.error('Error preparing catalog state:', prepErr);
-      } finally {
-        render();
-      }
-    }
-
-    function getCleanBaseTitle(title) {
-      if (!title) return '';
-      let clean = stripTitlePrefixes(title);
-      clean = clean.replace(/\s*w\/\s*(?:7net|Amazon|Asmart|Tower Records|Rakuten Books|AKB48 Official Shop|[A-Za-z0-9\s]+Bonus|Tokuten).*$/i, '');
-      clean = clean.replace(/\[Bundled Set.*?\]/gi, '');
-      clean = clean.replace(/\s*DAY\s*\d+/gi, '');
-      clean = clean.replace(/\[.*?Edition.*?\]/gi, '');
-      clean = clean.replace(/\[.*?ver\..*?\]/gi, '');
-      clean = clean.replace(/\[.*?盤.*?\]/gi, '');
-      clean = clean.replace(/\[(?:Cardboard Sleeve|Blu-ray|DVD|CD|First Press|Limited|Regular|Special).*?\]/gi, '');
-      clean = clean.replace(/\((?:Type\s*[A-Z0-9]+|w\/\s*[A-Za-z0-9\s]+|Regular Edition|Limited Edition|CD\s*\+\s*Blu-ray|CD\s*\+\s*DVD)\)/gi, '');
-      clean = clean.replace(/【.*?】/g, '');
-      clean = clean.replace(/(?:\s*[\(\[【]?\s*(?:¥\s*[\d,]+|[\d,]+\s*(?:yen|JPY))\s*(?:\([^)]*\)|（[^）]*）|tax\s*(?:incl|included|\.|\s*in)?|税込)?\s*[\)\]】]?)+$/gi, '');
-      return clean.replace(/\s+/g, ' ').trim();
-    }
-
-    function buildClusteredEntities() {
-      const clusters = {};
-      allProducts.forEach(item => {
-        const cleanTitle = getCleanBaseTitle(item.title).toLowerCase();
-        const baseKey = `${item.artist || ''}__${cleanTitle}`;
-        if (!clusters[baseKey]) {
-          clusters[baseKey] = {
-            id: item.id,
-            canonicalItem: item,
-            variants: [item]
-          };
-        } else {
-          clusters[baseKey].variants.push(item);
-        }
-      });
-      clusteredEntities = Object.values(clusters);
-    }
-
-    function getItemFormatCategory(item) {
-      if (!item) return 'Other';
-      const pid = String(item.id || '').toUpperCase();
-      const title = String(item.title || '').toLowerCase();
-
-      if (
-        pid.startsWith('NEOBK-') ||
-        title.includes('photobook') ||
-        title.includes('photo book') ||
-        title.includes('visual book') ||
-        title.includes('magazine') ||
-        title.includes('official book') ||
-        title.includes('mook') ||
-        title.includes('score') ||
-        title.includes('写真集') ||
-        title.includes('ムック')
-      ) {
-        return 'Book';
-      }
-
-      if (
-        title.startsWith('single cd') ||
-        title.startsWith('album cd') ||
-        title.includes('single [') ||
-        title.includes('album [') ||
-        pid.startsWith('SRCL') ||
-        pid.startsWith('EPCE') ||
-        pid.startsWith('HKCN') ||
-        pid.startsWith('UPCH') ||
-        pid.startsWith('KICS') ||
-        pid.startsWith('KICM') ||
-        pid.startsWith('KIZM') ||
-        pid.startsWith('KIZC') ||
-        pid.startsWith('AVCD') ||
-        pid.startsWith('TFCC') ||
-        pid.startsWith('VVCL') ||
-        pid.startsWith('YRCS') ||
-        pid.startsWith('UMCK') ||
-        pid.startsWith('DFCL') ||
-        pid.startsWith('PKCP') ||
-        pid.startsWith('AICL') ||
-        pid.startsWith('XSCL') ||
-        pid.startsWith('SECL') ||
-        pid.startsWith('KLC-') ||
-        pid.startsWith('NEOIKT-')
-      ) {
-        return 'CD';
-      }
-
-      if (
-        pid.startsWith('SRXL') ||
-        pid.startsWith('SRXW') ||
-        pid.startsWith('EPXE') ||
-        pid.startsWith('KIXM') ||
-        pid.startsWith('TFXQ') ||
-        pid.startsWith('UMXK') ||
-        pid.startsWith('VVXL') ||
-        pid.startsWith('HKXN') ||
-        pid.startsWith('AVXD') ||
-        pid.startsWith('VPXF') ||
-        pid.startsWith('UFXW') ||
-        pid.startsWith('TGXF') ||
-        pid.startsWith('BMWR-1008') ||
-        pid.startsWith('BMWR-1009') ||
-        (title.includes('blu-ray') && !title.includes('cd +') && !title.includes('w/ blu-ray'))
-      ) {
-        return 'Blu-ray';
-      }
-
-      if (
-        pid.startsWith('SRBL') ||
-        pid.startsWith('EPBE') ||
-        pid.startsWith('KIBM') ||
-        pid.startsWith('TFBQ') ||
-        pid.startsWith('UMBK') ||
-        pid.startsWith('VVBL') ||
-        pid.startsWith('HKBN') ||
-        pid.startsWith('AVBD') ||
-        pid.startsWith('VPBF') ||
-        pid.startsWith('PKBP') ||
-        pid.startsWith('UFBW') ||
-        pid.startsWith('TGBS') ||
-        pid.startsWith('BMWR-1010') ||
-        (title.includes('dvd') && !title.includes('cd +') && !title.includes('w/ dvd'))
-      ) {
-        return 'DVD';
-      }
-
-      if (
-        pid.startsWith('NEODAI-') ||
-        pid.startsWith('NEOODY-') ||
-        pid.startsWith('NEOGDS-') ||
-        pid.startsWith('DCFGDS-') ||
-        pid.startsWith('DAKUFBW-') ||
-        pid.includes('CL-') ||
-        pid.endsWith('-A') ||
-        title.includes('apparel') ||
-        title.includes('collectible') ||
-        title.includes('t-shirt') ||
-        title.includes('shirt') ||
-        title.includes('calendar') ||
-        title.includes('acrylic') ||
-        title.includes('keychain') ||
-        title.includes('stand') ||
-        title.includes('goods') ||
-        title.includes('towel') ||
-        title.includes('badge') ||
-        title.includes('plate') ||
-        title.includes('sticker') ||
-        title.includes('pouch')
-      ) {
-        return 'Collectable';
-      }
-
-      return 'Other';
-    }
-
-    function getMerchSubgroupType(item) {
-      const title = String(item.title || '').toLowerCase();
-      if (title.includes('acrylic') || title.includes('stand') || title.includes('アクスタ') || title.includes('アクリル')) return 'acrylic';
-      if (title.includes('shirt') || title.includes('apparel') || title.includes('parka') || title.includes('tシャツ')) return 'apparel';
-      if (title.includes('keychain') || title.includes('strap') || title.includes('holder') || title.includes('キーホルダー')) return 'keychain';
-      if (title.includes('badge') || title.includes('pin') || title.includes('缶バッジ')) return 'badge';
-      if (title.includes('towel') || title.includes('penlight') || title.includes('blade') || title.includes('タオル') || title.includes('ペンライト')) return 'towel';
-      if (title.includes('sticker') || title.includes('poster') || title.includes('plate') || title.includes('file') || title.includes('folder')) return 'stationery';
-      return 'other';
-    }
-
-    function setMerchSubgroup(subgroup) {
-      activeMerchSubgroup = subgroup;
-      currentPage = 1;
-      document.querySelectorAll('.merch-sub-btn').forEach(btn => {
-        if (btn.dataset.sub === subgroup) {
-          btn.className = "merch-sub-btn px-2 py-0.5 rounded-md transition bg-purple-600 text-white cursor-pointer";
-        } else {
-          btn.className = "merch-sub-btn px-2 py-0.5 rounded-md transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 hover:bg-purple-50 cursor-pointer";
-        }
-      });
-      render();
-    }
-
-    function updateDynamicCounts() {
-      const catCounts = {
-        'All': allProducts.length,
-        'Hello! Project & Up-Front': 0,
-        'AKB48 Group': 0,
-        'Sakamichi Series': 0,
-        'Stardust Planet': 0,
-        '=LOVE / Sister Groups': 0,
-        'KAWAII LAB.': 0,
-        'Modern & Alternative': 0
-      };
-
-      const fmtCounts = {
-        'All': allProducts.length,
-        'CD': 0,
-        'Blu-ray': 0,
-        'DVD': 0,
-        'Book': 0,
-        'Collectable': 0
-      };
-
-      allProducts.forEach(item => {
-        const cat = item.category || '';
-        if (cat === 'Hello! Project' || cat === 'Up-Front Alumni') {
-          catCounts['Hello! Project & Up-Front']++;
-        } else if (cat === 'AKB48 Group') {
-          catCounts['AKB48 Group']++;
-        } else if (cat === 'Sakamichi Series') {
-          catCounts['Sakamichi Series']++;
-        } else if (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z') {
-          catCounts['Stardust Planet']++;
-        } else if (cat === '=LOVE / Sister Groups') {
-          catCounts['=LOVE / Sister Groups']++;
-        } else if (cat === 'KAWAII LAB.') {
-          catCounts['KAWAII LAB.']++;
-        } else if (cat === 'Modern Idols' || cat === 'Babymetal') {
-          catCounts['Modern & Alternative']++;
-        }
-
-        const fmt = getItemFormatCategory(item);
-        if (fmtCounts[fmt] !== undefined) fmtCounts[fmt]++;
-      });
-
-      Object.entries(catCounts).forEach(([catKey, count]) => {
-        const badge = document.getElementById(`badge-cat-${catKey}`);
-        if (badge) badge.innerText = count.toLocaleString();
-      });
-
-      Object.entries(fmtCounts).forEach(([fmt, count]) => {
-        const badge = document.getElementById(`badge-fmt-${fmt}`);
-        if (badge) badge.innerText = `(${count.toLocaleString()})`;
-      });
-    }
-
-    function changeSort(sortVal) {
-      currentSort = sortVal;
-      const dSelect = document.getElementById('sort-select');
-      if (dSelect) dSelect.value = sortVal;
-      currentPage = 1;
-      syncUrlParams();
-      render();
-    }
-
-    function changePerPage(countVal) {
-      itemsPerPage = parseInt(countVal, 10) || 48;
-      currentPage = 1;
-      render();
-    }
-
-    function goToPage(pageNumber) {
-      const totalPages = Math.max(1, Math.ceil(activeFilteredList.length / itemsPerPage));
-      const targetPage = Math.max(1, Math.min(pageNumber || 1, totalPages));
-      currentPage = targetPage;
-
-      const pageInput = document.getElementById('direct-page-input');
-      if (pageInput) pageInput.value = currentPage;
-
-      syncUrlParams();
-      render();
-      const anchor = document.getElementById('pagination-top-anchor');
-      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function setFilter(cat) {
-      activeFilter = cat;
-      activeArtist = 'All';
-      activeYear = 'All';
-      currentPage = 1;
-      closeMegaMenu();
-      updateFilterButtonsUI();
-      updateActiveArtistBanner();
-      updateYearJumpBar();
-      updateMobileDrawerContent();
-      syncUrlParams();
-      render();
-    }
-
-    function setSubArtist(artist) {
-      activeArtist = artist;
-      activeYear = 'All';
-      currentPage = 1;
-
-      if (artist !== 'All' && activeAvailability === 'active') {
-        const inStockCount = allProducts.filter(p => p.artist === artist && !isOutOfPrint(p)).length;
-        if (inStockCount === 0) {
-          activeAvailability = 'all';
-          updateAvailabilityUI();
-          showToast(`Showing complete archive for ${artist}`);
-        }
-      }
-
-      updateActiveArtistBanner();
-      updateYearJumpBar();
-      updateMobileDrawerContent();
-      syncUrlParams();
-      render();
-    }
-
-    function setFormat(fmt) {
-      activeFormat = fmt;
-      activeMerchSubgroup = 'All';
-      currentPage = 1;
-
-      const merchBar = document.getElementById('merch-subgroup-bar');
-      if (merchBar) {
-        if (fmt === 'Collectable') merchBar.classList.remove('hidden');
-        else merchBar.classList.add('hidden');
-      }
-
-      updateFilterButtonsUI();
-      updateMobileDrawerContent();
-      syncUrlParams();
-      render();
-    }
-
-    function setAvailability(status) {
-      activeAvailability = status;
-      currentPage = 1;
-      updateAvailabilityUI();
-      syncUrlParams();
-      render();
-    }
-
-    function updateAvailabilityUI() {
-      const allBtn = document.getElementById('avail-all');
-      const actBtn = document.getElementById('avail-active');
-      const preBtn = document.getElementById('avail-preorder');
-      const stockBtn = document.getElementById('avail-instock');
-      const oopBtn = document.getElementById('avail-oop');
-      if (!allBtn || !actBtn || !preBtn || !stockBtn || !oopBtn) return;
-
-      const activeClasses = "px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-700 text-rose-600 dark:text-white shadow-2xs font-bold cursor-pointer";
-      const inactiveClasses = "px-2 py-0.5 rounded-md transition hover:text-rose-600 dark:hover:text-white font-semibold cursor-pointer";
-
-      allBtn.className = activeAvailability === 'all' ? activeClasses : inactiveClasses;
-      actBtn.className = activeAvailability === 'active' ? activeClasses : inactiveClasses;
-      preBtn.className = activeAvailability === 'preorder' ? activeClasses : inactiveClasses;
-      stockBtn.className = activeAvailability === 'instock' ? activeClasses : inactiveClasses;
-      oopBtn.className = activeAvailability === 'oop' ? activeClasses : inactiveClasses;
-    }
-
-    function updateFilterButtonsUI() {
-      document.querySelectorAll('#filter-bar .tab-btn').forEach(btn => {
-        if (btn.dataset.cat === activeFilter) {
-          btn.className = "tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-rose-600 text-white shadow-xs flex items-center justify-between cursor-pointer";
-        } else {
-          btn.className = "tab-btn px-2 py-1.5 rounded-xl text-xs font-bold transition bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 flex items-center justify-between cursor-pointer border border-stone-200/50 dark:border-slate-700/50";
-        }
-      });
-
-      document.querySelectorAll('#format-filter-bar .fmt-btn').forEach(btn => {
-        if (btn.dataset.fmt === activeFormat) {
-          btn.className = "fmt-btn px-2 py-0.5 rounded-md transition bg-rose-600 text-white font-bold shadow-2xs shrink-0 cursor-pointer";
-        } else {
-          btn.className = "fmt-btn px-2 py-0.5 rounded-md transition bg-white dark:bg-slate-800 text-stone-600 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-700 border border-stone-200 dark:border-slate-700 shrink-0 cursor-pointer";
-        }
-      });
-    }
-
-    function handleTopNavHover(cat) {
-      if (megaMenuTimer) {
-        clearTimeout(megaMenuTimer);
-        megaMenuTimer = null;
-      }
-      if (cat === 'All' || !FRANCHISE_ARTISTS[cat] || FRANCHISE_ARTISTS[cat].length <= 1) {
-        closeMegaMenu();
-        return;
-      }
-      currentHoverCat = cat;
-      renderMegaMenu(cat);
-      openMegaMenu();
-    }
-
-    function handleTopNavLeave() {
-      if (megaMenuTimer) clearTimeout(megaMenuTimer);
-      megaMenuTimer = setTimeout(() => {
-        closeMegaMenu();
-      }, 220);
-    }
-
-    function handleMegaMenuEnter() {
-      if (megaMenuTimer) {
-        clearTimeout(megaMenuTimer);
-        megaMenuTimer = null;
-      }
-    }
-
-    function handleMegaMenuLeave() {
-      if (megaMenuTimer) clearTimeout(megaMenuTimer);
-      megaMenuTimer = setTimeout(() => {
-        closeMegaMenu();
-      }, 220);
-    }
-
-    function openMegaMenu() {
-      const flyout = document.getElementById('mega-menu-flyout');
-      if (flyout) flyout.classList.remove('hidden');
-    }
-
-    function closeMegaMenu() {
-      const flyout = document.getElementById('mega-menu-flyout');
-      if (flyout) flyout.classList.add('hidden');
-      currentHoverCat = null;
-    }
-
-    function selectSubArtistFromMegaMenu(cat, unit) {
-      activeFilter = cat;
-      setSubArtist(unit);
-      updateFilterButtonsUI();
-      closeMegaMenu();
-    }
-
-    function renderMegaMenu(cat) {
-      const franchiseTitle = document.getElementById('mega-menu-franchise-title');
-      const columnsContainer = document.getElementById('mega-menu-columns-container');
-      const viewAllBtn = document.getElementById('mega-menu-view-all-btn');
-
-      if (!columnsContainer || !franchiseTitle) return;
-
-      franchiseTitle.innerText = `${cat} Discography & Units`;
-      if (viewAllBtn) {
-        viewAllBtn.onclick = () => {
-          setFilter(cat);
-          closeMegaMenu();
-        };
-      }
-
-      const categories = MEGA_MENU_CATEGORIES[cat];
-      const allUnits = FRANCHISE_ARTISTS[cat] || [];
-
-      let gridClass = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs";
-      if (categories && categories.length > 0) {
-        if (categories.length === 5) gridClass = "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs";
-        else if (categories.length === 4) gridClass = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs";
-        else if (categories.length === 3) gridClass = "grid grid-cols-1 md:grid-cols-3 gap-4 text-xs";
-        else if (categories.length <= 2) gridClass = "grid grid-cols-1 md:grid-cols-2 gap-4 text-xs";
-        
-        columnsContainer.className = gridClass;
-        let html = '';
-
-        categories.forEach(sec => {
-          html += `
-            <div class="bg-stone-50/70 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col max-h-96 overflow-y-auto no-scrollbar">
-              <h4 class="font-black text-stone-800 dark:text-stone-200 text-[11px] uppercase tracking-wider mb-2.5 pb-1 border-b border-stone-200/40 dark:border-slate-700/50 flex items-center gap-1.5 sticky top-0 bg-stone-50/95 dark:bg-slate-800/95 backdrop-blur-xs z-10">
-                <i class="fa-solid ${sec.icon}"></i> ${escapeHtml(sec.title)}
-              </h4>
-              <div class="space-y-1">
-          `;
-
-          sec.units.forEach(u => {
-            const isSelected = (activeArtist === u);
-            const count = allProducts.filter(p => p.artist === u).length;
-            html += `
-              <button 
-                onclick="selectSubArtistFromMegaMenu('${cat}', '${u}')" 
-                class="w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center justify-between text-xs cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold shadow-2xs' : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600'}"
-              >
-                <span class="truncate">${escapeHtml(u)}</span>
-                <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1 font-mono">${count}</span>
-              </button>
-            `;
-          });
-
-          html += `</div></div>`;
-        });
-
-        columnsContainer.innerHTML = html;
-      } else {
-        columnsContainer.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs";
-        let html = '';
-
-        allUnits.forEach(u => {
-          const isSelected = (activeArtist === u);
-          const count = allProducts.filter(p => p.artist === u).length;
-          html += `
-            <button 
-              onclick="selectSubArtistFromMegaMenu('${cat}', '${u}')" 
-              class="px-3 py-2 rounded-xl border text-left transition flex items-center justify-between cursor-pointer ${isSelected ? 'bg-rose-600 text-white font-bold border-rose-600 shadow-2xs' : 'bg-stone-50 dark:bg-slate-800 border-stone-200 dark:border-slate-700 text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700'}"
-            >
-              <span class="truncate">${escapeHtml(u)}</span>
-              <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1 font-mono">${count}</span>
-            </button>
-          `;
-        });
-
-        columnsContainer.innerHTML = html;
-      }
-    }
-
-    function updateActiveArtistBanner() {
-      const banner = document.getElementById('active-artist-banner');
-      const label = document.getElementById('active-artist-label');
-      if (!banner || !label) return;
-
-      const hasArtist = (activeArtist !== 'All');
-      const hasYear = (activeYear !== 'All');
-
-      if (hasArtist || hasYear) {
-        let html = '';
-        if (hasArtist) {
-          const count = allProducts.filter(p => p.artist === activeArtist).length;
-          html += `
-            <span class="bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-2xs">
-              <span>${escapeHtml(activeArtist)} (${count.toLocaleString()})</span>
-              <button onclick="setSubArtist('All')" title="Clear artist filter" class="hover:text-rose-950 dark:hover:text-white cursor-pointer ml-1">
-                <i class="fa-solid fa-xmark text-[10px]"></i>
-              </button>
-            </span>
-          `;
-        }
-        if (hasYear) {
-          html += `
-            <span class="bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 px-2.5 py-0.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-2xs">
-              <span>Year: ${escapeHtml(activeYear)}</span>
-              <button onclick="setYearFilter('All')" title="Clear year filter" class="hover:text-amber-950 dark:hover:text-white cursor-pointer ml-1">
-                <i class="fa-solid fa-xmark text-[10px]"></i>
-              </button>
-            </span>
-          `;
-        }
-        label.innerHTML = html;
-        banner.classList.remove('hidden');
-      } else {
-        banner.classList.add('hidden');
-      }
-    }
-
-    function updateYearJumpBar() {
-      const select = document.getElementById('year-select');
-      if (!select) return;
-
-      const yearsSet = new Set();
-      allProducts.forEach(it => {
-        const yr = getItemYear(it);
-        if (yr >= 1998 && yr <= 2027) yearsSet.add(yr);
-      });
-
-      const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
-      let optionsHtml = '<option value="All">All Years</option>';
-      sortedYears.forEach(y => {
-        const isSelected = String(activeYear) === String(y);
-        optionsHtml += `<option value="${y}" ${isSelected ? 'selected' : ''}>${y}</option>`;
-      });
-
-      select.innerHTML = optionsHtml;
-      select.value = activeYear;
-    }
-
-    function resetAllFilters() {
-      activeFilter = 'All';
-      activeArtist = 'All';
-      activeYear = 'All';
-      activeFormat = 'All';
-      activeMerchSubgroup = 'All';
-      activeAvailability = 'all';
-      maxPriceLimit = 20000;
-      searchQuery = '';
-      currentPage = 1;
-
-      const pRange = document.getElementById('price-range');
-      if (pRange) pRange.value = 20000;
-      const pLabel = document.getElementById('price-range-label');
-      if (pLabel) pLabel.innerText = 'Any';
-
-      const yrSelect = document.getElementById('year-select');
-      if (yrSelect) yrSelect.value = 'All';
-
-      const merchBar = document.getElementById('merch-subgroup-bar');
-      if (merchBar) merchBar.classList.add('hidden');
-
-      const input = document.getElementById('search-input');
-      if (input) input.value = '';
-      const clearBtn = document.getElementById('search-clear-btn');
-      if (clearBtn) clearBtn.classList.add('hidden');
-      closeAutocomplete();
-
-      closeMegaMenu();
-      updateFilterButtonsUI();
-      updateAvailabilityUI();
-      updateActiveArtistBanner();
-      updateWishlistBadge();
-      updateMobileDrawerContent();
-      syncUrlParams();
-      render();
-    }
-
-    function clearSearch() {
-      const input = document.getElementById('search-input');
-      if (input) {
-        input.value = '';
-        searchQuery = '';
-        document.getElementById('search-clear-btn').classList.add('hidden');
-        closeAutocomplete();
-        currentPage = 1;
-        syncUrlParams();
-        render();
-      }
-    }
-
-    function matchesFuzzyQuery(text, query) {
-      if (!text || !query) return false;
-      const t = text.toLowerCase();
-      const q = query.toLowerCase();
-      if (t.includes(q)) return true;
-
-      for (const [canonical, aliases] of Object.entries(searchAliases)) {
-        if (aliases.some(a => a.toLowerCase() === q)) {
-          if (t.includes(canonical)) return true;
-        }
-      }
-
-      const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-      const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-      return normT.includes(normQ);
-    }
-
-    function showSearchSuggestions() {
-      const box = document.getElementById('search-autocomplete-box');
-      const input = document.getElementById('search-input');
-      if (!box || !input) return;
-
-      if (!input.value.trim()) {
-        box.innerHTML = `
-          <div class="p-3 text-xs text-stone-500 dark:text-slate-400">
-            <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-2">Trending Searches:</span>
-            <div class="flex flex-wrap gap-1.5">
-              <button onclick="quickSearch('Morning Musume')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🌸 Morning Musume</button>
-              <button onclick="quickSearch('Masaki Sato')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💚 Masaki Sato</button>
-              <button onclick="quickSearch('Sakurazaka46')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">⚡ Sakurazaka46</button>
-              <button onclick="quickSearch('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💖 FRUITS ZIPPER</button>
-              <button onclick="quickSearch('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🦊 BABYMETAL</button>
-              <button onclick="setAvailability('preorder')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 font-bold transition">💿 Pre-Orders</button>
-            </div>
-          </div>
-        `;
-        box.classList.remove('hidden');
-      }
-    }
-
-    function quickSearch(val) {
-      const input = document.getElementById('search-input');
-      if (input) {
-        input.value = val;
-        searchQuery = val.toLowerCase();
-        document.getElementById('search-clear-btn').classList.remove('hidden');
-        closeAutocomplete();
-        currentPage = 1;
-        syncUrlParams();
-        render();
-      }
-    }
-
-    function updateAutocomplete(val) {
-      const box = document.getElementById('search-autocomplete-box');
-      if (!box) return;
-      if (!val || val.length < 2) {
-        showSearchSuggestions();
-        return;
-      }
-
-      const matches = allProducts.filter(p => {
-        return matchesFuzzyQuery(p.title, val) || matchesFuzzyQuery(p.artist, val) || (p.id && p.id.toLowerCase().includes(val));
-      }).slice(0, 5);
-
-      if (!matches.length) {
-        box.classList.add('hidden');
-        box.innerHTML = '';
-        return;
-      }
-
-      box.innerHTML = '';
-      matches.forEach(item => {
-        const row = document.createElement('div');
-        row.className = "p-2 hover:bg-stone-50 dark:hover:bg-slate-800/80 cursor-pointer flex items-center gap-2.5 transition";
-        row.onclick = () => {
-          openModal(item.id);
-          closeAutocomplete();
-        };
-
-        const cleanT = stripTitlePrefixes(item.title);
-        row.innerHTML = `
-          <img src="${getThumbnailUrl(item.image)}" class="w-7 h-7 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
-          <div class="flex-1 min-w-0 text-left">
-            <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(cleanT)}</p>
-            <p class="text-[10px] text-stone-400 dark:text-slate-400 truncate">${escapeHtml(item.artist)} • ${formatDisplayPrice(item.price, item)}</p>
-          </div>
-          <i class="fa-solid fa-chevron-right text-[9px] text-stone-300 dark:text-slate-600"></i>
-        `;
-        box.appendChild(row);
-      });
-
-      box.classList.remove('hidden');
-    }
-
-    function closeAutocomplete() {
-      const box = document.getElementById('search-autocomplete-box');
-      if (box) box.classList.add('hidden');
-    }
-
-    document.addEventListener('click', (e) => {
-      const searchBox = document.getElementById('search-autocomplete-box');
-      const searchInput = document.getElementById('search-input');
-      if (searchBox && searchInput && !searchBox.contains(e.target) && e.target !== searchInput) {
-        closeAutocomplete();
-      }
-
-      const megaFlyout = document.getElementById('mega-menu-flyout');
-      if (megaFlyout && !megaFlyout.classList.contains('hidden') && !megaFlyout.contains(e.target)) {
-        closeMegaMenu();
-      }
-    });
-
-    let searchDebounceTimeout = null;
-    const searchInput = document.getElementById('search-input');
-    const searchClearBtn = document.getElementById('search-clear-btn');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchDebounceTimeout);
-        const val = e.target.value.trim();
-        if (searchClearBtn) {
-          if (val) searchClearBtn.classList.remove('hidden');
-          else searchClearBtn.classList.add('hidden');
-        }
-
-        updateAutocomplete(val.toLowerCase());
-
-        searchDebounceTimeout = setTimeout(() => {
-          searchQuery = val.toLowerCase();
-          currentPage = 1;
-          syncUrlParams();
-          render();
-        }, 250);
-      });
-    }
-
-    function parseNumericPrice(priceStr, item) {
-      if (item && item.price_num) return item.price_num;
-      if (!priceStr) return 0;
-      const clean = String(priceStr).replace(/[^0-9]/g, '');
-      return parseInt(clean, 10) || 0;
-    }
-
-    function formatDisplayPrice(priceStr, item) {
-      const jpyAmount = parseNumericPrice(priceStr, item);
-      if (jpyAmount === 0) return 'Check CDJapan';
-
-      if (currentCurrency === 'JPY') {
-        return `¥${jpyAmount.toLocaleString()}`;
-      }
-
-      const usdPerJpy = (exchangeRates['JPY'] && exchangeRates['JPY'] > 0) ? (1 / exchangeRates['JPY']) : (1 / 152.4);
-      const targetRate = exchangeRates[currentCurrency] || 1.0;
-      const convertedVal = jpyAmount * usdPerJpy * targetRate;
-
-      const zeroDecimalCurrencies = ['KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD'];
-      const fractionDigits = zeroDecimalCurrencies.includes(currentCurrency) ? 0 : 2;
-
-      let formattedConverted = '';
-      try {
-        formattedConverted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: currentCurrency,
-          minimumFractionDigits: fractionDigits,
-          maximumFractionDigits: fractionDigits
-        }).format(convertedVal);
-      } catch (e) {
-        formattedConverted = `${currentCurrency} ${convertedVal.toFixed(fractionDigits)}`;
-      }
-
-      return `${formattedConverted} <span class="text-[9px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
-    }
-
-    function getItemDateValue(item) {
-      if (!item) return 0;
-      const dStr = String(item.release_date || '').trim();
-      if (!dStr || dStr.toLowerCase().includes('available now')) return 0;
-
-      const m = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b/);
-      if (m) {
-        const y = parseInt(m[1], 10);
-        const mon = parseInt(m[2], 10);
-        const day = parseInt(m[3], 10);
-        if (day <= 31 && mon <= 12) return (y * 10000) + (mon * 100) + day;
-      }
-
-      const en = dStr.match(/\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b/);
-      if (en) {
-        const monKey = en[1].toLowerCase();
-        if (EN_MONTHS[monKey]) {
-          const mon = EN_MONTHS[monKey];
-          const day = parseInt(en[2], 10);
-          const y = parseInt(en[3], 10);
-          return (y * 10000) + (mon * 100) + day;
-        }
-      }
-
-      const ym = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})\b/);
-      if (ym) {
-        const y = parseInt(ym[1], 10);
-        const mon = parseInt(ym[2], 10);
-        return (y * 10000) + (mon * 100) + 1;
-      }
-
-      return 0;
-    }
-
-    function getClusterEffectiveDateValue(cluster) {
-      if (!cluster) return 0;
-      const variants = cluster._activeVariants || cluster.variants || (cluster._primary ? [cluster._primary] : []);
-      if (!variants.length) return 0;
-      let maxVal = 0;
-      for (const v of variants) {
-        const val = getItemDateValue(v);
-        if (val > maxVal) maxVal = val;
-      }
-      return maxVal;
-    }
-
-    function getItemYear(item) {
-      const val = getItemDateValue(item);
-      if (val === 0) return 0;
-      return Math.floor(val / 10000);
-    }
-
-    function isOutOfPrint(item) {
-      if (!item) return false;
-      if (item.availability === 'oop') return true;
-      const priceStr = String(item.price || '').toLowerCase();
-      const titleStr = String(item.title || '').toLowerCase();
-      return (
-        priceStr.includes('no longer available') ||
-        priceStr.includes('out of print') ||
-        priceStr.includes('discontinued') ||
-        priceStr.includes('sold out') ||
-        priceStr.includes('廃盤') ||
-        priceStr.includes('取扱終了') ||
-        titleStr.includes('secondhand') ||
-        titleStr.includes('used [') ||
-        (item.price_num === 0 && !priceStr.includes('check cdjapan'))
-      );
-    }
-
-    function isPreOrder(item) {
-      if (!item || isOutOfPrint(item)) return false;
-      if (item.availability === 'preorder') return true;
-      const val = getItemDateValue(item);
-      if (val === 0) return false;
-
-      const today = new Date();
-      const todayVal = (today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate();
-      return val > todayVal;
-    }
-
-    function isInStock(item) {
-      return !isOutOfPrint(item) && !isPreOrder(item);
-    }
-
-    function renderPaginationControls(totalPages, totalItems, startIndex, endIndex) {
-      const rangeEl = document.getElementById('page-range-info');
-      const navEl = document.getElementById('pagination-bottom');
-      const pageInput = document.getElementById('direct-page-input');
-      const totalLabel = document.getElementById('direct-page-total-label');
-      if (!rangeEl || !navEl) return;
-
-      if (pageInput) {
-        pageInput.max = totalPages;
-        pageInput.value = currentPage;
-      }
-      if (totalLabel) {
-        totalLabel.innerText = `of ${totalPages}`;
-      }
-
-      if (totalItems === 0) {
-        rangeEl.innerText = "0 releases found";
-        navEl.innerHTML = '';
-        return;
-      }
-
-      rangeEl.innerHTML = `Showing <strong class="text-rose-600 dark:text-rose-400 font-bold">${startIndex + 1}–${Math.min(endIndex, totalItems)}</strong> of <strong>${totalItems.toLocaleString()}</strong> releases (Page <strong>${currentPage}</strong> of <strong>${totalPages}</strong>)`;
-
-      if (totalPages <= 1) {
-        navEl.innerHTML = '';
-        return;
-      }
-
-      let navHtml = '';
-      const prevDisabled = currentPage === 1;
-      navHtml += `
-        <button onclick="goToPage(1)" ${prevDisabled ? 'disabled' : ''} class="px-2 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">« First</button>
-        <button onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''} class="px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">‹ Prev</button>
-      `;
-
-      let startP = Math.max(1, currentPage - 2);
-      let endP = Math.min(totalPages, currentPage + 2);
-      if (currentPage <= 3) endP = Math.min(totalPages, 5);
-      else if (currentPage >= totalPages - 2) startP = Math.max(1, totalPages - 4);
-
-      if (startP > 1) navHtml += `<span class="px-1.5 text-stone-400 dark:text-slate-500">...</span>`;
-
-      for (let p = startP; p <= endP; p++) {
-        if (p === currentPage) {
-          navHtml += `<button class="px-3 py-1 rounded-md bg-rose-600 text-white font-bold shadow-2xs cursor-default">${p}</button>`;
-        } else {
-          navHtml += `<button onclick="goToPage(${p})" class="px-3 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">${p}</button>`;
-        }
-      }
-
-      if (endP < totalPages) navHtml += `<span class="px-1.5 text-stone-400 dark:text-slate-500">...</span>`;
-
-      const nextDisabled = currentPage === totalPages;
-      navHtml += `
-        <button onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Next ›</button>
-        <button onclick="goToPage(${totalPages})" ${nextDisabled ? 'disabled' : ''} class="px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-stone-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 dark:hover:bg-slate-800 transition cursor-pointer">Last »</button>
-      `;
-
-      navEl.innerHTML = navHtml;
-    }
-
-    function toggleCalendarDrawer() {
-      const drawer = document.getElementById('calendar-drawer');
-      if (!drawer) return;
-      const isHidden = drawer.classList.contains('hidden');
-
-      if (isHidden) {
-        populateCalendarDrawer();
-        drawer.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      } else {
-        drawer.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closeCalendarOnBackdrop(e) {
-      if (e.target.id === 'calendar-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
-        toggleCalendarDrawer();
-      }
-    }
-
-    function populateCalendarDrawer() {
-      const container = document.getElementById('calendar-drawer-list');
-      if (!container) return;
-
-      const preOrders = allProducts.filter(p => isPreOrder(p));
-      preOrders.sort((a, b) => getItemDateValue(a) - getItemDateValue(b));
-
-      if (!preOrders.length) {
-        container.innerHTML = `
-          <div class="text-center py-10 text-stone-400">
-            <i class="fa-regular fa-calendar-xmark text-3xl mb-2"></i>
-            <p>No scheduled pre-orders found in active catalog.</p>
-          </div>
-        `;
-        return;
-      }
-
-      const grouped = {};
-      preOrders.forEach(p => {
-        const d = p.release_date || 'Upcoming Street Date';
-        if (!grouped[d]) grouped[d] = [];
-        grouped[d].push(p);
-      });
-
-      let html = '';
-      Object.entries(grouped).forEach(([dateStr, items]) => {
-        html += `
-          <div>
-            <div class="sticky top-0 bg-stone-100 dark:bg-slate-800 py-1 px-2.5 rounded-md font-bold text-rose-600 dark:text-rose-400 flex items-center justify-between mb-2">
-              <span><i class="fa-regular fa-clock mr-1"></i> ${dateStr}</span>
-              <span class="text-[10px] text-stone-500 font-normal">${items.length} release${items.length > 1 ? 's' : ''}</span>
-            </div>
-            <div class="space-y-2">
-        `;
-        items.forEach(it => {
-          const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
-          html += `
-            <div class="flex items-center gap-3 p-2 rounded-xl border border-stone-100 dark:border-slate-800 hover:bg-stone-50 dark:hover:bg-slate-800/50 transition">
-              <img src="${getThumbnailUrl(it.image)}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
-              <div class="flex-1 min-w-0">
-                <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${cleanTitle}</p>
-                <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
-              </div>
-              <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
-                Pre-Order
-              </button>
-            </div>
-          `;
-        });
-        html += `</div></div>`;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function openModal(productId, e) {
-      if (e) e.preventDefault();
-      const p = allProducts.find(item => item.id === productId);
-      if (!p) return;
-      currentModalProduct = p;
-
-      const params = new URLSearchParams(window.location.search);
-      params.set('id', p.id);
-      window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-      
-      const cleanTitle = stripTitlePrefixes(p.title);
-      document.title = `${cleanTitle} — ${p.artist} | IdolJapan.store`;
-
-      const modal = document.getElementById('product-modal');
-      const img = document.getElementById('modal-img');
-      const title = document.getElementById('modal-title');
-      const artist = document.getElementById('modal-artist-badge');
-      const cat = document.getElementById('modal-category');
-      const cid = document.getElementById('modal-catalog-id');
-      const relDate = document.getElementById('modal-release-date');
-      const price = document.getElementById('modal-price');
-      const fmt = document.getElementById('modal-format-badge');
-      const preorder = document.getElementById('modal-preorder-badge');
-      const oopBadge = document.getElementById('modal-oop-badge');
-      const buyText = document.getElementById('modal-buy-btn-text');
-      const editionBox = document.getElementById('modal-edition-tags');
-
-      img.src = p.image || PLACEHOLDER_IMG;
-      title.innerText = cleanTitle;
-      artist.innerText = p.artist || '';
-      cat.innerText = p.category || '';
-      cid.innerText = p.id || '';
-      relDate.innerText = p.release_date || 'Available Now';
-      price.innerHTML = formatDisplayPrice(p.price, p);
-      fmt.innerText = getItemFormatCategory(p);
-
-      if (editionBox) {
-        editionBox.innerHTML = '';
-        const tags = extractEditionTags(p.title);
-        tags.forEach(t => {
-          const pill = document.createElement('span');
-          pill.className = `${t.color} text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-xs`;
-          pill.innerText = t.name;
-          editionBox.appendChild(pill);
-        });
-      }
-
-      const upcoming = isPreOrder(p);
-      const oop = isOutOfPrint(p);
-
-      if (upcoming) {
-        preorder.classList.remove('hidden');
-        oopBadge.classList.add('hidden');
-        if (buyText) buyText.innerText = "Pre-Order on CDJapan";
-      } else if (oop) {
-        oopBadge.classList.remove('hidden');
-        preorder.classList.add('hidden');
-        if (buyText) buyText.innerText = "Check Archive Status on CDJapan";
-      } else {
-        preorder.classList.add('hidden');
-        oopBadge.classList.add('hidden');
-        if (buyText) buyText.innerText = "Order Securely on CDJapan";
-      }
-
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-
-      if (window.IdolAnalytics) {
-        window.IdolAnalytics.trackProductView(p);
-      }
-    }
-
-    function navigateModalPrev() {
-      if (!currentModalProduct || !activeFilteredList.length) return;
-      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
-      const prevIdx = idx > 0 ? idx - 1 : activeFilteredList.length - 1;
-      openModal(activeFilteredList[prevIdx].id);
-    }
-
-    function navigateModalNext() {
-      if (!currentModalProduct || !activeFilteredList.length) return;
-      const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
-      const nextIdx = idx < activeFilteredList.length - 1 ? idx + 1 : 0;
-      openModal(activeFilteredList[nextIdx].id);
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('product-modal');
-      if (modal) modal.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      currentModalProduct = null;
-
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('id')) {
-        params.delete('id');
-        const rest = params.toString();
-        window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
-      }
-      updatePageTitle();
-    }
-
-    function closeModalOnBackdrop(e) {
-      if (e.target.id === 'product-modal') {
-        closeModal();
-      }
-    }
-
-    function switchClusteredEdition(clusterIndex, newProductId, event) {
-      if (event) event.stopPropagation();
-      const variant = allProducts.find(x => x.id === newProductId);
-      if (!variant) return;
-
-      const card = document.getElementById(`cluster-card-${clusterIndex}`);
-      if (!card) return;
-
-      const imgEl = card.querySelector('.cluster-img');
-      const imgContainer = card.querySelector('.cluster-img-container');
-      const titleEl = card.querySelector('.cluster-title');
-      const priceEl = card.querySelector('.cluster-price');
-      const dateEl = card.querySelector('.cluster-date');
-      const buyBtn = card.querySelector('.cluster-buy-btn');
-      const favBtn = card.querySelector('.cluster-fav-btn');
-      const shareBtn = card.querySelector('.cluster-share-btn');
-
-      const cleanTitle = stripTitlePrefixes(variant.title);
-      if (imgEl) imgEl.src = getThumbnailUrl(variant.image);
-      if (imgContainer) imgContainer.setAttribute('onclick', `openModal('${variant.id}', event)`);
-      if (titleEl) {
-        titleEl.innerText = cleanTitle;
-        titleEl.setAttribute('title', cleanTitle);
-        titleEl.setAttribute('onclick', `openModal('${variant.id}', event)`);
-      }
-      if (priceEl) priceEl.innerHTML = formatDisplayPrice(variant.price, variant);
-      if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar text-[10px]"></i> ${variant.release_date || 'Available Now'}`;
-      
-      const isFav = getWishlist().includes(variant.id);
-      if (favBtn) {
-        favBtn.setAttribute('onclick', `toggleWishlist('${variant.id}', event)`);
-        favBtn.setAttribute('title', isFav ? 'Remove from Wishlist' : 'Add to Wishlist');
-        favBtn.className = `w-7 h-7 sm:w-6 sm:h-6 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer cluster-fav-btn`;
-        favBtn.innerHTML = `<i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>`;
-      }
-      if (shareBtn) {
-        shareBtn.setAttribute('onclick', `shareProduct(allProducts.find(x => x.id === '${variant.id}'), event)`);
-      }
-      if (buyBtn) {
-        const upcoming = isPreOrder(variant);
-        const oop = isOutOfPrint(variant);
-        buyBtn.innerHTML = `${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>`;
-        buyBtn.setAttribute('onclick', `triggerOutboundAffiliate(allProducts.find(x => x.id === '${variant.id}'), 'grid_cluster_btn')`);
-      }
-    }
-
-    function render() {
-      const container = document.getElementById('product-container');
-      const empty = document.getElementById('empty-state');
-      const emptyMsg = document.getElementById('empty-state-message');
-      const emptyButtons = document.getElementById('empty-state-buttons');
-      const rangeEl = document.getElementById('page-range-info');
-      if (!container) return;
-      container.innerHTML = '';
-
-      const wishlistIds = getWishlist();
-
-      const filterItem = (item) => {
-        if (!item) return false;
-
-        // STRICT TSUKISHIMA KIRARI FILTERING (Must feature Koharu Kusumi)
-        if (item.artist === 'Tsukishima Kirari' || (item.title && item.title.toLowerCase().includes('tsukishima kirari'))) {
-          const tLower = (item.title || '').toLowerCase();
-          const hasKusumi = tLower.includes('kusumi koharu') || tLower.includes('koharu kusumi') || tLower.includes('久住小春');
-          if (!hasKusumi) return false;
-        }
-
-        const priceNum = parseNumericPrice(item.price, item);
-        if (maxPriceLimit < 20000 && priceNum > 0 && priceNum > maxPriceLimit) return false;
-
-        const upcoming = isPreOrder(item);
-        const oop = isOutOfPrint(item);
-        const inStock = isInStock(item);
-
-        if (activeAvailability === 'active' && oop) return false;
-        if (activeAvailability === 'preorder' && !upcoming) return false;
-        if (activeAvailability === 'instock' && !inStock) return false;
-        if (activeAvailability === 'oop' && !oop) return false;
-
-        const cat = item.category || '';
-        let matchesCat = false;
-        if (activeFilter === 'All') {
-          matchesCat = true;
-        } else if (activeFilter === 'Hello! Project & Up-Front') {
-          matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
-        } else if (activeFilter === 'Modern & Alternative') {
-          matchesCat = (cat === 'Modern Idols' || cat === 'Babymetal');
-        } else if (activeFilter === 'Stardust Planet') {
-          matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z');
-        } else {
-          matchesCat = (cat === activeFilter);
-        }
-
-        if (activeYear !== 'All') {
-          const yr = getItemYear(item);
-          if (String(yr) !== String(activeYear)) return false;
-        }
-
-        let matchesArtist = (activeArtist === 'All' || item.artist === activeArtist);
-
-        const itemFmt = getItemFormatCategory(item);
-        const matchesFmt = (activeFormat === 'All' || itemFmt === activeFormat);
-
-        let matchesMerchSub = true;
-        if (activeFormat === 'Collectable' && activeMerchSubgroup !== 'All') {
-          matchesMerchSub = (getMerchSubgroupType(item) === activeMerchSubgroup);
-        }
-
-        const cleanT = stripTitlePrefixes(item.title);
-        const matchesSearch = !searchQuery || 
-          matchesFuzzyQuery(item.title, searchQuery) || 
-          matchesFuzzyQuery(cleanT, searchQuery) || 
-          matchesFuzzyQuery(item.artist, searchQuery) ||
-          (item.id && String(item.id).toLowerCase().includes(searchQuery));
-
-        return matchesCat && matchesArtist && matchesFmt && matchesMerchSub && matchesSearch;
-      };
-
-      activeFilteredList = allProducts.filter(filterItem);
-
-      let displayEntities = [];
-
-      if (isClusteringEnabled) {
-        displayEntities = clusteredEntities.filter(cluster => {
-          const matchingVariants = (cluster.variants || []).filter(filterItem);
-          if (!matchingVariants.length) return false;
-          
-          matchingVariants.sort((a, b) => {
-            const scoreA = getVariantSortScore(a);
-            const scoreB = getVariantSortScore(b);
-            if (scoreA !== scoreB) return scoreA - scoreB;
-            return String(a.title || '').localeCompare(String(b.title || ''));
-          });
-
-          cluster._activeVariants = matchingVariants;
-          cluster._primary = matchingVariants[0];
-          return true;
-        });
-      } else {
-        displayEntities = activeFilteredList.map(p => ({
-          id: p.id,
-          _primary: p,
-          _activeVariants: [p]
-        }));
-      }
-
-      displayEntities.sort((entA, entB) => {
-        const a = entA._primary || {};
-        const b = entB._primary || {};
-        const dateA = isClusteringEnabled ? getClusterEffectiveDateValue(entA) : getItemDateValue(a);
-        const dateB = isClusteringEnabled ? getClusterEffectiveDateValue(entB) : getItemDateValue(b);
-
-        if (currentSort === 'newest') {
-          if (dateA > 0 && dateB === 0) return -1;
-          if (dateB > 0 && dateA === 0) return 1;
-          if (dateB !== dateA) return dateB - dateA;
-          return (b._catalogIndex || 0) - (a._catalogIndex || 0);
-        } else if (currentSort === 'oldest') {
-          if (dateA > 0 && dateB === 0) return -1;
-          if (dateB > 0 && dateA === 0) return 1;
-          if (dateA !== dateB) return dateA - dateB;
-          return (a._catalogIndex || 0) - (b._catalogIndex || 0);
-        } else if (currentSort === 'price-asc') {
-          const priceA = parseNumericPrice(a.price, a);
-          const priceB = parseNumericPrice(b.price, b);
-          if (priceA !== priceB) return priceA - priceB;
-          return String(a.title || '').localeCompare(String(b.title || ''));
-        } else if (currentSort === 'price-desc') {
-          const priceA = parseNumericPrice(a.price, a);
-          const priceB = parseNumericPrice(b.price, b);
-          if (priceB !== priceA) return priceB - priceA;
-          return String(a.title || '').localeCompare(String(b.title || ''));
-        }
-        return 0;
-      });
-
-      const totalItems = displayEntities.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-      if (currentPage > totalPages) currentPage = 1;
-
-      if (totalItems === 0) {
-        if (empty) {
-          empty.classList.remove('hidden');
-          if (emptyMsg) {
-            emptyMsg.innerText = "No idol releases match your specific combination of filters.";
-          }
-          if (emptyButtons) {
-            let btnsHtml = `<button onclick="resetAllFilters()" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-full transition cursor-pointer">Reset All Filters</button>`;
-            if (activeFormat !== 'All') {
-              btnsHtml += `<button onclick="setFormat('All')" class="px-3.5 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Format (${activeFormat})</button>`;
-            }
-            if (activeYear !== 'All') {
-              btnsHtml += `<button onclick="setYearFilter('All')" class="px-3.5 py-1.5 bg-stone-200 dark:bg-slate-700 text-stone-700 dark:text-stone-200 hover:bg-stone-300 text-xs font-bold rounded-full transition cursor-pointer">Clear Year (${activeYear})</button>`;
-            }
-            emptyButtons.innerHTML = btnsHtml;
-          }
-        }
-        if (rangeEl) rangeEl.innerText = "0 releases found";
-        renderPaginationControls(0, 0, 0, 0);
-        return;
-      }
-      if (empty) empty.classList.add('hidden');
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const paginatedEntities = displayEntities.slice(startIndex, endIndex);
-
-      if (layoutMode === 'mobile') {
-        container.className = "grid grid-cols-2 gap-3";
-      } else if (viewMode === 'grid') {
-        container.className = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5";
-      } else {
-        container.className = "flex flex-col space-y-2";
-      }
-
-      paginatedEntities.forEach((entity, idx) => {
-        const p = entity._primary || {};
-        const variants = entity._activeVariants || [p];
-        const displayImg = getThumbnailUrl(p.image);
-        const upcoming = isPreOrder(p);
-        const oop = isOutOfPrint(p);
-        const itemFmt = getItemFormatCategory(p);
-        const cleanTitle = stripTitlePrefixes(p.title);
-        const safeTitle = escapeHtml(cleanTitle);
-        const safeArtist = escapeHtml(p.artist);
-        const isFav = wishlistIds.includes(p.id);
-
-        let fmtBadgeBg = 'bg-stone-800/80';
-        if (itemFmt === 'CD') fmtBadgeBg = 'bg-rose-700/85';
-        else if (itemFmt === 'Blu-ray') fmtBadgeBg = 'bg-sky-700/85';
-        else if (itemFmt === 'DVD') fmtBadgeBg = 'bg-amber-700/85';
-        else if (itemFmt === 'Book') fmtBadgeBg = 'bg-emerald-700/85';
-        else if (itemFmt === 'Collectable') fmtBadgeBg = 'bg-purple-700/85';
-
-        const isVerticalItem = (itemFmt === 'Book' || itemFmt === 'Collectable');
-        const imgFitClass = isVerticalItem ? 'object-contain p-1.5' : 'object-cover';
-
-        let editionSelectorHtml = '';
-        if (variants.length > 1) {
-          editionSelectorHtml = `
-            <div class="mt-1" onclick="event.stopPropagation()">
-              <select onchange="switchClusteredEdition(${startIndex + idx}, this.value, event)" class="w-full bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-slate-200 py-1 px-1.5 rounded text-[10px] font-bold border border-stone-200 dark:border-slate-700 focus:outline-none cursor-pointer">
-                ${variants.map(v => {
-                  const variantLabel = extractVariantLabel(v.title, p.title);
-                  return `<option value="${escapeHtml(v.id)}">${escapeHtml(variantLabel)} — ${escapeHtml(v.price || '')}</option>`;
-                }).join('')}
-              </select>
-            </div>
-          `;
-        }
-
-        const card = document.createElement('div');
-        card.id = `cluster-card-${startIndex + idx}`;
-        card.className = "catalog-card-item";
-
-        if (layoutMode === 'mobile' || viewMode === 'grid') {
-          card.innerHTML = `
-            <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition flex flex-col group relative h-full">
-              <div class="cluster-img-container aspect-square bg-stone-100 dark:bg-slate-800 relative overflow-hidden cursor-pointer flex items-center justify-center" onclick="openModal('${p.id}', event)">
-                <img 
-                  src="${displayImg}" 
-                  alt="${safeTitle}" 
-                  loading="lazy" 
-                  referrerpolicy="no-referrer" 
-                  onload="this.classList.add('img-fade-in')" 
-                  onerror="onImgLoadError(this)" 
-                  class="cluster-img w-full h-full ${imgFitClass} group-hover:scale-105 transition duration-300"
-                />
-                
-                <span class="absolute top-1.5 left-1.5 bg-stone-900/75 backdrop-blur-md text-white text-[9px] font-semibold px-1.5 py-0.2 rounded">
-                  ${safeArtist}
-                </span>
-
-                <div class="absolute bottom-1.5 right-1.5 flex items-center gap-1">
-                  <button 
-                    onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" 
-                    aria-label="Share Link" 
-                    title="Share link" 
-                    class="cluster-share-btn w-7 h-7 sm:w-6 sm:h-6 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
-                  >
-                    <i class="fa-solid fa-share-nodes text-[10px]"></i>
-                  </button>
-                  
-                  <button 
-                    onclick="toggleWishlist('${p.id}', event)" 
-                    aria-label="Save to Wishlist" 
-                    title="${isFav ? 'Remove from Wishlist' : 'Add to Wishlist'}" 
-                    class="cluster-fav-btn w-7 h-7 sm:w-6 sm:h-6 rounded-full ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-900/60 text-white hover:bg-rose-600'} backdrop-blur-md flex items-center justify-center transition shadow-2xs cursor-pointer"
-                  >
-                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>
-                  </button>
-                </div>
-
-                <span class="absolute bottom-1.5 left-1.5 ${fmtBadgeBg} backdrop-blur-md text-white text-[8px] font-bold px-1.5 py-0.2 rounded shadow-2xs">
-                  ${itemFmt}
-                </span>
-
-                ${upcoming ? `
-                  <span class="absolute top-1.5 right-1.5 bg-rose-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded shadow-xs uppercase tracking-wide flex items-center gap-1 border border-rose-300/40">
-                    <i class="fa-solid fa-clock text-[8px]"></i> PRE-ORDER
-                  </span>
-                ` : oop ? `
-                  <span class="absolute top-1.5 right-1.5 bg-stone-800 text-amber-300 text-[9px] font-black px-1.5 py-0.2 rounded shadow-xs uppercase tracking-wide flex items-center gap-1 border border-amber-300/40">
-                    <i class="fa-solid fa-box-archive text-[8px]"></i> OOP
-                  </span>
-                ` : ''}
-              </div>
-
-              <div class="p-2.5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 line-clamp-2 cursor-pointer hover:text-rose-600 dark:hover:text-rose-400 transition" onclick="openModal('${p.id}', event)" title="${safeTitle}">
-                    ${safeTitle}
-                  </h2>
-                  <p class="cluster-date text-[10px] ${upcoming ? 'text-rose-600 dark:text-rose-400 font-semibold' : 'text-stone-500 dark:text-slate-400'} mt-1 flex items-center gap-1">
-                    <i class="fa-regular fa-calendar text-[9px]"></i> ${p.release_date || 'Available Now'}
-                  </p>
-                  ${editionSelectorHtml}
-                </div>
-                
-                <div class="mt-2.5 pt-1.5 border-t border-stone-100 dark:border-slate-800 flex items-center justify-between">
-                  <div>
-                    <span class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
-                      ${formatDisplayPrice(p.price, p)}
-                    </span>
-                    <span class="block text-[8px] text-stone-400 dark:text-slate-500 font-medium">CDJapan Tokyo Direct</span>
-                  </div>
-                  <button 
-                    onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'grid_btn')" 
-                    title="View and order securely on CDJapan" 
-                    class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg transition flex items-center gap-1 shadow-2xs whitespace-nowrap cursor-pointer"
-                  >
-                    ${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        } else {
-          card.innerHTML = `
-            <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl p-2.5 shadow-2xs hover:shadow-xs transition flex flex-col sm:flex-row items-center gap-3 group">
-              <div class="cluster-img-container w-12 h-12 bg-stone-100 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0 cursor-pointer relative flex items-center justify-center" onclick="openModal('${p.id}', event)">
-                <img src="${displayImg}" alt="${safeTitle}" class="cluster-img w-full h-full ${imgFitClass}" onerror="onImgLoadError(this)" />
-                <span class="absolute bottom-0.5 left-0.5 ${fmtBadgeBg} text-white text-[8px] font-bold px-1 rounded">${itemFmt}</span>
-              </div>
-
-              <div class="flex-1 min-w-0 text-center sm:text-left">
-                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-0.5">
-                  <span class="text-[10px] font-black text-rose-600 dark:text-rose-400 uppercase">${safeArtist}</span>
-                  <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500">• ${p.id}</span>
-                  ${upcoming ? '<span class="bg-rose-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded">Pre-Order</span>' : ''}
-                </div>
-                <h2 class="cluster-title text-xs font-bold text-stone-800 dark:text-stone-100 truncate cursor-pointer hover:text-rose-600" onclick="openModal('${p.id}', event)">
-                  ${safeTitle}
-                </h2>
-                <div class="flex items-center justify-center sm:justify-start gap-3 text-[10px] text-stone-500 dark:text-slate-400 mt-0.5">
-                  <span><i class="fa-regular fa-calendar text-[9px]"></i> ${p.release_date || 'Available Now'}</span>
-                  ${editionSelectorHtml}
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2.5 shrink-0">
-                <div class="text-right">
-                  <div class="cluster-price text-xs font-black text-rose-600 dark:text-rose-400">
-                    ${formatDisplayPrice(p.price, p)}
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-1">
-                  <button onclick="shareProduct(allProducts.find(x => x.id === '${p.id}'), event)" title="Share" class="cluster-share-btn w-7 h-7 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200 flex items-center justify-center text-xs transition cursor-pointer">
-                    <i class="fa-solid fa-share-nodes text-[10px]"></i>
-                  </button>
-                  <button onclick="toggleWishlist('${p.id}', event)" title="Wishlist" class="cluster-fav-btn w-7 h-7 rounded-lg ${isFav ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-200'} flex items-center justify-center text-xs transition cursor-pointer">
-                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-[10px]"></i>
-                  </button>
-                  <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${p.id}'), 'list_btn')" class="cluster-buy-btn bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-lg transition flex items-center gap-1 shadow-2xs cursor-pointer whitespace-nowrap">
-                    ${upcoming ? 'Pre-Order' : oop ? 'Archive' : 'Buy'} <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-
-        container.appendChild(card);
-      });
-
-      renderPaginationControls(totalPages, totalItems, startIndex, endIndex);
-    }
-
-    window.addEventListener('resize', () => {
-      const newLayout = detectDeviceLayout();
-      if (newLayout !== layoutMode) {
-        layoutMode = newLayout;
-        applyLayoutModeToDom();
-        render();
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      const btn = document.getElementById('scroll-to-top');
-      if (!btn) return;
-      if (window.scrollY > 400) {
-        btn.classList.remove('opacity-0', 'pointer-events-none');
-      } else {
-        btn.classList.add('opacity-0', 'pointer-events-none');
-      }
-    });
-
-    window.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('product-modal');
-      const cryptoModal = document.getElementById('crypto-modal');
-      const haulDrawer = document.getElementById('haul-drawer');
-      const isModalOpen = modal && !modal.classList.contains('hidden');
-      const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
-
-      if (e.key === 'Escape') {
-        closeMegaMenu();
-        closeModal();
-        closeAutocomplete();
-        if (cryptoModal && !cryptoModal.classList.contains('hidden')) toggleCryptoModal();
-        const drawer = document.getElementById('calendar-drawer');
-        if (drawer && !drawer.classList.contains('hidden')) toggleCalendarDrawer();
-        if (haulDrawer && !haulDrawer.classList.contains('hidden')) toggleHaulDrawer();
-        const mobileDrawer = document.getElementById('mobile-filter-drawer');
-        if (mobileDrawer && !mobileDrawer.classList.contains('hidden')) toggleMobileFilterDrawer();
-      } else if (isModalOpen && e.key === 'ArrowLeft') {
-        navigateModalPrev();
-      } else if (isModalOpen && e.key === 'ArrowRight') {
-        navigateModalNext();
-      } else if (!isInputActive && !isModalOpen) {
-        if (e.key === 'End') {
-          e.preventDefault();
-          window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateThemeIcon();
-      applyLayoutModeToDom();
-      updateAvailabilityUI();
-      if (localStorage.getItem('idoljapan_dismiss_trust') === 'true') {
-        const banner = document.getElementById('trust-notice-banner');
-        if (banner) banner.classList.add('hidden');
-      }
-      loadCatalog();
-      Promise.allSettled([
-        initExchangeRates(),
-        loadSearchAliases()
-      ]).then(() => {
-        render();
-      });
-    });
-  </script>
+  <!-- Modular Frontend Scripts (Dependency Ordered) -->
+  <script src="js/config.js"></script>
+  <script src="js/drawers.js"></script>
+  <script src="js/mega-menu.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

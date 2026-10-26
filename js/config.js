@@ -141,7 +141,8 @@ var FRANCHISE_ARTISTS = {
     'Yurina Kumai', 'Chisaki Morito', 'Mai Satoda',
     'Tomoko Kanazawa', 'Akari Uemura', 'Yuka Miyazaki', 'Ruru Dambara',
     'Yumeno Kishimoto', 'Mao Akiyama', 'Yuhane Yamazaki', 'Ayano Hamaura',
-    'Nanami Yanagawa'
+    'Nanami Yanagawa', 'Ami Tanimoto', 'Mizuho Ono', 'Saori Onoda',
+    'Madoka Saito', 'Natsume Nakayama', 'Kanami Ishiguri'
   ],
   'AKB48 Group': [
     'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',

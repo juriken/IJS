@@ -218,6 +218,7 @@ function getItemFormatCategory(item) {
     return 'DVD';
   }
 
+  /* File: js/app.js | Block/Target: Album and Single Vinyl Detection */
   if (
     title.startsWith('album cd') ||
     title.startsWith('cd album') ||
@@ -225,6 +226,7 @@ function getItemFormatCategory(item) {
     title.includes('best album') ||
     title.includes('original album') ||
     title.includes('mini album') ||
+    title.includes('vinyl (lp)') ||
     title.includes('アルバム')
   ) {
     return 'Album';
@@ -235,6 +237,8 @@ function getItemFormatCategory(item) {
     title.startsWith('cd single') ||
     title.includes('single [') ||
     title.includes('maxi single') ||
+    title.includes('vinyl (ep)') ||
+    title.includes('vinyl') ||
     title.includes('シングル')
   ) {
     return 'Single';
@@ -979,10 +983,14 @@ function render() {
    /* File: js/app.js | Approx. Lines: 430-445 | Block/Target: filterItem Artist Matching Fallback */
     let matchesArtist = true;
     if (activeMobileArtists.length > 0) {
+      /* File: js/app.js | Block/Target: Mobile Quick-Select Member Fallback */
       matchesArtist = activeMobileArtists.includes(item.artist);
+      if (!matchesArtist) {
+        const isMember = activeMobileArtists.some(grp => (item.title || '').toLowerCase().includes(grp.toLowerCase()));
+        if (isMember) matchesArtist = true;
+      }
     } else if (activeArtist !== 'All') {
       matchesArtist = (item.artist === activeArtist);
-      // Fallback: If filtering by parent group, also match known member releases containing the group name
       if (!matchesArtist && typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS[activeFilter]) {
         const isMemberOfGroup = (item.title || '').toLowerCase().includes(activeArtist.toLowerCase());
         if (isMemberOfGroup) matchesArtist = true;

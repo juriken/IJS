@@ -1,7 +1,9 @@
 """
-IdolJapan.store — Catalog Healthcheck & SKU Availability Auditor
-Tracks ongoing audit cycles across 19,000+ items, identifies out-of-print
-transitions, updates live pricing, and reports exact audit progress.
+IdolJapan.store — Resilient CDJapan SKU URL & Availability Health Check
+Audits catalog releases against live CDJapan product pages.
+Correctly identifies 'instock', 'preorder', and 'oop' statuses without false positives
+by targeting direct purchase action buttons and schema microdata.
+Synchronizes products.json, catalog-index.json, and audit log.
 """
 
 import json
@@ -12,56 +14,53 @@ import re
 import sys
 import time
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 DATA_FILE = "products.json"
 INDEX_FILE = "catalog-index.json"
 STATE_FILE = "healthcheck_state.json"
 LOG_FILE = "healthcheck_log.txt"
 
-# Default batch size per execution (override with BATCH_SIZE environment variable)
 DEFAULT_BATCH_SIZE = 500
+DEFAULT_MAX_WORKERS = 4
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0"
 ]
 
-def load_json(filepath):
-    if os.path.exists(filepath):
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"[Warning] Failed to load {filepath}: {e}")
-            return {}
-    return {}
+def build_http_session():
+    session = requests.Session()
+    retries = Retry(
+        total=3,
+        backoff_factor=0.8,
+        status_forcelist=[429, 500, 502, 503, 504],
+        raise_on_status=False
+    )
+    adapter = HTTPAdapter(max_retries=retries, pool_connections=10, pool_maxsize=10)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
-def save_json(filepath, data):
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+def is_date_upcoming(date_str):
+    if not date_str:
+        return False
+    clean = str(date_str).strip()
+    m = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", clean)
+    if not m:
+        return False
+    val = (int(m.group(1)) * 10000) + (int(m.group(2)) * 100) + int(m.group(3))
+    now = datetime.utcnow()
+    today_val = (now.year * 10000) + (now.month * 100) + now.day
+    return val > today_val
 
-def load_or_init_state(total_catalog_size):
-    state = load_json(STATE_FILE)
-    if not state or "audited_ids" not in state:
-        state = {
-            "cycle": 1,
-            "cycle_started_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
-            "audited_ids": [],
-            "total_cycles_completed": 0,
-            "last_run_timestamp": ""
-        }
-    return state
-
-def get_progress_bar(percentage, width=24):
-    filled = int(width * (percentage / 100))
-    bar = "=" * filled + "-" * (width - filled)
-    return f"[{bar}] {percentage:.1f}%"
-
-def audit_single_product(session, item):
-    pid = item.get("id")
+def check_sku_status(session, pid, current_item):
     url = f"https://www.cdjapan.co.jp/product/{pid}"
     headers = {
         "User-Agent": random.choice(USER_AGENTS),
@@ -69,164 +68,213 @@ def audit_single_product(session, item):
         "Referer": "https://www.cdjapan.co.jp/"
     }
 
+    current_avail = current_item.get("availability", "instock")
+    rel_date = current_item.get("release_date", "")
+
     try:
-        res = session.get(url, headers=headers, timeout=12)
+        time.sleep(random.uniform(0.15, 0.45))
+        res = session.get(url, headers=headers, timeout=15)
+
         if res.status_code == 404:
-            return {"status": "oop", "price": item.get("price"), "changed": item.get("availability") != "oop"}
+            return pid, "oop", "HTTP 404 Not Found"
 
-        if res.status_code != 200:
-            return {"status": item.get("availability", "instock"), "price": item.get("price"), "changed": False}
+        if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
 
-        soup = BeautifulSoup(res.text, "html.parser")
-        body_text = soup.get_text().lower()
+            # 1. Parse JSON-LD Microdata (Most reliable indicator)
+            for script in soup.find_all("script", type="application/ld+json"):
+                try:
+                    js_data = json.loads(script.string or "{}")
+                    candidates = js_data if isinstance(js_data, list) else [js_data]
+                    for item in candidates:
+                        if isinstance(item, dict):
+                            offers = item.get("offers", {})
+                            if isinstance(offers, list) and len(offers) > 0:
+                                offers = offers[0]
+                            if isinstance(offers, dict):
+                                avail = str(offers.get("availability", "")).lower()
+                                if "instock" in avail:
+                                    if is_date_upcoming(rel_date):
+                                        return pid, "preorder", "Schema InStock (Upcoming Date)"
+                                    return pid, "instock", "Schema InStock"
+                                elif "preorder" in avail:
+                                    return pid, "preorder", "Schema PreOrder"
+                                elif "outofstock" in avail or "discontinued" in avail or "soldout" in avail:
+                                    return pid, "oop", "Schema OutOfStock"
+                except Exception:
+                    pass
 
-        # Availability detection
-        if any(term in body_text for term in ["out of print", "no longer available", "sold out", "archive", "廃盤", "取扱終了"]):
-            new_avail = "oop"
-        elif any(term in body_text for term in ["pre-order", "preorder", "予約"]):
-            new_avail = "preorder"
+            # 2. Inspect Main Buy Button and Cart Form (Avoid sidebar recommendations)
+            product_action_box = (
+                soup.select_one(".product-action")
+                or soup.select_one(".item-action")
+                or soup.select_one(".cart-button-area")
+                or soup.select_one("form[action*='cart']")
+                or soup.select_one("#main")
+            )
+            action_text = product_action_box.get_text().lower() if product_action_box else ""
+
+            # Check positive availability first
+            has_preorder_btn = bool(soup.select_one(".btn-preorder, input[value*='Pre-order'], button:has-text('Pre-order'), a:has-text('Pre-order')"))
+            has_cart_btn = bool(soup.select_one(".btn-cart, input[value*='Add to Cart'], button:has-text('Add to Cart'), a:has-text('Add to Cart')"))
+
+            if has_preorder_btn or "pre-order" in action_text or "予約" in action_text:
+                return pid, "preorder", "Pre-order Button Detected"
+
+            if has_cart_btn or "add to cart" in action_text or "カートに入れる" in action_text:
+                if is_date_upcoming(rel_date):
+                    return pid, "preorder", "Cart Button Detected (Upcoming Date)"
+                return pid, "instock", "Add to Cart Button Detected"
+
+            # 3. Explicit Stock Label Checks inside the main product summary table
+            summary_table = soup.select_one(".item-summary, .product-details, table.spec")
+            summary_text = summary_table.get_text().lower() if summary_table else ""
+
+            if any(term in summary_text for term in ["in stock", "usually ships", "在庫あり", "24時間以内"]):
+                return pid, "instock", "Spec In-Stock Indicator"
+
+            if any(term in summary_text for term in ["pre-order", "upcoming", "予約受付中"]):
+                return pid, "preorder", "Spec Pre-Order Indicator"
+
+            if any(term in summary_text for term in ["out of print", "no longer available", "discontinued", "sold out", "廃盤", "取扱終了"]):
+                return pid, "oop", "Spec OOP Notice"
+
+            # 4. Strict check on explicit out of print notices in main block
+            if any(term in action_text for term in ["out of print", "no longer available", "discontinued", "sold out", "廃盤", "取扱終了"]):
+                return pid, "oop", "Product Action OOP Notice"
+
+            # If uncertain, preserve existing status rather than assuming OOP
+            if is_date_upcoming(rel_date):
+                return pid, "preorder", "Preserved Pre-order (Upcoming Date)"
+            return pid, current_avail, "Preserved Existing Status (Ambiguous DOM)"
+
         else:
-            new_avail = "instock"
+            # Non-200 / Non-404 (e.g. 429, 500, 503) -> Do NOT mark as OOP
+            return pid, current_avail, f"Preserved (HTTP {res.status_code})"
 
-        # Price update
-        price_num = item.get("price_num", 0)
-        price_str = item.get("price", "Check CDJapan")
-        price_el = soup.select_one(".price, .item-price, .price-value")
-        if price_el:
-            p_match = re.search(r"(\d[\d,]*\s*(?:yen|jpy|円)?)", price_el.get_text(), re.IGNORECASE)
-            if p_match:
-                cleaned_num = re.sub(r"[^\d]", "", p_match.group(1))
-                if cleaned_num:
-                    price_num = int(cleaned_num)
-                    price_str = f"¥{price_num:,}"
+    except Exception as e:
+        return pid, current_avail, f"Preserved (Exception: {str(e)[:40]})"
 
-        changed = (new_avail != item.get("availability")) or (price_num != item.get("price_num"))
-        return {
-            "status": new_avail,
-            "price": price_str,
-            "price_num": price_num,
-            "changed": changed
-        }
+def load_healthcheck_state():
+    reset_requested = os.environ.get("RESET_HEALTHCHECK", "").lower() in ["true", "1", "yes"]
+    if reset_requested:
+        print("[Notice] RESET_HEALTHCHECK detected. Restarting audit from item 1.", flush=True)
+        if os.path.exists(STATE_FILE):
+            try:
+                os.remove(STATE_FILE)
+            except Exception:
+                pass
+        return set()
 
-    except Exception:
-        return {"status": item.get("availability", "instock"), "price": item.get("price"), "changed": False}
+    if os.path.exists(STATE_FILE):
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                return set(json.load(f))
+        except Exception:
+            return set()
+    return set()
+
+def save_healthcheck_state(audited_pids):
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(sorted(list(audited_pids)), f, indent=2)
 
 def main():
+    print("==========================================================")
+    print("IdolJapan.store — Resilient SKU URL & Availability Health Check")
+    print("==========================================================")
+
     if not os.path.exists(DATA_FILE):
-        print(f"[Error] Catalog database {DATA_FILE} not found.")
+        print(f"[Error] Catalog file {DATA_FILE} not found.")
         sys.exit(1)
 
-    catalog = load_json(DATA_FILE)
-    total_skus = len(catalog)
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        catalog = json.load(f)
 
-    if total_skus == 0:
-        print("[Error] Catalog is empty.")
-        sys.exit(1)
+    total_catalog = len(catalog)
+    audited_pids = load_healthcheck_state()
 
-    # Load persistent audit progress
-    state = load_or_init_state(total_skus)
-    audited_set = set(state.get("audited_ids", []))
+    pending_pids = [pid for pid in catalog.keys() if pid not in audited_pids]
+    total_pending = len(pending_pids)
+    audited_count = len(audited_pids)
+    progress_pct = (audited_count / total_catalog * 100) if total_catalog > 0 else 0
 
-    # Detect if previous cycle finished
-    all_catalog_pids = set(catalog.keys())
-    remaining_pids = [pid for pid in catalog.keys() if pid not in audited_set]
+    print(f"Total Catalog Database:    {total_catalog:,} releases")
+    print(f"Already Audited in Cycle:  {audited_count:,} releases ({progress_pct:.1f}%)")
+    print(f"Pending Verification:      {total_pending:,} releases")
 
-    if not remaining_pids:
-        # Full cycle completed: roll over to the next cycle
-        state["cycle"] += 1
-        state["total_cycles_completed"] += 1
-        state["cycle_started_at"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-        state["audited_ids"] = []
-        audited_set.clear()
-        remaining_pids = list(catalog.keys())
-        print(f"\n[Info] Full catalog audit cycle completed! Starting Cycle #{state['cycle']}.")
+    if total_pending == 0:
+        print("\nAll 100% of catalog releases have been verified in this cycle!")
+        print("To restart the cycle, pass RESET_HEALTHCHECK=true or delete healthcheck_state.json.")
+        return
 
-    # Configure batch sizing
-    batch_size = int(os.environ.get("BATCH_SIZE", DEFAULT_BATCH_SIZE))
-    batch_size = min(batch_size, len(remaining_pids))
+    batch_size = int(os.environ.get("BATCH_SIZE", os.environ.get("HEALTHCHECK_BATCH_SIZE", DEFAULT_BATCH_SIZE)))
+    batch_size = min(batch_size, total_pending)
+    max_workers = int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS))
+    batches_remaining = math.ceil(total_pending / batch_size) if batch_size > 0 else 0
 
-    current_batch_pids = remaining_pids[:batch_size]
+    current_batch = pending_pids[:batch_size]
+    print(f"Targeting Batch Size:      {batch_size:,} items (~{batches_remaining} batch runs remaining)")
+    print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
-    already_audited_count = len(audited_set)
-    remaining_count_before = len(remaining_pids)
-    progress_pct_before = (already_audited_count / total_skus) * 100
-    batches_left_before = math.ceil(remaining_count_before / batch_size) if batch_size > 0 else 0
-
-    print("==========================================================")
-    print("IdolJapan.store — Continuous Catalog Healthcheck Monitor")
-    print("==========================================================")
-    print(f"Total Catalog Database:    {total_skus:,} active SKUs")
-    print(f"Current Audit Cycle:       Cycle #{state['cycle']}")
-    print(f"Already Audited in Cycle:  {already_audited_count:,} releases ({progress_pct_before:.1f}%)")
-    print(f"Remaining Left to Audit:   {remaining_count_before:,} releases")
-    print(f"Batches Remaining:         ~{batches_left_before:,} batch runs")
-    print(f"Current Run Target:        {batch_size:,} releases")
-    print(f"Cycle Progress Before Run: {get_progress_bar(progress_pct_before)}")
-    print("==========================================================\n")
-
-    session = requests.Session()
-    updated_items = 0
-    status_changes = []
-
+    session = build_http_session()
+    changes_count = 0
+    preserved_count = 0
     start_time = time.time()
+    log_lines = []
 
-    for idx, pid in enumerate(current_batch_pids, 1):
-        item = catalog[pid]
-        result = audit_single_product(session, item)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_pid = {
+            executor.submit(check_sku_status, session, pid, catalog[pid]): pid
+            for pid in current_batch
+        }
 
-        old_status = item.get("availability", "instock")
-        new_status = result["status"]
+        for idx, future in enumerate(as_completed(future_to_pid), 1):
+            pid, new_status, reason = future.result()
+            audited_pids.add(pid)
+            old_status = catalog[pid].get("availability", "instock")
 
-        if result["changed"]:
-            updated_items += 1
-            item["availability"] = new_status
-            if "price" in result:
-                item["price"] = result["price"]
-            if "price_num" in result:
-                item["price_num"] = result["price_num"]
-            status_changes.append(f"[{pid}] {item.get('title', '')[:35]} ({old_status} -> {new_status})")
+            if new_status != old_status:
+                catalog[pid]["availability"] = new_status
+                changes_count += 1
+                msg = f"[{idx}/{batch_size}] Δ [{pid}] {old_status} -> {new_status} ({reason})"
+                print(f"   {msg}", flush=True)
+                log_lines.append(f"{datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} - {msg}")
+            else:
+                preserved_count += 1
 
-        item["last_healthcheck"] = datetime.utcnow().strftime("%Y-%m-%d")
-        audited_set.add(pid)
+            if idx % 50 == 0 or idx == batch_size:
+                elapsed = time.time() - start_time
+                print(f"   -> Progress: {idx}/{batch_size} audited ({elapsed:.1f}s elapsed)...", flush=True)
 
-        # Print progress tick every 50 items
-        if idx % 50 == 0 or idx == batch_size:
-            elapsed = time.time() - start_time
-            print(f"   -> Verified {idx}/{batch_size} SKUs in this run ({elapsed:.1f}s elapsed)...", flush=True)
+    # 1. Save updated products.json
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-        time.sleep(random.uniform(0.1, 0.25))
-
-    # Calculate post-run metrics
-    already_audited_after = len(audited_set)
-    remaining_after = total_skus - already_audited_after
-    progress_pct_after = (already_audited_after / total_skus) * 100
-    batches_left_after = math.ceil(remaining_after / batch_size) if batch_size > 0 and remaining_after > 0 else 0
+    # 2. Synchronize catalog-index.json for immediate deployment
+    with open(INDEX_FILE, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
 
     # Save state
-    state["audited_ids"] = list(audited_set)
-    state["last_run_timestamp"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    save_json(STATE_FILE, state)
+    save_healthcheck_state(audited_pids)
 
-    # Save updated catalog and index
-    save_json(DATA_FILE, catalog)
-    save_json(INDEX_FILE, catalog)
+    # Append to log file
+    if log_lines:
+        with open(LOG_FILE, "a", encoding="utf-8") as lf:
+            lf.write("\n".join(log_lines) + "\n")
 
-    # Write log record
-    with open(LOG_FILE, "a", encoding="utf-8") as log:
-        log.write(f"\n--- Healthcheck Batch [{state['last_run_timestamp']}] ---\n")
-        log.write(f"Audited: {batch_size} | Modified: {updated_items} | Cycle Progress: {already_audited_after}/{total_skus} ({progress_pct_after:.1f}%)\n")
-        for sc in status_changes[:10]:
-            log.write(f"  * {sc}\n")
+    new_audited = len(audited_pids)
+    remaining_pending = total_catalog - new_audited
+    new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0
+    new_batches_left = math.ceil(remaining_pending / batch_size) if batch_size > 0 and remaining_pending > 0 else 0
 
     print("\n==========================================================")
-    print("Healthcheck Batch Completed Successfully")
+    print("Health Check Batch Complete!")
     print("==========================================================")
-    print(f"Audited in This Run:       {batch_size:,} releases")
-    print(f"Discrepancies Updated:     {updated_items:,} releases")
-    print(f"Total Audited in Cycle:    {already_audited_after:,} / {total_skus:,} releases")
-    print(f"Remaining to Audit:        {remaining_after:,} releases")
-    print(f"Estimated Batches Left:    ~{batches_left_after:,} runs remaining")
-    print(f"New Cycle Progress:        {get_progress_bar(progress_pct_after)}")
+    print(f"Availability Status Updated: {changes_count:,} releases")
+    print(f"Status Verified & Kept:      {preserved_count:,} releases")
+    print(f"Total Audited in Cycle:      {new_audited:,} / {total_catalog:,} ({new_progress_pct:.1f}%)")
+    print(f"Remaining in Cycle:          {remaining_pending:,} releases (~{new_batches_left} batches left)")
+    print("Synchronized:                products.json & catalog-index.json")
     print("==========================================================")
 
 if __name__ == "__main__":

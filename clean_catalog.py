@@ -241,25 +241,6 @@ def clean_catalog():
         # -------------------------------------------------------------
         # STEP 3: Protected Group Concert vs. Soloist Classification
         # -------------------------------------------------------------
-        # Fix mislabeled HKT48 concert tour
-        if pid == "HKT-D0026" or "hkt48 natsu no hall tour" in full_text_lower:
-            item["artist"] = "HKT48"
-            item["category"] = "AKB48 Group"
-
-        # Detect canonical group concert tours in the title and lock to the primary group
-        is_primary_group_concert = False
-        for group in PRIMARY_GROUP_NAMES:
-            if group.lower() in full_text_lower and any(kw in full_text_lower for kw in [
-                "concert tour", "live tour", "anniversary live", "final live", "sotsugyo special", "graduation ceremony"
-            ]) and not any(kw in full_text_lower for kw in ["photobook", "photo book", "写真集", "visual book"]):
-                item["artist"] = group
-                is_primary_group_concert = True
-                break
-
-        if is_primary_group_concert:
-            cleaned_catalog[pid] = item
-            continue
-            
         # Never reclassify full group concert tours or albums to a single member
         is_group_concert_or_album = (
             artist in PRIMARY_GROUP_NAMES and

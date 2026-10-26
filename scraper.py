@@ -2,8 +2,7 @@
 IdolJapan.store — Official Japanese Idol CDJapan Catalog Scraper
 Combines Playwright session warmup, lazy-scroll rendering, authentic group signatures,
 direct Person ID routing, calendar-verified date parsing, and multi-query aliasing.
-Deep pagination support with exponential jitter backoff, resilient retry ladders,
-and negative boyband/media filters.
+Supports alternate-day sharding (Mon/Wed/Fri, Tue/Thu/Sat, Sun) for scalable daily automation.
 Includes strict feature verification for Tsukishima Kirari / Koharu Kusumi releases.
 """
 
@@ -413,7 +412,6 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
             if not has_female_artist:
                 return False
 
-    # STRICT KOHARU KUSUMI REQUIREMENT FOR TSUKISHIMA KIRARI
     if canonical_artist == "Tsukishima Kirari":
         has_kusumi = any(sig in lower_text for sig in [
             "kusumi koharu", "koharu kusumi", "久住小春", "starring 久住小春",
@@ -786,7 +784,8 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
 def get_active_targets(is_targeted_run):
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
 
-    if raw_filter and raw_filter.lower() != "all groups":
+    # Manual specific artist targeted run
+    if raw_filter and raw_filter.lower() not in ["all groups", "alternate schedule", "alternate"]:
         if "updated 3 groups" in raw_filter.lower():
             target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
             return [g for g in TARGET_GROUPS if g[1] in target_names]
@@ -799,6 +798,29 @@ def get_active_targets(is_targeted_run):
 
         matched = [g for g in TARGET_GROUPS if g[1].lower() == raw_filter.lower()]
         return matched if matched else TARGET_GROUPS
+
+    # -------------------------------------------------------------
+    # Alternate Days Scheduling Logic
+    # -------------------------------------------------------------
+    schedule_mode = os.environ.get("SCHEDULE_MODE", "alternate").lower()
+    
+    if schedule_mode == "alternate":
+        # Monday=0, Tuesday=1, Wednesday=2, Thursday=3, Friday=4, Saturday=5, Sunday=6
+        weekday = datetime.utcnow().weekday()
+
+        if weekday in (0, 2, 4):  # Monday, Wednesday, Friday
+            print("[Schedule] Monday/Wednesday/Friday Routine: Hello! Project & Up-Front Alumni", flush=True)
+            return [g for g in TARGET_GROUPS if g[0] in ["Hello! Project", "Up-Front Alumni"]]
+
+        elif weekday in (1, 3, 5):  # Tuesday, Thursday, Saturday
+            print("[Schedule] Tuesday/Thursday/Saturday Routine: AKB48 Group & Sakamichi Series", flush=True)
+            return [g for g in TARGET_GROUPS if g[0] in ["AKB48 Group", "Sakamichi Series"]]
+
+        else:  # Sunday (6)
+            print("[Schedule] Sunday Routine: Stardust Planet, =LOVE, KAWAII LAB., Modern & Alternative", flush=True)
+            return [g for g in TARGET_GROUPS if g[0] in [
+                "Stardust Planet", "=LOVE / Sister Groups", "KAWAII LAB.", "Modern Idols", "Babymetal"
+            ]]
 
     if not is_targeted_run:
         return [g for g in TARGET_GROUPS if g[1] not in LEGACY_ROSTER_GROUPS]
@@ -817,12 +839,14 @@ def main():
     print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
-    is_targeted = bool(raw_filter and raw_filter.lower() != "all groups")
+    is_targeted = bool(raw_filter and raw_filter.lower() not in ["all groups", "alternate schedule", "alternate"])
     active_groups = get_active_targets(is_targeted)
     page_depth = get_target_page_depth(is_targeted)
 
-    run_mode = "Targeted Manual Deep Scrape" if is_targeted else "Automated Exhaustive Sweep"
-    print(f"Run Mode: [{run_mode}] | Groups: {len(active_groups)} | Max Depth: {page_depth} pages/query", flush=True)
+    weekday_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    current_day_name = weekday_names[datetime.utcnow().weekday()]
+    run_mode = "Targeted Manual Deep Scrape" if is_targeted else f"Alternate Scheduled Sweep ({current_day_name})"
+    print(f"Run Mode: [{run_mode}] | Groups to scrape: {len(active_groups)} | Max Depth: {page_depth} pages/query", flush=True)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(

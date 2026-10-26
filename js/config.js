@@ -3,6 +3,14 @@
    Path: js/config.js
    ========================================================================== */
 
+// LocalStorage Keys
+var CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
+var RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
+var RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
+var WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
+var VIEW_MODE_KEY = 'idoljapan_view_mode';
+var TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+
 // Shared Catalog & Filtering State
 var allProducts = [];
 var clusteredEntities = [];
@@ -15,8 +23,16 @@ var activeFormat = 'All';
 var activeMerchSubgroup = 'All';
 var selectedAvailabilities = new Set(['all']);
 
-// UI Display & Navigation Preferences
-var viewMode = 'grid';
+// UI Display & Navigation Preferences (Restores saved viewMode safely)
+var viewMode = (function() {
+  try {
+    const saved = localStorage.getItem(VIEW_MODE_KEY);
+    return (saved === 'list' || saved === 'grid') ? saved : 'grid';
+  } catch (e) {
+    return 'grid';
+  }
+})();
+
 var searchAliases = {};
 var currentHoverCat = null;
 var megaMenuTimer = null;
@@ -33,8 +49,13 @@ var searchQuery = '';
 
 // Device Layout & Pagination State
 function detectDeviceLayout() {
-  return (window.matchMedia('(max-width: 768px)').matches || 
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
+  try {
+    const mqMatch = typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 768px)').matches;
+    const uaMatch = typeof navigator !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '');
+    return (mqMatch || uaMatch) ? 'mobile' : 'desktop';
+  } catch (e) {
+    return 'desktop';
+  }
 }
 
 var layoutMode = detectDeviceLayout();
@@ -42,18 +63,22 @@ var isClusteringEnabled = true;
 var maxPriceLimit = 20000;
 var currentSort = 'newest';
 var currentCurrency = 'USD';
-var exchangeRates = { USD: 1.0, JPY: 152.4, EUR: 0.92, GBP: 0.79, CAD: 1.38, AUD: 1.51, TWD: 32.1, HKD: 7.78, KRW: 1375.0, SGD: 1.32 };
+var exchangeRates = {
+  USD: 1.0,
+  JPY: 152.4,
+  EUR: 0.92,
+  GBP: 0.79,
+  CAD: 1.38,
+  AUD: 1.51,
+  TWD: 32.1,
+  HKD: 7.78,
+  KRW: 1375.0,
+  SGD: 1.32
+};
+var ZERO_DECIMAL_CURRENCIES = ['JPY', 'KRW', 'VND', 'IDR', 'CLP', 'HUF', 'TWD', 'ISK', 'PYG', 'UGX'];
 var currentModalProduct = null;
 var currentPage = 1;
 var itemsPerPage = 48;
-
-// LocalStorage Keys
-var CURRENCY_STORAGE_KEY = 'idoljapan_selected_currency';
-var RATES_STORAGE_KEY = 'idoljapan_all_exchange_rates';
-var RATES_TIME_KEY = 'idoljapan_exchange_rates_time';
-var WISHLIST_STORAGE_KEY = 'idoljapan_fan_wishlist_ids';
-var VIEW_MODE_KEY = 'idoljapan_view_mode';
-var TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
 // Date Matching Helper Map
 var EN_MONTHS = {

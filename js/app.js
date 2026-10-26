@@ -342,7 +342,8 @@ function updateDynamicCounts() {
     } else if (cat === 'KAWAII LAB.') {
       catCounts['KAWAII LAB.']++;
     } else if (
-      cat === 'Modern Idols' || cat === 'Babymetal' ||
+      /* File: js/app.js | Block/Target: updateDynamicCounts Modern & Alternative String Match */
+      cat === 'Modern & Alternative' || cat === 'Modern Idols' || cat === 'Babymetal' ||
       art === 'BABYMETAL' || art === 'Sakura Gakuin' ||
       art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE'
     ) {
@@ -922,10 +923,13 @@ function render() {
   const filterItem = (item) => {
     if (!item) return false;
 
+    /* File: js/app.js | Block/Target: Tsukishima Kirari Verification Alignment */
     if (item.artist === 'Tsukishima Kirari' || (item.title && item.title.toLowerCase().includes('tsukishima kirari'))) {
+      const pidUpper = String(item.id || '').toUpperCase();
       const tLower = (item.title || '').toLowerCase();
       const hasKusumi = tLower.includes('kusumi koharu') || tLower.includes('koharu kusumi') || tLower.includes('久住小春');
-      if (!hasKusumi) return false;
+      const isUpFront = pidUpper.startsWith('EPCE') || pidUpper.startsWith('EPBE') || pidUpper.startsWith('EPDE');
+      if (!hasKusumi && !isUpFront && item.artist !== 'Tsukishima Kirari') return false;
     }
 
     const priceNum = parseNumericPrice(item.price, item);

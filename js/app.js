@@ -329,7 +329,8 @@ function updateDynamicCounts() {
     const cat = item.category || '';
     const art = item.artist || '';
 
-    if (cat === 'Hello! Project' || cat === 'Up-Front Alumni') {
+    /* File: js/app.js | Block/Target: updateDynamicCounts Hello! Project variations */
+    if (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni') {
       catCounts['Hello! Project & Up-Front']++;
     } else if (cat === 'AKB48 Group') {
       catCounts['AKB48 Group']++;
@@ -952,8 +953,9 @@ function render() {
     let matchesCat = false;
     if (activeFilter === 'All') {
       matchesCat = true;
+    /* File: js/app.js | Block/Target: filterItem Hello! Project variations */
     } else if (activeFilter === 'Hello! Project & Up-Front') {
-      matchesCat = (cat === 'Hello! Project' || cat === 'Up-Front Alumni');
+      matchesCat = (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni');
    } else if (activeFilter === 'Modern & Alternative') {
       matchesCat = (
         cat === 'Modern & Alternative' || cat === 'Modern Idols' || cat === 'Babymetal' ||

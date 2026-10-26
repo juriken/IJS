@@ -242,14 +242,34 @@ def clean_catalog():
         # STEP 3: Protected Group Concert vs. Soloist Classification
         # -------------------------------------------------------------
         # Never reclassify full group concert tours or albums to a single member
+        /* File: clean_catalog.py | Approx. Lines: 180-210 | Block/Target: Protected Group Concert Tour Logic */
+        # Fix mislabeled HKT48 concert tour
+        if pid == "HKT-D0026" or "hkt48 natsu no hall tour" in full_text_lower:
+            item["artist"] = "HKT48"
+            item["category"] = "AKB48 Group"
+
+        # Detect canonical group concert tours in the title and lock to the primary group
+        is_primary_group_concert = False
+        for group in PRIMARY_GROUP_NAMES:
+            if group.lower() in full_text_lower and any(kw in full_text_lower for kw in [
+                "concert tour", "live tour", "anniversary live", "final live", "sotsugyo special", "graduation ceremony"
+            ]) and not any(kw in full_text_lower for kw in ["photobook", "photo book", "写真集", "visual book"]):
+                item["artist"] = group
+                is_primary_group_concert = True
+                break
+
+        if is_primary_group_concert:
+            cleaned_catalog[pid] = item
+            continue
+
         is_group_concert_or_album = (
-            artist in PRIMARY_GROUP_NAMES and
+            item.get("artist") in PRIMARY_GROUP_NAMES and
             not any(kw in full_text_lower for kw in [
                 "photobook", "photo book", "写真集", "solo live", "solo album",
                 "solo single", "solo tour", "visual book"
             ])
         )
-
+        
         # Do not reclassify joint Hello! Project seasonal tours (Hina Fes, Countdown, Kenshuusei recital)
         is_joint_hp_event = any(kw in full_text_lower for kw in [
             "hina fes", "ひなフェス", "countdown japan", "hello! project 20",

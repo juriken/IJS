@@ -6,6 +6,7 @@
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -23,12 +24,20 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .img-fade-in {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 html.layout-desktop body {
   min-width: 1280px;
 }
 
 html.layout-mobile body {
   min-width: 100%;
+  overflow-x: hidden;
 }
 
 .no-scrollbar::-webkit-scrollbar {

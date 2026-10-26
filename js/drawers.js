@@ -3,31 +3,65 @@
    Path: js/drawers.js
    ========================================================================== */
 
+var toastTimeoutId = null;
+
 function showToast(message, isSuccess = true) {
   const toast = document.getElementById('toast');
   const text = document.getElementById('toast-message');
   const icon = document.getElementById('toast-icon');
   if (!toast || !text) return;
+
   text.innerText = message;
   if (icon) {
-    icon.className = isSuccess ? 'fa-solid fa-circle-check text-emerald-400' : 'fa-solid fa-circle-exclamation text-amber-400';
+    icon.className = isSuccess
+      ? 'fa-solid fa-circle-check text-emerald-400'
+      : 'fa-solid fa-circle-exclamation text-amber-400';
   }
+
   toast.classList.remove('opacity-0', 'pointer-events-none');
-  setTimeout(() => {
+  if (toastTimeoutId) clearTimeout(toastTimeoutId);
+  toastTimeoutId = setTimeout(() => {
     toast.classList.add('opacity-0', 'pointer-events-none');
+    toastTimeoutId = null;
   }, 2600);
 }
 
 function copyToClipboard(text, successMessage) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast(successMessage);
-  });
+  if (!text) return;
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(successMessage || 'Copied to clipboard!');
+    }).catch(() => {
+      fallbackCopyToClipboard(text, successMessage);
+    });
+  } else {
+    fallbackCopyToClipboard(text, successMessage);
+  }
+}
+
+function fallbackCopyToClipboard(text, successMessage) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(successMessage || 'Copied to clipboard!');
+  } catch (err) {
+    showToast('Unable to copy to clipboard', false);
+  }
 }
 
 function dismissTrustNotice() {
   const banner = document.getElementById('trust-notice-banner');
   if (banner) banner.classList.add('hidden');
-  localStorage.setItem('idoljapan_dismiss_trust', 'true');
+  try {
+    localStorage.setItem('idoljapan_dismiss_trust', 'true');
+  } catch (e) {}
 }
 
 function toggleQr(coinKey) {
@@ -62,14 +96,16 @@ function toggleCryptoModal() {
 }
 
 function closeCryptoModalOnBackdrop(e) {
-  if (e.target.id === 'crypto-modal') toggleCryptoModal();
+  if (e && e.target && e.target.id === 'crypto-modal') toggleCryptoModal();
 }
 
 function triggerOutboundAffiliate(product, subId = 'direct') {
   if (!product) return;
-  if (window.IdolAnalytics) window.IdolAnalytics.trackAffiliateClick(product, subId);
-  
-  const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${product.id}?affi=A033398`;
+  if (window.IdolAnalytics && typeof window.IdolAnalytics.trackAffiliateClick === 'function') {
+    window.IdolAnalytics.trackAffiliateClick(product, subId);
+  }
+
+  const baseUrl = product.affiliate_url || `https://www.cdjapan.co.jp/product/${encodeURIComponent(product.id)}?affi=A033398`;
   const sep = baseUrl.includes('?') ? '&' : '?';
   const finalUrl = `${baseUrl}${sep}sub_id=${encodeURIComponent(subId)}`;
 
@@ -103,13 +139,14 @@ function extractVariantLabel(vTitle, baseTitle) {
 }
 
 function getVariantSortScore(variant) {
+  if (!variant) return 50;
   const title = String(variant.title || '').toLowerCase();
   let rank = 50;
 
   if (title.includes('limited') || title.includes('初回') || title.includes('ltd')) {
     rank = 10;
     const typeMatch = title.match(/type[\s-]*([a-z0-9]+)/i);
-    if (typeMatch) {
+    if (typeMatch && typeMatch[1]) {
       rank += (typeMatch[1].toUpperCase().charCodeAt(0) - 64) * 0.1;
     }
   } else if (title.includes('regular') || title.includes('通常')) {
@@ -125,7 +162,7 @@ function extractEditionTags(title) {
   if (!title) return [];
   const tags = [];
   const lower = String(title).toLowerCase();
-  
+
   if (/limited edition|初回生産限定盤|初回限定盤/i.test(lower)) {
     tags.push({ name: 'Limited', color: 'bg-amber-600' });
   }
@@ -133,7 +170,7 @@ function extractEditionTags(title) {
     tags.push({ name: 'Regular', color: 'bg-stone-600' });
   }
   const typeMatch = String(title).match(/Type\s*([A-Za-z0-9]+)/i);
-  if (typeMatch) {
+  if (typeMatch && typeMatch[1]) {
     tags.push({ name: `Type ${typeMatch[1].toUpperCase()}`, color: 'bg-rose-600' });
   }
   if (/w\/\s*blu-ray|blu-ray disc付|\+bd/i.test(lower)) {
@@ -149,18 +186,35 @@ function extractEditionTags(title) {
 }
 
 function getThumbnailUrl(rawUrl) {
-  if (!rawUrl || rawUrl.startsWith('data:')) return PLACEHOLDER_IMG;
-  return rawUrl.replace('/pictures/l/', '/pictures/m/');
+  if (!rawUrl || String(rawUrl).startsWith('data:')) return PLACEHOLDER_IMG;
+  return String(rawUrl).replace('/pictures/l/', '/pictures/m/');
 }
 
 function onImgLoadError(imgEl) {
+  if (!imgEl) return;
   imgEl.onerror = null;
-  imgEl.src = PLACEHOLDER_IMG;
+  if (imgEl.src !== PLACEHOLDER_IMG) {
+    imgEl.src = PLACEHOLDER_IMG;
+  }
 }
 
 function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function escapeIcsText(str) {
   if (!str) return '';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  return String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\r?\n/g, '\\n');
 }
 
 function exportAllPreOrdersIcs() {
@@ -170,28 +224,33 @@ function exportAllPreOrdersIcs() {
     return;
   }
 
-  let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//IdolJapan.store//Tokyo Street Dates//EN\n";
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//IdolJapan.store//Tokyo Street Dates//EN"
+  ];
 
   preOrders.forEach(p => {
-    const dVal = getItemDateValue(p);
+    const dVal = typeof getItemDateValue === 'function' ? getItemDateValue(p) : 0;
     if (dVal > 0) {
       const y = Math.floor(dVal / 10000);
       const m = String(Math.floor((dVal % 10000) / 100)).padStart(2, '0');
       const d = String(dVal % 100).padStart(2, '0');
       const dateStr = `${y}${m}${d}`;
 
-      ics += "BEGIN:VEVENT\n";
-      ics += `UID:${p.id}@idoljapan.store\n`;
-      ics += `DTSTAMP:${dateStr}T090000Z\n`;
-      ics += `DTSTART;VALUE=DATE:${dateStr}\n`;
-      ics += `SUMMARY:[Release] ${p.artist} - ${stripTitlePrefixes(p.title)}\n`;
-      ics += `DESCRIPTION:Official Tokyo Street Date for ${p.title} (${p.id}). CDJapan Order: ${p.affiliate_url || ''}\n`;
-      ics += `URL:https://idoljapan.store/?id=${p.id}\n`;
-      ics += "END:VEVENT\n";
+      lines.push("BEGIN:VEVENT");
+      lines.push(`UID:${p.id}@idoljapan.store`);
+      lines.push(`DTSTAMP:${dateStr}T090000Z`);
+      lines.push(`DTSTART;VALUE=DATE:${dateStr}`);
+      lines.push(`SUMMARY:${escapeIcsText(`[Release] ${p.artist} - ${stripTitlePrefixes(p.title)}`)}`);
+      lines.push(`DESCRIPTION:${escapeIcsText(`Official Tokyo Street Date for ${p.title} (${p.id}). CDJapan Order: ${p.affiliate_url || ''}`)}`);
+      lines.push(`URL:https://idoljapan.store/?id=${encodeURIComponent(p.id)}`);
+      lines.push("END:VEVENT");
     }
   });
 
-  ics += "END:VCALENDAR";
+  lines.push("END:VCALENDAR");
+  const ics = lines.join("\r\n") + "\r\n";
 
   const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -211,9 +270,9 @@ function calculateWishlistHaulMetrics() {
   let totalJpy = 0;
 
   items.forEach(it => {
-    const fmt = getItemFormatCategory(it);
+    const fmt = typeof getItemFormatCategory === 'function' ? getItemFormatCategory(it) : 'Other';
     totalWeightGrams += MEDIA_WEIGHTS_GRAMS[fmt] || 140;
-    totalJpy += parseNumericPrice(it.price, it);
+    totalJpy += typeof parseNumericPrice === 'function' ? parseNumericPrice(it.price, it) : 0;
   });
 
   let bracket = "≤ 500g (Minimum Tier)";
@@ -249,7 +308,7 @@ function toggleHaulDrawer() {
 }
 
 function closeHaulDrawerOnBackdrop(e) {
-  if (e.target.id === 'haul-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+  if (e && e.target && (e.target.id === 'haul-drawer' || e.target.classList.contains('backdrop-blur-xs'))) {
     toggleHaulDrawer();
   }
 }
@@ -282,23 +341,24 @@ function populateHaulDrawer() {
 
   let html = '';
   metrics.items.forEach(it => {
-    const fmt = getItemFormatCategory(it);
+    const fmt = typeof getItemFormatCategory === 'function' ? getItemFormatCategory(it) : 'Other';
     const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
     const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
+    const safeId = escapeHtml(it.id);
 
     html += `
       <div class="pt-3 first:pt-0 flex items-center gap-3">
-        <img src="${getThumbnailUrl(it.image)}" class="w-11 h-11 object-cover rounded-lg shrink-0 border border-stone-200 dark:border-slate-800" onerror="onImgLoadError(this)" />
+        <img src="${getThumbnailUrl(it.image)}" alt="${cleanTitle}" class="w-11 h-11 object-cover rounded-lg shrink-0 border border-stone-200 dark:border-slate-800" onerror="onImgLoadError(this)" />
         <div class="flex-1 min-w-0">
           <h4 class="font-bold text-stone-900 dark:text-white truncate text-xs" title="${cleanTitle}">${cleanTitle}</h4>
           <p class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${escapeHtml(it.artist)} • ${fmt} (~${weight}g)</p>
-          <div class="text-[11px] font-black text-rose-600 dark:text-rose-400 mt-0.5">${formatDisplayPrice(it.price, it)}</div>
+          <div class="text-[11px] font-black text-rose-600 dark:text-rose-400 mt-0.5">${typeof formatDisplayPrice === 'function' ? formatDisplayPrice(it.price, it) : escapeHtml(it.price)}</div>
         </div>
         <div class="flex items-center gap-1.5 shrink-0">
-          <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'haul_drawer_buy')" title="Order on CDJapan" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[10px] transition cursor-pointer">
+          <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${safeId}'), 'haul_drawer_buy')" title="Order on CDJapan" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[10px] transition cursor-pointer">
             Order
           </button>
-          <button onclick="toggleWishlist('${it.id}'); populateHaulDrawer();" title="Remove" class="w-7 h-7 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-stone-100 dark:hover:bg-slate-800 flex items-center justify-center transition cursor-pointer">
+          <button onclick="toggleWishlist('${safeId}'); populateHaulDrawer();" title="Remove" class="w-7 h-7 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-stone-100 dark:hover:bg-slate-800 flex items-center justify-center transition cursor-pointer">
             <i class="fa-solid fa-trash-can text-[11px]"></i>
           </button>
         </div>
@@ -326,12 +386,12 @@ function exportWishlistHaul() {
   content += "========================================\n\n";
 
   metrics.items.forEach((it, idx) => {
-    const fmt = getItemFormatCategory(it);
+    const fmt = typeof getItemFormatCategory === 'function' ? getItemFormatCategory(it) : 'Other';
     const weight = MEDIA_WEIGHTS_GRAMS[fmt] || 140;
     content += `${idx + 1}. [${it.artist}] ${stripTitlePrefixes(it.title)}\n`;
     content += `   Catalog ID: ${it.id} | Format: ${fmt} (~${weight}g)\n`;
     content += `   Price: ${it.price}\n`;
-    content += `   Direct Link: https://idoljapan.store/?id=${it.id}\n\n`;
+    content += `   Direct Link: https://idoljapan.store/?id=${encodeURIComponent(it.id)}\n\n`;
   });
 
   const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -373,14 +433,17 @@ async function shareProduct(product, e) {
 function getWishlist() {
   try {
     const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
   } catch (e) {
     return [];
   }
 }
 
 function saveWishlist(list) {
-  localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(list));
+  try {
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(list));
+  } catch (e) {}
   updateWishlistBadge();
 }
 
@@ -392,7 +455,7 @@ function toggleWishlist(productId, e) {
   let list = getWishlist();
   const idx = list.indexOf(productId);
   const isAdded = (idx === -1);
-  
+
   if (!isAdded) {
     list.splice(idx, 1);
     showToast("Removed from wishlist");
@@ -401,12 +464,12 @@ function toggleWishlist(productId, e) {
     showToast("Saved to wishlist!");
   }
   saveWishlist(list);
-  
+
   const p = allProducts.find(x => x.id === productId);
-  if (p && window.IdolAnalytics) {
+  if (p && window.IdolAnalytics && typeof window.IdolAnalytics.trackWishlistToggle === 'function') {
     window.IdolAnalytics.trackWishlistToggle(p, isAdded);
   }
-  
+
   if (typeof render === 'function') render();
 }
 
@@ -424,7 +487,7 @@ function shareWishlistUrl() {
     showToast("Wishlist is empty!", false);
     return;
   }
-  const shareUrl = `${window.location.origin}/?wishlist=${listIds.join(',')}`;
+  const shareUrl = `${window.location.origin}/?wishlist=${encodeURIComponent(listIds.join(','))}`;
   copyToClipboard(shareUrl, "Wishlist share link copied!");
 }
 
@@ -443,7 +506,7 @@ function toggleMobileFilterDrawer() {
 }
 
 function closeMobileFilterDrawerOnBackdrop(e) {
-  if (e.target.id === 'mobile-filter-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+  if (e && e.target && (e.target.id === 'mobile-filter-drawer' || e.target.classList.contains('backdrop-blur-xs'))) {
     toggleMobileFilterDrawer();
   }
 }
@@ -454,6 +517,7 @@ function mobileQuickSelect(artist) {
   activeFilter = 'All';
   updateMobileDrawerContent();
   currentPage = 1;
+  if (typeof updateActiveArtistBanner === 'function') updateActiveArtistBanner();
   if (typeof syncUrlParams === 'function') syncUrlParams();
   if (typeof render === 'function') render();
   toggleMobileFilterDrawer();
@@ -464,6 +528,7 @@ function clearMobileSelectedArtists() {
   activeArtist = 'All';
   updateMobileDrawerContent();
   currentPage = 1;
+  if (typeof updateActiveArtistBanner === 'function') updateActiveArtistBanner();
   if (typeof syncUrlParams === 'function') syncUrlParams();
   if (typeof render === 'function') render();
 }
@@ -478,6 +543,7 @@ function toggleMobileArtistCheckbox(artist) {
   activeArtist = activeMobileArtists.length === 1 ? activeMobileArtists[0] : 'All';
   updateMobileDrawerContent();
   currentPage = 1;
+  if (typeof updateActiveArtistBanner === 'function') updateActiveArtistBanner();
   if (typeof syncUrlParams === 'function') syncUrlParams();
   if (typeof render === 'function') render();
 }
@@ -487,12 +553,20 @@ function updateMobileDrawerContent() {
   const fmtBox = document.getElementById('mobile-drawer-formats');
   const countEl = document.getElementById('mobile-selected-count');
   const filterBadge = document.getElementById('mobile-filter-count-badge');
+  const mobPriceRange = document.getElementById('mobile-drawer-price-range');
+  const mobPriceLabel = document.getElementById('mobile-drawer-price-label');
 
   if (countEl) {
     countEl.innerText = activeMobileArtists.length ? `${activeMobileArtists.length} group(s)` : 'All';
   }
   if (filterBadge) {
     filterBadge.innerText = activeMobileArtists.length ? `${activeMobileArtists.length} selected` : (activeFilter !== 'All' ? activeFilter : 'All');
+  }
+  if (mobPriceRange) {
+    mobPriceRange.value = maxPriceLimit;
+  }
+  if (mobPriceLabel) {
+    mobPriceLabel.innerText = maxPriceLimit >= 20000 ? 'Any' : `≤ ¥${maxPriceLimit.toLocaleString()}`;
   }
 
   if (accordionContainer) {
@@ -507,7 +581,7 @@ function updateMobileDrawerContent() {
       accHtml += `
         <div class="border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden bg-stone-50/50 dark:bg-slate-800/40">
           <button 
-            onclick="document.getElementById('mob-acc-content-${fIdx}').classList.toggle('hidden'); document.getElementById('mob-acc-icon-${fIdx}').classList.toggle('rotate-180');" 
+            onclick="document.getElementById('mob-acc-content-${fIdx}')?.classList.toggle('hidden'); document.getElementById('mob-acc-icon-${fIdx}')?.classList.toggle('rotate-180');" 
             class="w-full p-2.5 flex items-center justify-between text-left font-bold text-stone-800 dark:text-stone-200 text-xs cursor-pointer"
           >
             <span>${escapeHtml(fr)}</span>
@@ -539,7 +613,7 @@ function updateMobileDrawerContent() {
     const fmts = ['All', 'Single', 'Album', 'Blu-ray', 'DVD', 'Book', 'Collectable'];
     fmtBox.innerHTML = fmts.map(f => {
       const isAct = (activeFormat === f);
-      return `<button onclick="setFormat('${f}')" class="px-2.5 py-1 rounded-xl text-xs font-bold transition ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${f}</button>`;
+      return `<button onclick="setFormat('${f}')" class="px-2.5 py-1 rounded-xl text-xs font-bold transition cursor-pointer ${isAct ? 'bg-rose-600 text-white' : 'bg-stone-100 dark:bg-slate-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-slate-700'}">${f}</button>`;
     }).join('');
   }
 }
@@ -567,7 +641,7 @@ function toggleCalendarDrawer() {
 }
 
 function closeCalendarOnBackdrop(e) {
-  if (e.target.id === 'calendar-drawer' || e.target.classList.contains('backdrop-blur-xs')) {
+  if (e && e.target && (e.target.id === 'calendar-drawer' || e.target.classList.contains('backdrop-blur-xs'))) {
     toggleCalendarDrawer();
   }
 }
@@ -577,7 +651,7 @@ function populateCalendarDrawer() {
   if (!container) return;
 
   const preOrders = allProducts.filter(p => typeof isPreOrder === 'function' && isPreOrder(p));
-  preOrders.sort((a, b) => getItemDateValue(a) - getItemDateValue(b));
+  preOrders.sort((a, b) => (typeof getItemDateValue === 'function' ? getItemDateValue(a) - getItemDateValue(b) : 0));
 
   if (!preOrders.length) {
     container.innerHTML = `
@@ -601,21 +675,22 @@ function populateCalendarDrawer() {
     html += `
       <div>
         <div class="sticky top-0 bg-stone-100 dark:bg-slate-800 py-1 px-2.5 rounded-md font-bold text-rose-600 dark:text-rose-400 flex items-center justify-between mb-2">
-          <span><i class="fa-regular fa-clock mr-1"></i> ${dateStr}</span>
+          <span><i class="fa-regular fa-clock mr-1"></i> ${escapeHtml(dateStr)}</span>
           <span class="text-[10px] text-stone-500 font-normal">${items.length} release${items.length > 1 ? 's' : ''}</span>
         </div>
         <div class="space-y-2">
     `;
     items.forEach(it => {
       const cleanTitle = escapeHtml(stripTitlePrefixes(it.title));
+      const safeId = escapeHtml(it.id);
       html += `
         <div class="flex items-center gap-3 p-2 rounded-xl border border-stone-100 dark:border-slate-800 hover:bg-stone-50 dark:hover:bg-slate-800/50 transition">
-          <img src="${getThumbnailUrl(it.image)}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
+          <img src="${getThumbnailUrl(it.image)}" alt="${cleanTitle}" class="w-10 h-10 object-cover rounded-lg shrink-0" onerror="onImgLoadError(this)" />
           <div class="flex-1 min-w-0">
             <p class="font-bold text-stone-800 dark:text-stone-100 truncate text-[11px]">${cleanTitle}</p>
-            <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${formatDisplayPrice(it.price, it)}</p>
+            <p class="text-[10px] text-stone-400 truncate">${escapeHtml(it.artist)} • ${typeof formatDisplayPrice === 'function' ? formatDisplayPrice(it.price, it) : escapeHtml(it.price)}</p>
           </div>
-          <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${it.id}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
+          <button onclick="triggerOutboundAffiliate(allProducts.find(x => x.id === '${safeId}'), 'calendar_view')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-md text-[10px] whitespace-nowrap shadow-xs cursor-pointer">
             Pre-Order
           </button>
         </div>
@@ -633,14 +708,16 @@ function openModal(productId, e) {
   if (!p) return;
   currentModalProduct = p;
 
+  const modal = document.getElementById('product-modal');
+  if (!modal) return;
+
   const params = new URLSearchParams(window.location.search);
   params.set('id', p.id);
   window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-  
+
   const cleanTitle = stripTitlePrefixes(p.title);
   document.title = `${cleanTitle} — ${p.artist} | IdolJapan.store`;
 
-  const modal = document.getElementById('product-modal');
   const img = document.getElementById('modal-img');
   const title = document.getElementById('modal-title');
   const artist = document.getElementById('modal-artist-badge');
@@ -654,14 +731,17 @@ function openModal(productId, e) {
   const buyText = document.getElementById('modal-buy-btn-text');
   const editionBox = document.getElementById('modal-edition-tags');
 
-  img.src = p.image || PLACEHOLDER_IMG;
-  title.innerText = cleanTitle;
-  artist.innerText = p.artist || '';
-  cat.innerText = p.category || '';
-  cid.innerText = p.id || '';
-  relDate.innerText = p.release_date || 'Available Now';
-  price.innerHTML = formatDisplayPrice(p.price, p);
-  fmt.innerText = getItemFormatCategory(p);
+  if (img) {
+    img.src = p.image || PLACEHOLDER_IMG;
+    img.alt = cleanTitle;
+  }
+  if (title) title.innerText = cleanTitle;
+  if (artist) artist.innerText = p.artist || '';
+  if (cat) cat.innerText = p.category || '';
+  if (cid) cid.innerText = p.id || '';
+  if (relDate) relDate.innerText = p.release_date || 'Available Now';
+  if (price) price.innerHTML = typeof formatDisplayPrice === 'function' ? formatDisplayPrice(p.price, p) : escapeHtml(p.price);
+  if (fmt) fmt.innerText = typeof getItemFormatCategory === 'function' ? getItemFormatCategory(p) : 'CD';
 
   if (editionBox) {
     editionBox.innerHTML = '';
@@ -678,23 +758,23 @@ function openModal(productId, e) {
   const oop = typeof isOutOfPrint === 'function' && isOutOfPrint(p);
 
   if (upcoming) {
-    preorder.classList.remove('hidden');
-    oopBadge.classList.add('hidden');
+    if (preorder) preorder.classList.remove('hidden');
+    if (oopBadge) oopBadge.classList.add('hidden');
     if (buyText) buyText.innerText = "Pre-Order on CDJapan";
   } else if (oop) {
-    oopBadge.classList.remove('hidden');
-    preorder.classList.add('hidden');
+    if (oopBadge) oopBadge.classList.remove('hidden');
+    if (preorder) preorder.classList.add('hidden');
     if (buyText) buyText.innerText = "Check Archive Status on CDJapan";
   } else {
-    preorder.classList.add('hidden');
-    oopBadge.classList.add('hidden');
+    if (preorder) preorder.classList.add('hidden');
+    if (oopBadge) oopBadge.classList.add('hidden');
     if (buyText) buyText.innerText = "Order Securely on CDJapan";
   }
 
   modal.classList.remove('hidden');
   document.body.classList.add('overflow-hidden');
 
-  if (window.IdolAnalytics) {
+  if (window.IdolAnalytics && typeof window.IdolAnalytics.trackProductView === 'function') {
     window.IdolAnalytics.trackProductView(p);
   }
 }
@@ -703,14 +783,18 @@ function navigateModalPrev() {
   if (!currentModalProduct || !activeFilteredList.length) return;
   const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
   const prevIdx = idx > 0 ? idx - 1 : activeFilteredList.length - 1;
-  openModal(activeFilteredList[prevIdx].id);
+  if (activeFilteredList[prevIdx]) {
+    openModal(activeFilteredList[prevIdx].id);
+  }
 }
 
 function navigateModalNext() {
   if (!currentModalProduct || !activeFilteredList.length) return;
   const idx = activeFilteredList.findIndex(x => x.id === currentModalProduct.id);
   const nextIdx = idx < activeFilteredList.length - 1 ? idx + 1 : 0;
-  openModal(activeFilteredList[nextIdx].id);
+  if (activeFilteredList[nextIdx]) {
+    openModal(activeFilteredList[nextIdx].id);
+  }
 }
 
 function closeModal() {
@@ -729,7 +813,7 @@ function closeModal() {
 }
 
 function closeModalOnBackdrop(e) {
-  if (e.target.id === 'product-modal') {
+  if (e && e.target && e.target.id === 'product-modal') {
     closeModal();
   }
 }

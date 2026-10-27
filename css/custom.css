@@ -56,3 +56,31 @@ html.layout-mobile body {
 .dark .autocomplete-item.active {
   background-color: rgba(225, 29, 72, 0.25);
 }
+
+/* File: css/custom.css | Block/Target: Custom Slim Mega-Menu Scrollbars */
+.mega-menu-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(225, 29, 72, 0.3) transparent;
+}
+.mega-menu-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.mega-menu-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mega-menu-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(225, 29, 72, 0.3);
+  border-radius: 9999px;
+}
+.mega-menu-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(225, 29, 72, 0.65);
+}
+.dark .mega-menu-scrollbar {
+  scrollbar-color: rgba(251, 113, 133, 0.3) transparent;
+}
+.dark .mega-menu-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(251, 113, 133, 0.3);
+}
+.dark .mega-menu-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(251, 113, 133, 0.65);
+}

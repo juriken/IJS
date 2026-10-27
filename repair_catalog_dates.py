@@ -235,22 +235,22 @@ def load_progress():
 
     if os.path.exists(PROGRESS_FILE):
         try:
-            with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
-                return set(json.load(f))
-        except Exception:
-            return set()
-    return set()
+            # File: repair_catalog_dates.py | Block/Target: atomic_save_json
+def atomic_save_json(filepath, data):
+    tmp_file = f"{filepath}.tmp"
+    with open(tmp_file, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    os.replace(tmp_file, filepath)
 
 def save_progress(processed_set):
-    with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
-        json.dump(sorted(list(processed_set)), f, indent=2)
+    atomic_save_json(PROGRESS_FILE, sorted(list(processed_set)))
 
+# File: repair_catalog_dates.py | Block/Target: is_valid_date_format
 def is_valid_date_format(d_str):
     if not d_str:
         return False
     clean = str(d_str).strip()
-    m = re.match(r"^(\d{4})/(\d{2})/(\d{2})$", clean)
-    # File: repair_catalog_dates.py | Block/Target: is_valid_date_format
+    m = re.match(r"^(\d{4})[/\-](\d{2})[/\-](\d{2})$", clean)
     if not m:
         return False
     y, mon, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
@@ -305,9 +305,12 @@ def main():
     # File: repair_catalog_dates.py | Block/Target: main
     print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
+    # File: repair_catalog_dates.py | Block/Target: main_execution_loop
     session = build_http_session()
     updated_count = 0
     preserved_count = 0
+    consecutive_blocks = 0
+    max_consecutive_blocks = 8
     start_time = time.time()
 
     try:
@@ -322,10 +325,15 @@ def main():
                 old_date = str(catalog[pid].get("release_date", "")).strip()
 
                 if confirmed_date is None:
+                    consecutive_blocks += 1
                     if is_valid_date_format(old_date):
                         preserved_count += 1
+                    if consecutive_blocks >= max_consecutive_blocks:
+                        print(f"\n[Warning] {consecutive_blocks} consecutive network/WAF blocks. Aborting batch early to protect IP reputation.")
+                        break
                     continue
 
+                consecutive_blocks = 0
                 processed_keys.add(pid)
 
                 if confirmed_date:
@@ -344,15 +352,11 @@ def main():
                     print(f"   -> Progress: {idx}/{batch_size} processed ({elapsed:.1f}s elapsed)...", flush=True)
 
     finally:
-        # Guarantee synchronization even if interrupted
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(catalog, f, indent=2, ensure_ascii=False)
-
-        with open(INDEX_FILE, "w", encoding="utf-8") as f:
-            json.dump(catalog, f, indent=2, ensure_ascii=False)
-
+        # Atomic commit guarantees no half-written JSON files if runner exits
+        atomic_save_json(DATA_FILE, catalog)
+        atomic_save_json(INDEX_FILE, catalog)
         save_progress(processed_keys)
-
+        
     new_audited = len(processed_keys)
     remaining_pending = total_catalog - new_audited
     new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0

@@ -138,10 +138,10 @@ def parse_cdjapan_date(raw_text):
     text = unicodedata.normalize("NFKC", str(raw_text))
     text = re.sub(r"\s+", " ", text).strip()
 
-    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 with optional whitespace
-    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)\s*[/\-.]\s*(\d{1,2})\s*[/\-.]\s*(\d{1,2})(?!\d)", text)
+    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 with uniform delimiters
+    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)\s*([/\-.])\s*(\d{1,2})\s*\2\s*(\d{1,2})(?!\d)", text)
     if m1:
-        y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        y, m, d = int(m1.group(1)), int(m1.group(3)), int(m1.group(4))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
@@ -590,15 +590,16 @@ def main():
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
 
+                /* File: repair_catalog_dates.py | Block/Target: sync_item */
                 def extract_product_key_from_url(u):
                     if not u:
                         return ""
                     u_str = str(u).strip()
                     key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
+                    prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
                     if key_m:
                         return key_m.group(1).strip()
-                    prod_m = re.search(r"cdjapan\.co\.jp/product/([^/?#]+)", u_str, re.IGNORECASE)
-                    if prod_m:
+                    if prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
                         return prod_m.group(1).strip()
                     return ""
 
@@ -615,21 +616,25 @@ def main():
                             for field in id_fields:
                                 f_val = val.get(field)
                                 if f_val and not is_invalid_identifier(f_val):
-                                    raw_keys.append(str(f_val).strip())
+                                    f_str = str(f_val).strip()
+                                    stripped_f = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", f_str, flags=re.IGNORECASE)
+                                    raw_keys.extend([f_str, stripped_f, f"cdjapan-{stripped_f}"])
                             clean_u = extract_product_key_from_url(val.get("url"))
                             if clean_u and not is_invalid_identifier(clean_u):
-                                raw_keys.append(clean_u)
+                                stripped_u = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", clean_u, flags=re.IGNORECASE)
+                                raw_keys.extend([clean_u, stripped_u, f"cdjapan-{stripped_u}"])
                             for raw_k in raw_keys:
-                                if raw_k is not None and not is_invalid_identifier(raw_k):
+                                if raw_k and not is_invalid_identifier(raw_k):
                                     k_str = str(raw_k).strip()
                                     date_lookup[k_str] = str(d).strip()
                                     date_lookup[k_str.lower()] = str(d).strip()
 
-                # File: repair_catalog_dates.py | Block/Target: sync_item
+                index_sync_updates = 0
+
                 def sync_item(entry, key_id=None):
+                    nonlocal index_sync_updates
                     if not isinstance(entry, dict):
                         return
-                    # Require concrete product attributes or existing date keys so category containers are never modified
                     has_product_traits = any(k in entry for k in ["price", "cat_no", "catno", "catalog_no", "sku", "jan", "barcode", "release_date", "releaseDate", "date"]) or (
                         ("title" in entry or "name" in entry) and any(k in entry for k in ["id", "pid", "artist", "url"])
                     )
@@ -650,28 +655,31 @@ def main():
                     target_date = None
                     for raw_cand in candidate_keys:
                         cand_str = str(raw_cand).strip()
-                        if cand_str in date_lookup:
-                            target_date = date_lookup[cand_str]
-                            break
-                        if cand_str.lower() in date_lookup:
-                            target_date = date_lookup[cand_str.lower()]
+                        stripped_cand = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", cand_str, flags=re.IGNORECASE)
+                        for lookup_cand in (cand_str, stripped_cand, f"cdjapan-{stripped_cand}"):
+                            if lookup_cand in date_lookup:
+                                target_date = date_lookup[lookup_cand]
+                                break
+                            if lookup_cand.lower() in date_lookup:
+                                target_date = date_lookup[lookup_cand.lower()]
+                                break
+                        if target_date:
                             break
 
                     if target_date:
+                        old_idx_date = str(entry.get("release_date") or "").strip()
+                        if old_idx_date != target_date:
+                            index_sync_updates += 1
                         entry["release_date"] = target_date
                         for alias in ("releaseDate", "date", "street_date", "streetDate"):
                             if alias in entry:
                                 entry[alias] = target_date
 
-                # 2 lines of existing code before:
                 def sync_catalog_tree(node, key_id=None):
                     if isinstance(node, dict):
-
                         sync_item(node, key_id=key_id)
                         for k, v in list(node.items()):
                             if isinstance(v, (dict, list)):
-
-# 2 lines of existing code after:
                                 sync_catalog_tree(v, key_id=k)
                     elif isinstance(node, list):
                         for elem in node:
@@ -680,13 +688,20 @@ def main():
 
                 sync_catalog_tree(idx_data)
 
+                if index_sync_updates == 0 and updated_count > 0:
+                    print(f"   ⚠ [Warning] {updated_count} products updated in products.json, but 0 corresponding records matched in {INDEX_FILE}. Inspect key schema parity.", flush=True)
+
                 # Stage both files atomically to guarantee dual-file parity
                 tmp_idx = f"{INDEX_FILE}.tmp"
                 tmp_data = f"{DATA_FILE}.tmp"
                 with open(tmp_idx, "w", encoding="utf-8") as f_idx:
                     json.dump(idx_data, f_idx, indent=2, ensure_ascii=False)
+                    f_idx.flush()
+                    os.fsync(f_idx.fileno())
                 with open(tmp_data, "w", encoding="utf-8") as f_data:
                     json.dump(catalog, f_data, indent=2, ensure_ascii=False)
+                    f_data.flush()
+                    os.fsync(f_data.fileno())
 
                 os.replace(tmp_idx, INDEX_FILE)
                 os.replace(tmp_data, DATA_FILE)

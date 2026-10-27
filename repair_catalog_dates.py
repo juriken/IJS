@@ -43,11 +43,12 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0"
 ]
 
+# File: repair_catalog_dates.py | Block/Target: build_http_session
 def build_http_session():
     session = requests.Session()
     retries = Retry(
-        total=3,
-        backoff_factor=0.6,
+        total=5,
+        backoff_factor=0.8,
         status_forcelist=[429, 500, 502, 503, 504],
         raise_on_status=False
     )
@@ -146,18 +147,19 @@ def fetch_official_date(session, pid):
             dt_nodes = soup.find_all(
                 lambda el: el.name in ["dt", "th"] and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
             )
+            # File: repair_catalog_dates.py | Block/Target: fetch_official_date
             for dt in dt_nodes:
                 dd = dt.find_next_sibling(["dd", "td"])
                 if dd:
-                    parsed = parse_cdjapan_date(dd.get_text())
+                    parsed = parse_cdjapan_date(dd.get_text(" ", strip=True))
                     if parsed:
                         return pid, parsed
 
             # 3. Check Table Rows and General Cells
             for tr in soup.find_all("tr"):
-                row_text = tr.get_text().lower()
+                row_text = tr.get_text(" ", strip=True).lower()
                 if "release date" in row_text or "発売日" in row_text:
-                    parsed = parse_cdjapan_date(tr.get_text())
+                    parsed = parse_cdjapan_date(tr.get_text(" ", strip=True))
                     if parsed:
                         return pid, parsed
 
@@ -221,10 +223,11 @@ def is_valid_date_format(d_str):
         return False
     clean = str(d_str).strip()
     m = re.match(r"^(\d{4})/(\d{2})/(\d{2})$", clean)
+    # File: repair_catalog_dates.py | Block/Target: is_valid_date_format
     if not m:
         return False
     y, mon, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
-    return is_calendar_valid(y, mon, d) and (1990 <= y <= 2035)
+    return is_calendar_valid(y, mon, d) and (1900 <= y <= 2035)
 
 def get_progress_bar(percentage, width=24):
     filled = int(width * (percentage / 100))
@@ -285,9 +288,9 @@ def main():
             for pid in current_batch
         }
 
+        # File: repair_catalog_dates.py | Block/Target: main
         for idx, future in enumerate(as_completed(future_to_pid), 1):
             pid, confirmed_date = future.result()
-            processed_keys.add(pid)
             old_date = str(catalog[pid].get("release_date", "")).strip()
 
             if confirmed_date is None:

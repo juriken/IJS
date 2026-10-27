@@ -173,14 +173,29 @@ def parse_cdjapan_date(raw_text):
     return ""
     
 # File: repair_catalog_dates.py | Block/Target: fetch_official_date
-def fetch_official_date(pid, session=None):
+def fetch_official_date(pid, entry=None, session=None):
     if session is None:
         session = get_thread_session()
+
+    target_candidate = None
+    if isinstance(entry, dict):
+        url_field = entry.get("url")
+        if url_field and "cdjapan.co.jp/product/" in str(url_field):
+            target_candidate = str(url_field)
+        else:
+            for k in ["cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "product_id", "productId", "id", "pid"]:
+                val = entry.get(k)
+                if val and str(val).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                    target_candidate = str(val).strip()
+                    break
+
+    if not target_candidate:
+        target_candidate = str(pid).strip()
 
     clean_pid = re.sub(
         r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
         "",
-        str(pid).strip(),
+        target_candidate,
         flags=re.IGNORECASE
     ).split("?")[0].strip("/")
     if not clean_pid:
@@ -236,7 +251,7 @@ def fetch_official_date(pid, session=None):
                                     if isinstance(prop, dict):
                                         p_name = str(prop.get("name", "")).strip().lower()
                                         if any(k in p_name for k in ["release date", "発売日", "発売予定日", "street date"]) or (
-                                            any(k in p_name for k in ["release", "発売"]) and not any(k in p_name for k in ["発売元", "発売国", "発売レーベル", "publisher", "label", "distributor"])
+                                            any(k in p_name for k in ["release", "発売"]) and not any(k in p_name for k in ["発売元", "発売国", "発売レーベル", "publisher", "label", "distributor", "press", "event"])
                                         ):
                                             parsed = parse_cdjapan_date(prop.get("value", ""))
                                             if parsed:
@@ -244,12 +259,6 @@ def fetch_official_date(pid, session=None):
                             
                             if item.get("releaseDate"):
                                 parsed = parse_cdjapan_date(item["releaseDate"])
-                                if parsed:
-                                    return pid, parsed
-
-                            # Support pre-order street dates nested in schema offers
-                            if item.get("availabilityStarts"):
-                                parsed = parse_cdjapan_date(item["availabilityStarts"])
                                 if parsed:
                                     return pid, parsed
                             
@@ -264,8 +273,9 @@ def fetch_official_date(pid, session=None):
 
             # 2. Check Definition Lists & Key-Value Table Cells
             target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
+            negative_labels = {"press", "news", "event", "label", "distributor", "country", "発売元", "発売国", "発売レーベル"}
             label_nodes = soup.find_all(
-                lambda el: el.name in ["dt", "th", "td"] and len(el.get_text(strip=True)) <= 30 and (
+                lambda el: el.name in ["dt", "th", "td"] and len(el.get_text(strip=True)) <= 30 and not any(neg in el.get_text().lower() for neg in negative_labels) and (
                     re.sub(r"\s+", " ", el.get_text()).strip().lower().rstrip(":") in target_labels
                     or any(re.search(rf"\b{re.escape(k)}\b", el.get_text().lower()) for k in ["release date", "発売日", "street date"])
                 )
@@ -315,7 +325,7 @@ def fetch_official_date(pid, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"\b(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"(?<!press\s)(?<!news\s)\b(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -439,7 +449,7 @@ def main():
     try:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_pid = {
-                executor.submit(fetch_official_date, pid): pid
+                executor.submit(fetch_official_date, pid, catalog.get(pid)): pid
                 for pid in current_batch
             }
 
@@ -482,97 +492,88 @@ def main():
     finally:
         # Save updated catalog records atomically only when changes occur
         if updated_count > 0:
-            if os.path.exists(INDEX_FILE):
-                try:
-                    with open(INDEX_FILE, "r", encoding="utf-8") as f:
-                        idx_data = json.load(f)
+            if not os.path.exists(INDEX_FILE):
+                raise FileNotFoundError(f"[Critical] {INDEX_FILE} disappeared during execution. Aborting to preserve dual-file parity.")
 
-                    date_lookup = {}
-                    for p in updated_dates:
-                        val = catalog.get(p)
-                        if isinstance(val, dict):
-                            d = val.get("release_date")
-                            if d and is_valid_date_format(d):
-                                stripped_p = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", str(p).strip(), flags=re.IGNORECASE)
-                                raw_keys = [
-                                    p,
-                                    stripped_p,
-                                    f"cdjapan-{stripped_p}",
-                                    val.get("id"),
-                                    val.get("pid"),
-                                    val.get("product_id"),
-                                    val.get("productId"),
-                                    val.get("catalog_id"),
-                                    val.get("catalogId")
-                                ]
-                                if val.get("url"):
-                                    clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
-                                    if clean_u:
-                                        raw_keys.append(clean_u)
-                                cat_no = str(val.get("cat_no", "")).strip()
-                                if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
-                                    raw_keys.append(cat_no)
-                                for raw_k in raw_keys:
-                                    if raw_k is not None:
-                                        k_str = str(raw_k).strip()
-                                        if k_str and k_str.lower() not in ["none", "tbd", "n/a", "-"]:
-                                            date_lookup[k_str] = str(d).strip()
-                                            date_lookup[k_str.lower()] = str(d).strip()
+            try:
+                with open(INDEX_FILE, "r", encoding="utf-8") as f:
+                    idx_data = json.load(f)
 
-                    def sync_item(entry, key_id=None):
-                        if not isinstance(entry, dict):
-                            return
-                        candidate_keys = [
-                            key_id,
-                            entry.get("id"), entry.get("pid"), entry.get("product_id"),
-                            entry.get("productId"), entry.get("catalog_id"), entry.get("catalogId")
-                        ]
-                        if entry.get("url"):
-                            clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
-                            if clean_u:
-                                candidate_keys.append(clean_u)
-                        cat_no = str(entry.get("cat_no", "")).strip()
-                        if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
-                            candidate_keys.append(cat_no)
+                date_lookup = {}
+                id_fields = ["id", "pid", "product_id", "productId", "catalog_id", "catalogId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "sku"]
+                for p in updated_dates:
+                    val = catalog.get(p)
+                    if isinstance(val, dict):
+                        d = val.get("release_date")
+                        if d and is_valid_date_format(d):
+                            stripped_p = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", str(p).strip(), flags=re.IGNORECASE)
+                            raw_keys = [p, stripped_p, f"cdjapan-{stripped_p}"]
+                            for field in id_fields:
+                                f_val = val.get(field)
+                                if f_val and str(f_val).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                                    raw_keys.append(str(f_val).strip())
+                            if val.get("url"):
+                                clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                                if clean_u:
+                                    raw_keys.append(clean_u)
+                            for raw_k in raw_keys:
+                                if raw_k is not None:
+                                    k_str = str(raw_k).strip()
+                                    if k_str and k_str.lower() not in ["none", "tbd", "n/a", "-"]:
+                                        date_lookup[k_str] = str(d).strip()
+                                        date_lookup[k_str.lower()] = str(d).strip()
 
-                        target_date = None
-                        for raw_cand in candidate_keys:
-                            if raw_cand is not None:
-                                cand_str = str(raw_cand).strip()
-                                if cand_str and cand_str.lower() not in ["none", "tbd", "n/a", "-"]:
-                                    if cand_str in date_lookup:
-                                        target_date = date_lookup[cand_str]
-                                        break
-                                    if cand_str.lower() in date_lookup:
-                                        target_date = date_lookup[cand_str.lower()]
-                                        break
-                        if target_date:
-                            entry["release_date"] = target_date
-                            if "releaseDate" in entry:
-                                entry["releaseDate"] = target_date
-                            if "date" in entry:
-                                entry["date"] = target_date
-                            if "street_date" in entry:
-                                entry["street_date"] = target_date
-                            if "streetDate" in entry:
-                                entry["streetDate"] = target_date
+                def sync_item(entry, key_id=None):
+                    if not isinstance(entry, dict):
+                        return
+                    candidate_keys = [key_id]
+                    for field in id_fields:
+                        cand = entry.get(field)
+                        if cand and str(cand).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                            candidate_keys.append(str(cand).strip())
+                    if entry.get("url"):
+                        clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                        if clean_u:
+                            candidate_keys.append(clean_u)
 
-                    def sync_catalog_tree(node, key_id=None):
-                        if isinstance(node, dict):
-                            sync_item(node, key_id=key_id)
-                            for k, v in node.items():
-                                if isinstance(v, (dict, list)):
-                                    sync_catalog_tree(v, key_id=k)
-                        elif isinstance(node, list):
-                            for elem in node:
-                                if isinstance(elem, (dict, list)):
-                                    sync_catalog_tree(elem)
+                    target_date = None
+                    for raw_cand in candidate_keys:
+                        if raw_cand is not None:
+                            cand_str = str(raw_cand).strip()
+                            if cand_str and cand_str.lower() not in ["none", "tbd", "n/a", "-"]:
+                                if cand_str in date_lookup:
+                                    target_date = date_lookup[cand_str]
+                                    break
+                                if cand_str.lower() in date_lookup:
+                                    target_date = date_lookup[cand_str.lower()]
+                                    break
+                    if target_date:
+                        entry["release_date"] = target_date
+                        if "releaseDate" in entry:
+                            entry["releaseDate"] = target_date
+                        if "date" in entry:
+                            entry["date"] = target_date
+                        if "street_date" in entry:
+                            entry["street_date"] = target_date
+                        if "streetDate" in entry:
+                            entry["streetDate"] = target_date
 
-                    sync_catalog_tree(idx_data)
-                    atomic_save_json(INDEX_FILE, idx_data)
-                except Exception as e:
-                    print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")
-                    raise RuntimeError(f"Catalog synchronization failed: {e}")
+                def sync_catalog_tree(node, key_id=None):
+                    if isinstance(node, dict):
+                        sync_item(node, key_id=key_id)
+                        for k, v in node.items():
+                            if isinstance(v, (dict, list)):
+                                sync_catalog_tree(v, key_id=k)
+                    elif isinstance(node, list):
+                        for elem in node:
+                            if isinstance(elem, (dict, list)):
+                                sync_catalog_tree(elem)
+
+                sync_catalog_tree(idx_data)
+                atomic_save_json(INDEX_FILE, idx_data)
+            except Exception as e:
+                print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")
+                raise RuntimeError(f"Catalog synchronization failed: {e}")
 
             atomic_save_json(DATA_FILE, catalog)
         save_progress(processed_keys)

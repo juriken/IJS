@@ -88,8 +88,8 @@ def parse_cdjapan_date(raw_text):
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Month DD, YYYY (e.g., September 21, 2024)
-    m3 = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
+    # Match Month DD, YYYY (e.g., September 21, 2024 or Oct. 23, 2024)
+    m3 = re.search(r"\b([A-Za-z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
     if m3:
         mon_str = m3.group(1).lower()
         if mon_str in MONTH_MAP:
@@ -97,8 +97,8 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match DD Month YYYY (e.g., 21 September 2024)
-    m4 = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
+    # Match DD Month YYYY (e.g., 21 September 2024 or 21 Oct. 2024)
+    m4 = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
     if m4:
         mon_str = m4.group(2).lower()
         if mon_str in MONTH_MAP:
@@ -106,8 +106,8 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Month YYYY (e.g., September 2024) -> default to 1st of month
-    m5 = re.search(r"\b([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
+    # Match Month YYYY (e.g., September 2024 or Oct. 2024) -> default to 1st of month
+    m5 = re.search(r"\b([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
     if m5:
         mon_str = m5.group(1).lower()
         if mon_str in MONTH_MAP:
@@ -123,7 +123,7 @@ def parse_cdjapan_date(raw_text):
             return f"{y}/{str(m).zfill(2)}/01"
 
     return ""
-
+    
 # File: repair_catalog_dates.py | Block/Target: fetch_official_date
 def fetch_official_date(session, pid):
     url = f"https://www.cdjapan.co.jp/product/{pid}"
@@ -144,7 +144,7 @@ def fetch_official_date(session, pid):
             if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
                 return pid, None
 
-            # 1. Parse JSON-LD structured data
+           # 1. Parse JSON-LD structured data
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
                     raw_content = script.get_text(strip=True)
@@ -157,8 +157,17 @@ def fetch_official_date(session, pid):
                         if isinstance(item, dict):
                             if "@graph" in item and isinstance(item["@graph"], list):
                                 queue.extend(item["@graph"])
-                            if "offers" in item and isinstance(item["offers"], dict):
-                                queue.append(item["offers"])
+                            if "offers" in item:
+                                if isinstance(item["offers"], dict):
+                                    queue.append(item["offers"])
+                                elif isinstance(item["offers"], list):
+                                    queue.extend(item["offers"])
+                            if "additionalProperty" in item and isinstance(item["additionalProperty"], list):
+                                for prop in item["additionalProperty"]:
+                                    if isinstance(prop, dict) and any(k in str(prop.get("name", "")).lower() for k in ["release", "発売"]):
+                                        parsed = parse_cdjapan_date(prop.get("value", ""))
+                                        if parsed:
+                                            return pid, parsed
                             for key in ["releaseDate", "datePublished"]:
                                 if item.get(key):
                                     parsed = parse_cdjapan_date(item[key])
@@ -235,7 +244,15 @@ def load_progress():
 
     if os.path.exists(PROGRESS_FILE):
         try:
-            # File: repair_catalog_dates.py | Block/Target: atomic_save_json
+            with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    return set(data)
+        except Exception:
+            pass
+
+    return set()
+
 def atomic_save_json(filepath, data):
     tmp_file = f"{filepath}.tmp"
     with open(tmp_file, "w", encoding="utf-8") as f:
@@ -244,7 +261,7 @@ def atomic_save_json(filepath, data):
 
 def save_progress(processed_set):
     atomic_save_json(PROGRESS_FILE, sorted(list(processed_set)))
-
+    
 # File: repair_catalog_dates.py | Block/Target: is_valid_date_format
 def is_valid_date_format(d_str):
     if not d_str:
@@ -324,12 +341,15 @@ def main():
                 pid, confirmed_date = future.result()
                 old_date = str(catalog[pid].get("release_date", "")).strip()
 
-                if confirmed_date is None:
+               if confirmed_date is None:
                     consecutive_blocks += 1
                     if is_valid_date_format(old_date):
                         preserved_count += 1
                     if consecutive_blocks >= max_consecutive_blocks:
                         print(f"\n[Warning] {consecutive_blocks} consecutive network/WAF blocks. Aborting batch early to protect IP reputation.")
+                        for f in future_to_pid:
+                            f.cancel()
+                        executor.shutdown(wait=False, cancel_futures=True)
                         break
                     continue
 

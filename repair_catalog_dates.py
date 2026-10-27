@@ -219,7 +219,6 @@ def fetch_official_date(pid, entry=None, session=None):
     if session is None:
         session = get_thread_session()
 
-    # File: repair_catalog_dates.py | Block/Target: fetch_official_date
     target_candidate = None
     if isinstance(entry, dict):
         url_field = entry.get("url")
@@ -233,7 +232,6 @@ def fetch_official_date(pid, entry=None, session=None):
                 target_candidate = prod_m.group(1).strip()
 
         if not target_candidate:
-            # Check canonical catalog numbers first, then product codes and identifiers
             for k in ["cat_no", "catalog_no", "catno", "catalog_number", "catalogNumber", "product_id", "productId", "pid", "id"]:
                 val = entry.get(k)
                 if val and not is_invalid_identifier(val):
@@ -310,7 +308,7 @@ def fetch_official_date(pid, entry=None, session=None):
                                     if isinstance(prop, dict):
                                         p_name = str(prop.get("name", "")).strip().lower()
                                         if any(k in p_name for k in ["release date", "発売日", "発売予定日", "street date"]) or (
-                                            any(k in p_name for k in ["release", "発売"]) and not any(k in p_name for k in ["発売元", "発売国", "発売レーベル", "publisher", "label", "distributor", "press", "event"])
+                                            any(k in p_name for k in ["release", "発売"]) and not any(k in p_name for k in ["発売元", "発売国", "発売レーベル", "publisher", "label", "distributor", "event"])
                                         ):
                                             parsed = parse_cdjapan_date(prop.get("value", ""))
                                             if parsed:
@@ -318,6 +316,11 @@ def fetch_official_date(pid, entry=None, session=None):
 
                             if item.get("releaseDate"):
                                 parsed = parse_cdjapan_date(item["releaseDate"])
+                                if parsed:
+                                    return pid, parsed
+
+                            if item.get("availabilityStarts"):
+                                parsed = parse_cdjapan_date(item["availabilityStarts"])
                                 if parsed:
                                     return pid, parsed
 
@@ -330,8 +333,7 @@ def fetch_official_date(pid, entry=None, session=None):
                 except Exception:
                     pass
 
-            # File: repair_catalog_dates.py | Block/Target: fetch_official_date
-            # Strip non-product areas before DOM parsing to prevent extracting dates from related releases
+            # Strip non-product areas before DOM parsing
             for noise in soup.find_all(["script", "style", "noscript", "svg", "aside", "nav", "footer"]):
                 noise.decompose()
             for noisy_section in soup.find_all(attrs={"class": re.compile(r"sidebar|related|recommend|review|ranking|banner", re.I)}):
@@ -341,7 +343,7 @@ def fetch_official_date(pid, entry=None, session=None):
 
             # 2. Check Definition Lists & Key-Value Spec Tables
             target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
-            negative_labels = {"press", "news", "event", "label", "distributor", "country", "発売元", "発売国", "発売レーベル"}
+            negative_labels = {"news", "event", "label", "distributor", "country", "発売元", "発売国", "発売レーベル"}
             for label in soup.find_all(["dt", "th", "td"]):
                 raw_label_txt = label.get_text(" ", strip=True)
                 if not raw_label_txt or len(raw_label_txt) > 35:
@@ -354,11 +356,16 @@ def fetch_official_date(pid, entry=None, session=None):
                     k in label_txt for k in ["release date", "street date", "発売日", "発売予定日"]
                 )
                 if is_target:
+                    # Check if the date is embedded directly within the label node first
+                    parsed_inline = parse_cdjapan_date(raw_label_txt)
+                    if parsed_inline:
+                        return pid, parsed_inline
+
                     val = label.find_next_sibling(["dd", "td"])
-                    cand_text = val.get_text(" ", strip=True) if val else raw_label_txt
-                    parsed = parse_cdjapan_date(cand_text)
-                    if parsed:
-                        return pid, parsed
+                    if val:
+                        parsed_sibling = parse_cdjapan_date(val.get_text(" ", strip=True))
+                        if parsed_sibling:
+                            return pid, parsed_sibling
 
             # 3. Check Canonical OpenGraph / Meta Tags
             meta_selectors = [
@@ -382,7 +389,7 @@ def fetch_official_date(pid, entry=None, session=None):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
+                    r"(?<![a-zA-Z])(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -590,7 +597,7 @@ def main():
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
 
-                /* File: repair_catalog_dates.py | Block/Target: sync_item */
+                # Synchronization helper: extract canonical CDJapan key from URLs
                 def extract_product_key_from_url(u):
                     if not u:
                         return ""

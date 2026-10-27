@@ -11,8 +11,10 @@ import math
 import os
 import random
 import re
+/* File: repair_catalog_dates.py | Block/Target: top_imports */
 import sys
 import time
+import unicodedata
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
@@ -67,11 +69,10 @@ def is_calendar_valid(year, month, day):
     except (ValueError, OverflowError):
         return False
 
-# File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date
+/* File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date */
 def parse_cdjapan_date(raw_text):
     if not raw_text:
         return ""
-    import unicodedata
     text = unicodedata.normalize("NFKC", str(raw_text))
     text = re.sub(r"\s+", " ", text).strip()
 
@@ -139,10 +140,11 @@ def fetch_official_date(session, pid):
         time.sleep(random.uniform(0.6, 1.4))
         res = session.get(url, headers=headers, timeout=14)
 
+        /* File: repair_catalog_dates.py | Block/Target: fetch_official_date */
         if res.status_code == 200:
             # Guard against redirects to homepage or department landing pages for deleted items
             is_valid_dest = (
-                res.url.startswith("https://www.cdjapan.co.jp/product/") or
+                "cdjapan.co.jp/product/" in res.url or
                 "detailview.html" in res.url
             ) and not any(k in res.url for k in ["/department/", "/search.html", "/person/"])
             if not is_valid_dest:
@@ -197,19 +199,20 @@ def fetch_official_date(session, pid):
                     if parsed:
                         return pid, parsed
 
-            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags
-            meta_date = (
-                soup.find("meta", {"itemprop": "releaseDate"})
-                or soup.find("meta", {"property": "product:release_date"})
-                or soup.find("meta", {"name": "release_date"})
-                or soup.find("meta", {"property": "og:release_date"})
-                or soup.find("time", {"itemprop": "releaseDate"})
-            )
-            if meta_date:
-                raw_meta = meta_date.get("content") or meta_date.get("datetime") or meta_date.get_text(" ", strip=True)
-                parsed = parse_cdjapan_date(raw_meta)
-                if parsed:
-                    return pid, parsed
+            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags without short-circuiting on empty nodes
+            meta_selectors = [
+                ("meta", {"itemprop": "releaseDate"}),
+                ("meta", {"property": "product:release_date"}),
+                ("meta", {"name": "release_date"}),
+                ("meta", {"property": "og:release_date"}),
+                ("time", {"itemprop": "releaseDate"})
+            ]
+            for tag_name, attrs in meta_selectors:
+                for el in soup.find_all(tag_name, attrs):
+                    raw_val = el.get("content") or el.get("datetime") or el.get_text(" ", strip=True)
+                    parsed = parse_cdjapan_date(raw_val)
+                    if parsed:
+                        return pid, parsed
 
             # 4. Check Leaf Table Rows and Specific List Items
             for tr in soup.find_all(["tr", "li"]):
@@ -358,15 +361,13 @@ def main():
                     continue
                 old_date = str(entry.get("release_date", "")).strip()
 
+                /* File: repair_catalog_dates.py | Block/Target: loop_record_guard */
                 if confirmed_date is None:
                     consecutive_blocks += 1
-                    if is_valid_date_format(old_date):
-                        preserved_count += 1
                     if consecutive_blocks >= max_consecutive_blocks:
                         print(f"\n[Warning] {consecutive_blocks} consecutive network/WAF blocks. Aborting batch early to protect IP reputation.")
                         for f in future_to_pid:
                             f.cancel()
-                        executor.shutdown(wait=False, cancel_futures=True)
                         break
                     continue
 
@@ -400,6 +401,7 @@ def main():
                     
                     date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
 
+                    /* File: repair_catalog_dates.py | Block/Target: dual_file_sync */
                     if isinstance(idx_data, dict):
                         if "items" in idx_data and isinstance(idx_data["items"], list):
                             target_list = idx_data["items"]
@@ -411,23 +413,26 @@ def main():
                         if target_list is not None:
                             for entry in target_list:
                                 if isinstance(entry, dict):
-                                    eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
-                                    if eid in date_lookup:
+                                    raw_id = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
+                                    eid = str(raw_id).strip() if raw_id is not None else ""
+                                    if eid and eid in date_lookup:
                                         entry["release_date"] = date_lookup[eid]
                                         if "releaseDate" in entry:
                                             entry["releaseDate"] = date_lookup[eid]
                         else:
                             for p, new_date in date_lookup.items():
-                                if p in idx_data and isinstance(idx_data[p], dict):
-                                    idx_data[p]["release_date"] = new_date
-                                    if "releaseDate" in idx_data[p]:
-                                        idx_data[p]["releaseDate"] = new_date
+                                str_p = str(p).strip()
+                                if str_p in idx_data and isinstance(idx_data[str_p], dict):
+                                    idx_data[str_p]["release_date"] = new_date
+                                    if "releaseDate" in idx_data[str_p]:
+                                        idx_data[str_p]["releaseDate"] = new_date
                         atomic_save_json(INDEX_FILE, idx_data)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:
                             if isinstance(entry, dict):
-                                eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
-                                if eid in date_lookup:
+                                raw_id = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
+                                eid = str(raw_id).strip() if raw_id is not None else ""
+                                if eid and eid in date_lookup:
                                     entry["release_date"] = date_lookup[eid]
                                     if "releaseDate" in entry:
                                         entry["releaseDate"] = date_lookup[eid]

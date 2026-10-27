@@ -197,7 +197,7 @@ def fetch_official_date(pid, entry=None, session=None):
         "",
         target_candidate,
         flags=re.IGNORECASE
-    ).split("?")[0].strip("/")
+    ).split("#")[0].split("?")[0].strip("/ \t")
     if not clean_pid:
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
@@ -412,7 +412,10 @@ def main():
     # File: repair_catalog_dates.py | Block/Target: pending_items_queue
     pending_items = sorted(
         [pid for pid, val in catalog.items() if pid not in processed_keys and isinstance(val, dict)],
-        key=lambda pid: (0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date", "")) else 1, str(pid))
+        key=lambda pid: (
+            0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date") or (catalog.get(pid) or {}).get("releaseDate") or "") else 1,
+            str(pid)
+        )
     )
 
     total_pending = len(pending_items)
@@ -477,6 +480,9 @@ def main():
                     processed_keys.add(pid)
                     if confirmed_date != old_date:
                         catalog[pid]["release_date"] = confirmed_date
+                        for date_alias in ("releaseDate", "date", "street_date", "streetDate"):
+                            if date_alias in catalog[pid]:
+                                catalog[pid][date_alias] = confirmed_date
                         updated_dates[pid] = confirmed_date
                         updated_count += 1
                         print(f"   [{idx}/{batch_size}] ✓ [{pid}] {old_date} -> {confirmed_date}", flush=True)
@@ -501,6 +507,7 @@ def main():
 
                 date_lookup = {}
                 id_fields = ["id", "pid", "product_id", "productId", "catalog_id", "catalogId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "sku"]
+                invalid_stopwords = {"none", "tbd", "n/a", "-", "null", "undefined", "unknown", "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true", "items", "products", "all"}
                 for p in updated_dates:
                     val = catalog.get(p)
                     if isinstance(val, dict):
@@ -510,16 +517,16 @@ def main():
                             raw_keys = [p, stripped_p, f"cdjapan-{stripped_p}"]
                             for field in id_fields:
                                 f_val = val.get(field)
-                                if f_val and str(f_val).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                                if f_val and str(f_val).strip().lower() not in invalid_stopwords:
                                     raw_keys.append(str(f_val).strip())
                             if val.get("url"):
-                                clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                                clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("#")[0].split("?")[0].strip("/ \t")
                                 if clean_u:
                                     raw_keys.append(clean_u)
                             for raw_k in raw_keys:
                                 if raw_k is not None:
                                     k_str = str(raw_k).strip()
-                                    if k_str and k_str.lower() not in ["none", "tbd", "n/a", "-"]:
+                                    if k_str and len(k_str) >= 2 and k_str.lower() not in invalid_stopwords:
                                         date_lookup[k_str] = str(d).strip()
                                         date_lookup[k_str.lower()] = str(d).strip()
 
@@ -529,10 +536,10 @@ def main():
                     candidate_keys = [key_id]
                     for field in id_fields:
                         cand = entry.get(field)
-                        if cand and str(cand).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                        if cand and str(cand).strip().lower() not in invalid_stopwords:
                             candidate_keys.append(str(cand).strip())
                     if entry.get("url"):
-                        clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                        clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("#")[0].split("?")[0].strip("/ \t")
                         if clean_u:
                             candidate_keys.append(clean_u)
 
@@ -540,7 +547,7 @@ def main():
                     for raw_cand in candidate_keys:
                         if raw_cand is not None:
                             cand_str = str(raw_cand).strip()
-                            if cand_str and cand_str.lower() not in ["none", "tbd", "n/a", "-"]:
+                            if cand_str and len(cand_str) >= 2 and cand_str.lower() not in invalid_stopwords:
                                 if cand_str in date_lookup:
                                     target_date = date_lookup[cand_str]
                                     break

@@ -230,8 +230,8 @@ def extract_product_key_from_url(u):
     if prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
         cand = prod_m.group(1).strip()
         if not is_invalid_identifier(cand):
-            return cand
-    aff_m = re.search(r"click\.cgi/[^/]+/[^/]+/([^/?#]+)", u_str, re.IGNORECASE)
+                return cand
+    aff_m = re.search(r"click\.cgi/(?:[^/]+/)*([^/?#]+)", u_str, re.IGNORECASE)
     if aff_m:
         cand = aff_m.group(1).strip()
         if not is_invalid_identifier(cand):
@@ -341,7 +341,7 @@ def fetch_official_date(pid, entry=None, session=None):
                                     return pid, parsed
 
                             item_type = str(item.get("@type", "")).lower()
-                            if any(k in item_type for k in ["product", "musicalbum", "book", "musicrecording"]):
+                            if any(k in item_type for k in ["product", "musicalbum", "musicrelease", "book", "musicrecording"]):
                                 if item.get("datePublished"):
                                     parsed = parse_cdjapan_date(item["datePublished"])
                                     if parsed:
@@ -646,6 +646,7 @@ def main():
                     if isinstance(val, dict):
                         d = val.get("release_date")
                         if d and is_valid_date_format(d):
+                            clean_d = str(d).strip()
                             stripped_p = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", str(p).strip(), flags=re.IGNORECASE)
                             raw_keys = [p, stripped_p, f"cdjapan-{stripped_p}"]
                             for field in id_fields:
@@ -661,13 +662,16 @@ def main():
                             for raw_k in raw_keys:
                                 if raw_k and not is_invalid_identifier(raw_k):
                                     k_str = str(raw_k).strip()
-                                    date_lookup[k_str] = str(d).strip()
-                                    date_lookup[k_str.lower()] = str(d).strip()
+                                    date_lookup[k_str] = clean_d
+                                    date_lookup[k_str.lower()] = clean_d
+                                    norm_key = re.sub(r"[\s\-_]+", "", k_str).lower()
+                                    date_lookup[norm_key] = clean_d
 
                 index_sync_updates = 0
+                index_matched_count = 0
 
                 def sync_item(entry, key_id=None):
-                    nonlocal index_sync_updates
+                    nonlocal index_sync_updates, index_matched_count
                     if not isinstance(entry, dict):
                         return
                     has_product_traits = any(k in entry for k in ["price", "cat_no", "catno", "catalog_no", "sku", "jan", "barcode", "release_date", "releaseDate", "date"]) or (
@@ -691,7 +695,8 @@ def main():
                     for raw_cand in candidate_keys:
                         cand_str = str(raw_cand).strip()
                         stripped_cand = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", cand_str, flags=re.IGNORECASE)
-                        for lookup_cand in (cand_str, stripped_cand, f"cdjapan-{stripped_cand}"):
+                        norm_cand = re.sub(r"[\s\-_]+", "", cand_str).lower()
+                        for lookup_cand in (cand_str, stripped_cand, f"cdjapan-{stripped_cand}", norm_cand):
                             if lookup_cand in date_lookup:
                                 target_date = date_lookup[lookup_cand]
                                 break
@@ -702,6 +707,7 @@ def main():
                             break
 
                     if target_date:
+                        index_matched_count += 1
                         old_idx_date = str(entry.get("release_date") or entry.get("date") or entry.get("releaseDate") or "").strip()
                         if old_idx_date != target_date:
                             index_sync_updates += 1
@@ -723,7 +729,7 @@ def main():
 
                 sync_catalog_tree(idx_data)
 
-                if index_sync_updates == 0 and updated_count > 0:
+                if index_matched_count == 0 and updated_count > 0:
                     print(f"   ⚠ [Warning] {updated_count} products updated in products.json, but 0 corresponding records matched in {INDEX_FILE}. Inspect key schema parity.", flush=True)
 
                 # Stage both files atomically to guarantee dual-file parity

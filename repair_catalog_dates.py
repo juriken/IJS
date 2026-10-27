@@ -110,8 +110,8 @@ def parse_cdjapan_date(raw_text):
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月
-    m2 = re.search(r"(\d{4})年\s*(\d{1,2})月(?:\s*(\d{1,2})日)?", text)
+    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月 (with optional spacing)
+    m2 = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月(?:\s*(\d{1,2})\s*日)?", text)
     if m2:
         y, m = int(m2.group(1)), int(m2.group(2))
         d = int(m2.group(3)) if m2.group(3) else 1
@@ -177,7 +177,12 @@ def fetch_official_date(pid, session=None):
     if session is None:
         session = get_thread_session()
 
-    clean_pid = re.sub(r"^cdjapan[-_:]", "", str(pid).strip(), flags=re.IGNORECASE)
+    clean_pid = re.sub(
+        r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
+        "",
+        str(pid).strip(),
+        flags=re.IGNORECASE
+    ).split("?")[0].strip("/")
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
     try:
@@ -286,7 +291,11 @@ def fetch_official_date(pid, session=None):
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
-                m = re.search(r"(?<![a-zA-Z])(?:release\s*date|release|street\s*date|発売日|発売予定日|発売)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
+                m = re.search(
+                    r"(?<![a-zA-Z])(?:release\s*date|street\s*date|発売予定日|発売日|発売(?!元|国|レーベル))\s*[:：]\s*(.*)",
+                    raw_row,
+                    re.IGNORECASE
+                )
                 if m:
                     parsed = parse_cdjapan_date(m.group(1))
                     if parsed:
@@ -468,26 +477,29 @@ def main():
                 try:
                     with open(INDEX_FILE, "r", encoding="utf-8") as f:
                         idx_data = json.load(f)
-                    
+
                     date_lookup = {}
                     for p, val in catalog.items():
-                        if isinstance(val, dict) and val.get("release_date"):
+                        if isinstance(val, dict):
                             d = val.get("release_date")
-                            keys_to_map = [
-                                str(p).strip(),
-                                str(val.get("id", "")).strip(),
-                                str(val.get("pid", "")).strip(),
-                                str(val.get("product_id", "")).strip(),
-                                str(val.get("productId", "")).strip(),
-                                str(val.get("cat_no", "")).strip(),
-                                str(val.get("catalog_id", "")).strip(),
-                                str(val.get("catalogId", "")).strip(),
-                                str(val.get("code", "")).strip(),
-                            ]
-                            for k in keys_to_map:
-                                if k:
-                                    date_lookup[k] = d
-                                    date_lookup[k.lower()] = d
+                            if d and is_valid_date_format(d):
+                                raw_keys = [
+                                    p,
+                                    val.get("id"),
+                                    val.get("pid"),
+                                    val.get("product_id"),
+                                    val.get("productId"),
+                                    val.get("cat_no"),
+                                    val.get("catalog_id"),
+                                    val.get("catalogId"),
+                                    val.get("code")
+                                ]
+                                for raw_k in raw_keys:
+                                    if raw_k is not None:
+                                        k_str = str(raw_k).strip()
+                                        if k_str and k_str.lower() != "none":
+                                            date_lookup[k_str] = str(d).strip()
+                                            date_lookup[k_str.lower()] = str(d).strip()
 
                     def sync_item(entry):
                         if not isinstance(entry, dict):
@@ -501,12 +513,13 @@ def main():
                         for raw_cand in candidate_keys:
                             if raw_cand is not None:
                                 cand_str = str(raw_cand).strip()
-                                if cand_str in date_lookup:
-                                    target_date = date_lookup[cand_str]
-                                    break
-                                if cand_str.lower() in date_lookup:
-                                    target_date = date_lookup[cand_str.lower()]
-                                    break
+                                if cand_str and cand_str.lower() != "none":
+                                    if cand_str in date_lookup:
+                                        target_date = date_lookup[cand_str]
+                                        break
+                                    if cand_str.lower() in date_lookup:
+                                        target_date = date_lookup[cand_str.lower()]
+                                        break
                         if target_date:
                             entry["release_date"] = target_date
                             if "releaseDate" in entry:
@@ -515,29 +528,17 @@ def main():
                                 entry["date"] = target_date
 
                     if isinstance(idx_data, dict):
-                        target_list = None
                         for key in ["items", "products", "releases", "catalog", "data"]:
-                            if key in idx_data and isinstance(idx_data[key], list):
-                                target_list = idx_data[key]
-                                break
-
-                        if target_list is not None:
-                            for entry in target_list:
-                                sync_item(entry)
-                        else:
-                            for key in ["items", "products", "releases", "catalog", "data"]:
-                                if key in idx_data and isinstance(idx_data[key], dict):
+                            if key in idx_data:
+                                if isinstance(idx_data[key], list):
+                                    for entry in idx_data[key]:
+                                        sync_item(entry)
+                                elif isinstance(idx_data[key], dict):
                                     for sub_node in idx_data[key].values():
                                         sync_item(sub_node)
-                            for p, new_date in date_lookup.items():
-                                str_p = str(p).strip()
-                                target_node = idx_data.get(str_p) or idx_data.get(str_p.lower())
-                                if isinstance(target_node, dict):
-                                    target_node["release_date"] = new_date
-                                    if "releaseDate" in target_node:
-                                        target_node["releaseDate"] = new_date
-                                    if "date" in target_node:
-                                        target_node["date"] = new_date
+                        for p_key, node in idx_data.items():
+                            if isinstance(node, dict) and p_key not in ["items", "products", "releases", "catalog", "data"]:
+                                sync_item(node)
                         atomic_save_json(INDEX_FILE, idx_data)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:

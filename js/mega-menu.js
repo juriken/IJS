@@ -486,72 +486,25 @@ function renderMegaMenu(cat) {
   `;
 
   // ZONE 3: Right Visual Merchandising Card (Wrapped in mount ID for hover-sync)
-  let showcaseHtml = `<div id="mega-menu-showcase-mount" class="w-full md:w-64 lg:w-72 shrink-0">`;
+  let showcaseContent = '';
   if (showcaseProduct) {
-    const sTitle = safeEscapeHtml(safeStripPrefixes(showcaseProduct.title));
-    const sArtist = safeEscapeHtml(showcaseProduct.artist);
-    const sDate = showcaseProduct.release_date || 'Upcoming Street Date';
-    const isUpcoming = typeof isPreOrder === 'function' && isPreOrder(showcaseProduct);
-    const formattedPrice = safeFormatPrice(showcaseProduct.price);
-
-    showcaseHtml = `
-      <div class="w-full md:w-64 lg:w-72 bg-gradient-to-br from-rose-50/80 via-white to-pink-50/60 dark:from-slate-800/90 dark:via-slate-800/60 dark:to-slate-900 border border-rose-200/80 dark:border-slate-700/80 p-3.5 rounded-2xl flex flex-col justify-between shadow-2xs shrink-0">
-        <div>
-          <div class="flex items-center justify-between mb-2">
-            <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider ${
-              isUpcoming 
-                ? 'bg-rose-600 text-white' 
-                : 'bg-stone-800 text-amber-300'
-            } px-2 py-0.5 rounded-full shadow-2xs">
-              <i class="fa-solid ${isUpcoming ? 'fa-clock' : 'fa-star'} text-[8px]"></i>
-              ${isUpcoming ? 'Featured Pre-Order' : 'Franchise Spotlight'}
-            </span>
-            <span class="text-[9px] font-mono text-stone-500 dark:text-slate-400 font-bold">${showcaseProduct.format || 'CD'}</span>
-          </div>
-
-          <div class="aspect-square bg-white dark:bg-slate-900 rounded-xl overflow-hidden mb-2.5 p-1.5 shadow-inner border border-stone-100 dark:border-slate-800 flex items-center justify-center">
-            <img 
-              src="${safeThumbnailUrl(showcaseProduct.image)}" 
-              alt="${sTitle}" 
-              class="w-full h-full object-contain transition-transform duration-300 hover:scale-105" 
-              onerror="if(typeof onImgLoadError==='function') onImgLoadError(this);" 
-            />
-          </div>
-
-          <h5 class="font-extrabold text-xs text-stone-900 dark:text-white line-clamp-2 leading-snug" title="${sTitle}">
-            ${sTitle}
-          </h5>
-          
-          <div class="mt-1 flex items-center justify-between text-[11px]">
-            <span class="font-bold text-rose-600 dark:text-rose-400 truncate">${sArtist}</span>
-            <span class="text-xs font-black text-stone-900 dark:text-white font-mono">${formattedPrice}</span>
-          </div>
-
-          <p class="text-[10px] text-stone-500 dark:text-slate-400 mt-1 flex items-center gap-1">
-            <i class="fa-regular fa-calendar text-[9px]"></i>
-            <span>${sDate}</span>
-          </p>
-        </div>
-
-        <button 
-          onclick="if(typeof triggerOutboundAffiliate==='function') triggerOutboundAffiliate(allProducts.find(x => x.id === '${showcaseProduct.id}'), 'megamenu_showcase');" 
-          class="mt-3 w-full py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-center text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
-        >
-          <span>${isUpcoming ? 'Pre-Order on CDJapan' : 'Order on CDJapan'}</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-        </button>
-      </div>
-    `;
+    showcaseContent = renderMegaMenuCardMarkup(showcaseProduct, {
+      isUpcoming: typeof isPreOrder === 'function' && isPreOrder(showcaseProduct),
+      badgeText: (typeof isPreOrder === 'function' && isPreOrder(showcaseProduct)) ? 'Featured Pre-Order' : 'Franchise Spotlight',
+      badgeIcon: (typeof isPreOrder === 'function' && isPreOrder(showcaseProduct)) ? 'fa-clock' : 'fa-star',
+      sourceTag: 'megamenu_showcase'
+    });
   } else {
-    showcaseHtml = `
-      <div class="w-full md:w-64 lg:w-72 bg-stone-50 dark:bg-slate-800 p-4 rounded-2xl border border-stone-200 dark:border-slate-700 flex flex-col items-center justify-center text-center shrink-0">
+    showcaseContent = `
+      <div class="w-full h-full min-h-[300px] bg-stone-50 dark:bg-slate-800 p-4 rounded-2xl border border-stone-200 dark:border-slate-700 flex flex-col items-center justify-center text-center shrink-0">
         <i class="fa-solid fa-compact-disc text-3xl text-stone-300 dark:text-slate-600 mb-2"></i>
         <p class="text-xs font-bold text-stone-600 dark:text-slate-300">CDJapan Tokyo Partner</p>
         <p class="text-[10px] text-stone-400 dark:text-slate-500 mt-1">Official chart-reporting discography releases</p>
       </div>
     `;
   }
-  showcaseHtml += `</div>`;
+  window._defaultMegaMenuShowcaseHtml = showcaseContent;
+  const showcaseHtml = `<div id="mega-menu-showcase-mount" class="w-full md:w-64 lg:w-72 shrink-0">${showcaseContent}</div>`;
 
   // ZONE 4: Bottom Quick Format Jump Strip
   const quickFormats = [
@@ -610,6 +563,7 @@ function renderMegaMenu(cat) {
   if (scrollEl) updateMatrixScrollFade(scrollEl);
 }
 
+/* File: js/mega-menu.js | Block/Target: Unit Row Renderer & Isolated Showcase Engine */
 /**
  * Render single artist row link with smart badge & zero-suppression
  */
@@ -668,39 +622,34 @@ function renderMegaMenuUnitRow(cat, unitName) {
       ${badgeHtml}
     </button>
   `;
+}
 
-function previewUnitInShowcase(unitName, cat) {
-  const mount = document.getElementById('mega-menu-showcase-mount');
-  if (!mount) return;
+/**
+ * Reusable HTML generator for Zone 3 spotlight product card
+ */
+function renderMegaMenuCardMarkup(prod, meta) {
+  const sTitle = safeEscapeHtml(safeStripPrefixes(prod.title));
+  const sArtist = safeEscapeHtml(prod.artist);
+  const sDate = prod.release_date || 'Upcoming Street Date';
+  const formattedPrice = safeFormatPrice(prod.price);
+  const btnLabel = meta.isUpcoming ? 'Pre-Order on CDJapan' : 'Order on CDJapan';
 
-  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
-  const unitProduct = productList.find(p => p.artist === unitName && typeof isPreOrder === 'function' && isPreOrder(p)) ||
-                      productList.find(p => p.artist === unitName);
-
-  if (!unitProduct) return;
-
-  const sTitle = safeEscapeHtml(safeStripPrefixes(unitProduct.title));
-  const sArtist = safeEscapeHtml(unitProduct.artist);
-  const sDate = unitProduct.release_date || 'Catalog Item';
-  const isUpcoming = typeof isPreOrder === 'function' && isPreOrder(unitProduct);
-  const formattedPrice = safeFormatPrice(unitProduct.price);
-
-  mount.innerHTML = `
-    <div class="w-full bg-gradient-to-br from-rose-50/90 via-white to-pink-50/80 dark:from-slate-800/95 dark:via-slate-800/80 dark:to-slate-900 border border-rose-300 dark:border-rose-500/50 p-3.5 rounded-2xl flex flex-col justify-between shadow-md transition-all duration-200">
+  return `
+    <div class="w-full bg-gradient-to-br from-rose-50/90 via-white to-pink-50/80 dark:from-slate-800/95 dark:via-slate-800/80 dark:to-slate-900 border border-rose-300/80 dark:border-slate-700/80 p-3.5 rounded-2xl flex flex-col justify-between shadow-2xs h-full">
       <div>
         <div class="flex items-center justify-between mb-2">
           <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider ${
-            isUpcoming ? 'bg-rose-600 text-white' : 'bg-stone-800 text-amber-300'
+            meta.isUpcoming ? 'bg-rose-600 text-white' : 'bg-stone-800 text-amber-300'
           } px-2 py-0.5 rounded-full shadow-2xs">
-            <i class="fa-solid ${isUpcoming ? 'fa-clock' : 'fa-compact-disc'} text-[8px]"></i>
-            ${isUpcoming ? 'Artist Pre-Order' : 'Latest Release'}
+            <i class="fa-solid ${meta.badgeIcon} text-[8px]"></i>
+            ${meta.badgeText}
           </span>
-          <span class="text-[9px] font-mono text-stone-500 dark:text-slate-400 font-bold">${unitProduct.format || 'CD'}</span>
+          <span class="text-[9px] font-mono text-stone-500 dark:text-slate-400 font-bold">${prod.format || 'CD'}</span>
         </div>
 
         <div class="aspect-square bg-white dark:bg-slate-900 rounded-xl overflow-hidden mb-2.5 p-1.5 shadow-inner border border-stone-100 dark:border-slate-800 flex items-center justify-center">
           <img 
-            src="${safeThumbnailUrl(unitProduct.image)}" 
+            src="${safeThumbnailUrl(prod.image)}" 
             alt="${sTitle}" 
             class="w-full h-full object-contain transition-transform duration-300 hover:scale-105" 
             onerror="if(typeof onImgLoadError==='function') onImgLoadError(this);" 
@@ -723,16 +672,44 @@ function previewUnitInShowcase(unitName, cat) {
       </div>
 
       <button 
-        onclick="if(typeof triggerOutboundAffiliate==='function') triggerOutboundAffiliate(allProducts.find(x => x.id === '${unitProduct.id}'), 'megamenu_hover_preview');" 
+        onclick="if(typeof triggerOutboundAffiliate==='function') triggerOutboundAffiliate(allProducts.find(x => x.id === '${prod.id}'), '${meta.sourceTag}');" 
         class="mt-3 w-full py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-center text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
       >
-        <span>${isUpcoming ? 'Pre-Order on CDJapan' : 'Order on CDJapan'}</span>
+        <span>${btnLabel}</span>
         <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
       </button>
     </div>
   `;
 }
 
+/**
+ * Preview specific hovered artist release inside Zone 3 showcase
+ */
+function previewUnitInShowcase(unitName, cat) {
+  const mount = document.getElementById('mega-menu-showcase-mount');
+  if (!mount) return;
+
+  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+  const unitProduct = productList.find(p => p.artist === unitName && typeof isPreOrder === 'function' && isPreOrder(p)) ||
+                      productList.find(p => p.artist === unitName);
+
+  if (!unitProduct) return;
+
+  const isUpcoming = typeof isPreOrder === 'function' && isPreOrder(unitProduct);
+  mount.innerHTML = renderMegaMenuCardMarkup(unitProduct, {
+    isUpcoming,
+    badgeText: isUpcoming ? 'Artist Pre-Order' : 'Latest Release',
+    badgeIcon: isUpcoming ? 'fa-clock' : 'fa-compact-disc',
+    sourceTag: 'megamenu_hover_preview'
+  });
+}
+
+/**
+ * Restore default franchise spotlight without re-rendering directory columns
+ */
 function restoreDefaultShowcase(cat) {
-  renderMegaMenu(cat);
+  const mount = document.getElementById('mega-menu-showcase-mount');
+  if (mount && window._defaultMegaMenuShowcaseHtml) {
+    mount.innerHTML = window._defaultMegaMenuShowcaseHtml;
+  }
 }

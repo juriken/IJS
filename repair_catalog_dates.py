@@ -180,7 +180,7 @@ def fetch_official_date(pid, entry=None, session=None):
     target_candidate = None
     if isinstance(entry, dict):
         url_field = entry.get("url")
-        if url_field and "cdjapan.co.jp/product/" in str(url_field):
+        if url_field and ("cdjapan.co.jp/product/" in str(url_field) or "detailview.html" in str(url_field)):
             target_candidate = str(url_field)
         else:
             for k in ["cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "product_id", "productId", "id", "pid"]:
@@ -192,12 +192,18 @@ def fetch_official_date(pid, entry=None, session=None):
     if not target_candidate:
         target_candidate = str(pid).strip()
 
-    clean_pid = re.sub(
-        r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
-        "",
-        target_candidate,
-        flags=re.IGNORECASE
-    ).split("#")[0].split("?")[0].strip("/ \t")
+    # Handle legacy detailview.html?KEY=... query parameters
+    key_match = re.search(r"[?&]KEY=([^&#]+)", target_candidate, re.IGNORECASE)
+    if key_match:
+        clean_pid = key_match.group(1).strip()
+    else:
+        clean_pid = re.sub(
+            r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
+            "",
+            target_candidate,
+            flags=re.IGNORECASE
+        ).split("#")[0].split("?")[0].strip("/ \t")
+
     if not clean_pid:
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
@@ -274,18 +280,23 @@ def fetch_official_date(pid, entry=None, session=None):
             # 2. Check Definition Lists & Key-Value Table Cells
             target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
             negative_labels = {"press", "news", "event", "label", "distributor", "country", "発売元", "発売国", "発売レーベル"}
-            label_nodes = soup.find_all(
-                lambda el: el.name in ["dt", "th", "td"] and len(el.get_text(strip=True)) <= 30 and not any(neg in el.get_text().lower() for neg in negative_labels) and (
-                    re.sub(r"\s+", " ", el.get_text()).strip().lower().rstrip(":") in target_labels
-                    or any(re.search(rf"\b{re.escape(k)}\b", el.get_text().lower()) for k in ["release date", "発売日", "street date"])
+            for label in soup.find_all(["dt", "th", "td"]):
+                raw_label_txt = label.get_text(" ", strip=True)
+                if not raw_label_txt or len(raw_label_txt) > 35:
+                    continue
+                label_txt = raw_label_txt.lower()
+                if any(neg in label_txt for neg in negative_labels):
+                    continue
+                norm_label = re.sub(r"\s+", " ", label_txt).rstrip(":")
+                is_target = norm_label in target_labels or any(
+                    k in label_txt for k in ["release date", "street date", "発売日", "発売予定日"]
                 )
-            )
-            for label in label_nodes:
-                val = label.find_next_sibling(["dd", "td"])
-                cand_text = val.get_text(" ", strip=True) if val else label.get_text(" ", strip=True)
-                parsed = parse_cdjapan_date(cand_text)
-                if parsed:
-                    return pid, parsed
+                if is_target:
+                    val = label.find_next_sibling(["dd", "td"])
+                    cand_text = val.get_text(" ", strip=True) if val else raw_label_txt
+                    parsed = parse_cdjapan_date(cand_text)
+                    if parsed:
+                        return pid, parsed
 
             # 3. Check Canonical OpenGraph / Microdata Meta & Scoped Time Tags
             meta_selectors = [
@@ -325,7 +336,7 @@ def fetch_official_date(pid, entry=None, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"(?<!press\s)(?<!news\s)\b(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"(?<!press\s)(?<!news\s)(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -463,7 +474,7 @@ def main():
                 if not isinstance(entry, dict):
                     processed_keys.add(pid)
                     continue
-                old_date = str(entry.get("release_date", "")).strip()
+                old_date = str(entry.get("release_date") or entry.get("releaseDate") or entry.get("date") or "").strip()
 
                 if confirmed_date is None:
                     consecutive_blocks += 1

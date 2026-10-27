@@ -95,10 +95,11 @@ def build_http_session():
         "Sec-Fetch-Mode": "navigate",
         "Sec-Fetch-Site": "same-origin"
     })
+    # File: repair_catalog_dates.py | Block/Target: build_http_session
     retry_kwargs = {
         "total": 5,
         "backoff_factor": 1.0,
-        "status_forcelist": [500, 502, 503, 504],
+        "status_forcelist": [429, 500, 502, 503, 504],
         "raise_on_status": False
     }
     try:
@@ -218,13 +219,15 @@ def fetch_official_date(pid, entry=None, session=None):
     if session is None:
         session = get_thread_session()
 
+    # File: repair_catalog_dates.py | Block/Target: fetch_official_date
     target_candidate = None
     if isinstance(entry, dict):
         url_field = entry.get("url")
-        if url_field and ("cdjapan.co.jp/product/" in str(url_field) or "detailview.html" in str(url_field)):
+        if url_field and ("/product/" in str(url_field) or "detailview.html" in str(url_field)):
             target_candidate = str(url_field)
         else:
-            for k in ["id", "pid", "product_id", "productId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber"]:
+            # Check canonical catalog numbers first, then product codes and identifiers
+            for k in ["cat_no", "catalog_no", "catno", "catalog_number", "catalogNumber", "product_id", "productId", "pid", "id"]:
                 val = entry.get(k)
                 if val and not is_invalid_identifier(val):
                     target_candidate = str(val).strip()
@@ -241,7 +244,7 @@ def fetch_official_date(pid, entry=None, session=None):
         clean_pid = key_match.group(1).strip()
     else:
         clean_pid = re.sub(
-            r"^(?:(?:https?://)?(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
+            r"^(?:(?:https?://)?(?:www\.)?cdjapan\.co\.jp)?(?:/product/)?|^(?:cdjapan[-_:]?|cdj[-_:]?)",
             "",
             target_candidate,
             flags=re.IGNORECASE
@@ -321,10 +324,13 @@ def fetch_official_date(pid, entry=None, session=None):
                 except Exception:
                     pass
 
+            # File: repair_catalog_dates.py | Block/Target: fetch_official_date
             # Strip non-product areas before DOM parsing to prevent extracting dates from related releases
             for noise in soup.find_all(["script", "style", "noscript", "svg", "aside", "nav", "footer"]):
                 noise.decompose()
-            for noisy_section in soup.find_all(class_=re.compile(r"sidebar|related|recommend|review|ranking|banner", re.I)):
+            for noisy_section in soup.find_all(attrs={"class": re.compile(r"sidebar|related|recommend|review|ranking|banner", re.I)}):
+                noisy_section.decompose()
+            for noisy_section in soup.find_all(attrs={"id": re.compile(r"sidebar|related|recommend|review|ranking|banner", re.I)}):
                 noisy_section.decompose()
 
             # 2. Check Definition Lists & Key-Value Spec Tables
@@ -548,9 +554,11 @@ def main():
 
                 consecutive_blocks = 0
 
+                # File: repair_catalog_dates.py | Block/Target: main
                 if confirmed_date:
                     processed_keys.add(pid)
-                    if confirmed_date != old_date:
+                    has_canonical_release_date = (catalog[pid].get("release_date") == confirmed_date)
+                    if confirmed_date != old_date or not has_canonical_release_date:
                         catalog[pid]["release_date"] = confirmed_date
                         for date_alias in ("releaseDate", "date", "street_date", "streetDate"):
                             if date_alias in catalog[pid]:
@@ -611,12 +619,13 @@ def main():
                                     date_lookup[k_str] = str(d).strip()
                                     date_lookup[k_str.lower()] = str(d).strip()
 
+                # File: repair_catalog_dates.py | Block/Target: sync_item
                 def sync_item(entry, key_id=None):
                     if not isinstance(entry, dict):
                         return
-                    # Require concrete product attributes so category containers are never modified
-                    has_product_traits = any(k in entry for k in ["price", "cat_no", "catno", "catalog_no", "sku", "jan", "barcode"]) or (
-                        "url" in entry and ("title" in entry or "name" in entry)
+                    # Require concrete product attributes or existing date keys so category containers are never modified
+                    has_product_traits = any(k in entry for k in ["price", "cat_no", "catno", "catalog_no", "sku", "jan", "barcode", "release_date", "releaseDate", "date"]) or (
+                        ("title" in entry or "name" in entry) and any(k in entry for k in ["id", "pid", "artist", "url"])
                     )
                     if not has_product_traits:
                         return

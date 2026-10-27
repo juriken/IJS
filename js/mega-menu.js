@@ -1,10 +1,11 @@
 /* ==========================================================================
-   IdolJapan.store — Redesigned Master-Detail & Visual Showcase Mega-Menu
+   IdolJapan.store — Master-Detail Mega-Menu Engine (Enhanced)
+   Features: Master-Detail Rail, Contextual Showcase, Bottom Scroll Fade Mask,
+             Smart Pre-Order Count Badges, Zero-Suppression & Global Debounce Guard
    Path: js/mega-menu.js
-   Architecture: Amazon/Newegg Two-Tier Master Rail + Visual Merchandising Card
    ========================================================================== */
 
-// Use window fallbacks to prevent SyntaxError with variables already in config.js
+// Use window fallbacks to prevent SyntaxError collisions with js/config.js
 window.activeRailIndex = window.activeRailIndex || 0;
 if (typeof megaMenuTimer === 'undefined') window.megaMenuTimer = null;
 if (typeof currentHoverCat === 'undefined') window.currentHoverCat = null;
@@ -161,30 +162,10 @@ function onTier1Click(cat) {
 }
 
 /**
- * In-flyout live search filter
+ * Backward compatibility stub for frontend_context.md contract
  */
 function filterMegaMenuLinks(query) {
-  const q = (query || '').toLowerCase().trim();
-  const links = document.querySelectorAll('.mega-menu-item-link');
-  let visibleCount = 0;
-
-  links.forEach(el => {
-    const text = el.dataset.name || '';
-    const aliases = el.dataset.aliases || '';
-    const isMatch = !q || text.includes(q) || aliases.includes(q);
-    if (isMatch) {
-      el.classList.remove('hidden');
-      visibleCount++;
-    } else {
-      el.classList.add('hidden');
-    }
-  });
-
-  const emptyMsg = document.getElementById('mega-menu-filter-empty');
-  if (emptyMsg) {
-    if (q && visibleCount === 0) emptyMsg.classList.remove('hidden');
-    else emptyMsg.classList.add('hidden');
-  }
+  // Retained so inline triggers don't throw; search is now handled globally
 }
 
 /**
@@ -229,6 +210,35 @@ function setHpSoloistSubfilter(mode) {
 function setHpGradViewMode(mode) {
   hpGradViewMode = mode;
   renderMegaMenu('Hello! Project & Up-Front');
+}
+
+/**
+ * Dynamically adjust bottom gradient fade mask on scroll
+ */
+function updateMatrixScrollFade(el) {
+  const mask = document.getElementById('mega-menu-scroll-mask');
+  if (!mask || !el) return;
+  const isNearBottom = (el.scrollHeight - el.scrollTop - el.clientHeight) <= 15;
+  if (isNearBottom) {
+    mask.style.opacity = '0';
+    mask.style.pointerEvents = 'none';
+  } else {
+    mask.style.opacity = '1';
+  }
+}
+
+/**
+ * Sort helper: purchasable releases first, zero-count items last
+ */
+function sortUnitsByRelevance(unitsList) {
+  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+  return [...unitsList].sort((a, b) => {
+    const countA = productList.filter(p => p.artist === a).length;
+    const countB = productList.filter(p => p.artist === b).length;
+    if (countA === 0 && countB > 0) return 1;
+    if (countB === 0 && countA > 0) return -1;
+    return countB - countA;
+  });
 }
 
 /**
@@ -350,7 +360,7 @@ function renderMegaMenu(cat) {
 
   railHtml += `</div>`;
 
-  // ZONE 2: Center Detail Link Canvas
+  // ZONE 2: Center Detail Link Canvas (with Scroll Fade Mask)
   let canvasHeaderControls = '';
   if (currentRail && currentRail.isSoloistColumn) {
     canvasHeaderControls = `
@@ -370,7 +380,7 @@ function renderMegaMenu(cat) {
   }
 
   let centerHtml = `
-    <div class="flex-1 min-w-0 bg-stone-50/40 dark:bg-slate-800/30 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col justify-between">
+    <div class="flex-1 min-w-0 bg-stone-50/40 dark:bg-slate-800/30 p-3.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col justify-between relative overflow-hidden">
       <div>
         <div class="flex flex-wrap items-center justify-between pb-2 mb-2.5 border-b border-stone-200/60 dark:border-slate-700/60 gap-2">
           <div class="flex items-center gap-2">
@@ -382,12 +392,17 @@ function renderMegaMenu(cat) {
           ${canvasHeaderControls}
         </div>
 
-        <div id="mega-menu-matrix-scroll" class="max-h-[340px] overflow-y-auto mega-menu-scrollbar pr-1.5">
+        <div 
+          id="mega-menu-matrix-scroll" 
+          onscroll="updateMatrixScrollFade(this)" 
+          class="max-h-[340px] overflow-y-auto mega-menu-scrollbar pr-1.5 pb-6"
+        >
   `;
 
   if (currentRail.clusters && currentRail.clusters.length > 0) {
     centerHtml += `<div class="space-y-3">`;
     currentRail.clusters.forEach(cluster => {
+      const sortedClusterUnits = sortUnitsByRelevance(cluster.units || []);
       centerHtml += `
         <div>
           <div class="text-[10px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1 flex items-center gap-1.5">
@@ -395,7 +410,7 @@ function renderMegaMenu(cat) {
             <span>${safeEscapeHtml(cluster.parent)}</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            ${(cluster.units || []).map(u => renderMegaMenuUnitRow(cat, u)).join('')}
+            ${sortedClusterUnits.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
           </div>
         </div>
       `;
@@ -411,19 +426,25 @@ function renderMegaMenu(cat) {
       }
     }
 
+    const sortedUnits = sortUnitsByRelevance(unitsToRender);
     centerHtml += `
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-        ${unitsToRender.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
+        ${sortedUnits.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
       </div>
     `;
   }
 
+  // Bottom scroll cue mask with dynamic fade
   centerHtml += `
-          <div id="mega-menu-filter-empty" class="hidden py-8 text-center text-xs text-stone-400 dark:text-slate-500">
-            <i class="fa-solid fa-magnifying-glass text-lg mb-1.5 opacity-60"></i>
-            <p>No idols or subunits match your quick search.</p>
-          </div>
         </div>
+      </div>
+      <div 
+        id="mega-menu-scroll-mask" 
+        class="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white dark:from-slate-900 to-transparent transition-opacity duration-200 flex items-end justify-center pb-1"
+      >
+        <span class="text-[9px] font-bold text-rose-500/80 dark:text-rose-400/80 bg-white/90 dark:bg-slate-900/90 px-2 py-0.5 rounded-full border border-rose-200/50 dark:border-slate-700/60 shadow-2xs">
+          Scroll for more idols ↓
+        </span>
       </div>
     </div>
   `;
@@ -541,10 +562,14 @@ function renderMegaMenu(cat) {
     </div>
     ${footerFormatStrip}
   `;
+
+  // Initialize scroll mask visibility check
+  const scrollEl = document.getElementById('mega-menu-matrix-scroll');
+  if (scrollEl) updateMatrixScrollFade(scrollEl);
 }
 
 /**
- * Render single artist row link in detail grid
+ * Render single artist row link with smart badge & zero-suppression
  */
 function renderMegaMenuUnitRow(cat, unitName) {
   const currentActiveArtist = (typeof activeArtist !== 'undefined') ? activeArtist : null;
@@ -552,9 +577,35 @@ function renderMegaMenuUnitRow(cat, unitName) {
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
   const brandColors = (typeof ARTIST_BRAND_COLORS !== 'undefined' && ARTIST_BRAND_COLORS) ? ARTIST_BRAND_COLORS : {};
 
-  const count = productList.filter(p => p.artist === unitName).length;
+  const artistProducts = productList.filter(p => p.artist === unitName);
+  const count = artistProducts.length;
   const brandColor = brandColors[unitName] || '#94a3b8';
-  const hasPreOrder = productList.some(p => p.artist === unitName && typeof isPreOrder === 'function' && isPreOrder(p));
+  
+  // Exact count of active pre-orders for this specific unit
+  const preOrderCount = artistProducts.filter(p => typeof isPreOrder === 'function' && isPreOrder(p)).length;
+  const isZeroCount = (count === 0);
+
+  // Badge HTML formatting (Smart Badge: Pre-Order Count + Total)
+  let badgeHtml = '';
+  if (preOrderCount > 0) {
+    badgeHtml = `
+      <div class="flex items-center gap-1 shrink-0 ml-1">
+        <span class="inline-flex items-center gap-0.5 bg-rose-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full shadow-2xs animate-pulse">
+          <i class="fa-solid fa-clock text-[8px]"></i>
+          <span>${preOrderCount}</span>
+        </span>
+        <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} font-mono">
+          ${count}
+        </span>
+      </div>
+    `;
+  } else {
+    badgeHtml = `
+      <span class="text-[10px] ${isSelected ? 'text-white/80' : (isZeroCount ? 'text-stone-300 dark:text-slate-600' : 'text-stone-400 dark:text-slate-500')} ml-1 font-mono">
+        ${count}
+      </span>
+    `;
+  }
 
   return `
     <button 
@@ -563,17 +614,16 @@ function renderMegaMenuUnitRow(cat, unitName) {
       class="mega-menu-item-link w-full text-left px-2 py-1.5 rounded-xl transition flex items-center justify-between text-xs cursor-pointer ${
         isSelected 
           ? 'bg-rose-600 text-white font-bold shadow-2xs' 
-          : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600'
+          : (isZeroCount 
+              ? 'opacity-40 hover:opacity-100 text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-slate-800' 
+              : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600')
       }"
     >
       <div class="flex items-center gap-2 truncate">
-        <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
+        <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs ${isZeroCount ? 'grayscale opacity-50' : ''}" style="background-color: ${brandColor}"></span>
         <span class="truncate text-[11px]">${safeEscapeHtml(unitName)}</span>
-        ${hasPreOrder ? '<span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" title="Active Pre-Orders Available"></span>' : ''}
       </div>
-      <span class="text-[10px] ${isSelected ? 'text-white/80' : 'text-stone-400 dark:text-slate-500'} ml-1 font-mono">
-        ${count}
-      </span>
+      ${badgeHtml}
     </button>
   `;
 }

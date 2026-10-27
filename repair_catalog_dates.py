@@ -124,15 +124,18 @@ def fetch_official_date(session, pid):
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
 
-            # 1. Parse JSON-LD structured data (highest precision on CDJapan)
+            # 1. Parse JSON-LD structured data (including nested @graph nodes)
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
                     js_data = json.loads(script.string or "{}")
-                    candidates = js_data if isinstance(js_data, list) else [js_data]
-                    for item in candidates:
+                    queue = js_data if isinstance(js_data, list) else [js_data]
+                    while queue:
+                        item = queue.pop(0)
                         if isinstance(item, dict):
+                            if "@graph" in item and isinstance(item["@graph"], list):
+                                queue.extend(item["@graph"])
                             for key in ["releaseDate", "datePublished", "startDate"]:
-                                if key in item and item[key]:
+                                if item.get(key):
                                     parsed = parse_cdjapan_date(item[key])
                                     if parsed:
                                         return pid, parsed
@@ -170,12 +173,15 @@ def fetch_official_date(session, pid):
                 if parsed:
                     return pid, parsed
 
-            # 5. Direct Regex Match on full page body text
-            body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r<]{6,40})", res.text, re.IGNORECASE)
+            # 5. Match against stripped page text so HTML tags don't break regex
+            page_text = soup.get_text(" ", strip=True)
+            body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
                     return pid, parsed
+
+            return pid, ""
 
         elif res.status_code == 404:
             return pid, "Available Now"
@@ -240,7 +246,10 @@ def main():
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
-    pending_items = [pid for pid in catalog.keys() if pid not in processed_keys]
+    pending_items = sorted(
+        [pid for pid in catalog.keys() if pid not in processed_keys],
+        key=lambda pid: 0 if not is_valid_date_format(catalog[pid].get("release_date", "")) else 1
+    )
 
     total_pending = len(pending_items)
     audited_count = len(processed_keys)
@@ -280,6 +289,14 @@ def main():
             pid, confirmed_date = future.result()
             processed_keys.add(pid)
             old_date = str(catalog[pid].get("release_date", "")).strip()
+
+            if confirmed_date is None:
+                # Transient network/HTTP error: preserve existing date and retry next batch
+                if is_valid_date_format(old_date):
+                    preserved_count += 1
+                continue
+
+            processed_keys.add(pid)
 
             if confirmed_date and confirmed_date != "Available Now":
                 if confirmed_date != old_date:

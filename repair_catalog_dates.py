@@ -31,12 +31,36 @@ DEFAULT_MAX_WORKERS = 4
 
 # File: repair_catalog_dates.py | Block/Target: INVALID_STOPWORDS
 INVALID_STOPWORDS = {
-    "none", "tbd", "n/a", "-", "null", "undefined", "unknown",
-    "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true",
+    "none", "tbd", "n/a", "na", "-", "--", "null", "undefined", "unknown",
+    "cd", "dvd", "bd", "bluray", "blu-ray", "goods", "0", "1", "false", "true",
     "items", "products", "all", "type-a", "type-b", "type-c", "type-d",
-    "regular", "limited", "edition", "first press", "single", "album",
-    "mini album", "ep", "box set", "photobook", "calendar"
+    "type a", "type b", "type c", "type d", "typea", "typeb", "typec", "typed",
+    "regular", "limited", "edition", "first press", "firstpress", "regular edition",
+    "limited edition", "standard edition", "special edition", "normal edition",
+    "single", "album", "mini album", "minialbum", "ep", "lp", "box set", "boxset",
+    "photobook", "calendar", "poster", "badge", "t-shirt", "tshirt", "t shirt",
+    "clear file", "clearfile", "keychain", "strap", "acrylic stand", "acsta",
+    "japan", "jp", "us", "usa", "en", "official", "complete", "version", "ver"
 }
+
+def is_invalid_identifier(cand):
+    if not cand:
+        return True
+    s = str(cand).strip().lower()
+    if len(s) < 3:
+        return True
+    norm = re.sub(r"[\s\-_]+", "", s)
+    if s in INVALID_STOPWORDS or norm in INVALID_STOPWORDS:
+        return True
+    tokens = set(re.split(r"[\s\-_/]+", s))
+    generic_tokens = {
+        "type", "a", "b", "c", "d", "regular", "limited", "first",
+        "press", "edition", "ver", "version", "cd", "dvd", "bd",
+        "goods", "single", "album", "set", "box", "standard", "special"
+    }
+    if tokens and tokens.issubset(generic_tokens):
+        return True
+    return False
 
 # File: repair_catalog_dates.py | Block/Target: MONTH_MAP
 MONTH_MAP = {
@@ -328,12 +352,11 @@ def fetch_official_date(pid, entry=None, session=None):
 
             # 4. Check Leaf Table Rows and List Items with Tight Negative Boundaries
             for tr in soup.find_all(["tr", "li"]):
-                # File: repair_catalog_dates.py | Block/Target: fetch_official_date
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*(.*)",
+                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -348,7 +371,7 @@ def fetch_official_date(pid, entry=None, session=None):
 
             page_text = soup.get_text(" ", strip=True)
             body_match = re.search(
-                r"(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,80})",
+                r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
                 page_text,
                 re.IGNORECASE
             )
@@ -557,14 +580,7 @@ def main():
 
                 date_lookup = {}
                 id_fields = ["id", "pid", "product_id", "productId", "catalog_id", "catalogId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "sku"]
-                invalid_stopwords = {
-                    "none", "tbd", "n/a", "-", "null", "undefined", "unknown",
-                    "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true",
-                    "items", "products", "all", "type-a", "type-b", "type-c", "type-d",
-                    "regular", "limited", "edition", "first press", "single", "album",
-                    "mini album", "ep", "box set", "photobook", "calendar"
-                }
-                # File: repair_catalog_dates.py | Block/Target: sync_catalog_tree
+
                 for p in updated_dates:
                     val = catalog.get(p)
                     if isinstance(val, dict):
@@ -574,51 +590,51 @@ def main():
                             raw_keys = [p, stripped_p, f"cdjapan-{stripped_p}"]
                             for field in id_fields:
                                 f_val = val.get(field)
-                                if f_val and str(f_val).strip().lower() not in INVALID_STOPWORDS:
+                                if f_val and not is_invalid_identifier(f_val):
                                     raw_keys.append(str(f_val).strip())
                             clean_u = extract_product_key_from_url(val.get("url"))
-                            if clean_u and clean_u.lower() not in INVALID_STOPWORDS:
+                            if clean_u and not is_invalid_identifier(clean_u):
                                 raw_keys.append(clean_u)
                             for raw_k in raw_keys:
-                                if raw_k is not None:
+                                if raw_k is not None and not is_invalid_identifier(raw_k):
                                     k_str = str(raw_k).strip()
-                                    if k_str and len(k_str) >= 2 and k_str.lower() not in INVALID_STOPWORDS:
-                                        date_lookup[k_str] = str(d).strip()
-                                        date_lookup[k_str.lower()] = str(d).strip()
+                                    date_lookup[k_str] = str(d).strip()
+                                    date_lookup[k_str.lower()] = str(d).strip()
 
                 def sync_item(entry, key_id=None):
                     if not isinstance(entry, dict):
                         return
-                    candidate_keys = [key_id]
+                    # Only synchronize actual product leaves, not category directories
+                    has_product_traits = any(k in entry for k in ["title", "name", "price", "url", "cat_no", "catalog_no", "sku", "release_date", "releaseDate"])
+                    if not has_product_traits:
+                        return
+
+                    candidate_keys = []
+                    if key_id and not is_invalid_identifier(key_id):
+                        candidate_keys.append(str(key_id).strip())
                     for field in id_fields:
                         cand = entry.get(field)
-                        if cand and str(cand).strip().lower() not in invalid_stopwords:
+                        if cand and not is_invalid_identifier(cand):
                             candidate_keys.append(str(cand).strip())
                     clean_u = extract_product_key_from_url(entry.get("url"))
-                    if clean_u and clean_u.lower() not in invalid_stopwords:
+                    if clean_u and not is_invalid_identifier(clean_u):
                         candidate_keys.append(clean_u)
 
                     target_date = None
                     for raw_cand in candidate_keys:
-                        if raw_cand is not None:
-                            cand_str = str(raw_cand).strip()
-                            if cand_str and len(cand_str) >= 2 and cand_str.lower() not in invalid_stopwords:
-                                if cand_str in date_lookup:
-                                    target_date = date_lookup[cand_str]
-                                    break
-                                if cand_str.lower() in date_lookup:
-                                    target_date = date_lookup[cand_str.lower()]
-                                    break
+                        cand_str = str(raw_cand).strip()
+                        if cand_str in date_lookup:
+                            target_date = date_lookup[cand_str]
+                            break
+                        if cand_str.lower() in date_lookup:
+                            target_date = date_lookup[cand_str.lower()]
+                            break
+
                     if target_date:
                         entry["release_date"] = target_date
-                        if "releaseDate" in entry:
-                            entry["releaseDate"] = target_date
-                        if "date" in entry:
-                            entry["date"] = target_date
-                        if "street_date" in entry:
-                            entry["street_date"] = target_date
-                        if "streetDate" in entry:
-                            entry["streetDate"] = target_date
+                        for alias in ("releaseDate", "date", "street_date", "streetDate"):
+                            if alias in entry:
+                                entry[alias] = target_date
 
                 def sync_catalog_tree(node, key_id=None):
                     if isinstance(node, dict):

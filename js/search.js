@@ -37,140 +37,187 @@ function showSearchSuggestions() {
   const input = document.getElementById('search-input');
   if (!box || !input) return;
 
-  if (!input.value.trim()) {
-    box.innerHTML = `
-      <div class="p-3 text-xs text-stone-500 dark:text-slate-400">
-        <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-2">Trending Idol Searches:</span>
-        <div class="flex flex-wrap gap-1.5">
-          <button onclick="quickSearch('Morning Musume')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🌸 Morning Musume</button>
-          <button onclick="quickSearch('Masaki Sato')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💚 Masaki Sato</button>
-          <button onclick="quickSearch('Nogizaka46')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💜 Nogizaka46</button>
-          <button onclick="quickSearch('FRUITS ZIPPER')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">💖 FRUITS ZIPPER</button>
-          <button onclick="quickSearch('BABYMETAL')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-800 dark:text-stone-200 transition font-bold">🦊 BABYMETAL</button>
-          <button onclick="toggleAvailabilityMode('preorder')" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 font-bold transition">💿 Pre-Orders</button>
-        </div>
-      </div>
-    `;
-    box.classList.remove('hidden');
-  }
-}
+  const rawQuery = (input.value || '').trim();
+  const q = rawQuery.toLowerCase();
 
-function quickSearch(val) {
-  const input = document.getElementById('search-input');
-  if (input) {
-    input.value = val;
-    searchQuery = val.toLowerCase();
-    const clearBtn = document.getElementById('search-clear-btn');
-    if (clearBtn) clearBtn.classList.remove('hidden');
-    closeAutocomplete();
-    currentPage = 1;
-    if (typeof syncUrlParams === 'function') syncUrlParams();
-    if (typeof render === 'function') render();
-  }
-}
-
-function updateAutocomplete(val, token) {
-  if (token !== currentSearchToken) return;
-  const box = document.getElementById('search-autocomplete-box');
-  if (!box) return;
-
-  const hasCjk = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/.test(val);
-  const minLength = hasCjk ? 1 : 2;
-
-  if (!val || val.length < minLength) {
-    showSearchSuggestions();
-    return;
-  }
-
-  // Exact catalog SKU match prioritized to rank #1
-  const exactSkuMatches = [];
-  const standardMatches = [];
-
-  allProducts.forEach(p => {
-    const idLower = String(p.id || '').toLowerCase();
-    if (idLower === val) {
-      exactSkuMatches.push(p);
-    } else if (
-      idLower.includes(val) ||
-      matchesFuzzyQuery(p.title, val) ||
-      matchesFuzzyQuery(p.artist, val)
-    ) {
-      standardMatches.push(p);
-    }
-  });
-
-  const matches = [...exactSkuMatches, ...standardMatches].slice(0, 6);
-
-  if (!matches.length) {
+  // If query is blank, close box or render initial quick-picks
+  if (!q) {
     box.classList.add('hidden');
     box.innerHTML = '';
     return;
   }
 
-  box.innerHTML = '';
-  activeSuggestionIndex = -1;
+  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+  const franchiseDict = (typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS) ? FRANCHISE_ARTISTS : {};
+  const brandColors = (typeof ARTIST_BRAND_COLORS !== 'undefined' && ARTIST_BRAND_COLORS) ? ARTIST_BRAND_COLORS : {};
 
-  matches.forEach((item, sIdx) => {
-    const row = document.createElement('div');
-    row.id = `search-suggest-${sIdx}`;
-    row.className = "autocomplete-item p-2 hover:bg-stone-50 dark:hover:bg-slate-800/80 cursor-pointer flex items-center gap-2.5 transition";
-    row.role = "option";
-    row.onclick = () => {
-      if (typeof openModal === 'function') openModal(item.id);
-      closeAutocomplete();
-    };
+  // 1. KNOWN ENSEMBLE GROUPS (Excludes soloists and graduates)
+  const ensembleGroupNames = [
+    'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 
+    'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei', 'Berryz Kobo', '℃-ute', 
+    'Buono!', 'Country Girls', 'Kobushi Factory', 'Minimoni', 'Tanpopo', 'v-u-den',
+    'Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Yoshimotozaka46', 'Boku ga Mitakatta Aozora',
+    'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',
+    'Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu', 'TEAM SHACHI', 'AMEFURASSHI',
+    '=LOVE', '≠ME', '≒JOY',
+    'FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET', 'KAWAII LAB. MATES',
+    'BABYMETAL', 'NiziU', 'ME:I', 'IS:SUE', 'Atarashii Gakko!'
+  ];
 
-    const cleanT = typeof stripTitlePrefixes === 'function' ? stripTitlePrefixes(item.title) : item.title;
-    row.innerHTML = `
-      <img src="${typeof getThumbnailUrl === 'function' ? getThumbnailUrl(item.image) : item.image}" class="w-8 h-8 rounded object-cover shrink-0" onerror="onImgLoadError(this)" />
-      <div class="flex-1 min-w-0 text-left">
-        <p class="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">${escapeHtml(cleanT)}</p>
-        <p class="text-[10px] text-stone-400 dark:text-slate-400 truncate">${escapeHtml(item.artist)} • <span class="font-mono">${item.id}</span> • ${typeof formatDisplayPrice === 'function' ? formatDisplayPrice(item.price, item) : item.price}</p>
+  // Collect all distinct artists from data
+  const allKnownArtists = Array.from(new Set([
+    ...Object.values(franchiseDict).flat(),
+    ...productList.map(p => p.artist).filter(Boolean)
+  ]));
+
+  // Match Groups
+  const matchingGroups = ensembleGroupNames.filter(name => {
+    return name.toLowerCase().includes(q) || (typeof matchesFuzzyQuery === 'function' && matchesFuzzyQuery(name, q));
+  }).slice(0, 4);
+
+  // Match Members / Soloists (Any artist not in ensembleGroupNames)
+  const matchingMembers = allKnownArtists.filter(name => {
+    if (ensembleGroupNames.includes(name)) return false;
+    return name.toLowerCase().includes(q) || (typeof matchesFuzzyQuery === 'function' && matchesFuzzyQuery(name, q));
+  }).slice(0, 4);
+
+  // Match Items (Products by title or SKU)
+  const matchingItems = productList.filter(p => {
+    const titleMatch = (p.title || '').toLowerCase().includes(q);
+    const skuMatch = (p.id || '').toLowerCase().includes(q);
+    return titleMatch || skuMatch;
+  }).slice(0, 5);
+
+  if (matchingGroups.length === 0 && matchingMembers.length === 0 && matchingItems.length === 0) {
+    box.innerHTML = `
+      <div class="p-3 text-center text-xs text-stone-400 dark:text-slate-500">
+        No groups, members, or items matching "<strong>${q}</strong>"
       </div>
-      <i class="fa-solid fa-chevron-right text-[9px] text-stone-300 dark:text-slate-600"></i>
     `;
-    box.appendChild(row);
-  });
+    box.classList.remove('hidden');
+    return;
+  }
 
+  let html = '';
+
+  // TIER 1: GROUPS
+  if (matchingGroups.length > 0) {
+    html += `
+      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-b border-stone-100 dark:border-slate-800">
+        <span class="text-[10px] font-black uppercase tracking-wider text-rose-600 dark:text-rose-400 flex items-center gap-1.5 px-2 py-0.5">
+          <i class="fa-solid fa-users text-[9px]"></i> Groups &amp; Franchises
+        </span>
+      </div>
+    `;
+    matchingGroups.forEach(grp => {
+      const count = productList.filter(p => p.artist === grp).length;
+      const brandColor = brandColors[grp] || '#e11d48';
+      html += `
+        <button 
+          type="button"
+          onclick="selectSearchGroup('${grp.replace(/'/g, "\\'")}')"
+          class="w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+        >
+          <div class="flex items-center gap-2 truncate">
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
+            <span class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${grp}</span>
+          </div>
+          <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500 shrink-0 ml-2">${count} releases →</span>
+        </button>
+      `;
+    });
+  }
+
+  // TIER 2: MEMBERS
+  if (matchingMembers.length > 0) {
+    html += `
+      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-t border-b border-stone-100 dark:border-slate-800">
+        <span class="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-1.5 px-2 py-0.5">
+          <i class="fa-solid fa-user text-[9px]"></i> Members &amp; Soloists
+        </span>
+      </div>
+    `;
+    matchingMembers.forEach(mem => {
+      const count = productList.filter(p => p.artist === mem).length;
+      const brandColor = brandColors[mem] || '#94a3b8';
+      html += `
+        <button 
+          type="button"
+          onclick="selectSearchMember('${mem.replace(/'/g, "\\'")}')"
+          class="w-full text-left px-3 py-2 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+        >
+          <div class="flex items-center gap-2 truncate">
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
+            <span class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 truncate">${mem}</span>
+          </div>
+          <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500 shrink-0 ml-2">${count} items →</span>
+        </button>
+      `;
+    });
+  }
+
+  // TIER 3: ITEMS
+  if (matchingItems.length > 0) {
+    html += `
+      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-t border-b border-stone-100 dark:border-slate-800">
+        <span class="text-[10px] font-black uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5 px-2 py-0.5">
+          <i class="fa-solid fa-compact-disc text-[9px]"></i> Release Items
+        </span>
+      </div>
+    `;
+    matchingItems.forEach(prod => {
+      const cleanTitle = (prod.title || '').replace(/^\[[^\]]+\]\s*/, '');
+      const priceText = (typeof formatDisplayPrice === 'function') 
+        ? formatDisplayPrice(prod.price) 
+        : `¥${(prod.price || 0).toLocaleString()}`;
+      const imgUrl = (typeof getThumbnailUrl === 'function') ? getThumbnailUrl(prod.image) : prod.image;
+
+      html += `
+        <button 
+          type="button"
+          onclick="selectSearchProduct('${prod.id}')"
+          class="w-full text-left px-3 py-2 hover:bg-sky-50 dark:hover:bg-slate-800 transition flex items-center gap-2.5 text-xs cursor-pointer group"
+        >
+          <img src="${imgUrl}" class="w-7 h-7 object-contain rounded bg-stone-100 dark:bg-slate-700 shrink-0" onerror="if(typeof onImgLoadError==='function') onImgLoadError(this)" />
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${cleanTitle}</div>
+            <div class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${prod.artist} • <span class="font-mono">${prod.id}</span></div>
+          </div>
+          <span class="text-xs font-black text-rose-600 dark:text-rose-400 font-mono shrink-0">${priceText}</span>
+        </button>
+      `;
+    });
+  }
+
+  box.innerHTML = html;
   box.classList.remove('hidden');
 }
 
-function closeAutocomplete() {
+function selectSearchGroup(groupName) {
+  const box = document.getElementById('search-autocomplete-box');
+  const input = document.getElementById('search-input');
+  if (box) box.classList.add('hidden');
+  if (input) input.value = groupName;
+  if (typeof setSubArtist === 'function') setSubArtist(groupName);
+  else if (typeof setFilter === 'function') setFilter(groupName);
+  const target = document.getElementById('product-container');
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+}
+
+function selectSearchMember(memberName) {
+  const box = document.getElementById('search-autocomplete-box');
+  const input = document.getElementById('search-input');
+  if (box) box.classList.add('hidden');
+  if (input) input.value = memberName;
+  if (typeof setSubArtist === 'function') setSubArtist(memberName);
+  const target = document.getElementById('product-container');
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+}
+
+function selectSearchProduct(productId) {
   const box = document.getElementById('search-autocomplete-box');
   if (box) box.classList.add('hidden');
-  activeSuggestionIndex = -1;
-}
-
-function highlightSuggestion(items) {
-  items.forEach((it, idx) => {
-    if (idx === activeSuggestionIndex) {
-      it.classList.add('active');
-      it.scrollIntoView({ block: 'nearest' });
-    } else {
-      it.classList.remove('active');
-    }
-  });
-}
-
-function triggerDebouncedSearch(val) {
-  currentSearchToken++;
-  const thisToken = currentSearchToken;
-
-  const sClear = document.getElementById('search-clear-btn');
-  if (sClear) {
-    if (val) sClear.classList.remove('hidden');
-    else sClear.classList.add('hidden');
-  }
-
-  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-
-  searchDebounceTimeout = setTimeout(() => {
-    updateAutocomplete(val.toLowerCase(), thisToken);
-    searchQuery = val.toLowerCase();
-    currentPage = 1;
-    if (typeof syncUrlParams === 'function') syncUrlParams();
-    if (typeof render === 'function') render();
-  }, 280);
+  if (typeof openModal === 'function') openModal(productId);
 }
 
 function clearSearch() {

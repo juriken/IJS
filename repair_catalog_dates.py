@@ -29,6 +29,15 @@ PROGRESS_FILE = "repair_progress.json"
 DEFAULT_BATCH_SIZE = 250
 DEFAULT_MAX_WORKERS = 4
 
+# File: repair_catalog_dates.py | Block/Target: INVALID_STOPWORDS
+INVALID_STOPWORDS = {
+    "none", "tbd", "n/a", "-", "null", "undefined", "unknown",
+    "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true",
+    "items", "products", "all", "type-a", "type-b", "type-c", "type-d",
+    "regular", "limited", "edition", "first press", "single", "album",
+    "mini album", "ep", "box set", "photobook", "calendar"
+}
+
 # File: repair_catalog_dates.py | Block/Target: MONTH_MAP
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -179,13 +188,14 @@ def fetch_official_date(pid, entry=None, session=None):
 
     target_candidate = None
     if isinstance(entry, dict):
+        # File: repair_catalog_dates.py | Block/Target: fetch_official_date
         url_field = entry.get("url")
         if url_field and ("cdjapan.co.jp/product/" in str(url_field) or "detailview.html" in str(url_field)):
             target_candidate = str(url_field)
         else:
-            for k in ["cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "product_id", "productId", "id", "pid"]:
+            for k in ["id", "pid", "product_id", "productId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber"]:
                 val = entry.get(k)
-                if val and str(val).strip().lower() not in ["none", "tbd", "n/a", "-"]:
+                if val and str(val).strip().lower() not in INVALID_STOPWORDS:
                     target_candidate = str(val).strip()
                     break
 
@@ -318,11 +328,12 @@ def fetch_official_date(pid, entry=None, session=None):
 
             # 4. Check Leaf Table Rows and List Items with Tight Negative Boundaries
             for tr in soup.find_all(["tr", "li"]):
+                # File: repair_catalog_dates.py | Block/Target: fetch_official_date
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release\s*date|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*(.*)",
+                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*(.*)",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -336,7 +347,11 @@ def fetch_official_date(pid, entry=None, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"(?<!press\s)(?<!news\s)(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(
+                r"(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,80})",
+                page_text,
+                re.IGNORECASE
+            )
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -424,7 +439,13 @@ def main():
     pending_items = sorted(
         [pid for pid, val in catalog.items() if pid not in processed_keys and isinstance(val, dict)],
         key=lambda pid: (
-            0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date") or (catalog.get(pid) or {}).get("releaseDate") or "") else 1,
+            0 if not is_valid_date_format(
+                (catalog.get(pid) or {}).get("release_date")
+                or (catalog.get(pid) or {}).get("releaseDate")
+                or (catalog.get(pid) or {}).get("date")
+                or (catalog.get(pid) or {}).get("street_date")
+                or ""
+            ) else 1,
             str(pid)
         )
     )
@@ -543,6 +564,7 @@ def main():
                     "regular", "limited", "edition", "first press", "single", "album",
                     "mini album", "ep", "box set", "photobook", "calendar"
                 }
+                # File: repair_catalog_dates.py | Block/Target: sync_catalog_tree
                 for p in updated_dates:
                     val = catalog.get(p)
                     if isinstance(val, dict):
@@ -552,15 +574,15 @@ def main():
                             raw_keys = [p, stripped_p, f"cdjapan-{stripped_p}"]
                             for field in id_fields:
                                 f_val = val.get(field)
-                                if f_val and str(f_val).strip().lower() not in invalid_stopwords:
+                                if f_val and str(f_val).strip().lower() not in INVALID_STOPWORDS:
                                     raw_keys.append(str(f_val).strip())
                             clean_u = extract_product_key_from_url(val.get("url"))
-                            if clean_u and clean_u.lower() not in invalid_stopwords:
+                            if clean_u and clean_u.lower() not in INVALID_STOPWORDS:
                                 raw_keys.append(clean_u)
                             for raw_k in raw_keys:
                                 if raw_k is not None:
                                     k_str = str(raw_k).strip()
-                                    if k_str and len(k_str) >= 2 and k_str.lower() not in invalid_stopwords:
+                                    if k_str and len(k_str) >= 2 and k_str.lower() not in INVALID_STOPWORDS:
                                         date_lookup[k_str] = str(d).strip()
                                         date_lookup[k_str.lower()] = str(d).strip()
 

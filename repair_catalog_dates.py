@@ -33,14 +33,16 @@ DEFAULT_MAX_WORKERS = 4
 INVALID_STOPWORDS = {
     "none", "tbd", "n/a", "na", "-", "--", "null", "undefined", "unknown",
     "cd", "dvd", "bd", "bluray", "blu-ray", "goods", "0", "1", "false", "true",
-    "items", "products", "all", "type-a", "type-b", "type-c", "type-d",
+    "items", "products", "product", "all", "type-a", "type-b", "type-c", "type-d",
     "type a", "type b", "type c", "type d", "typea", "typeb", "typec", "typed",
     "regular", "limited", "edition", "first press", "firstpress", "regular edition",
     "limited edition", "standard edition", "special edition", "normal edition",
     "single", "album", "mini album", "minialbum", "ep", "lp", "box set", "boxset",
     "photobook", "calendar", "poster", "badge", "t-shirt", "tshirt", "t shirt",
     "clear file", "clearfile", "keychain", "strap", "acrylic stand", "acsta",
-    "japan", "jp", "us", "usa", "en", "official", "complete", "version", "ver"
+    "japan", "jp", "us", "usa", "en", "official", "complete", "version", "ver",
+    "review", "reviews", "index", "index.html", "detailview", "detailview.html",
+    "search", "department"
 }
 
 def is_invalid_identifier(cand):
@@ -147,7 +149,7 @@ def parse_cdjapan_date(raw_text):
 
     # Match isolated compact 8-digit date: YYYYMMDD (must not be part of a longer barcode or serial)
     m_compact = re.search(r"(?<!\d)(19\d\d|20\d\d)(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!\d)", text)
-    if m_compact and len(re.sub(r"\D", "", text)) == 8:
+    if m_compact and not re.search(r"\b\d{10,13}\b", text):
         y, m, d = int(m_compact.group(1)), int(m_compact.group(2)), int(m_compact.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
@@ -219,18 +221,23 @@ def extract_product_key_from_url(u):
     if not u:
         return ""
     u_str = str(u).strip()
-    key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
-    prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
-    aff_m = re.search(r"click\.cgi/[^/]+/[^/]+/([^/?#]+)", u_str, re.IGNORECASE)
+    key_m = re.search(r"[?&](?:KEY|pk)=([^&#]+)", u_str, re.IGNORECASE)
     if key_m:
-        return key_m.group(1).strip()
+        cand = key_m.group(1).strip()
+        if not is_invalid_identifier(cand):
+            return cand
+    prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
     if prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
-        return prod_m.group(1).strip()
+        cand = prod_m.group(1).strip()
+        if not is_invalid_identifier(cand):
+            return cand
+    aff_m = re.search(r"click\.cgi/[^/]+/[^/]+/([^/?#]+)", u_str, re.IGNORECASE)
     if aff_m:
-        return aff_m.group(1).strip()
+        cand = aff_m.group(1).strip()
+        if not is_invalid_identifier(cand):
+            return cand
     return ""
 
-# File: repair_catalog_dates.py | Block/Target: fetch_official_date
 def fetch_official_date(pid, entry=None, session=None):
     if session is None:
         session = get_thread_session()
@@ -239,7 +246,9 @@ def fetch_official_date(pid, entry=None, session=None):
     if isinstance(entry, dict):
         url_field = entry.get("url")
         if url_field:
-            target_candidate = extract_product_key_from_url(url_field)
+            cand = extract_product_key_from_url(url_field)
+            if cand and not is_invalid_identifier(cand):
+                target_candidate = cand
 
         if not target_candidate:
             for k in ["cat_no", "catalog_no", "catno", "catalog_number", "catalogNumber", "product_id", "productId", "pid", "id"]:
@@ -248,10 +257,10 @@ def fetch_official_date(pid, entry=None, session=None):
                     target_candidate = str(val).strip()
                     break
 
-    if not target_candidate:
+    if not target_candidate and not is_invalid_identifier(pid):
         target_candidate = str(pid).strip()
 
-    if is_invalid_identifier(target_candidate):
+    if not target_candidate or is_invalid_identifier(target_candidate):
         return pid, ""
 
     key_match = re.search(r"[?&]KEY=([^&#]+)", target_candidate, re.IGNORECASE)
@@ -487,6 +496,10 @@ def main():
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         catalog = json.load(f)
 
+    if not isinstance(catalog, dict):
+        print(f"[Critical] {DATA_FILE} must contain a top-level dictionary of products.")
+        sys.exit(1)
+
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
@@ -590,8 +603,12 @@ def main():
                 # File: repair_catalog_dates.py | Block/Target: main
                 if confirmed_date:
                     processed_keys.add(pid)
-                    has_canonical_release_date = (catalog[pid].get("release_date") == confirmed_date)
-                    if confirmed_date != old_date or not has_canonical_release_date:
+                    needs_sync = (catalog[pid].get("release_date") != confirmed_date) or any(
+                        catalog[pid].get(alias) != confirmed_date
+                        for alias in ("releaseDate", "date", "street_date", "streetDate")
+                        if alias in catalog[pid]
+                    )
+                    if needs_sync:
                         catalog[pid]["release_date"] = confirmed_date
                         for date_alias in ("releaseDate", "date", "street_date", "streetDate"):
                             if date_alias in catalog[pid]:
@@ -607,8 +624,6 @@ def main():
                         preserved_count += 1
                     else:
                         print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: CDJapan returned no valid date (catalog has '{old_date}'). Marked audited to unblock queue.", flush=True)
-
-            list(executor.map(lambda _: close_thread_session(), range(max_workers)))
 
     
     finally:
@@ -687,7 +702,7 @@ def main():
                             break
 
                     if target_date:
-                        old_idx_date = str(entry.get("release_date") or "").strip()
+                        old_idx_date = str(entry.get("release_date") or entry.get("date") or entry.get("releaseDate") or "").strip()
                         if old_idx_date != target_date:
                             index_sync_updates += 1
                         entry["release_date"] = target_date

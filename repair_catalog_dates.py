@@ -27,10 +27,11 @@ PROGRESS_FILE = "repair_progress.json"
 DEFAULT_BATCH_SIZE = 250
 DEFAULT_MAX_WORKERS = 4
 
+# File: repair_catalog_dates.py | Block/Target: MONTH_MAP
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
     "may": 5, "jun": 6, "jul": 7, "aug": 8,
-    "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
     "january": 1, "february": 2, "march": 3, "april": 4,
     "june": 6, "july": 7, "august": 8, "september": 9,
     "october": 10, "november": 11, "december": 12
@@ -66,23 +67,24 @@ def is_calendar_valid(year, month, day):
     except (ValueError, OverflowError):
         return False
 
+# File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date
 def parse_cdjapan_date(raw_text):
-    # File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date
     if not raw_text:
         return ""
     text = re.sub(r"\s+", " ", str(raw_text)).strip()
 
-    # Match YYYY/MM/DD, YYYY-MM-DD, or YYYY.MM.DD
-    m1 = re.search(r"\b(19\d\d|20\d\d)[/\-.](\d{1,2})[/\-.](\d{1,2})\b", text)
+    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 (e.g. 2024-09-25T00:00:00)
+    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)[/\-.](\d{1,2})[/\-.](\d{1,2})(?!\d)", text)
     if m1:
         y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Japanese format YYYY年MM月DD日
-    m2 = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
+    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月
+    m2 = re.search(r"(\d{4})年\s*(\d{1,2})月(?:\s*(\d{1,2})日)?", text)
     if m2:
-        y, m, d = int(m2.group(1)), int(m2.group(2)), int(m2.group(3))
+        y, m = int(m2.group(1)), int(m2.group(2))
+        d = int(m2.group(3)) if m2.group(3) else 1
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
@@ -104,15 +106,25 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Year & Month only: YYYY/MM -> default to 1st of month (guarded against trailing/leading slashes)
-    m5 = re.search(r"(?<![/-])\b(19\d\d|20\d\d)[/-](\d{1,2})\b(?![/-])", text)
+    # Match Month YYYY (e.g., September 2024) -> default to 1st of month
+    m5 = re.search(r"\b([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
     if m5:
-        y, m = int(m5.group(1)), int(m5.group(2))
+        mon_str = m5.group(1).lower()
+        if mon_str in MONTH_MAP:
+            y, m = int(m5.group(2)), MONTH_MAP[mon_str]
+            if 1 <= m <= 12:
+                return f"{y}/{str(m).zfill(2)}/01"
+
+    # Match Year & Month only: YYYY/MM -> default to 1st of month
+    m6 = re.search(r"(?<![/\-\d])\b(19\d\d|20\d\d)[/-](\d{1,2})\b(?![/\-\d])", text)
+    if m6:
+        y, m = int(m6.group(1)), int(m6.group(2))
         if 1 <= m <= 12:
             return f"{y}/{str(m).zfill(2)}/01"
 
     return ""
 
+# File: repair_catalog_dates.py | Block/Target: fetch_official_date
 def fetch_official_date(session, pid):
     url = f"https://www.cdjapan.co.jp/product/{pid}"
     headers = {
@@ -122,7 +134,6 @@ def fetch_official_date(session, pid):
     }
 
     try:
-        # File: repair_catalog_dates.py | Block/Target: fetch_official_date
         time.sleep(random.uniform(0.15, 0.4))
         res = session.get(url, headers=headers, timeout=14)
 
@@ -133,16 +144,21 @@ def fetch_official_date(session, pid):
             if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
                 return pid, None
 
-            # 1. Parse JSON-LD structured data (excluding promotional startDate)
+            # 1. Parse JSON-LD structured data
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
-                    js_data = json.loads(script.string or "{}")
+                    raw_content = script.get_text(strip=True)
+                    if not raw_content:
+                        continue
+                    js_data = json.loads(raw_content)
                     queue = js_data if isinstance(js_data, list) else [js_data]
                     while queue:
                         item = queue.pop(0)
                         if isinstance(item, dict):
                             if "@graph" in item and isinstance(item["@graph"], list):
                                 queue.extend(item["@graph"])
+                            if "offers" in item and isinstance(item["offers"], dict):
+                                queue.append(item["offers"])
                             for key in ["releaseDate", "datePublished"]:
                                 if item.get(key):
                                     parsed = parse_cdjapan_date(item[key])
@@ -151,19 +167,18 @@ def fetch_official_date(session, pid):
                 except Exception:
                     pass
 
-            # 2. Check Definition Lists (<dt>Release Date</dt><dd>...</dd>)
-            dt_nodes = soup.find_all(
-                lambda el: el.name in ["dt", "th"] and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
+            # 2. Check Definition Lists & Key-Value Table Cells
+            label_nodes = soup.find_all(
+                lambda el: el.name in ["dt", "th", "td"] and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
             )
-            # File: repair_catalog_dates.py | Block/Target: fetch_official_date
-            for dt in dt_nodes:
-                dd = dt.find_next_sibling(["dd", "td"])
-                if dd:
-                    parsed = parse_cdjapan_date(dd.get_text(" ", strip=True))
+            for label in label_nodes:
+                val = label.find_next_sibling(["dd", "td"])
+                if val:
+                    parsed = parse_cdjapan_date(val.get_text(" ", strip=True))
                     if parsed:
                         return pid, parsed
 
-            # 3. Check Leaf Table Rows and Specific List Items (ignore nested layout tables)
+            # 3. Check Leaf Table Rows and Specific List Items
             for tr in soup.find_all(["tr", "li"]):
                 if tr.find(["tr", "table"]):
                     continue
@@ -187,7 +202,7 @@ def fetch_official_date(session, pid):
                 if parsed:
                     return pid, parsed
 
-            # 5. Match against stripped page text so HTML tags don't break regex
+            # 5. Fallback regex across stripped page text
             page_text = soup.get_text(" ", strip=True)
             body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
@@ -198,13 +213,13 @@ def fetch_official_date(session, pid):
             return pid, ""
 
         elif res.status_code == 404:
-            return pid, "Available Now"
+            return pid, ""
 
     except Exception:
         pass
 
     return pid, None
-
+    
 def load_progress():
     reset_requested = os.environ.get("RESET_PROGRESS", "").lower() in ["true", "1", "yes"] or \
                       os.environ.get("RESET_DATE_HEALER", "").lower() in ["true", "1", "yes"]
@@ -287,6 +302,7 @@ def main():
 
     current_batch = pending_items[:batch_size]
     print(f"Targeting Batch Size:      {batch_size:,} items (~{batches_remaining} batch runs remaining)")
+    # File: repair_catalog_dates.py | Block/Target: main
     print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
     session = build_http_session()
@@ -294,51 +310,48 @@ def main():
     preserved_count = 0
     start_time = time.time()
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        future_to_pid = {
-            executor.submit(fetch_official_date, session, pid): pid
-            for pid in current_batch
-        }
+    try:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_pid = {
+                executor.submit(fetch_official_date, session, pid): pid
+                for pid in current_batch
+            }
 
-        # File: repair_catalog_dates.py | Block/Target: main
-        for idx, future in enumerate(as_completed(future_to_pid), 1):
-            pid, confirmed_date = future.result()
-            old_date = str(catalog[pid].get("release_date", "")).strip()
+            for idx, future in enumerate(as_completed(future_to_pid), 1):
+                pid, confirmed_date = future.result()
+                old_date = str(catalog[pid].get("release_date", "")).strip()
 
-            if confirmed_date is None:
-                # Transient network/HTTP error: preserve existing date and retry next batch
-                if is_valid_date_format(old_date):
-                    preserved_count += 1
-                continue
+                if confirmed_date is None:
+                    if is_valid_date_format(old_date):
+                        preserved_count += 1
+                    continue
 
-            processed_keys.add(pid)
+                processed_keys.add(pid)
 
-            if confirmed_date and confirmed_date != "Available Now":
-                if confirmed_date != old_date:
-                    catalog[pid]["release_date"] = confirmed_date
-                    updated_count += 1
-                    print(f"   [{idx}/{batch_size}] ✓ [{pid}] {old_date} -> {confirmed_date}", flush=True)
+                if confirmed_date:
+                    if confirmed_date != old_date:
+                        catalog[pid]["release_date"] = confirmed_date
+                        updated_count += 1
+                        print(f"   [{idx}/{batch_size}] ✓ [{pid}] {old_date} -> {confirmed_date}", flush=True)
+                    else:
+                        preserved_count += 1
                 else:
-                    preserved_count += 1
-            else:
-                if is_valid_date_format(old_date):
-                    preserved_count += 1
-                else:
-                    catalog[pid]["release_date"] = "Available Now"
+                    if is_valid_date_format(old_date):
+                        preserved_count += 1
 
-            if idx % 50 == 0 or idx == batch_size:
-                elapsed = time.time() - start_time
-                print(f"   -> Progress: {idx}/{batch_size} processed ({elapsed:.1f}s elapsed)...", flush=True)
+                if idx % 50 == 0 or idx == batch_size:
+                    elapsed = time.time() - start_time
+                    print(f"   -> Progress: {idx}/{batch_size} processed ({elapsed:.1f}s elapsed)...", flush=True)
 
-    # 1. Save updated products.json
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
+    finally:
+        # Guarantee synchronization even if interrupted
+        with open(DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    # 2. Synchronize catalog-index.json for immediate deployment
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
+        with open(INDEX_FILE, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    save_progress(processed_keys)
+        save_progress(processed_keys)
 
     new_audited = len(processed_keys)
     remaining_pending = total_catalog - new_audited

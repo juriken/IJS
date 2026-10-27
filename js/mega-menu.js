@@ -315,7 +315,7 @@ function renderMegaMenu(cat) {
 
   // ZONE 1: Left Master Sidebar Rail
   let railHtml = `
-    <div class="w-full md:w-1/4 lg:w-[22%] bg-stone-50/80 dark:bg-slate-800/60 p-2.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col gap-1 shrink-0 max-h-[380px] overflow-y-auto">
+    <div class="w-full md:w-1/4 lg:w-[22%] bg-stone-50/80 dark:bg-slate-800/60 p-2.5 rounded-2xl border border-stone-200/60 dark:border-slate-800 flex flex-col gap-1 shrink-0 max-h-[380px] overflow-y-auto mega-menu-scrollbar">
       <div class="px-2 py-1 mb-1 border-b border-stone-200/60 dark:border-slate-700/60 flex items-center justify-between">
         <span class="text-[10px] font-black uppercase tracking-wider text-stone-500 dark:text-slate-400">Directory Index</span>
         <span class="text-[9px] font-mono text-stone-400 dark:text-slate-500 font-bold">${railItems.length} Sections</span>
@@ -382,7 +382,7 @@ function renderMegaMenu(cat) {
           ${canvasHeaderControls}
         </div>
 
-        <div id="mega-menu-matrix-scroll" class="max-h-[340px] overflow-y-auto pr-1.5">
+        <div id="mega-menu-matrix-scroll" class="max-h-[340px] overflow-y-auto mega-menu-scrollbar pr-1.5">
   `;
 
   if (currentRail.clusters && currentRail.clusters.length > 0) {

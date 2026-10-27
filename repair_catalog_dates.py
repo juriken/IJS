@@ -127,6 +127,24 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
+    # Match YYYY Month DD (e.g., 2024 October 25 or 2024 Oct. 25)
+    m_ymd = re.search(r"\b(19\d\d|20\d\d)\s+([A-Za-z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b", text)
+    if m_ymd:
+        mon_str = m_ymd.group(2).lower()
+        if mon_str in MONTH_MAP:
+            y, m, d = int(m_ymd.group(1)), MONTH_MAP[mon_str], int(m_ymd.group(3))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
+
+    # Match YYYY Month (e.g., 2024 October or 2024 Oct.) -> default to 1st of month
+    m_ym = re.search(r"\b(19\d\d|20\d\d)\s+([A-Za-z]+)\.?\b", text)
+    if m_ym:
+        mon_str = m_ym.group(2).lower()
+        if mon_str in MONTH_MAP:
+            y, m = int(m_ym.group(1)), MONTH_MAP[mon_str]
+            if 1 <= m <= 12:
+                return f"{y}/{str(m).zfill(2)}/01"
+
     # Match Month YYYY (e.g., September 2024 or Oct. 2024) -> default to 1st of month
     m5 = re.search(r"\b([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
     if m5:
@@ -219,9 +237,9 @@ def fetch_official_date(pid, session=None):
             # 2. Check Definition Lists & Key-Value Table Cells
             target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
             label_nodes = soup.find_all(
-                lambda el: el.name in ["dt", "th", "td"] and (
+                lambda el: el.name in ["dt", "th", "td"] and len(el.get_text(strip=True)) <= 30 and (
                     re.sub(r"\s+", " ", el.get_text()).strip().lower().rstrip(":") in target_labels
-                    or any(k in el.get_text().lower() for k in ["release date", "発売日"])
+                    or any(re.search(rf"\b{re.escape(k)}\b", el.get_text().lower()) for k in ["release date", "発売日", "street date"])
                 )
             )
             for label in label_nodes:
@@ -417,14 +435,11 @@ def main():
                     else:
                         preserved_count += 1
                 else:
+                    processed_keys.add(pid)
                     if is_valid_date_format(old_date):
-                        # Existing date in catalog is valid; keep it and mark audited
-                        processed_keys.add(pid)
                         preserved_count += 1
                     else:
-                        # Date is missing/corrupted in catalog and CDJapan failed to yield a date.
-                        # Do NOT mark as audited so it remains pending for future healing.
-                        print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: catalog date invalid ('{old_date}') and CDJapan returned no date.", flush=True)
+                        print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: CDJapan returned no valid date (catalog has '{old_date}'). Marked audited to unblock queue.", flush=True)
 
     finally:
         # Save updated catalog records atomically only when changes occur
@@ -473,7 +488,7 @@ def main():
                         elif "data" in idx_data and isinstance(idx_data["data"], list):
                             target_list = idx_data["data"]
                         else:
-                            target_list = next((v for v in idx_data.values() if isinstance(v, list) and v and isinstance(v[0], dict)), None)
+                            target_list = None
 
                         if target_list is not None:
                             for entry in target_list:

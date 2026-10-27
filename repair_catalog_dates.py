@@ -49,6 +49,7 @@ USER_AGENTS = [
 # Thread-local storage guarantees isolated cookie jars per worker thread
 _thread_local = threading.local()
 
+# File: repair_catalog_dates.py | Block/Target: build_http_session
 def build_http_session():
     session = requests.Session()
     session.headers.update({
@@ -56,13 +57,16 @@ def build_http_session():
         "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
         "Referer": "https://www.cdjapan.co.jp/"
     })
-    retries = Retry(
-        total=5,
-        backoff_factor=1.0,
-        backoff_jitter=0.5,
-        status_forcelist=[429, 500, 502, 503, 504],
-        raise_on_status=False
-    )
+    retry_kwargs = {
+        "total": 5,
+        "backoff_factor": 1.0,
+        "status_forcelist": [429, 500, 502, 503, 504],
+        "raise_on_status": False
+    }
+    try:
+        retries = Retry(**retry_kwargs, backoff_jitter=0.5)
+    except TypeError:
+        retries = Retry(**retry_kwargs)
     pool_cap = max(16, int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS)) * 2)
     adapter = HTTPAdapter(max_retries=retries, pool_connections=pool_cap, pool_maxsize=pool_cap)
     session.mount("https://", adapter)
@@ -154,8 +158,8 @@ def parse_cdjapan_date(raw_text):
             if 1 <= m <= 12:
                 return f"{y}/{str(m).zfill(2)}/01"
 
-    # Match Year & Month only: YYYY/MM -> default to 1st of month
-    m6 = re.search(r"(?<![/\-\d])\b(19\d\d|20\d\d)\s*[/-]\s*(\d{1,2})\b(?![/\-\d])", text)
+    # Match Year & Month only: YYYY/MM, YYYY-MM, or YYYY.MM -> default to 1st of month
+    m6 = re.search(r"(?<![/\-.\d])\b(19\d\d|20\d\d)\s*[/\-.]\s*(\d{1,2})\b(?![/\-.\d])", text)
     if m6:
         y, m = int(m6.group(1)), int(m6.group(2))
         if 1 <= m <= 12:
@@ -455,8 +459,21 @@ def main():
                     for p, val in catalog.items():
                         if isinstance(val, dict) and val.get("release_date"):
                             d = val.get("release_date")
-                            date_lookup[str(p).strip()] = d
-                            date_lookup[str(p).strip().lower()] = d
+                            keys_to_map = [
+                                str(p).strip(),
+                                str(val.get("id", "")).strip(),
+                                str(val.get("pid", "")).strip(),
+                                str(val.get("product_id", "")).strip(),
+                                str(val.get("productId", "")).strip(),
+                                str(val.get("cat_no", "")).strip(),
+                                str(val.get("catalog_id", "")).strip(),
+                                str(val.get("catalogId", "")).strip(),
+                                str(val.get("code", "")).strip(),
+                            ]
+                            for k in keys_to_map:
+                                if k:
+                                    date_lookup[k] = d
+                                    date_lookup[k.lower()] = d
 
                     def sync_item(entry):
                         if not isinstance(entry, dict):
@@ -477,18 +494,11 @@ def main():
                                 entry["date"] = target_date
 
                     if isinstance(idx_data, dict):
-                        if "items" in idx_data and isinstance(idx_data["items"], list):
-                            target_list = idx_data["items"]
-                        elif "products" in idx_data and isinstance(idx_data["products"], list):
-                            target_list = idx_data["products"]
-                        elif "releases" in idx_data and isinstance(idx_data["releases"], list):
-                            target_list = idx_data["releases"]
-                        elif "catalog" in idx_data and isinstance(idx_data["catalog"], list):
-                            target_list = idx_data["catalog"]
-                        elif "data" in idx_data and isinstance(idx_data["data"], list):
-                            target_list = idx_data["data"]
-                        else:
-                            target_list = None
+                        target_list = None
+                        for key in ["items", "products", "releases", "catalog", "data"]:
+                            if key in idx_data and isinstance(idx_data[key], list):
+                                target_list = idx_data[key]
+                                break
 
                         if target_list is not None:
                             for entry in target_list:
@@ -509,7 +519,8 @@ def main():
                             sync_item(entry)
                         atomic_save_json(INDEX_FILE, idx_data)
                 except Exception as e:
-                    print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")
+                    print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")
+                    raise RuntimeError(f"Catalog synchronization failed: {e}")
         save_progress(processed_keys)
         
     new_audited = len(processed_keys)

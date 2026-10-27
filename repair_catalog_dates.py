@@ -183,6 +183,8 @@ def fetch_official_date(pid, session=None):
         str(pid).strip(),
         flags=re.IGNORECASE
     ).split("?")[0].strip("/")
+    if not clean_pid:
+        return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
     try:
@@ -292,7 +294,7 @@ def fetch_official_date(pid, session=None):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?:release\s*date|street\s*date|発売予定日|発売日|発売(?!元|国|レーベル))\s*[:：]\s*(.*)",
+                    r"(?<![a-zA-Z])(?:release\s*date|street\s*date|発売予定日|発売日|発売(?!元|国|レーベル))\s*[:：.\-–]?\s*(.*)",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -306,7 +308,7 @@ def fetch_official_date(pid, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"\b(?:release\s*date|release|street\s*date|発売日|発売予定日)\s*[:：]\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"\b(?:release\s*date|release|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -393,11 +395,11 @@ def main():
     # File: repair_catalog_dates.py | Block/Target: pending_items_queue
     pending_items = sorted(
         [pid for pid, val in catalog.items() if pid not in processed_keys and isinstance(val, dict)],
-        key=lambda pid: 0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date", "")) else 1
+        key=lambda pid: (0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date", "")) else 1, str(pid))
     )
 
     total_pending = len(pending_items)
-    audited_count = len(processed_keys)
+    audited_count = len(processed_keys.intersection(catalog.keys()))
     progress_pct = (audited_count / total_catalog * 100) if total_catalog > 0 else 0
 
     print(f"Total Catalog Database:    {total_catalog:,} releases")
@@ -421,6 +423,7 @@ def main():
     print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
     updated_count = 0
+    updated_dates = {}
     preserved_count = 0
     consecutive_blocks = 0
     max_consecutive_blocks = 8
@@ -457,6 +460,7 @@ def main():
                     processed_keys.add(pid)
                     if confirmed_date != old_date:
                         catalog[pid]["release_date"] = confirmed_date
+                        updated_dates[pid] = confirmed_date
                         updated_count += 1
                         print(f"   [{idx}/{batch_size}] ✓ [{pid}] {old_date} -> {confirmed_date}", flush=True)
                     else:
@@ -471,15 +475,14 @@ def main():
     finally:
         # Save updated catalog records atomically only when changes occur
         if updated_count > 0:
-            atomic_save_json(DATA_FILE, catalog)
-            # File: repair_catalog_dates.py | Block/Target: dual_file_sync
             if os.path.exists(INDEX_FILE):
                 try:
                     with open(INDEX_FILE, "r", encoding="utf-8") as f:
                         idx_data = json.load(f)
 
                     date_lookup = {}
-                    for p, val in catalog.items():
+                    for p in updated_dates:
+                        val = catalog.get(p)
                         if isinstance(val, dict):
                             d = val.get("release_date")
                             if d and is_valid_date_format(d):
@@ -489,31 +492,36 @@ def main():
                                     val.get("pid"),
                                     val.get("product_id"),
                                     val.get("productId"),
-                                    val.get("cat_no"),
                                     val.get("catalog_id"),
-                                    val.get("catalogId"),
-                                    val.get("code")
+                                    val.get("catalogId")
                                 ]
+                                cat_no = str(val.get("cat_no", "")).strip()
+                                if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
+                                    raw_keys.append(cat_no)
                                 for raw_k in raw_keys:
                                     if raw_k is not None:
                                         k_str = str(raw_k).strip()
-                                        if k_str and k_str.lower() != "none":
+                                        if k_str and k_str.lower() not in ["none", "tbd", "n/a", "-"]:
                                             date_lookup[k_str] = str(d).strip()
                                             date_lookup[k_str.lower()] = str(d).strip()
 
-                    def sync_item(entry):
+                    def sync_item(entry, key_id=None):
                         if not isinstance(entry, dict):
                             return
                         candidate_keys = [
+                            key_id,
                             entry.get("id"), entry.get("pid"), entry.get("product_id"),
-                            entry.get("productId"), entry.get("cat_no"), entry.get("catalog_id"),
-                            entry.get("catalogId"), entry.get("code")
+                            entry.get("productId"), entry.get("catalog_id"), entry.get("catalogId")
                         ]
+                        cat_no = str(entry.get("cat_no", "")).strip()
+                        if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
+                            candidate_keys.append(cat_no)
+
                         target_date = None
                         for raw_cand in candidate_keys:
                             if raw_cand is not None:
                                 cand_str = str(raw_cand).strip()
-                                if cand_str and cand_str.lower() != "none":
+                                if cand_str and cand_str.lower() not in ["none", "tbd", "n/a", "-"]:
                                     if cand_str in date_lookup:
                                         target_date = date_lookup[cand_str]
                                         break
@@ -534,23 +542,25 @@ def main():
                                     for entry in idx_data[key]:
                                         sync_item(entry)
                                 elif isinstance(idx_data[key], dict):
-                                    for sub_node in idx_data[key].values():
-                                        sync_item(sub_node)
+                                    for sub_k, sub_node in idx_data[key].items():
+                                        sync_item(sub_node, key_id=sub_k)
                         for p_key, node in idx_data.items():
                             if isinstance(node, dict) and p_key not in ["items", "products", "releases", "catalog", "data"]:
-                                sync_item(node)
-                        atomic_save_json(INDEX_FILE, idx_data)
+                                sync_item(node, key_id=p_key)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:
                             sync_item(entry)
-                        atomic_save_json(INDEX_FILE, idx_data)
+
+                    atomic_save_json(INDEX_FILE, idx_data)
                 except Exception as e:
                     print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")
                     raise RuntimeError(f"Catalog synchronization failed: {e}")
+
+            atomic_save_json(DATA_FILE, catalog)
         save_progress(processed_keys)
-        
-    new_audited = len(processed_keys)
-    remaining_pending = total_catalog - new_audited
+
+    new_audited = len(processed_keys.intersection(catalog.keys()))
+    remaining_pending = max(0, total_catalog - new_audited)
     new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0
     new_batches_left = math.ceil(remaining_pending / batch_size) if batch_size > 0 and remaining_pending > 0 else 0
 

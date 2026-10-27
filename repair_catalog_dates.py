@@ -100,8 +100,8 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Year & Month only: YYYY/MM -> default to 1st of month
-    m5 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
+    # Match Year & Month only: YYYY/MM -> default to 1st of month (guarded against trailing/leading slashes)
+    m5 = re.search(r"(?<![/-])\b(19\d\d|20\d\d)[/-](\d{1,2})\b(?![/-])", text)
     if m5:
         y, m = int(m5.group(1)), int(m5.group(2))
         if 1 <= m <= 12:

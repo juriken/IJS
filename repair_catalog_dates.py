@@ -189,10 +189,9 @@ def fetch_official_date(pid, session=None):
 
     try:
         time.sleep(random.uniform(0.6, 1.4))
-        res = session.get(url, timeout=14)
+        res = session.get(url, timeout=(5.0, 15.0))
 
         if res.status_code == 200:
-            # Guard against redirects to homepage or department landing pages for deleted items
             is_valid_dest = (
                 "cdjapan.co.jp/product/" in res.url or
                 "detailview.html" in res.url
@@ -202,7 +201,6 @@ def fetch_official_date(pid, session=None):
 
             soup = BeautifulSoup(res.text, "html.parser")
 
-            # Guard against WAF/Cloudflare soft-blocks returning HTTP 200
             if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
                 return pid, None
 
@@ -244,9 +242,14 @@ def fetch_official_date(pid, session=None):
                                             if parsed:
                                                 return pid, parsed
                             
-                            # Prefer canonical releaseDate over generic datePublished
                             if item.get("releaseDate"):
                                 parsed = parse_cdjapan_date(item["releaseDate"])
+                                if parsed:
+                                    return pid, parsed
+
+                            # Support pre-order street dates nested in schema offers
+                            if item.get("availabilityStarts"):
+                                parsed = parse_cdjapan_date(item["availabilityStarts"])
                                 if parsed:
                                     return pid, parsed
                             
@@ -292,13 +295,13 @@ def fetch_official_date(pid, session=None):
                     if parsed:
                         return pid, parsed
 
-            # 4. Check Leaf Table Rows and Specific List Items with Word Boundaries
+            # 4. Check Leaf Table Rows and List Items with Tight Negative Boundaries
             for tr in soup.find_all(["tr", "li"]):
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?:release\s*date|street\s*date|発売予定日|発売日|発売(?!元|国|レーベル))\s*[:：.\-–]?\s*(.*)",
+                    r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release\s*date|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*(.*)",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -320,7 +323,7 @@ def fetch_official_date(pid, session=None):
 
             return pid, ""
 
-        elif res.status_code == 404:
+        elif res.status_code in (404, 410):
             return pid, ""
 
     except Exception:
@@ -502,6 +505,10 @@ def main():
                                     val.get("catalog_id"),
                                     val.get("catalogId")
                                 ]
+                                if val.get("url"):
+                                    clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                                    if clean_u:
+                                        raw_keys.append(clean_u)
                                 cat_no = str(val.get("cat_no", "")).strip()
                                 if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
                                     raw_keys.append(cat_no)
@@ -520,6 +527,10 @@ def main():
                             entry.get("id"), entry.get("pid"), entry.get("product_id"),
                             entry.get("productId"), entry.get("catalog_id"), entry.get("catalogId")
                         ]
+                        if entry.get("url"):
+                            clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("?")[0].strip("/")
+                            if clean_u:
+                                candidate_keys.append(clean_u)
                         cat_no = str(entry.get("cat_no", "")).strip()
                         if cat_no and cat_no.lower() not in ["none", "tbd", "n/a", "-"]:
                             candidate_keys.append(cat_no)
@@ -541,27 +552,23 @@ def main():
                                 entry["releaseDate"] = target_date
                             if "date" in entry:
                                 entry["date"] = target_date
+                            if "street_date" in entry:
+                                entry["street_date"] = target_date
+                            if "streetDate" in entry:
+                                entry["streetDate"] = target_date
 
-                    if isinstance(idx_data, dict):
-                        for key in ["items", "products", "releases", "catalog", "data"]:
-                            if key in idx_data:
-                                if isinstance(idx_data[key], list):
-                                    for entry in idx_data[key]:
-                                        sync_item(entry)
-                                elif isinstance(idx_data[key], dict):
-                                    for sub_k, sub_node in idx_data[key].items():
-                                        sync_item(sub_node, key_id=sub_k)
-                        for p_key, node in idx_data.items():
-                            if p_key not in ["items", "products", "releases", "catalog", "data"]:
-                                if isinstance(node, dict):
-                                    sync_item(node, key_id=p_key)
-                                elif isinstance(node, list):
-                                    for entry in node:
-                                        sync_item(entry)
-                    elif isinstance(idx_data, list):
-                        for entry in idx_data:
-                            sync_item(entry)
+                    def sync_catalog_tree(node, key_id=None):
+                        if isinstance(node, dict):
+                            sync_item(node, key_id=key_id)
+                            for k, v in node.items():
+                                if isinstance(v, (dict, list)):
+                                    sync_catalog_tree(v, key_id=k)
+                        elif isinstance(node, list):
+                            for elem in node:
+                                if isinstance(elem, (dict, list)):
+                                    sync_catalog_tree(elem)
 
+                    sync_catalog_tree(idx_data)
                     atomic_save_json(INDEX_FILE, idx_data)
                 except Exception as e:
                     print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")

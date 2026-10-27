@@ -347,7 +347,7 @@ def main():
                 pid, confirmed_date = future.result()
                 old_date = str(catalog[pid].get("release_date", "")).strip()
 
-               if confirmed_date is None:
+                if confirmed_date is None:
                     consecutive_blocks += 1
                     if is_valid_date_format(old_date):
                         preserved_count += 1

@@ -17,6 +17,7 @@ import unicodedata
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
+from urllib.parse import unquote
 import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
@@ -83,6 +84,7 @@ USER_AGENTS = [
 
 # Thread-local storage guarantees isolated cookie jars per worker thread
 _thread_local = threading.local()
+ABORT_EVENT = threading.Event()
 
 # File: repair_catalog_dates.py | Block/Target: build_http_session
 def build_http_session():
@@ -149,7 +151,7 @@ def parse_cdjapan_date(raw_text):
 
     # Match isolated compact 8-digit date: YYYYMMDD (must not be part of a longer barcode or serial)
     m_compact = re.search(r"(?<!\d)(19\d\d|20\d\d)(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!\d)", text)
-    if m_compact and not re.search(r"\b\d{10,13}\b", text):
+    if m_compact:
         y, m, d = int(m_compact.group(1)), int(m_compact.group(2)), int(m_compact.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
@@ -220,7 +222,7 @@ def parse_cdjapan_date(raw_text):
 def extract_product_key_from_url(u):
     if not u:
         return ""
-    u_str = str(u).strip()
+    u_str = unquote(str(u).strip())
     key_m = re.search(r"[?&](?:KEY|pk)=([^&#]+)", u_str, re.IGNORECASE)
     if key_m:
         cand = key_m.group(1).strip()
@@ -239,6 +241,8 @@ def extract_product_key_from_url(u):
     return ""
 
 def fetch_official_date(pid, entry=None, session=None):
+    if ABORT_EVENT.is_set():
+        return pid, "BLOCKED"
     if session is None:
         session = get_thread_session()
 
@@ -272,6 +276,7 @@ def fetch_official_date(pid, entry=None, session=None):
         clean = re.sub(r"^/product/", "", clean, flags=re.IGNORECASE)
         clean = re.sub(r"^(?:cdjapan|cdj)[-_:]?", "", clean, flags=re.IGNORECASE)
         clean_pid = clean.split("#")[0].split("?")[0].strip("/ \t")
+        clean_pid = re.sub(r"\s+", "-", clean_pid)
 
     if not clean_pid or is_invalid_identifier(clean_pid) or clean_pid.startswith(("http://", "https://", "//")):
         return pid, ""
@@ -282,6 +287,12 @@ def fetch_official_date(pid, entry=None, session=None):
         res = session.get(url, timeout=(5.0, 15.0))
 
         if res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            title_tag = soup.find("title")
+            title_lower = title_tag.get_text().lower() if title_tag else ""
+            if not title_tag or not any(k in title_lower for k in ["cdjapan", "neowing"]) or any(k in title_lower for k in ["attention required", "just a moment", "security check", "robot", "cf-"]):
+                return pid, "BLOCKED"
+
             is_valid_dest = (
                 "cdjapan.co.jp/product/" in res.url or
                 "neowing.co.jp/product/" in res.url or
@@ -289,13 +300,6 @@ def fetch_official_date(pid, entry=None, session=None):
             ) and not any(k in res.url for k in ["/department/", "/search.html", "/person/"])
             if not is_valid_dest:
                 return pid, ""
-
-            soup = BeautifulSoup(res.text, "html.parser")
-
-            title_tag = soup.find("title")
-            title_lower = title_tag.get_text().lower() if title_tag else ""
-            if not title_tag or not any(k in title_lower for k in ["cdjapan", "neowing"]):
-                return pid, "BLOCKED"
 
             # 1. Parse JSON-LD structured data
             for script in soup.find_all("script", type="application/ld+json"):
@@ -590,6 +594,7 @@ def main():
                     print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Request blocked by CDJapan WAF (consecutive blocks: {consecutive_blocks}/{max_consecutive_blocks})", flush=True)
                     if consecutive_blocks >= max_consecutive_blocks:
                         print(f"\n[Warning] {consecutive_blocks} consecutive WAF blocks. Aborting batch early to protect IP reputation.")
+                        ABORT_EVENT.set()
                         for f in future_to_pid:
                             f.cancel()
                         break

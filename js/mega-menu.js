@@ -360,7 +360,9 @@ function renderMegaMenu(cat) {
       </div>
   `;
 
+  /* File: js/mega-menu.js | Block/Target: Zone 1 Left Master Rail Loop */
   railItems.forEach((item, idx) => {
+    const isActive = (idx === window.activeRailIndex);
     const itemUnits = item.clusters 
       ? item.clusters.flatMap(c => c.units || []) 
       : (item.units || []);
@@ -390,6 +392,7 @@ function renderMegaMenu(cat) {
         </span>
       </button>
     `;
+  });
 
   railHtml += `</div>`;
 
@@ -653,15 +656,18 @@ function renderMegaMenuUnitRow(cat, unitName) {
       onmouseleave="restoreDefaultShowcase('${safeEscapeHtml(cat)}')"
       data-name="${unitName.toLowerCase()}"
       class="mega-menu-item-link w-full text-left px-2 py-1.5 rounded-xl transition flex items-center justify-between text-xs cursor-pointer ${
+        isSelected 
+          ? 'bg-rose-600 text-white font-bold shadow-xs' 
+          : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600'
+      }"
+    >
       <div class="flex items-center gap-2 truncate">
         <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs ${isZeroCount ? 'grayscale opacity-50' : ''}" style="background-color: ${brandColor}"></span>
         <span class="truncate text-[11px]">${safeEscapeHtml(unitName)}</span>
       </div>
-      /* File: js/mega-menu.js | Block/Target: Unit Showcase Preview & Restore Implementation */
       ${badgeHtml}
     </button>
   `;
-}
 
 function previewUnitInShowcase(unitName, cat) {
   const mount = document.getElementById('mega-menu-showcase-mount');

@@ -215,6 +215,22 @@ def parse_cdjapan_date(raw_text):
     return ""
     
 # File: repair_catalog_dates.py | Block/Target: fetch_official_date
+def extract_product_key_from_url(u):
+    if not u:
+        return ""
+    u_str = str(u).strip()
+    key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
+    prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
+    aff_m = re.search(r"click\.cgi/[^/]+/[^/]+/([^/?#]+)", u_str, re.IGNORECASE)
+    if key_m:
+        return key_m.group(1).strip()
+    if prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
+        return prod_m.group(1).strip()
+    if aff_m:
+        return aff_m.group(1).strip()
+    return ""
+
+# File: repair_catalog_dates.py | Block/Target: fetch_official_date
 def fetch_official_date(pid, entry=None, session=None):
     if session is None:
         session = get_thread_session()
@@ -223,13 +239,7 @@ def fetch_official_date(pid, entry=None, session=None):
     if isinstance(entry, dict):
         url_field = entry.get("url")
         if url_field:
-            u_str = str(url_field).strip()
-            key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
-            prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
-            if key_m:
-                target_candidate = key_m.group(1).strip()
-            elif prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
-                target_candidate = prod_m.group(1).strip()
+            target_candidate = extract_product_key_from_url(url_field)
 
         if not target_candidate:
             for k in ["cat_no", "catalog_no", "catno", "catalog_number", "catalogNumber", "product_id", "productId", "pid", "id"]:
@@ -274,7 +284,8 @@ def fetch_official_date(pid, entry=None, session=None):
             soup = BeautifulSoup(res.text, "html.parser")
 
             title_tag = soup.find("title")
-            if not title_tag or "cdjapan" not in title_tag.get_text().lower():
+            title_lower = title_tag.get_text().lower() if title_tag else ""
+            if not title_tag or not any(k in title_lower for k in ["cdjapan", "neowing"]):
                 return pid, "BLOCKED"
 
             # 1. Parse JSON-LD structured data
@@ -479,6 +490,14 @@ def main():
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
+    # Auto-retire invalid identifiers and malformed non-dict catalog entries
+    invalid_catalog_keys = {
+        str(pid).strip() for pid, val in catalog.items()
+        if not isinstance(val, dict) or is_invalid_identifier(pid)
+    }
+    if invalid_catalog_keys:
+        processed_keys.update(invalid_catalog_keys)
+
     # File: repair_catalog_dates.py | Block/Target: pending_items_queue
     def extract_entry_raw_date(item):
         if not isinstance(item, dict):
@@ -589,6 +608,9 @@ def main():
                     else:
                         print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: CDJapan returned no valid date (catalog has '{old_date}'). Marked audited to unblock queue.", flush=True)
 
+            list(executor.map(lambda _: close_thread_session(), range(max_workers)))
+
+    
     finally:
         if updated_count > 0:
             if not os.path.exists(INDEX_FILE):
@@ -597,19 +619,6 @@ def main():
             try:
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
-
-                # Synchronization helper: extract canonical CDJapan key from URLs
-                def extract_product_key_from_url(u):
-                    if not u:
-                        return ""
-                    u_str = str(u).strip()
-                    key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
-                    prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
-                    if key_m:
-                        return key_m.group(1).strip()
-                    if prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
-                        return prod_m.group(1).strip()
-                    return ""
 
                 date_lookup = {}
                 id_fields = [

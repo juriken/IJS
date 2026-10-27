@@ -223,9 +223,16 @@ def fetch_official_date(pid, entry=None, session=None):
     target_candidate = None
     if isinstance(entry, dict):
         url_field = entry.get("url")
-        if url_field and ("/product/" in str(url_field) or "detailview.html" in str(url_field)):
-            target_candidate = str(url_field)
-        else:
+        if url_field:
+            u_str = str(url_field).strip()
+            key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
+            prod_m = re.search(r"(?:cdjapan\.co\.jp|neowing\.co\.jp)?/product/([^/?#]+)", u_str, re.IGNORECASE)
+            if key_m:
+                target_candidate = key_m.group(1).strip()
+            elif prod_m and ("cdjapan.co.jp" in u_str or "neowing.co.jp" in u_str or u_str.startswith("/product/")):
+                target_candidate = prod_m.group(1).strip()
+
+        if not target_candidate:
             # Check canonical catalog numbers first, then product codes and identifiers
             for k in ["cat_no", "catalog_no", "catno", "catalog_number", "catalogNumber", "product_id", "productId", "pid", "id"]:
                 val = entry.get(k)
@@ -233,7 +240,6 @@ def fetch_official_date(pid, entry=None, session=None):
                     target_candidate = str(val).strip()
                     break
 
-    # 2 lines of existing code before:
     if not target_candidate:
         target_candidate = str(pid).strip()
 
@@ -245,13 +251,12 @@ def fetch_official_date(pid, entry=None, session=None):
         clean_pid = key_match.group(1).strip()
     else:
         clean = str(target_candidate).strip()
-        clean = re.sub(r"^(?:https?://)?(?:www\.)?cdjapan\.co\.jp/product/", "", clean, flags=re.IGNORECASE)
+        clean = re.sub(r"^(?:https?://)?(?:www\.)?(?:cdjapan\.co\.jp|neowing\.co\.jp)/product/", "", clean, flags=re.IGNORECASE)
         clean = re.sub(r"^/product/", "", clean, flags=re.IGNORECASE)
         clean = re.sub(r"^(?:cdjapan|cdj)[-_:]?", "", clean, flags=re.IGNORECASE)
         clean_pid = clean.split("#")[0].split("?")[0].strip("/ \t")
 
-# 2 lines of existing code after:
-    if not clean_pid or is_invalid_identifier(clean_pid):
+    if not clean_pid or is_invalid_identifier(clean_pid) or clean_pid.startswith("http://") or clean_pid.startswith("https://"):
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 

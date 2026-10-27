@@ -65,7 +65,7 @@ def build_http_session():
     retry_kwargs = {
         "total": 5,
         "backoff_factor": 1.0,
-        "status_forcelist": [429, 500, 502, 503, 504],
+        "status_forcelist": [403, 429, 500, 502, 503, 504],
         "raise_on_status": False
     }
     try:
@@ -235,10 +235,14 @@ def fetch_official_date(pid, session=None):
                                 props = [props]
                             if isinstance(props, list):
                                 for prop in props:
-                                    if isinstance(prop, dict) and any(k in str(prop.get("name", "")).lower() for k in ["release", "発売"]):
-                                        parsed = parse_cdjapan_date(prop.get("value", ""))
-                                        if parsed:
-                                            return pid, parsed
+                                    if isinstance(prop, dict):
+                                        p_name = str(prop.get("name", "")).strip().lower()
+                                        if any(k in p_name for k in ["release date", "発売日", "発売予定日", "street date"]) or (
+                                            any(k in p_name for k in ["release", "発売"]) and not any(k in p_name for k in ["発売元", "発売国", "発売レーベル", "publisher", "label", "distributor"])
+                                        ):
+                                            parsed = parse_cdjapan_date(prop.get("value", ""))
+                                            if parsed:
+                                                return pid, parsed
                             
                             # Prefer canonical releaseDate over generic datePublished
                             if item.get("releaseDate"):
@@ -308,7 +312,7 @@ def fetch_official_date(pid, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"\b(?:release\s*date|release|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"\b(?:release\s*date|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -486,8 +490,11 @@ def main():
                         if isinstance(val, dict):
                             d = val.get("release_date")
                             if d and is_valid_date_format(d):
+                                stripped_p = re.sub(r"^(?:cdjapan[-_:]?|cdj[-_:]?)", "", str(p).strip(), flags=re.IGNORECASE)
                                 raw_keys = [
                                     p,
+                                    stripped_p,
+                                    f"cdjapan-{stripped_p}",
                                     val.get("id"),
                                     val.get("pid"),
                                     val.get("product_id"),
@@ -545,8 +552,12 @@ def main():
                                     for sub_k, sub_node in idx_data[key].items():
                                         sync_item(sub_node, key_id=sub_k)
                         for p_key, node in idx_data.items():
-                            if isinstance(node, dict) and p_key not in ["items", "products", "releases", "catalog", "data"]:
-                                sync_item(node, key_id=p_key)
+                            if p_key not in ["items", "products", "releases", "catalog", "data"]:
+                                if isinstance(node, dict):
+                                    sync_item(node, key_id=p_key)
+                                elif isinstance(node, list):
+                                    for entry in node:
+                                        sync_item(entry)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:
                             sync_item(entry)

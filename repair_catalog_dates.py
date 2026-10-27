@@ -193,17 +193,7 @@ def fetch_official_date(session, pid):
                     if parsed:
                         return pid, parsed
 
-            # 3. Check Leaf Table Rows and Specific List Items
-            for tr in soup.find_all(["tr", "li"]):
-                if tr.find(["tr", "table"]):
-                    continue
-                row_text = tr.get_text(" ", strip=True).lower()
-                if "release date" in row_text or "発売日" in row_text:
-                    parsed = parse_cdjapan_date(tr.get_text(" ", strip=True))
-                    if parsed:
-                        return pid, parsed
-
-            # 4. Check OpenGraph / Microdata Meta & Time Tags
+            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags
             meta_date = (
                 soup.find("meta", {"itemprop": "releaseDate"})
                 or soup.find("meta", {"property": "product:release_date"})
@@ -216,6 +206,16 @@ def fetch_official_date(session, pid):
                 parsed = parse_cdjapan_date(raw_meta)
                 if parsed:
                     return pid, parsed
+
+            # 4. Check Leaf Table Rows and Specific List Items
+            for tr in soup.find_all(["tr", "li"]):
+                if tr.find(["tr", "table"]):
+                    continue
+                row_text = tr.get_text(" ", strip=True).lower()
+                if "release date" in row_text or "発売日" in row_text:
+                    parsed = parse_cdjapan_date(tr.get_text(" ", strip=True))
+                    if parsed:
+                        return pid, parsed
 
             # 5. Fallback regex across stripped page text
             page_text = soup.get_text(" ", strip=True)
@@ -384,16 +384,32 @@ def main():
             try:
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
+                
+                date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict)}
+
                 if isinstance(idx_data, dict):
-                    for p, val in catalog.items():
-                        if p in idx_data and isinstance(idx_data[p], dict) and "release_date" in val:
-                            idx_data[p]["release_date"] = val["release_date"]
+                    if "items" in idx_data and isinstance(idx_data["items"], list):
+                        target_list = idx_data["items"]
+                    elif "products" in idx_data and isinstance(idx_data["products"], list):
+                        target_list = idx_data["products"]
+                    else:
+                        target_list = None
+
+                    if target_list is not None:
+                        for entry in target_list:
+                            if isinstance(entry, dict):
+                                eid = entry.get("id") or entry.get("pid") or entry.get("productId")
+                                if eid in date_lookup and date_lookup[eid]:
+                                    entry["release_date"] = date_lookup[eid]
+                    else:
+                        for p, val in catalog.items():
+                            if p in idx_data and isinstance(idx_data[p], dict) and "release_date" in val:
+                                idx_data[p]["release_date"] = val["release_date"]
                     atomic_save_json(INDEX_FILE, idx_data)
                 elif isinstance(idx_data, list):
-                    date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict)}
                     for entry in idx_data:
                         if isinstance(entry, dict):
-                            eid = entry.get("id") or entry.get("pid")
+                            eid = entry.get("id") or entry.get("pid") or entry.get("productId")
                             if eid in date_lookup and date_lookup[eid]:
                                 entry["release_date"] = date_lookup[eid]
                     atomic_save_json(INDEX_FILE, idx_data)

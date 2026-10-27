@@ -51,6 +51,11 @@ _thread_local = threading.local()
 
 def build_http_session():
     session = requests.Session()
+    session.headers.update({
+        "User-Agent": random.choice(USER_AGENTS),
+        "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
+        "Referer": "https://www.cdjapan.co.jp/"
+    })
     retries = Retry(
         total=5,
         backoff_factor=1.0,
@@ -82,10 +87,17 @@ def parse_cdjapan_date(raw_text):
     text = unicodedata.normalize("NFKC", str(raw_text))
     text = re.sub(r"\s+", " ", text).strip()
 
-    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 (e.g. 2024-09-25T00:00:00)
-    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)[/\-.](\d{1,2})[/\-.](\d{1,2})(?!\d)", text)
+    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 (e.g. 2024-09-25T00:00:00) with optional whitespace
+    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)\s*[/\-.]\s*(\d{1,2})\s*[/\-.]\s*(\d{1,2})(?!\d)", text)
     if m1:
         y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
+
+    # Match compact 8-digit date: YYYYMMDD
+    m_compact = re.search(r"(?<!\d)(19\d\d|20\d\d)(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!\d)", text)
+    if m_compact:
+        y, m, d = int(m_compact.group(1)), int(m_compact.group(2)), int(m_compact.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
@@ -125,7 +137,7 @@ def parse_cdjapan_date(raw_text):
                 return f"{y}/{str(m).zfill(2)}/01"
 
     # Match Year & Month only: YYYY/MM -> default to 1st of month
-    m6 = re.search(r"(?<![/\-\d])\b(19\d\d|20\d\d)[/-](\d{1,2})\b(?![/\-\d])", text)
+    m6 = re.search(r"(?<![/\-\d])\b(19\d\d|20\d\d)\s*[/-]\s*(\d{1,2})\b(?![/\-\d])", text)
     if m6:
         y, m = int(m6.group(1)), int(m6.group(2))
         if 1 <= m <= 12:
@@ -139,15 +151,10 @@ def fetch_official_date(pid, session=None):
         session = get_thread_session()
 
     url = f"https://www.cdjapan.co.jp/product/{pid}"
-    headers = {
-        "User-Agent": random.choice(USER_AGENTS),
-        "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
-        "Referer": "https://www.cdjapan.co.jp/"
-    }
 
     try:
         time.sleep(random.uniform(0.6, 1.4))
-        res = session.get(url, headers=headers, timeout=14)
+        res = session.get(url, timeout=14)
 
         if res.status_code == 200:
             # Guard against redirects to homepage or department landing pages for deleted items
@@ -177,6 +184,11 @@ def fetch_official_date(pid, session=None):
                         if isinstance(item, dict):
                             if "@graph" in item and isinstance(item["@graph"], list):
                                 queue.extend(item["@graph"])
+                            if "mainEntity" in item:
+                                if isinstance(item["mainEntity"], dict):
+                                    queue.append(item["mainEntity"])
+                                elif isinstance(item["mainEntity"], list):
+                                    queue.extend(item["mainEntity"])
                             if "offers" in item:
                                 if isinstance(item["offers"], dict):
                                     queue.append(item["offers"])
@@ -196,7 +208,7 @@ def fetch_official_date(pid, session=None):
                                     return pid, parsed
                             
                             item_type = str(item.get("@type", "")).lower()
-                            if "product" in item_type or "musicalbum" in item_type or "book" in item_type:
+                            if any(k in item_type for k in ["product", "musicalbum", "book", "musicrecording"]):
                                 if item.get("datePublished"):
                                     parsed = parse_cdjapan_date(item["datePublished"])
                                     if parsed:
@@ -205,23 +217,30 @@ def fetch_official_date(pid, session=None):
                     pass
 
             # 2. Check Definition Lists & Key-Value Table Cells
+            target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
             label_nodes = soup.find_all(
-                lambda el: el.name in ["dt", "th", "td"] and any(term in el.get_text().lower() for term in ["release date", "発売日", "release:"])
+                lambda el: el.name in ["dt", "th", "td"] and (
+                    re.sub(r"\s+", " ", el.get_text()).strip().lower().rstrip(":") in target_labels
+                    or any(k in el.get_text().lower() for k in ["release date", "発売日"])
+                )
             )
             for label in label_nodes:
                 val = label.find_next_sibling(["dd", "td"])
-                if val:
-                    parsed = parse_cdjapan_date(val.get_text(" ", strip=True))
-                    if parsed:
-                        return pid, parsed
+                cand_text = val.get_text(" ", strip=True) if val else label.get_text(" ", strip=True)
+                parsed = parse_cdjapan_date(cand_text)
+                if parsed:
+                    return pid, parsed
 
-            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags without short-circuiting on empty nodes
+            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags
             meta_selectors = [
                 ("meta", {"itemprop": "releaseDate"}),
                 ("meta", {"property": "product:release_date"}),
+                ("meta", {"property": "music:release_date"}),
                 ("meta", {"name": "release_date"}),
                 ("meta", {"property": "og:release_date"}),
-                ("time", {"itemprop": "releaseDate"})
+                ("meta", {"itemprop": "datePublished"}),
+                ("time", {"itemprop": "releaseDate"}),
+                ("time", {"datetime": True})
             ]
             for tag_name, attrs in meta_selectors:
                 for el in soup.find_all(tag_name, attrs):
@@ -235,7 +254,7 @@ def fetch_official_date(pid, session=None):
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
-                m = re.search(r"(?:release date|発売日)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
+                m = re.search(r"(?:release\s*date|release|発売日|発売)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
                 if m:
                     parsed = parse_cdjapan_date(m.group(1))
                     if parsed:
@@ -246,7 +265,7 @@ def fetch_official_date(pid, session=None):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"(?:Release\s*Date|Release|発売日|発売)\s*[:：]\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -388,9 +407,9 @@ def main():
                     continue
 
                 consecutive_blocks = 0
-                processed_keys.add(pid)
 
                 if confirmed_date:
+                    processed_keys.add(pid)
                     if confirmed_date != old_date:
                         catalog[pid]["release_date"] = confirmed_date
                         updated_count += 1
@@ -399,11 +418,13 @@ def main():
                         preserved_count += 1
                 else:
                     if is_valid_date_format(old_date):
+                        # Existing date in catalog is valid; keep it and mark audited
+                        processed_keys.add(pid)
                         preserved_count += 1
-
-                if idx % 50 == 0 or idx == batch_size:
-                    elapsed = time.time() - start_time
-                    print(f"   -> Progress: {idx}/{batch_size} processed ({elapsed:.1f}s elapsed)...", flush=True)
+                    else:
+                        # Date is missing/corrupted in catalog and CDJapan failed to yield a date.
+                        # Do NOT mark as audited so it remains pending for future healing.
+                        print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: catalog date invalid ('{old_date}') and CDJapan returned no date.", flush=True)
 
     finally:
         # Save updated catalog records atomically only when changes occur
@@ -415,7 +436,30 @@ def main():
                     with open(INDEX_FILE, "r", encoding="utf-8") as f:
                         idx_data = json.load(f)
                     
-                    date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
+                    date_lookup = {}
+                    for p, val in catalog.items():
+                        if isinstance(val, dict) and val.get("release_date"):
+                            d = val.get("release_date")
+                            date_lookup[str(p).strip()] = d
+                            date_lookup[str(p).strip().lower()] = d
+
+                    def sync_item(entry):
+                        if not isinstance(entry, dict):
+                            return
+                        raw_id = (
+                            entry.get("id") or entry.get("pid") or
+                            entry.get("product_id") or entry.get("productId") or
+                            entry.get("cat_no") or entry.get("catalog_id") or
+                            entry.get("catalogId") or entry.get("code")
+                        )
+                        eid = str(raw_id).strip() if raw_id is not None else ""
+                        if eid and (eid in date_lookup or eid.lower() in date_lookup):
+                            target_date = date_lookup.get(eid) or date_lookup.get(eid.lower())
+                            entry["release_date"] = target_date
+                            if "releaseDate" in entry:
+                                entry["releaseDate"] = target_date
+                            if "date" in entry:
+                                entry["date"] = target_date
 
                     if isinstance(idx_data, dict):
                         if "items" in idx_data and isinstance(idx_data["items"], list):
@@ -433,36 +477,21 @@ def main():
 
                         if target_list is not None:
                             for entry in target_list:
-                                if isinstance(entry, dict):
-                                    raw_id = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
-                                    eid = str(raw_id).strip() if raw_id is not None else ""
-                                    if eid and eid in date_lookup:
-                                        entry["release_date"] = date_lookup[eid]
-                                        if "releaseDate" in entry:
-                                            entry["releaseDate"] = date_lookup[eid]
-                                        if "date" in entry:
-                                            entry["date"] = date_lookup[eid]
+                                sync_item(entry)
                         else:
                             for p, new_date in date_lookup.items():
                                 str_p = str(p).strip()
-                                if str_p in idx_data and isinstance(idx_data[str_p], dict):
-                                    idx_data[str_p]["release_date"] = new_date
-                                    if "releaseDate" in idx_data[str_p]:
-                                        idx_data[str_p]["releaseDate"] = new_date
-                                    if "date" in idx_data[str_p]:
-                                        idx_data[str_p]["date"] = new_date
+                                target_node = idx_data.get(str_p) or idx_data.get(str_p.lower())
+                                if isinstance(target_node, dict):
+                                    target_node["release_date"] = new_date
+                                    if "releaseDate" in target_node:
+                                        target_node["releaseDate"] = new_date
+                                    if "date" in target_node:
+                                        target_node["date"] = new_date
                         atomic_save_json(INDEX_FILE, idx_data)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:
-                            if isinstance(entry, dict):
-                                raw_id = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
-                                eid = str(raw_id).strip() if raw_id is not None else ""
-                                if eid and eid in date_lookup:
-                                    entry["release_date"] = date_lookup[eid]
-                                    if "releaseDate" in entry:
-                                        entry["releaseDate"] = date_lookup[eid]
-                                    if "date" in entry:
-                                        entry["date"] = date_lookup[eid]
+                            sync_item(entry)
                         atomic_save_json(INDEX_FILE, idx_data)
                 except Exception as e:
                     print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")

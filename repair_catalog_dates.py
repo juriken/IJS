@@ -233,6 +233,7 @@ def fetch_official_date(pid, entry=None, session=None):
                     target_candidate = str(val).strip()
                     break
 
+    # 2 lines of existing code before:
     if not target_candidate:
         target_candidate = str(pid).strip()
 
@@ -243,13 +244,13 @@ def fetch_official_date(pid, entry=None, session=None):
     if key_match:
         clean_pid = key_match.group(1).strip()
     else:
-        clean_pid = re.sub(
-            r"^(?:(?:https?://)?(?:www\.)?cdjapan\.co\.jp)?(?:/product/)?|^(?:cdjapan[-_:]?|cdj[-_:]?)",
-            "",
-            target_candidate,
-            flags=re.IGNORECASE
-        ).split("#")[0].split("?")[0].strip("/ \t")
+        clean = str(target_candidate).strip()
+        clean = re.sub(r"^(?:https?://)?(?:www\.)?cdjapan\.co\.jp/product/", "", clean, flags=re.IGNORECASE)
+        clean = re.sub(r"^/product/", "", clean, flags=re.IGNORECASE)
+        clean = re.sub(r"^(?:cdjapan|cdj)[-_:]?", "", clean, flags=re.IGNORECASE)
+        clean_pid = clean.split("#")[0].split("?")[0].strip("/ \t")
 
+# 2 lines of existing code after:
     if not clean_pid or is_invalid_identifier(clean_pid):
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
@@ -657,11 +658,15 @@ def main():
                             if alias in entry:
                                 entry[alias] = target_date
 
+                # 2 lines of existing code before:
                 def sync_catalog_tree(node, key_id=None):
                     if isinstance(node, dict):
+
                         sync_item(node, key_id=key_id)
-                        for k, v in node.items():
+                        for k, v in list(node.items()):
                             if isinstance(v, (dict, list)):
+
+# 2 lines of existing code after:
                                 sync_catalog_tree(v, key_id=k)
                     elif isinstance(node, list):
                         for elem in node:

@@ -198,7 +198,7 @@ def fetch_official_date(pid, entry=None, session=None):
         clean_pid = key_match.group(1).strip()
     else:
         clean_pid = re.sub(
-            r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
+            r"^(?:(?:https?://)?(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)",
             "",
             target_candidate,
             flags=re.IGNORECASE
@@ -468,8 +468,13 @@ def main():
             }
 
             for idx, future in enumerate(as_completed(future_to_pid), 1):
-                pid, confirmed_date = future.result()
-                # File: repair_catalog_dates.py | Block/Target: loop_record_guard
+                try:
+                    pid, confirmed_date = future.result()
+                except Exception as e:
+                    pid = future_to_pid[future]
+                    confirmed_date = None
+                    print(f"   [{idx}/{batch_size}] ⚠ Worker thread error for [{pid}]: {e}", flush=True)
+
                 entry = catalog.get(pid)
                 if not isinstance(entry, dict):
                     processed_keys.add(pid)
@@ -478,6 +483,7 @@ def main():
 
                 if confirmed_date is None:
                     consecutive_blocks += 1
+                    print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Request failed / blocked (consecutive blocks: {consecutive_blocks}/{max_consecutive_blocks})", flush=True)
                     if consecutive_blocks >= max_consecutive_blocks:
                         print(f"\n[Warning] {consecutive_blocks} consecutive network/WAF blocks. Aborting batch early to protect IP reputation.")
                         for f in future_to_pid:
@@ -516,9 +522,27 @@ def main():
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
 
+                def extract_product_key_from_url(u):
+                    if not u:
+                        return ""
+                    u_str = str(u).strip()
+                    key_m = re.search(r"[?&]KEY=([^&#]+)", u_str, re.IGNORECASE)
+                    if key_m:
+                        return key_m.group(1).strip()
+                    prod_m = re.search(r"cdjapan\.co\.jp/product/([^/?#]+)", u_str, re.IGNORECASE)
+                    if prod_m:
+                        return prod_m.group(1).strip()
+                    return ""
+
                 date_lookup = {}
                 id_fields = ["id", "pid", "product_id", "productId", "catalog_id", "catalogId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "sku"]
-                invalid_stopwords = {"none", "tbd", "n/a", "-", "null", "undefined", "unknown", "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true", "items", "products", "all"}
+                invalid_stopwords = {
+                    "none", "tbd", "n/a", "-", "null", "undefined", "unknown",
+                    "cd", "dvd", "bd", "blu-ray", "goods", "0", "1", "false", "true",
+                    "items", "products", "all", "type-a", "type-b", "type-c", "type-d",
+                    "regular", "limited", "edition", "first press", "single", "album",
+                    "mini album", "ep", "box set", "photobook", "calendar"
+                }
                 for p in updated_dates:
                     val = catalog.get(p)
                     if isinstance(val, dict):
@@ -530,10 +554,9 @@ def main():
                                 f_val = val.get(field)
                                 if f_val and str(f_val).strip().lower() not in invalid_stopwords:
                                     raw_keys.append(str(f_val).strip())
-                            if val.get("url"):
-                                clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(val.get("url")).strip(), flags=re.IGNORECASE).split("#")[0].split("?")[0].strip("/ \t")
-                                if clean_u:
-                                    raw_keys.append(clean_u)
+                            clean_u = extract_product_key_from_url(val.get("url"))
+                            if clean_u and clean_u.lower() not in invalid_stopwords:
+                                raw_keys.append(clean_u)
                             for raw_k in raw_keys:
                                 if raw_k is not None:
                                     k_str = str(raw_k).strip()
@@ -549,10 +572,9 @@ def main():
                         cand = entry.get(field)
                         if cand and str(cand).strip().lower() not in invalid_stopwords:
                             candidate_keys.append(str(cand).strip())
-                    if entry.get("url"):
-                        clean_u = re.sub(r"^(?:https?://(?:www\.)?cdjapan\.co\.jp/product/|cdjapan[-_:]?|cdj[-_:]?)", "", str(entry.get("url")).strip(), flags=re.IGNORECASE).split("#")[0].split("?")[0].strip("/ \t")
-                        if clean_u:
-                            candidate_keys.append(clean_u)
+                    clean_u = extract_product_key_from_url(entry.get("url"))
+                    if clean_u and clean_u.lower() not in invalid_stopwords:
+                        candidate_keys.append(clean_u)
 
                     target_date = None
                     for raw_cand in candidate_keys:
@@ -601,8 +623,11 @@ def main():
     new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0
     new_batches_left = math.ceil(remaining_pending / batch_size) if batch_size > 0 and remaining_pending > 0 else 0
 
+    elapsed_time = time.time() - start_time
+    mins, secs = divmod(int(elapsed_time), 60)
+
     print("\n==========================================================")
-    print("Batch Complete!")
+    print(f"Batch Complete in {mins}m {secs}s!")
     print("==========================================================")
     print(f"Dates Corrected / Updated: {updated_count:,} releases")
     print(f"Valid Dates Verified:      {preserved_count:,} releases")

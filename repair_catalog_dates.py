@@ -98,7 +98,7 @@ def build_http_session():
     retry_kwargs = {
         "total": 5,
         "backoff_factor": 1.0,
-        "status_forcelist": [403, 429, 500, 502, 503, 504],
+        "status_forcelist": [500, 502, 503, 504],
         "raise_on_status": False
     }
     try:
@@ -115,6 +115,14 @@ def get_thread_session():
     if not hasattr(_thread_local, "session"):
         _thread_local.session = build_http_session()
     return _thread_local.session
+
+def close_thread_session():
+    if hasattr(_thread_local, "session"):
+        try:
+            _thread_local.session.close()
+        except Exception:
+            pass
+        del _thread_local.session
 
 def is_calendar_valid(year, month, day):
     try:
@@ -452,20 +460,27 @@ def main():
     processed_keys = load_progress()
 
     # File: repair_catalog_dates.py | Block/Target: pending_items_queue
+    def extract_entry_raw_date(item):
+        if not isinstance(item, dict):
+            return ""
+        for alias in ("release_date", "releaseDate", "date", "street_date", "streetDate"):
+            val = item.get(alias)
+            if val is not None and str(val).strip():
+                return str(val).strip()
+        return ""
+
     pending_items = sorted(
-        [pid for pid, val in catalog.items() if pid not in processed_keys and isinstance(val, dict)],
+        [
+            str(pid).strip()
+            for pid, val in catalog.items()
+            if str(pid).strip() not in processed_keys and isinstance(val, dict) and not is_invalid_identifier(pid)
+        ],
         key=lambda pid: (
-            0 if not is_valid_date_format(
-                (catalog.get(pid) or {}).get("release_date")
-                or (catalog.get(pid) or {}).get("releaseDate")
-                or (catalog.get(pid) or {}).get("date")
-                or (catalog.get(pid) or {}).get("street_date")
-                or ""
-            ) else 1,
+            0 if not is_valid_date_format(extract_entry_raw_date(catalog.get(pid))) else 1,
             str(pid)
         )
     )
-
+    
     total_pending = len(pending_items)
     audited_count = len(processed_keys.intersection(catalog.keys()))
     progress_pct = (audited_count / total_catalog * 100) if total_catalog > 0 else 0

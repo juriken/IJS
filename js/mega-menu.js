@@ -13,8 +13,10 @@ if (typeof isMegaMenuPinned === 'undefined') window.isMegaMenuPinned = false;
 if (typeof hpSoloistSubfilter === 'undefined') window.hpSoloistSubfilter = 'all';
 if (typeof hpGradViewMode === 'undefined') window.hpGradViewMode = 'group';
 
-// Diagonal hover-tunnel delay timer
+// Diagonal hover-tunnel & preview delay timers
 let railSwitchTimer = null;
+let showcasePreviewTimer = null;
+
 function scheduleMegaMenuRail(idx) {
   if (railSwitchTimer) clearTimeout(railSwitchTimer);
   railSwitchTimer = setTimeout(() => {
@@ -28,14 +30,41 @@ function cancelMegaMenuRailSchedule() {
   }
 }
 
-// Global Escape key listener to dismiss pinned flyout
+// Global keydown listener for Escape and Arrow/Enter navigation
 if (!window._megaMenuKeydownBound) {
   window._megaMenuKeydownBound = true;
   document.addEventListener('keydown', (e) => {
+    const flyout = document.getElementById('mega-menu-flyout');
+    if (!flyout || flyout.classList.contains('hidden')) return;
+
     if (e.key === 'Escape') {
-      const flyout = document.getElementById('mega-menu-flyout');
-      if (flyout && !flyout.classList.contains('hidden')) {
-        dismissMegaMenu();
+      dismissMegaMenu();
+      return;
+    }
+
+    if (['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) {
+      const activeElement = document.activeElement;
+      const matrixScroll = document.getElementById('mega-menu-matrix-scroll');
+      if (!matrixScroll) return;
+
+      const items = Array.from(matrixScroll.querySelectorAll('.mega-menu-item-link'));
+      if (!items.length) return;
+
+      let currentIndex = items.indexOf(activeElement);
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextIndex = (currentIndex + 1) % items.length;
+        items[nextIndex].focus();
+        items[nextIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevIndex = (currentIndex <= 0) ? items.length - 1 : currentIndex - 1;
+        items[prevIndex].focus();
+        items[prevIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter' && currentIndex >= 0) {
+        e.preventDefault();
+        items[currentIndex].click();
       }
     }
   });
@@ -76,15 +105,14 @@ function safeFormatPrice(price) {
   return price ? `¥${Number(price).toLocaleString()}` : '';
 }
 
-/**
- * Handle hover on desktop Tier-1 tab bar
- */
 function handleTopNavHover(cat) {
   if (isMegaMenuPinned) return;
+  if (document.documentElement.classList.contains('layout-mobile')) return;
   if (megaMenuTimer) {
     clearTimeout(megaMenuTimer);
     megaMenuTimer = null;
   }
+   
   const franchiseDict = (typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS) ? FRANCHISE_ARTISTS : {};
   if (cat === 'All' || !franchiseDict[cat] || franchiseDict[cat].length === 0) {
     dismissMegaMenu();
@@ -458,7 +486,7 @@ function renderMegaMenu(cat) {
       if (hpSoloistSubfilter === 'mline') {
         unitsToRender = ['Airi Suzuki', 'Sayumi Michishige', 'Karin Miyamoto', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba', 'Reina Tanaka', 'Ai Takahashi'];
       } else if (hpSoloistSubfilter === 'classic') {
-        unitsToRender = ['Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Yuko Nakazawa', 'Miki Fujimoto', 'Erina Mano', 'Tsukishima Kirari'];
+        unitsToRender = ['Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Yuko Nakazawa', 'Miki Fujimoto', 'Erina Mano', 'Kirari Tsukishima (Koharu Kusumi)'];
       }
     }
 
@@ -563,9 +591,9 @@ function renderMegaMenu(cat) {
   if (scrollEl) updateMatrixScrollFade(scrollEl);
 }
 
-/* File: js/mega-menu.js | Block/Target: Unit Row Renderer & Isolated Showcase Engine */
+/* File: js/mega-menu.js | Block/Target: Unit Row Avatar Badges, Micro-Debounce & Isolated Showcase */
 /**
- * Render single artist row link with smart badge & zero-suppression
+ * Render single artist row link with initials avatar pill, smart badge & zero-suppression
  */
 function renderMegaMenuUnitRow(cat, unitName) {
   const currentActiveArtist = (typeof activeArtist !== 'undefined') ? activeArtist : null;
@@ -573,10 +601,25 @@ function renderMegaMenuUnitRow(cat, unitName) {
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
   const brandColors = (typeof ARTIST_BRAND_COLORS !== 'undefined' && ARTIST_BRAND_COLORS) ? ARTIST_BRAND_COLORS : {};
 
-  const artistProducts = productList.filter(p => p.artist === unitName);
+  const artistProducts = productList.filter(p => {
+    if (unitName === 'Kirari Tsukishima (Koharu Kusumi)') {
+      return p.artist === 'Tsukishima Kirari' || p.artist === 'Kirari Tsukishima (Koharu Kusumi)';
+    }
+    return p.artist === unitName;
+  });
+
   const count = artistProducts.length;
-  const brandColor = brandColors[unitName] || '#94a3b8';
+  const brandColor = brandColors[unitName] || (unitName.includes('Tsukishima') ? '#38bdf8' : '#94a3b8');
   
+  // Two-letter initials avatar for immediate visual recognition
+  const initials = unitName
+    .replace(/[^\w\s]/gi, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(w => w[0].toUpperCase())
+    .join('');
+
   // Exact count of active pre-orders for this specific unit
   const preOrderCount = artistProducts.filter(p => typeof isPreOrder === 'function' && isPreOrder(p)).length;
   const isZeroCount = (count === 0);
@@ -606,17 +649,23 @@ function renderMegaMenuUnitRow(cat, unitName) {
   return `
     <button 
       onclick="selectSubArtistFromMegaMenu('${safeEscapeHtml(cat)}', '${safeEscapeHtml(unitName)}')" 
-      onmouseenter="previewUnitInShowcase('${safeEscapeHtml(unitName)}', '${safeEscapeHtml(cat)}')"
-      onmouseleave="restoreDefaultShowcase('${safeEscapeHtml(cat)}')"
+      onmouseenter="scheduleShowcasePreview('${safeEscapeHtml(unitName)}', '${safeEscapeHtml(cat)}')"
+      onmouseleave="cancelShowcasePreview('${safeEscapeHtml(cat)}')"
       data-name="${unitName.toLowerCase()}"
-      class="mega-menu-item-link w-full text-left px-2 py-1.5 rounded-xl transition flex items-center justify-between text-xs cursor-pointer ${
+      tabindex="0"
+      class="mega-menu-item-link w-full text-left px-2 py-1.5 rounded-xl transition flex items-center justify-between text-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 ${
         isSelected 
           ? 'bg-rose-600 text-white font-bold shadow-xs' 
           : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600'
       }"
     >
       <div class="flex items-center gap-2 truncate">
-        <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs ${isZeroCount ? 'grayscale opacity-50' : ''}" style="background-color: ${brandColor}"></span>
+        <span 
+          class="w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-[8px] font-black tracking-tight text-white shadow-2xs ${isZeroCount ? 'grayscale opacity-50' : ''}" 
+          style="background-color: ${brandColor}"
+        >
+          ${initials || '•'}
+        </span>
         <span class="truncate text-[11px]">${safeEscapeHtml(unitName)}</span>
       </div>
       ${badgeHtml}
@@ -683,6 +732,24 @@ function renderMegaMenuCardMarkup(prod, meta) {
 }
 
 /**
+ * 40ms micro-debounced hover scheduler for Zone 3 showcase
+ */
+function scheduleShowcasePreview(unitName, cat) {
+  if (showcasePreviewTimer) clearTimeout(showcasePreviewTimer);
+  showcasePreviewTimer = setTimeout(() => {
+    previewUnitInShowcase(unitName, cat);
+  }, 40);
+}
+
+function cancelShowcasePreview(cat) {
+  if (showcasePreviewTimer) {
+    clearTimeout(showcasePreviewTimer);
+    showcasePreviewTimer = null;
+  }
+  restoreDefaultShowcase(cat);
+}
+
+/**
  * Preview specific hovered artist release inside Zone 3 showcase
  */
 function previewUnitInShowcase(unitName, cat) {
@@ -690,8 +757,10 @@ function previewUnitInShowcase(unitName, cat) {
   if (!mount) return;
 
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
-  const unitProduct = productList.find(p => p.artist === unitName && typeof isPreOrder === 'function' && isPreOrder(p)) ||
-                      productList.find(p => p.artist === unitName);
+  const searchArtistName = (unitName === 'Kirari Tsukishima (Koharu Kusumi)') ? 'Tsukishima Kirari' : unitName;
+
+  const unitProduct = productList.find(p => (p.artist === searchArtistName || p.artist === unitName) && typeof isPreOrder === 'function' && isPreOrder(p)) ||
+                      productList.find(p => p.artist === searchArtistName || p.artist === unitName);
 
   if (!unitProduct) return;
 

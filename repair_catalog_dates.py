@@ -141,7 +141,11 @@ def fetch_official_date(session, pid):
 
         if res.status_code == 200:
             # Guard against redirects to homepage or department landing pages for deleted items
-            if not res.url.startswith("https://www.cdjapan.co.jp/product/"):
+            is_valid_dest = (
+                res.url.startswith("https://www.cdjapan.co.jp/product/") or
+                "detailview.html" in res.url
+            ) and not any(k in res.url for k in ["/department/", "/search.html", "/person/"])
+            if not is_valid_dest:
                 return pid, ""
 
             soup = BeautifulSoup(res.text, "html.parser")
@@ -277,7 +281,7 @@ def is_valid_date_format(d_str):
     if not m:
         return False
     y, mon, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
-    return is_calendar_valid(y, mon, d) and (1900 <= y <= 2035)
+    return is_calendar_valid(y, mon, d) and (1900 <= y <= 2099)
 
 def get_progress_bar(percentage, width=24):
     filled = int(width * (percentage / 100))
@@ -299,9 +303,10 @@ def main():
     total_catalog = len(catalog)
     processed_keys = load_progress()
 
+    # File: repair_catalog_dates.py | Block/Target: pending_items_queue
     pending_items = sorted(
-        [pid for pid in catalog.keys() if pid not in processed_keys],
-        key=lambda pid: 0 if not is_valid_date_format(catalog[pid].get("release_date", "")) else 1
+        [pid for pid, val in catalog.items() if pid not in processed_keys and isinstance(val, dict)],
+        key=lambda pid: 0 if not is_valid_date_format((catalog.get(pid) or {}).get("release_date", "")) else 1
     )
 
     total_pending = len(pending_items)
@@ -345,7 +350,12 @@ def main():
 
             for idx, future in enumerate(as_completed(future_to_pid), 1):
                 pid, confirmed_date = future.result()
-                old_date = str(catalog[pid].get("release_date", "")).strip()
+                # File: repair_catalog_dates.py | Block/Target: loop_record_guard
+                entry = catalog.get(pid)
+                if not isinstance(entry, dict):
+                    processed_keys.add(pid)
+                    continue
+                old_date = str(entry.get("release_date", "")).strip()
 
                 if confirmed_date is None:
                     consecutive_blocks += 1
@@ -380,12 +390,13 @@ def main():
     finally:
         # Atomic commit guarantees no half-written JSON files if runner exits
         atomic_save_json(DATA_FILE, catalog)
+        # File: repair_catalog_dates.py | Block/Target: dual_file_sync
         if os.path.exists(INDEX_FILE):
             try:
                 with open(INDEX_FILE, "r", encoding="utf-8") as f:
                     idx_data = json.load(f)
                 
-                date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict)}
+                date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
 
                 if isinstance(idx_data, dict):
                     if "items" in idx_data and isinstance(idx_data["items"], list):
@@ -398,27 +409,23 @@ def main():
                     if target_list is not None:
                         for entry in target_list:
                             if isinstance(entry, dict):
-                                eid = entry.get("id") or entry.get("pid") or entry.get("productId")
-                                if eid in date_lookup and date_lookup[eid]:
+                                eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
+                                if eid in date_lookup:
                                     entry["release_date"] = date_lookup[eid]
                     else:
-                        for p, val in catalog.items():
-                            if p in idx_data and isinstance(idx_data[p], dict) and "release_date" in val:
-                                idx_data[p]["release_date"] = val["release_date"]
+                        for p, new_date in date_lookup.items():
+                            if p in idx_data and isinstance(idx_data[p], dict):
+                                idx_data[p]["release_date"] = new_date
                     atomic_save_json(INDEX_FILE, idx_data)
                 elif isinstance(idx_data, list):
                     for entry in idx_data:
                         if isinstance(entry, dict):
-                            eid = entry.get("id") or entry.get("pid") or entry.get("productId")
-                            if eid in date_lookup and date_lookup[eid]:
+                            eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
+                            if eid in date_lookup:
                                 entry["release_date"] = date_lookup[eid]
                     atomic_save_json(INDEX_FILE, idx_data)
-                else:
-                    atomic_save_json(INDEX_FILE, catalog)
-            except Exception:
-                atomic_save_json(INDEX_FILE, catalog)
-        else:
-            atomic_save_json(INDEX_FILE, catalog)
+            except Exception as e:
+                print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")
         save_progress(processed_keys)
         
     new_audited = len(processed_keys)

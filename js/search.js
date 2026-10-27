@@ -81,11 +81,15 @@ function showSearchSuggestions() {
     return name.toLowerCase().includes(q) || (typeof matchesFuzzyQuery === 'function' && matchesFuzzyQuery(name, q));
   }).slice(0, 4);
 
-  // Match Items (Products by title or SKU)
+  // Match Items (Products by title or SKU, sorted newest release date first)
   const matchingItems = productList.filter(p => {
     const titleMatch = (p.title || '').toLowerCase().includes(q);
     const skuMatch = (p.id || '').toLowerCase().includes(q);
     return titleMatch || skuMatch;
+  }).sort((a, b) => {
+    const dateA = a.release_date || '0000/00/00';
+    const dateB = b.release_date || '0000/00/00';
+    return dateB.localeCompare(dateA);
   }).slice(0, 5);
 
   if (matchingGroups.length === 0 && matchingMembers.length === 0 && matchingItems.length === 0) {

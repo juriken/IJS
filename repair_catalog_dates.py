@@ -11,7 +11,6 @@ import math
 import os
 import random
 import re
-/* File: repair_catalog_dates.py | Block/Target: top_imports */
 import sys
 import time
 import unicodedata
@@ -69,7 +68,6 @@ def is_calendar_valid(year, month, day):
     except (ValueError, OverflowError):
         return False
 
-/* File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date */
 def parse_cdjapan_date(raw_text):
     if not raw_text:
         return ""
@@ -140,7 +138,6 @@ def fetch_official_date(session, pid):
         time.sleep(random.uniform(0.6, 1.4))
         res = session.get(url, headers=headers, timeout=14)
 
-        /* File: repair_catalog_dates.py | Block/Target: fetch_official_date */
         if res.status_code == 200:
             # Guard against redirects to homepage or department landing pages for deleted items
             is_valid_dest = (
@@ -156,7 +153,7 @@ def fetch_official_date(session, pid):
             if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
                 return pid, None
 
-           # 1. Parse JSON-LD structured data
+            # 1. Parse JSON-LD structured data (prioritize product release dates)
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
                     raw_content = script.get_text(strip=True)
@@ -180,9 +177,17 @@ def fetch_official_date(session, pid):
                                         parsed = parse_cdjapan_date(prop.get("value", ""))
                                         if parsed:
                                             return pid, parsed
-                            for key in ["releaseDate", "datePublished"]:
-                                if item.get(key):
-                                    parsed = parse_cdjapan_date(item[key])
+                            
+                            # Prefer canonical releaseDate over generic datePublished
+                            if item.get("releaseDate"):
+                                parsed = parse_cdjapan_date(item["releaseDate"])
+                                if parsed:
+                                    return pid, parsed
+                            
+                            item_type = str(item.get("@type", "")).lower()
+                            if "product" in item_type or "musicalbum" in item_type or "book" in item_type:
+                                if item.get("datePublished"):
+                                    parsed = parse_cdjapan_date(item["datePublished"])
                                     if parsed:
                                         return pid, parsed
                 except Exception:
@@ -361,7 +366,6 @@ def main():
                     continue
                 old_date = str(entry.get("release_date", "")).strip()
 
-                /* File: repair_catalog_dates.py | Block/Target: loop_record_guard */
                 if confirmed_date is None:
                     consecutive_blocks += 1
                     if consecutive_blocks >= max_consecutive_blocks:
@@ -401,12 +405,15 @@ def main():
                     
                     date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
 
-                    /* File: repair_catalog_dates.py | Block/Target: dual_file_sync */
                     if isinstance(idx_data, dict):
                         if "items" in idx_data and isinstance(idx_data["items"], list):
                             target_list = idx_data["items"]
                         elif "products" in idx_data and isinstance(idx_data["products"], list):
                             target_list = idx_data["products"]
+                        elif "catalog" in idx_data and isinstance(idx_data["catalog"], list):
+                            target_list = idx_data["catalog"]
+                        elif "data" in idx_data and isinstance(idx_data["data"], list):
+                            target_list = idx_data["data"]
                         else:
                             target_list = None
 
@@ -419,6 +426,8 @@ def main():
                                         entry["release_date"] = date_lookup[eid]
                                         if "releaseDate" in entry:
                                             entry["releaseDate"] = date_lookup[eid]
+                                        if "date" in entry:
+                                            entry["date"] = date_lookup[eid]
                         else:
                             for p, new_date in date_lookup.items():
                                 str_p = str(p).strip()
@@ -426,6 +435,8 @@ def main():
                                     idx_data[str_p]["release_date"] = new_date
                                     if "releaseDate" in idx_data[str_p]:
                                         idx_data[str_p]["releaseDate"] = new_date
+                                    if "date" in idx_data[str_p]:
+                                        idx_data[str_p]["date"] = new_date
                         atomic_save_json(INDEX_FILE, idx_data)
                     elif isinstance(idx_data, list):
                         for entry in idx_data:
@@ -436,6 +447,8 @@ def main():
                                     entry["release_date"] = date_lookup[eid]
                                     if "releaseDate" in entry:
                                         entry["releaseDate"] = date_lookup[eid]
+                                    if "date" in entry:
+                                        entry["date"] = date_lookup[eid]
                         atomic_save_json(INDEX_FILE, idx_data)
                 except Exception as e:
                     print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")

@@ -54,8 +54,13 @@ def build_http_session():
     session = requests.Session()
     session.headers.update({
         "User-Agent": random.choice(USER_AGENTS),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9,ja;q=0.8",
-        "Referer": "https://www.cdjapan.co.jp/"
+        "Referer": "https://www.cdjapan.co.jp/",
+        "DNT": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "same-origin"
     })
     retry_kwargs = {
         "total": 5,
@@ -172,7 +177,8 @@ def fetch_official_date(pid, session=None):
     if session is None:
         session = get_thread_session()
 
-    url = f"https://www.cdjapan.co.jp/product/{pid}"
+    clean_pid = re.sub(r"^cdjapan[-_:]", "", str(pid).strip(), flags=re.IGNORECASE)
+    url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
     try:
         time.sleep(random.uniform(0.6, 1.4))
@@ -216,8 +222,12 @@ def fetch_official_date(pid, session=None):
                                     queue.append(item["offers"])
                                 elif isinstance(item["offers"], list):
                                     queue.extend(item["offers"])
-                            if "additionalProperty" in item and isinstance(item["additionalProperty"], list):
-                                for prop in item["additionalProperty"]:
+                            
+                            props = item.get("additionalProperty")
+                            if isinstance(props, dict):
+                                props = [props]
+                            if isinstance(props, list):
+                                for prop in props:
                                     if isinstance(prop, dict) and any(k in str(prop.get("name", "")).lower() for k in ["release", "発売"]):
                                         parsed = parse_cdjapan_date(prop.get("value", ""))
                                         if parsed:
@@ -253,7 +263,7 @@ def fetch_official_date(pid, session=None):
                 if parsed:
                     return pid, parsed
 
-            # 3. Check Canonical OpenGraph / Microdata Meta & Time Tags
+            # 3. Check Canonical OpenGraph / Microdata Meta & Scoped Time Tags
             meta_selectors = [
                 ("meta", {"itemprop": "releaseDate"}),
                 ("meta", {"property": "product:release_date"}),
@@ -262,7 +272,7 @@ def fetch_official_date(pid, session=None):
                 ("meta", {"property": "og:release_date"}),
                 ("meta", {"itemprop": "datePublished"}),
                 ("time", {"itemprop": "releaseDate"}),
-                ("time", {"datetime": True})
+                ("time", {"class": re.compile(r"release", re.IGNORECASE)})
             ]
             for tag_name, attrs in meta_selectors:
                 for el in soup.find_all(tag_name, attrs):
@@ -271,23 +281,23 @@ def fetch_official_date(pid, session=None):
                     if parsed:
                         return pid, parsed
 
-            # 4. Check Leaf Table Rows and Specific List Items
+            # 4. Check Leaf Table Rows and Specific List Items with Word Boundaries
             for tr in soup.find_all(["tr", "li"]):
                 if tr.find(["tr", "table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
-                m = re.search(r"(?:release\s*date|release|発売日|発売)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
+                m = re.search(r"(?<![a-zA-Z])(?:release\s*date|release|street\s*date|発売日|発売予定日|発売)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
                 if m:
                     parsed = parse_cdjapan_date(m.group(1))
                     if parsed:
                         return pid, parsed
 
-            # 5. Fallback regex across stripped page text (decomposing script & styling tags first)
+            # 5. Fallback regex across stripped page text
             for tag in soup(["script", "style", "noscript", "svg"]):
                 tag.decompose()
 
             page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(r"(?:Release\s*Date|Release|発売日|発売)\s*[:：]\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
+            body_match = re.search(r"\b(?:release\s*date|release|street\s*date|発売日|発売予定日)\s*[:：]\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
                 parsed = parse_cdjapan_date(body_match.group(1))
                 if parsed:
@@ -359,6 +369,10 @@ def main():
 
     if not os.path.exists(DATA_FILE):
         print(f"[Error] Catalog file {DATA_FILE} not found.")
+        sys.exit(1)
+
+    if not os.path.exists(INDEX_FILE):
+        print(f"[Error] Index file {INDEX_FILE} not found. Dual-file synchronization requires both {DATA_FILE} and {INDEX_FILE}.")
         sys.exit(1)
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
@@ -478,15 +492,22 @@ def main():
                     def sync_item(entry):
                         if not isinstance(entry, dict):
                             return
-                        raw_id = (
-                            entry.get("id") or entry.get("pid") or
-                            entry.get("product_id") or entry.get("productId") or
-                            entry.get("cat_no") or entry.get("catalog_id") or
-                            entry.get("catalogId") or entry.get("code")
-                        )
-                        eid = str(raw_id).strip() if raw_id is not None else ""
-                        if eid and (eid in date_lookup or eid.lower() in date_lookup):
-                            target_date = date_lookup.get(eid) or date_lookup.get(eid.lower())
+                        candidate_keys = [
+                            entry.get("id"), entry.get("pid"), entry.get("product_id"),
+                            entry.get("productId"), entry.get("cat_no"), entry.get("catalog_id"),
+                            entry.get("catalogId"), entry.get("code")
+                        ]
+                        target_date = None
+                        for raw_cand in candidate_keys:
+                            if raw_cand is not None:
+                                cand_str = str(raw_cand).strip()
+                                if cand_str in date_lookup:
+                                    target_date = date_lookup[cand_str]
+                                    break
+                                if cand_str.lower() in date_lookup:
+                                    target_date = date_lookup[cand_str.lower()]
+                                    break
+                        if target_date:
                             entry["release_date"] = target_date
                             if "releaseDate" in entry:
                                 entry["releaseDate"] = target_date
@@ -504,6 +525,10 @@ def main():
                             for entry in target_list:
                                 sync_item(entry)
                         else:
+                            for key in ["items", "products", "releases", "catalog", "data"]:
+                                if key in idx_data and isinstance(idx_data[key], dict):
+                                    for sub_node in idx_data[key].values():
+                                        sync_item(sub_node)
                             for p, new_date in date_lookup.items():
                                 str_p = str(p).strip()
                                 target_node = idx_data.get(str_p) or idx_data.get(str_p.lower())

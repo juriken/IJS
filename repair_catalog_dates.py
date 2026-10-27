@@ -71,7 +71,9 @@ def is_calendar_valid(year, month, day):
 def parse_cdjapan_date(raw_text):
     if not raw_text:
         return ""
-    text = re.sub(r"\s+", " ", str(raw_text)).strip()
+    import unicodedata
+    text = unicodedata.normalize("NFKC", str(raw_text))
+    text = re.sub(r"\s+", " ", text).strip()
 
     # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 (e.g. 2024-09-25T00:00:00)
     m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)[/\-.](\d{1,2})[/\-.](\d{1,2})(?!\d)", text)
@@ -134,10 +136,14 @@ def fetch_official_date(session, pid):
     }
 
     try:
-        time.sleep(random.uniform(0.15, 0.4))
+        time.sleep(random.uniform(0.6, 1.4))
         res = session.get(url, headers=headers, timeout=14)
 
         if res.status_code == 200:
+            # Guard against redirects to homepage or department landing pages for deleted items
+            if not res.url.startswith("https://www.cdjapan.co.jp/product/"):
+                return pid, ""
+
             soup = BeautifulSoup(res.text, "html.parser")
 
             # Guard against WAF/Cloudflare soft-blocks returning HTTP 200
@@ -374,7 +380,29 @@ def main():
     finally:
         # Atomic commit guarantees no half-written JSON files if runner exits
         atomic_save_json(DATA_FILE, catalog)
-        atomic_save_json(INDEX_FILE, catalog)
+        if os.path.exists(INDEX_FILE):
+            try:
+                with open(INDEX_FILE, "r", encoding="utf-8") as f:
+                    idx_data = json.load(f)
+                if isinstance(idx_data, dict):
+                    for p, val in catalog.items():
+                        if p in idx_data and isinstance(idx_data[p], dict) and "release_date" in val:
+                            idx_data[p]["release_date"] = val["release_date"]
+                    atomic_save_json(INDEX_FILE, idx_data)
+                elif isinstance(idx_data, list):
+                    date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict)}
+                    for entry in idx_data:
+                        if isinstance(entry, dict):
+                            eid = entry.get("id") or entry.get("pid")
+                            if eid in date_lookup and date_lookup[eid]:
+                                entry["release_date"] = date_lookup[eid]
+                    atomic_save_json(INDEX_FILE, idx_data)
+                else:
+                    atomic_save_json(INDEX_FILE, catalog)
+            except Exception:
+                atomic_save_json(INDEX_FILE, catalog)
+        else:
+            atomic_save_json(INDEX_FILE, catalog)
         save_progress(processed_keys)
         
     new_audited = len(processed_keys)

@@ -13,6 +13,34 @@ if (typeof isMegaMenuPinned === 'undefined') window.isMegaMenuPinned = false;
 if (typeof hpSoloistSubfilter === 'undefined') window.hpSoloistSubfilter = 'all';
 if (typeof hpGradViewMode === 'undefined') window.hpGradViewMode = 'group';
 
+// Diagonal hover-tunnel delay timer
+let railSwitchTimer = null;
+function scheduleMegaMenuRail(idx) {
+  if (railSwitchTimer) clearTimeout(railSwitchTimer);
+  railSwitchTimer = setTimeout(() => {
+    switchMegaMenuRail(idx);
+  }, 80);
+}
+function cancelMegaMenuRailSchedule() {
+  if (railSwitchTimer) {
+    clearTimeout(railSwitchTimer);
+    railSwitchTimer = null;
+  }
+}
+
+// Global Escape key listener to dismiss pinned flyout
+if (!window._megaMenuKeydownBound) {
+  window._megaMenuKeydownBound = true;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const flyout = document.getElementById('mega-menu-flyout');
+      if (flyout && !flyout.classList.contains('hidden')) {
+        dismissMegaMenu();
+      }
+    }
+  });
+}
+
 // Defensive helper wrappers
 function safeEscapeHtml(str) {
   if (typeof escapeHtml === 'function') {
@@ -333,14 +361,19 @@ function renderMegaMenu(cat) {
   `;
 
   railItems.forEach((item, idx) => {
-    const isActive = (idx === window.activeRailIndex);
-    const count = item.clusters 
-      ? item.clusters.reduce((acc, c) => acc + (c.units ? c.units.length : 0), 0)
-      : (item.units ? item.units.length : 0);
+    const itemUnits = item.clusters 
+      ? item.clusters.flatMap(c => c.units || []) 
+      : (item.units || []);
+    const count = itemUnits.length;
+    const hasRailPreOrders = itemUnits.some(u => 
+      productList.some(p => p.artist === u && typeof isPreOrder === 'function' && isPreOrder(p))
+    );
 
     railHtml += `
       <button 
         onclick="switchMegaMenuRail(${idx})" 
+        onmouseenter="scheduleMegaMenuRail(${idx})"
+        onmouseleave="cancelMegaMenuRailSchedule()"
         class="w-full text-left px-2.5 py-2 rounded-xl transition flex items-center justify-between text-xs cursor-pointer ${
           isActive 
             ? 'bg-rose-600 text-white font-bold shadow-xs' 
@@ -350,13 +383,13 @@ function renderMegaMenu(cat) {
         <div class="flex items-center gap-2 truncate">
           <i class="fa-solid ${item.icon} text-xs ${isActive ? 'text-white' : 'text-rose-500 dark:text-rose-400'}"></i>
           <span class="truncate text-[11px]">${safeEscapeHtml(item.title)}</span>
+          ${hasRailPreOrders ? '<span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping shrink-0 ml-0.5" title="Active Pre-Orders in this section"></span>' : ''}
         </div>
         <span class="text-[10px] font-mono ml-1.5 px-1.5 py-0.2 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-black/5 dark:bg-white/10 text-stone-400 dark:text-slate-400'}">
           ${count}
         </span>
       </button>
     `;
-  });
 
   railHtml += `</div>`;
 
@@ -449,8 +482,8 @@ function renderMegaMenu(cat) {
     </div>
   `;
 
-  // ZONE 3: Right Visual Merchandising Card
-  let showcaseHtml = '';
+  // ZONE 3: Right Visual Merchandising Card (Wrapped in mount ID for hover-sync)
+  let showcaseHtml = `<div id="mega-menu-showcase-mount" class="w-full md:w-64 lg:w-72 shrink-0">`;
   if (showcaseProduct) {
     const sTitle = safeEscapeHtml(safeStripPrefixes(showcaseProduct.title));
     const sArtist = safeEscapeHtml(showcaseProduct.artist);
@@ -515,6 +548,7 @@ function renderMegaMenu(cat) {
       </div>
     `;
   }
+  showcaseHtml += `</div>`;
 
   // ZONE 4: Bottom Quick Format Jump Strip
   const quickFormats = [
@@ -536,12 +570,17 @@ function renderMegaMenu(cat) {
   `;
 
   quickFormats.forEach(f => {
+    const isFmtActive = (typeof activeFormat !== 'undefined' && activeFormat === f.fmt);
     footerFormatStrip += `
       <button 
         onclick="selectFranchiseFormat('${safeEscapeHtml(cat)}', '${f.fmt}')" 
-        class="px-2 py-0.5 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300 text-[10px] font-bold transition flex items-center gap-1 cursor-pointer border border-stone-200/50 dark:border-slate-700/50"
+        class="px-2 py-0.5 rounded-lg text-[10px] font-bold transition flex items-center gap-1 cursor-pointer border border-stone-200/50 dark:border-slate-700/50 ${
+          isFmtActive
+            ? 'bg-rose-600 text-white shadow-2xs font-black'
+            : 'bg-stone-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 text-stone-700 dark:text-stone-300'
+        }"
       >
-        <i class="fa-solid ${f.icon} ${f.color} text-[9px]"></i>
+        <i class="fa-solid ${f.icon} ${isFmtActive ? 'text-white' : f.color} text-[9px]"></i>
         <span>${f.label}</span>
       </button>
     `;
@@ -610,20 +649,84 @@ function renderMegaMenuUnitRow(cat, unitName) {
   return `
     <button 
       onclick="selectSubArtistFromMegaMenu('${safeEscapeHtml(cat)}', '${safeEscapeHtml(unitName)}')" 
+      onmouseenter="previewUnitInShowcase('${safeEscapeHtml(unitName)}', '${safeEscapeHtml(cat)}')"
+      onmouseleave="restoreDefaultShowcase('${safeEscapeHtml(cat)}')"
       data-name="${unitName.toLowerCase()}"
       class="mega-menu-item-link w-full text-left px-2 py-1.5 rounded-xl transition flex items-center justify-between text-xs cursor-pointer ${
-        isSelected 
-          ? 'bg-rose-600 text-white font-bold shadow-2xs' 
-          : (isZeroCount 
-              ? 'opacity-40 hover:opacity-100 text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-slate-800' 
-              : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-slate-700 hover:text-rose-600')
-      }"
-    >
       <div class="flex items-center gap-2 truncate">
         <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs ${isZeroCount ? 'grayscale opacity-50' : ''}" style="background-color: ${brandColor}"></span>
         <span class="truncate text-[11px]">${safeEscapeHtml(unitName)}</span>
       </div>
+      /* File: js/mega-menu.js | Block/Target: Unit Showcase Preview & Restore Implementation */
       ${badgeHtml}
     </button>
   `;
+}
+
+function previewUnitInShowcase(unitName, cat) {
+  const mount = document.getElementById('mega-menu-showcase-mount');
+  if (!mount) return;
+
+  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+  const unitProduct = productList.find(p => p.artist === unitName && typeof isPreOrder === 'function' && isPreOrder(p)) ||
+                      productList.find(p => p.artist === unitName);
+
+  if (!unitProduct) return;
+
+  const sTitle = safeEscapeHtml(safeStripPrefixes(unitProduct.title));
+  const sArtist = safeEscapeHtml(unitProduct.artist);
+  const sDate = unitProduct.release_date || 'Catalog Item';
+  const isUpcoming = typeof isPreOrder === 'function' && isPreOrder(unitProduct);
+  const formattedPrice = safeFormatPrice(unitProduct.price);
+
+  mount.innerHTML = `
+    <div class="w-full bg-gradient-to-br from-rose-50/90 via-white to-pink-50/80 dark:from-slate-800/95 dark:via-slate-800/80 dark:to-slate-900 border border-rose-300 dark:border-rose-500/50 p-3.5 rounded-2xl flex flex-col justify-between shadow-md transition-all duration-200">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider ${
+            isUpcoming ? 'bg-rose-600 text-white' : 'bg-stone-800 text-amber-300'
+          } px-2 py-0.5 rounded-full shadow-2xs">
+            <i class="fa-solid ${isUpcoming ? 'fa-clock' : 'fa-compact-disc'} text-[8px]"></i>
+            ${isUpcoming ? 'Artist Pre-Order' : 'Latest Release'}
+          </span>
+          <span class="text-[9px] font-mono text-stone-500 dark:text-slate-400 font-bold">${unitProduct.format || 'CD'}</span>
+        </div>
+
+        <div class="aspect-square bg-white dark:bg-slate-900 rounded-xl overflow-hidden mb-2.5 p-1.5 shadow-inner border border-stone-100 dark:border-slate-800 flex items-center justify-center">
+          <img 
+            src="${safeThumbnailUrl(unitProduct.image)}" 
+            alt="${sTitle}" 
+            class="w-full h-full object-contain transition-transform duration-300 hover:scale-105" 
+            onerror="if(typeof onImgLoadError==='function') onImgLoadError(this);" 
+          />
+        </div>
+
+        <h5 class="font-extrabold text-xs text-stone-900 dark:text-white line-clamp-2 leading-snug" title="${sTitle}">
+          ${sTitle}
+        </h5>
+        
+        <div class="mt-1 flex items-center justify-between text-[11px]">
+          <span class="font-bold text-rose-600 dark:text-rose-400 truncate">${sArtist}</span>
+          <span class="text-xs font-black text-stone-900 dark:text-white font-mono">${formattedPrice}</span>
+        </div>
+
+        <p class="text-[10px] text-stone-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+          <i class="fa-regular fa-calendar text-[9px]"></i>
+          <span>${sDate}</span>
+        </p>
+      </div>
+
+      <button 
+        onclick="if(typeof triggerOutboundAffiliate==='function') triggerOutboundAffiliate(allProducts.find(x => x.id === '${unitProduct.id}'), 'megamenu_hover_preview');" 
+        class="mt-3 w-full py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-center text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
+      >
+        <span>${isUpcoming ? 'Pre-Order on CDJapan' : 'Order on CDJapan'}</span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+      </button>
+    </div>
+  `;
+}
+
+function restoreDefaultShowcase(cat) {
+  renderMegaMenu(cat);
 }

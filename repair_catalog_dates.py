@@ -16,6 +16,7 @@ import time
 import unicodedata
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
@@ -45,7 +46,9 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0"
 ]
 
-# File: repair_catalog_dates.py | Block/Target: build_http_session
+# Thread-local storage guarantees isolated cookie jars per worker thread
+_thread_local = threading.local()
+
 def build_http_session():
     session = requests.Session()
     retries = Retry(
@@ -60,6 +63,11 @@ def build_http_session():
     session.mount("https://", adapter)
     session.mount("http://", adapter)
     return session
+
+def get_thread_session():
+    if not hasattr(_thread_local, "session"):
+        _thread_local.session = build_http_session()
+    return _thread_local.session
 
 def is_calendar_valid(year, month, day):
     try:
@@ -126,7 +134,10 @@ def parse_cdjapan_date(raw_text):
     return ""
     
 # File: repair_catalog_dates.py | Block/Target: fetch_official_date
-def fetch_official_date(session, pid):
+def fetch_official_date(pid, session=None):
+    if session is None:
+        session = get_thread_session()
+
     url = f"https://www.cdjapan.co.jp/product/{pid}"
     headers = {
         "User-Agent": random.choice(USER_AGENTS),
@@ -230,7 +241,10 @@ def fetch_official_date(session, pid):
                     if parsed:
                         return pid, parsed
 
-            # 5. Fallback regex across stripped page text
+            # 5. Fallback regex across stripped page text (decomposing script & styling tags first)
+            for tag in soup(["script", "style", "noscript", "svg"]):
+                tag.decompose()
+
             page_text = soup.get_text(" ", strip=True)
             body_match = re.search(r"(?:Release Date|発売日)\s*[:：]?\s*([^\n\r]{6,40})", page_text, re.IGNORECASE)
             if body_match:
@@ -342,8 +356,6 @@ def main():
     # File: repair_catalog_dates.py | Block/Target: main
     print(f"Worker Threads:            {max_workers} concurrent connections\n", flush=True)
 
-    # File: repair_catalog_dates.py | Block/Target: main_execution_loop
-    session = build_http_session()
     updated_count = 0
     preserved_count = 0
     consecutive_blocks = 0
@@ -353,7 +365,7 @@ def main():
     try:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_pid = {
-                executor.submit(fetch_official_date, session, pid): pid
+                executor.submit(fetch_official_date, pid): pid
                 for pid in current_batch
             }
 
@@ -410,12 +422,14 @@ def main():
                             target_list = idx_data["items"]
                         elif "products" in idx_data and isinstance(idx_data["products"], list):
                             target_list = idx_data["products"]
+                        elif "releases" in idx_data and isinstance(idx_data["releases"], list):
+                            target_list = idx_data["releases"]
                         elif "catalog" in idx_data and isinstance(idx_data["catalog"], list):
                             target_list = idx_data["catalog"]
                         elif "data" in idx_data and isinstance(idx_data["data"], list):
                             target_list = idx_data["data"]
                         else:
-                            target_list = None
+                            target_list = next((v for v in idx_data.values() if isinstance(v, list) and v and isinstance(v[0], dict)), None)
 
                         if target_list is not None:
                             for entry in target_list:

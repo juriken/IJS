@@ -49,8 +49,8 @@ def build_http_session():
     session = requests.Session()
     retries = Retry(
         total=5,
-        backoff_factor=0.8,
-        # File: repair_catalog_dates.py | Block/Target: build_http_session
+        backoff_factor=1.0,
+        backoff_jitter=0.5,
         status_forcelist=[429, 500, 502, 503, 504],
         raise_on_status=False
     )
@@ -63,7 +63,7 @@ def build_http_session():
 def is_calendar_valid(year, month, day):
     try:
         datetime(year, month, day)
-        return True
+        return 1900 <= year <= 2099
     except (ValueError, OverflowError):
         return False
 
@@ -215,9 +215,10 @@ def fetch_official_date(session, pid):
             for tr in soup.find_all(["tr", "li"]):
                 if tr.find(["tr", "table"]):
                     continue
-                row_text = tr.get_text(" ", strip=True).lower()
-                if "release date" in row_text or "発売日" in row_text:
-                    parsed = parse_cdjapan_date(tr.get_text(" ", strip=True))
+                raw_row = tr.get_text(" ", strip=True)
+                m = re.search(r"(?:release date|発売日)\s*[:：]?\s*(.*)", raw_row, re.IGNORECASE)
+                if m:
+                    parsed = parse_cdjapan_date(m.group(1))
                     if parsed:
                         return pid, parsed
 
@@ -270,7 +271,7 @@ def atomic_save_json(filepath, data):
     os.replace(tmp_file, filepath)
 
 def save_progress(processed_set):
-    atomic_save_json(PROGRESS_FILE, sorted(list(processed_set)))
+    atomic_save_json(PROGRESS_FILE, sorted([str(k) for k in processed_set]))
     
 # File: repair_catalog_dates.py | Block/Target: is_valid_date_format
 def is_valid_date_format(d_str):
@@ -388,44 +389,51 @@ def main():
                     print(f"   -> Progress: {idx}/{batch_size} processed ({elapsed:.1f}s elapsed)...", flush=True)
 
     finally:
-        # Atomic commit guarantees no half-written JSON files if runner exits
-        atomic_save_json(DATA_FILE, catalog)
-        # File: repair_catalog_dates.py | Block/Target: dual_file_sync
-        if os.path.exists(INDEX_FILE):
-            try:
-                with open(INDEX_FILE, "r", encoding="utf-8") as f:
-                    idx_data = json.load(f)
-                
-                date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
+        # Save updated catalog records atomically only when changes occur
+        if updated_count > 0:
+            atomic_save_json(DATA_FILE, catalog)
+            # File: repair_catalog_dates.py | Block/Target: dual_file_sync
+            if os.path.exists(INDEX_FILE):
+                try:
+                    with open(INDEX_FILE, "r", encoding="utf-8") as f:
+                        idx_data = json.load(f)
+                    
+                    date_lookup = {p: val.get("release_date") for p, val in catalog.items() if isinstance(val, dict) and val.get("release_date")}
 
-                if isinstance(idx_data, dict):
-                    if "items" in idx_data and isinstance(idx_data["items"], list):
-                        target_list = idx_data["items"]
-                    elif "products" in idx_data and isinstance(idx_data["products"], list):
-                        target_list = idx_data["products"]
-                    else:
-                        target_list = None
+                    if isinstance(idx_data, dict):
+                        if "items" in idx_data and isinstance(idx_data["items"], list):
+                            target_list = idx_data["items"]
+                        elif "products" in idx_data and isinstance(idx_data["products"], list):
+                            target_list = idx_data["products"]
+                        else:
+                            target_list = None
 
-                    if target_list is not None:
-                        for entry in target_list:
+                        if target_list is not None:
+                            for entry in target_list:
+                                if isinstance(entry, dict):
+                                    eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
+                                    if eid in date_lookup:
+                                        entry["release_date"] = date_lookup[eid]
+                                        if "releaseDate" in entry:
+                                            entry["releaseDate"] = date_lookup[eid]
+                        else:
+                            for p, new_date in date_lookup.items():
+                                if p in idx_data and isinstance(idx_data[p], dict):
+                                    idx_data[p]["release_date"] = new_date
+                                    if "releaseDate" in idx_data[p]:
+                                        idx_data[p]["releaseDate"] = new_date
+                        atomic_save_json(INDEX_FILE, idx_data)
+                    elif isinstance(idx_data, list):
+                        for entry in idx_data:
                             if isinstance(entry, dict):
                                 eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
                                 if eid in date_lookup:
                                     entry["release_date"] = date_lookup[eid]
-                    else:
-                        for p, new_date in date_lookup.items():
-                            if p in idx_data and isinstance(idx_data[p], dict):
-                                idx_data[p]["release_date"] = new_date
-                    atomic_save_json(INDEX_FILE, idx_data)
-                elif isinstance(idx_data, list):
-                    for entry in idx_data:
-                        if isinstance(entry, dict):
-                            eid = entry.get("id") or entry.get("pid") or entry.get("productId") or entry.get("catalogId")
-                            if eid in date_lookup:
-                                entry["release_date"] = date_lookup[eid]
-                    atomic_save_json(INDEX_FILE, idx_data)
-            except Exception as e:
-                print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")
+                                    if "releaseDate" in entry:
+                                        entry["releaseDate"] = date_lookup[eid]
+                        atomic_save_json(INDEX_FILE, idx_data)
+                except Exception as e:
+                    print(f"[Warning] Failed to synchronize {INDEX_FILE}: {e}")
         save_progress(processed_keys)
         
     new_audited = len(processed_keys)

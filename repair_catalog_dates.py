@@ -254,7 +254,7 @@ def fetch_official_date(pid, entry=None, session=None):
         clean = re.sub(r"^(?:cdjapan|cdj)[-_:]?", "", clean, flags=re.IGNORECASE)
         clean_pid = clean.split("#")[0].split("?")[0].strip("/ \t")
 
-    if not clean_pid or is_invalid_identifier(clean_pid) or clean_pid.startswith("http://") or clean_pid.startswith("https://"):
+    if not clean_pid or is_invalid_identifier(clean_pid) or clean_pid.startswith(("http://", "https://", "//")):
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
@@ -265,6 +265,7 @@ def fetch_official_date(pid, entry=None, session=None):
         if res.status_code == 200:
             is_valid_dest = (
                 "cdjapan.co.jp/product/" in res.url or
+                "neowing.co.jp/product/" in res.url or
                 "detailview.html" in res.url
             ) and not any(k in res.url for k in ["/department/", "/search.html", "/person/"])
             if not is_valid_dest:
@@ -319,11 +320,6 @@ def fetch_official_date(pid, entry=None, session=None):
                                 if parsed:
                                     return pid, parsed
 
-                            if item.get("availabilityStarts"):
-                                parsed = parse_cdjapan_date(item["availabilityStarts"])
-                                if parsed:
-                                    return pid, parsed
-
                             item_type = str(item.get("@type", "")).lower()
                             if any(k in item_type for k in ["product", "musicalbum", "book", "musicrecording"]):
                                 if item.get("datePublished"):
@@ -356,7 +352,6 @@ def fetch_official_date(pid, entry=None, session=None):
                     k in label_txt for k in ["release date", "street date", "発売日", "発売予定日"]
                 )
                 if is_target:
-                    # Check if the date is embedded directly within the label node first
                     parsed_inline = parse_cdjapan_date(raw_label_txt)
                     if parsed_inline:
                         return pid, parsed_inline
@@ -367,14 +362,18 @@ def fetch_official_date(pid, entry=None, session=None):
                         if parsed_sibling:
                             return pid, parsed_sibling
 
-            # 3. Check Canonical OpenGraph / Meta Tags
+            # 3. Check Canonical OpenGraph / Meta / Microdata Tags
             meta_selectors = [
                 ("meta", {"itemprop": "releaseDate"}),
+                ("meta", {"itemprop": "datePublished"}),
                 ("meta", {"property": "product:release_date"}),
                 ("meta", {"property": "music:release_date"}),
                 ("meta", {"name": "release_date"}),
                 ("meta", {"property": "og:release_date"}),
-                ("time", {"itemprop": "releaseDate"})
+                ("time", {"itemprop": "releaseDate"}),
+                ("time", {"itemprop": "datePublished"}),
+                ("span", {"itemprop": "releaseDate"}),
+                ("span", {"itemprop": "datePublished"})
             ]
             for tag_name, attrs in meta_selectors:
                 for el in soup.find_all(tag_name, attrs):
@@ -389,7 +388,7 @@ def fetch_official_date(pid, entry=None, session=None):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
-                    r"(?<![a-zA-Z])(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
+                    r"(?<![a-zA-Z])(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売予定日|発売日)\s*[:：.\-–]?\s*([^\n\r;<>()]{4,40})",
                     raw_row,
                     re.IGNORECASE
                 )
@@ -438,6 +437,8 @@ def atomic_save_json(filepath, data):
     tmp_file = f"{filepath}.tmp"
     with open(tmp_file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+        f.flush()
+        os.fsync(f.fileno())
     os.replace(tmp_file, filepath)
 
 def save_progress(processed_set):
@@ -611,8 +612,11 @@ def main():
                     return ""
 
                 date_lookup = {}
-                id_fields = ["id", "pid", "product_id", "productId", "catalog_id", "catalogId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber", "sku"]
-
+                id_fields = [
+                    "id", "pid", "product_id", "productId", "catalog_id", "catalogId",
+                    "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber",
+                    "sku", "jan", "barcode", "isbn"
+                ]
                 for p in updated_dates:
                     val = catalog.get(p)
                     if isinstance(val, dict):

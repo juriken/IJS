@@ -49,10 +49,12 @@ def build_http_session():
     retries = Retry(
         total=5,
         backoff_factor=0.8,
+        # File: repair_catalog_dates.py | Block/Target: build_http_session
         status_forcelist=[429, 500, 502, 503, 504],
         raise_on_status=False
     )
-    adapter = HTTPAdapter(max_retries=retries, pool_connections=10, pool_maxsize=10)
+    pool_cap = max(16, int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS)) * 2)
+    adapter = HTTPAdapter(max_retries=retries, pool_connections=pool_cap, pool_maxsize=pool_cap)
     session.mount("https://", adapter)
     session.mount("http://", adapter)
     return session
@@ -65,12 +67,13 @@ def is_calendar_valid(year, month, day):
         return False
 
 def parse_cdjapan_date(raw_text):
+    # File: repair_catalog_dates.py | Block/Target: parse_cdjapan_date
     if not raw_text:
         return ""
     text = re.sub(r"\s+", " ", str(raw_text)).strip()
 
-    # Match YYYY/MM/DD or YYYY-MM-DD
-    m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
+    # Match YYYY/MM/DD, YYYY-MM-DD, or YYYY.MM.DD
+    m1 = re.search(r"\b(19\d\d|20\d\d)[/\-.](\d{1,2})[/\-.](\d{1,2})\b", text)
     if m1:
         y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
         if is_calendar_valid(y, m, d):
@@ -119,13 +122,18 @@ def fetch_official_date(session, pid):
     }
 
     try:
+        # File: repair_catalog_dates.py | Block/Target: fetch_official_date
         time.sleep(random.uniform(0.15, 0.4))
         res = session.get(url, headers=headers, timeout=14)
 
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
 
-            # 1. Parse JSON-LD structured data (including nested @graph nodes)
+            # Guard against WAF/Cloudflare soft-blocks returning HTTP 200
+            if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
+                return pid, None
+
+            # 1. Parse JSON-LD structured data (excluding promotional startDate)
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
                     js_data = json.loads(script.string or "{}")
@@ -135,7 +143,7 @@ def fetch_official_date(session, pid):
                         if isinstance(item, dict):
                             if "@graph" in item and isinstance(item["@graph"], list):
                                 queue.extend(item["@graph"])
-                            for key in ["releaseDate", "datePublished", "startDate"]:
+                            for key in ["releaseDate", "datePublished"]:
                                 if item.get(key):
                                     parsed = parse_cdjapan_date(item[key])
                                     if parsed:
@@ -155,23 +163,27 @@ def fetch_official_date(session, pid):
                     if parsed:
                         return pid, parsed
 
-            # 3. Check Table Rows and General Cells
-            for tr in soup.find_all("tr"):
+            # 3. Check Leaf Table Rows and Specific List Items (ignore nested layout tables)
+            for tr in soup.find_all(["tr", "li"]):
+                if tr.find(["tr", "table"]):
+                    continue
                 row_text = tr.get_text(" ", strip=True).lower()
                 if "release date" in row_text or "発売日" in row_text:
                     parsed = parse_cdjapan_date(tr.get_text(" ", strip=True))
                     if parsed:
                         return pid, parsed
 
-            # 4. Check OpenGraph / Microdata Meta Tags
+            # 4. Check OpenGraph / Microdata Meta & Time Tags
             meta_date = (
                 soup.find("meta", {"itemprop": "releaseDate"})
                 or soup.find("meta", {"property": "product:release_date"})
                 or soup.find("meta", {"name": "release_date"})
                 or soup.find("meta", {"property": "og:release_date"})
+                or soup.find("time", {"itemprop": "releaseDate"})
             )
-            if meta_date and meta_date.get("content"):
-                parsed = parse_cdjapan_date(meta_date["content"])
+            if meta_date:
+                raw_meta = meta_date.get("content") or meta_date.get("datetime") or meta_date.get_text(" ", strip=True)
+                parsed = parse_cdjapan_date(raw_meta)
                 if parsed:
                     return pid, parsed
 

@@ -129,21 +129,21 @@ def parse_cdjapan_date(raw_text):
     text = unicodedata.normalize("NFKC", str(raw_text))
     text = re.sub(r"\s+", " ", text).strip()
 
-    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 (e.g. 2024-09-25T00:00:00) with optional whitespace
+    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601 with optional whitespace
     m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)\s*[/\-.]\s*(\d{1,2})\s*[/\-.]\s*(\d{1,2})(?!\d)", text)
     if m1:
         y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match compact 8-digit date: YYYYMMDD
+    # Match isolated compact 8-digit date: YYYYMMDD (must not be part of a longer barcode or serial)
     m_compact = re.search(r"(?<!\d)(19\d\d|20\d\d)(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!\d)", text)
-    if m_compact:
+    if m_compact and len(re.sub(r"\D", "", text)) == 8:
         y, m, d = int(m_compact.group(1)), int(m_compact.group(2)), int(m_compact.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月 (with optional spacing)
+    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月
     m2 = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月(?:\s*(\d{1,2})\s*日)?", text)
     if m2:
         y, m = int(m2.group(1)), int(m2.group(2))
@@ -178,7 +178,7 @@ def parse_cdjapan_date(raw_text):
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    # Match YYYY Month (e.g., 2024 October or 2024 Oct.) -> default to 1st of month
+    # Match YYYY Month (e.g., 2024 October) -> default to 1st of month
     m_ym = re.search(r"\b(19\d\d|20\d\d)\s+([A-Za-z]+)\.?\b", text)
     if m_ym:
         mon_str = m_ym.group(2).lower()
@@ -187,7 +187,7 @@ def parse_cdjapan_date(raw_text):
             if 1 <= m <= 12:
                 return f"{y}/{str(m).zfill(2)}/01"
 
-    # Match Month YYYY (e.g., September 2024 or Oct. 2024) -> default to 1st of month
+    # Match Month YYYY (e.g., September 2024) -> default to 1st of month
     m5 = re.search(r"\b([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
     if m5:
         mon_str = m5.group(1).lower()
@@ -196,8 +196,8 @@ def parse_cdjapan_date(raw_text):
             if 1 <= m <= 12:
                 return f"{y}/{str(m).zfill(2)}/01"
 
-    # Match Year & Month only: YYYY/MM, YYYY-MM, or YYYY.MM -> default to 1st of month
-    m6 = re.search(r"(?<![/\-.\d])\b(19\d\d|20\d\d)\s*[/\-.]\s*(\d{1,2})\b(?![/\-.\d])", text)
+    # Match Year & Month with slash or hyphen only (no dots, to prevent matching version numbers): YYYY/MM or YYYY-MM
+    m6 = re.search(r"(?<![/\-.\d])\b(19\d\d|20\d\d)\s*[/\-]\s*(\d{1,2})\b(?![/\-.\d])", text)
     if m6:
         y, m = int(m6.group(1)), int(m6.group(2))
         if 1 <= m <= 12:
@@ -212,21 +212,22 @@ def fetch_official_date(pid, entry=None, session=None):
 
     target_candidate = None
     if isinstance(entry, dict):
-        # File: repair_catalog_dates.py | Block/Target: fetch_official_date
         url_field = entry.get("url")
         if url_field and ("cdjapan.co.jp/product/" in str(url_field) or "detailview.html" in str(url_field)):
             target_candidate = str(url_field)
         else:
             for k in ["id", "pid", "product_id", "productId", "cat_no", "catno", "catalog_no", "catalog_number", "catalogNumber"]:
                 val = entry.get(k)
-                if val and str(val).strip().lower() not in INVALID_STOPWORDS:
+                if val and not is_invalid_identifier(val):
                     target_candidate = str(val).strip()
                     break
 
     if not target_candidate:
         target_candidate = str(pid).strip()
 
-    # Handle legacy detailview.html?KEY=... query parameters
+    if is_invalid_identifier(target_candidate):
+        return pid, ""
+
     key_match = re.search(r"[?&]KEY=([^&#]+)", target_candidate, re.IGNORECASE)
     if key_match:
         clean_pid = key_match.group(1).strip()
@@ -238,7 +239,7 @@ def fetch_official_date(pid, entry=None, session=None):
             flags=re.IGNORECASE
         ).split("#")[0].split("?")[0].strip("/ \t")
 
-    if not clean_pid:
+    if not clean_pid or is_invalid_identifier(clean_pid):
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
@@ -256,10 +257,11 @@ def fetch_official_date(pid, entry=None, session=None):
 
             soup = BeautifulSoup(res.text, "html.parser")
 
-            if not soup.find("title") or "cdjapan" not in soup.find("title").get_text().lower():
-                return pid, None
+            title_tag = soup.find("title")
+            if not title_tag or "cdjapan" not in title_tag.get_text().lower():
+                return pid, "BLOCKED"
 
-            # 1. Parse JSON-LD structured data (prioritize product release dates)
+            # 1. Parse JSON-LD structured data
             for script in soup.find_all("script", type="application/ld+json"):
                 try:
                     raw_content = script.get_text(strip=True)
@@ -282,7 +284,7 @@ def fetch_official_date(pid, entry=None, session=None):
                                     queue.append(item["offers"])
                                 elif isinstance(item["offers"], list):
                                     queue.extend(item["offers"])
-                            
+
                             props = item.get("additionalProperty")
                             if isinstance(props, dict):
                                 props = [props]
@@ -296,12 +298,12 @@ def fetch_official_date(pid, entry=None, session=None):
                                             parsed = parse_cdjapan_date(prop.get("value", ""))
                                             if parsed:
                                                 return pid, parsed
-                            
+
                             if item.get("releaseDate"):
                                 parsed = parse_cdjapan_date(item["releaseDate"])
                                 if parsed:
                                     return pid, parsed
-                            
+
                             item_type = str(item.get("@type", "")).lower()
                             if any(k in item_type for k in ["product", "musicalbum", "book", "musicrecording"]):
                                 if item.get("datePublished"):
@@ -311,7 +313,13 @@ def fetch_official_date(pid, entry=None, session=None):
                 except Exception:
                     pass
 
-            # 2. Check Definition Lists & Key-Value Table Cells
+            # Strip non-product areas before DOM parsing to prevent extracting dates from related releases
+            for noise in soup.find_all(["script", "style", "noscript", "svg", "aside", "nav", "footer"]):
+                noise.decompose()
+            for noisy_section in soup.find_all(class_=re.compile(r"sidebar|related|recommend|review|ranking|banner", re.I)):
+                noisy_section.decompose()
+
+            # 2. Check Definition Lists & Key-Value Spec Tables
             target_labels = {"release", "release date", "発売", "発売日", "発売予定日", "street date"}
             negative_labels = {"press", "news", "event", "label", "distributor", "country", "発売元", "発売国", "発売レーベル"}
             for label in soup.find_all(["dt", "th", "td"]):
@@ -332,16 +340,14 @@ def fetch_official_date(pid, entry=None, session=None):
                     if parsed:
                         return pid, parsed
 
-            # 3. Check Canonical OpenGraph / Microdata Meta & Scoped Time Tags
+            # 3. Check Canonical OpenGraph / Meta Tags
             meta_selectors = [
                 ("meta", {"itemprop": "releaseDate"}),
                 ("meta", {"property": "product:release_date"}),
                 ("meta", {"property": "music:release_date"}),
                 ("meta", {"name": "release_date"}),
                 ("meta", {"property": "og:release_date"}),
-                ("meta", {"itemprop": "datePublished"}),
-                ("time", {"itemprop": "releaseDate"}),
-                ("time", {"class": re.compile(r"release", re.IGNORECASE)})
+                ("time", {"itemprop": "releaseDate"})
             ]
             for tag_name, attrs in meta_selectors:
                 for el in soup.find_all(tag_name, attrs):
@@ -350,9 +356,9 @@ def fetch_official_date(pid, entry=None, session=None):
                     if parsed:
                         return pid, parsed
 
-            # 4. Check Leaf Table Rows and List Items with Tight Negative Boundaries
-            for tr in soup.find_all(["tr", "li"]):
-                if tr.find(["tr", "table"]):
+            # 4. Check Scoped Table Rows
+            for tr in soup.find_all("tr"):
+                if tr.find(["table"]):
                     continue
                 raw_row = tr.get_text(" ", strip=True)
                 m = re.search(
@@ -365,30 +371,17 @@ def fetch_official_date(pid, entry=None, session=None):
                     if parsed:
                         return pid, parsed
 
-            # 5. Fallback regex across stripped page text
-            for tag in soup(["script", "style", "noscript", "svg"]):
-                tag.decompose()
-
-            page_text = soup.get_text(" ", strip=True)
-            body_match = re.search(
-                r"(?<![a-zA-Z])(?<!press\s)(?<!news\s)(?:release(?:\s*date)?|street\s*date|発売日|発売予定日)\s*[:：.\-–]?\s*([^\n\r,;<>()]{4,35})",
-                page_text,
-                re.IGNORECASE
-            )
-            if body_match:
-                parsed = parse_cdjapan_date(body_match.group(1))
-                if parsed:
-                    return pid, parsed
-
             return pid, ""
 
         elif res.status_code in (404, 410):
             return pid, ""
+        elif res.status_code in (403, 429):
+            return pid, "BLOCKED"
 
     except Exception:
         pass
 
-    return pid, None
+    return pid, "TIMEOUT"
     
 def load_progress():
     reset_requested = os.environ.get("RESET_PROGRESS", "").lower() in ["true", "1", "yes"] or \
@@ -516,7 +509,7 @@ def main():
                     pid, confirmed_date = future.result()
                 except Exception as e:
                     pid = future_to_pid[future]
-                    confirmed_date = None
+                    confirmed_date = "TIMEOUT"
                     print(f"   [{idx}/{batch_size}] ⚠ Worker thread error for [{pid}]: {e}", flush=True)
 
                 entry = catalog.get(pid)
@@ -525,14 +518,17 @@ def main():
                     continue
                 old_date = str(entry.get("release_date") or entry.get("releaseDate") or entry.get("date") or "").strip()
 
-                if confirmed_date is None:
+                if confirmed_date == "BLOCKED":
                     consecutive_blocks += 1
-                    print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Request failed / blocked (consecutive blocks: {consecutive_blocks}/{max_consecutive_blocks})", flush=True)
+                    print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Request blocked by CDJapan WAF (consecutive blocks: {consecutive_blocks}/{max_consecutive_blocks})", flush=True)
                     if consecutive_blocks >= max_consecutive_blocks:
-                        print(f"\n[Warning] {consecutive_blocks} consecutive network/WAF blocks. Aborting batch early to protect IP reputation.")
+                        print(f"\n[Warning] {consecutive_blocks} consecutive WAF blocks. Aborting batch early to protect IP reputation.")
                         for f in future_to_pid:
                             f.cancel()
                         break
+                    continue
+                elif confirmed_date == "TIMEOUT":
+                    print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Network timeout / transient error. Will retry in subsequent run.", flush=True)
                     continue
 
                 consecutive_blocks = 0
@@ -557,7 +553,6 @@ def main():
                         print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Unresolved: CDJapan returned no valid date (catalog has '{old_date}'). Marked audited to unblock queue.", flush=True)
 
     finally:
-        # Save updated catalog records atomically only when changes occur
         if updated_count > 0:
             if not os.path.exists(INDEX_FILE):
                 raise FileNotFoundError(f"[Critical] {INDEX_FILE} disappeared during execution. Aborting to preserve dual-file parity.")
@@ -604,8 +599,10 @@ def main():
                 def sync_item(entry, key_id=None):
                     if not isinstance(entry, dict):
                         return
-                    # Only synchronize actual product leaves, not category directories
-                    has_product_traits = any(k in entry for k in ["title", "name", "price", "url", "cat_no", "catalog_no", "sku", "release_date", "releaseDate"])
+                    # Require concrete product attributes so category containers are never modified
+                    has_product_traits = any(k in entry for k in ["price", "cat_no", "catno", "catalog_no", "sku", "jan", "barcode"]) or (
+                        "url" in entry and ("title" in entry or "name" in entry)
+                    )
                     if not has_product_traits:
                         return
 
@@ -648,14 +645,22 @@ def main():
                                 sync_catalog_tree(elem)
 
                 sync_catalog_tree(idx_data)
-                atomic_save_json(INDEX_FILE, idx_data)
+
+                # Stage both files atomically to guarantee dual-file parity
+                tmp_idx = f"{INDEX_FILE}.tmp"
+                tmp_data = f"{DATA_FILE}.tmp"
+                with open(tmp_idx, "w", encoding="utf-8") as f_idx:
+                    json.dump(idx_data, f_idx, indent=2, ensure_ascii=False)
+                with open(tmp_data, "w", encoding="utf-8") as f_data:
+                    json.dump(catalog, f_data, indent=2, ensure_ascii=False)
+
+                os.replace(tmp_idx, INDEX_FILE)
+                os.replace(tmp_data, DATA_FILE)
             except Exception as e:
-                print(f"[Critical] Failed to synchronize {INDEX_FILE}: {e}")
+                print(f"[Critical] Failed to synchronize catalog files: {e}")
                 raise RuntimeError(f"Catalog synchronization failed: {e}")
 
-            atomic_save_json(DATA_FILE, catalog)
         save_progress(processed_keys)
-
     new_audited = len(processed_keys.intersection(catalog.keys()))
     remaining_pending = max(0, total_catalog - new_audited)
     new_progress_pct = (new_audited / total_catalog * 100) if total_catalog > 0 else 0

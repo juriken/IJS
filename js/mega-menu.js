@@ -484,9 +484,9 @@ function renderMegaMenu(cat) {
     let unitsToRender = currentRail.units || [];
     if (currentRail.isSoloistColumn) {
       if (hpSoloistSubfilter === 'mline') {
-        unitsToRender = ['Airi Suzuki', 'Sayumi Michishige', 'Karin Miyamoto', 'Masaki Sato', 'Riho Sayashi', 'Manaka Inaba', 'Reina Tanaka', 'Ai Takahashi'];
+        unitsToRender = ['Suzuki Airi', 'Michishige Sayumi', 'Miyamoto Karin', 'Sato Masaki', 'Sayashi Riho', 'Inaba Manaka', 'Tanaka Reina', 'Takahashi Ai'];
       } else if (hpSoloistSubfilter === 'classic') {
-        unitsToRender = ['Aya Matsuura', 'Maki Goto', 'Natsumi Abe', 'Yuko Nakazawa', 'Miki Fujimoto', 'Erina Mano', 'Kirari Tsukishima (Koharu Kusumi)'];
+        unitsToRender = ['Matsuura Aya', 'Goto Maki', 'Abe Natsumi', 'Nakazawa Yuko', 'Fujimoto Miki', 'Mano Erina', 'Tsukishima Kirari (Kusumi Koharu)'];
       }
     }
 

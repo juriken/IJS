@@ -120,7 +120,7 @@ function showSearchSuggestions() {
         <button 
           type="button"
           onclick="selectSearchGroup('${grp.replace(/'/g, "\\'")}')"
-          class="w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
         >
           <div class="flex items-center gap-2 truncate">
             <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
@@ -148,7 +148,7 @@ function showSearchSuggestions() {
         <button 
           type="button"
           onclick="selectSearchMember('${mem.replace(/'/g, "\\'")}')"
-          class="w-full text-left px-3 py-2 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
         >
           <div class="flex items-center gap-2 truncate">
             <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
@@ -180,7 +180,7 @@ function showSearchSuggestions() {
         <button 
           type="button"
           onclick="selectSearchProduct('${prod.id}')"
-          class="w-full text-left px-3 py-2 hover:bg-sky-50 dark:hover:bg-slate-800 transition flex items-center gap-2.5 text-xs cursor-pointer group"
+          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-sky-50 dark:hover:bg-slate-800 transition flex items-center gap-2.5 text-xs cursor-pointer group"
         >
           <img src="${imgUrl}" class="w-7 h-7 object-contain rounded bg-stone-100 dark:bg-slate-700 shrink-0" onerror="if(typeof onImgLoadError==='function') onImgLoadError(this)" />
           <div class="flex-1 min-w-0">
@@ -222,6 +222,50 @@ function selectSearchProduct(productId) {
   const box = document.getElementById('search-autocomplete-box');
   if (box) box.classList.add('hidden');
   if (typeof openModal === 'function') openModal(productId);
+}
+
+function closeAutocomplete() {
+  const box = document.getElementById('search-autocomplete-box');
+  if (box) {
+    box.classList.add('hidden');
+    box.innerHTML = '';
+  }
+  activeSuggestionIndex = -1;
+}
+
+function highlightSuggestion(items) {
+  if (!items || !items.length) return;
+  items.forEach((item, idx) => {
+    if (idx === activeSuggestionIndex) {
+      item.classList.add('bg-rose-100', 'dark:bg-slate-700');
+      item.focus();
+      item.scrollIntoView({ block: 'nearest' });
+    } else {
+      item.classList.remove('bg-rose-100', 'dark:bg-slate-700');
+    }
+  });
+}
+
+function handleSearchInput(query) {
+  triggerDebouncedSearch(query);
+}
+
+function triggerDebouncedSearch(query) {
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (clearBtn) {
+    if (query) clearBtn.classList.remove('hidden');
+    else clearBtn.classList.add('hidden');
+  }
+
+  showSearchSuggestions();
+
+  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
+  searchDebounceTimeout = setTimeout(() => {
+    searchQuery = (query || '').toLowerCase().trim();
+    currentPage = 1;
+    if (typeof syncUrlParams === 'function') syncUrlParams();
+    if (typeof render === 'function') render();
+  }, 250);
 }
 
 function clearSearch() {

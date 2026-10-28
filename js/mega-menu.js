@@ -289,8 +289,8 @@ function updateMatrixScrollFade(el) {
 function sortUnitsByRelevance(unitsList) {
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
   return [...unitsList].sort((a, b) => {
-    const countA = productList.filter(p => p.artist === a).length;
-    const countB = productList.filter(p => p.artist === b).length;
+    const countA = productList.filter(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, a) : p.artist === a)).length;
+    const countB = productList.filter(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, b) : p.artist === b)).length;
     if (countA === 0 && countB > 0) return 1;
     if (countB === 0 && countA > 0) return -1;
     return countB - countA;
@@ -602,8 +602,8 @@ function renderMegaMenuUnitRow(cat, unitName) {
   const brandColors = (typeof ARTIST_BRAND_COLORS !== 'undefined' && ARTIST_BRAND_COLORS) ? ARTIST_BRAND_COLORS : {};
 
   const artistProducts = productList.filter(p => {
-    if (unitName === 'Kirari Tsukishima (Koharu Kusumi)') {
-      return p.artist === 'Tsukishima Kirari' || p.artist === 'Kirari Tsukishima (Koharu Kusumi)';
+    if (typeof matchesArtistName === 'function') {
+      return matchesArtistName(p.artist, unitName);
     }
     return p.artist === unitName;
   });
@@ -757,10 +757,8 @@ function previewUnitInShowcase(unitName, cat) {
   if (!mount) return;
 
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
-  const searchArtistName = (unitName === 'Kirari Tsukishima (Koharu Kusumi)') ? 'Tsukishima Kirari' : unitName;
-
-  const unitProduct = productList.find(p => (p.artist === searchArtistName || p.artist === unitName) && typeof isPreOrder === 'function' && isPreOrder(p)) ||
-                      productList.find(p => p.artist === searchArtistName || p.artist === unitName);
+  const unitProduct = productList.find(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, unitName) : p.artist === unitName) && typeof isPreOrder === 'function' && isPreOrder(p)) ||
+                      productList.find(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, unitName) : p.artist === unitName));
 
   if (!unitProduct) return;
 

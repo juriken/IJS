@@ -980,17 +980,15 @@ function render() {
       if (activeEra === 'vintage' && !(yr >= 1998 && yr <= 2009)) return false;
     }
 
-   /* File: js/app.js | Approx. Lines: 430-445 | Block/Target: filterItem Artist Matching Fallback */
     let matchesArtist = true;
     if (activeMobileArtists.length > 0) {
-      /* File: js/app.js | Block/Target: Mobile Quick-Select Member Fallback */
-      matchesArtist = activeMobileArtists.includes(item.artist);
+      matchesArtist = activeMobileArtists.some(grp => item.artist === grp || (typeof matchesArtistName === 'function' && matchesArtistName(item.artist, grp)));
       if (!matchesArtist) {
         const isMember = activeMobileArtists.some(grp => (item.title || '').toLowerCase().includes(grp.toLowerCase()));
         if (isMember) matchesArtist = true;
       }
     } else if (activeArtist !== 'All') {
-      matchesArtist = (item.artist === activeArtist);
+      matchesArtist = (item.artist === activeArtist || (typeof matchesArtistName === 'function' && matchesArtistName(item.artist, activeArtist)));
       if (!matchesArtist && typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS[activeFilter]) {
         const isMemberOfGroup = (item.title || '').toLowerCase().includes(activeArtist.toLowerCase());
         if (isMemberOfGroup) matchesArtist = true;

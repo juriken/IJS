@@ -132,7 +132,6 @@
             autocomplete="off" 
             spellcheck="false"
             onfocus="showSearchSuggestions()"
-            oninput="clearTimeout(window._searchDebounceTimer); window._searchDebounceTimer = setTimeout(() => { if (typeof handleSearchInput === 'function') handleSearchInput(this.value); else if (typeof showSearchSuggestions === 'function') showSearchSuggestions(); }, 350);"
           />
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-stone-400 dark:text-slate-400 text-xs"></i>
           <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-2.5 top-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 text-xs cursor-pointer">

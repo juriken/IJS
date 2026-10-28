@@ -386,7 +386,7 @@ function changePerPage(countVal) {
 }
 
 function goToPage(pageNumber) {
-  const totalPages = Math.max(1, Math.ceil(activeFilteredList.length / itemsPerPage));
+  const totalPages = window._catalogTotalPages || Math.max(1, Math.ceil(activeFilteredList.length / itemsPerPage));
   const targetPage = Math.max(1, Math.min(pageNumber || 1, totalPages));
   currentPage = targetPage;
 
@@ -989,7 +989,7 @@ function render() {
       }
     } else if (activeArtist !== 'All') {
       matchesArtist = (item.artist === activeArtist || (typeof matchesArtistName === 'function' && matchesArtistName(item.artist, activeArtist)));
-      if (!matchesArtist && typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS[activeFilter]) {
+      if (!matchesArtist) {
         const isMemberOfGroup = (item.title || '').toLowerCase().includes(activeArtist.toLowerCase());
         if (isMemberOfGroup) matchesArtist = true;
       }
@@ -1060,6 +1060,8 @@ function render() {
     } else if (currentSort === 'price-asc') {
       const priceA = parseNumericPrice(a.price, a);
       const priceB = parseNumericPrice(b.price, b);
+      if (priceA > 0 && priceB === 0) return -1;
+      if (priceB > 0 && priceA === 0) return 1;
       if (priceA !== priceB) return priceA - priceB;
       return String(a.title || '').localeCompare(String(b.title || ''));
     } else if (currentSort === 'price-desc') {
@@ -1073,6 +1075,7 @@ function render() {
 
   const totalItems = displayEntities.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+  window._catalogTotalPages = totalPages;
   if (currentPage > totalPages) currentPage = 1;
 
   if (totalItems === 0) {

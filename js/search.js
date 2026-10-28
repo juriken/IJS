@@ -171,6 +171,9 @@ function showSearchSuggestions() {
     `;
     matchingItems.forEach(prod => {
       const cleanTitle = (prod.title || '').replace(/^\[[^\]]+\]\s*/, '');
+      const safeTitle = (typeof escapeHtml === 'function') ? escapeHtml(cleanTitle) : cleanTitle;
+      const safeArtist = (typeof escapeHtml === 'function') ? escapeHtml(prod.artist || '') : (prod.artist || '');
+      const safeId = (typeof escapeHtml === 'function') ? escapeHtml(prod.id || '') : (prod.id || '');
       const priceText = (typeof formatDisplayPrice === 'function') 
         ? formatDisplayPrice(prod.price) 
         : `¥${(prod.price || 0).toLocaleString()}`;
@@ -179,13 +182,13 @@ function showSearchSuggestions() {
       html += `
         <button 
           type="button"
-          onclick="selectSearchProduct('${prod.id}')"
+          onclick="selectSearchProduct('${safeId}')"
           class="autocomplete-item w-full text-left px-3 py-2 hover:bg-sky-50 dark:hover:bg-slate-800 transition flex items-center gap-2.5 text-xs cursor-pointer group"
         >
           <img src="${imgUrl}" class="w-7 h-7 object-contain rounded bg-stone-100 dark:bg-slate-700 shrink-0" onerror="if(typeof onImgLoadError==='function') onImgLoadError(this)" />
           <div class="flex-1 min-w-0">
-            <div class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${cleanTitle}</div>
-            <div class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${prod.artist} • <span class="font-mono">${prod.id}</span></div>
+            <div class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${safeTitle}</div>
+            <div class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${safeArtist} • <span class="font-mono">${safeId}</span></div>
           </div>
           <span class="text-xs font-black text-rose-600 dark:text-rose-400 font-mono shrink-0">${priceText}</span>
         </button>
@@ -202,6 +205,12 @@ function selectSearchGroup(groupName) {
   const input = document.getElementById('search-input');
   if (box) box.classList.add('hidden');
   if (input) input.value = groupName;
+  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
+  searchQuery = '';
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (clearBtn) clearBtn.classList.add('hidden');
+  activeFilter = 'All';
+  if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
   if (typeof setSubArtist === 'function') setSubArtist(groupName);
   else if (typeof setFilter === 'function') setFilter(groupName);
   const target = document.getElementById('product-container');
@@ -213,6 +222,12 @@ function selectSearchMember(memberName) {
   const input = document.getElementById('search-input');
   if (box) box.classList.add('hidden');
   if (input) input.value = memberName;
+  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
+  searchQuery = '';
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (clearBtn) clearBtn.classList.add('hidden');
+  activeFilter = 'All';
+  if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
   if (typeof setSubArtist === 'function') setSubArtist(memberName);
   const target = document.getElementById('product-container');
   if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -221,6 +236,7 @@ function selectSearchMember(memberName) {
 function selectSearchProduct(productId) {
   const box = document.getElementById('search-autocomplete-box');
   if (box) box.classList.add('hidden');
+  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
   if (typeof openModal === 'function') openModal(productId);
 }
 

@@ -760,7 +760,10 @@ function previewUnitInShowcase(unitName, cat) {
   const unitProduct = productList.find(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, unitName) : p.artist === unitName) && typeof isPreOrder === 'function' && isPreOrder(p)) ||
                       productList.find(p => (typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, unitName) : p.artist === unitName));
 
-  if (!unitProduct) return;
+  if (!unitProduct) {
+    restoreDefaultShowcase(cat);
+    return;
+  }
 
   const isUpcoming = typeof isPreOrder === 'function' && isPreOrder(unitProduct);
   mount.innerHTML = renderMegaMenuCardMarkup(unitProduct, {

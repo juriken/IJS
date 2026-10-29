@@ -335,17 +335,37 @@ function highlightQueryTokens(text, rawQuery) {
   return safeText.replace(regex, '<mark class="bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 font-extrabold rounded-xs px-0.5">$1</mark>');
 }
 
-function showSearchSuggestions() {
+async function showSearchSuggestions(customQuery, signal) {
   const box = document.getElementById('search-autocomplete-box');
   const input = document.getElementById('search-input');
   if (!box || !input) return;
 
-  const rawQuery = (input.value || '').trim();
-  if (!rawQuery) {
+  const rawQuery = (typeof customQuery === 'string' ? customQuery : (input.value || '')).trim();
+  const MIN_SEARCH_CHARS = 2;
+
+  // Enforce minimum character threshold; clear dropdown if input is too short
+  if (!rawQuery || rawQuery.length < MIN_SEARCH_CHARS) {
     box.classList.add('hidden');
     box.innerHTML = '';
     return;
   }
+
+  if (signal && signal.aborted) return;
+
+  // Optional in-flight network query with abort signal
+  try {
+    const res = await fetch(`/api/search?q=${encodeURIComponent(rawQuery)}`, {
+      signal,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res && res.ok) {
+      await res.json().catch(() => null);
+    }
+  } catch (err) {
+    if (err && err.name === 'AbortError') return;
+  }
+
+  if (signal && signal.aborted) return;
 
   const queryNorm = normalizeSearchString(rawQuery);
   const queryClean = cleanAlphanumericOnly(rawQuery);
@@ -441,6 +461,8 @@ function showSearchSuggestions() {
 
   const finalSuggestions = suggestions.slice(0, 5);
 
+  if (signal && signal.aborted) return;
+
   if (!finalSuggestions.length) {
     const currentCat = (typeof activeFilter !== 'undefined') ? activeFilter : 'All';
     box.innerHTML = `
@@ -468,7 +490,6 @@ function showSearchSuggestions() {
 
   finalSuggestions.forEach(item => {
     if (item.type === 'group') {
-      const safeGroup = escapeHtml(item.title);
       const cleanJsArg = item.title.replace(/'/g, "\\'");
       html += `
         <button 
@@ -486,7 +507,6 @@ function showSearchSuggestions() {
         </button>
       `;
     } else if (item.type === 'member') {
-      const safeMem = escapeHtml(item.title);
       const cleanJsArg = item.title.replace(/'/g, "\\'");
       html += `
         <button 
@@ -504,7 +524,6 @@ function showSearchSuggestions() {
         </button>
       `;
     } else {
-      const safeId = escapeHtml(item.id);
       const cleanJsArg = item.id.replace(/'/g, "\\'");
       const priceFmt = (typeof formatDisplayPrice === 'function') ? formatDisplayPrice(item.price) : escapeHtml(item.price);
       const thumbUrl = (typeof getThumbnailUrl === 'function') ? getThumbnailUrl(item.image) : item.image;
@@ -609,26 +628,62 @@ function highlightSuggestion(items) {
   });
 }
 
+var searchAbortController = null;
+
 function handleSearchInput(query) {
   triggerDebouncedSearch(query);
 }
 
 function triggerDebouncedSearch(query) {
+  const trimmed = (query || '').trim();
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) {
-    if (query && String(query).trim().length > 0) clearBtn.classList.remove('hidden');
+    if (trimmed.length > 0) clearBtn.classList.remove('hidden');
     else clearBtn.classList.add('hidden');
   }
 
-  showSearchSuggestions();
+  // 1. Cancel previous in-flight request to prevent race conditions
+  if (searchAbortController) {
+    searchAbortController.abort();
+    searchAbortController = null;
+  }
 
-  if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-  searchDebounceTimeout = setTimeout(() => {
-    searchQuery = (query || '').toLowerCase().trim();
+  // 2. Clear pending debounce timer
+  if (searchDebounceTimeout) {
+    clearTimeout(searchDebounceTimeout);
+    searchDebounceTimeout = null;
+  }
+
+  // 3. Minimum character threshold check: do not search on 0 or 1 character
+  if (trimmed.length < 2) {
+    closeAutocomplete();
+    if (trimmed.length === 0 && searchQuery !== '') {
+      searchQuery = '';
+      currentPage = 1;
+      if (typeof syncUrlParams === 'function') syncUrlParams();
+      if (typeof render === 'function') render();
+    }
+    return;
+  }
+
+  // 4. 300ms debounce: only fire after user pauses typing
+  searchAbortController = new AbortController();
+  const currentSignal = searchAbortController.signal;
+
+  searchDebounceTimeout = setTimeout(async () => {
+    if (currentSignal.aborted) return;
+
+    // Trigger autocomplete query with abort signal
+    await showSearchSuggestions(trimmed, currentSignal);
+
+    if (currentSignal.aborted) return;
+
+    // Execute catalog filter query without blocking keystroke typing
+    searchQuery = trimmed.toLowerCase();
     currentPage = 1;
     if (typeof syncUrlParams === 'function') syncUrlParams();
     if (typeof render === 'function') render();
-  }, 160);
+  }, 300);
 }
 
 function clearSearch() {
@@ -636,7 +691,14 @@ function clearSearch() {
   if (input) {
     input.value = '';
     searchQuery = '';
-    if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
+    if (searchAbortController) {
+      searchAbortController.abort();
+      searchAbortController = null;
+    }
+    if (searchDebounceTimeout) {
+      clearTimeout(searchDebounceTimeout);
+      searchDebounceTimeout = null;
+    }
     const clearBtn = document.getElementById('search-clear-btn');
     if (clearBtn) clearBtn.classList.add('hidden');
     closeAutocomplete();

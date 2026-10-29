@@ -14,22 +14,325 @@ async function loadSearchAliases() {
   }
 }
 
-// Bilingual Alias Normalization & Multi-Field Fuzzy Matcher
-function matchesFuzzyQuery(text, query) {
-  if (!text || !query) return false;
-  const t = text.toLowerCase();
-  const q = query.toLowerCase();
-  if (t.includes(q)) return true;
+/* ==========================================================================
+   IdolJapan.store — Search Engine & Autocomplete Logic
+   Path: js/search.js
+   ========================================================================== */
 
-  for (const [canonical, aliases] of Object.entries(searchAliases)) {
-    if (aliases.some(a => a.toLowerCase() === q)) {
-      if (t.includes(canonical.toLowerCase())) return true;
+var searchIndex = null;
+var searchCacheMap = new Map();
+var MAX_SEARCH_CACHE_SIZE = 200;
+
+var SEARCH_GROUP_ABBREVIATIONS = {
+  'Morning Musume': ['mm', 'momusu', 'morning', 'モー娘', 'モーニング娘', 'モーニング娘。', 'モーニング', '早安少女組'],
+  'Hello! Project & Up-Front': ['hp', 'h!p', 'hellopro', 'ハロプロ', 'ハロ', 'upfront', 'up-front'],
+  'ANGERME': ['anju', 'angerme', 'アンジュ', 'アンジュルム', 'smileage', 'スマイレージ'],
+  'Juice=Juice': ['jj', 'juice', 'ジュース', 'ジュースジュース', 'j=j'],
+  'Tsubaki Factory': ['tsubaki', 'つばき', 'つばきファクトリー'],
+  'BEYOOOOONDS': ['beyo', 'ビヨ', 'ビヨーンズ', 'chica#tetsu', 'ame no mori kawa umi', 'seasoningS'],
+  'OCHA NORMA': ['ocha', 'オチャ', 'オチャノーマ'],
+  'Rosy Chronicle': ['rosy', 'ロージー', 'ロージークロニクル'],
+  'Berryz Kobo': ['berryz', 'ベリーズ', 'ベリーズ工房'],
+  '℃-ute': ['cute', 'c-ute', 'キュート'],
+  'Buono!': ['buono', 'ボーノ'],
+  'AKB48 Group': ['akb', 'akb48', 'ske', 'ske48', 'nmb', 'nmb48', 'hkt', 'hkt48', 'ngt', 'ngt48', 'stu', 'stu48', '48g'],
+  'Sakamichi Series': ['sakamichi', '坂道', '46g', 'nogi', 'nogizaka', '乃木坂', '乃木坂46', 'saku', 'sakurazaka', '櫻坂', '櫻坂46', 'keyaki', 'keyakizaka', '欅坂', '欅坂46', 'hinata', 'hinatazaka', '日向坂', '日向坂46', 'bokuao', '僕青'],
+  'Stardust Planet': ['momoclo', 'mcz', 'ももクロ', 'ももいろクローバーz', 'ebichu', 'エビ中', '私立恵比寿中学', 'tokisen', 'とき宣', '超ときめき宣伝部', 'shachi', 'team shachi'],
+  '=LOVE / Sister Groups': ['ikolove', 'イコラブ', '=love', 'equal love', 'noime', 'ノイミー', '≠me', 'not equal me', 'niajoy', 'ニアジョイ', '≒joy', 'nearly equal joy'],
+  'KAWAII LAB.': ['fruits zipper', 'fz', 'ふるっぱー', 'candy tune', 'きゃんちゅー', 'sweet steady', 'すいすて', 'cutie street', 'きゅーすと'],
+  'Modern & Alternative': ['babymetal', 'bm', 'ベビメタ', 'niziu', 'ニジュー', 'me:i', 'mei', 'ミーアイ', 'is:sue', 'issue', 'イッシュ', 'sakura gakuin', 'さくら学院']
+};
+
+var IDOL_NAME_VARIATIONS = {
+  'Suzuki Airi': ['Airi Suzuki', '鈴木愛理', 'すずきあいり', 'あいりーん'],
+  'Michishige Sayumi': ['Sayumi Michishige', '道重さゆみ', 'さゆみん'],
+  'Miyamoto Karin': ['Karin Miyamoto', '宮本佳林', 'かりん'],
+  'Sato Masaki': ['Masaki Sato', '佐藤優樹', 'まーちゃん'],
+  'Sayashi Riho': ['Riho Sayashi', '鞘師里保', 'りほりほ'],
+  'Inaba Manaka': ['Manaka Inaba', '稲場愛香', 'まなかん'],
+  'Tanaka Reina': ['Reina Tanaka', '田中れいな'],
+  'Takahashi Ai': ['Ai Takahashi', '高橋愛'],
+  'Matsuura Aya': ['Aya Matsuura', '松浦亜弥', 'あやや'],
+  'Goto Maki': ['Maki Goto', '後藤真希', 'ごっちん'],
+  'Abe Natsumi': ['Natsumi Abe', '安倍なつみ', 'なっち'],
+  'Tsukishima Kirari': ['Tsukishima Kirari (Kusumi Koharu)', 'Koharu Kusumi', 'Kusumi Koharu', '久住小春', '月島きらり'],
+  'Makino Maria': ['Maria Makino', '牧野真莉愛'],
+  'Ishida Ayumi': ['Ayumi Ishida', '石田亜佑美'],
+  'Ikuta Erina': ['Erina Ikuta', '生田衣梨奈'],
+  'Fukumura Mizuki': ['Mizuki Fukumura', '譜久村聖'],
+  'Kudo Haruka': ['Haruka Kudo', '工藤遥'],
+  'Sasaki Rikako': ['Rikako Sasaki', '佐々木莉佳子'],
+  'Shiraishi Mai': ['Mai Shiraishi', '白石麻衣', 'まいやん'],
+  'Nishino Nanase': ['Nanase Nishino', '西野七瀬', 'なぁちゃん'],
+  'Ikuta Erika': ['Erika Ikuta', '生田絵梨花', 'いくちゃん'],
+  'Saito Asuka': ['Asuka Saito', '齋藤飛鳥', 'あすか'],
+  'Hirate Yurina': ['Yurina Hirate', '平手友梨奈', 'てち'],
+  'Yamamoto Sayaka': ['Sayaka Yamamoto', '山本彩', 'さや姉'],
+  'Maeda Atsuko': ['Atsuko Maeda', '前田敦子', 'あっちゃん'],
+  'Oshima Yuko': ['Yuko Oshima', '大島優子'],
+  'Watanabe Mayu': ['Mayu Watanabe', '渡辺麻友', 'まゆゆ'],
+  'Kashiwagi Yuki': ['Yuki Kashiwagi', '柏木由紀', 'ゆきりん'],
+  'Sashihara Rino': ['Rino Sashihara', '指原莉乃', 'さっしー']
+};
+
+function normalizeSearchString(str) {
+  if (!str) return '';
+  return String(str)
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[ōóòôõ]/g, 'o')
+    .replace(/[ūúùû]/g, 'u')
+    .replace(/[āáàâã]/g, 'a')
+    .replace(/[ēéèê]/g, 'e')
+    .replace(/[īíìî]/g, 'i')
+    .replace(/ou/g, 'o')
+    .replace(/oo/g, 'o')
+    .replace(/uu/g, 'u')
+    .replace(/kiku/g, 'kikka')
+    .replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+}
+
+function cleanAlphanumericOnly(str) {
+  if (!str) return '';
+  return String(str).toLowerCase().replace(/[^a-z0-9]/gi, '');
+}
+
+function computeLevenshteinDistance(a, b) {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+
+  const row = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let prev = i;
+    for (let j = 1; j <= b.length; j++) {
+      const val = (a[i - 1] === b[j - 1]) ? row[j - 1] : Math.min(row[j - 1] + 1, prev + 1, row[j] + 1);
+      row[j - 1] = prev;
+      prev = val;
+    }
+    row[b.length] = prev;
+  }
+  return row[b.length];
+}
+
+function isFuzzyTokenMatch(targetToken, queryToken) {
+  if (!targetToken || !queryToken) return false;
+  if (targetToken.includes(queryToken)) return true;
+  if (queryToken.length >= 4 && queryToken.length <= 6) {
+    return computeLevenshteinDistance(targetToken.slice(0, queryToken.length), queryToken) <= 1;
+  }
+  if (queryToken.length >= 7) {
+    return computeLevenshteinDistance(targetToken.slice(0, queryToken.length), queryToken) <= 2;
+  }
+  return false;
+}
+
+function buildSearchCache(products) {
+  const source = Array.isArray(products) ? products : (typeof allProducts !== 'undefined' ? allProducts : []);
+  searchIndex = source.map((p, idx) => {
+    const rawId = String(p.id || '').trim();
+    const cleanId = cleanAlphanumericOnly(rawId);
+    const rawArtist = String(p.artist || '').trim();
+    const rawTitle = String(p.title || '').trim();
+    const cleanTitle = (typeof stripTitlePrefixes === 'function') ? stripTitlePrefixes(rawTitle) : rawTitle;
+    const rawCat = String(p.category || '').trim();
+    const rawFmt = (typeof getItemFormatCategory === 'function') ? getItemFormatCategory(p) : 'Other';
+    const isAvail = (typeof isOutOfPrint === 'function') ? !isOutOfPrint(p) : true;
+    const isUpcoming = (typeof isPreOrder === 'function') ? isPreOrder(p) : false;
+
+    const artistNorm = normalizeSearchString(rawArtist);
+    const titleNorm = normalizeSearchString(cleanTitle);
+    const descNorm = normalizeSearchString(p.description || '');
+
+    const nameAliases = [artistNorm];
+    if (IDOL_NAME_VARIATIONS[rawArtist]) {
+      IDOL_NAME_VARIATIONS[rawArtist].forEach(alias => nameAliases.push(normalizeSearchString(alias)));
+    }
+    const parts = rawArtist.split(/\s+/);
+    if (parts.length === 2) {
+      nameAliases.push(normalizeSearchString(`${parts[1]} ${parts[0]}`));
+    }
+
+    return {
+      index: idx,
+      id: rawId,
+      cleanId: cleanId,
+      artist: rawArtist,
+      artistNorm: artistNorm,
+      artistAliases: nameAliases,
+      title: rawTitle,
+      cleanTitle: cleanTitle,
+      titleNorm: titleNorm,
+      category: rawCat,
+      format: rawFmt,
+      descNorm: descNorm,
+      isAvailable: isAvail,
+      isPreOrder: isUpcoming,
+      price: p.price,
+      image: p.image,
+      ref: p
+    };
+  });
+  searchCacheMap.clear();
+}
+
+function updateSearchCache(products) {
+  buildSearchCache(products);
+}
+
+function calculateProductSearchScore(doc, queryNorm, queryClean, queryTokens) {
+  let score = 0;
+
+  if (queryClean.length >= 3) {
+    if (doc.cleanId === queryClean) score += 15000;
+    else if (doc.cleanId.startsWith(queryClean)) score += 12000;
+    else if (doc.cleanId.includes(queryClean)) score += 9500;
+  }
+  if (doc.id.toLowerCase().includes(queryNorm)) {
+    score = Math.max(score, 10000);
+  }
+
+  let groupMatch = false;
+  for (const alias of doc.artistAliases) {
+    if (alias === queryNorm) {
+      score += 8500;
+      groupMatch = true;
+      break;
+    } else if (alias.startsWith(queryNorm)) {
+      score += 7800;
+      groupMatch = true;
+      break;
+    } else if (alias.includes(queryNorm)) {
+      score += 7000;
+      groupMatch = true;
+      break;
     }
   }
 
-  const normT = t.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-  const normQ = q.replace(/ou/g, 'o').replace(/oo/g, 'o').replace(/uu/g, 'u').replace(/kiku/g, 'kikka');
-  return normT.includes(normQ);
+  if (!groupMatch) {
+    for (const [canonicalGroup, abbreviations] of Object.entries(SEARCH_GROUP_ABBREVIATIONS)) {
+      if (doc.artist === canonicalGroup || doc.category === canonicalGroup) {
+        if (abbreviations.some(a => normalizeSearchString(a) === queryNorm || queryNorm.includes(normalizeSearchString(a)))) {
+          score += 7500;
+          groupMatch = true;
+          break;
+        }
+      }
+    }
+  }
+
+  if (!groupMatch) {
+    for (const [memName, memAliases] of Object.entries(IDOL_NAME_VARIATIONS)) {
+      if (doc.artistNorm.includes(normalizeSearchString(memName)) || doc.titleNorm.includes(normalizeSearchString(memName))) {
+        if (memAliases.some(a => normalizeSearchString(a).includes(queryNorm) || queryNorm.includes(normalizeSearchString(a)))) {
+          score += 6200;
+          break;
+        }
+      }
+    }
+  }
+
+  if (doc.titleNorm.startsWith(queryNorm)) score += 4800;
+  else if (doc.titleNorm.includes(queryNorm)) score += 4000;
+
+  if (queryTokens.length > 1) {
+    let tokensMatched = 0;
+    queryTokens.forEach(token => {
+      if (doc.cleanId.includes(token) || doc.artistNorm.includes(token) || doc.titleNorm.includes(token) || isFuzzyTokenMatch(doc.titleNorm, token)) {
+        tokensMatched++;
+      }
+    });
+    if (tokensMatched === queryTokens.length) score += 3500;
+    else if (tokensMatched > 0) score += (tokensMatched * 600);
+  } else if (queryTokens.length === 1 && score === 0) {
+    const singleToken = queryTokens[0];
+    if (isFuzzyTokenMatch(doc.titleNorm, singleToken)) score += 2800;
+    else if (isFuzzyTokenMatch(doc.artistNorm, singleToken)) score += 3200;
+  }
+
+  if (score === 0 && doc.descNorm && doc.descNorm.includes(queryNorm)) {
+    score += 1500;
+  }
+
+  if (score > 0) {
+    if (doc.isPreOrder) score += 50;
+    else if (doc.isAvailable) score += 20;
+    else score -= 4000;
+  }
+
+  return score;
+}
+
+function getMatchingProductIds(query) {
+  if (!query) return null;
+  const rawQ = String(query).trim();
+  if (!rawQ) return null;
+
+  const cacheKey = `ids_${rawQ.toLowerCase()}_${typeof activeFilter !== 'undefined' ? activeFilter : 'All'}`;
+  if (searchCacheMap.has(cacheKey)) {
+    return searchCacheMap.get(cacheKey);
+  }
+
+  if (!searchIndex || !searchIndex.length) {
+    buildSearchCache(typeof allProducts !== 'undefined' ? allProducts : []);
+  }
+
+  const queryNorm = normalizeSearchString(rawQ);
+  const queryClean = cleanAlphanumericOnly(rawQ);
+  const queryTokens = queryNorm.split(/\s+/).filter(t => t.length > 0);
+
+  const matchedIds = new Set();
+  for (let i = 0; i < searchIndex.length; i++) {
+    const doc = searchIndex[i];
+    const score = calculateProductSearchScore(doc, queryNorm, queryClean, queryTokens);
+    if (score > 1200) {
+      matchedIds.add(doc.id);
+    }
+  }
+
+  if (searchCacheMap.size >= MAX_SEARCH_CACHE_SIZE) {
+    const firstKey = searchCacheMap.keys().next().value;
+    searchCacheMap.delete(firstKey);
+  }
+  searchCacheMap.set(cacheKey, matchedIds);
+  return matchedIds;
+}
+
+function matchesCatalogSearch(item, query) {
+  if (!query) return true;
+  if (!item) return false;
+  const matchedSet = getMatchingProductIds(query);
+  return matchedSet ? matchedSet.has(item.id) : true;
+}
+
+function matchesFuzzyQuery(text, query) {
+  if (!text || !query) return false;
+  const tNorm = normalizeSearchString(text);
+  const qNorm = normalizeSearchString(query);
+  if (tNorm.includes(qNorm)) return true;
+
+  const tClean = cleanAlphanumericOnly(text);
+  const qClean = cleanAlphanumericOnly(query);
+  if (qClean.length >= 3 && tClean.includes(qClean)) return true;
+
+  return isFuzzyTokenMatch(tNorm, qNorm);
+}
+
+function highlightQueryTokens(text, rawQuery) {
+  if (!text) return '';
+  const safeText = (typeof escapeHtml === 'function') ? escapeHtml(text) : text;
+  if (!rawQuery) return safeText;
+
+  const tokens = String(rawQuery)
+    .trim()
+    .split(/\s+/)
+    .filter(t => t.length > 0)
+    .map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+  if (!tokens.length) return safeText;
+
+  const regex = new RegExp(`(${tokens.join('|')})`, 'gi');
+  return safeText.replace(regex, '<mark class="bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 font-extrabold rounded-xs px-0.5">$1</mark>');
 }
 
 function showSearchSuggestions() {
@@ -38,164 +341,201 @@ function showSearchSuggestions() {
   if (!box || !input) return;
 
   const rawQuery = (input.value || '').trim();
-  const q = rawQuery.toLowerCase();
-
-  // If query is blank, close box or render initial quick-picks
-  if (!q) {
+  if (!rawQuery) {
     box.classList.add('hidden');
     box.innerHTML = '';
     return;
   }
 
-  const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+  const queryNorm = normalizeSearchString(rawQuery);
+  const queryClean = cleanAlphanumericOnly(rawQuery);
+  const queryTokens = queryNorm.split(/\s+/).filter(t => t.length > 0);
+
+  if (!searchIndex || !searchIndex.length) {
+    buildSearchCache(typeof allProducts !== 'undefined' ? allProducts : []);
+  }
+
   const franchiseDict = (typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS) ? FRANCHISE_ARTISTS : {};
   const brandColors = (typeof ARTIST_BRAND_COLORS !== 'undefined' && ARTIST_BRAND_COLORS) ? ARTIST_BRAND_COLORS : {};
 
-  // 1. KNOWN ENSEMBLE GROUPS (Excludes soloists and graduates)
-  const ensembleGroupNames = [
-    'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS', 
-    'OCHA NORMA', 'Rosy Chronicle', 'Hello Pro Kenshuusei', 'Berryz Kobo', '℃-ute', 
-    'Buono!', 'Country Girls', 'Kobushi Factory', 'Minimoni', 'Tanpopo', 'v-u-den',
-    'Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Yoshimotozaka46', 'Boku ga Mitakatta Aozora',
+  const allKnownGroups = [
+    'Morning Musume', 'ANGERME', 'Juice=Juice', 'Tsubaki Factory', 'BEYOOOOONDS',
+    'OCHA NORMA', 'Rosy Chronicle', 'Berryz Kobo', '℃-ute', 'Buono!',
     'AKB48', 'SKE48', 'NMB48', 'HKT48', 'NGT48', 'STU48',
-    'Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu', 'TEAM SHACHI', 'AMEFURASSHI',
+    'Nogizaka46', 'Sakurazaka46', 'Hinatazaka46', 'Boku ga Mitakatta Aozora',
+    'Momoiro Clover Z', 'Shiritsu Ebisu Chugaku', 'Chou Tokimeki Sendenbu',
     '=LOVE', '≠ME', '≒JOY',
-    'FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET', 'KAWAII LAB. MATES',
-    'BABYMETAL', 'NiziU', 'ME:I', 'IS:SUE', 'Atarashii Gakko!'
+    'FRUITS ZIPPER', 'CANDY TUNE', 'SWEET STEADY', 'CUTIE STREET',
+    'BABYMETAL', 'NiziU', 'ME:I', 'IS:SUE'
   ];
 
-  // Collect all distinct artists from data
-  const allKnownArtists = Array.from(new Set([
-    ...Object.values(franchiseDict).flat(),
-    ...productList.map(p => p.artist).filter(Boolean)
-  ]));
+  let matchedGroup = null;
+  for (const grp of allKnownGroups) {
+    const grpNorm = normalizeSearchString(grp);
+    if (grpNorm.includes(queryNorm) || queryNorm.includes(grpNorm)) {
+      matchedGroup = grp;
+      break;
+    }
+    const abbrs = SEARCH_GROUP_ABBREVIATIONS[grp] || [];
+    if (abbrs.some(a => normalizeSearchString(a) === queryNorm || queryNorm.startsWith(normalizeSearchString(a)))) {
+      matchedGroup = grp;
+      break;
+    }
+  }
 
-  // Match Groups
-  const matchingGroups = ensembleGroupNames.filter(name => {
-    return name.toLowerCase().includes(q) || (typeof matchesFuzzyQuery === 'function' && matchesFuzzyQuery(name, q));
-  }).slice(0, 4);
+  let matchedMember = null;
+  for (const [memName, memAliases] of Object.entries(IDOL_NAME_VARIATIONS)) {
+    const memNorm = normalizeSearchString(memName);
+    if (memNorm.includes(queryNorm) || memAliases.some(a => normalizeSearchString(a).includes(queryNorm))) {
+      matchedMember = memName;
+      break;
+    }
+  }
 
-  // Match Members / Soloists (Any artist not in ensembleGroupNames)
-  const matchingMembers = allKnownArtists.filter(name => {
-    if (ensembleGroupNames.includes(name)) return false;
-    return name.toLowerCase().includes(q) || (typeof matchesFuzzyQuery === 'function' && matchesFuzzyQuery(name, q));
-  }).slice(0, 4);
+  const scoredReleases = [];
+  for (let i = 0; i < searchIndex.length; i++) {
+    const doc = searchIndex[i];
+    if (!doc.isAvailable) continue;
 
-  // Match Items (Products by title or SKU, sorted newest release date first)
-  const matchingItems = productList.filter(p => {
-    const titleMatch = (p.title || '').toLowerCase().includes(q);
-    const skuMatch = (p.id || '').toLowerCase().includes(q);
-    return titleMatch || skuMatch;
-  }).sort((a, b) => {
-    const dateA = a.release_date || '0000/00/00';
-    const dateB = b.release_date || '0000/00/00';
-    return dateB.localeCompare(dateA);
-  }).slice(0, 5);
+    const score = calculateProductSearchScore(doc, queryNorm, queryClean, queryTokens);
+    if (score > 1500) {
+      scoredReleases.push({ doc, score });
+    }
+  }
 
-  if (matchingGroups.length === 0 && matchingMembers.length === 0 && matchingItems.length === 0) {
+  scoredReleases.sort((a, b) => b.score - a.score);
+
+  const suggestions = [];
+
+  if (matchedGroup) {
+    suggestions.push({
+      type: 'group',
+      title: matchedGroup,
+      badge: 'Group',
+      badgeColor: brandColors[matchedGroup] || '#e11d48'
+    });
+  }
+
+  if (matchedMember && (!matchedGroup || matchedMember !== matchedGroup)) {
+    suggestions.push({
+      type: 'member',
+      title: matchedMember,
+      badge: 'Soloist',
+      badgeColor: brandColors[matchedMember] || '#a855f7'
+    });
+  }
+
+  const releaseLimit = Math.max(2, 5 - suggestions.length);
+  for (let i = 0; i < Math.min(scoredReleases.length, releaseLimit); i++) {
+    const { doc } = scoredReleases[i];
+    suggestions.push({
+      type: 'product',
+      id: doc.id,
+      title: doc.cleanTitle,
+      artist: doc.artist,
+      price: doc.price,
+      image: doc.image,
+      isPreOrder: doc.isPreOrder
+    });
+  }
+
+  const finalSuggestions = suggestions.slice(0, 5);
+
+  if (!finalSuggestions.length) {
+    const currentCat = (typeof activeFilter !== 'undefined') ? activeFilter : 'All';
     box.innerHTML = `
-      <div class="p-3 text-center text-xs text-stone-400 dark:text-slate-500">
-        No groups, members, or items matching "<strong>${q}</strong>"
+      <div class="p-3 text-center text-xs text-stone-500 dark:text-slate-400 space-y-2">
+        <p>No active releases found for "<strong>${escapeHtml(rawQuery)}</strong>"</p>
+        ${currentCat !== 'All' ? `
+          <button onclick="setFilter('All'); triggerDebouncedSearch('${escapeHtml(rawQuery)}');" class="text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline cursor-pointer">
+            Search across All Groups →
+          </button>
+        ` : `
+          <div class="pt-1 flex flex-wrap items-center justify-center gap-1">
+            <span class="text-[10px] text-stone-400">Try:</span>
+            <button onclick="selectSearchGroup('Morning Musume')" class="text-[10px] px-1.5 py-0.5 rounded bg-stone-100 dark:bg-slate-800 font-bold hover:text-rose-600">Morning Musume</button>
+            <button onclick="selectSearchGroup('Nogizaka46')" class="text-[10px] px-1.5 py-0.5 rounded bg-stone-100 dark:bg-slate-800 font-bold hover:text-rose-600">Nogizaka46</button>
+            <button onclick="selectSearchGroup('FRUITS ZIPPER')" class="text-[10px] px-1.5 py-0.5 rounded bg-stone-100 dark:bg-slate-800 font-bold hover:text-rose-600">FRUITS ZIPPER</button>
+          </div>
+        `}
       </div>
     `;
     box.classList.remove('hidden');
     return;
   }
 
-  let html = '';
+  let html = `<div class="p-1 divide-y divide-stone-100 dark:divide-slate-800/80">`;
 
-  // TIER 1: GROUPS
-  if (matchingGroups.length > 0) {
-    html += `
-      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-b border-stone-100 dark:border-slate-800">
-        <span class="text-[10px] font-black uppercase tracking-wider text-rose-600 dark:text-rose-400 flex items-center gap-1.5 px-2 py-0.5">
-          <i class="fa-solid fa-users text-[9px]"></i> Groups &amp; Franchises
-        </span>
-      </div>
-    `;
-    matchingGroups.forEach(grp => {
-      const count = productList.filter(p => p.artist === grp).length;
-      const brandColor = brandColors[grp] || '#e11d48';
+  finalSuggestions.forEach(item => {
+    if (item.type === 'group') {
+      const safeGroup = escapeHtml(item.title);
+      const cleanJsArg = item.title.replace(/'/g, "\\'");
       html += `
         <button 
           type="button"
-          onclick="selectSearchGroup('${grp.replace(/'/g, "\\'")}')"
-          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+          onclick="selectSearchGroup('${cleanJsArg}')"
+          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-slate-800/90 transition flex items-center justify-between text-xs cursor-pointer rounded-lg group"
         >
           <div class="flex items-center gap-2 truncate">
-            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
-            <span class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${grp}</span>
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${item.badgeColor}"></span>
+            <span class="font-bold text-stone-900 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">
+              ${highlightQueryTokens(item.title, rawQuery)}
+            </span>
           </div>
-          <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500 shrink-0 ml-2">${count} releases →</span>
+          <span class="text-[10px] font-black uppercase text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/80 px-2 py-0.5 rounded-full shrink-0 ml-2">Franchise</span>
         </button>
       `;
-    });
-  }
-
-  // TIER 2: MEMBERS
-  if (matchingMembers.length > 0) {
-    html += `
-      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-t border-b border-stone-100 dark:border-slate-800">
-        <span class="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-1.5 px-2 py-0.5">
-          <i class="fa-solid fa-user text-[9px]"></i> Members &amp; Soloists
-        </span>
-      </div>
-    `;
-    matchingMembers.forEach(mem => {
-      const count = productList.filter(p => p.artist === mem).length;
-      const brandColor = brandColors[mem] || '#94a3b8';
+    } else if (item.type === 'member') {
+      const safeMem = escapeHtml(item.title);
+      const cleanJsArg = item.title.replace(/'/g, "\\'");
       html += `
         <button 
           type="button"
-          onclick="selectSearchMember('${mem.replace(/'/g, "\\'")}')"
-          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center justify-between text-xs cursor-pointer group"
+          onclick="selectSearchMember('${cleanJsArg}')"
+          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-purple-50 dark:hover:bg-slate-800/90 transition flex items-center justify-between text-xs cursor-pointer rounded-lg group"
         >
           <div class="flex items-center gap-2 truncate">
-            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${brandColor}"></span>
-            <span class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 truncate">${mem}</span>
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${item.badgeColor}"></span>
+            <span class="font-bold text-stone-900 dark:text-stone-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 truncate">
+              ${highlightQueryTokens(item.title, rawQuery)}
+            </span>
           </div>
-          <span class="text-[10px] font-mono text-stone-400 dark:text-slate-500 shrink-0 ml-2">${count} items →</span>
+          <span class="text-[10px] font-black uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/80 px-2 py-0.5 rounded-full shrink-0 ml-2">Soloist</span>
         </button>
       `;
-    });
-  }
-
-  // TIER 3: ITEMS
-  if (matchingItems.length > 0) {
-    html += `
-      <div class="p-1.5 bg-stone-50 dark:bg-slate-800/90 border-t border-b border-stone-100 dark:border-slate-800">
-        <span class="text-[10px] font-black uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5 px-2 py-0.5">
-          <i class="fa-solid fa-compact-disc text-[9px]"></i> Release Items
-        </span>
-      </div>
-    `;
-    matchingItems.forEach(prod => {
-      const cleanTitle = (prod.title || '').replace(/^\[[^\]]+\]\s*/, '');
-      const safeTitle = (typeof escapeHtml === 'function') ? escapeHtml(cleanTitle) : cleanTitle;
-      const safeArtist = (typeof escapeHtml === 'function') ? escapeHtml(prod.artist || '') : (prod.artist || '');
-      const safeId = (typeof escapeHtml === 'function') ? escapeHtml(prod.id || '') : (prod.id || '');
-      const priceText = (typeof formatDisplayPrice === 'function') 
-        ? formatDisplayPrice(prod.price) 
-        : `¥${(prod.price || 0).toLocaleString()}`;
-      const imgUrl = (typeof getThumbnailUrl === 'function') ? getThumbnailUrl(prod.image) : prod.image;
+    } else {
+      const safeId = escapeHtml(item.id);
+      const cleanJsArg = item.id.replace(/'/g, "\\'");
+      const priceFmt = (typeof formatDisplayPrice === 'function') ? formatDisplayPrice(item.price) : escapeHtml(item.price);
+      const thumbUrl = (typeof getThumbnailUrl === 'function') ? getThumbnailUrl(item.image) : item.image;
 
       html += `
         <button 
           type="button"
-          onclick="selectSearchProduct('${safeId}')"
-          class="autocomplete-item w-full text-left px-3 py-2 hover:bg-sky-50 dark:hover:bg-slate-800 transition flex items-center gap-2.5 text-xs cursor-pointer group"
+          onclick="selectSearchProduct('${cleanJsArg}')"
+          class="autocomplete-item w-full text-left px-3 py-1.5 hover:bg-stone-100 dark:hover:bg-slate-800/90 transition flex items-center gap-2.5 text-xs cursor-pointer rounded-lg group"
         >
-          <img src="${imgUrl}" class="w-7 h-7 object-contain rounded bg-stone-100 dark:bg-slate-700 shrink-0" onerror="if(typeof onImgLoadError==='function') onImgLoadError(this)" />
+          <img src="${thumbUrl}" class="w-8 h-8 object-contain rounded bg-stone-100 dark:bg-slate-800 shrink-0 border border-stone-200 dark:border-slate-700" onerror="if(typeof onImgLoadError==='function') onImgLoadError(this)" />
           <div class="flex-1 min-w-0">
-            <div class="font-bold text-stone-800 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">${safeTitle}</div>
-            <div class="text-[10px] text-stone-400 dark:text-slate-500 truncate">${safeArtist} • <span class="font-mono">${safeId}</span></div>
+            <div class="font-bold text-stone-900 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate text-[11px]">
+              ${highlightQueryTokens(item.title, rawQuery)}
+            </div>
+            <div class="text-[10px] text-stone-400 dark:text-slate-500 truncate flex items-center gap-1 font-mono">
+              <span>${highlightQueryTokens(item.artist, rawQuery)}</span>
+              <span>•</span>
+              <span class="text-stone-600 dark:text-slate-300 font-bold">${highlightQueryTokens(item.id, rawQuery)}</span>
+            </div>
           </div>
-          <span class="text-xs font-black text-rose-600 dark:text-rose-400 font-mono shrink-0">${priceText}</span>
+          <div class="text-right shrink-0">
+            <div class="text-xs font-black text-rose-600 dark:text-rose-400 font-mono">${priceFmt}</div>
+            ${item.isPreOrder ? '<span class="text-[8px] font-black text-rose-500 uppercase tracking-tighter">PRE-ORDER</span>' : ''}
+          </div>
         </button>
       `;
-    });
-  }
+    }
+  });
 
+  html += `</div>`;
   box.innerHTML = html;
   box.classList.remove('hidden');
 }
@@ -206,9 +546,9 @@ function selectSearchGroup(groupName) {
   if (box) box.classList.add('hidden');
   if (input) input.value = groupName;
   if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-  searchQuery = '';
+  searchQuery = groupName.toLowerCase().trim();
   const clearBtn = document.getElementById('search-clear-btn');
-  if (clearBtn) clearBtn.classList.add('hidden');
+  if (clearBtn) clearBtn.classList.remove('hidden');
   activeFilter = 'All';
   if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
   if (typeof setSubArtist === 'function') setSubArtist(groupName);
@@ -223,9 +563,9 @@ function selectSearchMember(memberName) {
   if (box) box.classList.add('hidden');
   if (input) input.value = memberName;
   if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-  searchQuery = '';
+  searchQuery = memberName.toLowerCase().trim();
   const clearBtn = document.getElementById('search-clear-btn');
-  if (clearBtn) clearBtn.classList.add('hidden');
+  if (clearBtn) clearBtn.classList.remove('hidden');
   activeFilter = 'All';
   if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
   if (typeof setSubArtist === 'function') setSubArtist(memberName);
@@ -269,7 +609,7 @@ function handleSearchInput(query) {
 function triggerDebouncedSearch(query) {
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) {
-    if (query) clearBtn.classList.remove('hidden');
+    if (query && String(query).trim().length > 0) clearBtn.classList.remove('hidden');
     else clearBtn.classList.add('hidden');
   }
 
@@ -281,7 +621,7 @@ function triggerDebouncedSearch(query) {
     currentPage = 1;
     if (typeof syncUrlParams === 'function') syncUrlParams();
     if (typeof render === 'function') render();
-  }, 250);
+  }, 160);
 }
 
 function clearSearch() {
@@ -310,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sInput.addEventListener('compositionend', (e) => {
       isComposing = false;
-      triggerDebouncedSearch(e.target.value.trim());
+      triggerDebouncedSearch(e.target.value);
     });
 
     sInput.addEventListener('keydown', (e) => {
@@ -318,6 +658,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const items = box ? box.querySelectorAll('.autocomplete-item') : [];
 
       if (['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) {
+        if (e.key === 'Enter') {
+          if (activeSuggestionIndex >= 0 && activeSuggestionIndex < items.length) {
+            e.preventDefault();
+            items[activeSuggestionIndex].click();
+          } else {
+            e.preventDefault();
+            if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
+            searchQuery = (sInput.value || '').toLowerCase().trim();
+            closeAutocomplete();
+            currentPage = 1;
+            if (typeof syncUrlParams === 'function') syncUrlParams();
+            if (typeof render === 'function') render();
+            sInput.blur();
+          }
+          return;
+        }
+
         if (!box || box.classList.contains('hidden') || !items.length) return;
 
         if (e.key === 'ArrowDown') {
@@ -328,11 +685,6 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
           activeSuggestionIndex = (activeSuggestionIndex - 1 + items.length) % items.length;
           highlightSuggestion(items);
-        } else if (e.key === 'Enter') {
-          if (activeSuggestionIndex >= 0 && activeSuggestionIndex < items.length) {
-            e.preventDefault();
-            items[activeSuggestionIndex].click();
-          }
         }
         return;
       }
@@ -349,7 +701,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sInput.addEventListener('input', (e) => {
       if (isComposing) return;
-      triggerDebouncedSearch(e.target.value.trim());
+      triggerDebouncedSearch(e.target.value);
+    });
+
+    sInput.addEventListener('click', () => {
+      if ((sInput.value || '').trim()) {
+        showSearchSuggestions();
+      }
     });
   }
 

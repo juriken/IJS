@@ -1003,15 +1003,19 @@ function render() {
       matchesMerchSub = (getMerchSubgroupType(item) === activeMerchSubgroup);
     }
 
+    if (searchQuery && oop && !selectedAvailabilities.has('oop')) {
+      return false;
+    }
+
     const cleanT = stripTitlePrefixes(item.title);
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery || (typeof matchesCatalogSearch === 'function' ? matchesCatalogSearch(item, searchQuery) : (
       matchesFuzzyQuery(item.title, searchQuery) || 
       matchesFuzzyQuery(cleanT, searchQuery) || 
       matchesFuzzyQuery(item.artist, searchQuery) ||
-      (item.id && String(item.id).toLowerCase().includes(searchQuery));
+      (item.id && String(item.id).toLowerCase().includes(searchQuery))
+    ));
 
     return matchesCat && matchesArtist && matchesFmt && matchesMerchSub && matchesSearch;
-  };
 
   activeFilteredList = allProducts.filter(filterItem);
 
@@ -1377,6 +1381,8 @@ async function loadCatalog() {
   try {
     readUrlParams();
     buildClusteredEntities();
+    if (typeof updateSearchCache === 'function') updateSearchCache(allProducts);
+    updateDynamicCounts();
     updateDynamicCounts();
     updateActiveArtistBanner();
     updateFilterButtonsUI();

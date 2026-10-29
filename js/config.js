@@ -406,6 +406,10 @@ function matchesArtistName(productArtist, targetArtist) {
   if (productArtist === targetArtist) return true;
   if (IDOL_NAME_ALIASES[targetArtist] === productArtist) return true;
   if (IDOL_NAME_ALIASES[productArtist] === targetArtist) return true;
+  if (targetArtist === 'Morning Musume' && (productArtist.startsWith('Morning Musume') || productArtist.startsWith('モーニング娘'))) return true;
+  if (productArtist === 'Morning Musume' && (targetArtist.startsWith('Morning Musume') || targetArtist.startsWith('モーニング娘'))) return true;
+  if (targetArtist === 'ANGERME' && (productArtist === 'S/mileage' || productArtist === 'スマイレージ' || productArtist.startsWith('ANGERME') || productArtist.startsWith('アンジュルム'))) return true;
+  if (productArtist === 'ANGERME' && (targetArtist === 'S/mileage' || targetArtist === 'スマイレージ')) return true;
   if ((targetArtist === 'Tsukishima Kirari (Kusumi Koharu)' || targetArtist === 'Tsukishima Kirari') && (productArtist === 'Tsukishima Kirari' || productArtist.includes('Kirari'))) return true;
   if ((productArtist === 'Tsukishima Kirari (Kusumi Koharu)' || productArtist === 'Tsukishima Kirari') && (targetArtist === 'Tsukishima Kirari' || targetArtist.includes('Kirari'))) return true;
   return false;

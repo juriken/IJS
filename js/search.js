@@ -255,9 +255,9 @@ function calculateProductSearchScore(doc, queryNorm, queryClean, queryTokens) {
   }
 
   if (score > 0) {
-    if (doc.isPreOrder) score += 50;
-    else if (doc.isAvailable) score += 20;
-    else score -= 4000;
+    if (doc.isPreOrder) score += 150;
+    else if (doc.isAvailable) score += 100;
+    else score -= 300;
   }
 
   return score;
@@ -549,10 +549,17 @@ function selectSearchGroup(groupName) {
   searchQuery = '';
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) clearBtn.classList.remove('hidden');
-  activeFilter = 'All';
-  if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
-  if (typeof setSubArtist === 'function') setSubArtist(groupName);
-  else if (typeof setFilter === 'function') setFilter(groupName);
+
+  const franchiseDict = (typeof FRANCHISE_ARTISTS !== 'undefined' && FRANCHISE_ARTISTS) ? FRANCHISE_ARTISTS : {};
+  if (franchiseDict[groupName]) {
+    if (typeof setFilter === 'function') setFilter(groupName);
+  } else {
+    activeFilter = 'All';
+    if (typeof updateFilterButtonsUI === 'function') updateFilterButtonsUI();
+    if (typeof setSubArtist === 'function') setSubArtist(groupName);
+    else if (typeof setFilter === 'function') setFilter(groupName);
+  }
+
   const target = document.getElementById('product-container');
   if (target) target.scrollIntoView({ behavior: 'smooth' });
 }

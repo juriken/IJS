@@ -45,6 +45,14 @@ function getItemDateValue(item) {
   const dStr = String(item.release_date || '').trim();
   if (!dStr || dStr.toLowerCase().includes('available now')) return 0;
 
+  const jp = dStr.match(/(19\d\d|20\d\d)年(\d{1,2})月(?:(\d{1,2})日)?/);
+  if (jp) {
+    const y = parseInt(jp[1], 10);
+    const mon = parseInt(jp[2], 10);
+    const day = jp[3] ? parseInt(jp[3], 10) : 1;
+    if (day <= 31 && mon <= 12) return (y * 10000) + (mon * 100) + day;
+  }
+
   const m = dStr.match(/\b(19\d\d|20\d\d)[./-](\d{1,2})[./-](\d{1,2})\b/);
   if (m) {
     const y = parseInt(m[1], 10);
@@ -334,24 +342,31 @@ function updateDynamicCounts() {
     const cat = item.category || '';
     const art = item.artist || '';
 
-    /* File: js/app.js | Block/Target: updateDynamicCounts Hello! Project variations */
-    if (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni') {
+    const checkFranchise = (franchiseName) => {
+      if (cat === franchiseName) return true;
+      if (FRANCHISE_ARTISTS[franchiseName]) {
+        return FRANCHISE_ARTISTS[franchiseName].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u);
+      }
+      return false;
+    };
+
+    if (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni' || checkFranchise('Hello! Project & Up-Front')) {
       catCounts['Hello! Project & Up-Front']++;
-    } else if (cat === 'AKB48 Group') {
+    } else if (checkFranchise('AKB48 Group')) {
       catCounts['AKB48 Group']++;
-    } else if (cat === 'Sakamichi Series') {
+    } else if (checkFranchise('Sakamichi Series')) {
       catCounts['Sakamichi Series']++;
-    } else if (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z') {
+    } else if (checkFranchise('Stardust Planet') || cat === 'Momoiro Clover Z') {
       catCounts['Stardust Planet']++;
-    } else if (cat === '=LOVE / Sister Groups') {
+    } else if (checkFranchise('=LOVE / Sister Groups')) {
       catCounts['=LOVE / Sister Groups']++;
-    } else if (cat === 'KAWAII LAB.') {
+    } else if (checkFranchise('KAWAII LAB.')) {
       catCounts['KAWAII LAB.']++;
     } else if (
-      /* File: js/app.js | Block/Target: updateDynamicCounts Modern & Alternative String Match */
       cat === 'Modern & Alternative' || cat === 'Modern Idols' || cat === 'Babymetal' ||
       art === 'BABYMETAL' || art === 'Sakura Gakuin' ||
-      art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE'
+      art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE' ||
+      checkFranchise('Modern & Alternative')
     ) {
       catCounts['Modern & Alternative']++;
     }
@@ -627,8 +642,15 @@ function updatePageTitle() {
 function readUrlParams() {
   const params = new URLSearchParams(window.location.search);
   if (params.has('cat')) activeFilter = params.get('cat');
-  if (params.has('artist')) activeArtist = params.get('artist');
-  if (params.has('era')) activeEra = params.get('era');
+  if (params.has('artist')) {
+    activeArtist = params.get('artist');
+    activeMobileArtists = [activeArtist];
+  }
+  if (params.has('era')) {
+    activeEra = params.get('era');
+    const eraSelect = document.getElementById('era-select');
+    if (eraSelect) eraSelect.value = activeEra;
+  }
   if (params.has('fmt')) activeFormat = params.get('fmt');
   if (params.has('status')) {
     const statuses = params.get('status').split(',').map(s => s.trim().toLowerCase());
@@ -639,8 +661,20 @@ function readUrlParams() {
     const input = document.getElementById('search-input');
     if (input) input.value = params.get('q');
   }
-  if (params.has('sort')) currentSort = params.get('sort');
+  if (params.has('sort')) {
+    currentSort = params.get('sort');
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) sortSelect.value = currentSort;
+  }
   if (params.has('page')) currentPage = parseInt(params.get('page'), 10) || 1;
+
+  if (params.has('wishlist')) {
+    const ids = params.get('wishlist').split(',').map(s => s.trim()).filter(Boolean);
+    if (ids.length > 0) {
+      saveWishlist(ids);
+      showToast(`Loaded ${ids.length} wishlist items from shared link`);
+    }
+  }
 
   if (params.has('id')) {
     const targetId = params.get('id');
@@ -960,15 +994,24 @@ function render() {
       matchesCat = true;
     /* File: js/app.js | Block/Target: filterItem Hello! Project variations */
     } else if (activeFilter === 'Hello! Project & Up-Front') {
-      matchesCat = (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni');
-   } else if (activeFilter === 'Modern & Alternative') {
+      matchesCat = (cat === 'Hello! Project & Up-Front' || cat === 'Hello! Project' || cat === 'Up-Front Alumni' || (FRANCHISE_ARTISTS['Hello! Project & Up-Front'] && FRANCHISE_ARTISTS['Hello! Project & Up-Front'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === 'AKB48 Group') {
+      matchesCat = (cat === 'AKB48 Group' || (FRANCHISE_ARTISTS['AKB48 Group'] && FRANCHISE_ARTISTS['AKB48 Group'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === 'Sakamichi Series') {
+      matchesCat = (cat === 'Sakamichi Series' || (FRANCHISE_ARTISTS['Sakamichi Series'] && FRANCHISE_ARTISTS['Sakamichi Series'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === 'Stardust Planet') {
+      matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z' || (FRANCHISE_ARTISTS['Stardust Planet'] && FRANCHISE_ARTISTS['Stardust Planet'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === '=LOVE / Sister Groups') {
+      matchesCat = (cat === '=LOVE / Sister Groups' || (FRANCHISE_ARTISTS['=LOVE / Sister Groups'] && FRANCHISE_ARTISTS['=LOVE / Sister Groups'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === 'KAWAII LAB.') {
+      matchesCat = (cat === 'KAWAII LAB.' || (FRANCHISE_ARTISTS['KAWAII LAB.'] && FRANCHISE_ARTISTS['KAWAII LAB.'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u)));
+    } else if (activeFilter === 'Modern & Alternative') {
       matchesCat = (
         cat === 'Modern & Alternative' || cat === 'Modern Idols' || cat === 'Babymetal' ||
         art === 'BABYMETAL' || art === 'Sakura Gakuin' ||
-        art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE'
+        art === 'NiziU' || art === 'ME:I' || art === 'IS:SUE' ||
+        (FRANCHISE_ARTISTS['Modern & Alternative'] && FRANCHISE_ARTISTS['Modern & Alternative'].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(art, u) : art === u))
       );
-    } else if (activeFilter === 'Stardust Planet') {
-      matchesCat = (cat === 'Stardust Planet' || cat === 'Momoiro Clover Z');
     } else {
       matchesCat = (cat === activeFilter);
     }
@@ -1004,7 +1047,7 @@ function render() {
       matchesMerchSub = (getMerchSubgroupType(item) === activeMerchSubgroup);
     }
 
-    if (searchQuery && oop && !selectedAvailabilities.has('oop')) {
+    if (searchQuery && oop && !selectedAvailabilities.has('all') && !selectedAvailabilities.has('oop')) {
       return false;
     }
 
@@ -1260,7 +1303,7 @@ function render() {
               ${safeTitle}
             </h2>
             <div class="flex items-center justify-center sm:justify-start gap-3 text-[10px] text-stone-500 dark:text-slate-400 mt-0.5">
-              <span><i class="fa-regular fa-calendar text-[9px]"></i> ${p.release_date || 'Available Now'}</span>
+              <span class="cluster-date"><i class="fa-regular fa-calendar text-[9px]"></i> ${p.release_date || 'Available Now'}</span>
               ${editionSelectorHtml}
             </div>
           </div>

@@ -546,7 +546,7 @@ function selectSearchGroup(groupName) {
   if (box) box.classList.add('hidden');
   if (input) input.value = groupName;
   if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-  searchQuery = groupName.toLowerCase().trim();
+  searchQuery = '';
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) clearBtn.classList.remove('hidden');
   activeFilter = 'All';
@@ -563,7 +563,7 @@ function selectSearchMember(memberName) {
   if (box) box.classList.add('hidden');
   if (input) input.value = memberName;
   if (searchDebounceTimeout) clearTimeout(searchDebounceTimeout);
-  searchQuery = memberName.toLowerCase().trim();
+  searchQuery = '';
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) clearBtn.classList.remove('hidden');
   activeFilter = 'All';

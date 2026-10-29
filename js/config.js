@@ -280,7 +280,7 @@ var MEGA_MENU_CATEGORIES = {
     },
     {
       title: "≠ME (Not Equal Me)",
-      icon: "fa-sparkles text-sky-400",
+      icon: "fa-wand-magic-sparkles text-sky-400",
       units: ['≠ME']
     },
     {

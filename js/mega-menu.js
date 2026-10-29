@@ -359,24 +359,39 @@ function renderMegaMenu(cat) {
   // Safe product catalogue list
   const productList = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
 
+  const checkFranchiseMatch = (p, targetCat) => {
+    if (p.category === targetCat) return true;
+    if (targetCat === 'Hello! Project & Up-Front' && (p.category === 'Hello! Project' || p.category === 'Up-Front Alumni')) return true;
+    if (targetCat === 'Modern & Alternative' && (p.category === 'Modern Idols' || p.category === 'Babymetal')) return true;
+    if (targetCat === 'Stardust Planet' && p.category === 'Momoiro Clover Z') return true;
+    if (franchiseDict[targetCat]) {
+      return franchiseDict[targetCat].some(u => typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, u) : p.artist === u);
+    }
+    return false;
+  };
+
+  const currentRailUnits = currentRail.clusters 
+    ? currentRail.clusters.flatMap(c => c.units || []) 
+    : (currentRail.units || []);
+
   // Resolve Featured Showcase Product
   let showcaseProduct = productList.find(p => {
-    const matchesFranchise = (p.category === cat || (franchiseDict[cat] && franchiseDict[cat].includes(p.artist)));
-    const matchesSection = (currentRail && currentRail.units && currentRail.units.length > 0) 
-      ? currentRail.units.includes(p.artist) 
+    const matchesFranchise = checkFranchiseMatch(p, cat);
+    const matchesSection = currentRailUnits.length > 0 
+      ? currentRailUnits.some(u => typeof matchesArtistName === 'function' ? matchesArtistName(p.artist, u) : p.artist === u)
       : true;
     return matchesFranchise && matchesSection && typeof isPreOrder === 'function' && isPreOrder(p);
   });
 
   if (!showcaseProduct) {
     showcaseProduct = productList.find(p => {
-      const matchesFranchise = (p.category === cat || (franchiseDict[cat] && franchiseDict[cat].includes(p.artist)));
+      const matchesFranchise = checkFranchiseMatch(p, cat);
       return matchesFranchise && typeof isPreOrder === 'function' && isPreOrder(p);
     });
   }
 
   if (!showcaseProduct) {
-    showcaseProduct = productList.find(p => (p.category === cat || (franchiseDict[cat] && franchiseDict[cat].includes(p.artist))));
+    showcaseProduct = productList.find(p => checkFranchiseMatch(p, cat));
   }
 
   // ZONE 1: Left Master Sidebar Rail

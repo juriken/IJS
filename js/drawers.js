@@ -257,7 +257,9 @@ function exportAllPreOrdersIcs() {
   const a = document.createElement('a');
   a.href = url;
   a.download = `idoljapan_preorders_${Date.now()}.ics`;
+  document.body.appendChild(a);
   a.click();
+  document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast("Pre-Order .ICS calendar exported!");
 }
@@ -399,7 +401,9 @@ function exportWishlistHaul() {
   const a = document.createElement('a');
   a.href = url;
   a.download = `idoljapan_haul_${Date.now()}.txt`;
+  document.body.appendChild(a);
   a.click();
+  document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast("Wishlist haul exported!");
 }

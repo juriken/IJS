@@ -95,6 +95,7 @@ function getItemYear(item) {
 function isOutOfPrint(item) {
   if (!item) return false;
   if (item.availability === 'oop') return true;
+  if (item.availability === 'preorder' || item.availability === 'instock') return false;
   const priceStr = String(item.price || '').toLowerCase();
   const titleStr = String(item.title || '').toLowerCase();
   return (
@@ -1016,6 +1017,7 @@ function render() {
     ));
 
     return matchesCat && matchesArtist && matchesFmt && matchesMerchSub && matchesSearch;
+  };
 
   activeFilteredList = allProducts.filter(filterItem);
 
@@ -1382,7 +1384,6 @@ async function loadCatalog() {
     readUrlParams();
     buildClusteredEntities();
     if (typeof updateSearchCache === 'function') updateSearchCache(allProducts);
-    updateDynamicCounts();
     updateDynamicCounts();
     updateActiveArtistBanner();
     updateFilterButtonsUI();

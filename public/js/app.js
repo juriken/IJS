@@ -1364,8 +1364,12 @@ async function loadCatalog() {
   let data = null;
 
   try {
-    if (window.IdolDB) {
-      const cachedDb = await window.IdolDB.loadCatalog().catch(() => null);
+    if (window.IdolDB && typeof window.IdolDB.loadCatalog === 'function') {
+      const cachedDb = await Promise.race([
+        window.IdolDB.loadCatalog(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('IDB timeout')), 1500))
+      ]).catch(() => null);
+
       if (cachedDb && Array.isArray(cachedDb) && cachedDb.length > 0) {
         allProducts = cachedDb.map((item, idx) => ({
           ...item,
@@ -1399,24 +1403,18 @@ async function loadCatalog() {
   const cacheBuster = Date.now();
   const candidatePaths = [
     `catalog-index.json?v=${cacheBuster}`,
-    `./catalog-index.json?v=${cacheBuster}`,
     `/catalog-index.json?v=${cacheBuster}`,
-    `public/catalog-index.json?v=${cacheBuster}`,
-    `./public/catalog-index.json?v=${cacheBuster}`,
-    `/public/catalog-index.json?v=${cacheBuster}`,
+    `./catalog-index.json?v=${cacheBuster}`,
     `products.json?v=${cacheBuster}`,
-    `./products.json?v=${cacheBuster}`,
     `/products.json?v=${cacheBuster}`,
-    `public/products.json?v=${cacheBuster}`,
-    `./public/products.json?v=${cacheBuster}`,
-    `/public/products.json?v=${cacheBuster}`
+    `./products.json?v=${cacheBuster}`
   ];
 
   for (const p of candidatePaths) {
     try {
       const res = await fetch(p);
       if (res && res.ok) {
-        const parsed = await res.json();
+        const parsed = await res.json().catch(() => null);
         if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
           data = parsed;
           break;
@@ -1531,18 +1529,38 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  updateThemeIcon();
-  applyLayoutModeToDom();
-  updateAvailabilityPillsUI();
-  if (localStorage.getItem('idoljapan_dismiss_trust') === 'true') {
-    const banner = document.getElementById('trust-notice-banner');
-    if (banner) banner.classList.add('hidden');
+function initApp() {
+  if (window._idolAppInitialized) return;
+  window._idolAppInitialized = true;
+
+  try { updateThemeIcon(); } catch (e) { console.warn('Theme init bypassed:', e); }
+  try { applyLayoutModeToDom(); } catch (e) { console.warn('Layout init bypassed:', e); }
+  try { updateAvailabilityPillsUI(); } catch (e) { console.warn('Pills init bypassed:', e); }
+
+  try {
+    if (localStorage.getItem('idoljapan_dismiss_trust') === 'true') {
+      const banner = document.getElementById('trust-notice-banner');
+      if (banner) banner.classList.add('hidden');
+    }
+  } catch (e) {}
+
+  // 1. Boot catalog IMMEDIATELY — do not block on external networks or aliases
+  loadCatalog();
+
+  // 2. Load background dependencies independently
+  if (typeof initExchangeRates === 'function') {
+    initExchangeRates().catch(err => console.warn('Exchange rates init failed:', err));
   }
-  Promise.allSettled([
-    initExchangeRates(),
-    loadSearchAliases()
-  ]).then(() => {
-    loadCatalog();
-  });
-});
+  if (typeof loadSearchAliases === 'function') {
+    try { loadSearchAliases(); } catch (e) { console.warn('Search alias loading bypassed:', e); }
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+// Fallback in case document readyState was in transition
+window.addEventListener('load', initApp);

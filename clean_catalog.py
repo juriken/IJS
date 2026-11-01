@@ -254,7 +254,6 @@ def clean_catalog():
         # STEP 3: Protected Group Concert vs. Soloist Classification
         # -------------------------------------------------------------
         # Never reclassify full group concert tours or albums to a single member
-        /* File: clean_catalog.py | Approx. Lines: 180-210 | Block/Target: Protected Group Concert Tour Logic */
         # Fix mislabeled HKT48 concert tour
         if pid == "HKT-D0026" or "hkt48 natsu no hall tour" in full_text_lower:
             item["artist"] = "HKT48"

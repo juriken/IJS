@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'index.html'
-      - 'js/**'
-      - 'css/input.css'
+      - 'public/index.html'
+      - 'public/js/**'
+      - 'public/css/input.css'
       - 'tailwind.config.js'
   workflow_dispatch:
 
@@ -34,13 +34,13 @@ jobs:
         run: npm install -D tailwindcss@3
 
       - name: Build Minified CSS
-        run: npx tailwindcss -i css/input.css -o css/tailwind.min.css --minify
+        run: npx tailwindcss -i public/css/input.css -o public/css/tailwind.min.css --minify
 
       - name: Commit and Push Compiled Stylesheet
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add css/tailwind.min.css
+          git add public/css/tailwind.min.css
           if git diff --staged --quiet; then
             echo "No changes in compiled CSS"
           else

@@ -3,6 +3,60 @@
    Path: js/app.js
    ========================================================================== */
 
+// Fallback helpers in case modular dependencies are delayed or unavailable
+if (typeof stripTitlePrefixes !== 'function') {
+  window.stripTitlePrefixes = function(title) {
+    if (!title) return '';
+    return String(title).replace(/^(?:BOOK|DVD|Blu-ray|Single CD|Album CD|CD Album|Collectible|APPAREL|Vinyl\s*\([^)]*\))\s*/i, '').trim();
+  };
+}
+
+if (typeof getWishlist !== 'function') {
+  window.getWishlist = function() {
+    try {
+      return JSON.parse(localStorage.getItem(WISHLIST_STORAGE_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  };
+}
+
+if (typeof getVariantSortScore !== 'function') {
+  window.getVariantSortScore = function(item) {
+    const title = String(item?.title || '').toLowerCase();
+    if (title.includes('limited')) return 1;
+    if (title.includes('regular')) return 2;
+    return 3;
+  };
+}
+
+if (typeof getThumbnailUrl !== 'function') {
+  window.getThumbnailUrl = function(img) {
+    return img || (typeof PLACEHOLDER_IMG !== 'undefined' ? PLACEHOLDER_IMG : '');
+  };
+}
+
+if (typeof escapeHtml !== 'function') {
+  window.escapeHtml = function(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  };
+}
+
+if (typeof onImgLoadError !== 'function') {
+  window.onImgLoadError = function(img) {
+    if (typeof PLACEHOLDER_IMG !== 'undefined') {
+      img.onerror = null;
+      img.src = PLACEHOLDER_IMG;
+    }
+  };
+}   
+
 function parseNumericPrice(priceStr, item) {
   if (item && typeof item.price_num === 'number' && item.price_num > 0) return item.price_num;
   if (!priceStr) return 0;
@@ -777,7 +831,7 @@ function applyLayoutModeToDom() {
     if (desktopTier1) desktopTier1.classList.add('hidden');
     if (desktopTier2) desktopTier2.classList.add('hidden');
   } else {
-    if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
+    if (viewportMeta) viewportMeta.content = 'width=1280, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
     htmlEl.classList.add('layout-desktop');
     htmlEl.classList.remove('layout-mobile');
 
@@ -787,7 +841,9 @@ function applyLayoutModeToDom() {
     if (desktopTier2) desktopTier2.classList.remove('hidden');
   }
 
-  updateMobileDrawerContent();
+  if (typeof updateMobileDrawerContent === 'function') {
+    updateMobileDrawerContent();
+  }
 }
 
 function setViewMode(mode) {
@@ -1599,26 +1655,12 @@ function initApp() {
     if (localStorage.getItem('idoljapan_dismiss_trust') === 'true') {
       const banner = document.getElementById('trust-notice-banner');
       if (banner) banner.classList.add('hidden');
-    }
-  } catch (e) {}
+  }
 
-  // 1. Boot catalog IMMEDIATELY — do not block on external networks or aliases
+  // Load catalog immediately; do not block rendering on external currency or alias endpoints
   loadCatalog();
-
-  // 2. Load background dependencies independently
-  if (typeof initExchangeRates === 'function') {
-    initExchangeRates().catch(err => console.warn('Exchange rates init failed:', err));
-  }
+  initExchangeRates();
   if (typeof loadSearchAliases === 'function') {
-    try { loadSearchAliases(); } catch (e) { console.warn('Search alias loading bypassed:', e); }
+    loadSearchAliases();
   }
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
-
-// Fallback in case document readyState was in transition
-window.addEventListener('load', initApp);
+});

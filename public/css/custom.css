@@ -33,12 +33,35 @@
 
 html.layout-desktop body {
   min-width: 1280px;
+  overflow-x: auto;
 }
 
 html.layout-mobile body {
   min-width: 100%;
   overflow-x: hidden;
 }
+
+/* ==========================================================================
+   Critical Layout & Drawer Fallbacks (Anti-DOM Bleed)
+   ========================================================================== */
+
+/* Fallback visibility rules if Tailwind CDN fails or is blocked */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* Keep drawers and modals out of the normal document flow until activated */
+#quick-view-modal:not(.active),
+#crypto-modal:not(.active),
+#haul-drawer:not(.open),
+#filter-drawer:not(.open) {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Scrollbars & Interactive States
+   ========================================================================== */
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;

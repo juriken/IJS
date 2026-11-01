@@ -480,20 +480,42 @@ function renderMegaMenu(cat) {
 
   if (currentRail.clusters && currentRail.clusters.length > 0) {
     centerHtml += `<div class="space-y-3">`;
-    currentRail.clusters.forEach(cluster => {
-      const sortedClusterUnits = sortUnitsByRelevance(cluster.units || []);
-      centerHtml += `
-        <div>
-          <div class="text-[10px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-            <span>${safeEscapeHtml(cluster.parent)}</span>
+    if (currentRail.isGraduateColumn && hpGradViewMode === 'era') {
+      const eraBuckets = {
+        'Golden / Classic (1998–2006)': ['Iida Kaori', 'Tsuji Nozomi', 'Kago Ai', 'Ishikawa Rika', 'Niigaki Risa', 'Satoda Mai'],
+        'Platinum & Expansion (2007–2014)': ['Tsugunaga Momoko', 'Yajima Maimi', 'Natsuyaki Miyabi', 'Sugaya Risako', 'Kumai Yurina', 'Wada Ayaka', 'Fukuda Kanon', 'Kudo Haruka', 'Iikubo Haruna'],
+        'Modern Era (2015–Present)': ['Makino Maria', 'Ishida Ayumi', 'Ikuta Erina', 'Fukumura Mizuki', 'Haga Akane', 'Sasaki Rikako', 'Tamura Meimi', 'Murota Mizuki', 'Kawamura Ayano', 'Kasahara Momona', 'Morito Chisaki', 'Kanazawa Tomoko', 'Uemura Akari', 'Miyazaki Yuka', 'Dambara Ruru', 'Kishimoto Yumeno', 'Akiyama Mao', 'Yamazaki Yuhane', 'Hamaura Ayano', 'Yanagawa Nanami']
+      };
+      Object.entries(eraBuckets).forEach(([eraLabel, eraUnits]) => {
+        const sortedEraUnits = sortUnitsByRelevance(eraUnits);
+        centerHtml += `
+          <div>
+            <div class="text-[10px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span>${safeEscapeHtml(eraLabel)}</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              ${sortedEraUnits.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
+            </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            ${sortedClusterUnits.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
+        `;
+      });
+    } else {
+      currentRail.clusters.forEach(cluster => {
+        const sortedClusterUnits = sortUnitsByRelevance(cluster.units || []);
+        centerHtml += `
+          <div>
+            <div class="text-[10px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+              <span>${safeEscapeHtml(cluster.parent)}</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              ${sortedClusterUnits.map(u => renderMegaMenuUnitRow(cat, u)).join('')}
+            </div>
           </div>
-        </div>
-      `;
-    });
+        `;
+      });
+    }
     centerHtml += `</div>`;
   } else {
     let unitsToRender = currentRail.units || [];

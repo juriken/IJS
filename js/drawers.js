@@ -575,13 +575,18 @@ function updateMobileDrawerContent() {
 
   if (accordionContainer) {
     const franchises = [
-      'Hello! Project & Up-Front', 'AKB48 Group', 'Sakamichi Series',
-      'Stardust Planet', '=LOVE / Sister Groups', 'KAWAII LAB.', 'Modern & Alternative'
-    ];
+    const openAccordionIndices = [];
+    franchises.forEach((_, fIdx) => {
+      const contentEl = document.getElementById(`mob-acc-content-${fIdx}`);
+      if (contentEl && !contentEl.classList.contains('hidden')) {
+        openAccordionIndices.push(fIdx);
+      }
+    });
 
     let accHtml = '';
     franchises.forEach((fr, fIdx) => {
       const units = FRANCHISE_ARTISTS[fr] || [];
+      const isOpen = openAccordionIndices.includes(fIdx);
       accHtml += `
         <div class="border border-stone-200 dark:border-slate-800 rounded-xl overflow-hidden bg-stone-50/50 dark:bg-slate-800/40">
           <button 
@@ -589,9 +594,9 @@ function updateMobileDrawerContent() {
             class="w-full p-2.5 flex items-center justify-between text-left font-bold text-stone-800 dark:text-stone-200 text-xs cursor-pointer"
           >
             <span>${escapeHtml(fr)}</span>
-            <i id="mob-acc-icon-${fIdx}" class="fa-solid fa-chevron-down text-[10px] text-stone-400 transition-transform duration-200"></i>
+            <i id="mob-acc-icon-${fIdx}" class="fa-solid fa-chevron-down text-[10px] text-stone-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}"></i>
           </button>
-          <div id="mob-acc-content-${fIdx}" class="hidden p-2.5 pt-0 border-t border-stone-100 dark:border-slate-800 space-y-1">
+          <div id="mob-acc-content-${fIdx}" class="${isOpen ? '' : 'hidden'} p-2.5 pt-0 border-t border-stone-100 dark:border-slate-800 space-y-1">
             ${units.map(u => {
               const isChecked = activeMobileArtists.includes(u);
               return `

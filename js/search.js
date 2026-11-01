@@ -29,18 +29,38 @@ var SEARCH_GROUP_ABBREVIATIONS = {
   'ANGERME': ['anju', 'angerme', 'アンジュ', 'アンジュルム', 'smileage', 'スマイレージ'],
   'Juice=Juice': ['jj', 'juice', 'ジュース', 'ジュースジュース', 'j=j'],
   'Tsubaki Factory': ['tsubaki', 'つばき', 'つばきファクトリー'],
-  'BEYOOOOONDS': ['beyo', 'ビヨ', 'ビヨーンズ', 'chica#tetsu', 'ame no mori kawa umi', 'seasoningS'],
+  'BEYOOOOONDS': ['beyo', 'ビヨ', 'ビヨーンズ', 'chica#tetsu', 'seasoningS'],
   'OCHA NORMA': ['ocha', 'オチャ', 'オチャノーマ'],
   'Rosy Chronicle': ['rosy', 'ロージー', 'ロージークロニクル'],
   'Berryz Kobo': ['berryz', 'ベリーズ', 'ベリーズ工房'],
   '℃-ute': ['cute', 'c-ute', 'キュート'],
   'Buono!': ['buono', 'ボーノ'],
-  'AKB48 Group': ['akb', 'akb48', 'ske', 'ske48', 'nmb', 'nmb48', 'hkt', 'hkt48', 'ngt', 'ngt48', 'stu', 'stu48', '48g'],
-  'Sakamichi Series': ['sakamichi', '坂道', '46g', 'nogi', 'nogizaka', '乃木坂', '乃木坂46', 'saku', 'sakurazaka', '櫻坂', '櫻坂46', 'keyaki', 'keyakizaka', '欅坂', '欅坂46', 'hinata', 'hinatazaka', '日向坂', '日向坂46', 'bokuao', '僕青'],
-  'Stardust Planet': ['momoclo', 'mcz', 'ももクロ', 'ももいろクローバーz', 'ebichu', 'エビ中', '私立恵比寿中学', 'tokisen', 'とき宣', '超ときめき宣伝部', 'shachi', 'team shachi'],
-  '=LOVE / Sister Groups': ['ikolove', 'イコラブ', '=love', 'equal love', 'noime', 'ノイミー', '≠me', 'not equal me', 'niajoy', 'ニアジョイ', '≒joy', 'nearly equal joy'],
-  'KAWAII LAB.': ['fruits zipper', 'fz', 'ふるっぱー', 'candy tune', 'きゃんちゅー', 'sweet steady', 'すいすて', 'cutie street', 'きゅーすと'],
-  'Modern & Alternative': ['babymetal', 'bm', 'ベビメタ', 'niziu', 'ニジュー', 'me:i', 'mei', 'ミーアイ', 'is:sue', 'issue', 'イッシュ', 'sakura gakuin', 'さくら学院']
+  'AKB48': ['akb', 'akb48', '48g'],
+  'SKE48': ['ske', 'ske48'],
+  'NMB48': ['nmb', 'nmb48'],
+  'HKT48': ['hkt', 'hkt48'],
+  'NGT48': ['ngt', 'ngt48'],
+  'STU48': ['stu', 'stu48'],
+  'Nogizaka46': ['nogi', 'nogizaka', '乃木坂', '乃木坂46', '46g'],
+  'Sakurazaka46': ['saku', 'sakurazaka', '櫻坂', '櫻坂46', 'keyaki', 'keyakizaka', '欅坂', '欅坂46'],
+  'Hinatazaka46': ['hinata', 'hinatazaka', '日向坂', '日向坂46'],
+  'Boku ga Mitakatta Aozora': ['bokuao', '僕青'],
+  'Momoiro Clover Z': ['momoclo', 'mcz', 'ももクロ', 'ももいろクローバーz'],
+  'Shiritsu Ebisu Chugaku': ['ebichu', 'エビ中', '私立恵比寿中学'],
+  'Chou Tokimeki Sendenbu': ['tokisen', 'とき宣', '超ときめき宣伝部'],
+  'TEAM SHACHI': ['shachi', 'team shachi'],
+  '=LOVE': ['ikolove', 'イコラブ', '=love', 'equal love'],
+  '≠ME': ['noime', 'ノイミー', '≠me', 'not equal me'],
+  '≒JOY': ['niajoy', 'ニアジョイ', '≒joy', 'nearly equal joy'],
+  'FRUITS ZIPPER': ['fruits zipper', 'fz', 'ふるっぱー'],
+  'CANDY TUNE': ['candy tune', 'きゃんちゅー'],
+  'SWEET STEADY': ['sweet steady', 'すいすて'],
+  'CUTIE STREET': ['cutie street', 'きゅーすと'],
+  'BABYMETAL': ['babymetal', 'bm', 'ベビメタ'],
+  'Sakura Gakuin': ['sakura gakuin', 'さくら学院'],
+  'NiziU': ['niziu', 'ニジュー'],
+  'ME:I': ['me:i', 'mei', 'ミーアイ'],
+  'IS:SUE': ['is:sue', 'issue', 'イッシュ']
 };
 
 var IDOL_NAME_VARIATIONS = {
@@ -211,8 +231,16 @@ function calculateProductSearchScore(doc, queryNorm, queryClean, queryTokens) {
 
   if (!groupMatch) {
     for (const [canonicalGroup, abbreviations] of Object.entries(SEARCH_GROUP_ABBREVIATIONS)) {
-      if (doc.artist === canonicalGroup || doc.category === canonicalGroup) {
-        if (abbreviations.some(a => normalizeSearchString(a) === queryNorm || queryNorm.includes(normalizeSearchString(a)))) {
+      const isTargetEntity = (doc.artist === canonicalGroup || doc.category === canonicalGroup || 
+        (typeof matchesArtistName === 'function' && matchesArtistName(doc.artist, canonicalGroup)));
+      if (isTargetEntity) {
+        const matchesAbbr = abbreviations.some(a => {
+          const normA = normalizeSearchString(a);
+          if (normA === queryNorm) return true;
+          if (normA.length >= 3 && queryNorm.startsWith(normA)) return true;
+          return queryTokens.includes(normA);
+        });
+        if (matchesAbbr) {
           score += 7500;
           groupMatch = true;
           break;
@@ -348,21 +376,6 @@ async function showSearchSuggestions(customQuery, signal) {
     box.classList.add('hidden');
     box.innerHTML = '';
     return;
-  }
-
-  if (signal && signal.aborted) return;
-
-  // Optional in-flight network query with abort signal
-  try {
-    const res = await fetch(`/api/search?q=${encodeURIComponent(rawQuery)}`, {
-      signal,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res && res.ok) {
-      await res.json().catch(() => null);
-    }
-  } catch (err) {
-    if (err && err.name === 'AbortError') return;
   }
 
   if (signal && signal.aborted) return;

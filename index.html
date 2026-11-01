@@ -17,9 +17,11 @@
 
       if (layoutMode === 'mobile') {
         viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
+        document.documentElement.classList.remove('layout-desktop');
         document.documentElement.classList.add('layout-mobile');
       } else {
         viewportMeta.content = 'width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes';
+        document.documentElement.classList.remove('layout-mobile');
         document.documentElement.classList.add('layout-desktop');
       }
       document.head.appendChild(viewportMeta);

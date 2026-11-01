@@ -4,10 +4,22 @@
    ========================================================================== */
 
 function parseNumericPrice(priceStr, item) {
-  if (item && item.price_num) return item.price_num;
+  if (item && typeof item.price_num === 'number' && item.price_num > 0) return item.price_num;
   if (!priceStr) return 0;
-  const clean = String(priceStr).replace(/[^0-9]/g, '');
-  return parseInt(clean, 10) || 0;
+  const str = String(priceStr);
+  const taxInMatch = str.match(/(\d[\d,]*)\s*(?:yen|JPY|円)?\s*(?:\([^)]*(?:tax\s*incl|税込)[^)]*\)|（[^）]*(?:tax\s*incl|税込)[^）]*）)/i);
+  if (taxInMatch && taxInMatch[1]) {
+    return parseInt(taxInMatch[1].replace(/,/g, ''), 10) || 0;
+  }
+  const matches = str.match(/\d[\d,]*/g);
+  if (!matches || !matches.length) return 0;
+  if (matches.length >= 2) {
+    const p1 = parseInt(matches[0].replace(/,/g, ''), 10) || 0;
+    const p2 = parseInt(matches[1].replace(/,/g, ''), 10) || 0;
+    if (p2 > p1 && p2 <= Math.round(p1 * 1.15)) return p2;
+    return p1;
+  }
+  return parseInt(matches[0].replace(/,/g, ''), 10) || 0;
 }
 
 function formatDisplayPrice(priceStr, item) {
@@ -430,7 +442,7 @@ function setFilter(cat) {
 
 function setSubArtist(artist) {
   activeArtist = artist;
-  activeMobileArtists = [artist];
+  activeMobileArtists = (artist === 'All') ? [] : [artist];
   activeEra = 'All';
   currentPage = 1;
 
@@ -651,7 +663,14 @@ function readUrlParams() {
     const eraSelect = document.getElementById('era-select');
     if (eraSelect) eraSelect.value = activeEra;
   }
-  if (params.has('fmt')) activeFormat = params.get('fmt');
+  if (params.has('fmt')) {
+    activeFormat = params.get('fmt');
+    const merchBar = document.getElementById('merch-subgroup-bar');
+    if (merchBar) {
+      if (activeFormat === 'Collectable') merchBar.classList.remove('hidden');
+      else merchBar.classList.add('hidden');
+    }
+  }
   if (params.has('status')) {
     const statuses = params.get('status').split(',').map(s => s.trim().toLowerCase());
     selectedAvailabilities = new Set(statuses);
@@ -1359,6 +1378,7 @@ async function loadCatalog() {
         try {
           readUrlParams();
           buildClusteredEntities();
+          if (typeof updateSearchCache === 'function') updateSearchCache(allProducts);
           updateDynamicCounts();
           updateActiveArtistBanner();
           updateFilterButtonsUI();
@@ -1500,11 +1520,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const banner = document.getElementById('trust-notice-banner');
     if (banner) banner.classList.add('hidden');
   }
-  loadCatalog();
   Promise.allSettled([
     initExchangeRates(),
     loadSearchAliases()
   ]).then(() => {
-    render();
+    loadCatalog();
   });
 });

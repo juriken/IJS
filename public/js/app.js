@@ -788,7 +788,10 @@ async function initExchangeRates() {
     const selectEl = document.getElementById('currency-select');
     if (selectEl) selectEl.value = currentCurrency;
 
-    const localRes = await fetch('/rates.json').catch(() => null);
+    const localRes = await fetch('/rates.json')
+      .catch(() => fetch('/public/rates.json'))
+      .catch(() => fetch('public/rates.json'))
+      .catch(() => null);
     if (localRes && localRes.ok) {
       const localData = await localRes.json().catch(() => null);
       if (localData && localData.rates) {
@@ -1398,7 +1401,15 @@ async function loadCatalog() {
     `catalog-index.json?v=${cacheBuster}`,
     `./catalog-index.json?v=${cacheBuster}`,
     `/catalog-index.json?v=${cacheBuster}`,
-    `products.json?v=${cacheBuster}`
+    `public/catalog-index.json?v=${cacheBuster}`,
+    `./public/catalog-index.json?v=${cacheBuster}`,
+    `/public/catalog-index.json?v=${cacheBuster}`,
+    `products.json?v=${cacheBuster}`,
+    `./products.json?v=${cacheBuster}`,
+    `/products.json?v=${cacheBuster}`,
+    `public/products.json?v=${cacheBuster}`,
+    `./public/products.json?v=${cacheBuster}`,
+    `/public/products.json?v=${cacheBuster}`
   ];
 
   for (const p of candidatePaths) {

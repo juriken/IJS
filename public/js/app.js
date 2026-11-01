@@ -1660,6 +1660,7 @@ function initApp() {
     console.warn('Trust notice check bypassed:', e);
   }
 
+  // Load catalog immediately; do not block rendering on external currency or alias endpoints
   loadCatalog();
   initExchangeRates();
   if (typeof loadSearchAliases === 'function') {
@@ -1667,6 +1668,7 @@ function initApp() {
   }
 }
 
+// Automatically invoke app initialization on document ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {

@@ -48,7 +48,7 @@ html.layout-mobile body {
 /* Fallback visibility rules if Tailwind CDN fails or is blocked */
 .hidden,
 [hidden] {
-  display: none !important;
+  display: none;
 }
 
 /* Keep drawers and modals out of the normal document flow until activated */

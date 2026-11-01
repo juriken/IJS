@@ -66,9 +66,11 @@ def main():
     print("Starting Catalog CI Integrity Validation")
     print("==========================================")
 
-    passed_full = validate_json_file("products.json", is_summary=False)
-    passed_summary = validate_json_file("catalog-index.json", is_summary=True)
+    from path_helper import get_target_path
 
+    passed_full = validate_json_file(get_target_path("products.json"), is_summary=False)
+    passed_summary = validate_json_file(get_target_path("catalog-index.json"), is_summary=True)
+    
     if not passed_full or not passed_summary:
         print("❌ Catalog validation failed. Exiting with non-zero code to block deploy.")
         sys.exit(1)

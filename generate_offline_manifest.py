@@ -1,8 +1,9 @@
 import os
 import re
 from datetime import datetime
+from path_helper import get_target_path
 
-SW_FILE = "sw.js"
+SW_FILE = get_target_path("sw.js")
 
 def stamp_service_worker():
     if not os.path.exists(SW_FILE):

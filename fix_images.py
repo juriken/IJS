@@ -1,8 +1,9 @@
 import json
 import os
 import re
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
+DATA_FILE = get_target_path("products.json")
 
 def repair_jacket_images():
     if not os.path.exists(DATA_FILE):

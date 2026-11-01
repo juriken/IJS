@@ -3,10 +3,12 @@ import json
 import re
 from datetime import datetime
 from xml.sax.saxutils import escape
+from path_helper import get_target_path
 
 BASE_URL = "https://idoljapan.store"
-CATALOG_FILES = ["catalog-index.json", "products.json"]
-GROUPS_DIR = "groups"
+CATALOG_FILES = [get_target_path("catalog-index.json"), get_target_path("products.json")]
+GROUPS_DIR = get_target_path("groups")
+SITEMAP_OUTPUT_FILE = get_target_path("sitemap.xml")
 
 STATIC_PAGES = [
     {"loc": "/", "priority": "1.0", "changefreq": "daily"},
@@ -141,10 +143,10 @@ def generate_sitemap():
     xml_lines.append("</urlset>")
     
     output_content = "\n".join(xml_lines)
-    with open("sitemap.xml", "w", encoding="utf-8") as f:
+    with open(SITEMAP_OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(output_content)
 
-    print(f"Successfully generated sitemap.xml with {len(xml_lines) // 7} indexed URLs.")
+    print(f"Successfully generated {SITEMAP_OUTPUT_FILE} with {len(xml_lines) // 7} indexed URLs.")
 
 if __name__ == "__main__":
     generate_sitemap()

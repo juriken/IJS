@@ -2,9 +2,10 @@ import os
 import json
 import urllib.request
 from datetime import datetime
+from path_helper import get_target_path
 
 WEBHOOK_URL = os.environ.get("DISCORD_RELEASE_WEBHOOK", "").strip()
-PRODUCTS_FILE = "products.json"
+PRODUCTS_FILE = get_target_path("products.json")
 
 def send_discord_notification():
     if not WEBHOOK_URL:

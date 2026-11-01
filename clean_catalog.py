@@ -10,10 +10,11 @@ import json
 import os
 import re
 from datetime import datetime
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
-INDEX_FILE = "catalog-index.json"
-LOG_FILE = "clean_catalog_log.txt"
+DATA_FILE = get_target_path("products.json")
+INDEX_FILE = get_target_path("catalog-index.json")
+LOG_FILE = get_target_path("clean_catalog_log.txt")
 
 # Official Up-Front catalog prefixes used by Zetima / Piccolo Town / Up-Front Works
 UPFRONT_PREFIXES = (

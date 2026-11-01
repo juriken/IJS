@@ -3,11 +3,12 @@ import json
 import re
 from datetime import datetime
 from xml.sax.saxutils import escape
+from path_helper import get_target_path
 
 BASE_URL = "https://idoljapan.store"
-CATALOG_INDEX_FILE = "catalog-index.json"
-PRODUCTS_FILE = "products.json"
-FEED_OUTPUT_FILE = "feed.xml"
+CATALOG_INDEX_FILE = get_target_path("catalog-index.json")
+PRODUCTS_FILE = get_target_path("products.json")
+FEED_OUTPUT_FILE = get_target_path("feed.xml")
 MAX_FEED_ITEMS = 50
 
 def load_catalog_data():

@@ -10,17 +10,18 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from path_helper import get_target_path
 
 HOST = "idoljapan.store"
 INDEXNOW_KEY = "a1b2c3d4e5f67890123456789abcdef0"
 KEY_LOCATION = f"https://{HOST}/{INDEXNOW_KEY}.txt"
 API_ENDPOINT = "https://api.indexnow.org/indexnow"
-CATALOG_INDEX_FILE = "catalog-index.json"
+CATALOG_INDEX_FILE = get_target_path("catalog-index.json")
 MAX_SUBMIT_URLS = 100
 
 def ensure_indexnow_key_file():
     """Guarantees the IndexNow verification text file exists for edge deployment."""
-    key_filename = f"{INDEXNOW_KEY}.txt"
+    key_filename = get_target_path(f"{INDEXNOW_KEY}.txt")
     if not os.path.exists(key_filename):
         try:
             with open(key_filename, "w", encoding="utf-8") as f:

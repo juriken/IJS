@@ -15,9 +15,10 @@ import urllib.parse
 from datetime import datetime
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+from path_helper import get_target_path
 
 AFFILIATE_ID = "A033398"
-DATA_FILE = "products.json"
+DATA_FILE = get_target_path("products.json")
 STATE_FILE = "scraper_state.json"
 
 DEFAULT_PAGES_ALL = 10

@@ -1,9 +1,10 @@
 import os
 import json
 import re
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
-SCHEMA_OUTPUT_FILE = "schema-catalog.json"
+DATA_FILE = get_target_path("products.json")
+SCHEMA_OUTPUT_FILE = get_target_path("schema-catalog.json")
 BASE_URL = "https://idoljapan.store"
 
 def generate_schema():

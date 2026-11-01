@@ -22,9 +22,10 @@ import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
-INDEX_FILE = "catalog-index.json"
+DATA_FILE = get_target_path("products.json")
+INDEX_FILE = get_target_path("catalog-index.json")
 PROGRESS_FILE = "repair_progress.json"
 
 DEFAULT_BATCH_SIZE = 250

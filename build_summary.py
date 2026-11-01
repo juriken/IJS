@@ -1,9 +1,10 @@
 import json
 import os
 import sys
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
-INDEX_FILE = "catalog-index.json"
+DATA_FILE = get_target_path("products.json")
+INDEX_FILE = get_target_path("catalog-index.json")
 
 def generate_index():
     if not os.path.exists(DATA_FILE):

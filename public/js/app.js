@@ -1443,6 +1443,14 @@ async function loadCatalog() {
     }
   }
 
+  if (!allProducts.length && statsEl) {
+    statsEl.innerText = "Catalog data missing (404)";
+    const emptyMsg = document.getElementById('empty-state-message');
+    if (emptyMsg) {
+      emptyMsg.innerText = "Could not load catalog-index.json. Ensure catalog-index.json and products.json are placed inside the public/ folder.";
+    }
+  }
+
   try {
     readUrlParams();
     buildClusteredEntities();

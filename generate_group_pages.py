@@ -8,9 +8,10 @@ import json
 import re
 import urllib.parse
 from xml.sax.saxutils import escape
+from path_helper import get_target_path
 
-DATA_FILE = "products.json"
-GROUPS_DIR = "groups"
+DATA_FILE = get_target_path("products.json")
+GROUPS_DIR = get_target_path("groups")
 BASE_URL = "https://idoljapan.store"
 
 def slugify(name):

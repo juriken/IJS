@@ -52,6 +52,60 @@ function formatDisplayPrice(priceStr, item) {
   return `${formattedConverted} <span class="text-[9px] text-stone-400 dark:text-slate-500 font-normal">(¥${jpyAmount.toLocaleString()})</span>`;
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function stripTitlePrefixes(title) {
+  if (!title) return '';
+  return String(title)
+    .replace(/^(?:Album\s+CD|CD\s+Album|Single\s+CD|CD\s+Single|Blu-ray|DVD|BOOK|Collectible|APPAREL|Vinyl\s*\((?:LP|EP)\))\s+/i, '')
+    .trim();
+}
+
+function getThumbnailUrl(imgUrl) {
+  if (!imgUrl || typeof imgUrl !== 'string' || !imgUrl.trim()) {
+    return typeof PLACEHOLDER_IMG !== 'undefined' ? PLACEHOLDER_IMG : '';
+  }
+  return imgUrl.trim();
+}
+
+function getVariantSortScore(variant) {
+  if (!variant || !variant.title) return 99;
+  const t = String(variant.title).toLowerCase();
+  if (t.includes('limited') && t.includes('type a')) return 1;
+  if (t.includes('limited') && t.includes('type b')) return 2;
+  if (t.includes('limited') && t.includes('type c')) return 3;
+  if (t.includes('limited') && t.includes('type d')) return 4;
+  if (t.includes('limited') && t.includes('type sp')) return 5;
+  if (t.includes('limited')) return 10;
+  if (t.includes('first press')) return 20;
+  if (t.includes('regular') && t.includes('type a')) return 31;
+  if (t.includes('regular') && t.includes('type b')) return 32;
+  if (t.includes('regular')) return 40;
+  return 50;
+}
+
+function extractVariantLabel(variantTitle, baseTitle) {
+  if (!variantTitle) return 'Standard Edition';
+  const bracketMatch = variantTitle.match(/\[(.*?)\]/);
+  if (bracketMatch && bracketMatch[1]) {
+    const cleaned = bracketMatch[1].replace(/Cardboard Sleeve.*?/i, '').trim();
+    return cleaned || bracketMatch[1];
+  }
+  const parenMatch = variantTitle.match(/\((Type\s*[A-Z0-9]+|Regular Edition|Limited Edition)\)/i);
+  if (parenMatch && parenMatch[1]) {
+    return parenMatch[1];
+  }
+  return 'Standard Edition';
+}
+
 function getItemDateValue(item) {
   if (!item) return 0;
   const dStr = String(item.release_date || '').trim();
@@ -1403,11 +1457,15 @@ async function loadCatalog() {
   const cacheBuster = Date.now();
   const candidatePaths = [
     `catalog-index.json?v=${cacheBuster}`,
-    `/catalog-index.json?v=${cacheBuster}`,
     `./catalog-index.json?v=${cacheBuster}`,
+    `/catalog-index.json?v=${cacheBuster}`,
+    `public/catalog-index.json?v=${cacheBuster}`,
+    `/public/catalog-index.json?v=${cacheBuster}`,
     `products.json?v=${cacheBuster}`,
+    `./products.json?v=${cacheBuster}`,
     `/products.json?v=${cacheBuster}`,
-    `./products.json?v=${cacheBuster}`
+    `public/products.json?v=${cacheBuster}`,
+    `/public/products.json?v=${cacheBuster}`
   ];
 
   for (const p of candidatePaths) {

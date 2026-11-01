@@ -1655,6 +1655,9 @@ function initApp() {
     if (localStorage.getItem('idoljapan_dismiss_trust') === 'true') {
       const banner = document.getElementById('trust-notice-banner');
       if (banner) banner.classList.add('hidden');
+    }
+  } catch (e) {
+    console.warn('Trust banner check bypassed:', e);
   }
 
   // Load catalog immediately; do not block rendering on external currency or alias endpoints
@@ -1663,4 +1666,11 @@ function initApp() {
   if (typeof loadSearchAliases === 'function') {
     loadSearchAliases();
   }
-});
+}
+
+// Ensure initApp runs on DOM load:
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

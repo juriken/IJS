@@ -575,6 +575,14 @@ function updateMobileDrawerContent() {
 
   if (accordionContainer) {
     const franchises = [
+      'Hello! Project & Up-Front',
+      'AKB48 Group',
+      'Sakamichi Series',
+      'Stardust Planet',
+      '=LOVE / Sister Groups',
+      'KAWAII LAB.',
+      'Modern & Alternative'
+    ];
     const openAccordionIndices = [];
     franchises.forEach((_, fIdx) => {
       const contentEl = document.getElementById(`mob-acc-content-${fIdx}`);
@@ -582,7 +590,6 @@ function updateMobileDrawerContent() {
         openAccordionIndices.push(fIdx);
       }
     });
-
     let accHtml = '';
     franchises.forEach((fr, fIdx) => {
       const units = FRANCHISE_ARTISTS[fr] || [];

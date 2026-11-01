@@ -53,14 +53,21 @@
   window.IdolGeo = {
     getInitialCurrency: autoDetectCurrency,
     applyAutoCurrency: function() {
-      if (!localStorage.getItem(CURRENCY_STORAGE_KEY)) {
+      const saved = localStorage.getItem(CURRENCY_STORAGE_KEY);
+      if (!saved) {
         const detected = autoDetectCurrency();
         localStorage.setItem(CURRENCY_STORAGE_KEY, detected);
         const sel = document.getElementById('currency-select');
-        if (sel) sel.value = detected;
+        if (sel) {
+          sel.value = detected;
+        }
         return detected;
       }
-      return localStorage.getItem(CURRENCY_STORAGE_KEY);
+      const sel = document.getElementById('currency-select');
+      if (sel && sel.value !== saved) {
+        sel.value = saved;
+      }
+      return saved;
     }
   };
 })();

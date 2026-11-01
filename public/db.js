@@ -53,18 +53,20 @@
     loadCatalog: async function() {
       try {
         const db = await openDatabase();
-        const tx = db.transaction(STORE_NAME, 'readonly');
-        const store = tx.objectStore(STORE_NAME);
-        const request = store.getAll();
-
         return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const store = tx.objectStore(STORE_NAME);
+          const request = store.getAll();
+
           request.onsuccess = () => {
             const records = request.result;
             resolve(Array.isArray(records) && records.length > 0 ? records : null);
           };
           request.onerror = () => resolve(null);
+          tx.onerror = () => resolve(null);
         });
       } catch (e) {
+        console.warn('IndexedDB read failed, falling back to network fetch:', e);
         return null;
       }
     },

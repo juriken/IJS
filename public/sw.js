@@ -3,16 +3,20 @@
  * Strategy: Cache-First for static assets, Stale-While-Revalidate for catalog payloads, Offline UI Fallback
  */
 
-const CACHE_NAME = 'idoljapan-cache-v20261026043458';
+const CACHE_NAME = 'idoljapan-cache-v20261101000000';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/offline.html',
   '/manifest.webmanifest',
-  '/rates.json',
-  '/analytics.js',
-  'https://cdn.tailwindcss.com',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+  '/css/custom.css',
+  '/js/config.js',
+  '/js/drawers.js',
+  '/js/mega-menu.js',
+  '/js/search.js',
+  '/js/app.js',
+  '/js/analytics.js',
+  '/js/db.js',
+  '/js/geo_currency.js'
 ];
 
 self.addEventListener('install', (event) => {
@@ -38,6 +42,11 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Guard: Let all third-party CDNs and cross-origin APIs bypass the Service Worker completely
+  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
   const url = new URL(event.request.url);
 
   // Stale-While-Revalidate for dynamic JSON catalog and rate payloads
@@ -46,7 +55,7 @@ self.addEventListener('fetch', (event) => {
       caches.open(CACHE_NAME).then(async (cache) => {
         const cachedResponse = await cache.match(event.request);
         const fetchPromise = fetch(event.request).then((networkResponse) => {
-          if (networkResponse.status === 200) {
+          if (networkResponse && networkResponse.status === 200) {
             cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
@@ -58,19 +67,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML page navigation fallback for complete offline mode
+  // HTML page navigation fallback for offline mode
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(async () => {
         const cache = await caches.open(CACHE_NAME);
-        const cachedIndex = await cache.match('/index.html');
-        return cachedIndex || await cache.match('/offline.html');
+        return await cache.match('/index.html');
       })
     );
     return;
   }
 
-  // Cache-first strategy for static styles, fonts, and scripts
+  // Cache-first strategy for local static styles and scripts
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {

@@ -1657,10 +1657,9 @@ function initApp() {
       if (banner) banner.classList.add('hidden');
     }
   } catch (e) {
-    console.warn('Trust banner check bypassed:', e);
+    console.warn('Trust notice check bypassed:', e);
   }
 
-  // Load catalog immediately; do not block rendering on external currency or alias endpoints
   loadCatalog();
   initExchangeRates();
   if (typeof loadSearchAliases === 'function') {
@@ -1668,7 +1667,6 @@ function initApp() {
   }
 }
 
-// Ensure initApp runs on DOM load:
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {

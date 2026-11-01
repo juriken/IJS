@@ -69,8 +69,23 @@
   <meta name="twitter:description" content="Discover official singles, albums, and concert Blu-rays fulfilled directly by CDJapan.">
   <meta name="twitter:image" content="https://www.cdjapan.co.jp/pictures/l/EPCE-7860.jpg">
 
-  <!-- Precompiled Static Tailwind CSS -->
-  <link rel="stylesheet" href="css/tailwind.min.css">
+  <!-- Temporarily comment out the empty precompiled stylesheet -->
+<!-- <link rel="stylesheet" href="css/tailwind.min.css"> -->
+
+<!-- Tailwind Play CDN Runtime (Must be a <script>, not a <link>) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          brand: '#e11d48'
+        }
+      }
+    }
+  }
+</script>
 
   <!-- Ctrl+F Target Below -->
   <!-- Font Awesome Icons -->

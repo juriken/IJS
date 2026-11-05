@@ -1,10 +1,10 @@
-IdolJapan.store Catalog Clean Log — 2026-11-03 22:10:22 UTC
+IdolJapan.store Catalog Clean Log — 2026-11-05 22:44:00 UTC
 ================================================================================
-Total Initial Releases:         22,095
+Total Initial Releases:         22,096
 Purged False Positives:         2
 Reclassified / Aligned:         2,148
 Verified Tsukishima Kirari:     0
-Total Cleaned Releases Saved:   22,093
+Total Cleaned Releases Saved:   22,094
 ================================================================================
 
 [RECLASSIFIED: SOLOIST] [YRXS-80044] 'Blu-ray NMB48 Yamamoto Sayaka Sotsugyo Concert "AYAKA SONIC - Sayaka, Sasayaka, Sayonara, Sayaka -"' (Sayaka Yamamoto -> Yamamoto Sayaka)
@@ -2150,10 +2150,10 @@ Total Cleaned Releases Saved:   22,093
 [RECLASSIFIED: SOLOIST] [COZA-451] 'Single CD Dragon Ball Kai Outro Theme: Kokoro no Hane Mayu Watanabe Ver. [w/ DVD, Limited Edition]' (Mayu Watanabe -> Watanabe Mayu)
 [RECLASSIFIED: SOLOIST] [NEOBK-1386731] 'BOOK Ray 2013 September Issue [Cover] Sho Sakurai (Arashi) [Feature] Mayu Watanabe (AKB48)' (Mayu Watanabe -> Watanabe Mayu)
 [RECLASSIFIED: SOLOIST] [COZA-459] 'Single CD Dragon Ball Kai Outro Theme: Kokoro no Hane Yuki Kashiwagi Ver. [w/ DVD, Limited Edition]' (Yuki Kashiwagi -> Kashiwagi Yuki)
-[PURGED: FALSE_POSITIVE] [NEOBK-3011753] BOOK TV LIFE [Kansai Area Version] September 20, 2024 Issue [Cover] SixTONES, Rino Sashihara, Kamaitachi (Pattern: \b(sixtones)\b)
-[PURGED: FALSE_POSITIVE] [NEOBK-3011744] BOOK TV LIFE [Shutoken Area Version] September 20, 2024 Issue [Cover] SixTONES, Rino Sashihara, Kamaitachi (Pattern: \b(sixtones)\b)
 [RECLASSIFIED: SOLOIST] [COZA-455] 'Single CD Dragon Ball Kai Outro Theme: Kokoro no Hane Tomomi Itano Ver. [w/ DVD, Limited Edition]' (Tomomi Itano -> Itano Tomomi)
 [RECLASSIFIED: SOLOIST] [NEODAI-88370] 'BOOK mini December 2020 Issue [Cover F/B] Nogizaka46: Saito Asuka / Stray Kids w/ TOY STORY magnet set' (Asuka Saito -> Saito Asuka)
 [RECLASSIFIED: SOLOIST] [NEOBK-2443423] 'BOOK mini December 2020 Issue [Cover F/B] Nogizaka46: Saito Asuka / Stray Kids w/ TOY STORY magnet set' (Asuka Saito -> Saito Asuka)
 [RECLASSIFIED: SOLOIST] [NEOBK-2180028] 'BOOK Men's NONNO November 2018 Issue [Cover] Takanori Iwata (Sandaime J Soul Brothers) [Booklet] Nogizaka46 Asuka Saito' (Asuka Saito -> Saito Asuka)
 [RECLASSIFIED: SOLOIST] [NEOBK-2221780] 'BOOK Weekly Shonen Sunday May 16 2018 Issue [Photo Feature] Nogizaka46 Saito Asuka & Ozono Momoko w/ "Detective Conan" Mini-book' (Asuka Saito -> Saito Asuka)
+[PURGED: FALSE_POSITIVE] [NEOBK-3011753] BOOK TV LIFE [Kansai Area Version] September 20, 2024 Issue [Cover] SixTONES, Rino Sashihara, Kamaitachi (Pattern: \b(sixtones)\b)
+[PURGED: FALSE_POSITIVE] [NEOBK-3011744] BOOK TV LIFE [Shutoken Area Version] September 20, 2024 Issue [Cover] SixTONES, Rino Sashihara, Kamaitachi (Pattern: \b(sixtones)\b)

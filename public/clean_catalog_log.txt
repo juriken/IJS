@@ -1,4 +1,4 @@
-IdolJapan.store Catalog Clean Log — 2026-11-05 22:44:00 UTC
+IdolJapan.store Catalog Clean Log — 2026-11-07 20:42:33 UTC
 ================================================================================
 Total Initial Releases:         22,096
 Purged False Positives:         2

@@ -3,7 +3,7 @@
  * Strategy: Cache-First for static assets, Stale-While-Revalidate for catalog payloads, Offline UI Fallback
  */
 
-const CACHE_NAME = 'idoljapan-cache-v20261107204236';
+const CACHE_NAME = 'idoljapan-cache-v20261108104353';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

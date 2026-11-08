@@ -1,10 +1,10 @@
-IdolJapan.store Catalog Clean Log — 2026-11-08 10:13:17 UTC
+IdolJapan.store Catalog Clean Log — 2026-11-08 20:01:49 UTC
 ================================================================================
-Total Initial Releases:         22,094
+Total Initial Releases:         22,257
 Purged False Positives:         0
 Reclassified / Aligned:         0
 Verified Tsukishima Kirari:     0
-Total Cleaned Releases Saved:   22,094
+Total Cleaned Releases Saved:   22,257
 ================================================================================
 
 Catalog verified clean. No records required purging or reclassification.

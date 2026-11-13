@@ -14,11 +14,14 @@ import time
 import urllib.parse
 from datetime import datetime
 from bs4 import BeautifulSoup
+import unicodedata
 from playwright.sync_api import sync_playwright
 from path_helper import get_target_path
 
 AFFILIATE_ID = "A033398"
 DATA_FILE = get_target_path("products.json")
+INDEX_FILE = get_target_path("catalog-index.json")
+LOG_FILE = get_target_path("clean_catalog_log.txt")
 STATE_FILE = "scraper_state.json"
 
 DEFAULT_PAGES_ALL = 10
@@ -27,7 +30,7 @@ DEFAULT_PAGES_TARGETED = 200
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
     "may": 5, "jun": 6, "jul": 7, "aug": 8,
-    "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
     "january": 1, "february": 2, "march": 3, "april": 4,
     "june": 6, "july": 7, "august": 8, "september": 9,
     "october": 10, "november": 11, "december": 12
@@ -41,6 +44,25 @@ ALL_UPFRONT_PREFIXES = (
     "TGBS", "TGXF",
     "DAKU", "DCFGDS", "NEOODY"
 )
+
+KIRARI_KUSUMI_CANONICAL_SIGNATURES = [
+    "koi kana", "koi☆kana", "恋☆カナ",
+    "balalaika", "バラライカ",
+    "happy☆mysterious", "happy", "ハッピー☆彡", "ハッピー",
+    "chance!", "チャンス!", "チャンス！",
+    "papirappetta", "パパンケーキ",
+    "anataboshi", "アナタボシ",
+    "tan tan taan", "タンタンターン",
+    "hapi hapi sunday", "はぴ☆はぴ サンデー", "はぴはぴサンデー",
+    "kirarin land", "きらりん☆ランド", "きらりんランド",
+    "mitsuboshi", "きらりん☆レボリューション・ソング・セレクション",
+    "kirari to fuyu", "ベスト☆きらり", "best☆kirari", "best kirari",
+    "kirarin revolution", "きらりん☆レボリューション", "きらりんレボリューション",
+    "hana wo pun", "futari wa ns", "ハナをぷーん", "ふたりはns",
+    "kira pika", "kira☆pika", "きら☆ぴか", "きらぴか",
+    "milkyway", "サンサンgogo", "sunsun gogo",
+    "kusumi koharu", "koharu kusumi", "久住小春"
+]
 
 TANPOPO_AUTHENTIC_SIGNATURES = [
     "last kiss", "motto", "seinaru kane", "otome pasta",
@@ -73,30 +95,114 @@ NIAGO_AUTHENTIC_SIGNATURES = [
 ]
 
 MALE_BOYBAND_PATTERNS = [
-    r"\bsnow man\b", r"\bsixtones\b", r"\bking & prince\b", r"\bnaniwa danshi\b",
-    r"\bhey! say! jump\b", r"\bsexy zone\b", r"\btimelesz\b", r"\btravis japan\b",
-    r"\bkis-my-ft2\b", r"\bkanjani\b", r"\bsuper eight\b", r"\bkat-tun\b",
-    r"\bwest\.\b", r"\barashi\b", r"\bexile\b", r"\bsandaime\b", r"\bgenerations\b",
-    r"\bthe rampage\b", r"\bfantastics\b", r"\bballistik boyz\b", r"\bjo1\b", r"\bini\b",
-    r"\bbe:first\b", r"\bmazzel\b", r"\b&team\b", r"\bstray kids\b",
-    r"\btomorrow x together\b", r"\btxt\b", r"\bseventeen\b", r"\bbts\b",
-    r"\benhypen\b", r"\bnct\b", r"\bateez\b", r"\bzerobaseone\b", r"\briize\b"
+    r"\b(snow\s*man)\b", r"\b(sixtones)\b", r"\b(king\s*&\s*prince)\b", r"\b(naniwa\s*danshi)\b",
+    r"\b(hey!\s*say!\s*jump)\b", r"\b(sexy\s*zone)\b", r"\b(timelesz)\b", r"\b(travis\s*japan)\b",
+    r"\b(kis-my-ft2)\b", r"\b(kanjani8?|super\s*eight)\b", r"\b(kat-tun)\b",
+    r"\b(johnnys|johnny's|starto)\b", r"\b(west\.)\b", r"\b(arashi)\b",
+    r"\b(exile(?:\s+tribe)?)\b", r"\b(sandaime\s*j\s*soul\s*brothers)\b", r"\b(generations\s+from\s+exile)\b",
+    r"\b(the\s*rampage\s+from\s+exile)\b", r"\b(fantastics\s+from\s+exile)\b", r"\b(ballistik\s*boyz)\b",
+    r"(?<![a-z0-9])jo1(?![a-z0-9])", r"(?<![a-z0-9])ini(?![a-z0-9])",
+    r"\b(be:first)\b", r"\b(mazzel)\b", r"\b(&team)\b", r"\b(stray\s*kids)\b",
+    r"\b(tomorrow\s*x\s*together|txt)\b", r"\b(seventeen)\b", r"\b(bts)\b",
+    r"\b(enhypen)\b", r"\b(nct(?:\s*127|\s*dream)?)\b", r"\b(ateez)\b",
+    r"\b(zerobaseone|zb1)\b", r"\b(riize)\b", r"\b(boys\s*and\s*men)\b", r"\b(bullet\s*train|超特急)\b"
 ]
 
 NON_IDOL_MEDIA_PATTERNS = [
-    r"\bkamen rider\b", r"\bgundam\b", r"\bdragon ball\b", r"\bone piece\b",
-    r"\bdetective conan\b", r"\bpokemon\b", r"\bdigimon\b", r"\byu-gi-oh\b",
-    r"\btouken ranbu\b", r"\bhypnosis mic\b", r"\bensemble stars\b",
-    r"\btwisted wonderland\b", r"\bjujutsu kaisen\b", r"\bdemon slayer\b",
-    r"\bclassical guitar\b", r"\bbluegrass\b", r"\bboard game\b"
+    r"\b(kamen\s*rider|仮面ライダー)\b", r"\b(gundam|ガンダム)\b", r"\b(dragon\s*ball|ドラゴンボール)\b",
+    r"\b(one\s*piece|ワンピース)\b", r"\b(detective\s*conan|名探偵コナン)\b", r"\b(pokemon|ポケットモンスター)\b",
+    r"\b(digimon|デジモン)\b", r"\b(yu-gi-oh|遊戯王)\b", r"\b(touken\s*ranbu|刀剣乱舞)\b",
+    r"\b(hypnosis\s*mic|ヒプノシスマイク)\b", r"\b(ensemble\s*stars|あんさんぶるスターズ)\b",
+    r"\b(twisted\s*wonderland|ツイステッドワンダーランド)\b", r"\b(jujutsu\s*kaisen|呪術廻戦)\b",
+    r"\b(demon\s*slayer|鬼滅の刃)\b", r"\b(classical\s*guitar)\b", r"\b(bluegrass)\b", r"\b(board\s*game)\b"
+]
+
+PRIMARY_GROUP_NAMES = {
+    "Morning Musume", "ANGERME", "Juice=Juice", "Tsubaki Factory", "BEYOOOOONDS",
+    "OCHA NORMA", "Rosy Chronicle", "Hello Pro Kenshuusei", "Berryz Kobo", "℃-ute",
+    "Buono!", "Country Girls", "Kobushi Factory", "Melon Kinenbi", "Tanpopo",
+    "Minimoni", "v-u-den", "W", "GAM", "Taiyo to Ciscomoon", "LoVendoR", "PINK CRES.",
+    "AKB48", "SKE48", "NMB48", "HKT48", "NGT48", "STU48",
+    "Not yet", "no3b", "French Kiss", "Watarirouka Hashiritai",
+    "Nogizaka46", "Sakurazaka46", "Hinatazaka46", "22/7", "Boku ga Mitakatta Aozora",
+    "Momoiro Clover Z", "Shiritsu Ebisu Chugaku", "Chou Tokimeki Sendenbu",
+    "TEAM SHACHI", "BATTEN GIRLS", "ukka",
+    "=LOVE", "≠ME", "≒JOY",
+    "FRUITS ZIPPER", "CANDY TUNE", "SWEET STEADY", "CUTIE STREET",
+    "NiziU", "ME:I", "IS:SUE", "BABYMETAL", "Sakura Gakuin"
+}
+
+SOLO_GRADUATE_RULES = [
+    ("Hello! Project", "Makino Maria", [r"\bmakino\s+maria\b", r"\bmaria\s+makino\b", r"牧野真莉愛"]),
+    ("Hello! Project", "Nakazawa Yuko", [r"\bnakazawa\s+yuko\b", r"\byuko\s+nakazawa\b", r"中澤裕子"]),
+    ("Hello! Project", "Iida Kaori", [r"\biida\s+kaori\b", r"\bkaori\s+iida\b", r"飯田圭織"]),
+    ("Hello! Project", "Tanaka Reina", [r"\btanaka\s+reina\b", r"\breina\s+tanaka\b", r"田中れいな"]),
+    ("Hello! Project", "Takahashi Ai", [r"\btakahashi\s+ai\b", r"\bai\s+takahashi\b", r"高橋愛"]),
+    ("Hello! Project", "Niigaki Risa", [r"\bniigaki\s+risa\b", r"\brisa\s+niigaki\b", r"新垣里沙"]),
+    ("Hello! Project", "Yajima Maimi", [r"\byajima\s+maimi\b", r"\bmaimi\s+yajima\b", r"矢島舞美"]),
+    ("Hello! Project", "Masaki Sato", [r"\bsato\s+masaki\b", r"\bmasaki\s+sato\b", r"佐藤優樹", r"ding\s+dong", r"ロマンティックなんてガラじゃない"]),
+    ("Hello! Project", "Riho Sayashi", [r"\bsayashi\s+riho\b", r"\briho\s+sayashi\b", r"鞘師里保"]),
+    ("Hello! Project", "Manaka Inaba", [r"\binaba\s+manaka\b", r"\bmanaka\s+inaba\b", r"稲場愛香", r"圧倒的lve", r"pink\s+vampire"]),
+    ("Hello! Project", "Mizuki Fukumura", [r"\bfukumura\s+mizuki\b", r"\bmizuki\s+fukumura\b", r"譜久村聖"]),
+    ("Hello! Project", "Momoko Tsugunaga", [r"\btsugunaga\s+momoko\b", r"\bmomoko\s+tsugunaga\b", r"嗣永桃子", r"ももち"]),
+    ("Hello! Project", "Miyabi Natsuyaki", [r"\bnatsuyaki\s+miyabi\b", r"\bmiyabi\s+natsuyaki\b", r"夏焼雅"]),
+    ("Hello! Project", "Risako Sugaya", [r"\bsugaya\s+risako\b", r"\brisako\s+sugaya\b", r"菅谷梨沙子"]),
+    ("Hello! Project", "Kumai Yurina", [r"\bkumai\s+yurina\b", r"\byurina\s+kumai\b", r"熊井友理奈"]),
+    ("Hello! Project", "Ayaka Wada", [r"\bwada\s+ayaka\b", r"\bayaka\s+wada\b", r"和田彩花"]),
+    ("Hello! Project", "Meimi Tamura", [r"\btamura\s+meimi\b", r"\bmeimi\s+tamura\b", r"田村芽実"]),
+    ("Hello! Project", "Kanon Fukuda", [r"\bfukuda\s+kanon\b", r"\bkanon\s+fukuda\b", r"福田花音", r"巫まろ", r"maro\s+kanna"]),
+    ("Hello! Project", "Tomoko Kanazawa", [r"\bkanazawa\s+tomoko\b", r"\btomoko\s+kanazawa\b", r"金澤朋子"]),
+    ("Hello! Project", "Yumeno Kishimoto", [r"\bkishimoto\s+yumeno\b", r"\byumeno\s+kishimoto\b", r"岸本ゆめの"]),
+    ("Hello! Project", "Sayaka Kitahara", [r"\bkitahara\s+sayaka\b", r"\bsayaka\s+kitahara\b", r"北原沙弥香"]),
+    ("Hello! Project", "Nozomi Tsuji", [r"\btsuji\s+nozomi\b", r"\bnozomi\s+tsuji\b", r"辻希美", r"のんピース"]),
+    ("Hello! Project", "Ai Kago", [r"\bkago\s+ai\b", r"\bai\s+kago\b", r"加護亜依"]),
+    ("Hello! Project", "Rika Ishikawa", [r"\bishikawa\s+rika\b", r"\brika\s+ishikawa\b", r"石川梨華"]),
+    ("Hello! Project", "Haruka Kudo", [r"\bkudo\s+haruka\b", r"\bharuka\s+kudo\b", r"工藤遥"]),
+    ("Hello! Project", "Haruna Iikubo", [r"\biikubo\s+haruna\b", r"\bharuna\s+iikubo\b", r"飯窪春菜"]),
+    ("Hello! Project", "Erina Ikuta", [r"\bikuta\s+erina\b", r"\berina\s+ikuta\b", r"生田衣梨奈"]),
+    ("Hello! Project", "Akane Haga", [r"\bhaga\s+akane\b", r"\bakane\s+haga\b", r"羽賀朱音"]),
+    ("Hello! Project", "Rikako Sasaki", [r"\bsasaki\s+rikako\b", r"\brikako\s+sasaki\b", r"佐々木莉佳子"]),
+    ("Hello! Project", "Mizuki Murota", [r"\bmurota\s+mizuki\b", r"\bmizuki\s+murota\b", r"室田瑞希"]),
+    ("Hello! Project", "Yuka Miyazaki", [r"\bmiyazaki\s+yuka\b", r"\byuka\s+miyazaki\b", r"宮崎由加"]),
+    ("Hello! Project", "Akari Uemura", [r"\buemura\s+akari\b", r"\bakari\s+uemura\b", r"植村あかり"]),
+    ("Hello! Project", "Chisaki Morito", [r"\bmorito\s+chisaki\b", r"\bchisaki\s+morito\b", r"森戸知沙希"]),
+    ("Hello! Project", "Mai Satoda", [r"\bsatoda\s+mai\b", r"\bmai\s+satoda\b", r"里田まい"]),
+    ("Hello! Project", "Ayumi Ishida", [r"\bishida\s+ayumi\b", r"\bayumi\s+ishida\b", r"石田亜佑美"]),
+    ("Hello! Project", "Ruru Dambara", [r"\bdambara\s+ruru\b", r"\bruru\s+dambara\b", r"段原瑠々"]),
+    ("Hello! Project", "Yuhane Yamazaki", [r"\byamazaki\s+yuhane\b", r"\byuhane\s+yamazaki\b", r"山﨑夢羽"]),
+    ("Hello! Project", "Ayano Hamaura", [r"\bhamaura\s+ayano\b", r"\bayano\s+hamaura\b", r"浜浦彩乃"]),
+    ("Hello! Project", "Ayano Kawamura", [r"\bkawamura\s+ayano\b", r"\bayano\s+kawamura\b", r"川村文乃"]),
+    ("Hello! Project", "Momona Kasahara", [r"\bkasahara\s+momona\b", r"\bmomona\s+kasahara\b", r"笠原桃奈"]),
+    ("Hello! Project", "Mao Akiyama", [r"\bakiyama\s+mao\b", r"\bmao\s+akiyama\b", r"秋山眞緒"]),
+    ("Hello! Project", "Nanami Yanagawa", [r"\byanagawa\s+nanami\b", r"\bnanami\s+yanagawa\b", r"梁川奈々美"]),
+    ("Hello! Project", "Sayumi Michishige", [r"\bsayumi\s+michishige\b", r"\bmichishige\s+sayumi\b", r"道重さゆみ", r"\bsayuming\b"]),
+    ("Hello! Project", "Aya Matsuura", [r"\baya\s+matsuura\b", r"\bmatsuura\s+aya\b", r"松浦亜弥"]),
+    ("Hello! Project", "Maki Goto", [r"\bmaki\s+goto\b", r"\bgoto\s+maki\b", r"後藤真希"]),
+    ("Hello! Project", "Natsumi Abe", [r"\bnatsumi\s+abe\b", r"\babe\s+natsumi\b", r"安倍なつみ"]),
+    ("Hello! Project", "Erina Mano", [r"\berina\s+mano\b", r"\bmano\s+erina\b", r"真野恵里菜"]),
+    ("Hello! Project", "Airi Suzuki", [r"\bairi\s+suzuki\b", r"\bsuzuki\s+airi\b", r"鈴木愛理"]),
+    ("Hello! Project", "Miki Fujimoto", [r"\bmiki\s+fujimoto\b", r"\bfujimoto\s+miki\b", r"藤本美貴", r"\bmikitty\b"]),
+    ("Hello! Project", "Karin Miyamoto", [r"\bkarin\s+miyamoto\b", r"\bmiyamoto\s+karin\b", r"宮本佳林"]),
+    ("AKB48 Group", "Sayaka Yamamoto", [r"\byamamoto\s+sayaka\b", r"\bsayaka\s+yamamoto\b", r"山本彩"]),
+    ("AKB48 Group", "Maeda Atsuko", [r"\bmaeda\s+atsuko\b", r"\batsuko\s+maeda\b", r"前田敦子"]),
+    ("AKB48 Group", "Oshima Yuko", [r"\boshima\s+yuko\b", r"\byuko\s+oshima\b", r"大島優子"]),
+    ("AKB48 Group", "Watanabe Mayu", [r"\bwatanabe\s+mayu\b", r"\bmayu\s+watanabe\b", r"渡辺麻友", r"まゆゆ"]),
+    ("AKB48 Group", "Kashiwagi Yuki", [r"\bkashiwagi\s+yuki\b", r"\byuki\s+kashiwagi\b", r"柏木由紀", r"ゆきりん"]),
+    ("AKB48 Group", "Sashihara Rino", [r"\bsashihara\s+rino\b", r"\brino\s+sashihara\b", r"指原莉乃", r"さっしー"]),
+    ("AKB48 Group", "Itano Tomomi", [r"\bitano\s+tomomi\b", r"\btomomi\s+itano\b", r"板野友美"]),
+    ("Sakamichi Series", "Shiraishi Mai", [r"\bshiraishi\s+mai\b", r"\bmai\s+shiraishi\b", r"白石麻衣", r"まいやん"]),
+    ("Sakamichi Series", "Nishino Nanase", [r"\bnishino\s+nanase\b", r"\bnanase\s+nishino\b", r"西野七瀬", r"なぁちゃん"]),
+    ("Sakamichi Series", "Ikuta Erika", [r"\bikuta\s+erika\b", r"\berika\s+ikuta\b", r"生田絵梨花", r"いくちゃん"]),
+    ("Sakamichi Series", "Saito Asuka", [r"\bsaito\s+asuka\b", r"\basuka\s+saito\b", r"齋藤飛鳥", r"あしゅ"]),
+    ("Sakamichi Series", "Hirate Yurina", [r"\bhirate\s+yurina\b", r"\byurina\s+hirate\b", r"平手友梨奈", r"てち"])
 ]
 
 PROTECTED_SUBUNITS = {
     "Tanpopo", "Minimoni", "W", "v-u-den", "GAM",
-    "Tsukishima Kirari", "Taiyo to Ciscomoon", "You Kikkawa",
+    "Tsukishima Kirari", "Tsukishima Kirari (Kusumi Koharu)", "Taiyo to Ciscomoon", "You Kikkawa",
     "Maki Goto", "Aya Matsuura", "Natsumi Abe", "Miki Fujimoto",
     "Erina Mano", "Airi Suzuki", "Sayumi Michishige", "Buono!",
-    "Karin Miyamoto", "Maria Makino", "Yuko Nakazawa", "Kaori Iida",
+    "Karin Miyamoto", "Maria Makino", "Makino Maria", "Yuko Nakazawa", "Kaori Iida",
     "Reina Tanaka", "Ai Takahashi", "Risa Niigaki", "Maimi Yajima",
     "Masaki Sato", "Riho Sayashi", "Manaka Inaba", "Mizuki Fukumura",
     "Momoko Tsugunaga", "Miyabi Natsuyaki", "Risako Sugaya", "Yurina Kumai",
@@ -113,8 +219,32 @@ LEGACY_ROSTER_GROUPS = {
     "Tanpopo", "Minimoni", "W", "v-u-den", "GAM", "Taiyo to Ciscomoon",
     "Melon Kinenbi", "Berryz Kobo", "℃-ute", "Buono!", "Country Girls",
     "Kobushi Factory", "LoVendoR", "PINK CRES.", "Tsukishima Kirari",
+    "Tsukishima Kirari (Kusumi Koharu)",
     "Not yet", "no3b", "French Kiss", "Watarirouka Hashiritai"
 }
+
+def verify_tsukishima_kirari_item(pid, title, artist=""):
+    t_lower = str(title).lower()
+    pid_upper = str(pid).upper()
+    if any(sig in t_lower for sig in ["kusumi koharu", "koharu kusumi", "久住小春"]):
+        return True, "Direct Koharu Kusumi Mention"
+    if any(pid_upper.startswith(pfx) for pfx in ["EPCE", "EPBE", "EPDE"]):
+        if any(sig in t_lower for sig in KIRARI_KUSUMI_CANONICAL_SIGNATURES) or "月島きらり" in title or "kirari" in t_lower:
+            return True, "Up-Front Catalog ID Match"
+    for sig in KIRARI_KUSUMI_CANONICAL_SIGNATURES:
+        if sig in t_lower:
+            return True, f"Canonical Signature Match: '{sig}'"
+    return False, "No Kusumi Koharu signature or Up-Front catalog match"
+
+def is_boyband_or_anime_false_positive(text):
+    t_lower = str(text).lower()
+    for pat in MALE_BOYBAND_PATTERNS:
+        if re.search(pat, t_lower):
+            return True, pat
+    for pat in NON_IDOL_MEDIA_PATTERNS:
+        if re.search(pat, t_lower):
+            return True, pat
+    return False, ""
 
 TARGET_GROUPS = [
     # Hello! Project — Active Groups & Units
@@ -175,12 +305,12 @@ TARGET_GROUPS = [
     ("Hello! Project", "Erina Mano", ["Erina Mano", "真野恵里菜"], ["Erina Mano", "Mano Erina", "真野恵里菜"]),
     ("Hello! Project", "Airi Suzuki", ["Airi Suzuki", "鈴木愛理"], ["Airi Suzuki", "Suzuki Airi", "鈴木愛理"]),
     ("Hello! Project", "Miki Fujimoto", ["Miki Fujimoto", "藤本美貴"], ["Miki Fujimoto", "Fujimoto Miki", "藤本美貴", "Mikitty"]),
-    ("Hello! Project", "Tsukishima Kirari", ["月島きらり starring 久住小春", "久住小春", "Tsukishima Kirari"], [
+    ("Hello! Project", "Tsukishima Kirari (Kusumi Koharu)", ["月島きらり starring 久住小春", "久住小春", "Tsukishima Kirari"], [
         "久住小春", "Kusumi Koharu", "Koharu Kusumi", "月島きらり starring 久住小春", "Tsukishima Kirari starring Koharu Kusumi"
     ]),
     ("Hello! Project", "Karin Miyamoto", ["Karin Miyamoto", "宮本佳林"], ["Karin Miyamoto", "Miyamoto Karin", "宮本佳林"]),
 
-    # Hello! Project — 43 Specific Former & Graduate Soloists
+    # Hello! Project — Former & Graduate Soloists
     ("Hello! Project", "Maria Makino", ["Maria Makino", "牧野真莉愛"], ["Maria Makino", "Makino Maria", "牧野真莉愛"]),
     ("Hello! Project", "Yuko Nakazawa", ["Yuko Nakazawa", "中澤裕子"], ["Yuko Nakazawa", "Nakazawa Yuko", "中澤裕子"]),
     ("Hello! Project", "Kaori Iida", ["Kaori Iida", "飯田圭織"], ["Kaori Iida", "Iida Kaori", "飯田圭織"]),
@@ -253,12 +383,12 @@ TARGET_GROUPS = [
 
     # AKB48 Group — Legendary Soloists & Graduates
     ("AKB48 Group", "Sayaka Yamamoto", ["Sayaka Yamamoto", "山本彩"], ["Sayaka Yamamoto", "Yamamoto Sayaka", "山本彩", "Sayanee"]),
-    ("AKB48 Group", "Atsuko Maeda", ["Atsuko Maeda", "前田敦子"], ["Atsuko Maeda", "Maeda Atsuko", "前田敦子"]),
-    ("AKB48 Group", "Yuko Oshima", ["Yuko Oshima", "大島優子"], ["Yuko Oshima", "Oshima Yuko", "大島優子"]),
-    ("AKB48 Group", "Mayu Watanabe", ["Mayu Watanabe", "渡辺麻友"], ["Mayu Watanabe", "Watanabe Mayu", "渡辺麻友", "Mayuyu"]),
-    ("AKB48 Group", "Yuki Kashiwagi", ["Yuki Kashiwagi", "柏木由紀"], ["Yuki Kashiwagi", "Kashiwagi Yuki", "柏木由紀", "Yukirin"]),
-    ("AKB48 Group", "Rino Sashihara", ["Rino Sashihara", "指原莉乃"], ["Rino Sashihara", "Sashihara Rino", "指原莉乃", "Sashiko"]),
-    ("AKB48 Group", "Tomomi Itano", ["Tomomi Itano", "板野友美"], ["Tomomi Itano", "Itano Tomomi", "板野友美", "Tomochin"]),
+    ("AKB48 Group", "Maeda Atsuko", ["Atsuko Maeda", "前田敦子"], ["Atsuko Maeda", "Maeda Atsuko", "前田敦子"]),
+    ("AKB48 Group", "Oshima Yuko", ["Yuko Oshima", "大島優子"], ["Yuko Oshima", "Oshima Yuko", "大島優子"]),
+    ("AKB48 Group", "Watanabe Mayu", ["Mayu Watanabe", "渡辺麻友"], ["Mayu Watanabe", "Watanabe Mayu", "渡辺麻友", "Mayuyu"]),
+    ("AKB48 Group", "Kashiwagi Yuki", ["Yuki Kashiwagi", "柏木由紀"], ["Yuki Kashiwagi", "Kashiwagi Yuki", "柏木由紀", "Yukirin"]),
+    ("AKB48 Group", "Sashihara Rino", ["Rino Sashihara", "指原莉乃"], ["Rino Sashihara", "Sashihara Rino", "指原莉乃", "Sashiko"]),
+    ("AKB48 Group", "Itano Tomomi", ["Tomomi Itano", "板野友美"], ["Tomomi Itano", "Itano Tomomi", "板野友美", "Tomochin"]),
 
     # Sakamichi Series & Rivals
     ("Sakamichi Series", "Nogizaka46", ["Nogizaka46", "乃木坂46"], ["Nogizaka46", "Nogizaka", "乃木坂"]),
@@ -273,11 +403,11 @@ TARGET_GROUPS = [
     ("Sakamichi Series", "Boku ga Mitakatta Aozora", ["僕が見たかった青空", "Boku ga Mitakatta Aozora"], ["僕が見たかった青空", "Boku ga Mitakatta Aozora", "僕青"]),
 
     # Sakamichi Series — Solo Graduates
-    ("Sakamichi Series", "Mai Shiraishi", ["Mai Shiraishi", "白石麻衣"], ["Mai Shiraishi", "Shiraishi Mai", "白石麻衣", "Passport"]),
-    ("Sakamichi Series", "Nanase Nishino", ["Nanase Nishino", "西野七瀬"], ["Nanase Nishino", "Nishino Nanase", "西野七瀬"]),
-    ("Sakamichi Series", "Erika Ikuta", ["Erika Ikuta", "生田絵梨花"], ["Erika Ikuta", "Ikuta Erika", "生田絵梨花"]),
-    ("Sakamichi Series", "Asuka Saito", ["Asuka Saito", "齋藤飛鳥"], ["Asuka Saito", "Saito Asuka", "齋藤飛鳥"]),
-    ("Sakamichi Series", "Yurina Hirate", ["Yurina Hirate", "平手友梨奈"], ["Yurina Hirate", "Hirate Yurina", "平手友梨奈"]),
+    ("Sakamichi Series", "Shiraishi Mai", ["Mai Shiraishi", "白石麻衣"], ["Mai Shiraishi", "Shiraishi Mai", "白石麻衣", "Passport"]),
+    ("Sakamichi Series", "Nishino Nanase", ["Nanase Nishino", "西野七瀬"], ["Nanase Nishino", "Nishino Nanase", "西野七瀬"]),
+    ("Sakamichi Series", "Ikuta Erika", ["Erika Ikuta", "生田絵梨花"], ["Erika Ikuta", "Ikuta Erika", "生田絵梨花"]),
+    ("Sakamichi Series", "Saito Asuka", ["Asuka Saito", "齋藤飛鳥"], ["Asuka Saito", "Saito Asuka", "齋藤飛鳥"]),
+    ("Sakamichi Series", "Hirate Yurina", ["Yurina Hirate", "平手友梨奈"], ["Yurina Hirate", "Hirate Yurina", "平手友梨奈"]),
 
     # Stardust Planet
     ("Stardust Planet", "Momoiro Clover Z", ["Momoiro Clover Z", "ももいろクローバーZ"], ["Momoiro Clover", "Momoclo", "ももいろクローバーZ", "ももクロ"]),
@@ -330,55 +460,100 @@ def clean_text(text):
 def is_calendar_valid(year, month, day):
     try:
         datetime(year, month, day)
-        return True
+        return 1900 <= year <= 2099
     except (ValueError, OverflowError):
         return False
 
-def parse_normalized_date(date_raw_str):
-    if not date_raw_str:
+def parse_cdjapan_date(raw_text):
+    if not raw_text:
         return ""
-    text = clean_text(date_raw_str)
+    text = unicodedata.normalize("NFKC", str(raw_text))
+    text = re.sub(r"\s+", " ", text).strip()
 
-    m1 = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", text)
+    # Match YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, or ISO-8601
+    m1 = re.search(r"(?<!\d)(19\d\d|20\d\d)\s*([/\-.])\s*(\d{1,2})\s*\2\s*(\d{1,2})(?!\d)", text)
     if m1:
-        y, m, d = int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        y, m, d = int(m1.group(1)), int(m1.group(3)), int(m1.group(4))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    match_jp = re.search(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", text)
-    if match_jp:
-        y, m, d = int(match_jp.group(1)), int(match_jp.group(2)), int(match_jp.group(3))
+    # Match compact 8-digit date: YYYYMMDD
+    m_compact = re.search(r"(?<!\d)(19\d\d|20\d\d)(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!\d)", text)
+    if m_compact:
+        y, m, d = int(m_compact.group(1)), int(m_compact.group(2)), int(m_compact.group(3))
         if is_calendar_valid(y, m, d):
             return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    match_en = re.search(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
-    if match_en:
-        mon_str = match_en.group(1).lower()
+    # Match Japanese format YYYY年MM月DD日 or YYYY年MM月
+    m2 = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月(?:\s*(\d{1,2})\s*日)?", text)
+    if m2:
+        y, m = int(m2.group(1)), int(m2.group(2))
+        d = int(m2.group(3)) if m2.group(3) else 1
+        if is_calendar_valid(y, m, d):
+            return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
+
+    # Match Month DD, YYYY (e.g., September 21, 2024 or Oct. 23, 2024)
+    m3 = re.search(r"\b([A-Za-z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(19\d\d|20\d\d)\b", text)
+    if m3:
+        mon_str = m3.group(1).lower()
         if mon_str in MONTH_MAP:
-            y, m, d = int(match_en.group(3)), MONTH_MAP[mon_str], int(match_en.group(2))
+            y, m, d = int(m3.group(3)), MONTH_MAP[mon_str], int(m3.group(2))
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    match_en_rev = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(19\d\d|20\d\d)\b", text)
-    if match_en_rev:
-        mon_str = match_en_rev.group(2).lower()
+    # Match DD Month YYYY (e.g., 21 September 2024 or 21 Oct. 2024)
+    m4 = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
+    if m4:
+        mon_str = m4.group(2).lower()
         if mon_str in MONTH_MAP:
-            y, m, d = int(match_en_rev.group(3)), MONTH_MAP[mon_str], int(match_en_rev.group(1))
+            y, m, d = int(m4.group(3)), MONTH_MAP[mon_str], int(m4.group(1))
             if is_calendar_valid(y, m, d):
                 return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
 
-    match_ym = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})\b", text)
-    if match_ym:
-        y, m = int(match_ym.group(1)), int(match_ym.group(2))
+    # Match YYYY Month DD (e.g., 2024 October 25 or 2024 Oct. 25)
+    m_ymd = re.search(r"\b(19\d\d|20\d\d)\s+([A-Za-z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b", text)
+    if m_ymd:
+        mon_str = m_ymd.group(2).lower()
+        if mon_str in MONTH_MAP:
+            y, m, d = int(m_ymd.group(1)), MONTH_MAP[mon_str], int(m_ymd.group(3))
+            if is_calendar_valid(y, m, d):
+                return f"{y}/{str(m).zfill(2)}/{str(d).zfill(2)}"
+
+    # Match YYYY Month -> default to 1st of month
+    m_ym = re.search(r"\b(19\d\d|20\d\d)\s+([A-Za-z]+)\.?\b", text)
+    if m_ym:
+        mon_str = m_ym.group(2).lower()
+        if mon_str in MONTH_MAP:
+            y, m = int(m_ym.group(1)), MONTH_MAP[mon_str]
+            if 1 <= m <= 12:
+                return f"{y}/{str(m).zfill(2)}/01"
+
+    # Match Month YYYY -> default to 1st of month
+    m5 = re.search(r"\b([A-Za-z]+)\.?,?\s+(19\d\d|20\d\d)\b", text)
+    if m5:
+        mon_str = m5.group(1).lower()
+        if mon_str in MONTH_MAP:
+            y, m = int(m5.group(2)), MONTH_MAP[mon_str]
+            if 1 <= m <= 12:
+                return f"{y}/{str(m).zfill(2)}/01"
+
+    # Match Year & Month with slash or hyphen only: YYYY/MM or YYYY-MM
+    m6 = re.search(r"(?<![/\-.\d])\b(19\d\d|20\d\d)\s*[/\-]\s*(\d{1,2})\b(?![/\-.\d])", text)
+    if m6:
+        y, m = int(m6.group(1)), int(m6.group(2))
         if 1 <= m <= 12:
             return f"{y}/{str(m).zfill(2)}/01"
 
     return ""
 
+def parse_normalized_date(date_raw_str):
+    return parse_cdjapan_date(date_raw_str)
+
 def is_date_upcoming(date_str):
     if not date_str:
         return False
-    m = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", date_str)
+    clean = str(date_str).strip()
+    m = re.search(r"\b(19\d\d|20\d\d)[/-](\d{1,2})[/-](\d{1,2})\b", clean)
     if not m:
         return False
     val = (int(m.group(1)) * 10000) + (int(m.group(2)) * 100) + int(m.group(3))
@@ -387,7 +562,7 @@ def is_date_upcoming(date_str):
     return val > today_val
 
 def is_upfront_affiliated(pid, title_lower):
-    pid_upper = pid.upper()
+    pid_upper = str(pid).upper()
     if any(pid_upper.startswith(pfx) for pfx in ALL_UPFRONT_PREFIXES):
         return True
     if any(h in title_lower for h in ["hello! project", "ハロー!プロジェクト", "ハロプロ", "e-lineup", "up-front", "アップフロント", "演劇女子部"]):
@@ -401,26 +576,18 @@ def is_relevant_product(card_text, canonical_artist, keywords, prod_key, is_dire
     lower_text = card_text.lower()
     pid_upper = str(prod_key).upper()
 
-    for pat in MALE_BOYBAND_PATTERNS:
-        if re.search(pat, lower_text):
-            has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
-            if not has_female_artist:
-                return False
+    # Protect known female idol groups and authentic Up-Front prefixes
+    is_protected_female_idol = any(g.lower() in lower_text for g in PRIMARY_GROUP_NAMES) or \
+                               any(pid_upper.startswith(pfx) for pfx in ALL_UPFRONT_PREFIXES)
 
-    for pat in NON_IDOL_MEDIA_PATTERNS:
-        if re.search(pat, lower_text):
-            has_female_artist = any(sig.lower() in lower_text for _, art, _, _ in TARGET_GROUPS for sig in [art])
-            if not has_female_artist:
-                return False
-
-    if canonical_artist == "Tsukishima Kirari":
-        has_kusumi = any(sig in lower_text for sig in [
-            "kusumi koharu", "koharu kusumi", "久住小春", "starring 久住小春",
-            "starring koharu kusumi", "月島きらり starring 久住小春"
-        ])
-        if not has_kusumi:
+    if not is_protected_female_idol:
+        is_bad, _ = is_boyband_or_anime_false_positive(card_text)
+        if is_bad:
             return False
-        return True
+
+    if "kirari" in canonical_artist.lower() or "月島きらり" in card_text or "きらりん" in card_text:
+        is_valid_kirari, _ = verify_tsukishima_kirari_item(prod_key, card_text, canonical_artist)
+        return is_valid_kirari
 
     if canonical_artist == "Country Girls":
         if is_upfront_affiliated(prod_key, lower_text):
@@ -600,10 +767,10 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
                     price_str = f"¥{price_num:,}"
 
         rel_date = ""
-        for sel in [".release_date", ".item-date", ".date", "td.date", "span.date"]:
+        for sel in [".release_date", ".item-date", ".date", "td.date", "span.date", "time"]:
             node = card.select_one(sel)
             if node:
-                parsed = parse_normalized_date(node.get_text())
+                parsed = parse_cdjapan_date(node.get_text())
                 if parsed:
                     rel_date = parsed
                     break
@@ -614,29 +781,30 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
                 and ("release" in el.get_text().lower() or "発売" in el.get_text())
             )
             for d_node in date_nodes:
-                parsed = parse_normalized_date(d_node.get_text())
+                parsed = parse_cdjapan_date(d_node.get_text())
                 if parsed:
                     rel_date = parsed
                     break
 
         if not rel_date:
-            rel_date = parse_normalized_date(card.get_text())
+            rel_date = parse_cdjapan_date(card.get_text())
 
         if not rel_date:
             rel_date = "Available Now"
 
         card_text_lower = card.get_text().lower()
-        if (
-            "out of print" in card_text_lower or
-            "sold out" in card_text_lower or
-            "no longer available" in card_text_lower or
-            "archive" in card_text_lower or
-            "廃盤" in card_text_lower or
-            "取扱終了" in card_text_lower
-        ):
-            availability = "oop"
-        elif is_date_upcoming(rel_date) or "pre-order" in card_text_lower or "予約" in card_text_lower:
+        has_preorder_btn = bool(card.select_one(".btn-preorder, input[value*='Pre-order'], button:has-text('Pre-order'), a:has-text('Pre-order')"))
+        has_cart_btn = bool(card.select_one(".btn-cart, input[value*='Add to Cart'], button:has-text('Add to Cart'), a:has-text('Add to Cart')"))
+
+        # Accurate availability resolution (without false-positive "archive" trigger)
+        if is_date_upcoming(rel_date):
             availability = "preorder"
+        elif has_preorder_btn or "pre-order" in card_text_lower or "予約" in card_text_lower:
+            availability = "preorder"
+        elif has_cart_btn or any(term in card_text_lower for term in ["add to cart", "in stock", "usually ships", "在庫あり", "24時間以内", "カートに入れる"]):
+            availability = "instock"
+        elif any(term in card_text_lower for term in ["out of print", "no longer available", "discontinued", "sold out", "廃盤", "取扱終了"]):
+            availability = "oop"
         else:
             availability = "instock"
 
@@ -644,11 +812,70 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
         if not is_relevant_product(searchable_card_text, canonical_artist, keywords, prod_key, is_direct_person=is_direct_person):
             continue
 
+        # Ingestion-Time Taxonomy Classification Engine
+        final_artist = canonical_artist
+        final_category = category
+        full_text_lower = searchable_card_text.lower()
+
+        # Step A: Tsukishima Kirari (Koharu Kusumi) standard name
+        if "kirari" in canonical_artist.lower() or "月島きらり" in raw_title:
+            final_artist = "Tsukishima Kirari (Kusumi Koharu)"
+            final_category = "Hello! Project"
+
+        # Step B: HKT48 Summer Hall Tour fix
+        if prod_key == "HKT-D0026" or "hkt48 natsu no hall tour" in full_text_lower:
+            final_artist = "HKT48"
+            final_category = "AKB48 Group"
+
+        # Step C: Detect canonical group concert tours and lock to primary group
+        is_primary_group_concert = False
+        for group in PRIMARY_GROUP_NAMES:
+            if group.lower() in full_text_lower and any(kw in full_text_lower for kw in [
+                "concert tour", "live tour", "anniversary live", "final live", "sotsugyo special", "graduation ceremony"
+            ]) and not any(kw in full_text_lower for kw in ["photobook", "photo book", "写真集", "visual book"]):
+                final_artist = group
+                for g_cat, g_art, _, _ in TARGET_GROUPS:
+                    if g_art == group:
+                        final_category = g_cat
+                        break
+                is_primary_group_concert = True
+                break
+
+        # Step D: Soloist & Graduate reclassification (when not a full group concert)
+        is_joint_hp_event = any(kw in full_text_lower for kw in [
+            "hina fes", "ひなフェス", "countdown japan", "hello! project 20",
+            "hello! project 19", "hello! project 202", "recital", "定期公演"
+        ])
+        is_group_concert_or_album = (
+            final_artist in PRIMARY_GROUP_NAMES and
+            not any(kw in full_text_lower for kw in [
+                "photobook", "photo book", "写真集", "solo live", "solo album",
+                "solo single", "solo tour", "visual book"
+            ])
+        )
+
+        if not is_primary_group_concert and not is_group_concert_or_album and not is_joint_hp_event:
+            for cat_target, soloist_name, patterns in SOLO_GRADUATE_RULES:
+                matched_soloist = False
+                for pat in patterns:
+                    if re.search(pat, full_text_lower):
+                        final_artist = soloist_name
+                        final_category = cat_target
+                        matched_soloist = True
+                        break
+                if matched_soloist:
+                    break
+
+        # Step E: Standardize Sakurazaka46 / Keyakizaka46
+        if final_artist in ["Keyakizaka46", "欅坂46"]:
+            final_artist = "Sakurazaka46"
+            final_category = "Sakamichi Series"
+
         items_dict[prod_key] = {
             "id": prod_key,
             "title": raw_title,
-            "artist": canonical_artist,
-            "category": category,
+            "artist": final_artist,
+            "category": final_category,
             "price": price_str,
             "price_num": price_num,
             "release_date": rel_date,
@@ -902,13 +1129,19 @@ def main():
                         catalog[pid] = it
                     else:
                         existing_artist = str(catalog[pid].get("artist", "")).strip()
+                        # Preserve established soloist/sub-unit taxonomies
                         if existing_artist in PROTECTED_SUBUNITS and it["artist"] not in PROTECTED_SUBUNITS:
                             it["artist"] = existing_artist
 
+                        # Preserve verified dates if new scrape returned generic placeholder
                         existing_date = str(catalog[pid].get("release_date", "")).strip()
                         new_date = str(it.get("release_date", "")).strip()
                         if existing_date and existing_date != "Available Now" and (not new_date or new_date == "Available Now"):
                             it["release_date"] = existing_date
+
+                        # Preserve preorder status if release date is in the future
+                        if is_date_upcoming(it.get("release_date")) or is_date_upcoming(existing_date):
+                            it["availability"] = "preorder"
 
                         catalog[pid] = it
 
@@ -926,7 +1159,12 @@ def main():
 
         browser.close()
 
+    # 1. Save master products.json
     with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
+
+    # 2. Synchronize frontend catalog-index.json
+    with open(INDEX_FILE, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
     state_data = {

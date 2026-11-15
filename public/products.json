@@ -1874,7 +1874,7 @@
   "NEODAI-170982": {
     "id": "NEODAI-170982",
     "title": "Collectible Juice=Juice 10th ANNIVERSARY CONCERT TOUR -10th Juice- Encore Solo Scarf Towel [Matsunaga Riai]",
-    "artist": "Juice=Juice",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -1888,7 +1888,7 @@
   "NEODAI-171066": {
     "id": "NEODAI-171066",
     "title": "Collectible Juice=Juice 10th ANNIVERSARY CONCERT TOUR -10th Juice- Encore Solo Scarf Towel [Kudo Yume]",
-    "artist": "Juice=Juice",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥2,800",
     "price_num": 2800,
@@ -10239,7 +10239,7 @@
   "NEODAI-280315": {
     "id": "NEODAI-280315",
     "title": "Blu-ray HINATAZAKA46 GRADUATION CEREMONY BOX 2023-2025 [Limited Release] [Sony Music Shop Limited] w/ Bonus: B2 Poster (Hamagishi Hiyori & Tomita Suzuka)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥40,000",
     "price_num": 40000,
@@ -34243,7 +34243,7 @@
   "HKXN-50077": {
     "id": "HKXN-50077",
     "title": "Blu-ray Juice=Juice & Country Girls Live - Yanagawa Nanami Sotsugyo Special -",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥5,278",
     "price_num": 5278,
@@ -34257,7 +34257,7 @@
   "HKBN-50237": {
     "id": "HKBN-50237",
     "title": "DVD Juice=Juice & Country Girls Live - Yanagawa Nanami Sotsugyo Special -",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥4,000",
     "price_num": 4000,
@@ -34453,7 +34453,7 @@
   "DCFGDS-803256-A": {
     "id": "DCFGDS-803256-A",
     "title": "Collectible A5 Wide Photo Set (2 Pieces) [Country Girls Concert Tour 2017 Haru - Momochi-ism -]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥909",
     "price_num": 909,
@@ -34509,7 +34509,7 @@
   "DCFGDS-903263": {
     "id": "DCFGDS-903263",
     "title": "Collectible A5 Wide Photo Set of 2 Pieces Part-2[Country Girls Live Tour2016 Fuyu]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥909",
     "price_num": 909,
@@ -34537,7 +34537,7 @@
   "DCFGDS-903205": {
     "id": "DCFGDS-903205",
     "title": "Collectible Live Wristband[Country Girls Live Tour2016 Fuyu]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥727",
     "price_num": 727,
@@ -34901,7 +34901,7 @@
   "DCFGDS-942119": {
     "id": "DCFGDS-942119",
     "title": "Collectible Chisaki Morito Wrist Band [Country Girls Live Tour 2015]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥741",
     "price_num": 741,
@@ -34929,7 +34929,7 @@
   "DCFGDS-942118": {
     "id": "DCFGDS-942118",
     "title": "Collectible Manaka Inaba Wrist Band [Country Girls Live Tour 2015]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥741",
     "price_num": 741,
@@ -34943,7 +34943,7 @@
   "DCFGDS-942115": {
     "id": "DCFGDS-942115",
     "title": "Collectible Tour Wrist Band [Country Girls Live Tour 2015]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥741",
     "price_num": 741,
@@ -34971,7 +34971,7 @@
   "DCFGDS-942116": {
     "id": "DCFGDS-942116",
     "title": "Collectible Momoko Tsugunaga Wrist Band [Country Girls Live Tour 2015]",
-    "artist": "Country Girls",
+    "artist": "W",
     "category": "Hello! Project",
     "price": "¥741",
     "price_num": 741,
@@ -40930,10 +40930,9 @@
     "price_num": 2818,
     "release_date": "2021/09/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/03/DAKUFCW-1154.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1154",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFXW-1012": {
     "id": "DAKUFXW-1012",
@@ -40944,10 +40943,9 @@
     "price_num": 5636,
     "release_date": "2019/11/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/10/DAKUFXW-1012.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1012",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFXW-1010": {
     "id": "DAKUFXW-1010",
@@ -40958,10 +40956,9 @@
     "price_num": 5556,
     "release_date": "2017/12/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/08/DAKUFXW-1010.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1010",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1123": {
     "id": "DAKUFCW-1123",
@@ -40972,10 +40969,9 @@
     "price_num": 2778,
     "release_date": "2017/07/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/45/DAKUFCW-1123.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1123",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-424753": {
     "id": "NEOBK-424753",
@@ -40988,8 +40984,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/10/NEOBK-424753.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-424753",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2918227": {
     "id": "NEOBK-2918227",
@@ -41002,8 +40997,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/36/NEOBK-2918227.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2918227",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPXE-5060": {
     "id": "EPXE-5060",
@@ -41016,8 +41010,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/10/EPXE-5060.jpg?v=1",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPXE-5060",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1681499": {
     "id": "NEOBK-1681499",
@@ -41026,12 +41019,11 @@
     "category": "Hello! Project",
     "price": "¥980",
     "price_num": 980,
-    "release_date": "2014/07/25",
+    "release_date": "2014/07/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/05/NEOBK-1681499.jpg?v=3",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1681499",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-509884": {
     "id": "NEOBK-509884",
@@ -41058,8 +41050,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/28/NEOBK-3026559.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3026559",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-3026556": {
     "id": "NEOBK-3026556",
@@ -41072,8 +41063,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/25/NEOBK-3026556.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-3026556",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2930336": {
     "id": "NEOBK-2930336",
@@ -41086,8 +41076,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/NEOBK-2930336.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2930336",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-148870": {
     "id": "NEODAI-148870",
@@ -41100,8 +41089,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/NEODAI-148870.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-148870",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2797481": {
     "id": "NEOBK-2797481",
@@ -41114,8 +41102,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/03/08/NEOBK-2797481.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2797481",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2678649": {
     "id": "NEOBK-2678649",
@@ -41128,8 +41115,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/09/NEOBK-2678649.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2678649",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-131761": {
     "id": "NEODAI-131761",
@@ -41142,8 +41128,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/36/NEODAI-131761.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-131761",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2588701": {
     "id": "NEOBK-2588701",
@@ -41156,8 +41141,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/30/NEOBK-2588701.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2588701",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-104156": {
     "id": "NEODAI-104156",
@@ -41170,8 +41154,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/13/40/NEODAI-104156.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-104156",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-86778": {
     "id": "NEODAI-86778",
@@ -41184,8 +41167,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/00/NEODAI-86778.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-86778",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2544450": {
     "id": "NEOBK-2544450",
@@ -41198,8 +41180,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/29/NEOBK-2544450.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2544450",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2422941": {
     "id": "NEOBK-2422941",
@@ -41212,8 +41193,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/17/NEOBK-2422941.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2422941",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2359200": {
     "id": "NEOBK-2359200",
@@ -41222,12 +41202,11 @@
     "category": "Hello! Project",
     "price": "¥1,500",
     "price_num": 1500,
-    "release_date": "Available Now",
+    "release_date": "2019/07/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEOBK-2359200.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2359200",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "AVCD-94366": {
     "id": "AVCD-94366",
@@ -41238,10 +41217,9 @@
     "price_num": 1200,
     "release_date": "2019/03/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/10/AVCD-94366.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-94366",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "AVCD-94365": {
     "id": "AVCD-94365",
@@ -41252,10 +41230,9 @@
     "price_num": 4200,
     "release_date": "2019/03/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/09/AVCD-94365.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-94365",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "AVCD-94363": {
     "id": "AVCD-94363",
@@ -41266,10 +41243,9 @@
     "price_num": 2800,
     "release_date": "2019/03/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/07/AVCD-94363.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FAVCD-94363",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-49259": {
     "id": "NEODAI-49259",
@@ -41282,8 +41258,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/35/NEODAI-49259.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-49259",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2247490": {
     "id": "NEOBK-2247490",
@@ -41292,12 +41267,11 @@
     "category": "Hello! Project",
     "price": "¥2,315",
     "price_num": 2315,
-    "release_date": "Available Now",
+    "release_date": "2018/07/01",
     "image": "https://st.cdjapan.co.jp/pictures/l/15/14/NEOBK-2247490.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2247490",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-42279": {
     "id": "NEODAI-42279",
@@ -41310,8 +41284,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/32/NEODAI-42279.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-42279",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-39427": {
     "id": "NEODAI-39427",
@@ -41324,8 +41297,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/19/NEODAI-39427.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-39427",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-2178298": {
     "id": "NEOBK-2178298",
@@ -41338,8 +41310,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/38/NEOBK-2178298.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-2178298",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFBW-1639": {
     "id": "DAKUFBW-1639",
@@ -41350,10 +41321,9 @@
     "price_num": 4000,
     "release_date": "2019/11/20",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/09/DAKUFBW-1639.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1639",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802311-A": {
     "id": "DCFGDS-802311-A",
@@ -41366,8 +41336,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/12/DCFGDS-802311-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802311-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802337-A": {
     "id": "DCFGDS-802337-A",
@@ -41380,8 +41349,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/DCFGDS-802337-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802337-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802301-A": {
     "id": "DCFGDS-802301-A",
@@ -41394,8 +41362,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/04/DCFGDS-802301-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802301-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802356-A": {
     "id": "DCFGDS-802356-A",
@@ -41408,8 +41375,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/15/DCFGDS-802356-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802356-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802354-A": {
     "id": "DCFGDS-802354-A",
@@ -41422,8 +41388,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/07/DCFGDS-802354-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802354-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802353-A": {
     "id": "DCFGDS-802353-A",
@@ -41436,8 +41401,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/DCFGDS-802353-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802353-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802336-A": {
     "id": "DCFGDS-802336-A",
@@ -41450,8 +41414,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/48/DCFGDS-802336-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802336-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802306-A": {
     "id": "DCFGDS-802306-A",
@@ -41464,8 +41427,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/24/DCFGDS-802306-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802306-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-802304-A": {
     "id": "DCFGDS-802304-A",
@@ -41478,13 +41440,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/16/DCFGDS-802304-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-802304-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1840903": {
     "id": "NEOBK-1840903",
     "title": "BOOK Michishige Sayumi to Iu Ikikata - Morning Musume. Shijo Saikyo no Leader to Yobareru Made - (Metropolitan Shinsho)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥800",
     "price_num": 800,
@@ -41492,8 +41453,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/42/NEOBK-1840903.jpg?v=2",
     "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1840903",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOUFD-925398": {
     "id": "NEOUFD-925398",
@@ -41506,8 +41466,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/45/NEOUFD-925398.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOUFD-925398",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-7302": {
     "id": "NEODAI-7302",
@@ -41520,8 +41479,7 @@
     "image": "https://www.cdjapan.co.jp/pictures/l/NEODAI-7302.jpg",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-7302",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPBE-5505": {
     "id": "EPBE-5505",
@@ -41532,10 +41490,9 @@
     "price_num": 4000,
     "release_date": "2015/02/11",
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/EPBE-5505.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5505",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-6965": {
     "id": "NEODAI-6965",
@@ -41548,13 +41505,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/29/NEODAI-6965.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-6965",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1590073": {
     "id": "NEOBK-1590073",
     "title": "BOOK KERA! 2014 December Issue [Cover] Michishige Sayumi (Morning Musume. '14)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥472",
     "price_num": 472,
@@ -41562,8 +41518,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/04/NEOBK-1590073.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1590073",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1717520": {
     "id": "NEOBK-1717520",
@@ -41576,13 +41531,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/03/NEOBK-1717520.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1717520",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1683494": {
     "id": "NEOBK-1683494",
     "title": "BOOK Idol JUNON 2014 [Cover] Michishige Sayumi (Morning Musume. '14) (Bessatsu JUNON)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥1,111",
     "price_num": 1111,
@@ -41590,8 +41544,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/16/NEOBK-1683494.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1683494",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1681925": {
     "id": "NEOBK-1681925",
@@ -41604,8 +41557,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/07/NEOBK-1681925.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1681925",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1670367": {
     "id": "NEOBK-1670367",
@@ -41618,13 +41570,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/18/NEOBK-1670367.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1670367",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1648872": {
     "id": "NEOBK-1648872",
     "title": "BOOK Shukan ASCII 2014 4/29 Issue [Cover] Michishige Sayumi (Morning Musume. '14)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥370",
     "price_num": 370,
@@ -41632,13 +41583,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/02/NEOBK-1648872.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1648872",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1639763": {
     "id": "NEOBK-1639763",
     "title": "BOOK Takarajima (Treasure Island) 2014 May Issue [Feature] Michishige Sayumi (Morning Musume. '14)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥552",
     "price_num": 552,
@@ -41646,8 +41596,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/38/NEOBK-1639763.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1639763",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1566055": {
     "id": "NEOBK-1566055",
@@ -41660,8 +41609,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/02/NEOBK-1566055.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1566055",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1483022": {
     "id": "NEOBK-1483022",
@@ -41674,7 +41622,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/18/NEOBK-1483022.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1483022",
-    "updated_at": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1475230": {
     "id": "NEOBK-1475230",
@@ -41687,12 +41635,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/26/NEOBK-1475230.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1475230",
-    "updated_at": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1441469": {
     "id": "NEOBK-1441469",
     "title": "BOOK GooBike Kitakanto Ban 2013 April Issue [Cover] Sayumi Michishige (Morning Musume.)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥190",
     "price_num": 190,
@@ -41700,13 +41648,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/18/NEOBK-1441469.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1441469",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1439500": {
     "id": "NEOBK-1439500",
     "title": "BOOK Goo Bike Chugoku Ban 2013 April Issue [Front Cover] Michishige Sayumi (Morning Musume.)",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥190",
     "price_num": 190,
@@ -41714,8 +41661,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/15/00/NEOBK-1439500.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1439500",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1418742": {
     "id": "NEOBK-1418742",
@@ -41728,8 +41674,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/14/27/NEOBK-1418742.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1418742",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEODAI-2366": {
     "id": "NEODAI-2366",
@@ -41742,8 +41687,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/23/NEODAI-2366.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-2366",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1029622": {
     "id": "NEOBK-1029622",
@@ -41756,8 +41700,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/12/13/NEOBK-1029622.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1029622",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-884034": {
     "id": "NEOBK-884034",
@@ -41770,7 +41713,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/04/07/NEOBK-884034.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-884034",
-    "updated_at": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-742961": {
     "id": "NEOBK-742961",
@@ -41783,8 +41726,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/02/32/NEOBK-742961.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-742961",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-573242": {
     "id": "NEOBK-573242",
@@ -41825,8 +41767,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/EPBE-5257.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5257",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-397551": {
     "id": "NEOBK-397551",
@@ -41894,8 +41835,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/48/NEODAI-159983.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEODAI-159983",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1170": {
     "id": "DAKUFCW-1170",
@@ -41906,10 +41846,9 @@
     "price_num": 1091,
     "release_date": "2025/07/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/03/DAKUFCW-1170.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1170",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1168": {
     "id": "DAKUFCW-1168",
@@ -41920,10 +41859,9 @@
     "price_num": 1900,
     "release_date": "2025/07/09",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/09/DAKUFCW-1168.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1168",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1160": {
     "id": "DAKUFCW-1160",
@@ -41934,10 +41872,9 @@
     "price_num": 3000,
     "release_date": "2024/04/03",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/DAKUFCW-1160.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1160",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFXW-1036": {
     "id": "DAKUFXW-1036",
@@ -41948,10 +41885,9 @@
     "price_num": 5455,
     "release_date": "2023/12/13",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/18/DAKUFXW-1036.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1036",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1158": {
     "id": "DAKUFCW-1158",
@@ -41962,10 +41898,9 @@
     "price_num": 3000,
     "release_date": "2023/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/07/DAKUFCW-1158.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1158",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFBW-1668": {
     "id": "DAKUFBW-1668",
@@ -41976,10 +41911,9 @@
     "price_num": 4000,
     "release_date": "2023/02/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/14/DAKUFBW-1668.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFBW-1668",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFXW-1022": {
     "id": "DAKUFXW-1022",
@@ -41990,10 +41924,9 @@
     "price_num": 8000,
     "release_date": "2021/12/15",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/12/DAKUFXW-1022.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1022",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812401-A": {
     "id": "DCFGDS-812401-A",
@@ -42006,8 +41939,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/35/DCFGDS-812401-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812401-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812462-A": {
     "id": "DCFGDS-812462-A",
@@ -42020,8 +41952,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/38/DCFGDS-812462-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812462-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812461-A": {
     "id": "DCFGDS-812461-A",
@@ -42034,8 +41965,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/34/DCFGDS-812461-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812461-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812446-A": {
     "id": "DCFGDS-812446-A",
@@ -42048,8 +41978,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/00/38/DCFGDS-812446-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812446-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1146": {
     "id": "DAKUFCW-1146",
@@ -42060,10 +41989,9 @@
     "price_num": 2778,
     "release_date": "2019/07/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/03/DAKUFCW-1146.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1146",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1144": {
     "id": "DAKUFCW-1144",
@@ -42074,10 +42002,9 @@
     "price_num": 3704,
     "release_date": "2019/07/24",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/01/DAKUFCW-1144.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1144",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1137": {
     "id": "DAKUFCW-1137",
@@ -42088,10 +42015,9 @@
     "price_num": 2778,
     "release_date": "2018/12/05",
     "image": "https://st.cdjapan.co.jp/pictures/l/00/02/DAKUFCW-1137.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1137",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812707-A": {
     "id": "DCFGDS-812707-A",
@@ -42104,8 +42030,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/09/DCFGDS-812707-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812707-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812739-A": {
     "id": "DCFGDS-812739-A",
@@ -42118,8 +42043,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/41/DCFGDS-812739-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812739-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DCFGDS-812746-A": {
     "id": "DCFGDS-812746-A",
@@ -42132,8 +42056,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/01/37/DCFGDS-812746-A.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDCFGDS-812746-A",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFXW-1011": {
     "id": "DAKUFXW-1011",
@@ -42144,10 +42067,9 @@
     "price_num": 5556,
     "release_date": "2018/11/07",
     "image": "https://st.cdjapan.co.jp/pictures/l/10/09/DAKUFXW-1011.jpg?v=2",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFXW-1011",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "DAKUFCW-1132": {
     "id": "DAKUFCW-1132",
@@ -42158,10 +42080,9 @@
     "price_num": 2778,
     "release_date": "2018/07/04",
     "image": "https://st.cdjapan.co.jp/pictures/l/16/46/DAKUFCW-1132.jpg?v=1",
-    "availability": "oop",
+    "availability": "instock",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FDAKUFCW-1132",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "KLC-90016": {
     "id": "KLC-90016",
@@ -60073,13 +59994,12 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/31/EPBE-5500.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5500",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "NEOBK-1660845": {
     "id": "NEOBK-1660845",
     "title": "BOOK Morning Musume. '14 Photobook \"Michishige Camera '13-'14\"",
-    "artist": "Morning Musume",
+    "artist": "Michishige Sayumi",
     "category": "Hello! Project",
     "price": "¥2,200",
     "price_num": 2200,
@@ -60087,8 +60007,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/16/16/NEOBK-1660845.jpg?v=2",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FNEOBK-1660845",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPBE-5375": {
     "id": "EPBE-5375",
@@ -60101,8 +60020,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/42/EPBE-5375.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5375",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPBE-5345": {
     "id": "EPBE-5345",
@@ -60115,8 +60033,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/36/EPBE-5345.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5345",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPBE-5304": {
     "id": "EPBE-5304",
@@ -60129,8 +60046,7 @@
     "image": "https://st.cdjapan.co.jp/pictures/l/06/27/EPBE-5304.jpg?v=1",
     "availability": "oop",
     "affiliate_url": "https://www.cdjapan.co.jp/aff/click.cgi/Psetup/3085/A033398/product%2FEPBE-5304",
-    "updated_at": "2026-10-23",
-    "last_healthcheck": "2026-10-25"
+    "updated_at": "2026-11-15"
   },
   "EPBE-5063": {
     "id": "EPBE-5063",
@@ -198812,7 +198728,7 @@
   "NEODAI-138749": {
     "id": "NEODAI-138749",
     "title": "APPAREL Hinatazaka46 Watanabe Miho Graduation Ceremony Illustration T-Shirt (Size S)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥4,100",
     "price_num": 4100,
@@ -198838,7 +198754,7 @@
   "NEODAI-138335": {
     "id": "NEODAI-138335",
     "title": "APPAREL Hinatazaka46 Watanabe Miho Graduation Ceremony Logo T-shirt / White (Size S)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥3,100",
     "price_num": 3100,
@@ -198851,7 +198767,7 @@
   "NEODAI-137774": {
     "id": "NEODAI-137774",
     "title": "APPAREL Hinatazaka46 Watanabe Miho Graduation Ceremony Illustration T-Shirt (Size M)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥4,100",
     "price_num": 4100,
@@ -198864,7 +198780,7 @@
   "NEODAI-137487": {
     "id": "NEODAI-137487",
     "title": "APPAREL \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Logo Muffler Towel NEODAI-137487",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥2,000",
     "price_num": 2000,
@@ -198877,7 +198793,7 @@
   "NEODAI-137495": {
     "id": "NEODAI-137495",
     "title": "Collectible \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Film Sticker (Set of 4)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥1,200",
     "price_num": 1200,
@@ -198903,7 +198819,7 @@
   "NEODAI-137426": {
     "id": "NEODAI-137426",
     "title": "Collectible \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Plastic Bottle Holder",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥800",
     "price_num": 800,
@@ -198968,7 +198884,7 @@
   "NEODAI-137432": {
     "id": "NEODAI-137432",
     "title": "APPAREL \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Illustration T-Shirt (Size L)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥4,100",
     "price_num": 4100,
@@ -198994,7 +198910,7 @@
   "NEODAI-137435": {
     "id": "NEODAI-137435",
     "title": "Collectible \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Bonfim Keychain",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥3,000",
     "price_num": 3000,
@@ -199020,7 +198936,7 @@
   "NEODAI-137486": {
     "id": "NEODAI-137486",
     "title": "APPAREL \"Hinatazaka46\" Watanabe Miho Graduation Ceremony Logo T-shirt / White (Size M)",
-    "artist": "W",
+    "artist": "Hinatazaka46",
     "category": "Sakamichi Series",
     "price": "¥3,100",
     "price_num": 3100,

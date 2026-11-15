@@ -978,10 +978,6 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
                     html, category, canonical_artist, effective_keywords, is_direct_person=is_direct_person
                 )
 
-                if len(extracted_on_page) == 0 and attempt < 3:
-                    time.sleep(2.0)
-                    continue
-
                 page_successful = True
                 break
 
@@ -1044,9 +1040,15 @@ def get_active_targets(is_targeted_run):
         # Monday=0, Tuesday=1, Wednesday=2, Thursday=3, Friday=4, Saturday=5, Sunday=6
         weekday = datetime.utcnow().weekday()
 
-        if weekday in (0, 2, 4):  # Monday, Wednesday, Friday
-            print("[Schedule] Monday/Wednesday/Friday Routine: Hello! Project & Up-Front Alumni", flush=True)
-            return [g for g in TARGET_GROUPS if g[0] in ["Hello! Project", "Up-Front Alumni"]]
+        hp_alumni_groups = [g for g in TARGET_GROUPS if g[0] in ["Hello! Project", "Up-Front Alumni"]]
+
+        if weekday in (0, 4):  # Monday & Friday (31 active groups, subunits & flagship soloists)
+            print("[Schedule] Monday/Friday Routine: Hello! Project Active Groups & Flagship Soloists", flush=True)
+            return hp_alumni_groups[:31]
+
+        elif weekday == 2:  # Wednesday (45 former/graduate soloists & Up-Front alumni)
+            print("[Schedule] Wednesday Routine: Hello! Project Graduates & Up-Front Alumni", flush=True)
+            return hp_alumni_groups[31:]
 
         elif weekday in (1, 3, 5):  # Tuesday, Thursday, Saturday
             print("[Schedule] Tuesday/Thursday/Saturday Routine: AKB48 Group & Sakamichi Series", flush=True)
@@ -1162,6 +1164,12 @@ def main():
                 print(f"   => Error scraping {artist}: {e_artist}", flush=True)
             finally:
                 target_page.close()
+
+            if idx % 10 == 0:
+                with open(DATA_FILE, "w", encoding="utf-8") as f:
+                    json.dump(catalog, f, indent=2, ensure_ascii=False)
+                with open(INDEX_FILE, "w", encoding="utf-8") as f:
+                    json.dump(catalog, f, indent=2, ensure_ascii=False)
 
             time.sleep(random.uniform(1.2, 2.2))
 

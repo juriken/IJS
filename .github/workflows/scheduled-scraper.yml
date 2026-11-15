@@ -11,13 +11,43 @@ on:
   workflow_dispatch:
     inputs:
       schedule_override:
-        description: 'Choose schedule mode or scrape all:'
+        description: 'Choose schedule shard or scrape all:'
         required: true
         default: 'alternate'
         type: choice
         options:
           - 'alternate'
+          - 'mon-fri (H!P Active & Flagship)'
+          - 'wed (H!P Graduates & Alumni)'
+          - 'tue-thu-sat (AKB48 & Sakamichi)'
+          - 'sun (Stardust, =LOVE, KAWAII LAB., Modern)'
           - 'all groups'
+      test_artist:
+        description: 'Optional: Isolate a single test group (overrides schedule):'
+        required: true
+        default: 'none (use schedule above)'
+        type: choice
+        options:
+          - 'none (use schedule above)'
+          - 'Morning Musume'
+          - 'ANGERME'
+          - 'AKB48'
+          - 'Nogizaka46'
+          - 'Sakurazaka46'
+          - 'Momoiro Clover Z'
+          - '=LOVE'
+          - 'FRUITS ZIPPER'
+          - 'BABYMETAL'
+      page_depth:
+        description: 'Max pages per query (use 1 for fast smoke tests):'
+        required: true
+        default: 'default'
+        type: choice
+        options:
+          - 'default'
+          - '1'
+          - '3'
+          - '10'
 
 concurrency:
   group: catalog-pipeline-lock
@@ -68,6 +98,8 @@ jobs:
       - name: Step 1 - Execute Alternate Day Scraper
         env:
           SCHEDULE_MODE: ${{ github.event.inputs.schedule_override || 'alternate' }}
+          TARGET_ARTIST: ${{ github.event.inputs.test_artist || 'none (use schedule above)' }}
+          PAGES_PER_TARGET: ${{ github.event.inputs.page_depth || 'default' }}
         run: |
           python -u scraper.py
 

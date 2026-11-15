@@ -109,6 +109,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/akari-uemura.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/akb48.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
@@ -128,6 +134,12 @@
   </url>
   <url>
     <loc>https://idoljapan.store/groups/aya-matsuura.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/ayaka-wada.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -373,7 +385,19 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/kago-ai.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/kanazawa-tomoko.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/kanon-fukuda.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -404,6 +428,12 @@
   </url>
   <url>
     <loc>https://idoljapan.store/groups/kishimoto-yumeno.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/kitahara-sayaka.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -463,6 +493,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/mao-akiyama.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/maria-makino.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
@@ -482,6 +518,12 @@
   </url>
   <url>
     <loc>https://idoljapan.store/groups/me-i.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/meimi-tamura.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -673,6 +715,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/rikako-sasaki.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/rosy-chronicle.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
@@ -715,6 +763,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://idoljapan.store/groups/satoda-mai.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://idoljapan.store/groups/sayashi-riho.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
@@ -740,6 +794,12 @@
   </url>
   <url>
     <loc>https://idoljapan.store/groups/stu48.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/sugaya-risako.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -788,6 +848,12 @@
   </url>
   <url>
     <loc>https://idoljapan.store/groups/team-shachi.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/groups/tomoko-kanazawa.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -18933,8 +18999,8 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRD-12</loc>
     <lastmod>2015-08-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3046583</loc>
@@ -18944,7 +19010,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3181560</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -20031,14 +20097,14 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRB-5</loc>
     <lastmod>2017-03-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2046265</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2017-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1932216</loc>
@@ -20055,8 +20121,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-10790</loc>
     <lastmod>2015-12-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1876999</loc>
@@ -20097,8 +20163,8 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRB-1</loc>
     <lastmod>2014-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1676445</loc>
@@ -20145,8 +20211,8 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRD-8</loc>
     <lastmod>2013-12-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1551911</loc>
@@ -20169,8 +20235,8 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRD-3</loc>
     <lastmod>2013-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1456068</loc>
@@ -20181,44 +20247,44 @@
   <url>
     <loc>https://idoljapan.store/?id=DAKUFBW-1215</loc>
     <lastmod>2012-12-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-289</loc>
     <lastmod>2022-01-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-177</loc>
     <lastmod>2017-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=UPUPG-16</loc>
     <lastmod>2024-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-296</loc>
     <lastmod>2022-12-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-279</loc>
     <lastmod>2021-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-267</loc>
     <lastmod>2020-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-78740</loc>
@@ -20235,128 +20301,128 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRC-229</loc>
     <lastmod>2019-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-223</loc>
     <lastmod>2019-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-217</loc>
     <lastmod>2018-11-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-204</loc>
     <lastmod>2018-06-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-193</loc>
     <lastmod>2017-11-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-192</loc>
     <lastmod>2017-11-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-191</loc>
     <lastmod>2017-11-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-185</loc>
     <lastmod>2017-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-184</loc>
     <lastmod>2017-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-179</loc>
     <lastmod>2017-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-178</loc>
     <lastmod>2017-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-164</loc>
     <lastmod>2016-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-163</loc>
     <lastmod>2016-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-162</loc>
     <lastmod>2016-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-150</loc>
     <lastmod>2016-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-149</loc>
     <lastmod>2016-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-148</loc>
     <lastmod>2016-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-130</loc>
     <lastmod>2015-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-129</loc>
     <lastmod>2015-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-108</loc>
     <lastmod>2014-11-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-107</loc>
     <lastmod>2014-11-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-106</loc>
@@ -20367,20 +20433,20 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRC-91</loc>
     <lastmod>2014-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-84</loc>
     <lastmod>2014-04-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-85</loc>
     <lastmod>2014-04-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-69</loc>
@@ -20397,32 +20463,32 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRC-65</loc>
     <lastmod>2013-12-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-62</loc>
     <lastmod>2013-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-37</loc>
     <lastmod>2013-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-34</loc>
     <lastmod>2013-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-33</loc>
     <lastmod>2013-02-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1051</loc>
@@ -20433,20 +20499,20 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRC-26</loc>
     <lastmod>2012-12-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1048</loc>
     <lastmod>2012-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1041</loc>
     <lastmod>2012-10-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=UFCW-1040</loc>
@@ -20457,26 +20523,26 @@
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1034</loc>
     <lastmod>2012-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1032</loc>
     <lastmod>2012-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1028</loc>
     <lastmod>2012-06-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=DAKUFCW-1025</loc>
     <lastmod>2012-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-123930</loc>
@@ -22665,8 +22731,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-64569</loc>
     <lastmod>2013-04-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=POCS-9175</loc>
@@ -25226,7 +25292,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3059391</loc>
-    <lastmod>2025-02-04</lastmod>
+    <lastmod>2025-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -25238,7 +25304,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3052071</loc>
-    <lastmod>2025-01-04</lastmod>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -25250,13 +25316,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3011263</loc>
-    <lastmod>2024-09-04</lastmod>
+    <lastmod>2024-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2993363</loc>
-    <lastmod>2024-07-05</lastmod>
+    <lastmod>2024-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -26217,56 +26283,56 @@
   <url>
     <loc>https://idoljapan.store/?id=UPUPG-18</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=UPUPG-17</loc>
     <lastmod>2024-11-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-295</loc>
     <lastmod>2022-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-292</loc>
     <lastmod>2022-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-286</loc>
     <lastmod>2021-11-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-96931</loc>
     <lastmod>2019-11-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-270</loc>
     <lastmod>2021-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-262</loc>
     <lastmod>2020-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-251</loc>
     <lastmod>2020-01-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-248</loc>
@@ -26277,96 +26343,96 @@
   <url>
     <loc>https://idoljapan.store/?id=TPRC-240</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-239</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-238</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-237</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-236</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-235</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-234</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-233</loc>
     <lastmod>2019-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-57682</loc>
     <lastmod>2019-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-218</loc>
     <lastmod>2018-12-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-205</loc>
     <lastmod>2018-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-202</loc>
     <lastmod>2018-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-197</loc>
     <lastmod>2018-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=TPRC-186</loc>
     <lastmod>2017-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2380053</loc>
-    <lastmod>2019-07-19</lastmod>
+    <lastmod>2019-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOGDS-423376</loc>
-    <lastmod>2020-11-24</lastmod>
+    <lastmod>2020-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -31922,7 +31988,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2317355</loc>
-    <lastmod>2020-08-30</lastmod>
+    <lastmod>2019-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -31934,7 +32000,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2573026</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2021-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -31982,7 +32048,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2649387</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -32012,7 +32078,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2715668</loc>
-    <lastmod>2022-03-14</lastmod>
+    <lastmod>2022-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -32967,8 +33033,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2767586</loc>
     <lastmod>2022-08-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-139498</loc>
@@ -33002,15 +33068,15 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2738585</loc>
-    <lastmod>2022-06-02</lastmod>
+    <lastmod>2022-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2738805</loc>
-    <lastmod>2018-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2022-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-133523</loc>
@@ -33104,7 +33170,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2712998</loc>
-    <lastmod>2022-03-03</lastmod>
+    <lastmod>2022-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33134,7 +33200,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2699120</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2022-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -33308,7 +33374,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2682295</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2022-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -33392,13 +33458,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2654520</loc>
-    <lastmod>2021-09-13</lastmod>
+    <lastmod>2021-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2656582</loc>
-    <lastmod>2021-11-01</lastmod>
+    <lastmod>2021-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -33518,7 +33584,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2587374</loc>
-    <lastmod>2021-03-01</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33536,7 +33602,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2587853</loc>
-    <lastmod>2021-02-25</lastmod>
+    <lastmod>2021-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33548,7 +33614,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2567876</loc>
-    <lastmod>2021-01-05</lastmod>
+    <lastmod>2021-01-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33572,7 +33638,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2553479</loc>
-    <lastmod>2020-11-16</lastmod>
+    <lastmod>2020-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33626,7 +33692,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2550283</loc>
-    <lastmod>2020-11-10</lastmod>
+    <lastmod>2020-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33764,9 +33830,9 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2533100</loc>
-    <lastmod>2018-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2020-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-81872</loc>
@@ -33866,7 +33932,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2499265</loc>
-    <lastmod>2020-06-11</lastmod>
+    <lastmod>2020-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33885,8 +33951,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-73753</loc>
     <lastmod>2019-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-72587</loc>
@@ -33920,7 +33986,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2468946</loc>
-    <lastmod>2020-03-09</lastmod>
+    <lastmod>2020-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33938,7 +34004,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2461840</loc>
-    <lastmod>2020-02-20</lastmod>
+    <lastmod>2020-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -33962,7 +34028,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2451784</loc>
-    <lastmod>2020-01-28</lastmod>
+    <lastmod>2020-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -34016,7 +34082,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2437606</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2019-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -34040,7 +34106,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2417158</loc>
-    <lastmod>2019-10-17</lastmod>
+    <lastmod>2019-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -34124,7 +34190,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2414942</loc>
-    <lastmod>2019-11-14</lastmod>
+    <lastmod>2019-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -34136,13 +34202,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2396830</loc>
-    <lastmod>2019-08-27</lastmod>
+    <lastmod>2019-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2384921</loc>
-    <lastmod>2019-07-31</lastmod>
+    <lastmod>2019-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -34160,7 +34226,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2380287</loc>
-    <lastmod>2019-07-19</lastmod>
+    <lastmod>2019-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -34172,7 +34238,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2372873</loc>
-    <lastmod>2019-06-21</lastmod>
+    <lastmod>2019-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -34268,13 +34334,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2372689</loc>
-    <lastmod>2018-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2019-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2369017</loc>
-    <lastmod>2019-06-10</lastmod>
+    <lastmod>2019-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -35139,8 +35205,8 @@
   <url>
     <loc>https://idoljapan.store/?id=EPBE-5426</loc>
     <lastmod>2011-12-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPXE-5016</loc>
@@ -36428,7 +36494,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2337080</loc>
-    <lastmod>2019-03-13</lastmod>
+    <lastmod>2019-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36446,13 +36512,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2334928</loc>
-    <lastmod>2019-03-05</lastmod>
+    <lastmod>2019-03-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2328468</loc>
-    <lastmod>2019-02-28</lastmod>
+    <lastmod>2019-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36471,24 +36537,24 @@
   <url>
     <loc>https://idoljapan.store/?id=EPXE-5150</loc>
     <lastmod>2019-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPBE-5589</loc>
     <lastmod>2019-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2321958</loc>
-    <lastmod>2019-01-29</lastmod>
+    <lastmod>2019-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2313301</loc>
-    <lastmod>2019-01-07</lastmod>
+    <lastmod>2019-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36524,7 +36590,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2284790</loc>
-    <lastmod>2018-10-19</lastmod>
+    <lastmod>2018-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36572,9 +36638,9 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2275300</loc>
-    <lastmod>2018-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2018-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPXE-5144</loc>
@@ -36674,13 +36740,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2252039</loc>
-    <lastmod>2018-07-18</lastmod>
+    <lastmod>2018-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2239576</loc>
-    <lastmod>2018-06-21</lastmod>
+    <lastmod>2018-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36692,7 +36758,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2235896</loc>
-    <lastmod>2018-06-04</lastmod>
+    <lastmod>2018-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36704,13 +36770,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2225048</loc>
-    <lastmod>2018-05-08</lastmod>
+    <lastmod>2018-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2221790</loc>
-    <lastmod>2018-04-26</lastmod>
+    <lastmod>2018-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36800,7 +36866,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2202012</loc>
-    <lastmod>2018-03-15</lastmod>
+    <lastmod>2018-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -36867,26 +36933,26 @@
   <url>
     <loc>https://idoljapan.store/?id=DAKUFBW-1593</loc>
     <lastmod>2018-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2192312</loc>
-    <lastmod>2018-02-10</lastmod>
+    <lastmod>2018-02-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPXE-5129</loc>
     <lastmod>2018-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=EPBE-5566</loc>
     <lastmod>2018-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2183158</loc>
@@ -36980,13 +37046,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2170553</loc>
-    <lastmod>2017-12-12</lastmod>
+    <lastmod>2018-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2161058</loc>
-    <lastmod>2017-11-30</lastmod>
+    <lastmod>2017-12-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37004,7 +37070,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2142243</loc>
-    <lastmod>2017-10-12</lastmod>
+    <lastmod>2017-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37016,19 +37082,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2145134</loc>
-    <lastmod>2017-10-06</lastmod>
+    <lastmod>2017-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2145063</loc>
-    <lastmod>2017-10-04</lastmod>
+    <lastmod>2017-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2144096</loc>
-    <lastmod>2017-10-02</lastmod>
+    <lastmod>2017-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37046,7 +37112,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-28823</loc>
-    <lastmod>2017-03-06</lastmod>
+    <lastmod>2017-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37112,19 +37178,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-26167</loc>
-    <lastmod>2016-05-06</lastmod>
+    <lastmod>2016-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2110899</loc>
-    <lastmod>2017-07-20</lastmod>
+    <lastmod>2017-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-24880</loc>
-    <lastmod>2017-05-29</lastmod>
+    <lastmod>2017-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37154,13 +37220,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2096557</loc>
-    <lastmod>2017-05-29</lastmod>
+    <lastmod>2017-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2087749</loc>
-    <lastmod>2017-05-11</lastmod>
+    <lastmod>2017-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37232,7 +37298,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-16033</loc>
-    <lastmod>2017-03-03</lastmod>
+    <lastmod>2017-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37292,13 +37358,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2064481</loc>
-    <lastmod>2017-03-06</lastmod>
+    <lastmod>2017-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2063903</loc>
-    <lastmod>2017-03-03</lastmod>
+    <lastmod>2017-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -37466,7 +37532,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1870077</loc>
-    <lastmod>2016-05-06</lastmod>
+    <lastmod>2016-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -38030,13 +38096,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1858195</loc>
-    <lastmod>2015-09-18</lastmod>
+    <lastmod>2015-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1846511</loc>
-    <lastmod>2015-08-21</lastmod>
+    <lastmod>2015-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -38078,7 +38144,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1786985</loc>
-    <lastmod>2015-03-20</lastmod>
+    <lastmod>2015-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -38355,8 +38421,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1328333</loc>
     <lastmod>2012-08-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEODAI-2137</loc>
@@ -38517,8 +38583,8 @@
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-251083</loc>
     <lastmod>2003-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-251881</loc>
@@ -41078,7 +41144,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1870089</loc>
-    <lastmod>2016-11-04</lastmod>
+    <lastmod>2016-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -41090,7 +41156,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1870085</loc>
-    <lastmod>2016-09-02</lastmod>
+    <lastmod>2016-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -41126,7 +41192,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1969309</loc>
-    <lastmod>2018-05-25</lastmod>
+    <lastmod>2016-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -41138,7 +41204,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1870071</loc>
-    <lastmod>2016-02-05</lastmod>
+    <lastmod>2016-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -93434,7 +93500,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2539385</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2020-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131114,7 +131180,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2258388</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131552,19 +131618,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2660630</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2021-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2288223</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2216409</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -131582,7 +131648,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2131487</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -131738,73 +131804,73 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3211389</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3237135</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3231882</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3181877</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3155892</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3124111</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3095712</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3057047</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3028622</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3017441</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2988029</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2958032</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131816,13 +131882,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2878800</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2859330</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131846,19 +131912,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2712669</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2022-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2703887</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2022-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2703547</loc>
-    <lastmod>2022-01-12</lastmod>
+    <lastmod>2022-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131882,7 +131948,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2625195</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2021-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131918,7 +131984,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2481320</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2020-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131930,25 +131996,25 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2451979</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2020-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2379443</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2019-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2424939</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2019-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2297051</loc>
-    <lastmod>2018-11-29</lastmod>
+    <lastmod>2018-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131966,7 +132032,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2171368</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132116,13 +132182,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2898242</loc>
-    <lastmod>2023-08-29</lastmod>
+    <lastmod>2023-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2854596</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132134,7 +132200,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2406875</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2019-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132146,7 +132212,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1880181</loc>
-    <lastmod>2015-11-29</lastmod>
+    <lastmod>2015-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132224,13 +132290,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2290645</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2170577</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132434,25 +132500,25 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3092809</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2025-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3232721</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3222174</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3217476</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132530,7 +132596,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3027479</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132542,19 +132608,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-3010988</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2983700</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2975219</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2024-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132578,13 +132644,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2932196</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2927142</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132596,13 +132662,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2903336</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2841123</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2023-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132663,12 +132729,12 @@
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2760137</loc>
     <lastmod>2021-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2744117</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2022-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -132680,19 +132746,19 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2638913</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2021-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2599412</loc>
-    <lastmod>2021-03-20</lastmod>
+    <lastmod>2021-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2589909</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132728,49 +132794,49 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2247447</loc>
-    <lastmod>2018-06-20</lastmod>
+    <lastmod>2018-06-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2223432</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2209331</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2018-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2122085</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2119434</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2110060</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2017-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2100488</loc>
-    <lastmod>2017-05-01</lastmod>
+    <lastmod>2017-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2092912</loc>
-    <lastmod>2017-04-01</lastmod>
+    <lastmod>2017-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132782,13 +132848,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2081389</loc>
-    <lastmod>2017-04-01</lastmod>
+    <lastmod>2017-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-2019601</loc>
-    <lastmod>2016-10-30</lastmod>
+    <lastmod>2016-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132818,7 +132884,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1921661</loc>
-    <lastmod>2016-02-10</lastmod>
+    <lastmod>2016-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132836,7 +132902,7 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1828783</loc>
-    <lastmod>2015-06-01</lastmod>
+    <lastmod>2015-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -132848,13 +132914,13 @@
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1764084</loc>
-    <lastmod>2015-01-01</lastmod>
+    <lastmod>2015-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://idoljapan.store/?id=NEOBK-1763373</loc>
-    <lastmod>2015-01-01</lastmod>
+    <lastmod>2015-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -134823,6 +134889,2544 @@
   <url>
     <loc>https://idoljapan.store/?id=HKCN-50108</loc>
     <lastmod>2010-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3222066</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3222068</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3265633</loc>
+    <lastmod>2026-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7885</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7884</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7883</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7881</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7879</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7877</loc>
+    <lastmod>2024-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7991</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3142278</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7989</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7831</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3181031</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-243306</loc>
+    <lastmod>2024-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2025CL-4501</loc>
+    <lastmod>2025-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-233080</loc>
+    <lastmod>2024-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-231975</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-231977</loc>
+    <lastmod>2021-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229653</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229665</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229769</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2025CL-221</loc>
+    <lastmod>2024-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-216599</loc>
+    <lastmod>2021-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-216602</loc>
+    <lastmod>2021-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-207491</loc>
+    <lastmod>2024-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-207569</loc>
+    <lastmod>2024-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2024CL-250</loc>
+    <lastmod>2023-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-165331</loc>
+    <lastmod>2023-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109919</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107244</loc>
+    <lastmod>2019-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103767</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-101957</loc>
+    <lastmod>2018-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7908</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7907</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7905</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7903</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7830</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7829</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7827</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7825</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3129224</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-8125</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-8131</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-8132</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-8127</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-8129</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107489</loc>
+    <lastmod>2019-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3129225</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3177547</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-266310</loc>
+    <lastmod>2025-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-266393</loc>
+    <lastmod>2025-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3091388</loc>
+    <lastmod>2025-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-167972</loc>
+    <lastmod>2023-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2589524</loc>
+    <lastmod>2021-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109890</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106643</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-49026</loc>
+    <lastmod>2018-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2282806</loc>
+    <lastmod>2018-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103796</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103738</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103854</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-29988</loc>
+    <lastmod>2013-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28117</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2106074</loc>
+    <lastmod>2017-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933164</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1883559</loc>
+    <lastmod>2015-12-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-6023</loc>
+    <lastmod>2014-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1668915</loc>
+    <lastmod>2014-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1489451</loc>
+    <lastmod>2013-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7925</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7924</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7922</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7920</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7918</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5145</loc>
+    <lastmod>2018-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5076</loc>
+    <lastmod>2016-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5484</loc>
+    <lastmod>2014-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5466</loc>
+    <lastmod>2013-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-805670-A</loc>
+    <lastmod>2017-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-805669-A</loc>
+    <lastmod>2017-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-805668-A</loc>
+    <lastmod>2017-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-805667-A</loc>
+    <lastmod>2017-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKXP-5025</loc>
+    <lastmod>2017-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5157</loc>
+    <lastmod>2017-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-802292-A</loc>
+    <lastmod>2017-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-802289-A</loc>
+    <lastmod>2017-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-802281-A</loc>
+    <lastmod>2017-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2106073</loc>
+    <lastmod>2017-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2059477</loc>
+    <lastmod>2017-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1506862</loc>
+    <lastmod>2013-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1083381</loc>
+    <lastmod>2012-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5122</loc>
+    <lastmod>2009-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-471642</loc>
+    <lastmod>2008-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5144</loc>
+    <lastmod>2012-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5133</loc>
+    <lastmod>2010-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5105</loc>
+    <lastmod>2008-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229663</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229664</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-229666</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-2601</loc>
+    <lastmod>2012-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-2603</loc>
+    <lastmod>2012-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-150149</loc>
+    <lastmod>1900-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-135286</loc>
+    <lastmod>2009-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-673091</loc>
+    <lastmod>2009-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-428148</loc>
+    <lastmod>2007-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=QWCT-10056</loc>
+    <lastmod>2010-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=QWCT-10057</loc>
+    <lastmod>2010-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=QWCT-10058</loc>
+    <lastmod>2010-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=QWCT-10059</loc>
+    <lastmod>2010-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2275303</loc>
+    <lastmod>2018-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-895433</loc>
+    <lastmod>2010-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-576675</loc>
+    <lastmod>2009-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-92399</loc>
+    <lastmod>2019-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2352756</loc>
+    <lastmod>2019-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106654</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1883571</loc>
+    <lastmod>2015-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933177</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1071371</loc>
+    <lastmod>2012-02-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-918933</loc>
+    <lastmod>2011-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3190723</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2981178</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2879747</loc>
+    <lastmod>2023-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2809831</loc>
+    <lastmod>2022-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2737708</loc>
+    <lastmod>2022-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2718437</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1924908</loc>
+    <lastmod>2016-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1639373</loc>
+    <lastmod>2014-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=HKBN-50162</loc>
+    <lastmod>2012-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-200381</loc>
+    <lastmod>2024-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-2320</loc>
+    <lastmod>2024-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-89614</loc>
+    <lastmod>2020-12-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933182</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1758</loc>
+    <lastmod>2020-04-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-65360</loc>
+    <lastmod>2020-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIBL-983</loc>
+    <lastmod>2020-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1637</loc>
+    <lastmod>2019-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1636</loc>
+    <lastmod>2019-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37496</loc>
+    <lastmod>2019-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1565</loc>
+    <lastmod>2019-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-65167</loc>
+    <lastmod>2019-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1499</loc>
+    <lastmod>2018-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1498</loc>
+    <lastmod>2018-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37449</loc>
+    <lastmod>2018-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1444</loc>
+    <lastmod>2018-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-1443</loc>
+    <lastmod>2018-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37435</loc>
+    <lastmod>2018-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933178</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-146700</loc>
+    <lastmod>2013-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-212305</loc>
+    <lastmod>2022-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-212314</loc>
+    <lastmod>2021-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-212315</loc>
+    <lastmod>2021-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106667</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103761</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933187</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5247</loc>
+    <lastmod>2024-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-217076</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-217077</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5626</loc>
+    <lastmod>2024-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103782</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28286</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-904352</loc>
+    <lastmod>2016-12-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-23479</loc>
+    <lastmod>2016-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-940129</loc>
+    <lastmod>2015-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YUM-3S</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=LACM-24532</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=TBZR-917</loc>
+    <lastmod>2017-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCX-39926</loc>
+    <lastmod>2017-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVCD-55028</loc>
+    <lastmod>2013-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVCD-55029</loc>
+    <lastmod>2013-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVCD-55001</loc>
+    <lastmod>2012-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVCD-55002</loc>
+    <lastmod>2012-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1079</loc>
+    <lastmod>2012-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1081</loc>
+    <lastmod>2012-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1066</loc>
+    <lastmod>2012-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1068</loc>
+    <lastmod>2012-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1060</loc>
+    <lastmod>2011-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1062</loc>
+    <lastmod>2011-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1050</loc>
+    <lastmod>2011-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCF-1052</loc>
+    <lastmod>2011-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5215</loc>
+    <lastmod>2006-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3119373</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3110441</loc>
+    <lastmod>2025-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2172738</loc>
+    <lastmod>2017-12-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-32186</loc>
+    <lastmod>2014-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKCP-5173</loc>
+    <lastmod>2010-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-788197</loc>
+    <lastmod>2010-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-641583</loc>
+    <lastmod>2009-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-5474</loc>
+    <lastmod>2007-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=XNAE-10029</loc>
+    <lastmod>2010-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1818458</loc>
+    <lastmod>2015-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1663268</loc>
+    <lastmod>2014-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1078969</loc>
+    <lastmod>2012-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=XNAE-50015</loc>
+    <lastmod>2011-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-585807</loc>
+    <lastmod>2009-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=JENF-1032</loc>
+    <lastmod>2009-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3263620</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=OQT-160</loc>
+    <lastmod>2010-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=WLZ-R001</loc>
+    <lastmod>2010-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=QACG-10001</loc>
+    <lastmod>2009-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVBF-29038</loc>
+    <lastmod>2008-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=AVBF-26980</loc>
+    <lastmod>2008-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-187349</loc>
+    <lastmod>2001-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1066894</loc>
+    <lastmod>2012-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-903041</loc>
+    <lastmod>2011-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-680645</loc>
+    <lastmod>2009-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-654381</loc>
+    <lastmod>2009-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-532579</loc>
+    <lastmod>2009-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5107</loc>
+    <lastmod>2009-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-465441</loc>
+    <lastmod>2008-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5067</loc>
+    <lastmod>2007-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=PKBP-5127</loc>
+    <lastmod>2010-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2429492</loc>
+    <lastmod>2019-12-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-336591</loc>
+    <lastmod>2027-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2025CL-4505</loc>
+    <lastmod>2025-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2025CL-179</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-225078</loc>
+    <lastmod>2024-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2024CL-4505</loc>
+    <lastmod>2024-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2024CL-179</loc>
+    <lastmod>2023-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2023CL-4511</loc>
+    <lastmod>2023-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2023CL-182</loc>
+    <lastmod>2022-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-139954</loc>
+    <lastmod>2018-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-132664</loc>
+    <lastmod>2018-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2729330</loc>
+    <lastmod>2022-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2716094</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-126173</loc>
+    <lastmod>2019-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2650421</loc>
+    <lastmod>2021-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2022CL-183</loc>
+    <lastmod>2021-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2021CL-186</loc>
+    <lastmod>2020-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2452022</loc>
+    <lastmod>2020-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-63411</loc>
+    <lastmod>2019-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2020CL-183</loc>
+    <lastmod>2019-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2390545</loc>
+    <lastmod>2019-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2359808</loc>
+    <lastmod>2019-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2340936</loc>
+    <lastmod>2019-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2333046</loc>
+    <lastmod>2019-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2303152</loc>
+    <lastmod>2018-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2296051</loc>
+    <lastmod>2018-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2278913</loc>
+    <lastmod>2018-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2157589</loc>
+    <lastmod>2018-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2019CL-219</loc>
+    <lastmod>2018-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2257209</loc>
+    <lastmod>2018-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2254916</loc>
+    <lastmod>2018-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28138</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2139977</loc>
+    <lastmod>2017-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1912720</loc>
+    <lastmod>2016-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1709443</loc>
+    <lastmod>2014-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-205356</loc>
+    <lastmod>2024-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-108986</loc>
+    <lastmod>2016-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=BRMM-10048</loc>
+    <lastmod>2016-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=BRMM-10025</loc>
+    <lastmod>2015-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-161198</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2776733</loc>
+    <lastmod>2022-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2748656</loc>
+    <lastmod>2022-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40641</loc>
+    <lastmod>2022-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40640</loc>
+    <lastmod>2022-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40634</loc>
+    <lastmod>2022-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-10465</loc>
+    <lastmod>2021-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-10464</loc>
+    <lastmod>2021-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40610</loc>
+    <lastmod>2020-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40609</loc>
+    <lastmod>2020-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40608</loc>
+    <lastmod>2020-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2477255</loc>
+    <lastmod>2020-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40602</loc>
+    <lastmod>2020-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40601</loc>
+    <lastmod>2020-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CRCP-40600</loc>
+    <lastmod>2020-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2211425</loc>
+    <lastmod>2018-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5125</loc>
+    <lastmod>2017-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=BRMM-10049</loc>
+    <lastmod>2016-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5081</loc>
+    <lastmod>2016-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=BRMM-10024</loc>
+    <lastmod>2015-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5499</loc>
+    <lastmod>2014-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2308769</loc>
+    <lastmod>2018-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103856</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103740</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28126</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-284047</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-284048</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-134874</loc>
+    <lastmod>2022-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107490</loc>
+    <lastmod>2019-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106644</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103855</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103797</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103739</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28121</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106650</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28157</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2027CL-183</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1827214</loc>
+    <lastmod>2015-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2026CL-179</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2923300</loc>
+    <lastmod>2024-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109907</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107505</loc>
+    <lastmod>2019-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103871</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933185</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2254608</loc>
+    <lastmod>2018-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-415258</loc>
+    <lastmod>2007-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109906</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107504</loc>
+    <lastmod>2019-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106658</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103870</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103812</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28185</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933183</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DAKMIUZ-2502</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DAKMIUZ-2404</loc>
+    <lastmod>2024-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=WANI-1002</loc>
+    <lastmod>2023-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=WANI-1001</loc>
+    <lastmod>2022-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=UPCY-5100</loc>
+    <lastmod>2021-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106666</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28201</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=TECA-22047</loc>
+    <lastmod>2022-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=TECA-22031</loc>
+    <lastmod>2022-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=TECA-22030</loc>
+    <lastmod>2022-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1364337</loc>
+    <lastmod>2012-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3245780</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=2026CL-178</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-107243</loc>
+    <lastmod>2019-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106670</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103764</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28218</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933190</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1867561</loc>
+    <lastmod>2015-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=HKXN-50049</loc>
+    <lastmod>2016-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=HKXN-50041</loc>
+    <lastmod>2015-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1826983</loc>
+    <lastmod>2015-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1766201</loc>
+    <lastmod>2015-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1693164</loc>
+    <lastmod>2014-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1491001</loc>
+    <lastmod>2013-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3030024</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3063498</loc>
+    <lastmod>2025-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2940617</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-134875</loc>
+    <lastmod>2022-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2375899</loc>
+    <lastmod>2019-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106653</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103885</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103827</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-940114</loc>
+    <lastmod>2015-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7980</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7979</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7977</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-7975</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-95138</loc>
+    <lastmod>2009-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-95139</loc>
+    <lastmod>2009-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-95143</loc>
+    <lastmod>2009-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5277</loc>
+    <lastmod>2007-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-5729</loc>
+    <lastmod>2010-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-90073</loc>
+    <lastmod>2009-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-90054</loc>
+    <lastmod>2009-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=YRCN-90045</loc>
+    <lastmod>2008-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPCE-5475</loc>
+    <lastmod>2007-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3267677</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-41696</loc>
+    <lastmod>2022-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-40051</loc>
+    <lastmod>2017-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-42815</loc>
+    <lastmod>2026-12-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=MHJL-511</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-3146366</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106645</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103741</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103857</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2220023</loc>
+    <lastmod>2018-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-28129</loc>
+    <lastmod>2017-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1960762</loc>
+    <lastmod>2016-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DCFGDS-933169</loc>
+    <lastmod>2015-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-9961</loc>
+    <lastmod>2015-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1655953</loc>
+    <lastmod>2014-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-38481</loc>
+    <lastmod>2014-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1523095</loc>
+    <lastmod>2013-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-2254</loc>
+    <lastmod>2012-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-63179</loc>
+    <lastmod>2008-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-35125</loc>
+    <lastmod>2008-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCA-71098</loc>
+    <lastmod>2006-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=KICS-2457</loc>
+    <lastmod>2004-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-32665</loc>
+    <lastmod>2004-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-31925</loc>
+    <lastmod>2002-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COJA-9564</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPXE-5086</loc>
+    <lastmod>2016-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=EPBE-5488</loc>
+    <lastmod>2014-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-38116</loc>
+    <lastmod>2013-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCP-38117</loc>
+    <lastmod>2013-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=CORR-10712</loc>
+    <lastmod>2011-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCA-71127</loc>
+    <lastmod>2007-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCA-70371</loc>
+    <lastmod>2003-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCA-14812</loc>
+    <lastmod>1998-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=COCA-11041</loc>
+    <lastmod>1993-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103766</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DSCL-4</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-175317</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-145066</loc>
+    <lastmod>2022-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-127991</loc>
+    <lastmod>2022-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109942</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103851</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DSCL-3</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=DSCL-2</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-109924</loc>
+    <lastmod>2020-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-106679</loc>
+    <lastmod>2019-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103833</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103775</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-2510</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-66122</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VIZL-2423</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37766</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37765</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=VICL-37764</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2848731</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-63348</loc>
+    <lastmod>2019-12-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-61677</loc>
+    <lastmod>2019-12-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103759</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1707877</loc>
+    <lastmod>2014-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-1580678</loc>
+    <lastmod>2013-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=ZQPT-1002</loc>
+    <lastmod>2009-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-284973</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-237664</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-237665</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-237666</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-237667</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-213684</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEODAI-145523</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103844</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOBK-2325745</loc>
+    <lastmod>2019-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOEGA-103765</loc>
+    <lastmod>2018-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOGDS-324545</loc>
+    <lastmod>2019-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://idoljapan.store/?id=NEOGDS-101775</loc>
+    <lastmod>2014-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>

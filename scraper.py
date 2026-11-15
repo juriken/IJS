@@ -1013,11 +1013,13 @@ def execute_artist_search(page, category, canonical_artist, target_query_or_url,
 
     return results
 
+# --- File: scraper.py | Block/Target: get_active_targets ---
 def get_active_targets(is_targeted_run):
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
+    ignored_filters = ["all groups", "alternate schedule", "alternate", "none (use schedule above)"]
 
     # Manual specific artist targeted run
-    if raw_filter and raw_filter.lower() not in ["all groups", "alternate schedule", "alternate"]:
+    if raw_filter and raw_filter.lower() not in ignored_filters:
         if "updated 3 groups" in raw_filter.lower():
             target_names = ["Up Up Girls (2)", "Hello Pro Kenshuusei", "Kobushi Factory"]
             return [g for g in TARGET_GROUPS if g[1] in target_names]
@@ -1035,10 +1037,17 @@ def get_active_targets(is_targeted_run):
     # Alternate Days Scheduling Logic
     # -------------------------------------------------------------
     schedule_mode = os.environ.get("SCHEDULE_MODE", "alternate").lower()
-    
-    if schedule_mode == "alternate":
+    weekday_overrides = {
+        "mon-fri": 0,
+        "wed": 2,
+        "tue-thu-sat": 1,
+        "sun": 6,
+    }
+    matched_override = next((day for prefix, day in weekday_overrides.items() if schedule_mode.startswith(prefix)), None)
+
+    if schedule_mode == "alternate" or matched_override is not None:
         # Monday=0, Tuesday=1, Wednesday=2, Thursday=3, Friday=4, Saturday=5, Sunday=6
-        weekday = datetime.utcnow().weekday()
+        weekday = matched_override if matched_override is not None else datetime.utcnow().weekday()
 
         hp_alumni_groups = [g for g in TARGET_GROUPS if g[0] in ["Hello! Project", "Up-Front Alumni"]]
 
@@ -1073,11 +1082,13 @@ def get_target_page_depth(is_targeted_run):
 
 def main():
     catalog = load_catalog()
+    # --- File: scraper.py | Block/Target: main ---
     initial_count = len(catalog)
     print(f"Starting Catalog Sync. Current active items: {initial_count}", flush=True)
 
     raw_filter = os.environ.get("TARGET_ARTIST", "").strip()
-    is_targeted = bool(raw_filter and raw_filter.lower() not in ["all groups", "alternate schedule", "alternate"])
+    ignored_filters = ["all groups", "alternate schedule", "alternate", "none (use schedule above)"]
+    is_targeted = bool(raw_filter and raw_filter.lower() not in ignored_filters)
     active_groups = get_active_targets(is_targeted)
     page_depth = get_target_page_depth(is_targeted)
 

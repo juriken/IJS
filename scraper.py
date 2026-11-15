@@ -793,8 +793,16 @@ def extract_verified_products(html, category, canonical_artist, keywords, is_dir
             rel_date = "Available Now"
 
         card_text_lower = card.get_text().lower()
-        has_preorder_btn = bool(card.select_one(".btn-preorder, input[value*='Pre-order'], button:has-text('Pre-order'), a:has-text('Pre-order')"))
-        has_cart_btn = bool(card.select_one(".btn-cart, input[value*='Add to Cart'], button:has-text('Add to Cart'), a:has-text('Add to Cart')"))
+        has_preorder_btn = bool(
+            card.select_one(".btn-preorder")
+            or any("pre-order" in (el.get("value") or "").lower() for el in card.select("input"))
+            or any("pre-order" in clean_text(el.get_text()).lower() for el in card.select("button, a"))
+        )
+        has_cart_btn = bool(
+            card.select_one(".btn-cart")
+            or any("add to cart" in (el.get("value") or "").lower() for el in card.select("input"))
+            or any("add to cart" in clean_text(el.get_text()).lower() for el in card.select("button, a"))
+        )
 
         # Accurate availability resolution (without false-positive "archive" trigger)
         if is_date_upcoming(rel_date):

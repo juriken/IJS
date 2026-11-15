@@ -29,7 +29,7 @@ permissions:
 jobs:
   scrape-and-update-scheduled:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     env:
       PYTHONUNBUFFERED: "1"
       DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}

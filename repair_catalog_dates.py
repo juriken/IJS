@@ -28,8 +28,8 @@ DATA_FILE = get_target_path("products.json")
 INDEX_FILE = get_target_path("catalog-index.json")
 PROGRESS_FILE = "repair_progress.json"
 
-DEFAULT_BATCH_SIZE = 250
-DEFAULT_MAX_WORKERS = 4
+DEFAULT_BATCH_SIZE = 1500
+DEFAULT_MAX_WORKERS = 2
 
 # File: repair_catalog_dates.py | Block/Target: INVALID_STOPWORDS
 INVALID_STOPWORDS = {
@@ -283,9 +283,16 @@ def fetch_official_date(pid, entry=None, session=None):
         return pid, ""
     url = f"https://www.cdjapan.co.jp/product/{clean_pid}"
 
+    req_count = getattr(_thread_local, "req_count", 0) + 1
+    if req_count > 350:
+        close_thread_session()
+        session = get_thread_session()
+        req_count = 1
+    _thread_local.req_count = req_count
+
     try:
-        time.sleep(random.uniform(0.6, 1.4))
-        res = session.get(url, timeout=(5.0, 15.0))
+        time.sleep(random.uniform(1.1, 2.2))
+        res = session.get(url, timeout=(8.0, 25.0))
 
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
@@ -554,7 +561,7 @@ def main():
 
     batch_size = int(os.environ.get("BATCH_SIZE", DEFAULT_BATCH_SIZE))
     batch_size = min(batch_size, total_pending)
-    max_workers = int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS))
+    max_workers = min(3, max(1, int(os.environ.get("MAX_WORKERS", DEFAULT_MAX_WORKERS))))
     batches_remaining = math.ceil(total_pending / batch_size) if batch_size > 0 else 0
 
     current_batch = pending_items[:batch_size]
@@ -599,6 +606,7 @@ def main():
                         for f in future_to_pid:
                             f.cancel()
                         break
+                    time.sleep(random.uniform(4.0, 8.0))
                     continue
                 elif confirmed_date == "TIMEOUT":
                     print(f"   [{idx}/{batch_size}] ⚠ [{pid}] Network timeout / transient error. Will retry in subsequent run.", flush=True)

@@ -48,7 +48,7 @@ ALL_UPFRONT_PREFIXES = (
 KIRARI_KUSUMI_CANONICAL_SIGNATURES = [
     "koi kana", "koi☆kana", "恋☆カナ",
     "balalaika", "バラライカ",
-    "happy☆mysterious", "happy", "ハッピー☆彡", "ハッピー",
+    "happy☆mysterious", "happy☆彡", "ハッピー☆彡",
     "chance!", "チャンス!", "チャンス！",
     "papirappetta", "パパンケーキ",
     "anataboshi", "アナタボシ",
@@ -1186,13 +1186,13 @@ def main():
 
         browser.close()
 
-    # 1. Save master products.json
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
-
-    # 2. Synchronize frontend catalog-index.json
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
+    for target_path in (DATA_FILE, INDEX_FILE):
+        tmp_path = f"{target_path}.tmp"
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, indent=2, ensure_ascii=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, target_path)
 
     state_data = {
         "last_sync": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),

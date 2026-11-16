@@ -30,7 +30,7 @@ UPFRONT_PREFIXES = (
 KIRARI_KUSUMI_CANONICAL_SIGNATURES = [
     "koi kana", "koi☆kana", "恋☆カナ",
     "balalaika", "バラライカ",
-    "happy☆mysterious", "happy", "ハッピー☆彡", "ハッピー",
+    "happy☆mysterious", "happy☆彡", "ハッピー☆彡",
     "chance!", "チャンス!", "チャンス！",
     "papirappetta", "パパンケーキ",
     "anataboshi", "アナタボシ",
@@ -86,7 +86,7 @@ PRIMARY_GROUP_NAMES = {
     "NiziU", "ME:I", "IS:SUE", "BABYMETAL", "Sakura Gakuin"
 }
 
-# Dedicated Soloists / Graduates whose individual solo releases must be accurately categorized
+# Dedicated Soloists / Graduates whose individual solo releases must be accurately categorized (aligned with scraper.py)
 SOLO_GRADUATE_RULES = [
     ("Hello! Project", "Makino Maria", [r"\bmakino\s+maria\b", r"\bmaria\s+makino\b", r"牧野真莉愛"]),
     ("Hello! Project", "Nakazawa Yuko", [r"\bnakazawa\s+yuko\b", r"\byuko\s+nakazawa\b", r"中澤裕子"]),
@@ -95,50 +95,50 @@ SOLO_GRADUATE_RULES = [
     ("Hello! Project", "Takahashi Ai", [r"\btakahashi\s+ai\b", r"\bai\s+takahashi\b", r"高橋愛"]),
     ("Hello! Project", "Niigaki Risa", [r"\bniigaki\s+risa\b", r"\brisa\s+niigaki\b", r"新垣里沙"]),
     ("Hello! Project", "Yajima Maimi", [r"\byajima\s+maimi\b", r"\bmaimi\s+yajima\b", r"矢島舞美"]),
-    ("Hello! Project", "Sato Masaki", [r"\bsato\s+masaki\b", r"\bmasaki\s+sato\b", r"佐藤優樹", r"ding\s+dong", r"ロマンティックなんてガラじゃない"]),
-    ("Hello! Project", "Sayashi Riho", [r"\bsayashi\s+riho\b", r"\briho\s+sayashi\b", r"鞘師里保"]),
-    ("Hello! Project", "Inaba Manaka", [r"\binaba\s+manaka\b", r"\bmanaka\s+inaba\b", r"稲場愛香", r"圧倒的lve", r"pink\s+vampire"]),
-    ("Hello! Project", "Fukumura Mizuki", [r"\bfukumura\s+mizuki\b", r"\bmizuki\s+fukumura\b", r"譜久村聖"]),
-    ("Hello! Project", "Tsugunaga Momoko", [r"\btsugunaga\s+momoko\b", r"\bmomoko\s+tsugunaga\b", r"嗣永桃子", r"ももち"]),
-    ("Hello! Project", "Natsuyaki Miyabi", [r"\bnatsuyaki\s+miyabi\b", r"\bmiyabi\s+natsuyaki\b", r"夏焼雅"]),
-    ("Hello! Project", "Sugaya Risako", [r"\bsugaya\s+risako\b", r"\brisako\s+sugaya\b", r"菅谷梨沙子"]),
+    ("Hello! Project", "Masaki Sato", [r"\bsato\s+masaki\b", r"\bmasaki\s+sato\b", r"佐藤優樹", r"ding\s+dong", r"ロマンティックなんてガラじゃない"]),
+    ("Hello! Project", "Riho Sayashi", [r"\bsayashi\s+riho\b", r"\briho\s+sayashi\b", r"鞘師里保"]),
+    ("Hello! Project", "Manaka Inaba", [r"\binaba\s+manaka\b", r"\bmanaka\s+inaba\b", r"稲場愛香", r"圧倒的lve", r"pink\s+vampire"]),
+    ("Hello! Project", "Mizuki Fukumura", [r"\bfukumura\s+mizuki\b", r"\bmizuki\s+fukumura\b", r"譜久村聖"]),
+    ("Hello! Project", "Momoko Tsugunaga", [r"\btsugunaga\s+momoko\b", r"\bmomoko\s+tsugunaga\b", r"嗣永桃子", r"ももち"]),
+    ("Hello! Project", "Miyabi Natsuyaki", [r"\bnatsuyaki\s+miyabi\b", r"\bmiyabi\s+natsuyaki\b", r"夏焼雅"]),
+    ("Hello! Project", "Risako Sugaya", [r"\bsugaya\s+risako\b", r"\brisako\s+sugaya\b", r"菅谷梨沙子"]),
     ("Hello! Project", "Kumai Yurina", [r"\bkumai\s+yurina\b", r"\byurina\s+kumai\b", r"熊井友理奈"]),
-    ("Hello! Project", "Wada Ayaka", [r"\bwada\s+ayaka\b", r"\bayaka\s+wada\b", r"和田彩花"]),
-    ("Hello! Project", "Tamura Meimi", [r"\btamura\s+meimi\b", r"\bmeimi\s+tamura\b", r"田村芽実"]),
-    ("Hello! Project", "Fukuda Kanon", [r"\bfukuda\s+kanon\b", r"\bkanon\s+fukuda\b", r"福田花音", r"巫まろ", r"maro\s+kanna"]),
-    ("Hello! Project", "Kanazawa Tomoko", [r"\bkanazawa\s+tomoko\b", r"\btomoko\s+kanazawa\b", r"金澤朋子"]),
-    ("Hello! Project", "Kishimoto Yumeno", [r"\bkishimoto\s+yumeno\b", r"\byumeno\s+kishimoto\b", r"岸本ゆめの"]),
-    ("Hello! Project", "Kitahara Sayaka", [r"\bkitahara\s+sayaka\b", r"\bsayaka\s+kitahara\b", r"北原沙弥香"]),
-    ("Hello! Project", "Tsuji Nozomi", [r"\btsuji\s+nozomi\b", r"\bnozomi\s+tsuji\b", r"辻希美", r"のんピース"]),
-    ("Hello! Project", "Kago Ai", [r"\bkago\s+ai\b", r"\bai\s+kago\b", r"加護亜依"]),
-    ("Hello! Project", "Ishikawa Rika", [r"\bishikawa\s+rika\b", r"\brika\s+ishikawa\b", r"石川梨華"]),
-    ("Hello! Project", "Kudo Haruka", [r"\bkudo\s+haruka\b", r"\bharuka\s+kudo\b", r"工藤遥"]),
-    ("Hello! Project", "Iikubo Haruna", [r"\biikubo\s+haruna\b", r"\bharuna\s+iikubo\b", r"飯窪春菜"]),
-    ("Hello! Project", "Ikuta Erina", [r"\bikuta\s+erina\b", r"\berina\s+ikuta\b", r"生田衣梨奈"]),
-    ("Hello! Project", "Haga Akane", [r"\bhaga\s+akane\b", r"\bakane\s+haga\b", r"羽賀朱音"]),
-    ("Hello! Project", "Sasaki Rikako", [r"\bsasaki\s+rikako\b", r"\brikako\s+sasaki\b", r"佐々木莉佳子"]),
-    ("Hello! Project", "Murota Mizuki", [r"\bmurota\s+mizuki\b", r"\bmizuki\s+murota\b", r"室田瑞希"]),
-    ("Hello! Project", "Miyazaki Yuka", [r"\bmiyazaki\s+yuka\b", r"\byuka\s+miyazaki\b", r"宮崎由加"]),
-    ("Hello! Project", "Uemura Akari", [r"\buemura\s+akari\b", r"\bakari\s+uemura\b", r"植村あかり"]),
-    ("Hello! Project", "Morito Chisaki", [r"\bmorito\s+chisaki\b", r"\bchisaki\s+morito\b", r"森戸知沙希"]),
-    ("Hello! Project", "Satoda Mai", [r"\bsatoda\s+mai\b", r"\bmai\s+satoda\b", r"里田まい"]),
-    ("Hello! Project", "Ishida Ayumi", [r"\bishida\s+ayumi\b", r"\bayumi\s+ishida\b", r"石田亜佑美"]),
-    ("Hello! Project", "Dambara Ruru", [r"\bdambara\s+ruru\b", r"\bruru\s+dambara\b", r"段原瑠々"]),
-    ("Hello! Project", "Yamazaki Yuhane", [r"\byamazaki\s+yuhane\b", r"\byuhane\s+yamazaki\b", r"山﨑夢羽"]),
-    ("Hello! Project", "Hamaura Ayano", [r"\bhamaura\s+ayano\b", r"\bayano\s+hamaura\b", r"浜浦彩乃"]),
-    ("Hello! Project", "Kawamura Ayano", [r"\bkawamura\s+ayano\b", r"\bayano\s+kawamura\b", r"川村文乃"]),
-    ("Hello! Project", "Kasahara Momona", [r"\bkasahara\s+momona\b", r"\bmomona\s+kasahara\b", r"笠原桃奈"]),
-    ("Hello! Project", "Akiyama Mao", [r"\bakiyama\s+mao\b", r"\bmao\s+akiyama\b", r"秋山眞緒"]),
-    ("Hello! Project", "Yanagawa Nanami", [r"\byanagawa\s+nanami\b", r"\bnanami\s+yanagawa\b", r"梁川奈々美"]),
-    ("Hello! Project", "Michishige Sayumi", [r"\bsayumi\s+michishige\b", r"\bmichishige\s+sayumi\b", r"道重さゆみ", r"\bsayuming\b"]),
-    ("Hello! Project", "Matsuura Aya", [r"\baya\s+matsuura\b", r"\bmatsuura\s+aya\b", r"松浦亜弥"]),
-    ("Hello! Project", "Goto Maki", [r"\bmaki\s+goto\b", r"\bgoto\s+maki\b", r"後藤真希"]),
-    ("Hello! Project", "Abe Natsumi", [r"\bnatsumi\s+abe\b", r"\babe\s+natsumi\b", r"安倍なつみ"]),
-    ("Hello! Project", "Mano Erina", [r"\berina\s+mano\b", r"\bmano\s+erina\b", r"真野恵里菜"]),
-    ("Hello! Project", "Suzuki Airi", [r"\bairi\s+suzuki\b", r"\bsuzuki\s+airi\b", r"鈴木愛理"]),
-    ("Hello! Project", "Fujimoto Miki", [r"\bmiki\s+fujimoto\b", r"\bfujimoto\s+miki\b", r"藤本美貴", r"\bmikitty\b"]),
-    ("Hello! Project", "Miyamoto Karin", [r"\bkarin\s+miyamoto\b", r"\bmiyamoto\s+karin\b", r"宮本佳林"]),
-    ("AKB48 Group", "Yamamoto Sayaka", [r"\byamamoto\s+sayaka\b", r"\bsayaka\s+yamamoto\b", r"山本彩"]),
+    ("Hello! Project", "Ayaka Wada", [r"\bwada\s+ayaka\b", r"\bayaka\s+wada\b", r"和田彩花"]),
+    ("Hello! Project", "Meimi Tamura", [r"\btamura\s+meimi\b", r"\bmeimi\s+tamura\b", r"田村芽実"]),
+    ("Hello! Project", "Kanon Fukuda", [r"\bfukuda\s+kanon\b", r"\bkanon\s+fukuda\b", r"福田花音", r"巫まろ", r"maro\s+kanna"]),
+    ("Hello! Project", "Tomoko Kanazawa", [r"\bkanazawa\s+tomoko\b", r"\btomoko\s+kanazawa\b", r"金澤朋子"]),
+    ("Hello! Project", "Yumeno Kishimoto", [r"\bkishimoto\s+yumeno\b", r"\byumeno\s+kishimoto\b", r"岸本ゆめの"]),
+    ("Hello! Project", "Sayaka Kitahara", [r"\bkitahara\s+sayaka\b", r"\bsayaka\s+kitahara\b", r"北原沙弥香"]),
+    ("Hello! Project", "Nozomi Tsuji", [r"\btsuji\s+nozomi\b", r"\bnozomi\s+tsuji\b", r"辻希美", r"のんピース"]),
+    ("Hello! Project", "Ai Kago", [r"\bkago\s+ai\b", r"\bai\s+kago\b", r"加護亜依"]),
+    ("Hello! Project", "Rika Ishikawa", [r"\bishikawa\s+rika\b", r"\brika\s+ishikawa\b", r"石川梨華"]),
+    ("Hello! Project", "Haruka Kudo", [r"\bkudo\s+haruka\b", r"\bharuka\s+kudo\b", r"工藤遥"]),
+    ("Hello! Project", "Haruna Iikubo", [r"\biikubo\s+haruna\b", r"\bharuna\s+iikubo\b", r"飯窪春菜"]),
+    ("Hello! Project", "Erina Ikuta", [r"\bikuta\s+erina\b", r"\berina\s+ikuta\b", r"生田衣梨奈"]),
+    ("Hello! Project", "Akane Haga", [r"\bhaga\s+akane\b", r"\bakane\s+haga\b", r"羽賀朱音"]),
+    ("Hello! Project", "Rikako Sasaki", [r"\bsasaki\s+rikako\b", r"\brikako\s+sasaki\b", r"佐々木莉佳子"]),
+    ("Hello! Project", "Mizuki Murota", [r"\bmurota\s+mizuki\b", r"\bmizuki\s+murota\b", r"室田瑞希"]),
+    ("Hello! Project", "Yuka Miyazaki", [r"\bmiyazaki\s+yuka\b", r"\byuka\s+miyazaki\b", r"宮崎由加"]),
+    ("Hello! Project", "Akari Uemura", [r"\buemura\s+akari\b", r"\bakari\s+uemura\b", r"植村あかり"]),
+    ("Hello! Project", "Chisaki Morito", [r"\bmorito\s+chisaki\b", r"\bchisaki\s+morito\b", r"森戸知沙希"]),
+    ("Hello! Project", "Mai Satoda", [r"\bsatoda\s+mai\b", r"\bmai\s+satoda\b", r"里田まい"]),
+    ("Hello! Project", "Ayumi Ishida", [r"\bishida\s+ayumi\b", r"\bayumi\s+ishida\b", r"石田亜佑美"]),
+    ("Hello! Project", "Ruru Dambara", [r"\bdambara\s+ruru\b", r"\bruru\s+dambara\b", r"段原瑠々"]),
+    ("Hello! Project", "Yuhane Yamazaki", [r"\byamazaki\s+yuhane\b", r"\byuhane\s+yamazaki\b", r"山﨑夢羽"]),
+    ("Hello! Project", "Ayano Hamaura", [r"\bhamaura\s+ayano\b", r"\bayano\s+hamaura\b", r"浜浦彩乃"]),
+    ("Hello! Project", "Ayano Kawamura", [r"\bkawamura\s+ayano\b", r"\bayano\s+kawamura\b", r"川村文乃"]),
+    ("Hello! Project", "Momona Kasahara", [r"\bkasahara\s+momona\b", r"\bmomona\s+kasahara\b", r"笠原桃奈"]),
+    ("Hello! Project", "Mao Akiyama", [r"\bakiyama\s+mao\b", r"\bmao\s+akiyama\b", r"秋山眞緒"]),
+    ("Hello! Project", "Nanami Yanagawa", [r"\byanagawa\s+nanami\b", r"\bnanami\s+yanagawa\b", r"梁川奈々美"]),
+    ("Hello! Project", "Sayumi Michishige", [r"\bsayumi\s+michishige\b", r"\bmichishige\s+sayumi\b", r"道重さゆみ", r"\bsayuming\b"]),
+    ("Hello! Project", "Aya Matsuura", [r"\baya\s+matsuura\b", r"\bmatsuura\s+aya\b", r"松浦亜弥"]),
+    ("Hello! Project", "Maki Goto", [r"\bmaki\s+goto\b", r"\bgoto\s+maki\b", r"後藤真希"]),
+    ("Hello! Project", "Natsumi Abe", [r"\bnatsumi\s+abe\b", r"\babe\s+natsumi\b", r"安倍なつみ"]),
+    ("Hello! Project", "Erina Mano", [r"\berina\s+mano\b", r"\bmano\s+erina\b", r"真野恵里菜"]),
+    ("Hello! Project", "Airi Suzuki", [r"\bairi\s+suzuki\b", r"\bsuzuki\s+airi\b", r"鈴木愛理"]),
+    ("Hello! Project", "Miki Fujimoto", [r"\bmiki\s+fujimoto\b", r"\bfujimoto\s+miki\b", r"藤本美貴", r"\bmikitty\b"]),
+    ("Hello! Project", "Karin Miyamoto", [r"\bkarin\s+miyamoto\b", r"\bmiyamoto\s+karin\b", r"宮本佳林"]),
+    ("AKB48 Group", "Sayaka Yamamoto", [r"\byamamoto\s+sayaka\b", r"\bsayaka\s+yamamoto\b", r"山本彩"]),
     ("AKB48 Group", "Maeda Atsuko", [r"\bmaeda\s+atsuko\b", r"\batsuko\s+maeda\b", r"前田敦子"]),
     ("AKB48 Group", "Oshima Yuko", [r"\boshima\s+yuko\b", r"\byuko\s+oshima\b", r"大島優子"]),
     ("AKB48 Group", "Watanabe Mayu", [r"\bwatanabe\s+mayu\b", r"\bmayu\s+watanabe\b", r"渡辺麻友", r"まゆゆ"]),
@@ -313,13 +313,13 @@ def clean_catalog():
 
         cleaned_catalog[pid] = item
 
-    # 1. Save to products.json
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
-
-    # 2. Synchronize catalog-index.json for immediate deployment
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
+    for target_path in (DATA_FILE, INDEX_FILE):
+        tmp_path = f"{target_path}.tmp"
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(cleaned_catalog, f, indent=2, ensure_ascii=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, target_path)
 
     # 3. Write structured audit log
     with open(LOG_FILE, "w", encoding="utf-8") as f:

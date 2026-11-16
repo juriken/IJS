@@ -28,38 +28,33 @@ def validate_json_file(file_path, is_summary=False):
 
     if total_items < MIN_CATALOG_ITEMS:
         print(f"❌ Error: Catalog item count ({total_items}) is below minimum threshold ({MIN_CATALOG_ITEMS}). Aborting to prevent empty deploy.")
-        return False
+        return None
 
-    sample_count = 0
     for pid, item in data.items():
         if not isinstance(item, dict):
             print(f"❌ Error: Item '{pid}' in '{file_path}' is not a valid object.")
-            return False
+            return None
 
-        # Verify essential fields
+        # Verify essential fields are present and non-empty
         for field in REQUIRED_FIELDS:
-            if field not in item or item[field] is None:
-                print(f"❌ Error: Item '{pid}' missing required field '{field}'.")
-                return False
+            if field not in item or item[field] is None or not str(item[field]).strip():
+                print(f"❌ Error: Item '{pid}' missing or empty required field '{field}'.")
+                return None
 
         # Validate SKU format (no spaces or control characters)
-        if re.search(r'\s', item["id"]):
+        if re.search(r"\s", str(item["id"])):
             print(f"❌ Error: SKU '{item['id']}' contains illegal whitespace characters.")
-            return False
+            return None
 
         # Validate affiliate links on full payload
         if not is_summary and "affiliate_url" in item:
             aff_url = item.get("affiliate_url", "")
             if EXPECTED_AFFILIATE_ID not in aff_url:
                 print(f"❌ Error: Item '{pid}' missing affiliate parameter '{EXPECTED_AFFILIATE_ID}' in URL: {aff_url}")
-                return False
+                return None
 
-        sample_count += 1
-        if sample_count > 500:
-            break
-
-    print(f"✅ '{file_path}' passed structural integrity checks.")
-    return True
+    print(f"✅ '{file_path}' passed structural integrity checks across all {total_items:,} items.")
+    return data
 
 def main():
     print("==========================================")
@@ -68,11 +63,15 @@ def main():
 
     from path_helper import get_target_path
 
-    passed_full = validate_json_file(get_target_path("products.json"), is_summary=False)
-    passed_summary = validate_json_file(get_target_path("catalog-index.json"), is_summary=True)
-    
-    if not passed_full or not passed_summary:
+    full_data = validate_json_file(get_target_path("products.json"), is_summary=False)
+    index_data = validate_json_file(get_target_path("catalog-index.json"), is_summary=True)
+
+    if full_data is None or index_data is None:
         print("❌ Catalog validation failed. Exiting with non-zero code to block deploy.")
+        sys.exit(1)
+
+    if set(full_data.keys()) != set(index_data.keys()):
+        print(f"❌ Error: Dual-file parity mismatch (products.json: {len(full_data):,}, catalog-index.json: {len(index_data):,}).")
         sys.exit(1)
 
     print("==========================================")

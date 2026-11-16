@@ -119,6 +119,15 @@ def check_sku_status(session, pid, current_item):
             has_preorder_btn = bool(soup.select_one(".btn-preorder, input[value*='Pre-order'], button:has-text('Pre-order'), a:has-text('Pre-order')"))
             has_cart_btn = bool(soup.select_one(".btn-cart, input[value*='Add to Cart'], button:has-text('Add to Cart'), a:has-text('Add to Cart')"))
 
+            has_preorder_btn = bool(
+                soup.select_one(".btn-preorder, input[value*='Pre-order']")
+                or any("pre-order" in el.get_text(" ", strip=True).lower() for el in soup.select("button, a"))
+            )
+            has_cart_btn = bool(
+                soup.select_one(".btn-cart, input[value*='Add to Cart']")
+                or any("add to cart" in el.get_text(" ", strip=True).lower() for el in soup.select("button, a"))
+            )
+
             if has_preorder_btn or "pre-order" in action_text or "予約" in action_text:
                 return pid, "preorder", "Pre-order Button Detected"
 
@@ -149,8 +158,10 @@ def check_sku_status(session, pid, current_item):
                 return pid, "preorder", "Preserved Pre-order (Upcoming Date)"
             return pid, current_avail, "Preserved Existing Status (Ambiguous DOM)"
 
+        elif res.status_code in (403, 429):
+            return pid, "BLOCKED", f"WAF Blocked (HTTP {res.status_code})"
         else:
-            # Non-200 / Non-404 (e.g. 429, 500, 503) -> Do NOT mark as OOP
+            # Non-200 / Non-404 (e.g. 500, 503) -> Do NOT mark as OOP
             return pid, current_avail, f"Preserved (HTTP {res.status_code})"
 
     except Exception as e:
@@ -223,6 +234,9 @@ def main():
     start_time = time.time()
     log_lines = []
 
+    consecutive_blocks = 0
+    max_consecutive_blocks = 8
+
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_pid = {
             executor.submit(check_sku_status, session, pid, catalog[pid]): pid
@@ -231,6 +245,18 @@ def main():
 
         for idx, future in enumerate(as_completed(future_to_pid), 1):
             pid, new_status, reason = future.result()
+
+            if new_status == "BLOCKED":
+                consecutive_blocks += 1
+                print(f"   [{idx}/{batch_size}] ⚠ [{pid}] {reason} ({consecutive_blocks}/{max_consecutive_blocks})", flush=True)
+                if consecutive_blocks >= max_consecutive_blocks:
+                    print(f"\n[Warning] {consecutive_blocks} consecutive WAF blocks. Aborting health check early.")
+                    for f in future_to_pid:
+                        f.cancel()
+                    break
+                continue
+
+            consecutive_blocks = 0
             audited_pids.add(pid)
             old_status = catalog[pid].get("availability", "instock")
 
@@ -247,13 +273,14 @@ def main():
                 elapsed = time.time() - start_time
                 print(f"   -> Progress: {idx}/{batch_size} audited ({elapsed:.1f}s elapsed)...", flush=True)
 
-    # 1. Save updated products.json
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
-
-    # 2. Synchronize catalog-index.json for immediate deployment
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
+    # 1. Atomically save updated products.json and synchronize catalog-index.json
+    for target_path in (DATA_FILE, INDEX_FILE):
+        tmp_path = f"{target_path}.tmp"
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, indent=2, ensure_ascii=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, target_path)
 
     # Save state
     save_healthcheck_state(audited_pids)

@@ -5,7 +5,7 @@
     <link>https://idoljapan.store/</link>
     <description>Official discography, pre-orders, and release updates for Japanese female idols fulfilled by CDJapan (Tokyo).</description>
     <language>en</language>
-    <lastBuildDate>Thu, 19 Nov 2026 23:38:05 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 23:29:42 GMT</lastBuildDate>
     <atom:link href="https://idoljapan.store//home/runner/work/IJS/IJS/public/feed.xml" rel="self" type="application/rss+xml" />
     <generator>IdolJapan RSS Generator</generator>
     <item>
@@ -241,6 +241,14 @@
       <description>&lt;p&gt;&lt;img src="https://st.cdjapan.co.jp/pictures/l/16/24/NEODAI-334911.jpg?v=1" alt="Collectible [Nogizaka46] Metal Keychain "Okoshi Hinano" [7net Shopping Limited]" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; Nogizaka46&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Sakamichi Series&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; NEODAI-334911&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥1,540&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2027/01/31&lt;/p&gt;</description>
     </item>
     <item>
+      <title>[Morning Musume] Blu-ray Morning Musume'26 Oda Sakura "Sakura no Shirabe FINAL"</title>
+      <link>https://idoljapan.store/?id=DAKUFXW-1043</link>
+      <guid isPermaLink="true">https://idoljapan.store/?id=DAKUFXW-1043</guid>
+      <pubDate>Wed, 20 Jan 2027 09:00:00 +0900</pubDate>
+      <category>Hello! Project</category>
+      <description>&lt;p&gt;&lt;img src="https://www.cdjapan.co.jp/pictures/l/DAKUFXW-1043.jpg" alt="Blu-ray Morning Musume'26 Oda Sakura "Sakura no Shirabe FINAL"" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; Morning Musume&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Hello! Project&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; DAKUFXW-1043&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥6,000&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2027/01/20&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>[W] Blu-ray 2026 ME:I 2ND ARENA LIVE TOUR "ME:I WAY" [Regular Edition]</title>
       <link>https://idoljapan.store/?id=YRXS-80080</link>
       <guid isPermaLink="true">https://idoljapan.store/?id=YRXS-80080</guid>
@@ -399,14 +407,6 @@
       <pubDate>Wed, 23 Dec 2026 09:00:00 +0900</pubDate>
       <category>Babymetal</category>
       <description>&lt;p&gt;&lt;img src="https://st.cdjapan.co.jp/pictures/l/16/11/NEODAI-333650.jpg?v=1" alt="Blu-ray LEGEND - METAL FORTH [Regular Edition] w/ Amazon Bonus: Hand Towel" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; BABYMETAL&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Babymetal&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; NEODAI-333650&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥8,800&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2026/12/23&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>[BABYMETAL] DVD LEGEND - METAL FORTH [Regular Edition] w/ Amazon Bonus: Hand Towel</title>
-      <link>https://idoljapan.store/?id=NEODAI-333651</link>
-      <guid isPermaLink="true">https://idoljapan.store/?id=NEODAI-333651</guid>
-      <pubDate>Wed, 23 Dec 2026 09:00:00 +0900</pubDate>
-      <category>Babymetal</category>
-      <description>&lt;p&gt;&lt;img src="https://st.cdjapan.co.jp/pictures/l/16/12/NEODAI-333651.jpg?v=1" alt="DVD LEGEND - METAL FORTH [Regular Edition] w/ Amazon Bonus: Hand Towel" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; BABYMETAL&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Babymetal&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; NEODAI-333651&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥7,700&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2026/12/23&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

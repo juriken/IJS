@@ -1,10 +1,20 @@
-IdolJapan.store Catalog Clean Log — 2026-11-19 23:38:03 UTC
+IdolJapan.store Catalog Clean Log — 2026-11-20 23:29:40 UTC
 ================================================================================
-Total Initial Releases:         22,749
-Purged False Positives:         0
+Total Initial Releases:         22,761
+Purged False Positives:         11
 Reclassified / Aligned:         0
 Verified Tsukishima Kirari:     34
-Total Cleaned Releases Saved:   22,749
+Total Cleaned Releases Saved:   22,750
 ================================================================================
 
-Catalog verified clean. No records required purging or reclassification.
+[PURGED: NON_KUSUMI_KIRARI] [NEODAI-159656] Album CD Used [Secondhand] Happy [Limited Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPBE-5299] DVD Single V: Papan Cake (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5563] Single CD Papancake [Limited Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5564] Single CD Papancake [Regular Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPBE-5245] DVD Single V: Happy (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5469] Album CD Happy [Limited Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5470] Album CD Happy [Regular Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPBE-5201] DVD Single V: Koikana (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5413] Single CD Koikana [Limited Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [EPCE-5414] Single CD Koikana [Regular Edition] (Reason: No Kusumi Koharu signature or Up-Front catalog match)
+[PURGED: NON_KUSUMI_KIRARI] [NEOBK-899336] BOOK 17 Sai no Tenshoku (Reason: No Kusumi Koharu signature or Up-Front catalog match)

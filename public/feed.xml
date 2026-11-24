@@ -5,7 +5,7 @@
     <link>https://idoljapan.store/</link>
     <description>Official discography, pre-orders, and release updates for Japanese female idols fulfilled by CDJapan (Tokyo).</description>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Nov 2026 21:25:57 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 03:16:36 GMT</lastBuildDate>
     <atom:link href="https://idoljapan.store//home/runner/work/IJS/IJS/public/feed.xml" rel="self" type="application/rss+xml" />
     <generator>IdolJapan RSS Generator</generator>
     <item>
@@ -313,6 +313,14 @@
       <description>&lt;p&gt;&lt;img src="https://www.cdjapan.co.jp/pictures/l/SRCL-13980.jpg" alt="Single CD Archive [CD + Blu-ray / Type A]" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; Hinatazaka46&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Sakamichi Series&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; SRCL-13980&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥1,818&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2027/01/20&lt;/p&gt;</description>
     </item>
     <item>
+      <title>[Ikuta Erika] Blu-ray Erika Ikuta Tour 2026 "I.K.T" - I Know Tomorrow - [Limited First Edition]</title>
+      <link>https://idoljapan.store/?id=SRXL-672</link>
+      <guid isPermaLink="true">https://idoljapan.store/?id=SRXL-672</guid>
+      <pubDate>Wed, 20 Jan 2027 09:00:00 +0900</pubDate>
+      <category>Sakamichi Series</category>
+      <description>&lt;p&gt;&lt;img src="https://www.cdjapan.co.jp/pictures/l/SRXL-672.jpg" alt="Blu-ray Erika Ikuta Tour 2026 "I.K.T" - I Know Tomorrow - [Limited First Edition]" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; Ikuta Erika&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Sakamichi Series&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; SRXL-672&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥8,000&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2027/01/20&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>[W] Blu-ray 2026 ME:I 2ND ARENA LIVE TOUR "ME:I WAY" [Regular Edition]</title>
       <link>https://idoljapan.store/?id=YRXS-80080</link>
       <guid isPermaLink="true">https://idoljapan.store/?id=YRXS-80080</guid>
@@ -399,14 +407,6 @@
       <pubDate>Wed, 23 Dec 2026 09:00:00 +0900</pubDate>
       <category>Babymetal</category>
       <description>&lt;p&gt;&lt;img src="https://st.cdjapan.co.jp/pictures/l/16/06/NEODAI-333701.jpg?v=1" alt="Blu-ray LEGEND - METAL FORTH [Limited Edition] w/ Tower Records Bonus: Can Magnet" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; BABYMETAL&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Babymetal&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; NEODAI-333701&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥11,000&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2026/12/23&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>[BABYMETAL] Blu-ray LEGEND - METAL FORTH [Limited Edition] w/ Asmart Bonus: A4 Clear Folder</title>
-      <link>https://idoljapan.store/?id=NEODAI-333698</link>
-      <guid isPermaLink="true">https://idoljapan.store/?id=NEODAI-333698</guid>
-      <pubDate>Wed, 23 Dec 2026 09:00:00 +0900</pubDate>
-      <category>Babymetal</category>
-      <description>&lt;p&gt;&lt;img src="https://st.cdjapan.co.jp/pictures/l/16/27/NEODAI-333698.jpg?v=1" alt="Blu-ray LEGEND - METAL FORTH [Limited Edition] w/ Asmart Bonus: A4 Clear Folder" width="240" /&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Artist:&lt;/strong&gt; BABYMETAL&lt;br/&gt;&lt;strong&gt;Franchise:&lt;/strong&gt; Babymetal&lt;br/&gt;&lt;strong&gt;Catalog ID:&lt;/strong&gt; NEODAI-333698&lt;br/&gt;&lt;strong&gt;Price:&lt;/strong&gt; ¥11,000&lt;br/&gt;&lt;strong&gt;Street Date:&lt;/strong&gt; 2026/12/23&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,10 +1,24 @@
-IdolJapan.store Catalog Clean Log — 2026-11-25 00:59:49 UTC
+IdolJapan.store Catalog Clean Log — 2026-11-26 00:27:02 UTC
 ================================================================================
 Total Initial Releases:         22,762
 Purged False Positives:         0
-Reclassified / Aligned:         0
+Reclassified / Aligned:         15
 Verified Tsukishima Kirari:     34
 Total Cleaned Releases Saved:   22,762
 ================================================================================
 
-Catalog verified clean. No records required purging or reclassification.
+[RECLASSIFIED: SOLOIST] [NEOBK-524767] 'BOOK Bit Bare Ttobijuarubukku Joshikosei Kakuto SF Drama Asano Ka Ya Matsuyama Mary Yamaguchi Hikari Hazuki Ai Amano Rie Yasui Rei Kurata Mina Takaoka Mirai Takahashi Azusa Shi Ho No Ryo' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-3017441] 'BOOK Re Pre-kon Vakzin Wo Utsu Mae Ni Kanarazu Yondekudasai! Misesshu Sha Ni Made Osoikakaru Yami No Shotai' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-2481320] 'BOOK Ni Rei Seiki "Eikoku" Shosetsu No Tenkai' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-2379443] 'BOOK Koi De Hanaku Ai De Manabu Seiji to Keizai' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-816529] 'BOOK Nagatacho No Ai Subeki Akuto Tachi "Habatsu Seiji" No Anto to Hokai' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-656248] 'BOOK Ningen Banzai Ai!to Ai to No Ningiyo Sekai' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-2898242] 'BOOK 55 Sai Kara No Jutaku Loan Hatan Kaihi Jutsu' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-2854596] 'BOOK Seiji Kenryoku No Minshu Teki Seito Sei to <Goho Sei>' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-1813778] 'BOOK Rogo Hasan De Sumu Ie Ga Nakunaru! Anata Ha Daijobu?' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-2406875] 'BOOK Rogo Hasan De Sumu Ie Ga Nakunaru! Anata Ha Daijobu? [Kaitei Ban]' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-1982406] 'BOOK Rikon to Okane Do Naru? Jutaku Loan!' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-1880181] 'BOOK Atama Ga I Oya 13 Sai Kara No Kosodate Kono Ko to Do Mukiattara I No?' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-1088546] 'BOOK Fufu Ha Hanashikata Shidai De 9 Wari Umaku Iku' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-404242] 'BOOK Atama No I Fufu Kikubari Kaiwa Jutsu Professional No Counselor Ga Akasu Hanashikata No Gokui!!' (Ai Takahashi -> Takahashi Ai)
+[RECLASSIFIED: SOLOIST] [NEOBK-317824] 'BOOK Atama Ga I Oya No Jozuna Shikari Kata Gemba Counselor Ga Akasu Kashikoi Kotsu New Edition' (Ai Takahashi -> Takahashi Ai)
